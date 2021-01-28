@@ -1,0 +1,136 @@
+\contentsline {chapter}{Introduction}{5}{chapter*.2}
+\contentsline {chapter}{R Packages used in these notes}{7}{chapter*.3}
+\contentsline {section}{General Theme for \texttt {ggplot} work}{8}{section*.4}
+\contentsline {section}{Data used in these notes}{8}{section*.5}
+\contentsline {chapter}{\numberline {1}Building Table 1}{9}{chapter.1}
+\contentsline {section}{\numberline {1.1}Data load}{9}{section.1.1}
+\contentsline {section}{\numberline {1.2}Two examples from the \emph {New England Journal of Medicine}}{10}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}A simple Table 1}{10}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}A group comparison}{11}{subsection.1.2.2}
+\contentsline {section}{\numberline {1.3}The MR CLEAN trial}{12}{section.1.3}
+\contentsline {section}{\numberline {1.4}Simulated \texttt {fakestroke} data}{14}{section.1.4}
+\contentsline {section}{\numberline {1.5}Building Table 1 for \texttt {fakestroke}: Attempt 1}{15}{section.1.5}
+\contentsline {subsection}{\numberline {1.5.1}Some of this is very useful, and other parts need to be fixed.}{16}{subsection.1.5.1}
+\contentsline {subsection}{\numberline {1.5.2}\texttt {fakestroke} Cleaning Up Categorical Variables}{17}{subsection.1.5.2}
+\contentsline {section}{\numberline {1.6}\texttt {fakestroke} Table 1: Attempt 2}{18}{section.1.6}
+\contentsline {subsection}{\numberline {1.6.1}What summaries should we show?}{18}{subsection.1.6.1}
+\contentsline {section}{\numberline {1.7}Obtaining a more detailed Summary}{21}{section.1.7}
+\contentsline {section}{\numberline {1.8}Exporting the Completed Table 1 from R to Excel or Word}{24}{section.1.8}
+\contentsline {subsection}{\numberline {1.8.1}Approach A: Save and open in Excel}{24}{subsection.1.8.1}
+\contentsline {subsection}{\numberline {1.8.2}Approach B: Produce the Table so you can cut and paste it}{25}{subsection.1.8.2}
+\contentsline {section}{\numberline {1.9}A Controlled Biological Experiment - The Blood-Brain Barrier}{26}{section.1.9}
+\contentsline {section}{\numberline {1.10}The \texttt {bloodbrain.csv} file}{26}{section.1.10}
+\contentsline {section}{\numberline {1.11}A Table 1 for \texttt {bloodbrain}}{27}{section.1.11}
+\contentsline {subsection}{\numberline {1.11.1}Generate final Table 1 for \texttt {bloodbrain}}{30}{subsection.1.11.1}
+\contentsline {subsection}{\numberline {1.11.2}A More Finished Version (after Cleanup in Word)}{33}{subsection.1.11.2}
+\contentsline {chapter}{\numberline {2}BRFSS SMART Data}{35}{chapter.2}
+\contentsline {section}{\numberline {2.1}Key resources}{35}{section.2.1}
+\contentsline {section}{\numberline {2.2}Ingesting the Raw Data}{36}{section.2.2}
+\contentsline {section}{\numberline {2.3}Ingesting from our CSV file}{37}{section.2.3}
+\contentsline {section}{\numberline {2.4}What does the raw data look like?}{37}{section.2.4}
+\contentsline {section}{\numberline {2.5}Cleaning the BRFSS Data}{38}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Identifying Information}{38}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}Survey Method}{39}{subsection.2.5.2}
+\contentsline {subsubsection}{\numberline {2.5.2.1}\texttt {DISPCODE} and its cleanup to \texttt {completed}}{39}{subsubsection.2.5.2.1}
+\contentsline {subsubsection}{\numberline {2.5.2.2}\texttt {STATERE1} and \texttt {SAFETIME} and their reduction to \texttt {landline}}{40}{subsubsection.2.5.2.2}
+\contentsline {subsubsection}{\numberline {2.5.2.3}\texttt {HHADULT} and its cleanup to \texttt {hhadults}}{40}{subsubsection.2.5.2.3}
+\contentsline {subsection}{\numberline {2.5.3}Health Status (1 item)}{41}{subsection.2.5.3}
+\contentsline {subsubsection}{\numberline {2.5.3.1}\texttt {GENHLTH} and its cleanup to \texttt {genhealth}}{41}{subsubsection.2.5.3.1}
+\contentsline {subsection}{\numberline {2.5.4}Healthy Days - Health-Related Quality of Life (3 items)}{42}{subsection.2.5.4}
+\contentsline {subsubsection}{\numberline {2.5.4.1}\texttt {PHYSHLTH} and its cleanup to \texttt {physhealth}}{42}{subsubsection.2.5.4.1}
+\contentsline {subsubsection}{\numberline {2.5.4.2}\texttt {MENTHLTH} and its cleanup to \texttt {menthealth}}{43}{subsubsection.2.5.4.2}
+\contentsline {subsubsection}{\numberline {2.5.4.3}\texttt {POORHLTH} and its cleanup to \texttt {poorhealth}}{44}{subsubsection.2.5.4.3}
+\contentsline {subsection}{\numberline {2.5.5}Health Care Access (4 items)}{45}{subsection.2.5.5}
+\contentsline {subsubsection}{\numberline {2.5.5.1}\texttt {HLTHPLN1} and its cleanup to \texttt {healthplan}}{45}{subsubsection.2.5.5.1}
+\contentsline {subsubsection}{\numberline {2.5.5.2}\texttt {PERSDOC2} and its cleanup to \texttt {hasdoc} and to \texttt {numdocs2}}{46}{subsubsection.2.5.5.2}
+\contentsline {subsubsection}{\numberline {2.5.5.3}\texttt {MEDCOST} and its cleanup to \texttt {costprob}}{47}{subsubsection.2.5.5.3}
+\contentsline {subsubsection}{\numberline {2.5.5.4}\texttt {CHECKUP1} and its cleanup to \texttt {t\_checkup}}{48}{subsubsection.2.5.5.4}
+\contentsline {subsection}{\numberline {2.5.6}Blood Pressure (2 measures)}{49}{subsection.2.5.6}
+\contentsline {subsubsection}{\numberline {2.5.6.1}\texttt {BPHIGH4} and its cleanup to \texttt {bp\_high}}{49}{subsubsection.2.5.6.1}
+\contentsline {subsubsection}{\numberline {2.5.6.2}\texttt {BPMEDS} and its cleanup to \texttt {bp\_meds}}{50}{subsubsection.2.5.6.2}
+\contentsline {subsection}{\numberline {2.5.7}Cholesterol (3 items)}{51}{subsection.2.5.7}
+\contentsline {subsubsection}{\numberline {2.5.7.1}\texttt {CHOLCHK1} and its cleanup to \texttt {t\_chol}}{51}{subsubsection.2.5.7.1}
+\contentsline {subsubsection}{\numberline {2.5.7.2}\texttt {TOLDHI2} and its cleanup to \texttt {chol\_high}}{52}{subsubsection.2.5.7.2}
+\contentsline {subsubsection}{\numberline {2.5.7.3}\texttt {CHOLMED1} and its cleanup to \texttt {chol\_meds}}{52}{subsubsection.2.5.7.3}
+\contentsline {subsection}{\numberline {2.5.8}Chronic Health Conditions (14 items)}{53}{subsection.2.5.8}
+\contentsline {subsubsection}{\numberline {2.5.8.1}Self-reported diagnosis history (11 items)}{53}{subsubsection.2.5.8.1}
+\contentsline {subsubsection}{\numberline {2.5.8.2}\texttt {\_ASTHMS1} and its cleanup to \texttt {asthma}}{55}{subsubsection.2.5.8.2}
+\contentsline {subsubsection}{\numberline {2.5.8.3}\texttt {DIABETE3} and its cleanup to \texttt {hx\_diabetes} and \texttt {dm\_status}}{55}{subsubsection.2.5.8.3}
+\contentsline {subsubsection}{\numberline {2.5.8.4}\texttt {DIABAGE2} and its cleanup to \texttt {dm\_age}}{56}{subsubsection.2.5.8.4}
+\contentsline {subsection}{\numberline {2.5.9}Arthritis Burden (4 items)}{57}{subsection.2.5.9}
+\contentsline {subsubsection}{\numberline {2.5.9.1}\texttt {LMTJOIN3} (Limited because of joint symptoms), and its cleanup to \texttt {arth\_lims}}{57}{subsubsection.2.5.9.1}
+\contentsline {subsubsection}{\numberline {2.5.9.2}\texttt {ARTHDIS2} (Does Arthritis Affect Whether You Work), and its cleanup to \texttt {arth\_work}}{58}{subsubsection.2.5.9.2}
+\contentsline {subsubsection}{\numberline {2.5.9.3}\texttt {ARTHSOCL} (Social Activities Limited Because of Joint Symptoms) and its cleanup to \texttt {arth\_soc}}{58}{subsubsection.2.5.9.3}
+\contentsline {subsubsection}{\numberline {2.5.9.4}\texttt {JOINPAI1} (How Bad Was Joint Pain - scale of 0-10) and its cleanup to \texttt {joint\_pain}}{59}{subsubsection.2.5.9.4}
+\contentsline {subsection}{\numberline {2.5.10}Demographics (25 items)}{60}{subsection.2.5.10}
+\contentsline {subsubsection}{\numberline {2.5.10.1}\texttt {\_AGEG5YR}, which we'll edit into \texttt {agegroup}}{60}{subsubsection.2.5.10.1}
+\contentsline {subsubsection}{\numberline {2.5.10.2}\texttt {\_MRACE1} recoded to \texttt {race}}{61}{subsubsection.2.5.10.2}
+\contentsline {subsubsection}{\numberline {2.5.10.3}\texttt {\_HISPANC} recoded to \texttt {hispanic}}{62}{subsubsection.2.5.10.3}
+\contentsline {subsubsection}{\numberline {2.5.10.4}\texttt {\_RACEGR3} recoded to \texttt {race\_eth}}{63}{subsubsection.2.5.10.4}
+\contentsline {subsubsection}{\numberline {2.5.10.5}\texttt {SEX} recoded to \texttt {female}}{63}{subsubsection.2.5.10.5}
+\contentsline {subsubsection}{\numberline {2.5.10.6}\texttt {MARITAL} status, revised to \texttt {marital}}{64}{subsubsection.2.5.10.6}
+\contentsline {subsubsection}{\numberline {2.5.10.7}\texttt {EDUCA} recoded to \texttt {educgroup}}{65}{subsubsection.2.5.10.7}
+\contentsline {subsubsection}{\numberline {2.5.10.8}\texttt {RENTHOM1} recoded to \texttt {home\_own}}{66}{subsubsection.2.5.10.8}
+\contentsline {subsubsection}{\numberline {2.5.10.9}\texttt {CPDEMO1A} and its cleanup to \texttt {cell\_own}}{66}{subsubsection.2.5.10.9}
+\contentsline {subsubsection}{\numberline {2.5.10.10}\texttt {VETERAN3} and its cleanup to \texttt {veteran}}{67}{subsubsection.2.5.10.10}
+\contentsline {subsubsection}{\numberline {2.5.10.11}\texttt {EMPLOY1} and its cleanup to \texttt {employment}}{68}{subsubsection.2.5.10.11}
+\contentsline {subsubsection}{\numberline {2.5.10.12}\texttt {CHILDREN} and its cleanup to \texttt {kids}}{69}{subsubsection.2.5.10.12}
+\contentsline {subsubsection}{\numberline {2.5.10.13}\texttt {INCOME2} to \texttt {incomegroup}}{69}{subsubsection.2.5.10.13}
+\contentsline {subsubsection}{\numberline {2.5.10.14}\texttt {INTERNET} and its cleanup to \texttt {internet30}}{70}{subsubsection.2.5.10.14}
+\contentsline {subsubsection}{\numberline {2.5.10.15}\texttt {WTKG3} is \texttt {weight\_kg}}{71}{subsubsection.2.5.10.15}
+\contentsline {subsubsection}{\numberline {2.5.10.16}\texttt {HEIGHT3} is replaced with \texttt {height\_m}}{71}{subsubsection.2.5.10.16}
+\contentsline {subsubsection}{\numberline {2.5.10.17}\texttt {bmi} is calculated from \texttt {height\_m} and \texttt {weight\_kg}}{72}{subsubsection.2.5.10.17}
+\contentsline {subsubsection}{\numberline {2.5.10.18}\texttt {bmigroup} is calculated from \texttt {bmi}}{72}{subsubsection.2.5.10.18}
+\contentsline {subsubsection}{\numberline {2.5.10.19}\texttt {PREGNANT} and its cleanup to \texttt {pregnant}}{73}{subsubsection.2.5.10.19}
+\contentsline {subsubsection}{\numberline {2.5.10.20}\texttt {DEAF} and its cleanup to \texttt {deaf}}{74}{subsubsection.2.5.10.20}
+\contentsline {subsubsection}{\numberline {2.5.10.21}\texttt {BLIND} and its cleanup to \texttt {blind}}{74}{subsubsection.2.5.10.21}
+\contentsline {subsubsection}{\numberline {2.5.10.22}\texttt {DECIDE} and its cleanup to \texttt {decide}}{75}{subsubsection.2.5.10.22}
+\contentsline {subsubsection}{\numberline {2.5.10.23}\texttt {DIFFWALK} and its cleanup to \texttt {diffwalk}}{75}{subsubsection.2.5.10.23}
+\contentsline {subsubsection}{\numberline {2.5.10.24}\texttt {DIFFDRES} and its cleanup to \texttt {diffdress}}{76}{subsubsection.2.5.10.24}
+\contentsline {subsubsection}{\numberline {2.5.10.25}\texttt {DIFFALON} and its cleanup to \texttt {diffalone}}{77}{subsubsection.2.5.10.25}
+\contentsline {subsection}{\numberline {2.5.11}Tobacco Use (2 items)}{77}{subsection.2.5.11}
+\contentsline {subsubsection}{\numberline {2.5.11.1}\texttt {SMOKE100} and its cleanup to \texttt {smoke100}}{77}{subsubsection.2.5.11.1}
+\contentsline {subsubsection}{\numberline {2.5.11.2}\texttt {\_SMOKER3} and its cleanup to \texttt {smoker}}{78}{subsubsection.2.5.11.2}
+\contentsline {subsection}{\numberline {2.5.12}E-Cigarettes (2 items)}{79}{subsection.2.5.12}
+\contentsline {subsubsection}{\numberline {2.5.12.1}\texttt {ECIGARET} and its cleanup to \texttt {ecig\_ever}}{79}{subsubsection.2.5.12.1}
+\contentsline {subsubsection}{\numberline {2.5.12.2}\texttt {\_ECIGSTS} and its cleanup to \texttt {ecigs}}{79}{subsubsection.2.5.12.2}
+\contentsline {subsection}{\numberline {2.5.13}Alcohol Consumption (6 items)}{80}{subsection.2.5.13}
+\contentsline {subsubsection}{\numberline {2.5.13.1}\texttt {ALCDAY5} and its cleanup to \texttt {alcdays}}{80}{subsubsection.2.5.13.1}
+\contentsline {subsubsection}{\numberline {2.5.13.2}\texttt {AVEDRNK2} and its cleanup to \texttt {avgdrinks}}{81}{subsubsection.2.5.13.2}
+\contentsline {subsubsection}{\numberline {2.5.13.3}\texttt {MAXDRNKS} and its cleanup to \texttt {maxdrinks}}{82}{subsubsection.2.5.13.3}
+\contentsline {subsubsection}{\numberline {2.5.13.4}\texttt {\_RFBING5} and its cleanup to \texttt {binge}}{82}{subsubsection.2.5.13.4}
+\contentsline {subsubsection}{\numberline {2.5.13.5}\texttt {\_DRNKWEK} and its cleanup to \texttt {drinks\_wk}}{83}{subsubsection.2.5.13.5}
+\contentsline {subsubsection}{\numberline {2.5.13.6}\texttt {\_RFDRHV5} and its cleanup to \texttt {drink\_heavy}}{83}{subsubsection.2.5.13.6}
+\contentsline {subsection}{\numberline {2.5.14}Fruits and Vegetables (8 items)}{84}{subsection.2.5.14}
+\contentsline {subsubsection}{\numberline {2.5.14.1}\texttt {\_FRUTSU1} and its cleanup to \texttt {fruit\_day}}{84}{subsubsection.2.5.14.1}
+\contentsline {subsubsection}{\numberline {2.5.14.2}\texttt {\_VEGESU1} and its cleanup to \texttt {veg\_day}}{85}{subsubsection.2.5.14.2}
+\contentsline {subsubsection}{\numberline {2.5.14.3}\texttt {FTJUDA2\_} and its cleanup to \texttt {eat\_juice}}{85}{subsubsection.2.5.14.3}
+\contentsline {subsubsection}{\numberline {2.5.14.4}\texttt {FRUTDA2\_} and its cleanup to \texttt {eat\_fruit}}{86}{subsubsection.2.5.14.4}
+\contentsline {subsubsection}{\numberline {2.5.14.5}\texttt {GRENDA1\_} and its cleanup to \texttt {eat\_greenveg}}{86}{subsubsection.2.5.14.5}
+\contentsline {subsubsection}{\numberline {2.5.14.6}\texttt {FRNCHDA\_} and its cleanup to \texttt {eat\_fries}}{87}{subsubsection.2.5.14.6}
+\contentsline {subsubsection}{\numberline {2.5.14.7}\texttt {POTADA1\_} and its cleanup to \texttt {eat\_potato}}{87}{subsubsection.2.5.14.7}
+\contentsline {subsubsection}{\numberline {2.5.14.8}\texttt {VEGEDA2\_} and its cleanup to \texttt {eat\_otherveg}}{88}{subsubsection.2.5.14.8}
+\contentsline {subsection}{\numberline {2.5.15}Exercise and Physical Activity (8 items)}{88}{subsection.2.5.15}
+\contentsline {subsubsection}{\numberline {2.5.15.1}\texttt {\_TOTINDA} and its cleanup to \texttt {exerany}}{88}{subsubsection.2.5.15.1}
+\contentsline {subsubsection}{\numberline {2.5.15.2}\texttt {\_PACAT1} and its cleanup to \texttt {activity}}{89}{subsubsection.2.5.15.2}
+\contentsline {subsubsection}{\numberline {2.5.15.3}\texttt {\_PAINDX1} and its cleanup to \texttt {rec\_aerobic}}{90}{subsubsection.2.5.15.3}
+\contentsline {subsubsection}{\numberline {2.5.15.4}\texttt {\_PASTRNG} and its cleanup to \texttt {rec\_strength}}{90}{subsubsection.2.5.15.4}
+\contentsline {subsubsection}{\numberline {2.5.15.5}\texttt {EXRACT11} and its cleanup to \texttt {exer1\_type}}{91}{subsubsection.2.5.15.5}
+\contentsline {subsubsection}{\numberline {2.5.15.6}\texttt {EXRACT21} and its cleanup to \texttt {exer2\_type}}{93}{subsubsection.2.5.15.6}
+\contentsline {subsubsection}{\numberline {2.5.15.7}\texttt {\_MINAC11} and its cleanup to \texttt {exer1\_min}}{96}{subsubsection.2.5.15.7}
+\contentsline {subsubsection}{\numberline {2.5.15.8}\texttt {\_MINAC21} and its cleanup to \texttt {exer2\_min}}{97}{subsubsection.2.5.15.8}
+\contentsline {subsection}{\numberline {2.5.16}Seatbelt Use (1 item)}{97}{subsection.2.5.16}
+\contentsline {subsubsection}{\numberline {2.5.16.1}\texttt {SEATBELT} and its cleanup to \texttt {seatbelt}}{97}{subsubsection.2.5.16.1}
+\contentsline {subsection}{\numberline {2.5.17}Immunization (3 items)}{98}{subsection.2.5.17}
+\contentsline {subsubsection}{\numberline {2.5.17.1}\texttt {FLUSHOT6} and its cleanup to \texttt {vax\_flu}}{98}{subsubsection.2.5.17.1}
+\contentsline {subsubsection}{\numberline {2.5.17.2}\texttt {PNEUVAC3} and its cleanup to \texttt {vax\_pneumo}}{99}{subsubsection.2.5.17.2}
+\contentsline {subsubsection}{\numberline {2.5.17.3}\texttt {SHINGLE2} and its cleanup to \texttt {vax\_shingles}}{99}{subsubsection.2.5.17.3}
+\contentsline {subsection}{\numberline {2.5.18}HIV/AIDS (2 items)}{100}{subsection.2.5.18}
+\contentsline {subsubsection}{\numberline {2.5.18.1}\texttt {HIVTST6} and its cleanup to \texttt {hiv\_test}}{100}{subsubsection.2.5.18.1}
+\contentsline {subsubsection}{\numberline {2.5.18.2}\texttt {HIVRISK5} and its cleanup to \texttt {hiv\_risk}}{100}{subsubsection.2.5.18.2}
+\contentsline {section}{\numberline {2.6}Imputing Age and Income as Quantitative from Thin Air}{101}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}\texttt {age\_imp}: Imputing Age Data}{101}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}\texttt {inc\_imp}: Imputing Income Data}{103}{subsection.2.6.2}
+\contentsline {section}{\numberline {2.7}Clean Data in the State of Ohio}{105}{section.2.7}
+\contentsline {section}{\numberline {2.8}Clean Cleveland-Elyria Data}{106}{section.2.8}
+\contentsline {subsection}{\numberline {2.8.1}Cleveland - Elyria Data}{106}{subsection.2.8.1}
