@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Summarizing the smart_cle1 data | Data Science for Biological, Medical and Health Research: Notes for 432</title>
+  <meta name="description" content="Course Notes for PQHS 432 in Spring 2021." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Summarizing the smart_cle1 data | Data Science for Biological, Medical and Health Research: Notes for 432" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Course Notes for PQHS 432 in Spring 2021." />
+  <meta name="github-repo" content="thomaselove/432-notes" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Summarizing the smart_cle1 data | Data Science for Biological, Medical and Health Research: Notes for 432" />
+  
+  <meta name="twitter:description" content="Course Notes for PQHS 432 in Spring 2021." />
+  
+
+<meta name="author" content="Thomas E. Love, Ph.D." />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="dealing-with-missingness-single-imputation.html"/>
+<link rel="next" href="analysis-of-variance-with-smart.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="r-packages-used-in-these-notes.html"><a href="r-packages-used-in-these-notes.html"><i class="fa fa-check"></i>R Packages used in these notes</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="r-packages-used-in-these-notes.html"><a href="r-packages-used-in-these-notes.html#dealing-with-conflicts"><i class="fa fa-check"></i><b>0.1</b> Dealing with Conflicts</a></li>
+<li><a href="r-packages-used-in-these-notes.html#general-theme-for-ggplot-work">General Theme for <code>ggplot</code> work</a></li>
+<li class="chapter" data-level="" data-path="r-packages-used-in-these-notes.html"><a href="r-packages-used-in-these-notes.html#data-used-in-these-notes"><i class="fa fa-check"></i>Data used in these notes</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="building-table-1.html"><a href="building-table-1.html"><i class="fa fa-check"></i><b>1</b> Building Table 1</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="building-table-1.html"><a href="building-table-1.html#data-load"><i class="fa fa-check"></i><b>1.1</b> Data load</a></li>
+<li class="chapter" data-level="1.2" data-path="building-table-1.html"><a href="building-table-1.html#two-examples-from-the-new-england-journal-of-medicine"><i class="fa fa-check"></i><b>1.2</b> Two examples from the <em>New England Journal of Medicine</em></a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="building-table-1.html"><a href="building-table-1.html#a-simple-table-1"><i class="fa fa-check"></i><b>1.2.1</b> A simple Table 1</a></li>
+<li class="chapter" data-level="1.2.2" data-path="building-table-1.html"><a href="building-table-1.html#a-group-comparison"><i class="fa fa-check"></i><b>1.2.2</b> A group comparison</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="building-table-1.html"><a href="building-table-1.html#the-mr-clean-trial"><i class="fa fa-check"></i><b>1.3</b> The MR CLEAN trial</a></li>
+<li class="chapter" data-level="1.4" data-path="building-table-1.html"><a href="building-table-1.html#simulated-fakestroke-data"><i class="fa fa-check"></i><b>1.4</b> Simulated <code>fakestroke</code> data</a></li>
+<li class="chapter" data-level="1.5" data-path="building-table-1.html"><a href="building-table-1.html#building-table-1-for-fakestroke-attempt-1"><i class="fa fa-check"></i><b>1.5</b> Building Table 1 for <code>fakestroke</code>: Attempt 1</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="building-table-1.html"><a href="building-table-1.html#some-of-this-is-very-useful-and-other-parts-need-to-be-fixed."><i class="fa fa-check"></i><b>1.5.1</b> Some of this is very useful, and other parts need to be fixed.</a></li>
+<li class="chapter" data-level="1.5.2" data-path="building-table-1.html"><a href="building-table-1.html#fakestroke-cleaning-up-categorical-variables"><i class="fa fa-check"></i><b>1.5.2</b> <code>fakestroke</code> Cleaning Up Categorical Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="building-table-1.html"><a href="building-table-1.html#fakestroke-table-1-attempt-2"><i class="fa fa-check"></i><b>1.6</b> <code>fakestroke</code> Table 1: Attempt 2</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="building-table-1.html"><a href="building-table-1.html#what-summaries-should-we-show"><i class="fa fa-check"></i><b>1.6.1</b> What summaries should we show?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="building-table-1.html"><a href="building-table-1.html#obtaining-a-more-detailed-summary"><i class="fa fa-check"></i><b>1.7</b> Obtaining a more detailed Summary</a></li>
+<li class="chapter" data-level="1.8" data-path="building-table-1.html"><a href="building-table-1.html#exporting-the-completed-table-1-from-r-to-excel-or-word"><i class="fa fa-check"></i><b>1.8</b> Exporting the Completed Table 1 from R to Excel or Word</a>
+<ul>
+<li class="chapter" data-level="1.8.1" data-path="building-table-1.html"><a href="building-table-1.html#approach-a-save-and-open-in-excel"><i class="fa fa-check"></i><b>1.8.1</b> Approach A: Save and open in Excel</a></li>
+<li class="chapter" data-level="1.8.2" data-path="building-table-1.html"><a href="building-table-1.html#approach-b-produce-the-table-so-you-can-cut-and-paste-it"><i class="fa fa-check"></i><b>1.8.2</b> Approach B: Produce the Table so you can cut and paste it</a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="building-table-1.html"><a href="building-table-1.html#a-controlled-biological-experiment---the-blood-brain-barrier"><i class="fa fa-check"></i><b>1.9</b> A Controlled Biological Experiment - The Blood-Brain Barrier</a></li>
+<li class="chapter" data-level="1.10" data-path="building-table-1.html"><a href="building-table-1.html#the-bloodbrain.csv-file"><i class="fa fa-check"></i><b>1.10</b> The <code>bloodbrain.csv</code> file</a></li>
+<li class="chapter" data-level="1.11" data-path="building-table-1.html"><a href="building-table-1.html#a-table-1-for-bloodbrain"><i class="fa fa-check"></i><b>1.11</b> A Table 1 for <code>bloodbrain</code></a>
+<ul>
+<li class="chapter" data-level="1.11.1" data-path="building-table-1.html"><a href="building-table-1.html#generate-final-table-1-for-bloodbrain"><i class="fa fa-check"></i><b>1.11.1</b> Generate final Table 1 for <code>bloodbrain</code></a></li>
+<li class="chapter" data-level="1.11.2" data-path="building-table-1.html"><a href="building-table-1.html#a-more-finished-version-after-cleanup-in-word"><i class="fa fa-check"></i><b>1.11.2</b> A More Finished Version (after Cleanup in Word)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html"><i class="fa fa-check"></i><b>2</b> BRFSS SMART Data Building</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#key-resources"><i class="fa fa-check"></i><b>2.1</b> Key resources</a></li>
+<li class="chapter" data-level="2.2" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#ingesting-the-raw-data"><i class="fa fa-check"></i><b>2.2</b> Ingesting the Raw Data</a></li>
+<li class="chapter" data-level="2.3" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#ingesting-from-our-csv-file"><i class="fa fa-check"></i><b>2.3</b> Ingesting from our CSV file</a></li>
+<li class="chapter" data-level="2.4" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#what-does-the-raw-data-look-like"><i class="fa fa-check"></i><b>2.4</b> What does the raw data look like?</a></li>
+<li class="chapter" data-level="2.5" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#cleaning-the-brfss-data"><i class="fa fa-check"></i><b>2.5</b> Cleaning the BRFSS Data</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#identifying-information"><i class="fa fa-check"></i><b>2.5.1</b> Identifying Information</a></li>
+<li class="chapter" data-level="2.5.2" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#survey-method"><i class="fa fa-check"></i><b>2.5.2</b> Survey Method</a></li>
+<li class="chapter" data-level="2.5.3" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#health-status-1-item"><i class="fa fa-check"></i><b>2.5.3</b> Health Status (1 item)</a></li>
+<li class="chapter" data-level="2.5.4" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#healthy-days---health-related-quality-of-life-3-items"><i class="fa fa-check"></i><b>2.5.4</b> Healthy Days - Health-Related Quality of Life (3 items)</a></li>
+<li class="chapter" data-level="2.5.5" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#health-care-access-4-items"><i class="fa fa-check"></i><b>2.5.5</b> Health Care Access (4 items)</a></li>
+<li class="chapter" data-level="2.5.6" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#blood-pressure-2-measures"><i class="fa fa-check"></i><b>2.5.6</b> Blood Pressure (2 measures)</a></li>
+<li class="chapter" data-level="2.5.7" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#cholesterol-3-items"><i class="fa fa-check"></i><b>2.5.7</b> Cholesterol (3 items)</a></li>
+<li class="chapter" data-level="2.5.8" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#chronic-health-conditions-14-items"><i class="fa fa-check"></i><b>2.5.8</b> Chronic Health Conditions (14 items)</a></li>
+<li class="chapter" data-level="2.5.9" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#arthritis-burden-4-items"><i class="fa fa-check"></i><b>2.5.9</b> Arthritis Burden (4 items)</a></li>
+<li class="chapter" data-level="2.5.10" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#demographics-25-items"><i class="fa fa-check"></i><b>2.5.10</b> Demographics (25 items)</a></li>
+<li class="chapter" data-level="2.5.11" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#tobacco-use-2-items"><i class="fa fa-check"></i><b>2.5.11</b> Tobacco Use (2 items)</a></li>
+<li class="chapter" data-level="2.5.12" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#e-cigarettes-2-items"><i class="fa fa-check"></i><b>2.5.12</b> E-Cigarettes (2 items)</a></li>
+<li class="chapter" data-level="2.5.13" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#alcohol-consumption-6-items"><i class="fa fa-check"></i><b>2.5.13</b> Alcohol Consumption (6 items)</a></li>
+<li class="chapter" data-level="2.5.14" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#fruits-and-vegetables-8-items"><i class="fa fa-check"></i><b>2.5.14</b> Fruits and Vegetables (8 items)</a></li>
+<li class="chapter" data-level="2.5.15" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#exercise-and-physical-activity-8-items"><i class="fa fa-check"></i><b>2.5.15</b> Exercise and Physical Activity (8 items)</a></li>
+<li class="chapter" data-level="2.5.16" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#seatbelt-use-1-item"><i class="fa fa-check"></i><b>2.5.16</b> Seatbelt Use (1 item)</a></li>
+<li class="chapter" data-level="2.5.17" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#immunization-3-items"><i class="fa fa-check"></i><b>2.5.17</b> Immunization (3 items)</a></li>
+<li class="chapter" data-level="2.5.18" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#hivaids-2-items"><i class="fa fa-check"></i><b>2.5.18</b> HIV/AIDS (2 items)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#imputing-age-and-income-as-quantitative-from-thin-air"><i class="fa fa-check"></i><b>2.6</b> Imputing Age and Income as Quantitative from Thin Air</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#age_imp-imputing-age-data"><i class="fa fa-check"></i><b>2.6.1</b> <code>age_imp</code>: Imputing Age Data</a></li>
+<li class="chapter" data-level="2.6.2" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#inc_imp-imputing-income-data"><i class="fa fa-check"></i><b>2.6.2</b> <code>inc_imp</code>: Imputing Income Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#clean-data-in-the-state-of-ohio"><i class="fa fa-check"></i><b>2.7</b> Clean Data in the State of Ohio</a></li>
+<li class="chapter" data-level="2.8" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#clean-cleveland-elyria-data"><i class="fa fa-check"></i><b>2.8</b> Clean Cleveland-Elyria Data</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#cleveland---elyria-data"><i class="fa fa-check"></i><b>2.8.1</b> Cleveland - Elyria Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html"><i class="fa fa-check"></i><b>3</b> Dealing with Missingness: Single Imputation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#selecting-some-variables-from-the-smart_cle-data"><i class="fa fa-check"></i><b>3.1</b> Selecting Some Variables from the <code>smart_cle</code> data</a></li>
+<li class="chapter" data-level="3.2" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#smart_cle1-seeing-our-missing-data"><i class="fa fa-check"></i><b>3.2</b> <code>smart_cle1</code>: Seeing our Missing Data</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#plotting-missingness"><i class="fa fa-check"></i><b>3.2.1</b> Plotting Missingness</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#missing-data-mechanisms"><i class="fa fa-check"></i><b>3.3</b> Missing-data mechanisms</a></li>
+<li class="chapter" data-level="3.4" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#options-for-dealing-with-missingness"><i class="fa fa-check"></i><b>3.4</b> Options for Dealing with Missingness</a></li>
+<li class="chapter" data-level="3.5" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#complete-case-and-available-case-analyses"><i class="fa fa-check"></i><b>3.5</b> Complete Case (and Available Case) analyses</a></li>
+<li class="chapter" data-level="3.6" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#single-imputation"><i class="fa fa-check"></i><b>3.6</b> Single Imputation</a></li>
+<li class="chapter" data-level="3.7" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#multiple-imputation"><i class="fa fa-check"></i><b>3.7</b> Multiple Imputation</a></li>
+<li class="chapter" data-level="3.8" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#approach-1-building-a-complete-case-analysis-smart_cle1_cc"><i class="fa fa-check"></i><b>3.8</b> Approach 1: Building a Complete Case Analysis: <code>smart_cle1_cc</code></a></li>
+<li class="chapter" data-level="3.9" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#approach-2-single-imputation-to-create-smart_cle1_sh"><i class="fa fa-check"></i><b>3.9</b> Approach 2: Single Imputation to create <code>smart_cle1_sh</code></a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#what-type-of-missingness-do-we-have"><i class="fa fa-check"></i><b>3.9.1</b> What Type of Missingness Do We Have?</a></li>
+<li class="chapter" data-level="3.9.2" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#single-imputation-into-smart_cle1_sh"><i class="fa fa-check"></i><b>3.9.2</b> Single imputation into <code>smart_cle1_sh</code></a></li>
+<li class="chapter" data-level="3.9.3" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#imputing-binary-categorical-variables"><i class="fa fa-check"></i><b>3.9.3</b> Imputing Binary Categorical Variables</a></li>
+<li class="chapter" data-level="3.9.4" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#imputing-quantitative-variables"><i class="fa fa-check"></i><b>3.9.4</b> Imputing Quantitative Variables</a></li>
+<li class="chapter" data-level="3.9.5" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#imputation-results"><i class="fa fa-check"></i><b>3.9.5</b> Imputation Results</a></li>
+<li class="chapter" data-level="3.9.6" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#imputing-multi-categorical-variables"><i class="fa fa-check"></i><b>3.9.6</b> Imputing Multi-Categorical Variables</a></li>
+<li class="chapter" data-level="3.9.7" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#saving-the-new-tibbles"><i class="fa fa-check"></i><b>3.9.7</b> Saving the new tibbles</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing the <code>smart_cle1</code> data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#general-approaches-to-obtaining-numeric-summaries"><i class="fa fa-check"></i><b>4.1</b> General Approaches to Obtaining Numeric Summaries</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#summary-for-a-data-frame"><i class="fa fa-check"></i><b>4.1.1</b> <code>summary</code> for a data frame</a></li>
+<li class="chapter" data-level="4.1.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#the-inspect-function-from-the-mosaic-package"><i class="fa fa-check"></i><b>4.1.2</b> The <code>inspect</code> function from the <code>mosaic</code> package</a></li>
+<li class="chapter" data-level="4.1.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#the-describe-function-in-hmisc"><i class="fa fa-check"></i><b>4.1.3</b> The <code>describe</code> function in <code>Hmisc</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#counting-as-exploratory-data-analysis"><i class="fa fa-check"></i><b>4.2</b> Counting as exploratory data analysis</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#did-genhealth-vary-by-smoking-status"><i class="fa fa-check"></i><b>4.2.1</b> Did <code>genhealth</code> vary by smoking status?</a></li>
+<li class="chapter" data-level="4.2.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#whats-the-distribution-of-physhealth"><i class="fa fa-check"></i><b>4.2.2</b> What’s the distribution of <code>physhealth</code>?</a></li>
+<li class="chapter" data-level="4.2.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#whats-the-distribution-of-bmi"><i class="fa fa-check"></i><b>4.2.3</b> What’s the distribution of <code>bmi</code>?</a></li>
+<li class="chapter" data-level="4.2.4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-many-of-the-respondents-have-a-bmi-below-30"><i class="fa fa-check"></i><b>4.2.4</b> How many of the respondents have a BMI below 30?</a></li>
+<li class="chapter" data-level="4.2.5" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-many-of-the-respondents-with-a-bmi-30-are-highly-active"><i class="fa fa-check"></i><b>4.2.5</b> How many of the respondents with a BMI &lt; 30 are highly active?</a></li>
+<li class="chapter" data-level="4.2.6" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#is-obesity-associated-with-smoking-history"><i class="fa fa-check"></i><b>4.2.6</b> Is obesity associated with smoking history?</a></li>
+<li class="chapter" data-level="4.2.7" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#comparing-drinks_wk-summaries-by-obesity-status"><i class="fa fa-check"></i><b>4.2.7</b> Comparing <code>drinks_wk</code> summaries by obesity status</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#can-bmi-predict-physhealth"><i class="fa fa-check"></i><b>4.3</b> Can <code>bmi</code> predict <code>physhealth</code>?</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#fitting-a-simple-regression-model"><i class="fa fa-check"></i><b>4.3.1</b> Fitting a Simple Regression Model</a></li>
+<li class="chapter" data-level="4.3.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#model-summary-for-a-simple-one-predictor-regression"><i class="fa fa-check"></i><b>4.3.2</b> Model Summary for a Simple (One-Predictor) Regression</a></li>
+<li class="chapter" data-level="4.3.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#using-the-broom-package"><i class="fa fa-check"></i><b>4.3.3</b> Using the <code>broom</code> package</a></li>
+<li class="chapter" data-level="4.3.4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-does-the-model-do-residuals-vs.-fitted-values"><i class="fa fa-check"></i><b>4.3.4</b> How does the model do? (Residuals vs. Fitted Values)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html"><i class="fa fa-check"></i><b>5</b> Analysis of Variance with SMART</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#a-one-factor-analysis-of-variance"><i class="fa fa-check"></i><b>5.1</b> A One-Factor Analysis of Variance</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#can-activity-be-used-to-predict-bmi"><i class="fa fa-check"></i><b>5.1.1</b> Can <code>activity</code> be used to predict <code>bmi</code>?</a></li>
+<li class="chapter" data-level="5.1.2" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#should-we-transform-bmi"><i class="fa fa-check"></i><b>5.1.2</b> Should we transform <code>bmi</code>?</a></li>
+<li class="chapter" data-level="5.1.3" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#building-the-anova-model"><i class="fa fa-check"></i><b>5.1.3</b> Building the ANOVA model</a></li>
+<li class="chapter" data-level="5.1.4" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#the-anova-table"><i class="fa fa-check"></i><b>5.1.4</b> The ANOVA table</a></li>
+<li class="chapter" data-level="5.1.5" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#the-model-coefficients"><i class="fa fa-check"></i><b>5.1.5</b> The Model Coefficients</a></li>
+<li class="chapter" data-level="5.1.6" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#using-broomtidy-to-explore-the-coefficients"><i class="fa fa-check"></i><b>5.1.6</b> Using <code>broom::tidy</code> to explore the coefficients</a></li>
+<li class="chapter" data-level="5.1.7" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#using-broomglance-to-summarize-the-models-fit"><i class="fa fa-check"></i><b>5.1.7</b> Using <code>broom::glance</code> to summarize the model’s fit</a></li>
+<li class="chapter" data-level="5.1.8" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#using-broomaugment-to-make-predictions"><i class="fa fa-check"></i><b>5.1.8</b> Using <code>broom::augment</code> to make predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#a-two-factor-anova-without-interaction"><i class="fa fa-check"></i><b>5.2</b> A Two-Factor ANOVA (without Interaction)</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#model-coefficients"><i class="fa fa-check"></i><b>5.2.1</b> Model Coefficients</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#a-two-factor-anova-with-interaction"><i class="fa fa-check"></i><b>5.3</b> A Two-Factor ANOVA (with Interaction)</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#model-coefficients-1"><i class="fa fa-check"></i><b>5.3.1</b> Model Coefficients</a></li>
+<li class="chapter" data-level="5.3.2" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#is-the-interaction-term-necessary"><i class="fa fa-check"></i><b>5.3.2</b> Is the interaction term necessary?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Science for Biological, Medical and Health Research: Notes for 432</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="summarizing-the-smart_cle1-data" class="section level1" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Summarizing the <code>smart_cle1</code> data</h1>
+<p>In this chapter, we’ll work with the two data files we built in the previous chapter.</p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="summarizing-the-smart-cle1-data.html#cb305-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;smart_cle1_sh.Rds&quot;</span>))</span>
+<span id="cb305-2"><a href="summarizing-the-smart-cle1-data.html#cb305-2" aria-hidden="true" tabindex="-1"></a>smart_cle1_cc <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;smart_cle1_sh.Rds&quot;</span>))</span></code></pre></div>
+<p>Those files (<code>_sh</code> contains single imputations, and a shadow set of variables which have _NA at the end of their names, while <code>_cc</code> contains only the complete cases) describe information on the following variables from the BRFSS 2017, who live in the Cleveland-Elyria, OH, Metropolitan Statistical Area.</p>
+<table>
+<colgroup>
+<col width="15%" />
+<col width="84%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right"><code>SEQNO</code></td>
+<td>respondent identification number (all begin with 2016)</td>
+</tr>
+<tr class="even">
+<td align="right"><code>physhealth</code></td>
+<td>Now thinking about your physical health, which includes physical illness and injury, for how many days during the past 30 days was your physical health not good?</td>
+</tr>
+<tr class="odd">
+<td align="right"><code>genhealth</code></td>
+<td>Would you say that in general, your health is … (five categories: Excellent, Very Good, Good, Fair or Poor)</td>
+</tr>
+<tr class="even">
+<td align="right"><code>bmi</code></td>
+<td>Body mass index, in kg/m<sup>2</sup></td>
+</tr>
+<tr class="odd">
+<td align="right"><code>age_imp</code></td>
+<td>Age, imputed, in years</td>
+</tr>
+<tr class="even">
+<td align="right"><code>female</code></td>
+<td>Sex, 1 = female, 0 = male</td>
+</tr>
+<tr class="odd">
+<td align="right"><code>race_eth</code></td>
+<td>Race and Ethnicity, in five categories</td>
+</tr>
+<tr class="even">
+<td align="right"><code>internet30</code></td>
+<td>Have you used the internet in the past 30 days? (1 = yes, 0 = no)</td>
+</tr>
+<tr class="odd">
+<td align="right"><code>smoke100</code></td>
+<td>Have you smoked at least 100 cigarettes in your life? (1 = yes, 0 = no)</td>
+</tr>
+<tr class="even">
+<td align="right"><code>activity</code></td>
+<td>Physical activity (Highly Active, Active, Insufficiently Active, Inactive)</td>
+</tr>
+<tr class="odd">
+<td align="right"><code>drinks_wk</code></td>
+<td>On average, how many drinks of alcohol do you consume in a week?</td>
+</tr>
+<tr class="even">
+<td align="right"><code>veg_day</code></td>
+<td>How many servings of vegetables do you consume per day, on average?</td>
+</tr>
+</tbody>
+</table>
+<div id="general-approaches-to-obtaining-numeric-summaries" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> General Approaches to Obtaining Numeric Summaries</h2>
+<div id="summary-for-a-data-frame" class="section level3" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> <code>summary</code> for a data frame</h3>
+<p>Of course, we can use the usual <code>summary</code> to get some basic information about the data.</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="summarizing-the-smart-cle1-data.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(smart_cle1_cc)</span></code></pre></div>
+<pre><code>     SEQNO             physhealth           genhealth        bmi       
+ Min.   :2.017e+09   Min.   : 0.000   1_Excellent:164   Min.   :13.30  
+ 1st Qu.:2.017e+09   1st Qu.: 0.000   2_VeryGood :386   1st Qu.:24.38  
+ Median :2.017e+09   Median : 0.000   3_Good     :365   Median :27.31  
+ Mean   :2.017e+09   Mean   : 4.681   4_Fair     :158   Mean   :28.35  
+ 3rd Qu.:2.017e+09   3rd Qu.: 4.000   5_Poor     : 60   3rd Qu.:31.08  
+ Max.   :2.017e+09   Max.   :30.000                     Max.   :70.56  
+    age_imp          female                           race_eth  
+ Min.   :18.00   Min.   :0.0000   White non-Hispanic      :824  
+ 1st Qu.:45.00   1st Qu.:0.0000   Black non-Hispanic      :226  
+ Median :58.00   Median :1.0000   Other race non-Hispanic : 24  
+ Mean   :57.33   Mean   :0.5931   Multiracial non-Hispanic: 24  
+ 3rd Qu.:70.00   3rd Qu.:1.0000   Hispanic                : 35  
+ Max.   :95.00   Max.   :1.0000                                 
+   internet30        smoke100                       activity     drinks_wk     
+ Min.   :0.0000   Min.   :0.0000   Highly_Active        :428   Min.   : 0.000  
+ 1st Qu.:1.0000   1st Qu.:0.0000   Active               :173   1st Qu.: 0.000  
+ Median :1.0000   Median :0.0000   Insufficiently_Active:201   Median : 0.230  
+ Mean   :0.8164   Mean   :0.4704   Inactive             :331   Mean   : 2.474  
+ 3rd Qu.:1.0000   3rd Qu.:1.0000                               3rd Qu.: 2.100  
+ Max.   :1.0000   Max.   :1.0000                               Max.   :56.000  
+    veg_day      SEQNO_NA   physhealth_NA genhealth_NA bmi_NA     age_imp_NA
+ Min.   :0.000   !NA:1133   !NA:1109      !NA:1129     !NA:1042   !NA:1122  
+ 1st Qu.:1.270   NA :   0   NA :  24      NA :   4     NA :  91   NA :  11  
+ Median :1.730                                                              
+ Mean   :1.928                                                              
+ 3rd Qu.:2.430                                                              
+ Max.   :7.490                                                              
+ female_NA  race_eth_NA internet30_NA smoke100_NA activity_NA drinks_wk_NA
+ !NA:1133   !NA:1107    !NA:1126      !NA:1093    !NA:1024    !NA:1067    
+ NA :   0   NA :  26    NA :   7      NA :  40    NA : 109    NA :  66    
+                                                                          
+                                                                          
+                                                                          
+                                                                          
+ veg_day_NA
+ !NA:1032  
+ NA : 101  
+           
+           
+           
+           </code></pre>
+</div>
+<div id="the-inspect-function-from-the-mosaic-package" class="section level3" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> The <code>inspect</code> function from the <code>mosaic</code> package</h3>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="summarizing-the-smart-cle1-data.html#cb308-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_cc <span class="sc">%&gt;%</span> mosaic<span class="sc">::</span><span class="fu">inspect</span>()</span></code></pre></div>
+<pre><code>
+categorical variables:  
+       name  class levels    n missing
+1 genhealth factor      5 1133       0
+2  race_eth factor      5 1133       0
+3  activity factor      4 1133       0
+                                   distribution
+1 2_VeryGood (34.1%), 3_Good (32.2%) ...       
+2 White non-Hispanic (72.7%) ...               
+3 Highly_Active (37.8%) ...                    
+
+quantitative variables:  
+           name   class       min        Q1       median           Q3
+...1      SEQNO numeric 2.017e+09 2.017e+09 2.017001e+09 2.017001e+09
+...2 physhealth numeric 0.000e+00 0.000e+00 0.000000e+00 4.000000e+00
+...3        bmi numeric 1.330e+01 2.438e+01 2.731000e+01 3.108000e+01
+...4    age_imp numeric 1.800e+01 4.500e+01 5.800000e+01 7.000000e+01
+...5     female numeric 0.000e+00 0.000e+00 1.000000e+00 1.000000e+00
+...6 internet30 numeric 0.000e+00 1.000e+00 1.000000e+00 1.000000e+00
+...7   smoke100 numeric 0.000e+00 0.000e+00 0.000000e+00 1.000000e+00
+...8  drinks_wk numeric 0.000e+00 0.000e+00 2.300000e-01 2.100000e+00
+...9    veg_day numeric 0.000e+00 1.270e+00 1.730000e+00 2.430000e+00
+              max         mean          sd    n missing
+...1 2.017001e+09 2.017001e+09 327.2132332 1133       0
+...2 3.000000e+01 4.681377e+00   9.1208987 1133       0
+...3 7.056000e+01 2.834932e+01   6.3651826 1133       0
+...4 9.500000e+01 5.732568e+01  18.0803278 1133       0
+...5 1.000000e+00 5.931156e-01   0.4914699 1133       0
+...6 1.000000e+00 8.164166e-01   0.3873150 1133       0
+...7 1.000000e+00 4.704325e-01   0.4993454 1133       0
+...8 5.600000e+01 2.473689e+00   5.6900315 1133       0
+...9 7.490000e+00 1.927926e+00   1.0412415 1133       0
+
+shade variables:  
+            name class levels    n missing
+1       SEQNO_NA shade      2 1133       0
+2  physhealth_NA shade      2 1133       0
+3   genhealth_NA shade      2 1133       0
+4         bmi_NA shade      2 1133       0
+5     age_imp_NA shade      2 1133       0
+6      female_NA shade      2 1133       0
+7    race_eth_NA shade      2 1133       0
+8  internet30_NA shade      2 1133       0
+9    smoke100_NA shade      2 1133       0
+10   activity_NA shade      2 1133       0
+11  drinks_wk_NA shade      2 1133       0
+12    veg_day_NA shade      2 1133       0
+                                    distribution
+1  !NA (100%), NA (0%)                          
+2  !NA (97.9%), NA (2.1%)                       
+3  !NA (99.6%), NA (0.4%)                       
+4  !NA (92%), NA (8%)                           
+5  !NA (99%), NA (1%)                           
+6  !NA (100%), NA (0%)                          
+7  !NA (97.7%), NA (2.3%)                       
+8  !NA (99.4%), NA (0.6%)                       
+9  !NA (96.5%), NA (3.5%)                       
+10 !NA (90.4%), NA (9.6%)                       
+11 !NA (94.2%), NA (5.8%)                       
+12 !NA (91.1%), NA (8.9%)                       </code></pre>
+</div>
+<div id="the-describe-function-in-hmisc" class="section level3" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> The <code>describe</code> function in <code>Hmisc</code></h3>
+<p>This provides some useful additional summaries, including a list of the lowest and highest values (which is very helpful when checking data.)</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="summarizing-the-smart-cle1-data.html#cb310-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_cc <span class="sc">%&gt;%</span></span>
+<span id="cb310-2"><a href="summarizing-the-smart-cle1-data.html#cb310-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(bmi, genhealth, female) <span class="sc">%&gt;%</span></span>
+<span id="cb310-3"><a href="summarizing-the-smart-cle1-data.html#cb310-3" aria-hidden="true" tabindex="-1"></a>  Hmisc<span class="sc">::</span><span class="fu">describe</span>()</span></code></pre></div>
+<pre><code>. 
+
+ 3  Variables      1133  Observations
+--------------------------------------------------------------------------------
+bmi 
+       n  missing distinct     Info     Mean      Gmd      .05      .10 
+    1133        0      558        1    28.35    6.681    20.09    21.37 
+     .25      .50      .75      .90      .95 
+   24.38    27.31    31.08    36.37    40.44 
+
+lowest : 13.30 13.64 15.59 15.71 15.75, highest: 56.31 57.12 58.98 63.00 70.56
+--------------------------------------------------------------------------------
+genhealth 
+       n  missing distinct 
+    1133        0        5 
+
+lowest : 1_Excellent 2_VeryGood  3_Good      4_Fair      5_Poor     
+highest: 1_Excellent 2_VeryGood  3_Good      4_Fair      5_Poor     
+                                                                      
+Value      1_Excellent  2_VeryGood      3_Good      4_Fair      5_Poor
+Frequency          164         386         365         158          60
+Proportion       0.145       0.341       0.322       0.139       0.053
+--------------------------------------------------------------------------------
+female 
+       n  missing distinct     Info      Sum     Mean      Gmd 
+    1133        0        2    0.724      672   0.5931   0.4831 
+
+--------------------------------------------------------------------------------</code></pre>
+<ul>
+<li>The <code>Info</code> measure is used for quantitative and binary variables. It is a relative information measure that increases towards 1 for variables with no ties, and is smaller for variables with many ties.</li>
+<li>The <code>Gmd</code> is the Gini mean difference. It is a measure of spread (or dispersion), where larger values indicate greater spread in the distribution, like the standard deviation or the interquartile range. It is defined as the mean absolute difference between any pairs of observations.</li>
+</ul>
+<p>See the Help file for <code>describe</code> in the <code>Hmisc</code> package for more details on these measures, and on the settings for <code>describe</code>.</p>
+</div>
+</div>
+<div id="counting-as-exploratory-data-analysis" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Counting as exploratory data analysis</h2>
+<p>Counting and/or tabulating things can be amazingly useful. Suppose we want to understand the <code>genhealth</code> values, after our single imputation.</p>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="summarizing-the-smart-cle1-data.html#cb312-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">count</span>(genhealth) <span class="sc">%&gt;%</span></span>
+<span id="cb312-2"><a href="summarizing-the-smart-cle1-data.html#cb312-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percent =</span> <span class="dv">100</span><span class="sc">*</span>n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code></pre></div>
+<pre><code># A tibble: 5 x 3
+  genhealth       n percent
+* &lt;fct&gt;       &lt;int&gt;   &lt;dbl&gt;
+1 1_Excellent   164   14.5 
+2 2_VeryGood    386   34.1 
+3 3_Good        365   32.2 
+4 4_Fair        158   13.9 
+5 5_Poor         60    5.30</code></pre>
+<p>We might use <code>tabyl</code> to do this job…</p>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="summarizing-the-smart-cle1-data.html#cb314-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> </span>
+<span id="cb314-2"><a href="summarizing-the-smart-cle1-data.html#cb314-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(genhealth) <span class="sc">%&gt;%</span></span>
+<span id="cb314-3"><a href="summarizing-the-smart-cle1-data.html#cb314-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_pct_formatting</span>(<span class="at">digits =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb314-4"><a href="summarizing-the-smart-cle1-data.html#cb314-4" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+genhealth
+</th>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:left;">
+percent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1_Excellent
+</td>
+<td style="text-align:right;">
+164
+</td>
+<td style="text-align:left;">
+14.5%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2_VeryGood
+</td>
+<td style="text-align:right;">
+386
+</td>
+<td style="text-align:left;">
+34.1%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3_Good
+</td>
+<td style="text-align:right;">
+365
+</td>
+<td style="text-align:left;">
+32.2%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4_Fair
+</td>
+<td style="text-align:right;">
+158
+</td>
+<td style="text-align:left;">
+13.9%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5_Poor
+</td>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:left;">
+5.3%
+</td>
+</tr>
+</tbody>
+</table>
+<div id="did-genhealth-vary-by-smoking-status" class="section level3" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Did <code>genhealth</code> vary by smoking status?</h3>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="summarizing-the-smart-cle1-data.html#cb315-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> </span>
+<span id="cb315-2"><a href="summarizing-the-smart-cle1-data.html#cb315-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(genhealth, smoke100) <span class="sc">%&gt;%</span> </span>
+<span id="cb315-3"><a href="summarizing-the-smart-cle1-data.html#cb315-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percent =</span> <span class="dv">100</span><span class="sc">*</span>n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code></pre></div>
+<pre><code># A tibble: 10 x 4
+   genhealth   smoke100     n percent
+   &lt;fct&gt;          &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;
+ 1 1_Excellent        0   105    9.27
+ 2 1_Excellent        1    59    5.21
+ 3 2_VeryGood         0   220   19.4 
+ 4 2_VeryGood         1   166   14.7 
+ 5 3_Good             0   184   16.2 
+ 6 3_Good             1   181   16.0 
+ 7 4_Fair             0    67    5.91
+ 8 4_Fair             1    91    8.03
+ 9 5_Poor             0    24    2.12
+10 5_Poor             1    36    3.18</code></pre>
+<p>Suppose we want to find the percentage within each smoking status group. Here’s one approach…</p>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="summarizing-the-smart-cle1-data.html#cb317-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span></span>
+<span id="cb317-2"><a href="summarizing-the-smart-cle1-data.html#cb317-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(smoke100, genhealth) <span class="sc">%&gt;%</span></span>
+<span id="cb317-3"><a href="summarizing-the-smart-cle1-data.html#cb317-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(smoke100) <span class="sc">%&gt;%</span></span>
+<span id="cb317-4"><a href="summarizing-the-smart-cle1-data.html#cb317-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">prob =</span> <span class="dv">100</span><span class="sc">*</span>n <span class="sc">/</span> <span class="fu">sum</span>(n)) </span></code></pre></div>
+<pre><code># A tibble: 10 x 4
+# Groups:   smoke100 [2]
+   smoke100 genhealth       n  prob
+      &lt;dbl&gt; &lt;fct&gt;       &lt;int&gt; &lt;dbl&gt;
+ 1        0 1_Excellent   105 17.5 
+ 2        0 2_VeryGood    220 36.7 
+ 3        0 3_Good        184 30.7 
+ 4        0 4_Fair         67 11.2 
+ 5        0 5_Poor         24  4   
+ 6        1 1_Excellent    59 11.1 
+ 7        1 2_VeryGood    166 31.1 
+ 8        1 3_Good        181 34.0 
+ 9        1 4_Fair         91 17.1 
+10        1 5_Poor         36  6.75</code></pre>
+<p>And here’s another …</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="summarizing-the-smart-cle1-data.html#cb319-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span></span>
+<span id="cb319-2"><a href="summarizing-the-smart-cle1-data.html#cb319-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(smoke100, genhealth) <span class="sc">%&gt;%</span></span>
+<span id="cb319-3"><a href="summarizing-the-smart-cle1-data.html#cb319-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(<span class="at">where =</span> <span class="fu">c</span>(<span class="st">&quot;row&quot;</span>, <span class="st">&quot;col&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb319-4"><a href="summarizing-the-smart-cle1-data.html#cb319-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_percentages</span>(<span class="at">denominator =</span> <span class="st">&quot;row&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb319-5"><a href="summarizing-the-smart-cle1-data.html#cb319-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_pct_formatting</span>(<span class="at">digits =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb319-6"><a href="summarizing-the-smart-cle1-data.html#cb319-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_ns</span>(<span class="at">position =</span> <span class="st">&quot;front&quot;</span>)</span></code></pre></div>
+<pre><code> smoke100 1_Excellent  2_VeryGood      3_Good      4_Fair    5_Poor
+        0 105 (17.5%) 220 (36.7%) 184 (30.7%)  67 (11.2%) 24 (4.0%)
+        1  59 (11.1%) 166 (31.1%) 181 (34.0%)  91 (17.1%) 36 (6.8%)
+    Total 164 (14.5%) 386 (34.1%) 365 (32.2%) 158 (13.9%) 60 (5.3%)
+         Total
+  600 (100.0%)
+  533 (100.0%)
+ 1133 (100.0%)</code></pre>
+</div>
+<div id="whats-the-distribution-of-physhealth" class="section level3" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> What’s the distribution of <code>physhealth</code>?</h3>
+<p>We can count quantitative variables with discrete sets of possible values, like <code>physhealth</code>, which is captured as an integer (that must fall between 0 and 30.)</p>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="summarizing-the-smart-cle1-data.html#cb321-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">count</span>(physhealth)</span></code></pre></div>
+<pre><code># A tibble: 21 x 2
+   physhealth     n
+ *      &lt;dbl&gt; &lt;int&gt;
+ 1          0   690
+ 2          1    49
+ 3          2    61
+ 4          3    39
+ 5          4    17
+ 6          5    43
+ 7          6    13
+ 8          7    18
+ 9          8     5
+10         10    32
+# ... with 11 more rows</code></pre>
+<p>Of course, a natural summary of a quantitative variable like this would be graphical.</p>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="summarizing-the-smart-cle1-data.html#cb323-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(physhealth)) <span class="sc">+</span></span>
+<span id="cb323-2"><a href="summarizing-the-smart-cle1-data.html#cb323-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, </span>
+<span id="cb323-3"><a href="summarizing-the-smart-cle1-data.html#cb323-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">fill =</span> <span class="st">&quot;dodgerblue&quot;</span>, <span class="at">col =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb323-4"><a href="summarizing-the-smart-cle1-data.html#cb323-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Days with Poor Physical Health in the Past 30&quot;</span>,</span>
+<span id="cb323-5"><a href="summarizing-the-smart-cle1-data.html#cb323-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">&quot;Most subjects are pretty healthy in this regard, but there are some 30s&quot;</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
+</div>
+<div id="whats-the-distribution-of-bmi" class="section level3" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> What’s the distribution of <code>bmi</code>?</h3>
+<p><code>bmi</code> is the body-mass index, an indicator of size (thickness, really.)</p>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="summarizing-the-smart-cle1-data.html#cb324-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(bmi)) <span class="sc">+</span></span>
+<span id="cb324-2"><a href="summarizing-the-smart-cle1-data.html#cb324-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, </span>
+<span id="cb324-3"><a href="summarizing-the-smart-cle1-data.html#cb324-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">fill =</span> <span class="st">&quot;firebrick&quot;</span>, <span class="at">col =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb324-4"><a href="summarizing-the-smart-cle1-data.html#cb324-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">&quot;Body-Mass Index for &quot;</span>, </span>
+<span id="cb324-5"><a href="summarizing-the-smart-cle1-data.html#cb324-5" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">nrow</span>(smart_cle1_sh), </span>
+<span id="cb324-6"><a href="summarizing-the-smart-cle1-data.html#cb324-6" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot; BRFSS respondents&quot;</span>))</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
+</div>
+<div id="how-many-of-the-respondents-have-a-bmi-below-30" class="section level3" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> How many of the respondents have a BMI below 30?</h3>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="summarizing-the-smart-cle1-data.html#cb325-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">count</span>(bmi <span class="sc">&lt;</span> <span class="dv">30</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb325-2"><a href="summarizing-the-smart-cle1-data.html#cb325-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">proportion =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code></pre></div>
+<pre><code># A tibble: 2 x 3
+  `bmi &lt; 30`     n proportion
+* &lt;lgl&gt;      &lt;int&gt;      &lt;dbl&gt;
+1 FALSE        330      0.291
+2 TRUE         803      0.709</code></pre>
+</div>
+<div id="how-many-of-the-respondents-with-a-bmi-30-are-highly-active" class="section level3" number="4.2.5">
+<h3><span class="header-section-number">4.2.5</span> How many of the respondents with a BMI &lt; 30 are highly active?</h3>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="summarizing-the-smart-cle1-data.html#cb327-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> </span>
+<span id="cb327-2"><a href="summarizing-the-smart-cle1-data.html#cb327-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(bmi <span class="sc">&lt;</span> <span class="dv">30</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb327-3"><a href="summarizing-the-smart-cle1-data.html#cb327-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(activity) <span class="sc">%&gt;%</span></span>
+<span id="cb327-4"><a href="summarizing-the-smart-cle1-data.html#cb327-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_pct_formatting</span>()</span></code></pre></div>
+<pre><code>              activity   n percent
+         Highly_Active 343   42.7%
+                Active 133   16.6%
+ Insufficiently_Active 129   16.1%
+              Inactive 198   24.7%</code></pre>
+</div>
+<div id="is-obesity-associated-with-smoking-history" class="section level3" number="4.2.6">
+<h3><span class="header-section-number">4.2.6</span> Is obesity associated with smoking history?</h3>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="summarizing-the-smart-cle1-data.html#cb329-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">count</span>(smoke100, bmi <span class="sc">&lt;</span> <span class="dv">30</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb329-2"><a href="summarizing-the-smart-cle1-data.html#cb329-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(smoke100) <span class="sc">%&gt;%</span></span>
+<span id="cb329-3"><a href="summarizing-the-smart-cle1-data.html#cb329-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">percent =</span> <span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span><span class="fu">sum</span>(n))</span></code></pre></div>
+<pre><code># A tibble: 4 x 4
+# Groups:   smoke100 [2]
+  smoke100 `bmi &lt; 30`     n percent
+     &lt;dbl&gt; &lt;lgl&gt;      &lt;int&gt;   &lt;dbl&gt;
+1        0 FALSE        163    27.2
+2        0 TRUE         437    72.8
+3        1 FALSE        167    31.3
+4        1 TRUE         366    68.7</code></pre>
+</div>
+<div id="comparing-drinks_wk-summaries-by-obesity-status" class="section level3" number="4.2.7">
+<h3><span class="header-section-number">4.2.7</span> Comparing <code>drinks_wk</code> summaries by obesity status</h3>
+<p>Can we compare the <code>drinks_wk</code> means, medians and 75<sup>th</sup> percentiles for respondents whose BMI is below 30 to the respondents whose BMI is not?</p>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="summarizing-the-smart-cle1-data.html#cb331-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span></span>
+<span id="cb331-2"><a href="summarizing-the-smart-cle1-data.html#cb331-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(bmi <span class="sc">&lt;</span> <span class="dv">30</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb331-3"><a href="summarizing-the-smart-cle1-data.html#cb331-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="fu">mean</span>(drinks_wk), <span class="fu">median</span>(drinks_wk), </span>
+<span id="cb331-4"><a href="summarizing-the-smart-cle1-data.html#cb331-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">q75 =</span> <span class="fu">quantile</span>(drinks_wk, <span class="fl">0.75</span>))</span></code></pre></div>
+<pre><code># A tibble: 2 x 4
+  `bmi &lt; 30` `mean(drinks_wk)` `median(drinks_wk)`   q75
+* &lt;lgl&gt;                  &lt;dbl&gt;               &lt;dbl&gt; &lt;dbl&gt;
+1 FALSE                   1.67                0.23  1.17
+2 TRUE                    2.80                0.23  2.8 </code></pre>
+</div>
+</div>
+<div id="can-bmi-predict-physhealth" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Can <code>bmi</code> predict <code>physhealth</code>?</h2>
+<p>We’ll start with an effort to predict <code>physhealth</code> using <code>bmi</code>. A natural graph would be a scatterplot.</p>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="summarizing-the-smart-cle1-data.html#cb333-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> bmi, <span class="at">y =</span> physhealth)) <span class="sc">+</span></span>
+<span id="cb333-2"><a href="summarizing-the-smart-cle1-data.html#cb333-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/scatter_physhealth_bmi_1-1.png" width="672" /></p>
+<p>A good question to ask ourselves here might be: “In what BMI range can we make a reasonable prediction of <code>physhealth</code>?”</p>
+<p>Now, we might take the plot above and add a simple linear model …</p>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="summarizing-the-smart-cle1-data.html#cb334-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> bmi, <span class="at">y =</span> physhealth)) <span class="sc">+</span></span>
+<span id="cb334-2"><a href="summarizing-the-smart-cle1-data.html#cb334-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb334-3"><a href="summarizing-the-smart-cle1-data.html#cb334-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="432-notes_files/figure-html/c2_scatter_physhealth_bmi_2-1.png" width="672" /></p>
+<p>which shows the same least squares regression model that we can fit with the <code>lm</code> command.</p>
+<div id="fitting-a-simple-regression-model" class="section level3" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Fitting a Simple Regression Model</h3>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="summarizing-the-smart-cle1-data.html#cb336-1" aria-hidden="true" tabindex="-1"></a>model_A <span class="ot">&lt;-</span> <span class="fu">lm</span>(physhealth <span class="sc">~</span> bmi, <span class="at">data =</span> smart_cle1_sh)</span>
+<span id="cb336-2"><a href="summarizing-the-smart-cle1-data.html#cb336-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb336-3"><a href="summarizing-the-smart-cle1-data.html#cb336-3" aria-hidden="true" tabindex="-1"></a>model_A</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = physhealth ~ bmi, data = smart_cle1_sh)
+
+Coefficients:
+(Intercept)          bmi  
+    -2.8121       0.2643  </code></pre>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="summarizing-the-smart-cle1-data.html#cb338-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_A)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = physhealth ~ bmi, data = smart_cle1_sh)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-10.5258  -4.5943  -3.5608  -0.5106  29.2965 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -2.81208    1.21672  -2.311    0.021 *  
+bmi          0.26433    0.04188   6.312 3.95e-10 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 8.968 on 1131 degrees of freedom
+Multiple R-squared:  0.03403,   Adjusted R-squared:  0.03317 
+F-statistic: 39.84 on 1 and 1131 DF,  p-value: 3.95e-10</code></pre>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="summarizing-the-smart-cle1-data.html#cb340-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(model_A, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<pre><code>                 2.5 %     97.5 %
+(Intercept) -5.1993624 -0.4247909
+bmi          0.1821599  0.3464915</code></pre>
+<p>The model coefficients can be obtained by printing the model object, and the <code>summary</code> function provides several useful descriptions of the model’s residuals, its statistical significance, and quality of fit.</p>
+</div>
+<div id="model-summary-for-a-simple-one-predictor-regression" class="section level3" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Model Summary for a Simple (One-Predictor) Regression</h3>
+<p>The fitted model predicts <code>physhealth</code> using a prediction equation we can read off from the model coefficient estimates. Specifically, we have:</p>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="summarizing-the-smart-cle1-data.html#cb342-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(model_A)</span></code></pre></div>
+<pre><code>(Intercept)         bmi 
+ -2.8120766   0.2643257 </code></pre>
+<p>so the equation is <code>physhealth</code> = -2.82 + 0.265 <code>bmi</code>.</p>
+<p>Each of the 1133 respondents included in the <code>smart_cle1_sh</code> data makes a contribution to this model.</p>
+<div id="residuals" class="section level4" number="4.3.2.1">
+<h4><span class="header-section-number">4.3.2.1</span> Residuals</h4>
+<p>Suppose Harry is one of the people in that group, and Harry’s data is <code>bmi</code> = 20, and <code>physhealth</code> = 3.</p>
+<ul>
+<li>Harry’s <em>observed</em> value of <code>physhealth</code> is just the value we have in the data for them, in this case, observed <code>physhealth</code> = 3 for Harry.</li>
+<li>Harry’s <em>fitted</em> or <em>predicted</em> <code>physhealth</code> value is the result of calculating -2.82 + 0.265 <code>bmi</code> for Harry. So, if Harry’s BMI was 20, then Harry’s predicted <code>physhealth</code> value is -2.82 + 0.265 (20) = 2.48.</li>
+<li>The <em>residual</em> for Harry is then his <em>observed</em> outcome minus his <em>fitted</em> outcome, so Harry has a residual of 3 - 2.48 = 0.52.</li>
+<li>Graphically, a residual represents vertical distance between the observed point and the fitted regression line.</li>
+<li>Points above the regression line will have positive residuals, and points below the regression line will have negative residuals. Points on the line have zero residuals.</li>
+</ul>
+<p>The residuals are summarized at the top of the <code>summary</code> output for linear model.</p>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="summarizing-the-smart-cle1-data.html#cb344-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_A)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = physhealth ~ bmi, data = smart_cle1_sh)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-10.5258  -4.5943  -3.5608  -0.5106  29.2965 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -2.81208    1.21672  -2.311    0.021 *  
+bmi          0.26433    0.04188   6.312 3.95e-10 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 8.968 on 1131 degrees of freedom
+Multiple R-squared:  0.03403,   Adjusted R-squared:  0.03317 
+F-statistic: 39.84 on 1 and 1131 DF,  p-value: 3.95e-10</code></pre>
+<ul>
+<li>The mean residual will always be zero in an ordinary least squares model, but a five number summary of the residuals is provided by the summary, as is an estimated standard deviation of the residuals (called here the Residual standard error.)</li>
+<li>In the <code>smart_cle1_sh</code> data, the minimum residual was -10.53, so for one subject, the observed value was 10.53 days smaller than the predicted value. This means that the prediction was 10.53 days too large for that subject.</li>
+<li>Similarly, the maximum residual was 29.30 days, so for one subject the prediction was 29.30 days too small. Not a strong performance.</li>
+<li>In a least squares model, the residuals are assumed to follow a Normal distribution, with mean zero, and standard deviation (for the <code>smart_cle1_sh</code> data) of about 9.0 days. We know this because the residual standard error is specified as 8.968 later in the linear model output. Thus, by the definition of a Normal distribution, we’d expect</li>
+<li>about 68% of the residuals to be between -9 and +9 days,</li>
+<li>about 95% of the residuals to be between -18 and +18 days,</li>
+<li>about all (99.7%) of the residuals to be between -27 and +27 days.</li>
+</ul>
+</div>
+<div id="coefficients-section" class="section level4" number="4.3.2.2">
+<h4><span class="header-section-number">4.3.2.2</span> Coefficients section</h4>
+<p>The <code>summary</code> for a linear model shows Estimates, Standard Errors, t values and <em>p</em> values for each coefficient fit.</p>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="summarizing-the-smart-cle1-data.html#cb346-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_A)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = physhealth ~ bmi, data = smart_cle1_sh)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-10.5258  -4.5943  -3.5608  -0.5106  29.2965 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -2.81208    1.21672  -2.311    0.021 *  
+bmi          0.26433    0.04188   6.312 3.95e-10 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 8.968 on 1131 degrees of freedom
+Multiple R-squared:  0.03403,   Adjusted R-squared:  0.03317 
+F-statistic: 39.84 on 1 and 1131 DF,  p-value: 3.95e-10</code></pre>
+<ul>
+<li>The Estimates are the point estimates of the intercept and slope of <code>bmi</code> in our model.</li>
+<li>In this case, our estimated slope is 0.265, which implies that if Harry’s BMI is 20 and Sally’s BMI is 21, we predict that Sally’s <code>physhealth</code> will be 0.265 days larger than Harry’s.</li>
+<li>The Standard Errors are also provided for each estimate. We can create rough 95% uncertainty intervals for these estimated coefficients by adding and subtracting two standard errors from each coefficient, or we can get a slightly more accurate answer with the <code>confint</code> function.</li>
+<li>Here, the 95% uncertainty interval for the slope of <code>bmi</code> is estimated to be (0.18, 0.35). This is a good measure of the uncertainty in the slope that is captured by our model. We are 95% confident in the process of building this interval, but this doesn’t mean we’re 95% sure that the true slope is actually in that interval.</li>
+</ul>
+<p>Also available are a <em>t</em> value (just the Estimate divided by the Standard Error) and the appropriate <em>p</em> value for testing the null hypothesis that the true value of the coefficient is 0 against a two-tailed alternative.</p>
+<ul>
+<li>If a slope coefficient is statistically detectably different from 0, this implies that 0 will not be part of the uncertainty interval obtained through <code>confint</code>.</li>
+<li>If the slope was zero, it would suggest that <code>bmi</code> would add no predictive value to the model. But that’s unlikely here.</li>
+</ul>
+<p>If the <code>bmi</code> slope coefficient is associated with a small <em>p</em> value, as in the case of our <code>model_A</code>, it suggests that the model including <code>bmi</code> is statistically detectably better at predicting <code>physhealth</code> than the model without <code>bmi</code>.</p>
+<ul>
+<li>Without <code>bmi</code> our <code>model_A</code> would become an <em>intercept-only</em> model, in this case, which would predict the mean <code>physhealth</code> for everyone, regardless of any other information.</li>
+</ul>
+</div>
+<div id="model-fit-summaries" class="section level4" number="4.3.2.3">
+<h4><span class="header-section-number">4.3.2.3</span> Model Fit Summaries</h4>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="summarizing-the-smart-cle1-data.html#cb348-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_A)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = physhealth ~ bmi, data = smart_cle1_sh)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-10.5258  -4.5943  -3.5608  -0.5106  29.2965 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -2.81208    1.21672  -2.311    0.021 *  
+bmi          0.26433    0.04188   6.312 3.95e-10 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 8.968 on 1131 degrees of freedom
+Multiple R-squared:  0.03403,   Adjusted R-squared:  0.03317 
+F-statistic: 39.84 on 1 and 1131 DF,  p-value: 3.95e-10</code></pre>
+<p>The <code>summary</code> of a linear model also displays:</p>
+<ul>
+<li>The residual standard error and associated degrees of freedom for the residuals.</li>
+<li>For a simple (one-predictor) least regression like this, the residual degrees of freedom will be the sample size minus 2.</li>
+<li>The multiple R-squared (or coefficient of determination)</li>
+<li>This is interpreted as the proportion of variation in the outcome (<code>physhealth</code>) accounted for by the model, and will always fall between 0 and 1 as a result.</li>
+<li>Our model_A accounts for a mere 3.4% of the variation in <code>physhealth</code>.</li>
+<li>The Adjusted R-squared value “adjusts” for the size of our model in terms of the number of coefficients included in the model.</li>
+<li>The adjusted R-squared will always be smaller than the Multiple R-squared.</li>
+<li>We still hope to find models with relatively large adjusted R<sup>2</sup> values.</li>
+<li>In particular, we hope to find models where the adjusted R<sup>2</sup> isn’t substantially less than the Multiple R-squared.</li>
+<li>The adjusted R-squared is usually a better estimate of likely performance of our model in new data than is the Multiple R-squared.</li>
+<li>The adjusted R-squared result is no longer interpretable as a proportion of anything - in fact, it can fall below 0.</li>
+<li>We can obtain the adjusted R<sup>2</sup> from the raw R<sup>2</sup>, the number of observations <em>N</em> and the number of predictors <em>p</em> included in the model, as follows:</li>
+</ul>
+<p><span class="math display">\[
+R^2_{adj} = 1 - \frac{(1 - R^2)(N - 1)}{N - p - 1},
+\]</span></p>
+<ul>
+<li>The F statistic and <em>p</em> value from a global ANOVA test of the model.
+<ul>
+<li>Obtaining a statistically significant result here is usually pretty straightforward, since the comparison is between our model, and a model which simply predicts the mean value of the outcome for everyone.</li>
+<li>In a simple (one-predictor) linear regression like this, the t statistic for the slope is just the square root of the F statistic, and the resulting <em>p</em> values for the slope’s t test and for the global F test will be identical.</li>
+</ul></li>
+<li>To see the complete ANOVA F test for this model, we can run <code>anova(model_A)</code>.</li>
+</ul>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="summarizing-the-smart-cle1-data.html#cb350-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model_A)</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: physhealth
+            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+bmi          1   3204  3204.4   39.84 3.95e-10 ***
+Residuals 1131  90968    80.4                     
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+</div>
+<div id="using-the-broom-package" class="section level3" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Using the <code>broom</code> package</h3>
+<p>The <code>broom</code> package has three functions of particular use in a linear regression model:</p>
+<div id="the-tidy-function" class="section level4" number="4.3.3.1">
+<h4><span class="header-section-number">4.3.3.1</span> The <code>tidy</code> function</h4>
+<p><code>tidy</code> builds a data frame/tibble containing information about the coefficients in the model, their standard errors, t statistics and <em>p</em> values.</p>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="summarizing-the-smart-cle1-data.html#cb352-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model_A)</span></code></pre></div>
+<pre><code># A tibble: 2 x 5
+  term        estimate std.error statistic  p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)   -2.81     1.22       -2.31 2.10e- 2
+2 bmi            0.264    0.0419      6.31 3.95e-10</code></pre>
+<p>It’s often useful to include other summaries in this tidying, for instance:</p>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="summarizing-the-smart-cle1-data.html#cb354-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model_A, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.9</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb354-2"><a href="summarizing-the-smart-cle1-data.html#cb354-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(term, estimate, conf.low, conf.high)</span></code></pre></div>
+<pre><code># A tibble: 2 x 4
+  term        estimate conf.low conf.high
+  &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1 (Intercept)   -2.81    -4.82     -0.809
+2 bmi            0.264    0.195     0.333</code></pre>
+</div>
+<div id="the-glance-function" class="section level4" number="4.3.3.2">
+<h4><span class="header-section-number">4.3.3.2</span> The <code>glance</code> function</h4>
+<p>glance` builds a data frame/tibble containing summary statistics about the model, including</p>
+<ul>
+<li>the (raw) multiple R<sup>2</sup> and adjusted R^2</li>
+<li><code>sigma</code> which is the residual standard error</li>
+<li>the F <code>statistic</code>, <code>p.value</code> model <code>df</code> and <code>df.residual</code> associated with the global ANOVA test, plus</li>
+<li>several statistics that will be useful in comparing models down the line:</li>
+<li>the model’s log likelihood function value, <code>logLik</code></li>
+<li>the model’s Akaike’s Information Criterion value, <code>AIC</code></li>
+<li>the model’s Bayesian Information Criterion value, <code>BIC</code></li>
+<li>and the model’s <code>deviance</code> statistic</li>
+</ul>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="summarizing-the-smart-cle1-data.html#cb356-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(model_A)</span></code></pre></div>
+<pre><code># A tibble: 1 x 12
+  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1    0.0340        0.0332  8.97      39.8 3.95e-10     1 -4092. 8190. 8205.
+# ... with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+</div>
+<div id="the-augment-function" class="section level4" number="4.3.3.3">
+<h4><span class="header-section-number">4.3.3.3</span> The <code>augment</code> function</h4>
+<p><code>augment</code> builds a data frame/tibble which adds fitted values, residuals and other diagnostic summaries that describe each observation to the original data used to fit the model, and this includes</p>
+<ul>
+<li><code>.fitted</code> and <code>.resid</code>, the fitted and residual values, in addition to</li>
+<li><code>.hat</code>, the leverage value for this observation</li>
+<li><code>.cooksd</code>, the Cook’s distance measure of <em>influence</em> for this observation</li>
+<li><code>.stdresid</code>, the standardized residual (think of this as a z-score - a measure of the residual divided by its associated standard deviation <code>.sigma</code>)</li>
+<li>and <code>se.fit</code> which will help us generate prediction intervals for the model downstream</li>
+</ul>
+<p>Note that each of the new columns begins with <code>.</code> to avoid overwriting any data.</p>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="summarizing-the-smart-cle1-data.html#cb358-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">augment</span>(model_A))</span></code></pre></div>
+<pre><code># A tibble: 6 x 8
+  physhealth   bmi .fitted .resid .std.resid     .hat .sigma    .cooksd
+       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
+1          4  27.9    4.57 -0.572    -0.0638 0.000886   8.97 0.00000181
+2          0  23.0    3.28 -3.28     -0.366  0.00149    8.97 0.000100  
+3          0  26.9    4.31 -4.31     -0.480  0.000927   8.97 0.000107  
+4          0  26.5    4.20 -4.20     -0.468  0.000956   8.97 0.000105  
+5          0  24.2    3.60 -3.60     -0.401  0.00125    8.97 0.000101  
+6          2  27.7    4.51 -2.51     -0.281  0.000891   8.97 0.0000351 </code></pre>
+<p>For more on the <code>broom</code> package, you may want to look at <a href="https://cran.r-project.org/web/packages/broom/vignettes/broom.html">this vignette</a>.</p>
+</div>
+</div>
+<div id="how-does-the-model-do-residuals-vs.-fitted-values" class="section level3" number="4.3.4">
+<h3><span class="header-section-number">4.3.4</span> How does the model do? (Residuals vs. Fitted Values)</h3>
+<ul>
+<li>Remember that the R<sup>2</sup> value was about 3.4%.</li>
+</ul>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="summarizing-the-smart-cle1-data.html#cb360-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model_A, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
+<p>This is a plot of residuals vs. fitted values. The goal here is for this plot to look like a random scatter of points, perhaps like a “fuzzy football,” and that’s <strong>not</strong> what we have. Why?</p>
+<p>If you prefer, here’s a <code>ggplot2</code> version of a similar plot, now looking at standardized residuals instead of raw residuals, and adding a loess smooth and a linear fit to the result.</p>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="summarizing-the-smart-cle1-data.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">augment</span>(model_A), <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .std.resid)) <span class="sc">+</span></span>
+<span id="cb361-2"><a href="summarizing-the-smart-cle1-data.html#cb361-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb361-3"><a href="summarizing-the-smart-cle1-data.html#cb361-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb361-4"><a href="summarizing-the-smart-cle1-data.html#cb361-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">col =</span> <span class="st">&quot;navy&quot;</span>) <span class="sc">+</span></span>
+<span id="cb361-5"><a href="summarizing-the-smart-cle1-data.html#cb361-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code></pre></div>
+<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;
+`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
+<p>The problem we’re having here becomes, I think, a little more obvious if we look at what we’re predicting. Does <code>physhealth</code> look like a good candidate for a linear model?</p>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="summarizing-the-smart-cle1-data.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> physhealth)) <span class="sc">+</span></span>
+<span id="cb363-2"><a href="summarizing-the-smart-cle1-data.html#cb363-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">&quot;dodgerblue&quot;</span>, </span>
+<span id="cb363-3"><a href="summarizing-the-smart-cle1-data.html#cb363-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">&quot;royalblue&quot;</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-113-1.png" width="672" /></p>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="summarizing-the-smart-cle1-data.html#cb364-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">count</span>(physhealth <span class="sc">==</span> <span class="dv">0</span>, physhealth <span class="sc">==</span> <span class="dv">30</span>)</span></code></pre></div>
+<pre><code># A tibble: 3 x 3
+  `physhealth == 0` `physhealth == 30`     n
+  &lt;lgl&gt;             &lt;lgl&gt;              &lt;int&gt;
+1 FALSE             FALSE                343
+2 FALSE             TRUE                 100
+3 TRUE              FALSE                690</code></pre>
+<p>No matter what model we fit, if we are predicting <code>physhealth</code>, and most of the data are values of 0 and 30, we have limited variation in our outcome, and so our linear model will be somewhat questionable just on that basis.</p>
+<p>A normal Q-Q plot of the standardized residuals for our <code>model_A</code> shows this problem, too.</p>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="summarizing-the-smart-cle1-data.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model_A, <span class="at">which =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
+<p>We’re going to need a method to deal with this sort of outcome, that has both a floor and a ceiling. We’ll get there eventually, but linear regression alone doesn’t look promising.</p>
+<p>All right, so that didn’t go anywhere great. We’ll try again, with a new outcome, in the next chapter.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="dealing-with-missingness-single-imputation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="analysis-of-variance-with-smart.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["432-notes.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

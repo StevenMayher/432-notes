@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="brfss-smart-data-building.html"/>
-<link rel="next" href="references.html"/>
+<link rel="next" href="summarizing-the-smart-cle1-data.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -131,6 +131,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="" data-path="r-packages-used-in-these-notes.html"><a href="r-packages-used-in-these-notes.html"><i class="fa fa-check"></i>R Packages used in these notes</a>
 <ul>
+<li class="chapter" data-level="0.1" data-path="r-packages-used-in-these-notes.html"><a href="r-packages-used-in-these-notes.html#dealing-with-conflicts"><i class="fa fa-check"></i><b>0.1</b> Dealing with Conflicts</a></li>
 <li><a href="r-packages-used-in-these-notes.html#general-theme-for-ggplot-work">General Theme for <code>ggplot</code> work</a></li>
 <li class="chapter" data-level="" data-path="r-packages-used-in-these-notes.html"><a href="r-packages-used-in-these-notes.html#data-used-in-these-notes"><i class="fa fa-check"></i>Data used in these notes</a></li>
 </ul></li>
@@ -229,6 +230,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9.7" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#saving-the-new-tibbles"><i class="fa fa-check"></i><b>3.9.7</b> Saving the new tibbles</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing the <code>smart_cle1</code> data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#general-approaches-to-obtaining-numeric-summaries"><i class="fa fa-check"></i><b>4.1</b> General Approaches to Obtaining Numeric Summaries</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#summary-for-a-data-frame"><i class="fa fa-check"></i><b>4.1.1</b> <code>summary</code> for a data frame</a></li>
+<li class="chapter" data-level="4.1.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#the-inspect-function-from-the-mosaic-package"><i class="fa fa-check"></i><b>4.1.2</b> The <code>inspect</code> function from the <code>mosaic</code> package</a></li>
+<li class="chapter" data-level="4.1.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#the-describe-function-in-hmisc"><i class="fa fa-check"></i><b>4.1.3</b> The <code>describe</code> function in <code>Hmisc</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#counting-as-exploratory-data-analysis"><i class="fa fa-check"></i><b>4.2</b> Counting as exploratory data analysis</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#did-genhealth-vary-by-smoking-status"><i class="fa fa-check"></i><b>4.2.1</b> Did <code>genhealth</code> vary by smoking status?</a></li>
+<li class="chapter" data-level="4.2.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#whats-the-distribution-of-physhealth"><i class="fa fa-check"></i><b>4.2.2</b> What’s the distribution of <code>physhealth</code>?</a></li>
+<li class="chapter" data-level="4.2.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#whats-the-distribution-of-bmi"><i class="fa fa-check"></i><b>4.2.3</b> What’s the distribution of <code>bmi</code>?</a></li>
+<li class="chapter" data-level="4.2.4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-many-of-the-respondents-have-a-bmi-below-30"><i class="fa fa-check"></i><b>4.2.4</b> How many of the respondents have a BMI below 30?</a></li>
+<li class="chapter" data-level="4.2.5" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-many-of-the-respondents-with-a-bmi-30-are-highly-active"><i class="fa fa-check"></i><b>4.2.5</b> How many of the respondents with a BMI &lt; 30 are highly active?</a></li>
+<li class="chapter" data-level="4.2.6" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#is-obesity-associated-with-smoking-history"><i class="fa fa-check"></i><b>4.2.6</b> Is obesity associated with smoking history?</a></li>
+<li class="chapter" data-level="4.2.7" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#comparing-drinks_wk-summaries-by-obesity-status"><i class="fa fa-check"></i><b>4.2.7</b> Comparing <code>drinks_wk</code> summaries by obesity status</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#can-bmi-predict-physhealth"><i class="fa fa-check"></i><b>4.3</b> Can <code>bmi</code> predict <code>physhealth</code>?</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#fitting-a-simple-regression-model"><i class="fa fa-check"></i><b>4.3.1</b> Fitting a Simple Regression Model</a></li>
+<li class="chapter" data-level="4.3.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#model-summary-for-a-simple-one-predictor-regression"><i class="fa fa-check"></i><b>4.3.2</b> Model Summary for a Simple (One-Predictor) Regression</a></li>
+<li class="chapter" data-level="4.3.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#using-the-broom-package"><i class="fa fa-check"></i><b>4.3.3</b> Using the <code>broom</code> package</a></li>
+<li class="chapter" data-level="4.3.4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-does-the-model-do-residuals-vs.-fitted-values"><i class="fa fa-check"></i><b>4.3.4</b> How does the model do? (Residuals vs. Fitted Values)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html"><i class="fa fa-check"></i><b>5</b> Analysis of Variance with SMART</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#a-one-factor-analysis-of-variance"><i class="fa fa-check"></i><b>5.1</b> A One-Factor Analysis of Variance</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#can-activity-be-used-to-predict-bmi"><i class="fa fa-check"></i><b>5.1.1</b> Can <code>activity</code> be used to predict <code>bmi</code>?</a></li>
+<li class="chapter" data-level="5.1.2" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#should-we-transform-bmi"><i class="fa fa-check"></i><b>5.1.2</b> Should we transform <code>bmi</code>?</a></li>
+<li class="chapter" data-level="5.1.3" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#building-the-anova-model"><i class="fa fa-check"></i><b>5.1.3</b> Building the ANOVA model</a></li>
+<li class="chapter" data-level="5.1.4" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#the-anova-table"><i class="fa fa-check"></i><b>5.1.4</b> The ANOVA table</a></li>
+<li class="chapter" data-level="5.1.5" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#the-model-coefficients"><i class="fa fa-check"></i><b>5.1.5</b> The Model Coefficients</a></li>
+<li class="chapter" data-level="5.1.6" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#using-broomtidy-to-explore-the-coefficients"><i class="fa fa-check"></i><b>5.1.6</b> Using <code>broom::tidy</code> to explore the coefficients</a></li>
+<li class="chapter" data-level="5.1.7" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#using-broomglance-to-summarize-the-models-fit"><i class="fa fa-check"></i><b>5.1.7</b> Using <code>broom::glance</code> to summarize the model’s fit</a></li>
+<li class="chapter" data-level="5.1.8" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#using-broomaugment-to-make-predictions"><i class="fa fa-check"></i><b>5.1.8</b> Using <code>broom::augment</code> to make predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#a-two-factor-anova-without-interaction"><i class="fa fa-check"></i><b>5.2</b> A Two-Factor ANOVA (without Interaction)</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#model-coefficients"><i class="fa fa-check"></i><b>5.2.1</b> Model Coefficients</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#a-two-factor-anova-with-interaction"><i class="fa fa-check"></i><b>5.3</b> A Two-Factor ANOVA (with Interaction)</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#model-coefficients-1"><i class="fa fa-check"></i><b>5.3.1</b> Model Coefficients</a></li>
+<li class="chapter" data-level="5.3.2" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#is-the-interaction-term-necessary"><i class="fa fa-check"></i><b>5.3.2</b> Is the interaction term necessary?</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
@@ -251,12 +301,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 3</span> Dealing with Missingness: Single Imputation</h1>
 <div id="selecting-some-variables-from-the-smart_cle-data" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Selecting Some Variables from the <code>smart_cle</code> data</h2>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="dealing-with-missingness-single-imputation.html#cb226-1" aria-hidden="true" tabindex="-1"></a>smart_cle <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/smart_cle.Rds&quot;</span>)</span>
-<span id="cb226-2"><a href="dealing-with-missingness-single-imputation.html#cb226-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb226-3"><a href="dealing-with-missingness-single-imputation.html#cb226-3" aria-hidden="true" tabindex="-1"></a>smart_cle1 <span class="ot">&lt;-</span> smart_cle <span class="sc">%&gt;%</span> </span>
-<span id="cb226-4"><a href="dealing-with-missingness-single-imputation.html#cb226-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(SEQNO, physhealth, genhealth, bmi, </span>
-<span id="cb226-5"><a href="dealing-with-missingness-single-imputation.html#cb226-5" aria-hidden="true" tabindex="-1"></a>         age_imp, female, race_eth, internet30, </span>
-<span id="cb226-6"><a href="dealing-with-missingness-single-imputation.html#cb226-6" aria-hidden="true" tabindex="-1"></a>         smoke100, activity, drinks_wk, veg_day)</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="dealing-with-missingness-single-imputation.html#cb236-1" aria-hidden="true" tabindex="-1"></a>smart_cle <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/smart_cle.Rds&quot;</span>)</span>
+<span id="cb236-2"><a href="dealing-with-missingness-single-imputation.html#cb236-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb236-3"><a href="dealing-with-missingness-single-imputation.html#cb236-3" aria-hidden="true" tabindex="-1"></a>smart_cle1 <span class="ot">&lt;-</span> smart_cle <span class="sc">%&gt;%</span> </span>
+<span id="cb236-4"><a href="dealing-with-missingness-single-imputation.html#cb236-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(SEQNO, physhealth, genhealth, bmi, </span>
+<span id="cb236-5"><a href="dealing-with-missingness-single-imputation.html#cb236-5" aria-hidden="true" tabindex="-1"></a>         age_imp, female, race_eth, internet30, </span>
+<span id="cb236-6"><a href="dealing-with-missingness-single-imputation.html#cb236-6" aria-hidden="true" tabindex="-1"></a>         smoke100, activity, drinks_wk, veg_day)</span></code></pre></div>
 <p>The <code>smart_cle.Rds</code> data file available on the Data and Code page of <a href="https://github.com/THOMASELOVE/2020-432">our website</a> describes information on 99 variables for 1133 respondents to the BRFSS 2017, who live in the Cleveland-Elyria, OH, Metropolitan Statistical Area. The variables in the <code>smart_cle1.csv</code> file are listed below, along with the items that generate these responses.</p>
 <table>
 <colgroup>
@@ -320,7 +370,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="dealing-with-missingness-single-imputation.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(smart_cle1)</span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="dealing-with-missingness-single-imputation.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(smart_cle1)</span></code></pre></div>
 <pre><code>tibble [1,133 x 12] (S3: tbl_df/tbl/data.frame)
  $ SEQNO     : num [1:1133] 2.02e+09 2.02e+09 2.02e+09 2.02e+09 2.02e+09 ...
  $ physhealth: num [1:1133] 4 0 0 0 0 2 2 0 0 0 ...
@@ -342,12 +392,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>We can obtain a count of the number of missing cells in the entire tibble.</li>
 </ul>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="dealing-with-missingness-single-imputation.html#cb229-1" aria-hidden="true" tabindex="-1"></a>smart_cle1 <span class="sc">%&gt;%</span> <span class="fu">n_miss</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="dealing-with-missingness-single-imputation.html#cb239-1" aria-hidden="true" tabindex="-1"></a>smart_cle1 <span class="sc">%&gt;%</span> <span class="fu">n_miss</span>()</span></code></pre></div>
 <pre><code>[1] 479</code></pre>
 <ul>
 <li>We can use the <code>miss_var_summary</code> function to get a sorted table of each variable by number missing.</li>
 </ul>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="dealing-with-missingness-single-imputation.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="fu">miss_var_summary</span>(smart_cle1) <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="dealing-with-missingness-single-imputation.html#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="fu">miss_var_summary</span>(smart_cle1) <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -500,7 +550,7 @@ female
 <ul>
 <li>Or we can use the <code>miss_var_table</code> function to tabulate the number of variables that have each observed level of missingness.</li>
 </ul>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="dealing-with-missingness-single-imputation.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="fu">miss_var_table</span>(smart_cle1) </span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="dealing-with-missingness-single-imputation.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="fu">miss_var_table</span>(smart_cle1) </span></code></pre></div>
 <pre><code># A tibble: 11 x 3
    n_miss_in_var n_vars pct_vars
  *         &lt;int&gt;  &lt;int&gt;    &lt;dbl&gt;
@@ -518,26 +568,26 @@ female
 <ul>
 <li>Or we can get a count for a specific variable, like <code>activity</code>:</li>
 </ul>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="dealing-with-missingness-single-imputation.html#cb234-1" aria-hidden="true" tabindex="-1"></a>smart_cle1 <span class="sc">%&gt;%</span> <span class="fu">select</span>(activity) <span class="sc">%&gt;%</span> <span class="fu">n_miss</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="dealing-with-missingness-single-imputation.html#cb244-1" aria-hidden="true" tabindex="-1"></a>smart_cle1 <span class="sc">%&gt;%</span> <span class="fu">select</span>(activity) <span class="sc">%&gt;%</span> <span class="fu">n_miss</span>()</span></code></pre></div>
 <pre><code>[1] 109</code></pre>
 <ul>
 <li>We can also use <code>prop_miss_case</code> or <code>pct_miss_case</code> to specify the proportion (or percentage) of missing observations across an entire data set, or within a specific variable.</li>
 </ul>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="dealing-with-missingness-single-imputation.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop_miss_case</span>(smart_cle1)</span></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="dealing-with-missingness-single-imputation.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop_miss_case</span>(smart_cle1)</span></code></pre></div>
 <pre><code>[1] 0.2127096</code></pre>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="dealing-with-missingness-single-imputation.html#cb238-1" aria-hidden="true" tabindex="-1"></a>smart_cle1 <span class="sc">%&gt;%</span> <span class="fu">select</span>(activity) <span class="sc">%&gt;%</span> <span class="fu">pct_miss_case</span>(.)</span></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="dealing-with-missingness-single-imputation.html#cb248-1" aria-hidden="true" tabindex="-1"></a>smart_cle1 <span class="sc">%&gt;%</span> <span class="fu">select</span>(activity) <span class="sc">%&gt;%</span> <span class="fu">pct_miss_case</span>(.)</span></code></pre></div>
 <pre><code>[1] 9.620477</code></pre>
 <ul>
 <li>We can also use <code>prop_miss_var</code> or <code>pct_miss_var</code> to specify the proportion (or percentage) of variables with missing observations across an entire data set.</li>
 </ul>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="dealing-with-missingness-single-imputation.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop_miss_var</span>(smart_cle1)</span></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="dealing-with-missingness-single-imputation.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop_miss_var</span>(smart_cle1)</span></code></pre></div>
 <pre><code>[1] 0.8333333</code></pre>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="dealing-with-missingness-single-imputation.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pct_miss_var</span>(smart_cle1)</span></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="dealing-with-missingness-single-imputation.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pct_miss_var</span>(smart_cle1)</span></code></pre></div>
 <pre><code>[1] 83.33333</code></pre>
 <ul>
 <li>We use <code>miss_case_table</code> to identify the number of missing values for each of the cases (rows) in our tibble.</li>
 </ul>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="dealing-with-missingness-single-imputation.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="fu">miss_case_table</span>(smart_cle1)</span></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="dealing-with-missingness-single-imputation.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="fu">miss_case_table</span>(smart_cle1)</span></code></pre></div>
 <pre><code># A tibble: 7 x 3
   n_miss_in_case n_cases pct_cases
 *          &lt;int&gt;   &lt;int&gt;     &lt;dbl&gt;
@@ -551,7 +601,7 @@ female
 <ul>
 <li>Use <code>miss_case_summary</code> to specify individual observations and count their missing values.</li>
 </ul>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="dealing-with-missingness-single-imputation.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="fu">miss_case_summary</span>(smart_cle1)</span></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="dealing-with-missingness-single-imputation.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">miss_case_summary</span>(smart_cle1)</span></code></pre></div>
 <pre><code># A tibble: 1,133 x 3
     case n_miss pct_miss
    &lt;int&gt;  &lt;int&gt;    &lt;dbl&gt;
@@ -567,7 +617,7 @@ female
 10    94      5     41.7
 # ... with 1,123 more rows</code></pre>
 <p>The case numbers identified here are row numbers. Extract the data for case 17, for instance, with the <code>slice</code> function.</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="dealing-with-missingness-single-imputation.html#cb248-1" aria-hidden="true" tabindex="-1"></a>smart_cle1 <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">17</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="dealing-with-missingness-single-imputation.html#cb258-1" aria-hidden="true" tabindex="-1"></a>smart_cle1 <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">17</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 x 12
    SEQNO physhealth genhealth   bmi age_imp female race_eth internet30 smoke100
    &lt;dbl&gt;      &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;         &lt;dbl&gt;    &lt;dbl&gt;
@@ -576,14 +626,14 @@ female
 <div id="plotting-missingness" class="section level3" number="3.2.1">
 <h3><span class="header-section-number">3.2.1</span> Plotting Missingness</h3>
 <p>The <code>gg_miss_var</code> function plots the number of missing observations in each variable in our data set.</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="dealing-with-missingness-single-imputation.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gg_miss_var</span>(smart_cle1)</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="dealing-with-missingness-single-imputation.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gg_miss_var</span>(smart_cle1)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
 <p>So the most commonly missing variable is <code>activity</code> which, as we’ve seen, has 109 missing values.</p>
 <p>To get a general sense of the missingness in our data, we might use either the <code>vis_dat</code> or the <code>vis_miss</code> function from the <code>visdat</code> package.</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="dealing-with-missingness-single-imputation.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vis_miss</span>(smart_cle1)</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="dealing-with-missingness-single-imputation.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vis_dat</span>(smart_cle1)</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="dealing-with-missingness-single-imputation.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vis_miss</span>(smart_cle1)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="dealing-with-missingness-single-imputation.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vis_dat</span>(smart_cle1)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
 </div>
 </div>
 <div id="missing-data-mechanisms" class="section level2" number="3.3">
@@ -638,10 +688,10 @@ female
 <div id="approach-1-building-a-complete-case-analysis-smart_cle1_cc" class="section level2" number="3.8">
 <h2><span class="header-section-number">3.8</span> Approach 1: Building a Complete Case Analysis: <code>smart_cle1_cc</code></h2>
 <p>In the 431 course, we usually dealt with missing data by restricting our analyses to respondents with complete data on all variables. Let’s start by doing that here. We’ll create a new tibble called <code>smart_cle1_cc</code> which includes all respondents with complete data on all of these variables.</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="dealing-with-missingness-single-imputation.html#cb253-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_cc <span class="ot">&lt;-</span> smart_cle1 <span class="sc">%&gt;%</span> </span>
-<span id="cb253-2"><a href="dealing-with-missingness-single-imputation.html#cb253-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
-<span id="cb253-3"><a href="dealing-with-missingness-single-imputation.html#cb253-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb253-4"><a href="dealing-with-missingness-single-imputation.html#cb253-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(smart_cle1_cc)</span></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="dealing-with-missingness-single-imputation.html#cb263-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_cc <span class="ot">&lt;-</span> smart_cle1 <span class="sc">%&gt;%</span> </span>
+<span id="cb263-2"><a href="dealing-with-missingness-single-imputation.html#cb263-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb263-3"><a href="dealing-with-missingness-single-imputation.html#cb263-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb263-4"><a href="dealing-with-missingness-single-imputation.html#cb263-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(smart_cle1_cc)</span></code></pre></div>
 <pre><code>[1] 892  12</code></pre>
 <p>Our <code>smart_cle1_cc</code> tibble now has many fewer observations than its predecessors, but all of the variables in this complete cases tibble have no missing observations.</p>
 <table>
@@ -680,9 +730,9 @@ female
 <p>Next, we’ll create a data set which has all of the rows in the original <code>smart_cle1</code> tibble, but deals with missingness by imputing (estimating / filling in) new values for each of the missing values. To do this, we’ll make heavy use of the <code>simputation</code> package in R.</p>
 <p>The <code>simputation</code> package is designed for single imputation work. Note that we’ll eventually adopt a <strong>multiple imputation</strong> strategy in some of our modeling work, and we’ll use some specialized tools to facilitate that later.</p>
 <p>To begin, we’ll create a “shadow” in our tibble to track what we’ll need to impute.</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="dealing-with-missingness-single-imputation.html#cb255-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="ot">&lt;-</span> <span class="fu">bind_shadow</span>(smart_cle1)</span>
-<span id="cb255-2"><a href="dealing-with-missingness-single-imputation.html#cb255-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb255-3"><a href="dealing-with-missingness-single-imputation.html#cb255-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(smart_cle1_sh)</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="dealing-with-missingness-single-imputation.html#cb265-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="ot">&lt;-</span> <span class="fu">bind_shadow</span>(smart_cle1)</span>
+<span id="cb265-2"><a href="dealing-with-missingness-single-imputation.html#cb265-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb265-3"><a href="dealing-with-missingness-single-imputation.html#cb265-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(smart_cle1_sh)</span></code></pre></div>
 <pre><code> [1] &quot;SEQNO&quot;         &quot;physhealth&quot;    &quot;genhealth&quot;     &quot;bmi&quot;          
  [5] &quot;age_imp&quot;       &quot;female&quot;        &quot;race_eth&quot;      &quot;internet30&quot;   
  [9] &quot;smoke100&quot;      &quot;activity&quot;      &quot;drinks_wk&quot;     &quot;veg_day&quot;      
@@ -690,7 +740,7 @@ female
 [17] &quot;age_imp_NA&quot;    &quot;female_NA&quot;     &quot;race_eth_NA&quot;   &quot;internet30_NA&quot;
 [21] &quot;smoke100_NA&quot;   &quot;activity_NA&quot;   &quot;drinks_wk_NA&quot;  &quot;veg_day_NA&quot;   </code></pre>
 <p>Note that the <code>bind_shadow()</code> function doubles the number of variables in our tibble, specifically by creating a new variable for each that takes the value <code>!NA</code> or <code>NA</code>. For example, consider</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="dealing-with-missingness-single-imputation.html#cb257-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">count</span>(activity, activity_NA)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="dealing-with-missingness-single-imputation.html#cb267-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">count</span>(activity, activity_NA)</span></code></pre></div>
 <pre><code># A tibble: 5 x 3
   activity              activity_NA     n
   &lt;fct&gt;                 &lt;fct&gt;       &lt;int&gt;
@@ -720,7 +770,7 @@ female
 <div id="single-imputation-into-smart_cle1_sh" class="section level3" number="3.9.2">
 <h3><span class="header-section-number">3.9.2</span> Single imputation into <code>smart_cle1_sh</code></h3>
 <p>Which variables in <code>smart_cle1_sh</code> contain missing data?</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="dealing-with-missingness-single-imputation.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="fu">miss_var_summary</span>(smart_cle1_sh)</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="dealing-with-missingness-single-imputation.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="fu">miss_var_summary</span>(smart_cle1_sh)</span></code></pre></div>
 <pre><code># A tibble: 24 x 3
    variable   n_miss pct_miss
    &lt;chr&gt;       &lt;int&gt;    &lt;dbl&gt;
@@ -757,18 +807,18 @@ female
 <li>For <code>smoke100</code> we’ll use a method called predictive mean matching (<code>impute_pmm</code>) which takes the result from a model based on the (imputed) <code>internet30</code> value and whether or not the subject is <code>female</code>, and converts it to the nearest value in the observed <code>smoke100</code> data. This is a good approach for imputing discrete variables.</li>
 </ul>
 <p>These are completely arbitrary choices, for demonstration purposes.</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="dealing-with-missingness-single-imputation.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2020001</span>)</span>
-<span id="cb261-2"><a href="dealing-with-missingness-single-imputation.html#cb261-2" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="ot">&lt;-</span> smart_cle1_sh <span class="sc">%&gt;%</span></span>
-<span id="cb261-3"><a href="dealing-with-missingness-single-imputation.html#cb261-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb261-4"><a href="dealing-with-missingness-single-imputation.html#cb261-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_rhd</span>(., </span>
-<span id="cb261-5"><a href="dealing-with-missingness-single-imputation.html#cb261-5" aria-hidden="true" tabindex="-1"></a>               internet30 <span class="sc">~</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb261-6"><a href="dealing-with-missingness-single-imputation.html#cb261-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_pmm</span>(., smoke100 <span class="sc">~</span> internet30 <span class="sc">+</span> female) <span class="sc">%&gt;%</span></span>
-<span id="cb261-7"><a href="dealing-with-missingness-single-imputation.html#cb261-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_df</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="dealing-with-missingness-single-imputation.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2020001</span>)</span>
+<span id="cb271-2"><a href="dealing-with-missingness-single-imputation.html#cb271-2" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="ot">&lt;-</span> smart_cle1_sh <span class="sc">%&gt;%</span></span>
+<span id="cb271-3"><a href="dealing-with-missingness-single-imputation.html#cb271-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb271-4"><a href="dealing-with-missingness-single-imputation.html#cb271-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_rhd</span>(., </span>
+<span id="cb271-5"><a href="dealing-with-missingness-single-imputation.html#cb271-5" aria-hidden="true" tabindex="-1"></a>               internet30 <span class="sc">~</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb271-6"><a href="dealing-with-missingness-single-imputation.html#cb271-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_pmm</span>(., smoke100 <span class="sc">~</span> internet30 <span class="sc">+</span> female) <span class="sc">%&gt;%</span></span>
+<span id="cb271-7"><a href="dealing-with-missingness-single-imputation.html#cb271-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_df</span>()</span></code></pre></div>
 <pre><code>Warning: `tbl_df()` is deprecated as of dplyr 1.0.0.
 Please use `tibble::as_tibble()` instead.
 This warning is displayed once every 8 hours.
 Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="dealing-with-missingness-single-imputation.html#cb263-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">count</span>(smoke100, smoke100_NA)</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="dealing-with-missingness-single-imputation.html#cb273-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">count</span>(smoke100, smoke100_NA)</span></code></pre></div>
 <pre><code># A tibble: 4 x 3
   smoke100 smoke100_NA     n
      &lt;dbl&gt; &lt;fct&gt;       &lt;int&gt;
@@ -776,7 +826,7 @@ Call `lifecycle::last_warnings()` to see where this warning was generated.</code
 2        0 NA             21
 3        1 !NA           514
 4        1 NA             19</code></pre>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="dealing-with-missingness-single-imputation.html#cb265-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">count</span>(internet30, internet30_NA)</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="dealing-with-missingness-single-imputation.html#cb275-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">count</span>(internet30, internet30_NA)</span></code></pre></div>
 <pre><code># A tibble: 4 x 3
   internet30 internet30_NA     n
        &lt;dbl&gt; &lt;fct&gt;         &lt;int&gt;
@@ -790,16 +840,16 @@ Call `lifecycle::last_warnings()` to see where this warning was generated.</code
 <h3><span class="header-section-number">3.9.4</span> Imputing Quantitative Variables</h3>
 <p>We’ll demonstrate a different approach for imputing each of the quantitative variables with missing observations. Again, we’re making purely arbitrary decisions here about what to include in each imputation. In practical work, we’d want to be a bit more thoughtful about this.</p>
 <p>Note that I’m choosing to use <code>impute_pmm</code> with the <code>physhealth</code> and <code>age_imp</code> variables. This is (in part) because I want my imputations to be integers, as the other observations are for those variables. <code>impute_rhd</code> would also accomplish this.</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="dealing-with-missingness-single-imputation.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2020001</span>)</span>
-<span id="cb267-2"><a href="dealing-with-missingness-single-imputation.html#cb267-2" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="ot">&lt;-</span> smart_cle1_sh <span class="sc">%&gt;%</span></span>
-<span id="cb267-3"><a href="dealing-with-missingness-single-imputation.html#cb267-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb267-4"><a href="dealing-with-missingness-single-imputation.html#cb267-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_rhd</span>(., veg_day <span class="sc">~</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb267-5"><a href="dealing-with-missingness-single-imputation.html#cb267-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_median</span>(., drinks_wk <span class="sc">~</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb267-6"><a href="dealing-with-missingness-single-imputation.html#cb267-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_pmm</span>(., physhealth <span class="sc">~</span> </span>
-<span id="cb267-7"><a href="dealing-with-missingness-single-imputation.html#cb267-7" aria-hidden="true" tabindex="-1"></a>                 drinks_wk <span class="sc">+</span> female <span class="sc">+</span> smoke100) <span class="sc">%&gt;%</span></span>
-<span id="cb267-8"><a href="dealing-with-missingness-single-imputation.html#cb267-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_pmm</span>(., age_imp <span class="sc">~</span> drinks_wk <span class="sc">+</span> physhealth) <span class="sc">%&gt;%</span></span>
-<span id="cb267-9"><a href="dealing-with-missingness-single-imputation.html#cb267-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_rlm</span>(., bmi <span class="sc">~</span> physhealth <span class="sc">+</span> smoke100) <span class="sc">%&gt;%</span></span>
-<span id="cb267-10"><a href="dealing-with-missingness-single-imputation.html#cb267-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_df</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="dealing-with-missingness-single-imputation.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2020001</span>)</span>
+<span id="cb277-2"><a href="dealing-with-missingness-single-imputation.html#cb277-2" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="ot">&lt;-</span> smart_cle1_sh <span class="sc">%&gt;%</span></span>
+<span id="cb277-3"><a href="dealing-with-missingness-single-imputation.html#cb277-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb277-4"><a href="dealing-with-missingness-single-imputation.html#cb277-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_rhd</span>(., veg_day <span class="sc">~</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb277-5"><a href="dealing-with-missingness-single-imputation.html#cb277-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_median</span>(., drinks_wk <span class="sc">~</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb277-6"><a href="dealing-with-missingness-single-imputation.html#cb277-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_pmm</span>(., physhealth <span class="sc">~</span> </span>
+<span id="cb277-7"><a href="dealing-with-missingness-single-imputation.html#cb277-7" aria-hidden="true" tabindex="-1"></a>                 drinks_wk <span class="sc">+</span> female <span class="sc">+</span> smoke100) <span class="sc">%&gt;%</span></span>
+<span id="cb277-8"><a href="dealing-with-missingness-single-imputation.html#cb277-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_pmm</span>(., age_imp <span class="sc">~</span> drinks_wk <span class="sc">+</span> physhealth) <span class="sc">%&gt;%</span></span>
+<span id="cb277-9"><a href="dealing-with-missingness-single-imputation.html#cb277-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_rlm</span>(., bmi <span class="sc">~</span> physhealth <span class="sc">+</span> smoke100) <span class="sc">%&gt;%</span></span>
+<span id="cb277-10"><a href="dealing-with-missingness-single-imputation.html#cb277-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_df</span>()</span></code></pre></div>
 </div>
 <div id="imputation-results" class="section level3" number="3.9.5">
 <h3><span class="header-section-number">3.9.5</span> Imputation Results</h3>
@@ -807,12 +857,12 @@ Call `lifecycle::last_warnings()` to see where this warning was generated.</code
 <ol style="list-style-type: decimal">
 <li><code>veg_day</code></li>
 </ol>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="dealing-with-missingness-single-imputation.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> veg_day_NA, <span class="at">y =</span> veg_day)) <span class="sc">+</span></span>
-<span id="cb268-2"><a href="dealing-with-missingness-single-imputation.html#cb268-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_count</span>() <span class="sc">+</span> </span>
-<span id="cb268-3"><a href="dealing-with-missingness-single-imputation.html#cb268-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Imputation Results for veg_day&quot;</span>)</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="dealing-with-missingness-single-imputation.html#cb269-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%$%</span> </span>
-<span id="cb269-2"><a href="dealing-with-missingness-single-imputation.html#cb269-2" aria-hidden="true" tabindex="-1"></a>  mosaic<span class="sc">::</span><span class="fu">favstats</span>(veg_day <span class="sc">~</span> veg_day_NA)</span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="dealing-with-missingness-single-imputation.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> veg_day_NA, <span class="at">y =</span> veg_day)) <span class="sc">+</span></span>
+<span id="cb278-2"><a href="dealing-with-missingness-single-imputation.html#cb278-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_count</span>() <span class="sc">+</span> </span>
+<span id="cb278-3"><a href="dealing-with-missingness-single-imputation.html#cb278-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Imputation Results for veg_day&quot;</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="dealing-with-missingness-single-imputation.html#cb279-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%$%</span> </span>
+<span id="cb279-2"><a href="dealing-with-missingness-single-imputation.html#cb279-2" aria-hidden="true" tabindex="-1"></a>  mosaic<span class="sc">::</span><span class="fu">favstats</span>(veg_day <span class="sc">~</span> veg_day_NA)</span></code></pre></div>
 <pre><code>Registered S3 method overwritten by &#39;mosaic&#39;:
   method                           from   
   fortify.SpatialPolygonsDataFrame ggplot2</code></pre>
@@ -822,25 +872,25 @@ Call `lifecycle::last_warnings()` to see where this warning was generated.</code
 <ol start="2" style="list-style-type: decimal">
 <li><code>drinks_wk</code> for which we imputed the median value…</li>
 </ol>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="dealing-with-missingness-single-imputation.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> drinks_wk_NA, <span class="at">y =</span> drinks_wk)) <span class="sc">+</span></span>
-<span id="cb272-2"><a href="dealing-with-missingness-single-imputation.html#cb272-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_count</span>() <span class="sc">+</span> </span>
-<span id="cb272-3"><a href="dealing-with-missingness-single-imputation.html#cb272-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Imputation Results for drinks_wk&quot;</span>)</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="dealing-with-missingness-single-imputation.html#cb273-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">filter</span>(drinks_wk_NA <span class="sc">==</span> <span class="st">&quot;NA&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb273-2"><a href="dealing-with-missingness-single-imputation.html#cb273-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(drinks_wk)</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="dealing-with-missingness-single-imputation.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> drinks_wk_NA, <span class="at">y =</span> drinks_wk)) <span class="sc">+</span></span>
+<span id="cb282-2"><a href="dealing-with-missingness-single-imputation.html#cb282-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_count</span>() <span class="sc">+</span> </span>
+<span id="cb282-3"><a href="dealing-with-missingness-single-imputation.html#cb282-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Imputation Results for drinks_wk&quot;</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="dealing-with-missingness-single-imputation.html#cb283-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">filter</span>(drinks_wk_NA <span class="sc">==</span> <span class="st">&quot;NA&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb283-2"><a href="dealing-with-missingness-single-imputation.html#cb283-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(drinks_wk)</span></code></pre></div>
 <pre><code> drinks_wk  n percent
       0.23 66       1</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li><code>physhealth</code>, a count between 0 and 30…</li>
 </ol>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="dealing-with-missingness-single-imputation.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, </span>
-<span id="cb275-2"><a href="dealing-with-missingness-single-imputation.html#cb275-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> physhealth, <span class="at">y =</span> physhealth_NA)) <span class="sc">+</span></span>
-<span id="cb275-3"><a href="dealing-with-missingness-single-imputation.html#cb275-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>() <span class="sc">+</span></span>
-<span id="cb275-4"><a href="dealing-with-missingness-single-imputation.html#cb275-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Imputation Results for physhealth&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="dealing-with-missingness-single-imputation.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, </span>
+<span id="cb285-2"><a href="dealing-with-missingness-single-imputation.html#cb285-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> physhealth, <span class="at">y =</span> physhealth_NA)) <span class="sc">+</span></span>
+<span id="cb285-3"><a href="dealing-with-missingness-single-imputation.html#cb285-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>() <span class="sc">+</span></span>
+<span id="cb285-4"><a href="dealing-with-missingness-single-imputation.html#cb285-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Imputation Results for physhealth&quot;</span>)</span></code></pre></div>
 <pre><code>Picking joint bandwidth of 0.426</code></pre>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="dealing-with-missingness-single-imputation.html#cb277-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">filter</span>(physhealth_NA <span class="sc">==</span> <span class="st">&quot;NA&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb277-2"><a href="dealing-with-missingness-single-imputation.html#cb277-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(physhealth)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="dealing-with-missingness-single-imputation.html#cb287-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">filter</span>(physhealth_NA <span class="sc">==</span> <span class="st">&quot;NA&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb287-2"><a href="dealing-with-missingness-single-imputation.html#cb287-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(physhealth)</span></code></pre></div>
 <pre><code> physhealth  n    percent
           3  1 0.04166667
           4  2 0.08333333
@@ -849,13 +899,13 @@ Call `lifecycle::last_warnings()` to see where this warning was generated.</code
 <ol start="4" style="list-style-type: decimal">
 <li><code>age_imp</code>, in (integer) years</li>
 </ol>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="dealing-with-missingness-single-imputation.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, </span>
-<span id="cb279-2"><a href="dealing-with-missingness-single-imputation.html#cb279-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> age_imp, <span class="at">color =</span> age_imp_NA)) <span class="sc">+</span></span>
-<span id="cb279-3"><a href="dealing-with-missingness-single-imputation.html#cb279-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">binwidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb279-4"><a href="dealing-with-missingness-single-imputation.html#cb279-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Imputation Results for age_imp&quot;</span>)</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="dealing-with-missingness-single-imputation.html#cb280-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">filter</span>(age_imp_NA <span class="sc">==</span> <span class="st">&quot;NA&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb280-2"><a href="dealing-with-missingness-single-imputation.html#cb280-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(age_imp)</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="dealing-with-missingness-single-imputation.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, </span>
+<span id="cb289-2"><a href="dealing-with-missingness-single-imputation.html#cb289-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> age_imp, <span class="at">color =</span> age_imp_NA)) <span class="sc">+</span></span>
+<span id="cb289-3"><a href="dealing-with-missingness-single-imputation.html#cb289-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">binwidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb289-4"><a href="dealing-with-missingness-single-imputation.html#cb289-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Imputation Results for age_imp&quot;</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="dealing-with-missingness-single-imputation.html#cb290-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">filter</span>(age_imp_NA <span class="sc">==</span> <span class="st">&quot;NA&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb290-2"><a href="dealing-with-missingness-single-imputation.html#cb290-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(age_imp)</span></code></pre></div>
 <pre><code> age_imp n    percent
       48 1 0.09090909
       57 7 0.63636364
@@ -865,11 +915,11 @@ Call `lifecycle::last_warnings()` to see where this warning was generated.</code
 <ol start="5" style="list-style-type: decimal">
 <li><code>bmi</code> or body mass index</li>
 </ol>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="dealing-with-missingness-single-imputation.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> bmi, <span class="at">fill =</span> bmi_NA)) <span class="sc">+</span></span>
-<span id="cb282-2"><a href="dealing-with-missingness-single-imputation.html#cb282-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>) <span class="sc">+</span> </span>
-<span id="cb282-3"><a href="dealing-with-missingness-single-imputation.html#cb282-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Histogram of BMI and imputed BMI&quot;</span>)</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="dealing-with-missingness-single-imputation.html#cb283-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(bmi <span class="sc">~</span> bmi_NA)</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="dealing-with-missingness-single-imputation.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> bmi, <span class="at">fill =</span> bmi_NA)) <span class="sc">+</span></span>
+<span id="cb292-2"><a href="dealing-with-missingness-single-imputation.html#cb292-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>) <span class="sc">+</span> </span>
+<span id="cb292-3"><a href="dealing-with-missingness-single-imputation.html#cb292-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Histogram of BMI and imputed BMI&quot;</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="dealing-with-missingness-single-imputation.html#cb293-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(bmi <span class="sc">~</span> bmi_NA)</span></code></pre></div>
 <pre><code>  bmi_NA     min      Q1   median       Q3      max     mean        sd    n
 1    !NA 13.3000 24.1100 27.30000 31.68000 70.56000 28.40947 6.6289286 1042
 2     NA 27.0693 27.0693 27.50229 27.66574 30.75898 27.66057 0.8964101   91
@@ -885,15 +935,15 @@ Call `lifecycle::last_warnings()` to see where this warning was generated.</code
 <li><code>activity</code> and <code>genhealth</code> with a classification tree using <code>physhealth</code>, <code>bmi</code> and <code>smoke100</code>,</li>
 <li>and then impute <code>race_eth</code> with a random draw from the distribution of complete cases.</li>
 </ul>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="dealing-with-missingness-single-imputation.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2020001</span>)</span>
-<span id="cb285-2"><a href="dealing-with-missingness-single-imputation.html#cb285-2" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="ot">&lt;-</span> smart_cle1_sh <span class="sc">%&gt;%</span></span>
-<span id="cb285-3"><a href="dealing-with-missingness-single-imputation.html#cb285-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb285-4"><a href="dealing-with-missingness-single-imputation.html#cb285-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_cart</span>(., activity <span class="sc">+</span> genhealth <span class="sc">~</span> </span>
-<span id="cb285-5"><a href="dealing-with-missingness-single-imputation.html#cb285-5" aria-hidden="true" tabindex="-1"></a>                  physhealth <span class="sc">+</span> bmi <span class="sc">+</span> smoke100) <span class="sc">%&gt;%</span></span>
-<span id="cb285-6"><a href="dealing-with-missingness-single-imputation.html#cb285-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_rhd</span>(., race_eth <span class="sc">~</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb285-7"><a href="dealing-with-missingness-single-imputation.html#cb285-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_df</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="dealing-with-missingness-single-imputation.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2020001</span>)</span>
+<span id="cb295-2"><a href="dealing-with-missingness-single-imputation.html#cb295-2" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="ot">&lt;-</span> smart_cle1_sh <span class="sc">%&gt;%</span></span>
+<span id="cb295-3"><a href="dealing-with-missingness-single-imputation.html#cb295-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb295-4"><a href="dealing-with-missingness-single-imputation.html#cb295-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_cart</span>(., activity <span class="sc">+</span> genhealth <span class="sc">~</span> </span>
+<span id="cb295-5"><a href="dealing-with-missingness-single-imputation.html#cb295-5" aria-hidden="true" tabindex="-1"></a>                  physhealth <span class="sc">+</span> bmi <span class="sc">+</span> smoke100) <span class="sc">%&gt;%</span></span>
+<span id="cb295-6"><a href="dealing-with-missingness-single-imputation.html#cb295-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_rhd</span>(., race_eth <span class="sc">~</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb295-7"><a href="dealing-with-missingness-single-imputation.html#cb295-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_df</span>()</span></code></pre></div>
 <p>Let’s check our results.</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="dealing-with-missingness-single-imputation.html#cb286-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">count</span>(activity_NA, activity)</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="dealing-with-missingness-single-imputation.html#cb296-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">count</span>(activity_NA, activity)</span></code></pre></div>
 <pre><code># A tibble: 6 x 3
   activity_NA activity                  n
   &lt;fct&gt;       &lt;fct&gt;                 &lt;int&gt;
@@ -903,7 +953,7 @@ Call `lifecycle::last_warnings()` to see where this warning was generated.</code
 4 !NA         Inactive                312
 5 NA          Highly_Active            90
 6 NA          Inactive                 19</code></pre>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="dealing-with-missingness-single-imputation.html#cb288-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">count</span>(race_eth_NA, race_eth)</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="dealing-with-missingness-single-imputation.html#cb298-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">count</span>(race_eth_NA, race_eth)</span></code></pre></div>
 <pre><code># A tibble: 9 x 3
   race_eth_NA race_eth                     n
   &lt;fct&gt;       &lt;fct&gt;                    &lt;int&gt;
@@ -916,7 +966,7 @@ Call `lifecycle::last_warnings()` to see where this warning was generated.</code
 7 NA          Black non-Hispanic           4
 8 NA          Multiracial non-Hispanic     2
 9 NA          Hispanic                     1</code></pre>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="dealing-with-missingness-single-imputation.html#cb290-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">count</span>(genhealth_NA, genhealth)</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="dealing-with-missingness-single-imputation.html#cb300-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">count</span>(genhealth_NA, genhealth)</span></code></pre></div>
 <pre><code># A tibble: 7 x 3
   genhealth_NA genhealth       n
   &lt;fct&gt;        &lt;fct&gt;       &lt;int&gt;
@@ -928,7 +978,7 @@ Call `lifecycle::last_warnings()` to see where this warning was generated.</code
 6 NA           2_VeryGood      3
 7 NA           3_Good          1</code></pre>
 <p>And now, we should have no missing values in the data, at all.</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="dealing-with-missingness-single-imputation.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">miss_case_table</span>(smart_cle1_sh)</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="dealing-with-missingness-single-imputation.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="fu">miss_case_table</span>(smart_cle1_sh)</span></code></pre></div>
 <pre><code># A tibble: 1 x 3
   n_miss_in_case n_cases pct_cases
 *          &lt;int&gt;   &lt;int&gt;     &lt;dbl&gt;
@@ -936,8 +986,8 @@ Call `lifecycle::last_warnings()` to see where this warning was generated.</code
 </div>
 <div id="saving-the-new-tibbles" class="section level3" number="3.9.7">
 <h3><span class="header-section-number">3.9.7</span> Saving the new tibbles</h3>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="dealing-with-missingness-single-imputation.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(smart_cle1_cc, <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;smart_cle1_cc.Rds&quot;</span>))</span>
-<span id="cb294-2"><a href="dealing-with-missingness-single-imputation.html#cb294-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(smart_cle1_sh, <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;smart_cle1_sh.Rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="dealing-with-missingness-single-imputation.html#cb304-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(smart_cle1_cc, <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;smart_cle1_cc.Rds&quot;</span>))</span>
+<span id="cb304-2"><a href="dealing-with-missingness-single-imputation.html#cb304-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(smart_cle1_sh, <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;smart_cle1_sh.Rds&quot;</span>))</span></code></pre></div>
 
 </div>
 </div>
@@ -948,7 +998,7 @@ Call `lifecycle::last_warnings()` to see where this warning was generated.</code
         </div>
       </div>
 <a href="brfss-smart-data-building.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="summarizing-the-smart-cle1-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -998,6 +1048,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
