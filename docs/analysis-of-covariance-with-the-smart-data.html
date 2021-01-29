@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 Analysis of Covariance with the SMART data | Data Science for Biological, Medical and Health Research: Notes for 432</title>
+  <meta name="description" content="Course Notes for PQHS 432 in Spring 2021." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 Analysis of Covariance with the SMART data | Data Science for Biological, Medical and Health Research: Notes for 432" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Course Notes for PQHS 432 in Spring 2021." />
+  <meta name="github-repo" content="thomaselove/432-notes" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 Analysis of Covariance with the SMART data | Data Science for Biological, Medical and Health Research: Notes for 432" />
+  
+  <meta name="twitter:description" content="Course Notes for PQHS 432 in Spring 2021." />
+  
+
+<meta name="author" content="Thomas E. Love, Ph.D." />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="analysis-of-covariance.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="r-packages-used-in-these-notes.html"><a href="r-packages-used-in-these-notes.html"><i class="fa fa-check"></i>R Packages used in these notes</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-packages-used-in-these-notes.html"><a href="r-packages-used-in-these-notes.html#dealing-with-conflicts"><i class="fa fa-check"></i>Dealing with Conflicts</a></li>
+<li><a href="r-packages-used-in-these-notes.html#general-theme-for-ggplot-work">General Theme for <code>ggplot</code> work</a></li>
+<li class="chapter" data-level="" data-path="r-packages-used-in-these-notes.html"><a href="r-packages-used-in-these-notes.html#data-used-in-these-notes"><i class="fa fa-check"></i>Data used in these notes</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="building-table-1.html"><a href="building-table-1.html"><i class="fa fa-check"></i><b>1</b> Building Table 1</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="building-table-1.html"><a href="building-table-1.html#data-load"><i class="fa fa-check"></i><b>1.1</b> Data load</a></li>
+<li class="chapter" data-level="1.2" data-path="building-table-1.html"><a href="building-table-1.html#two-examples-from-the-new-england-journal-of-medicine"><i class="fa fa-check"></i><b>1.2</b> Two examples from the <em>New England Journal of Medicine</em></a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="building-table-1.html"><a href="building-table-1.html#a-simple-table-1"><i class="fa fa-check"></i><b>1.2.1</b> A simple Table 1</a></li>
+<li class="chapter" data-level="1.2.2" data-path="building-table-1.html"><a href="building-table-1.html#a-group-comparison"><i class="fa fa-check"></i><b>1.2.2</b> A group comparison</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="building-table-1.html"><a href="building-table-1.html#the-mr-clean-trial"><i class="fa fa-check"></i><b>1.3</b> The MR CLEAN trial</a></li>
+<li class="chapter" data-level="1.4" data-path="building-table-1.html"><a href="building-table-1.html#simulated-fakestroke-data"><i class="fa fa-check"></i><b>1.4</b> Simulated <code>fakestroke</code> data</a></li>
+<li class="chapter" data-level="1.5" data-path="building-table-1.html"><a href="building-table-1.html#building-table-1-for-fakestroke-attempt-1"><i class="fa fa-check"></i><b>1.5</b> Building Table 1 for <code>fakestroke</code>: Attempt 1</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="building-table-1.html"><a href="building-table-1.html#some-of-this-is-very-useful-and-other-parts-need-to-be-fixed."><i class="fa fa-check"></i><b>1.5.1</b> Some of this is very useful, and other parts need to be fixed.</a></li>
+<li class="chapter" data-level="1.5.2" data-path="building-table-1.html"><a href="building-table-1.html#fakestroke-cleaning-up-categorical-variables"><i class="fa fa-check"></i><b>1.5.2</b> <code>fakestroke</code> Cleaning Up Categorical Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="building-table-1.html"><a href="building-table-1.html#fakestroke-table-1-attempt-2"><i class="fa fa-check"></i><b>1.6</b> <code>fakestroke</code> Table 1: Attempt 2</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="building-table-1.html"><a href="building-table-1.html#what-summaries-should-we-show"><i class="fa fa-check"></i><b>1.6.1</b> What summaries should we show?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="building-table-1.html"><a href="building-table-1.html#obtaining-a-more-detailed-summary"><i class="fa fa-check"></i><b>1.7</b> Obtaining a more detailed Summary</a></li>
+<li class="chapter" data-level="1.8" data-path="building-table-1.html"><a href="building-table-1.html#exporting-the-completed-table-1-from-r-to-excel-or-word"><i class="fa fa-check"></i><b>1.8</b> Exporting the Completed Table 1 from R to Excel or Word</a>
+<ul>
+<li class="chapter" data-level="1.8.1" data-path="building-table-1.html"><a href="building-table-1.html#approach-a-save-and-open-in-excel"><i class="fa fa-check"></i><b>1.8.1</b> Approach A: Save and open in Excel</a></li>
+<li class="chapter" data-level="1.8.2" data-path="building-table-1.html"><a href="building-table-1.html#approach-b-produce-the-table-so-you-can-cut-and-paste-it"><i class="fa fa-check"></i><b>1.8.2</b> Approach B: Produce the Table so you can cut and paste it</a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="building-table-1.html"><a href="building-table-1.html#a-controlled-biological-experiment---the-blood-brain-barrier"><i class="fa fa-check"></i><b>1.9</b> A Controlled Biological Experiment - The Blood-Brain Barrier</a></li>
+<li class="chapter" data-level="1.10" data-path="building-table-1.html"><a href="building-table-1.html#the-bloodbrain.csv-file"><i class="fa fa-check"></i><b>1.10</b> The <code>bloodbrain.csv</code> file</a></li>
+<li class="chapter" data-level="1.11" data-path="building-table-1.html"><a href="building-table-1.html#a-table-1-for-bloodbrain"><i class="fa fa-check"></i><b>1.11</b> A Table 1 for <code>bloodbrain</code></a>
+<ul>
+<li class="chapter" data-level="1.11.1" data-path="building-table-1.html"><a href="building-table-1.html#generate-final-table-1-for-bloodbrain"><i class="fa fa-check"></i><b>1.11.1</b> Generate final Table 1 for <code>bloodbrain</code></a></li>
+<li class="chapter" data-level="1.11.2" data-path="building-table-1.html"><a href="building-table-1.html#a-more-finished-version-after-cleanup-in-word"><i class="fa fa-check"></i><b>1.11.2</b> A More Finished Version (after Cleanup in Word)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html"><i class="fa fa-check"></i><b>2</b> BRFSS SMART Data Building</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#key-resources"><i class="fa fa-check"></i><b>2.1</b> Key resources</a></li>
+<li class="chapter" data-level="2.2" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#ingesting-the-raw-data"><i class="fa fa-check"></i><b>2.2</b> Ingesting the Raw Data</a></li>
+<li class="chapter" data-level="2.3" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#ingesting-from-our-csv-file"><i class="fa fa-check"></i><b>2.3</b> Ingesting from our CSV file</a></li>
+<li class="chapter" data-level="2.4" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#what-does-the-raw-data-look-like"><i class="fa fa-check"></i><b>2.4</b> What does the raw data look like?</a></li>
+<li class="chapter" data-level="2.5" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#cleaning-the-brfss-data"><i class="fa fa-check"></i><b>2.5</b> Cleaning the BRFSS Data</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#identifying-information"><i class="fa fa-check"></i><b>2.5.1</b> Identifying Information</a></li>
+<li class="chapter" data-level="2.5.2" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#survey-method"><i class="fa fa-check"></i><b>2.5.2</b> Survey Method</a></li>
+<li class="chapter" data-level="2.5.3" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#health-status-1-item"><i class="fa fa-check"></i><b>2.5.3</b> Health Status (1 item)</a></li>
+<li class="chapter" data-level="2.5.4" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#healthy-days---health-related-quality-of-life-3-items"><i class="fa fa-check"></i><b>2.5.4</b> Healthy Days - Health-Related Quality of Life (3 items)</a></li>
+<li class="chapter" data-level="2.5.5" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#health-care-access-4-items"><i class="fa fa-check"></i><b>2.5.5</b> Health Care Access (4 items)</a></li>
+<li class="chapter" data-level="2.5.6" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#blood-pressure-2-measures"><i class="fa fa-check"></i><b>2.5.6</b> Blood Pressure (2 measures)</a></li>
+<li class="chapter" data-level="2.5.7" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#cholesterol-3-items"><i class="fa fa-check"></i><b>2.5.7</b> Cholesterol (3 items)</a></li>
+<li class="chapter" data-level="2.5.8" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#chronic-health-conditions-14-items"><i class="fa fa-check"></i><b>2.5.8</b> Chronic Health Conditions (14 items)</a></li>
+<li class="chapter" data-level="2.5.9" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#arthritis-burden-4-items"><i class="fa fa-check"></i><b>2.5.9</b> Arthritis Burden (4 items)</a></li>
+<li class="chapter" data-level="2.5.10" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#demographics-25-items"><i class="fa fa-check"></i><b>2.5.10</b> Demographics (25 items)</a></li>
+<li class="chapter" data-level="2.5.11" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#tobacco-use-2-items"><i class="fa fa-check"></i><b>2.5.11</b> Tobacco Use (2 items)</a></li>
+<li class="chapter" data-level="2.5.12" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#e-cigarettes-2-items"><i class="fa fa-check"></i><b>2.5.12</b> E-Cigarettes (2 items)</a></li>
+<li class="chapter" data-level="2.5.13" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#alcohol-consumption-6-items"><i class="fa fa-check"></i><b>2.5.13</b> Alcohol Consumption (6 items)</a></li>
+<li class="chapter" data-level="2.5.14" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#fruits-and-vegetables-8-items"><i class="fa fa-check"></i><b>2.5.14</b> Fruits and Vegetables (8 items)</a></li>
+<li class="chapter" data-level="2.5.15" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#exercise-and-physical-activity-8-items"><i class="fa fa-check"></i><b>2.5.15</b> Exercise and Physical Activity (8 items)</a></li>
+<li class="chapter" data-level="2.5.16" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#seatbelt-use-1-item"><i class="fa fa-check"></i><b>2.5.16</b> Seatbelt Use (1 item)</a></li>
+<li class="chapter" data-level="2.5.17" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#immunization-3-items"><i class="fa fa-check"></i><b>2.5.17</b> Immunization (3 items)</a></li>
+<li class="chapter" data-level="2.5.18" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#hivaids-2-items"><i class="fa fa-check"></i><b>2.5.18</b> HIV/AIDS (2 items)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#imputing-age-and-income-as-quantitative-from-thin-air"><i class="fa fa-check"></i><b>2.6</b> Imputing Age and Income as Quantitative from Thin Air</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#age_imp-imputing-age-data"><i class="fa fa-check"></i><b>2.6.1</b> <code>age_imp</code>: Imputing Age Data</a></li>
+<li class="chapter" data-level="2.6.2" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#inc_imp-imputing-income-data"><i class="fa fa-check"></i><b>2.6.2</b> <code>inc_imp</code>: Imputing Income Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#clean-data-in-the-state-of-ohio"><i class="fa fa-check"></i><b>2.7</b> Clean Data in the State of Ohio</a></li>
+<li class="chapter" data-level="2.8" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#clean-cleveland-elyria-data"><i class="fa fa-check"></i><b>2.8</b> Clean Cleveland-Elyria Data</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#cleveland---elyria-data"><i class="fa fa-check"></i><b>2.8.1</b> Cleveland - Elyria Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html"><i class="fa fa-check"></i><b>3</b> Dealing with Missingness: Single Imputation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#selecting-some-variables-from-the-smart_cle-data"><i class="fa fa-check"></i><b>3.1</b> Selecting Some Variables from the <code>smart_cle</code> data</a></li>
+<li class="chapter" data-level="3.2" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#smart_cle1-seeing-our-missing-data"><i class="fa fa-check"></i><b>3.2</b> <code>smart_cle1</code>: Seeing our Missing Data</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#plotting-missingness"><i class="fa fa-check"></i><b>3.2.1</b> Plotting Missingness</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#missing-data-mechanisms"><i class="fa fa-check"></i><b>3.3</b> Missing-data mechanisms</a></li>
+<li class="chapter" data-level="3.4" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#options-for-dealing-with-missingness"><i class="fa fa-check"></i><b>3.4</b> Options for Dealing with Missingness</a></li>
+<li class="chapter" data-level="3.5" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#complete-case-and-available-case-analyses"><i class="fa fa-check"></i><b>3.5</b> Complete Case (and Available Case) analyses</a></li>
+<li class="chapter" data-level="3.6" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#single-imputation"><i class="fa fa-check"></i><b>3.6</b> Single Imputation</a></li>
+<li class="chapter" data-level="3.7" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#multiple-imputation"><i class="fa fa-check"></i><b>3.7</b> Multiple Imputation</a></li>
+<li class="chapter" data-level="3.8" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#approach-1-building-a-complete-case-analysis-smart_cle1_cc"><i class="fa fa-check"></i><b>3.8</b> Approach 1: Building a Complete Case Analysis: <code>smart_cle1_cc</code></a></li>
+<li class="chapter" data-level="3.9" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#approach-2-single-imputation-to-create-smart_cle1_sh"><i class="fa fa-check"></i><b>3.9</b> Approach 2: Single Imputation to create <code>smart_cle1_sh</code></a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#what-type-of-missingness-do-we-have"><i class="fa fa-check"></i><b>3.9.1</b> What Type of Missingness Do We Have?</a></li>
+<li class="chapter" data-level="3.9.2" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#single-imputation-into-smart_cle1_sh"><i class="fa fa-check"></i><b>3.9.2</b> Single imputation into <code>smart_cle1_sh</code></a></li>
+<li class="chapter" data-level="3.9.3" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#imputing-binary-categorical-variables"><i class="fa fa-check"></i><b>3.9.3</b> Imputing Binary Categorical Variables</a></li>
+<li class="chapter" data-level="3.9.4" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#imputing-quantitative-variables"><i class="fa fa-check"></i><b>3.9.4</b> Imputing Quantitative Variables</a></li>
+<li class="chapter" data-level="3.9.5" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#imputation-results"><i class="fa fa-check"></i><b>3.9.5</b> Imputation Results</a></li>
+<li class="chapter" data-level="3.9.6" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#imputing-multi-categorical-variables"><i class="fa fa-check"></i><b>3.9.6</b> Imputing Multi-Categorical Variables</a></li>
+<li class="chapter" data-level="3.9.7" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#saving-the-new-tibbles"><i class="fa fa-check"></i><b>3.9.7</b> Saving the new tibbles</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing the <code>smart_cle1</code> data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#general-approaches-to-obtaining-numeric-summaries"><i class="fa fa-check"></i><b>4.1</b> General Approaches to Obtaining Numeric Summaries</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#summary-for-a-data-frame"><i class="fa fa-check"></i><b>4.1.1</b> <code>summary</code> for a data frame</a></li>
+<li class="chapter" data-level="4.1.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#the-inspect-function-from-the-mosaic-package"><i class="fa fa-check"></i><b>4.1.2</b> The <code>inspect</code> function from the <code>mosaic</code> package</a></li>
+<li class="chapter" data-level="4.1.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#the-describe-function-in-hmisc"><i class="fa fa-check"></i><b>4.1.3</b> The <code>describe</code> function in <code>Hmisc</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#counting-as-exploratory-data-analysis"><i class="fa fa-check"></i><b>4.2</b> Counting as exploratory data analysis</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#did-genhealth-vary-by-smoking-status"><i class="fa fa-check"></i><b>4.2.1</b> Did <code>genhealth</code> vary by smoking status?</a></li>
+<li class="chapter" data-level="4.2.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#whats-the-distribution-of-physhealth"><i class="fa fa-check"></i><b>4.2.2</b> What’s the distribution of <code>physhealth</code>?</a></li>
+<li class="chapter" data-level="4.2.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#whats-the-distribution-of-bmi"><i class="fa fa-check"></i><b>4.2.3</b> What’s the distribution of <code>bmi</code>?</a></li>
+<li class="chapter" data-level="4.2.4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-many-of-the-respondents-have-a-bmi-below-30"><i class="fa fa-check"></i><b>4.2.4</b> How many of the respondents have a BMI below 30?</a></li>
+<li class="chapter" data-level="4.2.5" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-many-of-the-respondents-with-a-bmi-30-are-highly-active"><i class="fa fa-check"></i><b>4.2.5</b> How many of the respondents with a BMI &lt; 30 are highly active?</a></li>
+<li class="chapter" data-level="4.2.6" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#is-obesity-associated-with-smoking-history"><i class="fa fa-check"></i><b>4.2.6</b> Is obesity associated with smoking history?</a></li>
+<li class="chapter" data-level="4.2.7" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#comparing-drinks_wk-summaries-by-obesity-status"><i class="fa fa-check"></i><b>4.2.7</b> Comparing <code>drinks_wk</code> summaries by obesity status</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#can-bmi-predict-physhealth"><i class="fa fa-check"></i><b>4.3</b> Can <code>bmi</code> predict <code>physhealth</code>?</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#fitting-a-simple-regression-model"><i class="fa fa-check"></i><b>4.3.1</b> Fitting a Simple Regression Model</a></li>
+<li class="chapter" data-level="4.3.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#model-summary-for-a-simple-one-predictor-regression"><i class="fa fa-check"></i><b>4.3.2</b> Model Summary for a Simple (One-Predictor) Regression</a></li>
+<li class="chapter" data-level="4.3.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#using-the-broom-package"><i class="fa fa-check"></i><b>4.3.3</b> Using the <code>broom</code> package</a></li>
+<li class="chapter" data-level="4.3.4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-does-the-model-do-residuals-vs.-fitted-values"><i class="fa fa-check"></i><b>4.3.4</b> How does the model do? (Residuals vs. Fitted Values)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html"><i class="fa fa-check"></i><b>5</b> Analysis of Variance with SMART</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#a-one-factor-analysis-of-variance"><i class="fa fa-check"></i><b>5.1</b> A One-Factor Analysis of Variance</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#can-activity-be-used-to-predict-bmi"><i class="fa fa-check"></i><b>5.1.1</b> Can <code>activity</code> be used to predict <code>bmi</code>?</a></li>
+<li class="chapter" data-level="5.1.2" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#should-we-transform-bmi"><i class="fa fa-check"></i><b>5.1.2</b> Should we transform <code>bmi</code>?</a></li>
+<li class="chapter" data-level="5.1.3" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#building-the-anova-model"><i class="fa fa-check"></i><b>5.1.3</b> Building the ANOVA model</a></li>
+<li class="chapter" data-level="5.1.4" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#the-anova-table"><i class="fa fa-check"></i><b>5.1.4</b> The ANOVA table</a></li>
+<li class="chapter" data-level="5.1.5" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#the-model-coefficients"><i class="fa fa-check"></i><b>5.1.5</b> The Model Coefficients</a></li>
+<li class="chapter" data-level="5.1.6" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#using-broomtidy-to-explore-the-coefficients"><i class="fa fa-check"></i><b>5.1.6</b> Using <code>broom::tidy</code> to explore the coefficients</a></li>
+<li class="chapter" data-level="5.1.7" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#using-broomglance-to-summarize-the-models-fit"><i class="fa fa-check"></i><b>5.1.7</b> Using <code>broom::glance</code> to summarize the model’s fit</a></li>
+<li class="chapter" data-level="5.1.8" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#using-broomaugment-to-make-predictions"><i class="fa fa-check"></i><b>5.1.8</b> Using <code>broom::augment</code> to make predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#a-two-factor-anova-without-interaction"><i class="fa fa-check"></i><b>5.2</b> A Two-Factor ANOVA (without Interaction)</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#model-coefficients"><i class="fa fa-check"></i><b>5.2.1</b> Model Coefficients</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#a-two-factor-anova-with-interaction"><i class="fa fa-check"></i><b>5.3</b> A Two-Factor ANOVA (with Interaction)</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#model-coefficients-1"><i class="fa fa-check"></i><b>5.3.1</b> Model Coefficients</a></li>
+<li class="chapter" data-level="5.3.2" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#is-the-interaction-term-necessary"><i class="fa fa-check"></i><b>5.3.2</b> Is the interaction term necessary?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>6</b> Analysis of Variance</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-bonding-data-a-designed-dental-experiment"><i class="fa fa-check"></i><b>6.1</b> The <code>bonding</code> data: A Designed Dental Experiment</a></li>
+<li class="chapter" data-level="6.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-one-factor-analysis-of-variance-1"><i class="fa fa-check"></i><b>6.2</b> A One-Factor Analysis of Variance</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#look-at-the-data"><i class="fa fa-check"></i><b>6.2.1</b> Look at the Data!</a></li>
+<li class="chapter" data-level="6.2.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#table-of-summary-statistics"><i class="fa fa-check"></i><b>6.2.2</b> Table of Summary Statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-looking-at-two-factors"><i class="fa fa-check"></i><b>6.3</b> A Two-Way ANOVA: Looking at Two Factors</a></li>
+<li class="chapter" data-level="6.4" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-means-plot-with-standard-deviations-to-check-for-interaction"><i class="fa fa-check"></i><b>6.4</b> A Means Plot (with standard deviations) to check for interaction</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#summarizing-the-data-after-grouping-by-resin-and-light"><i class="fa fa-check"></i><b>6.4.1</b> Summarizing the data after grouping by <code>resin</code> and <code>light</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#fitting-the-two-way-anova-model-with-interaction"><i class="fa fa-check"></i><b>6.5</b> Fitting the Two-Way ANOVA model with Interaction</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-anova-table-for-our-model"><i class="fa fa-check"></i><b>6.5.1</b> The ANOVA table for our model</a></li>
+<li class="chapter" data-level="6.5.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#is-the-interaction-important"><i class="fa fa-check"></i><b>6.5.2</b> Is the interaction important?</a></li>
+<li class="chapter" data-level="6.5.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#interpreting-the-interaction"><i class="fa fa-check"></i><b>6.5.3</b> Interpreting the Interaction</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#comparing-individual-combinations-of-resin-and-light"><i class="fa fa-check"></i><b>6.6</b> Comparing Individual Combinations of <code>resin</code> and <code>light</code></a></li>
+<li class="chapter" data-level="6.7" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-bonding-model-without-interaction"><i class="fa fa-check"></i><b>6.7</b> The <code>bonding</code> model without Interaction</a></li>
+<li class="chapter" data-level="6.8" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#cortisol-a-hypothetical-clinical-trial"><i class="fa fa-check"></i><b>6.8</b> <code>cortisol</code>: A Hypothetical Clinical Trial</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#codebook-and-raw-data-for-cortisol"><i class="fa fa-check"></i><b>6.8.1</b> Codebook and Raw Data for <code>cortisol</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#creating-a-factor-combining-sex-and-waist"><i class="fa fa-check"></i><b>6.9</b> Creating a factor combining sex and waist</a></li>
+<li class="chapter" data-level="6.10" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-means-plot-for-the-cortisol-trial-with-standard-errors"><i class="fa fa-check"></i><b>6.10</b> A Means Plot for the <code>cortisol</code> trial (with standard errors)</a></li>
+<li class="chapter" data-level="6.11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-with-interaction"><i class="fa fa-check"></i><b>6.11</b> A Two-Way ANOVA model for <code>cortisol</code> with Interaction</a></li>
+<li class="chapter" data-level="6.12" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-without-interaction"><i class="fa fa-check"></i><b>6.12</b> A Two-Way ANOVA model for <code>cortisol</code> without Interaction</a>
+<ul>
+<li class="chapter" data-level="6.12.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-graph"><i class="fa fa-check"></i><b>6.12.1</b> The Graph</a></li>
+<li class="chapter" data-level="6.12.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-anova-model"><i class="fa fa-check"></i><b>6.12.2</b> The ANOVA Model</a></li>
+<li class="chapter" data-level="6.12.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-regression-summary"><i class="fa fa-check"></i><b>6.12.3</b> The Regression Summary</a></li>
+<li class="chapter" data-level="6.12.4" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#tukey-hsd-comparisons"><i class="fa fa-check"></i><b>6.12.4</b> Tukey HSD Comparisons</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html"><i class="fa fa-check"></i><b>7</b> Analysis of Covariance</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#an-emphysema-study"><i class="fa fa-check"></i><b>7.1</b> An Emphysema Study</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#codebook"><i class="fa fa-check"></i><b>7.1.1</b> Codebook</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#does-sex-affect-the-mean-change-in-theophylline"><i class="fa fa-check"></i><b>7.2</b> Does <code>sex</code> affect the mean change in theophylline?</a></li>
+<li class="chapter" data-level="7.3" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#is-there-an-association-between-age-and-sex-in-this-study"><i class="fa fa-check"></i><b>7.3</b> Is there an association between <code>age</code> and <code>sex</code> in this study?</a></li>
+<li class="chapter" data-level="7.4" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#adding-a-quantitative-covariate-age-to-the-model"><i class="fa fa-check"></i><b>7.4</b> Adding a quantitative covariate, <code>age</code>, to the model</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#the-ancova-model"><i class="fa fa-check"></i><b>7.4.1</b> The ANCOVA model</a></li>
+<li class="chapter" data-level="7.4.2" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#the-ancova-table"><i class="fa fa-check"></i><b>7.4.2</b> The ANCOVA Table</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#rerunning-the-ancova-model-after-simple-imputation"><i class="fa fa-check"></i><b>7.5</b> Rerunning the ANCOVA model after simple imputation</a></li>
+<li class="chapter" data-level="7.6" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#looking-at-a-factor-covariate-interaction"><i class="fa fa-check"></i><b>7.6</b> Looking at a factor-covariate interaction</a></li>
+<li class="chapter" data-level="7.7" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#centering-the-covariate-to-facilitate-ancova-interpretation"><i class="fa fa-check"></i><b>7.7</b> Centering the Covariate to Facilitate ANCOVA Interpretation</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html"><i class="fa fa-check"></i><b>8</b> Analysis of Covariance with the SMART data</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#a-new-small-study-predicting-bmi"><i class="fa fa-check"></i><b>8.1</b> A New Small Study: Predicting BMI</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#does-female-predict-bmi-well"><i class="fa fa-check"></i><b>8.1.1</b> Does <code>female</code> predict <code>bmi</code> well?</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m1-a-simple-t-test-model"><i class="fa fa-check"></i><b>8.2</b> <code>c8_m1</code>: A simple t-test model</a></li>
+<li class="chapter" data-level="8.3" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m2-adding-another-predictor-two-way-anova-without-interaction"><i class="fa fa-check"></i><b>8.3</b> <code>c8_m2</code>: Adding another predictor (two-way ANOVA without interaction)</a></li>
+<li class="chapter" data-level="8.4" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m3-adding-the-interaction-term-two-way-anova-with-interaction"><i class="fa fa-check"></i><b>8.4</b> <code>c8_m3</code>: Adding the interaction term (Two-way ANOVA with interaction)</a></li>
+<li class="chapter" data-level="8.5" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m4-using-female-and-physhealth-in-a-model-for-bmi"><i class="fa fa-check"></i><b>8.5</b> <code>c8_m4</code>: Using <code>female</code> and <code>physhealth</code> in a model for <code>bmi</code></a></li>
+<li class="chapter" data-level="8.6" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#making-predictions-with-a-linear-regression-model"><i class="fa fa-check"></i><b>8.6</b> Making Predictions with a Linear Regression Model</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#fitting-an-individual-prediction-and-95-prediction-interval"><i class="fa fa-check"></i><b>8.6.1</b> Fitting an Individual Prediction and 95% Prediction Interval</a></li>
+<li class="chapter" data-level="8.6.2" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#confidence-interval-for-an-average-prediction"><i class="fa fa-check"></i><b>8.6.2</b> Confidence Interval for an Average Prediction</a></li>
+<li class="chapter" data-level="8.6.3" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#fitting-multiple-individual-predictions-to-new-data"><i class="fa fa-check"></i><b>8.6.3</b> Fitting Multiple Individual Predictions to New Data</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#centering-the-model"><i class="fa fa-check"></i><b>8.7</b> Centering the model</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#plot-of-model-4-on-centered-physhealth-c8_m4_c"><i class="fa fa-check"></i><b>8.7.1</b> Plot of Model 4 on Centered <code>physhealth</code>: <code>c8_m4_c</code></a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#rescaling-an-input-by-subtracting-the-mean-and-dividing-by-2-standard-deviations"><i class="fa fa-check"></i><b>8.8</b> Rescaling an input by subtracting the mean and dividing by 2 standard deviations</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#refitting-model-c8_m4-to-the-rescaled-data"><i class="fa fa-check"></i><b>8.8.1</b> Refitting model <code>c8_m4</code> to the rescaled data</a></li>
+<li class="chapter" data-level="8.8.2" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#interpreting-the-model-on-rescaled-data"><i class="fa fa-check"></i><b>8.8.2</b> Interpreting the model on rescaled data</a></li>
+<li class="chapter" data-level="8.8.3" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#plot-of-model-on-rescaled-data"><i class="fa fa-check"></i><b>8.8.3</b> Plot of model on rescaled data</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m5-what-if-we-add-more-variables"><i class="fa fa-check"></i><b>8.9</b> <code>c8_m5</code>: What if we add more variables?</a></li>
+<li class="chapter" data-level="8.10" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m6-would-adding-self-reported-health-help"><i class="fa fa-check"></i><b>8.10</b> <code>c8_m6</code>: Would adding self-reported health help?</a></li>
+<li class="chapter" data-level="8.11" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#key-regression-assumptions-for-building-effective-prediction-models"><i class="fa fa-check"></i><b>8.11</b> Key Regression Assumptions for Building Effective Prediction Models</a>
+<ul>
+<li class="chapter" data-level="8.11.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#checking-assumptions-in-model-c8_m6"><i class="fa fa-check"></i><b>8.11.1</b> Checking Assumptions in model <code>c8_m6</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Science for Biological, Medical and Health Research: Notes for 432</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="analysis-of-covariance-with-the-smart-data" class="section level1" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Analysis of Covariance with the SMART data</h1>
+<p>In this chapter, we’ll work with the <code>smart_cle1_sh</code> data file again.</p>
+<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb501-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;smart_cle1_sh.Rds&quot;</span>))</span></code></pre></div>
+<div id="a-new-small-study-predicting-bmi" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> A New Small Study: Predicting BMI</h2>
+<p>We’ll begin by investigating the problem of predicting <code>bmi</code>, at first with just three regression inputs: <code>sex</code>, <code>smoke100</code> and <code>physhealth</code>, in our <code>smart_cle1_sh</code> data set.</p>
+<ul>
+<li>The outcome of interest is <code>bmi</code>.</li>
+<li>Inputs to the regression model are:
+<ul>
+<li><code>female</code> = 1 if the subject is female, and 0 if they are male</li>
+<li><code>smoke100</code> = 1 if the subject has smoked 100 cigarettes in their lifetime</li>
+<li><code>physhealth</code> = number of poor physical health days in past 30 (treated as quantitative)</li>
+</ul></li>
+</ul>
+<div id="does-female-predict-bmi-well" class="section level3" number="8.1.1">
+<h3><span class="header-section-number">8.1.1</span> Does <code>female</code> predict <code>bmi</code> well?</h3>
+<div id="graphical-assessment" class="section level4" number="8.1.1.1">
+<h4><span class="header-section-number">8.1.1.1</span> Graphical Assessment</h4>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb502-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> female, <span class="at">y =</span> bmi)) <span class="sc">+</span></span>
+<span id="cb502-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb502-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
+<p>Not so helpful. We should probably specify that <code>female</code> is a factor, and try another plotting approach.</p>
+<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb503-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(female), <span class="at">y =</span> bmi)) <span class="sc">+</span></span>
+<span id="cb503-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb503-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-168-1.png" width="672" /></p>
+<p>The median BMI looks a little higher for males. Let’s see if a model reflects that.</p>
+</div>
+</div>
+</div>
+<div id="c8_m1-a-simple-t-test-model" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> <code>c8_m1</code>: A simple t-test model</h2>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb504-1" aria-hidden="true" tabindex="-1"></a>c8_m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> female, <span class="at">data =</span> smart_cle1_sh)</span>
+<span id="cb504-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb504-2" aria-hidden="true" tabindex="-1"></a>c8_m1</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = bmi ~ female, data = smart_cle1_sh)
+
+Coefficients:
+(Intercept)       female  
+    28.4941      -0.2442  </code></pre>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb506-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c8_m1)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = bmi ~ female, data = smart_cle1_sh)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-14.950  -4.060  -1.024   2.740  42.066 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  28.4941     0.2965  96.090   &lt;2e-16 ***
+female       -0.2442     0.3850  -0.634    0.526    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 6.367 on 1131 degrees of freedom
+Multiple R-squared:  0.0003554, Adjusted R-squared:  -0.0005284 
+F-statistic: 0.4021 on 1 and 1131 DF,  p-value: 0.5261</code></pre>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb508-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(c8_m1)</span></code></pre></div>
+<pre><code>                 2.5 %     97.5 %
+(Intercept) 27.9123220 29.0759609
+female      -0.9996392  0.5113054</code></pre>
+<p>The model suggests, based on these 896 subjects, that</p>
+<ul>
+<li>our best prediction for males is BMI = 28.36 kg/m<sup>2</sup>, and</li>
+<li>our best prediction for females is BMI = 28.36 - 0.85 = 27.51 kg/m<sup>2</sup>.</li>
+<li>the mean difference between females and males is -0.85 kg/m<sup>2</sup> in BMI</li>
+<li>a 95% confidence (uncertainty) interval for that mean female - male difference in BMI ranges from -1.69 to -0.01</li>
+<li>the model accounts for 0.4% of the variation in BMI, so that knowing the respondent’s sex does very little to reduce the size of the prediction errors as compared to an intercept only model that would predict the overall mean (regardless of sex) for all subjects.</li>
+<li>the model makes some enormous errors, with one subject being predicted to have a BMI 38 points lower than his/her actual BMI.</li>
+</ul>
+<p>Note that this simple regression model just gives us the t-test.</p>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb510-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bmi <span class="sc">~</span> female, <span class="at">var.equal =</span> <span class="cn">TRUE</span>, <span class="at">data =</span> smart_cle1_sh)</span></code></pre></div>
+<pre><code>
+    Two Sample t-test
+
+data:  bmi by female
+t = 0.63413, df = 1131, p-value = 0.5261
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.5113054  0.9996392
+sample estimates:
+mean in group 0 mean in group 1 
+       28.49414        28.24997 </code></pre>
+</div>
+<div id="c8_m2-adding-another-predictor-two-way-anova-without-interaction" class="section level2" number="8.3">
+<h2><span class="header-section-number">8.3</span> <code>c8_m2</code>: Adding another predictor (two-way ANOVA without interaction)</h2>
+<p>When we add in the information about <code>smoke100</code> to our original model, we might first picture the data. We could look at separate histograms,</p>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb512-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> bmi)) <span class="sc">+</span></span>
+<span id="cb512-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb512-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>) <span class="sc">+</span></span>
+<span id="cb512-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb512-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(female <span class="sc">~</span> smoke100, <span class="at">labeller =</span> label_both)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
+<p>or maybe boxplots?</p>
+<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb513-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(female), <span class="at">y =</span> bmi)) <span class="sc">+</span></span>
+<span id="cb513-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb513-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb513-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb513-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> smoke100, <span class="at">labeller =</span> label_both)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-172-1.png" width="672" /></p>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb514-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> female, <span class="at">y =</span> bmi))<span class="sc">+</span></span>
+<span id="cb514-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb514-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb514-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb514-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb514-4"><a href="analysis-of-covariance-with-the-smart-data.html#cb514-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> smoke100, <span class="at">labeller =</span> label_both)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-173-1.png" width="672" /></p>
+<p>OK. Let’s try fitting a model.</p>
+<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb515-1" aria-hidden="true" tabindex="-1"></a>c8_m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> female <span class="sc">+</span> smoke100, <span class="at">data =</span> smart_cle1_sh)</span>
+<span id="cb515-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb515-2" aria-hidden="true" tabindex="-1"></a>c8_m2</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = bmi ~ female + smoke100, data = smart_cle1_sh)
+
+Coefficients:
+(Intercept)       female     smoke100  
+    28.0265      -0.1342       0.8555  </code></pre>
+<p>This new model predicts only four predicted values:</p>
+<ul>
+<li><code>bmi</code> = 28.035 if the subject is male and has not smoked 100 cigarettes (so <code>female</code> = 0 and <code>smoke100</code> = 0)</li>
+<li><code>bmi</code> = 28.035 - 0.144 = 27.891 if the subject is female and has not smoked 100 cigarettes (<code>female</code> = 1 and <code>smoke100</code> = 0)</li>
+<li><code>bmi</code> = 28.035 + 0.859 = 28.894 if the subject is male and has smoked 100 cigarettes (so <code>female</code> = 0 and <code>smoke100</code> = 1), and, finally</li>
+<li><code>bmi</code> = 28.035 - 0.144 + 0.859 = 28.750 if the subject is female and has smoked 100 cigarettes (so both <code>female</code> and <code>smoke100</code> = 1).</li>
+</ul>
+<p>Another way to put this is that for those who have not smoked 100 cigarettes, the model is:</p>
+<ul>
+<li><code>bmi</code> = 28.035 - 0.144 <code>female</code></li>
+</ul>
+<p>and for those who have smoked 100 cigarettes, the model is:</p>
+<ul>
+<li><code>bmi</code> = 28.894 - 0.144 <code>female</code></li>
+</ul>
+<p>Only the intercept of the <code>bmi-female</code> model changes depending on <code>smoke100</code>.</p>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb517-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c8_m2)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = bmi ~ female + smoke100, data = smart_cle1_sh)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-15.448  -3.972  -0.823   2.774  41.678 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  28.0265     0.3620  77.411   &lt;2e-16 ***
+female       -0.1342     0.3875  -0.346   0.7291    
+smoke100      0.8555     0.3814   2.243   0.0251 *  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 6.356 on 1130 degrees of freedom
+Multiple R-squared:  0.004788,  Adjusted R-squared:  0.003027 
+F-statistic: 2.718 on 2 and 1130 DF,  p-value: 0.06642</code></pre>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb519-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(c8_m2)</span></code></pre></div>
+<pre><code>                 2.5 %     97.5 %
+(Intercept) 27.3161140 28.7368281
+female      -0.8944773  0.6259881
+smoke100     0.1072974  1.6037825</code></pre>
+<p>The slopes of both <code>female</code> and <code>smoke100</code> have confidence intervals that are completely below zero, indicating that both <code>female</code> sex and <code>smoke100</code> appear to be associated with reductions in <code>bmi</code>.</p>
+<p>The R<sup>2</sup> value suggests that just under 3% of the variation in <code>bmi</code> is accounted for by this ANOVA model.</p>
+<p>In fact, this regression (on two binary indicator variables) is simply a two-way ANOVA model without an interaction term.</p>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb521-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c8_m2)</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: bmi
+            Df Sum Sq Mean Sq F value  Pr(&gt;F)  
+female       1     16  16.301  0.4036 0.52538  
+smoke100     1    203 203.296  5.0330 0.02506 *
+Residuals 1130  45644  40.393                  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="c8_m3-adding-the-interaction-term-two-way-anova-with-interaction" class="section level2" number="8.4">
+<h2><span class="header-section-number">8.4</span> <code>c8_m3</code>: Adding the interaction term (Two-way ANOVA with interaction)</h2>
+<p>Suppose we want to let the effect of <code>female</code> vary depending on the <code>smoke100</code> status. Then we need to incorporate an interaction term in our model.</p>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb523-1" aria-hidden="true" tabindex="-1"></a>c8_m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> female <span class="sc">*</span> smoke100, <span class="at">data =</span> smart_cle1_sh)</span>
+<span id="cb523-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb523-2" aria-hidden="true" tabindex="-1"></a>c8_m3</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = bmi ~ female * smoke100, data = smart_cle1_sh)
+
+Coefficients:
+    (Intercept)           female         smoke100  female:smoke100  
+        28.2690          -0.5064           0.4119           0.7536  </code></pre>
+<p>So, for example, for a male who has smoked 100 cigarettes, this model predicts</p>
+<ul>
+<li><code>bmi</code> = 28.275 - 0.513 (0) + 0.419 (1) + 0.746 (0)(1) = 28.275 + 0.419 = 28.694</li>
+</ul>
+<p>And for a female who has smoked 100 cigarettes, the model predicts</p>
+<ul>
+<li><code>bmi</code> = 28.275 - 0.513 (1) + 0.419 (1) + 0.746 (1)(1) = 28.275 - 0.513 + 0.419 + 0.746 = 28.927</li>
+</ul>
+<p>For those who have not smoked 100 cigarettes, the model is:</p>
+<ul>
+<li><code>bmi</code> = 28.275 - 0.513 <code>female</code></li>
+</ul>
+<p>But for those who have smoked 100 cigarettes, the model is:</p>
+<ul>
+<li><code>bmi</code> = (28.275 + 0.419) + (-0.513 + 0.746) <code>female</code>, or ,,,</li>
+<li><code>bmi</code> = 28.694 - 0.233 <code>female</code></li>
+</ul>
+<p>Now, both the slope and the intercept of the <code>bmi-female</code> model change depending on <code>smoke100</code>.</p>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb525-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c8_m3)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = bmi ~ female * smoke100, data = smart_cle1_sh)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-15.628  -3.938  -0.829   2.759  41.879 
+
+Coefficients:
+                Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)      28.2690     0.4396  64.301   &lt;2e-16 ***
+female           -0.5064     0.5446  -0.930    0.353    
+smoke100          0.4119     0.5946   0.693    0.489    
+female:smoke100   0.7536     0.7750   0.972    0.331    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 6.356 on 1129 degrees of freedom
+Multiple R-squared:  0.005621,  Adjusted R-squared:  0.002979 
+F-statistic: 2.127 on 3 and 1129 DF,  p-value: 0.09507</code></pre>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb527-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(c8_m3)</span></code></pre></div>
+<pre><code>                     2.5 %     97.5 %
+(Intercept)     27.4063783 29.1315563
+female          -1.5749026  0.5621793
+smoke100        -0.7547605  1.5786121
+female:smoke100 -0.7670239  2.2742178</code></pre>
+<p>In fact, this regression (on two binary indicator variables and a product term) is simply a two-way ANOVA model with an interaction term.</p>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb529-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c8_m3)</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: bmi
+                  Df Sum Sq Mean Sq F value  Pr(&gt;F)  
+female             1     16  16.301  0.4035 0.52539  
+smoke100           1    203 203.296  5.0327 0.02507 *
+female:smoke100    1     38  38.194  0.9455 0.33107  
+Residuals       1129  45606  40.395                  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The interaction term doesn’t change very much here. Its uncertainty interval includes zero, and the overall model still accounts for just under 3% of the variation in <code>bmi</code>.</p>
+</div>
+<div id="c8_m4-using-female-and-physhealth-in-a-model-for-bmi" class="section level2" number="8.5">
+<h2><span class="header-section-number">8.5</span> <code>c8_m4</code>: Using <code>female</code> and <code>physhealth</code> in a model for <code>bmi</code></h2>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb531-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> physhealth, <span class="at">y =</span> bmi, <span class="at">color =</span> <span class="fu">factor</span>(female))) <span class="sc">+</span></span>
+<span id="cb531-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb531-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb531-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb531-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">col =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb531-4"><a href="analysis-of-covariance-with-the-smart-data.html#cb531-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb531-5"><a href="analysis-of-covariance-with-the-smart-data.html#cb531-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> female, <span class="at">labeller =</span> label_both) </span></code></pre></div>
+<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="432-notes_files/figure-html/graph_to_set_up_c8_m4-1.png" width="672" /></p>
+<p>Does the difference in slopes of <code>bmi</code> and <code>physhealth</code> for males and females appear to be substantial and important?</p>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb533-1" aria-hidden="true" tabindex="-1"></a>c8_m4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> female <span class="sc">*</span> physhealth, <span class="at">data =</span> smart_cle1_sh)</span>
+<span id="cb533-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb533-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb533-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb533-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c8_m4)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = bmi ~ female * physhealth, data = smart_cle1_sh)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-18.069  -3.825  -0.624   2.516  38.526 
+
+Coefficients:
+                  Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)       27.92386    0.32196  86.731  &lt; 2e-16 ***
+female            -0.30335    0.42346  -0.716    0.474    
+physhealth         0.13700    0.03277   4.180 3.14e-05 ***
+female:physhealth -0.01203    0.04191  -0.287    0.774    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 6.262 on 1129 degrees of freedom
+Multiple R-squared:  0.03486,   Adjusted R-squared:  0.03229 
+F-statistic: 13.59 on 3 and 1129 DF,  p-value: 1.027e-08</code></pre>
+<p>Does it seem as though the addition of <code>physhealth</code> has improved our model substantially over a model with <code>female</code> alone (which, you recall, was <code>c8_m1</code>)?</p>
+<p>Since the <code>c8_m4</code> model contains the <code>c8_m1</code> model’s predictors as a subset and the outcome is the same for each model, we consider the models <em>nested</em> and have some extra tools available to compare them.</p>
+<ul>
+<li>I might start by looking at the basic summaries for each model.</li>
+</ul>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb535-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(c8_m4)</span></code></pre></div>
+<pre><code># A tibble: 1 x 12
+  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1    0.0349        0.0323  6.26      13.6 1.03e-8     3 -3684. 7378. 7403.
+# ... with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb537-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(c8_m1)</span></code></pre></div>
+<pre><code># A tibble: 1 x 12
+  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1  0.000355     -0.000528  6.37     0.402   0.526     1 -3704. 7414. 7429.
+# ... with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<ul>
+<li>The R<sup>2</sup> is much larger for the model with <code>physhealth</code>, but still very tiny.</li>
+<li>Smaller AIC and smaller BIC statistics are more desirable. Here, there’s little to choose from, so <code>c8_m4</code> looks better, too.</li>
+<li>We might also consider a significance test by looking at an ANOVA model comparison. This is only appropriate because <code>c8_m1</code> is nested in <code>c8_m4</code>.</li>
+</ul>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb539-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c8_m4, c8_m1)</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Model 1: bmi ~ female * physhealth
+Model 2: bmi ~ female
+  Res.Df   RSS Df Sum of Sq     F    Pr(&gt;F)    
+1   1129 44265                                 
+2   1131 45847 -2   -1582.4 20.18 2.448e-09 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The addition of the <code>physhealth</code> term appears to be a statistically detectable improvement, not that that means very much.</p>
+</div>
+<div id="making-predictions-with-a-linear-regression-model" class="section level2" number="8.6">
+<h2><span class="header-section-number">8.6</span> Making Predictions with a Linear Regression Model</h2>
+<p>Recall model 4, which yields predictions for body mass index on the basis of the main effects of sex (<code>female</code>) and days of poor physical health (<code>physhealth</code>) and their interaction.</p>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb541-1" aria-hidden="true" tabindex="-1"></a>c8_m4</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = bmi ~ female * physhealth, data = smart_cle1_sh)
+
+Coefficients:
+      (Intercept)             female         physhealth  female:physhealth  
+         27.92386           -0.30335            0.13700           -0.01203  </code></pre>
+<div id="fitting-an-individual-prediction-and-95-prediction-interval" class="section level3" number="8.6.1">
+<h3><span class="header-section-number">8.6.1</span> Fitting an Individual Prediction and 95% Prediction Interval</h3>
+<p>What do we predict for the <code>bmi</code> of a subject who is <code>female</code> and had 8 poor physical health days in the past 30?</p>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb543-1" aria-hidden="true" tabindex="-1"></a>c8_new1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">female =</span> <span class="dv">1</span>, <span class="at">physhealth =</span> <span class="dv">8</span>)</span>
+<span id="cb543-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb543-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(c8_m4, <span class="at">newdata =</span> c8_new1, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<pre><code>       fit      lwr     upr
+1 28.62022 16.32454 40.9159</code></pre>
+<p>The predicted <code>bmi</code> for this new subject is shown above. The prediction interval shows the bounds of a 95% uncertainty interval for a predicted <code>bmi</code> for an individual female subject who has 8 days of poor physical health out of the past 30. From the <code>predict</code> function applied to a linear model, we can get the prediction intervals for any new data points in this manner.</p>
+</div>
+<div id="confidence-interval-for-an-average-prediction" class="section level3" number="8.6.2">
+<h3><span class="header-section-number">8.6.2</span> Confidence Interval for an Average Prediction</h3>
+<ul>
+<li>What do we predict for the <strong>average body mass index of a population of subjects</strong> who are female and have <code>physhealth = 8</code>?</li>
+</ul>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb545-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(c8_m4, <span class="at">newdata =</span> c8_new1, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<pre><code>       fit      lwr      upr
+1 28.62022 28.12256 29.11788</code></pre>
+<ul>
+<li>How does this result compare to the prediction interval?</li>
+</ul>
+</div>
+<div id="fitting-multiple-individual-predictions-to-new-data" class="section level3" number="8.6.3">
+<h3><span class="header-section-number">8.6.3</span> Fitting Multiple Individual Predictions to New Data</h3>
+<ul>
+<li>How does our prediction change for a respondent if they instead have 7, or 9 poor physical health days? What if they are male, instead of female?</li>
+</ul>
+<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb547-1" aria-hidden="true" tabindex="-1"></a>c8_new2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">subjectid =</span> <span class="dv">1001</span><span class="sc">:</span><span class="dv">1006</span>, <span class="at">female =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="at">physhealth =</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>))</span>
+<span id="cb547-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb547-2" aria-hidden="true" tabindex="-1"></a>pred2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(c8_m4, <span class="at">newdata =</span> c8_new2, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>, <span class="at">level =</span> <span class="fl">0.95</span>) <span class="sc">%&gt;%</span> tbl_df</span>
+<span id="cb547-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb547-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb547-4"><a href="analysis-of-covariance-with-the-smart-data.html#cb547-4" aria-hidden="true" tabindex="-1"></a>result2 <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(c8_new2, pred2)</span>
+<span id="cb547-5"><a href="analysis-of-covariance-with-the-smart-data.html#cb547-5" aria-hidden="true" tabindex="-1"></a>result2</span></code></pre></div>
+<pre><code># A tibble: 6 x 6
+  subjectid female physhealth   fit   lwr   upr
+      &lt;int&gt;  &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1      1001      1          7  28.5  16.2  40.8
+2      1002      1          8  28.6  16.3  40.9
+3      1003      1          9  28.7  16.4  41.0
+4      1004      0          7  28.9  16.6  41.2
+5      1005      0          8  29.0  16.7  41.3
+6      1006      0          9  29.2  16.9  41.5</code></pre>
+<p>The <code>result2</code> tibble contains predictions for each scenario.</p>
+<ul>
+<li>Which has a bigger impact on these predictions and prediction intervals? A one category change in <code>female</code> or a one hour change in <code>physhealth</code>?</li>
+</ul>
+</div>
+</div>
+<div id="centering-the-model" class="section level2" number="8.7">
+<h2><span class="header-section-number">8.7</span> Centering the model</h2>
+<p>Our model <code>c8_m4</code> has four predictors (the constant, <code>physhealth</code>, <code>female</code> and their interaction) but just two inputs (<code>female</code> and <code>physhealth</code>.) If we <strong>center</strong> the quantitative input <code>physhealth</code> before building the model, we get a more interpretable interaction term.</p>
+<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb549-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh_c <span class="ot">&lt;-</span> smart_cle1_sh <span class="sc">%&gt;%</span></span>
+<span id="cb549-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb549-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">physhealth_c =</span> physhealth <span class="sc">-</span> <span class="fu">mean</span>(physhealth))</span>
+<span id="cb549-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb549-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb549-4"><a href="analysis-of-covariance-with-the-smart-data.html#cb549-4" aria-hidden="true" tabindex="-1"></a>c8_m4_c <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> female <span class="sc">*</span> physhealth_c, <span class="at">data =</span> smart_cle1_sh_c)</span>
+<span id="cb549-5"><a href="analysis-of-covariance-with-the-smart-data.html#cb549-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb549-6"><a href="analysis-of-covariance-with-the-smart-data.html#cb549-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c8_m4_c)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = bmi ~ female * physhealth_c, data = smart_cle1_sh_c)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-18.069  -3.825  -0.624   2.516  38.526 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)         28.56520    0.29213  97.784  &lt; 2e-16 ***
+female              -0.35969    0.37917  -0.949    0.343    
+physhealth_c         0.13700    0.03277   4.180 3.14e-05 ***
+female:physhealth_c -0.01203    0.04191  -0.287    0.774    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 6.262 on 1129 degrees of freedom
+Multiple R-squared:  0.03486,   Adjusted R-squared:  0.03229 
+F-statistic: 13.59 on 3 and 1129 DF,  p-value: 1.027e-08</code></pre>
+<p>What has changed as compared to the original <code>c8_m4</code>?</p>
+<ul>
+<li>Our original model was <code>bmi</code> = 27.93 - 0.31 <code>female</code> + 0.14 <code>physhealth</code> - 0.01 <code>female</code> x <code>physhealth</code></li>
+<li>Our new model is <code>bmi</code> = 28.58 - 0.37 <code>female</code> + 0.14 centered <code>physhealth</code> - 0.01 <code>female</code> x centered <code>physhealth</code>.</li>
+</ul>
+<p>So our new model on centered data is:</p>
+<ul>
+<li>28.58 + 0.14 centered <code>physhealth_c</code> for male subjects, and</li>
+<li>(28.58 - 0.37) + (0.14 - 0.01) centered <code>physhealth_c</code>, or 28.21 - 0.13 centered <code>physhealth_c</code> for female subjects.</li>
+</ul>
+<p>In our new (centered <code>physhealth_c</code>) model,</p>
+<ul>
+<li>the main effect of <code>female</code> now corresponds to a predictive difference (female - male) in <code>bmi</code> with <code>physhealth</code> at its mean value, 4.68 days,</li>
+<li>the intercept term is now the predicted <code>bmi</code> for a male respondent with an average <code>physhealth</code>, and</li>
+<li>the product term corresponds to the change in the slope of centered <code>physhealth_c</code> on <code>bmi</code> for a female rather than a male subject, while</li>
+<li>the residual standard deviation and the R-squared values remain unchanged from the model before centering.</li>
+</ul>
+<div id="plot-of-model-4-on-centered-physhealth-c8_m4_c" class="section level3" number="8.7.1">
+<h3><span class="header-section-number">8.7.1</span> Plot of Model 4 on Centered <code>physhealth</code>: <code>c8_m4_c</code></h3>
+<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb551-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh_c, <span class="fu">aes</span>(<span class="at">x =</span> physhealth_c, <span class="at">y =</span> bmi, <span class="at">group =</span> female, <span class="at">col =</span> <span class="fu">factor</span>(female))) <span class="sc">+</span></span>
+<span id="cb551-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb551-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb551-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb551-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb551-4"><a href="analysis-of-covariance-with-the-smart-data.html#cb551-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">color =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb551-5"><a href="analysis-of-covariance-with-the-smart-data.html#cb551-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Poor Physical Health Days, centered&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Body Mass Index&quot;</span>,</span>
+<span id="cb551-6"><a href="analysis-of-covariance-with-the-smart-data.html#cb551-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Model `c8_m4` on centered data&quot;</span>) <span class="sc">+</span></span>
+<span id="cb551-7"><a href="analysis-of-covariance-with-the-smart-data.html#cb551-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> female, <span class="at">labeller =</span> label_both)</span></code></pre></div>
+<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
+</div>
+</div>
+<div id="rescaling-an-input-by-subtracting-the-mean-and-dividing-by-2-standard-deviations" class="section level2" number="8.8">
+<h2><span class="header-section-number">8.8</span> Rescaling an input by subtracting the mean and dividing by 2 standard deviations</h2>
+<p>Centering helped us interpret the main effects in the regression, but it still leaves a scaling problem.</p>
+<ul>
+<li>The <code>female</code> coefficient estimate is much larger than that of <code>physhealth</code>, but this is misleading, considering that we are comparing the complete change in one variable (sex = female or not) to a 1-day change in <code>physhealth</code>.</li>
+<li><span class="citation"><a href="references.html#ref-GelmanHill2007" role="doc-biblioref">Gelman and Hill</a> (<a href="references.html#ref-GelmanHill2007" role="doc-biblioref">2007</a>)</span> recommend all continuous predictors be scaled by dividing by 2 standard deviations, so that:
+<ul>
+<li>a 1-unit change in the rescaled predictor corresponds to a change from 1 standard deviation below the mean, to 1 standard deviation above.</li>
+<li>an unscaled binary (1/0) predictor with 50% probability of occurring will be exactly comparable to a rescaled continuous predictor done in this way.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb553-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh_rescale <span class="ot">&lt;-</span> smart_cle1_sh <span class="sc">%&gt;%</span></span>
+<span id="cb553-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb553-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">physhealth_z =</span> (physhealth <span class="sc">-</span> <span class="fu">mean</span>(physhealth))<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span><span class="fu">sd</span>(physhealth)))</span></code></pre></div>
+<div id="refitting-model-c8_m4-to-the-rescaled-data" class="section level3" number="8.8.1">
+<h3><span class="header-section-number">8.8.1</span> Refitting model <code>c8_m4</code> to the rescaled data</h3>
+<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb554-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb554-1" aria-hidden="true" tabindex="-1"></a>c8_m4_z <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> female <span class="sc">*</span> physhealth_z, <span class="at">data =</span> smart_cle1_sh_rescale)</span>
+<span id="cb554-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb554-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb554-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb554-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c8_m4_z)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = bmi ~ female * physhealth_z, data = smart_cle1_sh_rescale)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-18.069  -3.825  -0.624   2.516  38.526 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)          28.5652     0.2921  97.784  &lt; 2e-16 ***
+female               -0.3597     0.3792  -0.949    0.343    
+physhealth_z          2.4991     0.5978   4.180 3.14e-05 ***
+female:physhealth_z  -0.2195     0.7645  -0.287    0.774    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 6.262 on 1129 degrees of freedom
+Multiple R-squared:  0.03486,   Adjusted R-squared:  0.03229 
+F-statistic: 13.59 on 3 and 1129 DF,  p-value: 1.027e-08</code></pre>
+</div>
+<div id="interpreting-the-model-on-rescaled-data" class="section level3" number="8.8.2">
+<h3><span class="header-section-number">8.8.2</span> Interpreting the model on rescaled data</h3>
+<p>What has changed as compared to the original <code>c8_m4</code>?</p>
+<ul>
+<li><p>Our original model was <code>bmi</code> = 27.93 - 0.31 <code>female</code> + 0.14 <code>physhealth</code> - 0.01 <code>female</code> x <code>physhealth</code></p></li>
+<li><p>Our model on centered <code>physhealth</code> was <code>bmi</code> = 28.58 - 0.37 <code>female</code> + 0.14 centered <code>physhealth</code> - 0.01 <code>female</code> x centered <code>physhealth</code>.</p></li>
+<li><p>Our new model on rescaled <code>physhealth</code> is <code>bmi</code> = 28.58 - 0.37 <code>female</code> + 2.51 rescaled <code>physhealth_z</code> - 0.23 <code>female</code> x rescaled <code>physhealth_z</code>.</p></li>
+</ul>
+<p>So our rescaled model is:</p>
+<ul>
+<li>28.58 + 2.51 rescaled <code>physhealth_z</code> for male subjects, and</li>
+<li>(28.58 - 0.37) + (2.51 - 0.23) rescaled <code>physhealth_z</code>, or 28.21 + 2.28 rescaled <code>physhealth_z</code> for female subjects.</li>
+</ul>
+<p>In this new rescaled (<code>physhealth_z</code>) model, then,</p>
+<ul>
+<li>the main effect of <code>female</code>, -0.37, still corresponds to a predictive difference (female - male) in <code>bmi</code> with <code>physhealth</code> at its mean value, 4.68 days,</li>
+<li>the intercept term is still the predicted <code>bmi</code> for a male respondent with an average <code>physhealth</code> count, and</li>
+<li>the residual standard deviation and the R-squared values remain unchanged,</li>
+</ul>
+<p>as before, but now we also have that:</p>
+<ul>
+<li>the coefficient of <code>physhealth_z</code> indicates the predictive difference in <code>bmi</code> associated with a change in <code>physhealth</code> of 2 standard deviations (from one standard deviation below the mean of 4.68 to one standard deviation above 4.68.)
+<ul>
+<li>Since the standard deviation of <code>physhealth</code> is 9.12 (see below), this covers a massive range of potential values of <code>physhealth</code> from 0 all the way up to 4.68 + 2(9.12) = 22.92 days.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb556-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb556-1" aria-hidden="true" tabindex="-1"></a>mosaic<span class="sc">::</span><span class="fu">favstats</span>(<span class="sc">~</span> physhealth, <span class="at">data =</span> smart_cle1_sh)</span></code></pre></div>
+<pre><code> min Q1 median Q3 max     mean       sd    n missing
+   0  0      0  4  30 4.681377 9.120899 1133       0</code></pre>
+<ul>
+<li>the coefficient of the product term (-0.23) corresponds to the change in the coefficient of <code>physhealth_z</code> for females as compared to males.</li>
+</ul>
+</div>
+<div id="plot-of-model-on-rescaled-data" class="section level3" number="8.8.3">
+<h3><span class="header-section-number">8.8.3</span> Plot of model on rescaled data</h3>
+<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb558-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb558-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh_rescale, <span class="fu">aes</span>(<span class="at">x =</span> physhealth_z, <span class="at">y =</span> bmi, </span>
+<span id="cb558-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb558-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">group =</span> female, <span class="at">col =</span> <span class="fu">factor</span>(female))) <span class="sc">+</span></span>
+<span id="cb558-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb558-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb558-4"><a href="analysis-of-covariance-with-the-smart-data.html#cb558-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb558-5"><a href="analysis-of-covariance-with-the-smart-data.html#cb558-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Is subject female?&quot;</span>) <span class="sc">+</span></span>
+<span id="cb558-6"><a href="analysis-of-covariance-with-the-smart-data.html#cb558-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Poor Physical Health Days, standardized (2 sd)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Body Mass Index&quot;</span>,</span>
+<span id="cb558-7"><a href="analysis-of-covariance-with-the-smart-data.html#cb558-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Model `c8_m4_z` on rescaled data&quot;</span>) </span></code></pre></div>
+<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
+<p>There’s very little difference here.</p>
+</div>
+</div>
+<div id="c8_m5-what-if-we-add-more-variables" class="section level2" number="8.9">
+<h2><span class="header-section-number">8.9</span> <code>c8_m5</code>: What if we add more variables?</h2>
+<p>We can boost our R<sup>2</sup> a bit, to nearly 5%, by adding in two new variables, related to whether or not the subject (in the past 30 days) used the internet, and the average number of alcoholic drinks per week consumed by ths subject.</p>
+<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb560-1" aria-hidden="true" tabindex="-1"></a>c8_m5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> female <span class="sc">+</span> smoke100 <span class="sc">+</span> physhealth <span class="sc">+</span> internet30 <span class="sc">+</span> drinks_wk,</span>
+<span id="cb560-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb560-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> smart_cle1_sh)</span>
+<span id="cb560-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb560-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c8_m5)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = bmi ~ female + smoke100 + physhealth + internet30 + 
+    drinks_wk, data = smart_cle1_sh)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-18.358  -3.846  -0.657   2.534  38.049 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 27.52400    0.56076  49.083  &lt; 2e-16 ***
+female      -0.43272    0.38510  -1.124  0.26140    
+smoke100     0.82654    0.37739   2.190  0.02872 *  
+physhealth   0.12469    0.02074   6.012 2.47e-09 ***
+internet30   0.44287    0.48830   0.907  0.36462    
+drinks_wk   -0.10193    0.03352  -3.041  0.00241 ** 
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 6.231 on 1127 degrees of freedom
+Multiple R-squared:  0.04582,   Adjusted R-squared:  0.04159 
+F-statistic: 10.82 on 5 and 1127 DF,  p-value: 3.48e-10</code></pre>
+<ol style="list-style-type: decimal">
+<li>Here’s the ANOVA for this model. What can we study with this?</li>
+</ol>
+<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb562-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c8_m5)</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: bmi
+             Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+female        1     16   16.30  0.4198  0.517171    
+smoke100      1    203  203.30  5.2354  0.022316 *  
+physhealth    1   1508 1508.08 38.8372 6.497e-10 ***
+internet30    1     15   14.69  0.3783  0.538650    
+drinks_wk     1    359  359.05  9.2466  0.002414 ** 
+Residuals  1127  43762   38.83                      
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Consider the revised output below. Now what can we study?</li>
+</ol>
+<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb564-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(bmi <span class="sc">~</span> smoke100 <span class="sc">+</span> internet30 <span class="sc">+</span> drinks_wk <span class="sc">+</span> female <span class="sc">+</span> physhealth,</span>
+<span id="cb564-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb564-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> smart_cle1_sh))</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: bmi
+             Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+smoke100      1    215  214.75  5.5304 0.0188606 *  
+internet30    1      8    7.81  0.2010 0.6539723    
+drinks_wk     1    444  443.79 11.4288 0.0007479 ***
+female        1     32   31.58  0.8132 0.3673566    
+physhealth    1   1403 1403.49 36.1438 2.472e-09 ***
+Residuals  1127  43762   38.83                      
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>What does the output below let us conclude?</li>
+</ol>
+<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb566-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(bmi <span class="sc">~</span> smoke100 <span class="sc">+</span> internet30 <span class="sc">+</span> drinks_wk <span class="sc">+</span> female <span class="sc">+</span> physhealth, </span>
+<span id="cb566-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb566-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> smart_cle1_sh),</span>
+<span id="cb566-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb566-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">lm</span>(bmi <span class="sc">~</span> smoke100 <span class="sc">+</span> female <span class="sc">+</span> drinks_wk, </span>
+<span id="cb566-4"><a href="analysis-of-covariance-with-the-smart-data.html#cb566-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> smart_cle1_sh))</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Model 1: bmi ~ smoke100 + internet30 + drinks_wk + female + physhealth
+Model 2: bmi ~ smoke100 + female + drinks_wk
+  Res.Df   RSS Df Sum of Sq      F    Pr(&gt;F)    
+1   1127 43762                                  
+2   1129 45166 -2   -1403.7 18.075 1.877e-08 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>What does it mean for the models to be “nested?”</li>
+</ol>
+</div>
+<div id="c8_m6-would-adding-self-reported-health-help" class="section level2" number="8.10">
+<h2><span class="header-section-number">8.10</span> <code>c8_m6</code>: Would adding self-reported health help?</h2>
+<p>And we can do even a bit better than that by adding in a multi-categorical measure: self-reported general health.</p>
+<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb568-1" aria-hidden="true" tabindex="-1"></a>c8_m6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> female <span class="sc">+</span> smoke100 <span class="sc">+</span> physhealth <span class="sc">+</span> internet30 <span class="sc">+</span> drinks_wk <span class="sc">+</span> genhealth,</span>
+<span id="cb568-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb568-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> smart_cle1_sh)</span>
+<span id="cb568-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb568-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c8_m6)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = bmi ~ female + smoke100 + physhealth + internet30 + 
+    drinks_wk + genhealth, data = smart_cle1_sh)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-19.216  -3.659  -0.736   2.669  36.810 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)         25.20736    0.71106  35.450  &lt; 2e-16 ***
+female              -0.31949    0.37667  -0.848   0.3965    
+smoke100             0.45866    0.37214   1.232   0.2180    
+physhealth           0.04353    0.02506   1.737   0.0827 .  
+internet30           0.93270    0.48273   1.932   0.0536 .  
+drinks_wk           -0.07712    0.03294  -2.341   0.0194 *  
+genhealth2_VeryGood  1.21169    0.56838   2.132   0.0332 *  
+genhealth3_Good      3.22783    0.58009   5.564 3.29e-08 ***
+genhealth4_Fair      4.14497    0.73284   5.656 1.96e-08 ***
+genhealth5_Poor      5.86335    1.09253   5.367 9.73e-08 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 6.089 on 1123 degrees of freedom
+Multiple R-squared:  0.09206,   Adjusted R-squared:  0.08478 
+F-statistic: 12.65 on 9 and 1123 DF,  p-value: &lt; 2.2e-16</code></pre>
+<ol style="list-style-type: decimal">
+<li><p>If Harry and Marty have the same values of <code>female</code>, <code>smoke100</code>, <code>physhealth</code>, <code>internet30</code> and <code>drinks_wk</code>, but Harry rates his health as Good, and Marty rates his as Fair, then what is the difference in the predictions? Who is predicted to have a larger BMI, and by how much?</p></li>
+<li><p>What does this normal probability plot of the residuals suggest?</p></li>
+</ol>
+<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb570-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c8_m6, <span class="at">which =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/c8_m6_residuals_normality-1.png" width="672" /></p>
+</div>
+<div id="key-regression-assumptions-for-building-effective-prediction-models" class="section level2" number="8.11">
+<h2><span class="header-section-number">8.11</span> Key Regression Assumptions for Building Effective Prediction Models</h2>
+<ol style="list-style-type: decimal">
+<li>Validity - the data you are analyzing should map to the research question you are trying to answer.
+<ul>
+<li>The outcome should accurately reflect the phenomenon of interest.</li>
+<li>The model should include all relevant predictors. (It can be difficult to decide which predictors are necessary, and what to do with predictors that have large standard errors.)</li>
+<li>The model should generalize to all of the cases to which it will be applied.</li>
+<li>Can the available data answer our question reliably?</li>
+</ul></li>
+<li>Additivity and linearity - most important assumption of a regression model is that its deterministic component is a linear function of the predictors. We often think about transformations in this setting.</li>
+<li>Independence of errors - errors from the prediction line are independent of each other</li>
+<li>Equal variance of errors - if this is violated, we can more efficiently estimate parameters using <em>weighted least squares</em> approaches, where each point is weighted inversely proportional to its variance, but this doesn’t affect the coefficients much, if at all.</li>
+<li>Normality of errors - not generally important for estimating the regression line</li>
+</ol>
+<div id="checking-assumptions-in-model-c8_m6" class="section level3" number="8.11.1">
+<h3><span class="header-section-number">8.11.1</span> Checking Assumptions in model <code>c8_m6</code></h3>
+<ol style="list-style-type: decimal">
+<li>How does the assumption of linearity behind this model look?</li>
+</ol>
+<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb571-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c8_m6, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/residual_plot1_c8_m6-1.png" width="672" /></p>
+<p>We see no strong signs of serious non-linearity here. There’s no obvious curve in the plot, for example. We may have a problem with increasing variance as we move to the right.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>What can we conclude from the plot below?</li>
+</ol>
+<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb572-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c8_m6, <span class="at">which =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/residual_plot5_c8_m6-1.png" width="672" /></p>
+<p>This plot can help us identify points with large standardized residuals, large leverage values, and large influence on the model (as indicated by large values of Cook’s distance.) In this case, I see no signs of any points used in the model with especially large influence, although there are some poorly fitted points (with especially large standardized residuals.)</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="analysis-of-covariance.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["432-notes.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

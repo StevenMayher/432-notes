@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Analysis of Variance | Data Science for Biological, Medical and Health Research: Notes for 432</title>
+  <meta name="description" content="Course Notes for PQHS 432 in Spring 2021." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Analysis of Variance | Data Science for Biological, Medical and Health Research: Notes for 432" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Course Notes for PQHS 432 in Spring 2021." />
+  <meta name="github-repo" content="thomaselove/432-notes" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Analysis of Variance | Data Science for Biological, Medical and Health Research: Notes for 432" />
+  
+  <meta name="twitter:description" content="Course Notes for PQHS 432 in Spring 2021." />
+  
+
+<meta name="author" content="Thomas E. Love, Ph.D." />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="analysis-of-variance-with-smart.html"/>
+<link rel="next" href="analysis-of-covariance.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="r-packages-used-in-these-notes.html"><a href="r-packages-used-in-these-notes.html"><i class="fa fa-check"></i>R Packages used in these notes</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-packages-used-in-these-notes.html"><a href="r-packages-used-in-these-notes.html#dealing-with-conflicts"><i class="fa fa-check"></i>Dealing with Conflicts</a></li>
+<li><a href="r-packages-used-in-these-notes.html#general-theme-for-ggplot-work">General Theme for <code>ggplot</code> work</a></li>
+<li class="chapter" data-level="" data-path="r-packages-used-in-these-notes.html"><a href="r-packages-used-in-these-notes.html#data-used-in-these-notes"><i class="fa fa-check"></i>Data used in these notes</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="building-table-1.html"><a href="building-table-1.html"><i class="fa fa-check"></i><b>1</b> Building Table 1</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="building-table-1.html"><a href="building-table-1.html#data-load"><i class="fa fa-check"></i><b>1.1</b> Data load</a></li>
+<li class="chapter" data-level="1.2" data-path="building-table-1.html"><a href="building-table-1.html#two-examples-from-the-new-england-journal-of-medicine"><i class="fa fa-check"></i><b>1.2</b> Two examples from the <em>New England Journal of Medicine</em></a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="building-table-1.html"><a href="building-table-1.html#a-simple-table-1"><i class="fa fa-check"></i><b>1.2.1</b> A simple Table 1</a></li>
+<li class="chapter" data-level="1.2.2" data-path="building-table-1.html"><a href="building-table-1.html#a-group-comparison"><i class="fa fa-check"></i><b>1.2.2</b> A group comparison</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="building-table-1.html"><a href="building-table-1.html#the-mr-clean-trial"><i class="fa fa-check"></i><b>1.3</b> The MR CLEAN trial</a></li>
+<li class="chapter" data-level="1.4" data-path="building-table-1.html"><a href="building-table-1.html#simulated-fakestroke-data"><i class="fa fa-check"></i><b>1.4</b> Simulated <code>fakestroke</code> data</a></li>
+<li class="chapter" data-level="1.5" data-path="building-table-1.html"><a href="building-table-1.html#building-table-1-for-fakestroke-attempt-1"><i class="fa fa-check"></i><b>1.5</b> Building Table 1 for <code>fakestroke</code>: Attempt 1</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="building-table-1.html"><a href="building-table-1.html#some-of-this-is-very-useful-and-other-parts-need-to-be-fixed."><i class="fa fa-check"></i><b>1.5.1</b> Some of this is very useful, and other parts need to be fixed.</a></li>
+<li class="chapter" data-level="1.5.2" data-path="building-table-1.html"><a href="building-table-1.html#fakestroke-cleaning-up-categorical-variables"><i class="fa fa-check"></i><b>1.5.2</b> <code>fakestroke</code> Cleaning Up Categorical Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="building-table-1.html"><a href="building-table-1.html#fakestroke-table-1-attempt-2"><i class="fa fa-check"></i><b>1.6</b> <code>fakestroke</code> Table 1: Attempt 2</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="building-table-1.html"><a href="building-table-1.html#what-summaries-should-we-show"><i class="fa fa-check"></i><b>1.6.1</b> What summaries should we show?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="building-table-1.html"><a href="building-table-1.html#obtaining-a-more-detailed-summary"><i class="fa fa-check"></i><b>1.7</b> Obtaining a more detailed Summary</a></li>
+<li class="chapter" data-level="1.8" data-path="building-table-1.html"><a href="building-table-1.html#exporting-the-completed-table-1-from-r-to-excel-or-word"><i class="fa fa-check"></i><b>1.8</b> Exporting the Completed Table 1 from R to Excel or Word</a>
+<ul>
+<li class="chapter" data-level="1.8.1" data-path="building-table-1.html"><a href="building-table-1.html#approach-a-save-and-open-in-excel"><i class="fa fa-check"></i><b>1.8.1</b> Approach A: Save and open in Excel</a></li>
+<li class="chapter" data-level="1.8.2" data-path="building-table-1.html"><a href="building-table-1.html#approach-b-produce-the-table-so-you-can-cut-and-paste-it"><i class="fa fa-check"></i><b>1.8.2</b> Approach B: Produce the Table so you can cut and paste it</a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="building-table-1.html"><a href="building-table-1.html#a-controlled-biological-experiment---the-blood-brain-barrier"><i class="fa fa-check"></i><b>1.9</b> A Controlled Biological Experiment - The Blood-Brain Barrier</a></li>
+<li class="chapter" data-level="1.10" data-path="building-table-1.html"><a href="building-table-1.html#the-bloodbrain.csv-file"><i class="fa fa-check"></i><b>1.10</b> The <code>bloodbrain.csv</code> file</a></li>
+<li class="chapter" data-level="1.11" data-path="building-table-1.html"><a href="building-table-1.html#a-table-1-for-bloodbrain"><i class="fa fa-check"></i><b>1.11</b> A Table 1 for <code>bloodbrain</code></a>
+<ul>
+<li class="chapter" data-level="1.11.1" data-path="building-table-1.html"><a href="building-table-1.html#generate-final-table-1-for-bloodbrain"><i class="fa fa-check"></i><b>1.11.1</b> Generate final Table 1 for <code>bloodbrain</code></a></li>
+<li class="chapter" data-level="1.11.2" data-path="building-table-1.html"><a href="building-table-1.html#a-more-finished-version-after-cleanup-in-word"><i class="fa fa-check"></i><b>1.11.2</b> A More Finished Version (after Cleanup in Word)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html"><i class="fa fa-check"></i><b>2</b> BRFSS SMART Data Building</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#key-resources"><i class="fa fa-check"></i><b>2.1</b> Key resources</a></li>
+<li class="chapter" data-level="2.2" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#ingesting-the-raw-data"><i class="fa fa-check"></i><b>2.2</b> Ingesting the Raw Data</a></li>
+<li class="chapter" data-level="2.3" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#ingesting-from-our-csv-file"><i class="fa fa-check"></i><b>2.3</b> Ingesting from our CSV file</a></li>
+<li class="chapter" data-level="2.4" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#what-does-the-raw-data-look-like"><i class="fa fa-check"></i><b>2.4</b> What does the raw data look like?</a></li>
+<li class="chapter" data-level="2.5" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#cleaning-the-brfss-data"><i class="fa fa-check"></i><b>2.5</b> Cleaning the BRFSS Data</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#identifying-information"><i class="fa fa-check"></i><b>2.5.1</b> Identifying Information</a></li>
+<li class="chapter" data-level="2.5.2" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#survey-method"><i class="fa fa-check"></i><b>2.5.2</b> Survey Method</a></li>
+<li class="chapter" data-level="2.5.3" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#health-status-1-item"><i class="fa fa-check"></i><b>2.5.3</b> Health Status (1 item)</a></li>
+<li class="chapter" data-level="2.5.4" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#healthy-days---health-related-quality-of-life-3-items"><i class="fa fa-check"></i><b>2.5.4</b> Healthy Days - Health-Related Quality of Life (3 items)</a></li>
+<li class="chapter" data-level="2.5.5" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#health-care-access-4-items"><i class="fa fa-check"></i><b>2.5.5</b> Health Care Access (4 items)</a></li>
+<li class="chapter" data-level="2.5.6" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#blood-pressure-2-measures"><i class="fa fa-check"></i><b>2.5.6</b> Blood Pressure (2 measures)</a></li>
+<li class="chapter" data-level="2.5.7" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#cholesterol-3-items"><i class="fa fa-check"></i><b>2.5.7</b> Cholesterol (3 items)</a></li>
+<li class="chapter" data-level="2.5.8" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#chronic-health-conditions-14-items"><i class="fa fa-check"></i><b>2.5.8</b> Chronic Health Conditions (14 items)</a></li>
+<li class="chapter" data-level="2.5.9" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#arthritis-burden-4-items"><i class="fa fa-check"></i><b>2.5.9</b> Arthritis Burden (4 items)</a></li>
+<li class="chapter" data-level="2.5.10" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#demographics-25-items"><i class="fa fa-check"></i><b>2.5.10</b> Demographics (25 items)</a></li>
+<li class="chapter" data-level="2.5.11" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#tobacco-use-2-items"><i class="fa fa-check"></i><b>2.5.11</b> Tobacco Use (2 items)</a></li>
+<li class="chapter" data-level="2.5.12" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#e-cigarettes-2-items"><i class="fa fa-check"></i><b>2.5.12</b> E-Cigarettes (2 items)</a></li>
+<li class="chapter" data-level="2.5.13" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#alcohol-consumption-6-items"><i class="fa fa-check"></i><b>2.5.13</b> Alcohol Consumption (6 items)</a></li>
+<li class="chapter" data-level="2.5.14" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#fruits-and-vegetables-8-items"><i class="fa fa-check"></i><b>2.5.14</b> Fruits and Vegetables (8 items)</a></li>
+<li class="chapter" data-level="2.5.15" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#exercise-and-physical-activity-8-items"><i class="fa fa-check"></i><b>2.5.15</b> Exercise and Physical Activity (8 items)</a></li>
+<li class="chapter" data-level="2.5.16" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#seatbelt-use-1-item"><i class="fa fa-check"></i><b>2.5.16</b> Seatbelt Use (1 item)</a></li>
+<li class="chapter" data-level="2.5.17" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#immunization-3-items"><i class="fa fa-check"></i><b>2.5.17</b> Immunization (3 items)</a></li>
+<li class="chapter" data-level="2.5.18" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#hivaids-2-items"><i class="fa fa-check"></i><b>2.5.18</b> HIV/AIDS (2 items)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#imputing-age-and-income-as-quantitative-from-thin-air"><i class="fa fa-check"></i><b>2.6</b> Imputing Age and Income as Quantitative from Thin Air</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#age_imp-imputing-age-data"><i class="fa fa-check"></i><b>2.6.1</b> <code>age_imp</code>: Imputing Age Data</a></li>
+<li class="chapter" data-level="2.6.2" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#inc_imp-imputing-income-data"><i class="fa fa-check"></i><b>2.6.2</b> <code>inc_imp</code>: Imputing Income Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#clean-data-in-the-state-of-ohio"><i class="fa fa-check"></i><b>2.7</b> Clean Data in the State of Ohio</a></li>
+<li class="chapter" data-level="2.8" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#clean-cleveland-elyria-data"><i class="fa fa-check"></i><b>2.8</b> Clean Cleveland-Elyria Data</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#cleveland---elyria-data"><i class="fa fa-check"></i><b>2.8.1</b> Cleveland - Elyria Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html"><i class="fa fa-check"></i><b>3</b> Dealing with Missingness: Single Imputation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#selecting-some-variables-from-the-smart_cle-data"><i class="fa fa-check"></i><b>3.1</b> Selecting Some Variables from the <code>smart_cle</code> data</a></li>
+<li class="chapter" data-level="3.2" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#smart_cle1-seeing-our-missing-data"><i class="fa fa-check"></i><b>3.2</b> <code>smart_cle1</code>: Seeing our Missing Data</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#plotting-missingness"><i class="fa fa-check"></i><b>3.2.1</b> Plotting Missingness</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#missing-data-mechanisms"><i class="fa fa-check"></i><b>3.3</b> Missing-data mechanisms</a></li>
+<li class="chapter" data-level="3.4" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#options-for-dealing-with-missingness"><i class="fa fa-check"></i><b>3.4</b> Options for Dealing with Missingness</a></li>
+<li class="chapter" data-level="3.5" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#complete-case-and-available-case-analyses"><i class="fa fa-check"></i><b>3.5</b> Complete Case (and Available Case) analyses</a></li>
+<li class="chapter" data-level="3.6" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#single-imputation"><i class="fa fa-check"></i><b>3.6</b> Single Imputation</a></li>
+<li class="chapter" data-level="3.7" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#multiple-imputation"><i class="fa fa-check"></i><b>3.7</b> Multiple Imputation</a></li>
+<li class="chapter" data-level="3.8" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#approach-1-building-a-complete-case-analysis-smart_cle1_cc"><i class="fa fa-check"></i><b>3.8</b> Approach 1: Building a Complete Case Analysis: <code>smart_cle1_cc</code></a></li>
+<li class="chapter" data-level="3.9" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#approach-2-single-imputation-to-create-smart_cle1_sh"><i class="fa fa-check"></i><b>3.9</b> Approach 2: Single Imputation to create <code>smart_cle1_sh</code></a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#what-type-of-missingness-do-we-have"><i class="fa fa-check"></i><b>3.9.1</b> What Type of Missingness Do We Have?</a></li>
+<li class="chapter" data-level="3.9.2" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#single-imputation-into-smart_cle1_sh"><i class="fa fa-check"></i><b>3.9.2</b> Single imputation into <code>smart_cle1_sh</code></a></li>
+<li class="chapter" data-level="3.9.3" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#imputing-binary-categorical-variables"><i class="fa fa-check"></i><b>3.9.3</b> Imputing Binary Categorical Variables</a></li>
+<li class="chapter" data-level="3.9.4" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#imputing-quantitative-variables"><i class="fa fa-check"></i><b>3.9.4</b> Imputing Quantitative Variables</a></li>
+<li class="chapter" data-level="3.9.5" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#imputation-results"><i class="fa fa-check"></i><b>3.9.5</b> Imputation Results</a></li>
+<li class="chapter" data-level="3.9.6" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#imputing-multi-categorical-variables"><i class="fa fa-check"></i><b>3.9.6</b> Imputing Multi-Categorical Variables</a></li>
+<li class="chapter" data-level="3.9.7" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#saving-the-new-tibbles"><i class="fa fa-check"></i><b>3.9.7</b> Saving the new tibbles</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing the <code>smart_cle1</code> data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#general-approaches-to-obtaining-numeric-summaries"><i class="fa fa-check"></i><b>4.1</b> General Approaches to Obtaining Numeric Summaries</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#summary-for-a-data-frame"><i class="fa fa-check"></i><b>4.1.1</b> <code>summary</code> for a data frame</a></li>
+<li class="chapter" data-level="4.1.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#the-inspect-function-from-the-mosaic-package"><i class="fa fa-check"></i><b>4.1.2</b> The <code>inspect</code> function from the <code>mosaic</code> package</a></li>
+<li class="chapter" data-level="4.1.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#the-describe-function-in-hmisc"><i class="fa fa-check"></i><b>4.1.3</b> The <code>describe</code> function in <code>Hmisc</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#counting-as-exploratory-data-analysis"><i class="fa fa-check"></i><b>4.2</b> Counting as exploratory data analysis</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#did-genhealth-vary-by-smoking-status"><i class="fa fa-check"></i><b>4.2.1</b> Did <code>genhealth</code> vary by smoking status?</a></li>
+<li class="chapter" data-level="4.2.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#whats-the-distribution-of-physhealth"><i class="fa fa-check"></i><b>4.2.2</b> What’s the distribution of <code>physhealth</code>?</a></li>
+<li class="chapter" data-level="4.2.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#whats-the-distribution-of-bmi"><i class="fa fa-check"></i><b>4.2.3</b> What’s the distribution of <code>bmi</code>?</a></li>
+<li class="chapter" data-level="4.2.4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-many-of-the-respondents-have-a-bmi-below-30"><i class="fa fa-check"></i><b>4.2.4</b> How many of the respondents have a BMI below 30?</a></li>
+<li class="chapter" data-level="4.2.5" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-many-of-the-respondents-with-a-bmi-30-are-highly-active"><i class="fa fa-check"></i><b>4.2.5</b> How many of the respondents with a BMI &lt; 30 are highly active?</a></li>
+<li class="chapter" data-level="4.2.6" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#is-obesity-associated-with-smoking-history"><i class="fa fa-check"></i><b>4.2.6</b> Is obesity associated with smoking history?</a></li>
+<li class="chapter" data-level="4.2.7" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#comparing-drinks_wk-summaries-by-obesity-status"><i class="fa fa-check"></i><b>4.2.7</b> Comparing <code>drinks_wk</code> summaries by obesity status</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#can-bmi-predict-physhealth"><i class="fa fa-check"></i><b>4.3</b> Can <code>bmi</code> predict <code>physhealth</code>?</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#fitting-a-simple-regression-model"><i class="fa fa-check"></i><b>4.3.1</b> Fitting a Simple Regression Model</a></li>
+<li class="chapter" data-level="4.3.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#model-summary-for-a-simple-one-predictor-regression"><i class="fa fa-check"></i><b>4.3.2</b> Model Summary for a Simple (One-Predictor) Regression</a></li>
+<li class="chapter" data-level="4.3.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#using-the-broom-package"><i class="fa fa-check"></i><b>4.3.3</b> Using the <code>broom</code> package</a></li>
+<li class="chapter" data-level="4.3.4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-does-the-model-do-residuals-vs.-fitted-values"><i class="fa fa-check"></i><b>4.3.4</b> How does the model do? (Residuals vs. Fitted Values)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html"><i class="fa fa-check"></i><b>5</b> Analysis of Variance with SMART</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#a-one-factor-analysis-of-variance"><i class="fa fa-check"></i><b>5.1</b> A One-Factor Analysis of Variance</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#can-activity-be-used-to-predict-bmi"><i class="fa fa-check"></i><b>5.1.1</b> Can <code>activity</code> be used to predict <code>bmi</code>?</a></li>
+<li class="chapter" data-level="5.1.2" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#should-we-transform-bmi"><i class="fa fa-check"></i><b>5.1.2</b> Should we transform <code>bmi</code>?</a></li>
+<li class="chapter" data-level="5.1.3" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#building-the-anova-model"><i class="fa fa-check"></i><b>5.1.3</b> Building the ANOVA model</a></li>
+<li class="chapter" data-level="5.1.4" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#the-anova-table"><i class="fa fa-check"></i><b>5.1.4</b> The ANOVA table</a></li>
+<li class="chapter" data-level="5.1.5" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#the-model-coefficients"><i class="fa fa-check"></i><b>5.1.5</b> The Model Coefficients</a></li>
+<li class="chapter" data-level="5.1.6" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#using-broomtidy-to-explore-the-coefficients"><i class="fa fa-check"></i><b>5.1.6</b> Using <code>broom::tidy</code> to explore the coefficients</a></li>
+<li class="chapter" data-level="5.1.7" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#using-broomglance-to-summarize-the-models-fit"><i class="fa fa-check"></i><b>5.1.7</b> Using <code>broom::glance</code> to summarize the model’s fit</a></li>
+<li class="chapter" data-level="5.1.8" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#using-broomaugment-to-make-predictions"><i class="fa fa-check"></i><b>5.1.8</b> Using <code>broom::augment</code> to make predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#a-two-factor-anova-without-interaction"><i class="fa fa-check"></i><b>5.2</b> A Two-Factor ANOVA (without Interaction)</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#model-coefficients"><i class="fa fa-check"></i><b>5.2.1</b> Model Coefficients</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#a-two-factor-anova-with-interaction"><i class="fa fa-check"></i><b>5.3</b> A Two-Factor ANOVA (with Interaction)</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#model-coefficients-1"><i class="fa fa-check"></i><b>5.3.1</b> Model Coefficients</a></li>
+<li class="chapter" data-level="5.3.2" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html#is-the-interaction-term-necessary"><i class="fa fa-check"></i><b>5.3.2</b> Is the interaction term necessary?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>6</b> Analysis of Variance</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-bonding-data-a-designed-dental-experiment"><i class="fa fa-check"></i><b>6.1</b> The <code>bonding</code> data: A Designed Dental Experiment</a></li>
+<li class="chapter" data-level="6.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-one-factor-analysis-of-variance-1"><i class="fa fa-check"></i><b>6.2</b> A One-Factor Analysis of Variance</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#look-at-the-data"><i class="fa fa-check"></i><b>6.2.1</b> Look at the Data!</a></li>
+<li class="chapter" data-level="6.2.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#table-of-summary-statistics"><i class="fa fa-check"></i><b>6.2.2</b> Table of Summary Statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-looking-at-two-factors"><i class="fa fa-check"></i><b>6.3</b> A Two-Way ANOVA: Looking at Two Factors</a></li>
+<li class="chapter" data-level="6.4" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-means-plot-with-standard-deviations-to-check-for-interaction"><i class="fa fa-check"></i><b>6.4</b> A Means Plot (with standard deviations) to check for interaction</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#summarizing-the-data-after-grouping-by-resin-and-light"><i class="fa fa-check"></i><b>6.4.1</b> Summarizing the data after grouping by <code>resin</code> and <code>light</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#fitting-the-two-way-anova-model-with-interaction"><i class="fa fa-check"></i><b>6.5</b> Fitting the Two-Way ANOVA model with Interaction</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-anova-table-for-our-model"><i class="fa fa-check"></i><b>6.5.1</b> The ANOVA table for our model</a></li>
+<li class="chapter" data-level="6.5.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#is-the-interaction-important"><i class="fa fa-check"></i><b>6.5.2</b> Is the interaction important?</a></li>
+<li class="chapter" data-level="6.5.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#interpreting-the-interaction"><i class="fa fa-check"></i><b>6.5.3</b> Interpreting the Interaction</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#comparing-individual-combinations-of-resin-and-light"><i class="fa fa-check"></i><b>6.6</b> Comparing Individual Combinations of <code>resin</code> and <code>light</code></a></li>
+<li class="chapter" data-level="6.7" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-bonding-model-without-interaction"><i class="fa fa-check"></i><b>6.7</b> The <code>bonding</code> model without Interaction</a></li>
+<li class="chapter" data-level="6.8" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#cortisol-a-hypothetical-clinical-trial"><i class="fa fa-check"></i><b>6.8</b> <code>cortisol</code>: A Hypothetical Clinical Trial</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#codebook-and-raw-data-for-cortisol"><i class="fa fa-check"></i><b>6.8.1</b> Codebook and Raw Data for <code>cortisol</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#creating-a-factor-combining-sex-and-waist"><i class="fa fa-check"></i><b>6.9</b> Creating a factor combining sex and waist</a></li>
+<li class="chapter" data-level="6.10" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-means-plot-for-the-cortisol-trial-with-standard-errors"><i class="fa fa-check"></i><b>6.10</b> A Means Plot for the <code>cortisol</code> trial (with standard errors)</a></li>
+<li class="chapter" data-level="6.11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-with-interaction"><i class="fa fa-check"></i><b>6.11</b> A Two-Way ANOVA model for <code>cortisol</code> with Interaction</a></li>
+<li class="chapter" data-level="6.12" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-without-interaction"><i class="fa fa-check"></i><b>6.12</b> A Two-Way ANOVA model for <code>cortisol</code> without Interaction</a>
+<ul>
+<li class="chapter" data-level="6.12.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-graph"><i class="fa fa-check"></i><b>6.12.1</b> The Graph</a></li>
+<li class="chapter" data-level="6.12.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-anova-model"><i class="fa fa-check"></i><b>6.12.2</b> The ANOVA Model</a></li>
+<li class="chapter" data-level="6.12.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-regression-summary"><i class="fa fa-check"></i><b>6.12.3</b> The Regression Summary</a></li>
+<li class="chapter" data-level="6.12.4" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#tukey-hsd-comparisons"><i class="fa fa-check"></i><b>6.12.4</b> Tukey HSD Comparisons</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html"><i class="fa fa-check"></i><b>7</b> Analysis of Covariance</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#an-emphysema-study"><i class="fa fa-check"></i><b>7.1</b> An Emphysema Study</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#codebook"><i class="fa fa-check"></i><b>7.1.1</b> Codebook</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#does-sex-affect-the-mean-change-in-theophylline"><i class="fa fa-check"></i><b>7.2</b> Does <code>sex</code> affect the mean change in theophylline?</a></li>
+<li class="chapter" data-level="7.3" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#is-there-an-association-between-age-and-sex-in-this-study"><i class="fa fa-check"></i><b>7.3</b> Is there an association between <code>age</code> and <code>sex</code> in this study?</a></li>
+<li class="chapter" data-level="7.4" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#adding-a-quantitative-covariate-age-to-the-model"><i class="fa fa-check"></i><b>7.4</b> Adding a quantitative covariate, <code>age</code>, to the model</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#the-ancova-model"><i class="fa fa-check"></i><b>7.4.1</b> The ANCOVA model</a></li>
+<li class="chapter" data-level="7.4.2" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#the-ancova-table"><i class="fa fa-check"></i><b>7.4.2</b> The ANCOVA Table</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#rerunning-the-ancova-model-after-simple-imputation"><i class="fa fa-check"></i><b>7.5</b> Rerunning the ANCOVA model after simple imputation</a></li>
+<li class="chapter" data-level="7.6" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#looking-at-a-factor-covariate-interaction"><i class="fa fa-check"></i><b>7.6</b> Looking at a factor-covariate interaction</a></li>
+<li class="chapter" data-level="7.7" data-path="analysis-of-covariance.html"><a href="analysis-of-covariance.html#centering-the-covariate-to-facilitate-ancova-interpretation"><i class="fa fa-check"></i><b>7.7</b> Centering the Covariate to Facilitate ANCOVA Interpretation</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html"><i class="fa fa-check"></i><b>8</b> Analysis of Covariance with the SMART data</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#a-new-small-study-predicting-bmi"><i class="fa fa-check"></i><b>8.1</b> A New Small Study: Predicting BMI</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#does-female-predict-bmi-well"><i class="fa fa-check"></i><b>8.1.1</b> Does <code>female</code> predict <code>bmi</code> well?</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m1-a-simple-t-test-model"><i class="fa fa-check"></i><b>8.2</b> <code>c8_m1</code>: A simple t-test model</a></li>
+<li class="chapter" data-level="8.3" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m2-adding-another-predictor-two-way-anova-without-interaction"><i class="fa fa-check"></i><b>8.3</b> <code>c8_m2</code>: Adding another predictor (two-way ANOVA without interaction)</a></li>
+<li class="chapter" data-level="8.4" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m3-adding-the-interaction-term-two-way-anova-with-interaction"><i class="fa fa-check"></i><b>8.4</b> <code>c8_m3</code>: Adding the interaction term (Two-way ANOVA with interaction)</a></li>
+<li class="chapter" data-level="8.5" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m4-using-female-and-physhealth-in-a-model-for-bmi"><i class="fa fa-check"></i><b>8.5</b> <code>c8_m4</code>: Using <code>female</code> and <code>physhealth</code> in a model for <code>bmi</code></a></li>
+<li class="chapter" data-level="8.6" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#making-predictions-with-a-linear-regression-model"><i class="fa fa-check"></i><b>8.6</b> Making Predictions with a Linear Regression Model</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#fitting-an-individual-prediction-and-95-prediction-interval"><i class="fa fa-check"></i><b>8.6.1</b> Fitting an Individual Prediction and 95% Prediction Interval</a></li>
+<li class="chapter" data-level="8.6.2" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#confidence-interval-for-an-average-prediction"><i class="fa fa-check"></i><b>8.6.2</b> Confidence Interval for an Average Prediction</a></li>
+<li class="chapter" data-level="8.6.3" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#fitting-multiple-individual-predictions-to-new-data"><i class="fa fa-check"></i><b>8.6.3</b> Fitting Multiple Individual Predictions to New Data</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#centering-the-model"><i class="fa fa-check"></i><b>8.7</b> Centering the model</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#plot-of-model-4-on-centered-physhealth-c8_m4_c"><i class="fa fa-check"></i><b>8.7.1</b> Plot of Model 4 on Centered <code>physhealth</code>: <code>c8_m4_c</code></a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#rescaling-an-input-by-subtracting-the-mean-and-dividing-by-2-standard-deviations"><i class="fa fa-check"></i><b>8.8</b> Rescaling an input by subtracting the mean and dividing by 2 standard deviations</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#refitting-model-c8_m4-to-the-rescaled-data"><i class="fa fa-check"></i><b>8.8.1</b> Refitting model <code>c8_m4</code> to the rescaled data</a></li>
+<li class="chapter" data-level="8.8.2" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#interpreting-the-model-on-rescaled-data"><i class="fa fa-check"></i><b>8.8.2</b> Interpreting the model on rescaled data</a></li>
+<li class="chapter" data-level="8.8.3" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#plot-of-model-on-rescaled-data"><i class="fa fa-check"></i><b>8.8.3</b> Plot of model on rescaled data</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m5-what-if-we-add-more-variables"><i class="fa fa-check"></i><b>8.9</b> <code>c8_m5</code>: What if we add more variables?</a></li>
+<li class="chapter" data-level="8.10" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m6-would-adding-self-reported-health-help"><i class="fa fa-check"></i><b>8.10</b> <code>c8_m6</code>: Would adding self-reported health help?</a></li>
+<li class="chapter" data-level="8.11" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#key-regression-assumptions-for-building-effective-prediction-models"><i class="fa fa-check"></i><b>8.11</b> Key Regression Assumptions for Building Effective Prediction Models</a>
+<ul>
+<li class="chapter" data-level="8.11.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#checking-assumptions-in-model-c8_m6"><i class="fa fa-check"></i><b>8.11.1</b> Checking Assumptions in model <code>c8_m6</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Science for Biological, Medical and Health Research: Notes for 432</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="analysis-of-variance" class="section level1" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Analysis of Variance</h1>
+<div id="the-bonding-data-a-designed-dental-experiment" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> The <code>bonding</code> data: A Designed Dental Experiment</h2>
+<p>The <code>bonding</code> data describe a designed experiment into the properties of four different resin types (<code>resin</code> = A, B, C, D) and two different curing light sources (<code>light</code> = Halogen, LED) as they relate to the resulting bonding strength (measured in MPa<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>) on the surface of teeth. The source is <span class="citation"><a href="references.html#ref-Kim2014" role="doc-biblioref">Kim</a> (<a href="references.html#ref-Kim2014" role="doc-biblioref">2014</a>)</span>.</p>
+<p>The experiment involved making measurements of bonding strength under a total of 80 experimental setups, or runs, with 10 runs completed at each of the eight combinations of a light source and a resin type. The data are gathered in the <code>bonding.csv</code> file.</p>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="analysis-of-variance.html#cb416-1" aria-hidden="true" tabindex="-1"></a>bonding</span></code></pre></div>
+<pre><code># A tibble: 80 x 4
+   run_ID light   resin strength
+   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt;
+ 1 R101   LED     B         12.8
+ 2 R102   Halogen B         22.2
+ 3 R103   Halogen B         24.6
+ 4 R104   LED     A         17  
+ 5 R105   LED     C         32.2
+ 6 R106   Halogen B         27.1
+ 7 R107   LED     A         23.4
+ 8 R108   Halogen A         23.5
+ 9 R109   Halogen D         37.3
+10 R110   Halogen A         19.7
+# ... with 70 more rows</code></pre>
+</div>
+<div id="a-one-factor-analysis-of-variance-1" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> A One-Factor Analysis of Variance</h2>
+<p>Suppose we are interested in the distribution of the <code>strength</code> values for the four different types of <code>resin</code>.</p>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="analysis-of-variance.html#cb418-1" aria-hidden="true" tabindex="-1"></a>bonding <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(resin) <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="fu">mean</span>(strength), <span class="fu">median</span>(strength))</span></code></pre></div>
+<pre><code># A tibble: 4 x 4
+  resin     n `mean(strength)` `median(strength)`
+* &lt;chr&gt; &lt;int&gt;            &lt;dbl&gt;              &lt;dbl&gt;
+1 A        20             18.4               18.0
+2 B        20             22.2               22.7
+3 C        20             25.2               25.7
+4 D        20             32.1               35.3</code></pre>
+<p>I’d begin serious work with a plot.</p>
+<div id="look-at-the-data" class="section level3" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Look at the Data!</h3>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="analysis-of-variance.html#cb420-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bonding, <span class="fu">aes</span>(<span class="at">x =</span> resin, <span class="at">y =</span> strength)) <span class="sc">+</span></span>
+<span id="cb420-2"><a href="analysis-of-variance.html#cb420-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/c3_oneway_bonding_resin_boxplot-1.png" width="672" /></p>
+<p>Another good plot for this purpose is a ridgeline plot.</p>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="analysis-of-variance.html#cb421-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bonding, <span class="fu">aes</span>(<span class="at">x =</span> strength, <span class="at">y =</span> resin, <span class="at">fill =</span> resin)) <span class="sc">+</span></span>
+<span id="cb421-2"><a href="analysis-of-variance.html#cb421-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density_ridges2</span>() <span class="sc">+</span></span>
+<span id="cb421-3"><a href="analysis-of-variance.html#cb421-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">fill =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>Picking joint bandwidth of 3.09</code></pre>
+<p><img src="432-notes_files/figure-html/c3_oneway_bonding_resin_ridgelineplot-1.png" width="672" /></p>
+</div>
+<div id="table-of-summary-statistics" class="section level3" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Table of Summary Statistics</h3>
+<p>With the small size of this experiment (<em>n</em> = 20 for each <code>resin</code> type), graphical summaries may not perform as well as they often do. We’ll also produce a quick table of summary statistics for <code>strength</code> within each <code>resin</code> type.</p>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="analysis-of-variance.html#cb423-1" aria-hidden="true" tabindex="-1"></a>bonding <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(strength <span class="sc">~</span> resin)</span></code></pre></div>
+<pre><code>  resin  min     Q1 median    Q3  max   mean       sd  n missing
+1     A  9.3 15.725  17.95 20.40 28.0 18.415 4.805948 20       0
+2     B 11.8 18.450  22.70 25.75 35.2 22.230 6.748263 20       0
+3     C 14.5 20.650  25.70 30.70 34.5 25.155 6.326425 20       0
+4     D 17.3 21.825  35.30 40.15 47.2 32.075 9.735063 20       0</code></pre>
+<p>Since the means and medians within each group are fairly close, and the distributions (with the possible exception of <code>resin</code> D) are reasonably well approximated by the Normal, I’ll fit an ANOVA model<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>.</p>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="analysis-of-variance.html#cb425-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(strength <span class="sc">~</span> resin, <span class="at">data =</span> bonding))</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: strength
+          Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+resin      3 1999.7  666.57  13.107 5.52e-07 ***
+Residuals 76 3865.2   50.86                     
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>It appears that the <code>resin</code> types have a significant association with mean <code>strength</code> of the bonds. Can we identify which <code>resin</code> types have generally higher or lower <code>strength</code>?</p>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="analysis-of-variance.html#cb427-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(<span class="fu">aov</span>(<span class="fu">lm</span>(strength <span class="sc">~</span> resin, <span class="at">data =</span> bonding)))</span></code></pre></div>
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = lm(strength ~ resin, data = bonding))
+
+$resin
+      diff        lwr       upr     p adj
+B-A  3.815 -2.1088676  9.738868 0.3351635
+C-A  6.740  0.8161324 12.663868 0.0193344
+D-A 13.660  7.7361324 19.583868 0.0000003
+C-B  2.925 -2.9988676  8.848868 0.5676635
+D-B  9.845  3.9211324 15.768868 0.0002276
+D-C  6.920  0.9961324 12.843868 0.0154615</code></pre>
+<p>Based on these confidence intervals (which have a family-wise 95% confidence level), we see that D is associated with significantly larger mean <code>strength</code> than A or B or C, and that C is also associated with significantly larger mean <code>strength</code> than A. This may be easier to see in a plot of these confidence intervals.</p>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="analysis-of-variance.html#cb429-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">TukeyHSD</span>(<span class="fu">aov</span>(<span class="fu">lm</span>(strength <span class="sc">~</span> resin, <span class="at">data =</span> bonding))))</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-148-1.png" width="672" /></p>
+</div>
+</div>
+<div id="a-two-way-anova-looking-at-two-factors" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> A Two-Way ANOVA: Looking at Two Factors</h2>
+<p>Now, we’ll now add consideration of the <code>light</code> source into our study. We can look at the distribution of the <code>strength</code> values at the combinations of both <code>light</code> and <code>resin</code>, with a plot like this one.</p>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="analysis-of-variance.html#cb430-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bonding, <span class="fu">aes</span>(<span class="at">x =</span> resin, <span class="at">y =</span> strength, <span class="at">color =</span> light)) <span class="sc">+</span></span>
+<span id="cb430-2"><a href="analysis-of-variance.html#cb430-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb430-3"><a href="analysis-of-variance.html#cb430-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> light) <span class="sc">+</span></span>
+<span id="cb430-4"><a href="analysis-of-variance.html#cb430-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">color =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb430-5"><a href="analysis-of-variance.html#cb430-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;purple&quot;</span>, <span class="st">&quot;darkorange&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb430-6"><a href="analysis-of-variance.html#cb430-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() </span></code></pre></div>
+<p><img src="432-notes_files/figure-html/c3_bonding_points_plot-1.png" width="672" /></p>
+</div>
+<div id="a-means-plot-with-standard-deviations-to-check-for-interaction" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> A Means Plot (with standard deviations) to check for interaction</h2>
+<p>Sometimes, we’ll instead look at a plot simply of the means (and, often, the standard deviations) of <code>strength</code> at each combination of <code>light</code> and <code>resin</code>. We’ll start by building up a data set with the summaries we want to plot.</p>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="analysis-of-variance.html#cb431-1" aria-hidden="true" tabindex="-1"></a>bond.sum <span class="ot">&lt;-</span> bonding <span class="sc">%&gt;%</span> </span>
+<span id="cb431-2"><a href="analysis-of-variance.html#cb431-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(resin, light) <span class="sc">%&gt;%</span></span>
+<span id="cb431-3"><a href="analysis-of-variance.html#cb431-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">mean.str =</span> <span class="fu">mean</span>(strength), <span class="at">sd.str =</span> <span class="fu">sd</span>(strength))</span></code></pre></div>
+<pre><code>`summarise()` has grouped output by &#39;resin&#39;. You can override using the `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="analysis-of-variance.html#cb433-1" aria-hidden="true" tabindex="-1"></a>bond.sum</span></code></pre></div>
+<pre><code># A tibble: 8 x 4
+# Groups:   resin [4]
+  resin light   mean.str sd.str
+  &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;
+1 A     Halogen     17.8   4.02
+2 A     LED         19.1   5.63
+3 B     Halogen     19.9   5.62
+4 B     LED         24.6   7.25
+5 C     Halogen     22.5   6.19
+6 C     LED         27.8   5.56
+7 D     Halogen     40.3   4.15
+8 D     LED         23.8   5.70</code></pre>
+<p>Now, we’ll use this new data set to plot the means and standard deviations of <code>strength</code> at each combination of <code>resin</code> and <code>light</code>.</p>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="analysis-of-variance.html#cb435-1" aria-hidden="true" tabindex="-1"></a><span class="do">## The error bars will overlap unless we adjust the position.</span></span>
+<span id="cb435-2"><a href="analysis-of-variance.html#cb435-2" aria-hidden="true" tabindex="-1"></a>pd <span class="ot">&lt;-</span> <span class="fu">position_dodge</span>(<span class="fl">0.2</span>) <span class="co"># move them .1 to the left and right</span></span>
+<span id="cb435-3"><a href="analysis-of-variance.html#cb435-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb435-4"><a href="analysis-of-variance.html#cb435-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bond.sum, <span class="fu">aes</span>(<span class="at">x =</span> resin, <span class="at">y =</span> mean.str, <span class="at">col =</span> light)) <span class="sc">+</span></span>
+<span id="cb435-5"><a href="analysis-of-variance.html#cb435-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean.str <span class="sc">-</span> sd.str, </span>
+<span id="cb435-6"><a href="analysis-of-variance.html#cb435-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">ymax =</span> mean.str <span class="sc">+</span> sd.str),</span>
+<span id="cb435-7"><a href="analysis-of-variance.html#cb435-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">position =</span> pd) <span class="sc">+</span></span>
+<span id="cb435-8"><a href="analysis-of-variance.html#cb435-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">position =</span> pd) <span class="sc">+</span> </span>
+<span id="cb435-9"><a href="analysis-of-variance.html#cb435-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> light), <span class="at">position =</span> pd) <span class="sc">+</span></span>
+<span id="cb435-10"><a href="analysis-of-variance.html#cb435-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;purple&quot;</span>, <span class="st">&quot;darkorange&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb435-11"><a href="analysis-of-variance.html#cb435-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb435-12"><a href="analysis-of-variance.html#cb435-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Bonding Strength (MPa)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Resin Type&quot;</span>,</span>
+<span id="cb435-13"><a href="analysis-of-variance.html#cb435-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Observed Means (+/- SD) of Bonding Strength&quot;</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/c3_ggplot_means_plot_bonding-1.png" width="672" /></p>
+<p>Is there evidence of a meaningful interaction between the resin type and the <code>light</code> source on the bonding strength in this plot?</p>
+<ul>
+<li>Sure. A meaningful interaction just means that the strength associated with different <code>resin</code> types depends on the <code>light</code> source.
+<ul>
+<li>With LED <code>light</code>, it appears that <code>resin</code> C leads to the strongest bonding strength.</li>
+<li>With Halogen <code>light</code>, though, it seems that <code>resin</code> D is substantially stronger.</li>
+</ul></li>
+<li>Note that the lines we see here connecting the <code>light</code> sources aren’t in parallel (as they would be if we had zero interaction between <code>resin</code> and <code>light</code>), but rather, they cross.</li>
+</ul>
+<div id="summarizing-the-data-after-grouping-by-resin-and-light" class="section level3" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> Summarizing the data after grouping by <code>resin</code> and <code>light</code></h3>
+<p>We might want to look at a numerical summary of the <code>strengths</code> within these groups, too.</p>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="analysis-of-variance.html#cb436-1" aria-hidden="true" tabindex="-1"></a>bonding <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(strength <span class="sc">~</span> resin <span class="sc">+</span> light) <span class="sc">%&gt;%</span></span>
+<span id="cb436-2"><a href="analysis-of-variance.html#cb436-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(resin.light, median, mean, sd, n, missing)</span></code></pre></div>
+<pre><code>  resin.light median  mean       sd  n missing
+1   A.Halogen  18.35 17.77 4.024108 10       0
+2   B.Halogen  21.75 19.90 5.617631 10       0
+3   C.Halogen  21.30 22.54 6.191069 10       0
+4   D.Halogen  40.40 40.30 4.147556 10       0
+5       A.LED  17.80 19.06 5.625181 10       0
+6       B.LED  24.45 24.56 7.246792 10       0
+7       C.LED  28.45 27.77 5.564980 10       0
+8       D.LED  21.45 23.85 5.704043 10       0</code></pre>
+</div>
+</div>
+<div id="fitting-the-two-way-anova-model-with-interaction" class="section level2" number="6.5">
+<h2><span class="header-section-number">6.5</span> Fitting the Two-Way ANOVA model with Interaction</h2>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="analysis-of-variance.html#cb438-1" aria-hidden="true" tabindex="-1"></a>c3_m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(strength <span class="sc">~</span> resin <span class="sc">*</span> light, <span class="at">data =</span> bonding)</span>
+<span id="cb438-2"><a href="analysis-of-variance.html#cb438-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb438-3"><a href="analysis-of-variance.html#cb438-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c3_m1)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = strength ~ resin * light, data = bonding)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-11.760  -3.663  -0.320   3.697  11.250 
+
+Coefficients:
+                Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)       17.770      1.771  10.033 2.57e-15 ***
+resinB             2.130      2.505   0.850   0.3979    
+resinC             4.770      2.505   1.904   0.0609 .  
+resinD            22.530      2.505   8.995 2.13e-13 ***
+lightLED           1.290      2.505   0.515   0.6081    
+resinB:lightLED    3.370      3.542   0.951   0.3446    
+resinC:lightLED    3.940      3.542   1.112   0.2697    
+resinD:lightLED  -17.740      3.542  -5.008 3.78e-06 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 5.601 on 72 degrees of freedom
+Multiple R-squared:  0.6149,    Adjusted R-squared:  0.5775 
+F-statistic: 16.42 on 7 and 72 DF,  p-value: 9.801e-13</code></pre>
+<div id="the-anova-table-for-our-model" class="section level3" number="6.5.1">
+<h3><span class="header-section-number">6.5.1</span> The ANOVA table for our model</h3>
+<p>In a two-way ANOVA model, we begin by assessing the interaction term. If it’s important, then our best model is the model including the interaction. If it’s not important, we will often move on to consider a new model, fit without an interaction.</p>
+<p>The ANOVA table is especially helpful in this case, because it lets us look specifically at the interaction effect.</p>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="analysis-of-variance.html#cb440-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c3_m1)</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: strength
+            Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+resin        3 1999.72  666.57 21.2499 5.792e-10 ***
+light        1   34.72   34.72  1.1067    0.2963    
+resin:light  3 1571.96  523.99 16.7043 2.457e-08 ***
+Residuals   72 2258.52   31.37                      
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="is-the-interaction-important" class="section level3" number="6.5.2">
+<h3><span class="header-section-number">6.5.2</span> Is the interaction important?</h3>
+<p>In this case, the interaction:</p>
+<ul>
+<li>is evident in the means plot, and</li>
+<li>is highly statistically significant, and</li>
+<li>accounts for a sizable fraction (27%) of the overall variation</li>
+</ul>
+<p><span class="math display">\[ 
+\eta^2_{interaction} = \frac{\mbox{SS(resin:light)}}{SS(Total)}
+= \frac{1571.96}{1999.72 + 34.72 + 1571.96 + 2258.52} = 0.268
+\]</span></p>
+<p>If the interaction were <em>either</em> large or significant we would be inclined to keep it in the model. In this case, it’s both, so there’s no real reason to remove it.</p>
+</div>
+<div id="interpreting-the-interaction" class="section level3" number="6.5.3">
+<h3><span class="header-section-number">6.5.3</span> Interpreting the Interaction</h3>
+<p>Recall the model equation, which is:</p>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="analysis-of-variance.html#cb442-1" aria-hidden="true" tabindex="-1"></a>c3_m1</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = strength ~ resin * light, data = bonding)
+
+Coefficients:
+    (Intercept)           resinB           resinC           resinD  
+          17.77             2.13             4.77            22.53  
+       lightLED  resinB:lightLED  resinC:lightLED  resinD:lightLED  
+           1.29             3.37             3.94           -17.74  </code></pre>
+<p>so we have:</p>
+<p><span class="math display">\[
+strength = 17.77 + 2.13 resinB + 4.77 resinC + 22.53 resinD \\
++ 1.29 lightLED + 3.37 resinB*lightLED \\
++ 3.94 resinC*lightLED - 17.74 resinD*lightLED
+\]</span></p>
+<p>So, if <code>light</code> = Halogen, our equation is:</p>
+<p><span class="math display">\[
+strength = 17.77 + 2.13 resinB + 4.77 resinC + 22.53 resinD 
+\]</span></p>
+<p>And if <code>light</code> = LED, our equation is:</p>
+<p><span class="math display">\[
+strength = 19.06 + 5.50 resinB + 8.71 resinC + 4.79 resinD 
+\]</span></p>
+<p>Note that both the intercept and the slopes change as a result of the interaction. The model yields a different prediction for every possible combination of a <code>resin</code> type and a <code>light</code> source.</p>
+</div>
+</div>
+<div id="comparing-individual-combinations-of-resin-and-light" class="section level2" number="6.6">
+<h2><span class="header-section-number">6.6</span> Comparing Individual Combinations of <code>resin</code> and <code>light</code></h2>
+<p>To make comparisons between individual combinations of a <code>resin</code> type and a <code>light</code> source, using something like Tukey’s HSD approach for multiple comparisons, we first refit the model using the <code>aov</code> structure, rather than <code>lm</code>.</p>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="analysis-of-variance.html#cb444-1" aria-hidden="true" tabindex="-1"></a>c3m1_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(strength <span class="sc">~</span> resin <span class="sc">*</span> light, <span class="at">data =</span> bonding)</span>
+<span id="cb444-2"><a href="analysis-of-variance.html#cb444-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb444-3"><a href="analysis-of-variance.html#cb444-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c3m1_aov)</span></code></pre></div>
+<pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+resin        3 1999.7   666.6  21.250 5.79e-10 ***
+light        1   34.7    34.7   1.107    0.296    
+resin:light  3 1572.0   524.0  16.704 2.46e-08 ***
+Residuals   72 2258.5    31.4                     
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>And now, we can obtain Tukey HSD comparisons (which will maintain an overall 95% family-wise confidence level) across the <code>resin</code> types, the <code>light</code> sources, and the combinations, with the TukeyHSD command. This approach is only completely appropriate if these comparisons are pre-planned, and if the design is balanced (as this is, with the same sample size for each combination of a <code>light</code> source and <code>resin</code> type.)</p>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="analysis-of-variance.html#cb446-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(c3m1_aov)</span></code></pre></div>
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = strength ~ resin * light, data = bonding)
+
+$resin
+      diff       lwr       upr     p adj
+B-A  3.815 -0.843129  8.473129 0.1461960
+C-A  6.740  2.081871 11.398129 0.0016436
+D-A 13.660  9.001871 18.318129 0.0000000
+C-B  2.925 -1.733129  7.583129 0.3568373
+D-B  9.845  5.186871 14.503129 0.0000026
+D-C  6.920  2.261871 11.578129 0.0011731
+
+$light
+               diff       lwr      upr     p adj
+LED-Halogen -1.3175 -3.814042 1.179042 0.2963128
+
+$`resin:light`
+                      diff          lwr        upr     p adj
+B:Halogen-A:Halogen   2.13  -5.68928258   9.949283 0.9893515
+C:Halogen-A:Halogen   4.77  -3.04928258  12.589283 0.5525230
+D:Halogen-A:Halogen  22.53  14.71071742  30.349283 0.0000000
+A:LED-A:Halogen       1.29  -6.52928258   9.109283 0.9995485
+B:LED-A:Halogen       6.79  -1.02928258  14.609283 0.1361092
+C:LED-A:Halogen      10.00   2.18071742  17.819283 0.0037074
+D:LED-A:Halogen       6.08  -1.73928258  13.899283 0.2443200
+C:Halogen-B:Halogen   2.64  -5.17928258  10.459283 0.9640100
+D:Halogen-B:Halogen  20.40  12.58071742  28.219283 0.0000000
+A:LED-B:Halogen      -0.84  -8.65928258   6.979283 0.9999747
+B:LED-B:Halogen       4.66  -3.15928258  12.479283 0.5818695
+C:LED-B:Halogen       7.87   0.05071742  15.689283 0.0473914
+D:LED-B:Halogen       3.95  -3.86928258  11.769283 0.7621860
+D:Halogen-C:Halogen  17.76   9.94071742  25.579283 0.0000000
+A:LED-C:Halogen      -3.48 -11.29928258   4.339283 0.8591455
+B:LED-C:Halogen       2.02  -5.79928258   9.839283 0.9922412
+C:LED-C:Halogen       5.23  -2.58928258  13.049283 0.4323859
+D:LED-C:Halogen       1.31  -6.50928258   9.129283 0.9995004
+A:LED-D:Halogen     -21.24 -29.05928258 -13.420717 0.0000000
+B:LED-D:Halogen     -15.74 -23.55928258  -7.920717 0.0000006
+C:LED-D:Halogen     -12.53 -20.34928258  -4.710717 0.0001014
+D:LED-D:Halogen     -16.45 -24.26928258  -8.630717 0.0000002
+B:LED-A:LED           5.50  -2.31928258  13.319283 0.3665620
+C:LED-A:LED           8.71   0.89071742  16.529283 0.0185285
+D:LED-A:LED           4.79  -3.02928258  12.609283 0.5471915
+C:LED-B:LED           3.21  -4.60928258  11.029283 0.9027236
+D:LED-B:LED          -0.71  -8.52928258   7.109283 0.9999920
+D:LED-C:LED          -3.92 -11.73928258   3.899283 0.7690762</code></pre>
+<p>One conclusion from this is that the combination of D and Halogen is significantly stronger than each of the other seven combinations.</p>
+</div>
+<div id="the-bonding-model-without-interaction" class="section level2" number="6.7">
+<h2><span class="header-section-number">6.7</span> The <code>bonding</code> model without Interaction</h2>
+<p>It seems incorrect in this situation to fit a model without the interaction term, but we’ll do so just so you can see what’s involved.</p>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="analysis-of-variance.html#cb448-1" aria-hidden="true" tabindex="-1"></a>c3_m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(strength <span class="sc">~</span> resin <span class="sc">+</span> light, <span class="at">data =</span> bonding)</span>
+<span id="cb448-2"><a href="analysis-of-variance.html#cb448-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb448-3"><a href="analysis-of-variance.html#cb448-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c3_m2)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = strength ~ resin + light, data = bonding)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-14.1163  -4.9531   0.1187   4.4613  14.4663 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   19.074      1.787  10.676  &lt; 2e-16 ***
+resinB         3.815      2.260   1.688  0.09555 .  
+resinC         6.740      2.260   2.982  0.00386 ** 
+resinD        13.660      2.260   6.044 5.39e-08 ***
+lightLED      -1.317      1.598  -0.824  0.41229    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 7.147 on 75 degrees of freedom
+Multiple R-squared:  0.3469,    Adjusted R-squared:  0.312 
+F-statistic: 9.958 on 4 and 75 DF,  p-value: 1.616e-06</code></pre>
+<p>In the no-interaction model, if <code>light</code> = Halogen, our equation is:</p>
+<p><span class="math display">\[
+strength = 19.07 + 3.82 resinB + 6.74 resinC + 13.66 resinD
+\]</span></p>
+<p>And if <code>light</code> = LED, our equation is:</p>
+<p><span class="math display">\[
+strength = 17.75 + 3.82 resinB + 6.74 resinC + 13.66 resinD
+\]</span></p>
+<p>So, in the no-interaction model, only the intercept changes.</p>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="analysis-of-variance.html#cb450-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c3_m2)</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: strength
+          Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+resin      3 1999.7  666.57 13.0514 6.036e-07 ***
+light      1   34.7   34.72  0.6797    0.4123    
+Residuals 75 3830.5   51.07                      
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>And, it appears, if we ignore the interaction, then <code>resin</code> type has a significant impact on <code>strength</code> but <code>light</code> source doesn’t. This is clearer when we look at boxplots of the separated <code>light</code> and <code>resin</code> groups.</p>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="analysis-of-variance.html#cb452-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(bonding, <span class="fu">aes</span>(<span class="at">x =</span> light, <span class="at">y =</span> strength)) <span class="sc">+</span> </span>
+<span id="cb452-2"><a href="analysis-of-variance.html#cb452-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span>
+<span id="cb452-3"><a href="analysis-of-variance.html#cb452-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(bonding, <span class="fu">aes</span>(<span class="at">x =</span> resin, <span class="at">y =</span> strength)) <span class="sc">+</span></span>
+<span id="cb452-4"><a href="analysis-of-variance.html#cb452-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span>
+<span id="cb452-5"><a href="analysis-of-variance.html#cb452-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb452-6"><a href="analysis-of-variance.html#cb452-6" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(p1, p2, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/boxplots_c3_bonding_without_interaction-1.png" width="672" /></p>
+</div>
+<div id="cortisol-a-hypothetical-clinical-trial" class="section level2" number="6.8">
+<h2><span class="header-section-number">6.8</span> <code>cortisol</code>: A Hypothetical Clinical Trial</h2>
+<p>156 adults who complained of problems with a high-stress lifestyle were enrolled in a hypothetical clinical trial of the effectiveness of a behavioral intervention designed to help reduce stress levels, as measured by salivary cortisol.</p>
+<p>The subjects were randomly assigned to one of three intervention groups (usual care, low dose, and high dose.) The “low dose” subjects received a one-week intervention with a follow-up at week 5. The “high dose” subjects received a more intensive three-week intervention, with follow up at week 5.</p>
+<p>Since cortisol levels rise and fall with circadian rhythms, the cortisol measurements were taken just after rising for all subjects. These measurements were taken at baseline, and again at five weeks. The difference (baseline - week 5) in cortisol level (in micrograms / l) serves as the primary outcome.</p>
+<div id="codebook-and-raw-data-for-cortisol" class="section level3" number="6.8.1">
+<h3><span class="header-section-number">6.8.1</span> Codebook and Raw Data for <code>cortisol</code></h3>
+<p>The data are gathered in the <code>cortisol</code> data set. Included are:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right"><code>subject</code></td>
+<td>subject identification code</td>
+</tr>
+<tr class="even">
+<td align="right"><code>interv</code></td>
+<td>intervention group (UC = usual care, Low, High)</td>
+</tr>
+<tr class="odd">
+<td align="right"><code>waist</code></td>
+<td>waist circumference at baseline (in inches)</td>
+</tr>
+<tr class="even">
+<td align="right"><code>sex</code></td>
+<td>male or female</td>
+</tr>
+<tr class="odd">
+<td align="right"><code>cort.1</code></td>
+<td>salivary cortisol level (microg/l) week 1</td>
+</tr>
+<tr class="even">
+<td align="right"><code>cort.5</code></td>
+<td>salivary cortisol level (microg/l) week 5</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="analysis-of-variance.html#cb453-1" aria-hidden="true" tabindex="-1"></a>cortisol</span></code></pre></div>
+<pre><code># A tibble: 156 x 6
+   subject interv waist sex   cort.1 cort.5
+     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+ 1    1001 UC      48.3 M       13.4   13.3
+ 2    1002 Low     58.3 M       17.8   16.6
+ 3    1003 High    43   M       14.4   12.7
+ 4    1004 Low     44.9 M        9      9.8
+ 5    1005 High    46.1 M       14.2   14.2
+ 6    1006 UC      41.3 M       14.8   15.1
+ 7    1007 Low     51   F       13.7   16  
+ 8    1008 UC      42   F       17.3   18.7
+ 9    1009 Low     24.7 F       15.3   15.8
+10    1010 Low     59.4 M       12.4   11.7
+# ... with 146 more rows</code></pre>
+</div>
+</div>
+<div id="creating-a-factor-combining-sex-and-waist" class="section level2" number="6.9">
+<h2><span class="header-section-number">6.9</span> Creating a factor combining sex and waist</h2>
+<p>Next, we’ll put the <code>waist</code> and <code>sex</code> data in the <code>cortisol</code> example together. We want to build a second categorical variable (called <code>fat_est</code>) combining this information, to indicate “healthy” vs. “unhealthy” levels of fat around the waist.</p>
+<ul>
+<li>Male subjects whose waist circumference is 40 inches or more, and</li>
+<li>Female subjects whose waist circumference is 35 inches or more, will fall in the “unhealthy” group.</li>
+</ul>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="analysis-of-variance.html#cb455-1" aria-hidden="true" tabindex="-1"></a>cortisol <span class="ot">&lt;-</span> cortisol <span class="sc">%&gt;%</span></span>
+<span id="cb455-2"><a href="analysis-of-variance.html#cb455-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb455-3"><a href="analysis-of-variance.html#cb455-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">fat_est =</span> <span class="fu">factor</span>(<span class="fu">case_when</span>(</span>
+<span id="cb455-4"><a href="analysis-of-variance.html#cb455-4" aria-hidden="true" tabindex="-1"></a>            sex <span class="sc">==</span> <span class="st">&quot;M&quot;</span> <span class="sc">&amp;</span> waist <span class="sc">&gt;=</span> <span class="dv">40</span> <span class="sc">~</span> <span class="st">&quot;unhealthy&quot;</span>,</span>
+<span id="cb455-5"><a href="analysis-of-variance.html#cb455-5" aria-hidden="true" tabindex="-1"></a>            sex <span class="sc">==</span> <span class="st">&quot;F&quot;</span> <span class="sc">&amp;</span> waist <span class="sc">&gt;=</span> <span class="dv">35</span> <span class="sc">~</span> <span class="st">&quot;unhealthy&quot;</span>,</span>
+<span id="cb455-6"><a href="analysis-of-variance.html#cb455-6" aria-hidden="true" tabindex="-1"></a>            <span class="cn">TRUE</span>                     <span class="sc">~</span> <span class="st">&quot;healthy&quot;</span>)),</span>
+<span id="cb455-7"><a href="analysis-of-variance.html#cb455-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">cort_diff =</span> cort<span class="fl">.1</span> <span class="sc">-</span> cort<span class="fl">.5</span>)</span>
+<span id="cb455-8"><a href="analysis-of-variance.html#cb455-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb455-9"><a href="analysis-of-variance.html#cb455-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cortisol)</span></code></pre></div>
+<pre><code>    subject        interv              waist           sex           
+ Min.   :1001   Length:156         Min.   :20.80   Length:156        
+ 1st Qu.:1040   Class :character   1st Qu.:33.27   Class :character  
+ Median :1078   Mode  :character   Median :40.35   Mode  :character  
+ Mean   :1078                      Mean   :40.42                     
+ 3rd Qu.:1117                      3rd Qu.:47.77                     
+ Max.   :1156                      Max.   :59.90                     
+     cort.1           cort.5          fat_est      cort_diff      
+ Min.   : 6.000   Min.   : 4.2   healthy  : 56   Min.   :-2.3000  
+ 1st Qu.: 9.675   1st Qu.: 9.6   unhealthy:100   1st Qu.:-0.5000  
+ Median :12.400   Median :12.6                   Median : 0.2000  
+ Mean   :12.686   Mean   :12.4                   Mean   : 0.2821  
+ 3rd Qu.:16.025   3rd Qu.:15.7                   3rd Qu.: 1.2000  
+ Max.   :19.000   Max.   :19.7                   Max.   : 2.0000  </code></pre>
+</div>
+<div id="a-means-plot-for-the-cortisol-trial-with-standard-errors" class="section level2" number="6.10">
+<h2><span class="header-section-number">6.10</span> A Means Plot for the <code>cortisol</code> trial (with standard errors)</h2>
+<p>Again, we’ll start by building up a data set with the summaries we want to plot.</p>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="analysis-of-variance.html#cb457-1" aria-hidden="true" tabindex="-1"></a>cort.sum <span class="ot">&lt;-</span> cortisol <span class="sc">%&gt;%</span> </span>
+<span id="cb457-2"><a href="analysis-of-variance.html#cb457-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(interv, fat_est) <span class="sc">%&gt;%</span></span>
+<span id="cb457-3"><a href="analysis-of-variance.html#cb457-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">mean.cort =</span> <span class="fu">mean</span>(cort_diff), </span>
+<span id="cb457-4"><a href="analysis-of-variance.html#cb457-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">se.cort =</span> <span class="fu">sd</span>(cort_diff)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>()))</span></code></pre></div>
+<pre><code>`summarise()` has grouped output by &#39;interv&#39;. You can override using the `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="analysis-of-variance.html#cb459-1" aria-hidden="true" tabindex="-1"></a>cort.sum</span></code></pre></div>
+<pre><code># A tibble: 6 x 4
+# Groups:   interv [3]
+  interv fat_est   mean.cort se.cort
+  &lt;chr&gt;  &lt;fct&gt;         &lt;dbl&gt;   &lt;dbl&gt;
+1 High   healthy       0.695   0.217
+2 High   unhealthy     0.352   0.150
+3 Low    healthy       0.5     0.182
+4 Low    unhealthy     0.327   0.190
+5 UC     healthy       0.347   0.225
+6 UC     unhealthy    -0.226   0.155</code></pre>
+<p>Now, we’ll use this new data set to plot the means and standard errors.</p>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="analysis-of-variance.html#cb461-1" aria-hidden="true" tabindex="-1"></a><span class="do">## The error bars will overlap unless we adjust the position.</span></span>
+<span id="cb461-2"><a href="analysis-of-variance.html#cb461-2" aria-hidden="true" tabindex="-1"></a>pd <span class="ot">&lt;-</span> <span class="fu">position_dodge</span>(<span class="fl">0.2</span>) <span class="co"># move them .1 to the left and right</span></span>
+<span id="cb461-3"><a href="analysis-of-variance.html#cb461-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb461-4"><a href="analysis-of-variance.html#cb461-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cort.sum, <span class="fu">aes</span>(<span class="at">x =</span> interv, <span class="at">y =</span> mean.cort, <span class="at">col =</span> fat_est)) <span class="sc">+</span></span>
+<span id="cb461-5"><a href="analysis-of-variance.html#cb461-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean.cort <span class="sc">-</span> se.cort, </span>
+<span id="cb461-6"><a href="analysis-of-variance.html#cb461-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">ymax =</span> mean.cort <span class="sc">+</span> se.cort),</span>
+<span id="cb461-7"><a href="analysis-of-variance.html#cb461-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">position =</span> pd) <span class="sc">+</span></span>
+<span id="cb461-8"><a href="analysis-of-variance.html#cb461-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">position =</span> pd) <span class="sc">+</span> </span>
+<span id="cb461-9"><a href="analysis-of-variance.html#cb461-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> fat_est), <span class="at">position =</span> pd) <span class="sc">+</span></span>
+<span id="cb461-10"><a href="analysis-of-variance.html#cb461-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;royalblue&quot;</span>, <span class="st">&quot;darkred&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb461-11"><a href="analysis-of-variance.html#cb461-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb461-12"><a href="analysis-of-variance.html#cb461-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Salivary Cortisol Level&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Intervention Group&quot;</span>,</span>
+<span id="cb461-13"><a href="analysis-of-variance.html#cb461-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Observed Means (+/- SE) of Salivary Cortisol&quot;</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/c3_ggplot_means_plot_cortisol-1.png" width="672" /></p>
+</div>
+<div id="a-two-way-anova-model-for-cortisol-with-interaction" class="section level2" number="6.11">
+<h2><span class="header-section-number">6.11</span> A Two-Way ANOVA model for <code>cortisol</code> with Interaction</h2>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="analysis-of-variance.html#cb462-1" aria-hidden="true" tabindex="-1"></a>c3_m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(cort_diff <span class="sc">~</span> interv <span class="sc">*</span> fat_est, <span class="at">data =</span> cortisol)</span>
+<span id="cb462-2"><a href="analysis-of-variance.html#cb462-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb462-3"><a href="analysis-of-variance.html#cb462-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c3_m3)</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: cort_diff
+                Df  Sum Sq Mean Sq F value  Pr(&gt;F)  
+interv           2   7.847  3.9235  4.4698 0.01301 *
+fat_est          1   4.614  4.6139  5.2564 0.02326 *
+interv:fat_est   2   0.943  0.4715  0.5371 0.58554  
+Residuals      150 131.666  0.8778                  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Does it seem like we need the interaction term in this case?</p>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="analysis-of-variance.html#cb464-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c3_m3)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = cort_diff ~ interv * fat_est, data = cortisol)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.62727 -0.75702  0.08636  0.84848  2.12647 
+
+Coefficients:
+                           Estimate Std. Error t value Pr(&gt;|t|)   
+(Intercept)                  0.6950     0.2095   3.317  0.00114 **
+intervLow                   -0.1950     0.3001  -0.650  0.51689   
+intervUC                    -0.3479     0.3091  -1.126  0.26206   
+fat_estunhealthy            -0.3435     0.2655  -1.294  0.19774   
+intervLow:fat_estunhealthy   0.1708     0.3785   0.451  0.65256   
+intervUC:fat_estunhealthy   -0.2300     0.3846  -0.598  0.55068   
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.9369 on 150 degrees of freedom
+Multiple R-squared:  0.0924,    Adjusted R-squared:  0.06214 
+F-statistic: 3.054 on 5 and 150 DF,  p-value: 0.01179</code></pre>
+<p>How do you reconcile the apparent difference in significance levels between this regression summary and the ANOVA table above?</p>
+</div>
+<div id="a-two-way-anova-model-for-cortisol-without-interaction" class="section level2" number="6.12">
+<h2><span class="header-section-number">6.12</span> A Two-Way ANOVA model for <code>cortisol</code> without Interaction</h2>
+<div id="the-graph" class="section level3" number="6.12.1">
+<h3><span class="header-section-number">6.12.1</span> The Graph</h3>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="analysis-of-variance.html#cb466-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(cortisol, <span class="fu">aes</span>(<span class="at">x =</span> interv, <span class="at">y =</span> cort_diff)) <span class="sc">+</span> </span>
+<span id="cb466-2"><a href="analysis-of-variance.html#cb466-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span>
+<span id="cb466-3"><a href="analysis-of-variance.html#cb466-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(cortisol, <span class="fu">aes</span>(<span class="at">x =</span> fat_est, <span class="at">y =</span> cort_diff)) <span class="sc">+</span></span>
+<span id="cb466-4"><a href="analysis-of-variance.html#cb466-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span>
+<span id="cb466-5"><a href="analysis-of-variance.html#cb466-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb466-6"><a href="analysis-of-variance.html#cb466-6" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(p1, p2, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/boxplots_c3_cortisol_without_interaction-1.png" width="672" /></p>
+</div>
+<div id="the-anova-model" class="section level3" number="6.12.2">
+<h3><span class="header-section-number">6.12.2</span> The ANOVA Model</h3>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="analysis-of-variance.html#cb467-1" aria-hidden="true" tabindex="-1"></a>c3_m4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(cort_diff <span class="sc">~</span> interv <span class="sc">+</span> fat_est, <span class="at">data =</span> cortisol)</span>
+<span id="cb467-2"><a href="analysis-of-variance.html#cb467-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb467-3"><a href="analysis-of-variance.html#cb467-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c3_m4)</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: cort_diff
+           Df  Sum Sq Mean Sq F value  Pr(&gt;F)  
+interv      2   7.847  3.9235  4.4972 0.01266 *
+fat_est     1   4.614  4.6139  5.2886 0.02283 *
+Residuals 152 132.609  0.8724                  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>How do these results compare to those we saw in the model with interaction?</p>
+</div>
+<div id="the-regression-summary" class="section level3" number="6.12.3">
+<h3><span class="header-section-number">6.12.3</span> The Regression Summary</h3>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="analysis-of-variance.html#cb469-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c3_m4)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = cort_diff ~ interv + fat_est, data = cortisol)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.55929 -0.74527  0.05457  0.86456  2.05489 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)       0.70452    0.16093   4.378 2.22e-05 ***
+intervLow        -0.08645    0.18232  -0.474  0.63606    
+intervUC         -0.50063    0.18334  -2.731  0.00707 ** 
+fat_estunhealthy -0.35878    0.15601  -2.300  0.02283 *  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.934 on 152 degrees of freedom
+Multiple R-squared:  0.0859,    Adjusted R-squared:  0.06785 
+F-statistic: 4.761 on 3 and 152 DF,  p-value: 0.00335</code></pre>
+</div>
+<div id="tukey-hsd-comparisons" class="section level3" number="6.12.4">
+<h3><span class="header-section-number">6.12.4</span> Tukey HSD Comparisons</h3>
+<p>Without the interaction term, we can make direct comparisons between levels of the intervention, and between levels of the <code>fat_est</code> variable. This is probably best done here in a Tukey HSD comparison.</p>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="analysis-of-variance.html#cb471-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(<span class="fu">aov</span>(cort_diff <span class="sc">~</span> interv <span class="sc">+</span> fat_est, <span class="at">data =</span> cortisol))</span></code></pre></div>
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = cort_diff ~ interv + fat_est, data = cortisol)
+
+$interv
+                diff        lwr         upr     p adj
+Low-High -0.09074746 -0.5222655  0.34077063 0.8724916
+UC-High  -0.51642619 -0.9500745 -0.08277793 0.0150150
+UC-Low   -0.42567873 -0.8613670  0.01000948 0.0570728
+
+$fat_est
+                        diff        lwr         upr     p adj
+unhealthy-healthy -0.3582443 -0.6662455 -0.05024305 0.0229266</code></pre>
+<p>What conclusions can we draw, at a 5% significance level?</p>
+
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="5">
+<li id="fn5"><p>The MPa is defined as the failure load (in Newtons) divided by the entire bonded area, in mm<sup>2</sup>.<a href="analysis-of-variance.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p>If the data weren’t approximately Normally distributed, we might instead consider a rank-based alternative to ANOVA, like the Kruskal-Wallis test.<a href="analysis-of-variance.html#fnref6" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="analysis-of-variance-with-smart.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="analysis-of-covariance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["432-notes.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

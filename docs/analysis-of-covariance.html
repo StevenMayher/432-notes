@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Data Science for Biological, Medical and Health Research: Notes for 432</title>
+  <title>Chapter 7 Analysis of Covariance | Data Science for Biological, Medical and Health Research: Notes for 432</title>
   <meta name="description" content="Course Notes for PQHS 432 in Spring 2021." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Data Science for Biological, Medical and Health Research: Notes for 432" />
+  <meta property="og:title" content="Chapter 7 Analysis of Covariance | Data Science for Biological, Medical and Health Research: Notes for 432" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="thomaselove/432-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Data Science for Biological, Medical and Health Research: Notes for 432" />
+  <meta name="twitter:title" content="Chapter 7 Analysis of Covariance | Data Science for Biological, Medical and Health Research: Notes for 432" />
   
   <meta name="twitter:description" content="Course Notes for PQHS 432 in Spring 2021." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="analysis-of-covariance-with-the-smart-data.html"/>
-
+<link rel="prev" href="analysis-of-variance.html"/>
+<link rel="next" href="analysis-of-covariance-with-the-smart-data.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -383,57 +383,285 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
-
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-Barnett1995" class="csl-entry">
-Barnett, Peggy A., Simon Roman-Golstein, Fred Ramsey, and others. 1995. <span>“Differential Permeability and Quantitative MR Imaging of a Human Lung Carcinoma Brain Xenograft in the Nude Rat.”</span> <em>American Journal of Pathology</em> 146(2): 436–49. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1869863/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1869863/</a>.
+<div id="analysis-of-covariance" class="section level1" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Analysis of Covariance</h1>
+<div id="an-emphysema-study" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> An Emphysema Study</h2>
+<p>My source for this example is <span class="citation"><a href="references.html#ref-Riffenburgh2006" role="doc-biblioref">Riffenburgh</a> (<a href="references.html#ref-Riffenburgh2006" role="doc-biblioref">2006</a>)</span>, section 18.4. Serum theophylline levels (in mg/dl) were measured in 16 patients with emphysema at baseline, then 5 days later (at the end of a course of antibiotics) and then at 10 days after baseline. Clinicians anticipate that the antibiotic will increase the theophylline level. The data are stored in the <code>emphysema.csv</code> data file, and note that the age for patient 5 is not available.</p>
+<div id="codebook" class="section level3" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Codebook</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right"><code>patient</code></td>
+<td>ID code</td>
+</tr>
+<tr class="even">
+<td align="right"><code>age</code></td>
+<td>patient’s age in years</td>
+</tr>
+<tr class="odd">
+<td align="right"><code>sex</code></td>
+<td>patient’s sex (F or M)</td>
+</tr>
+<tr class="even">
+<td align="right"><code>st_base</code></td>
+<td>patient’s serum theophylline at baseline (mg/dl)</td>
+</tr>
+<tr class="odd">
+<td align="right"><code>st_day5</code></td>
+<td>patient’s serum theophylline at day 5 (mg/dl)</td>
+</tr>
+<tr class="even">
+<td align="right"><code>st_day10</code></td>
+<td>patient’s serum theophylline at day 10 (mg/dl)</td>
+</tr>
+</tbody>
+</table>
+<p>We’re going to look at the change from baseline to day 5 as our outcome of interest, since the clinical expectation is that the antibiotic (azithromycin) will increase theophylline levels.</p>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="analysis-of-covariance.html#cb473-1" aria-hidden="true" tabindex="-1"></a>emphysema <span class="ot">&lt;-</span> emphysema <span class="sc">%&gt;%</span> </span>
+<span id="cb473-2"><a href="analysis-of-covariance.html#cb473-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">st_delta =</span> st_day5 <span class="sc">-</span> st_base)</span>
+<span id="cb473-3"><a href="analysis-of-covariance.html#cb473-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb473-4"><a href="analysis-of-covariance.html#cb473-4" aria-hidden="true" tabindex="-1"></a>emphysema</span></code></pre></div>
+<pre><code># A tibble: 16 x 7
+   patient   age sex   st_base st_day5 st_day10 st_delta
+     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+ 1       1    61 F        14.1     2.3     10.3  -11.8  
+ 2       2    70 F         7.2     5.4      7.3   -1.8  
+ 3       3    65 M        14.2    11.9     11.3   -2.30 
+ 4       4    65 M        10.3    10.7     13.8    0.400
+ 5       5    NA M         9.9    10.7     11.7    0.800
+ 6       6    76 M         5.2     6.8      4.2    1.60 
+ 7       7    72 M        10.4    14.6     14.1    4.20 
+ 8       8    69 F        10.5     7.2      5.4   -3.3  
+ 9       9    66 M         5       5        5.1    0    
+10      10    62 M         8.6     8.1      7.4   -0.5  
+11      11    65 F        16.6    14.9     13     -1.7  
+12      12    71 M        16.4    18.6     17.1    2.2  
+13      13    51 F        12.2    11       12.3   -1.20 
+14      14    71 M         6.6     3.7      4.5   -2.90 
+15      15    64 F        15.4    15.2     13.6   -0.2  
+16      16    50 M        10.2    10.8     11.2    0.6  </code></pre>
 </div>
-<div id="ref-Berkhemer2015" class="csl-entry">
-Berkhemer, Olvert A., Puck S. S. Fransen, Debbie Buemer, and others. 2015. <span>“A Randomized Trial of Intraarterial Treatment for Acute Ischemic Stroke.”</span> <em>New England Journal of Medicine</em> 372: 11–20. <a href="http://www.nejm.org/doi/full/10.1056/NEJMoa1411587">http://www.nejm.org/doi/full/10.1056/NEJMoa1411587</a>.
 </div>
-<div id="ref-GelmanHill2007" class="csl-entry">
-Gelman, Andrew, and Jennifer Hill. 2007. <em>Data Analysis Using Regression and Multilevel/Hierarchical Models</em>. New York: Cambridge University Press.
+<div id="does-sex-affect-the-mean-change-in-theophylline" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Does <code>sex</code> affect the mean change in theophylline?</h2>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="analysis-of-covariance.html#cb475-1" aria-hidden="true" tabindex="-1"></a>emphysema <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(st_delta)</span></code></pre></div>
+<pre><code>   min     Q1 median   Q3 max     mean       sd  n missing
+ -11.8 -1.925  -0.35 0.65 4.2 -0.99375 3.484149 16       0</code></pre>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="analysis-of-covariance.html#cb477-1" aria-hidden="true" tabindex="-1"></a>emphysema <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(st_delta <span class="sc">~</span> sex)</span></code></pre></div>
+<pre><code>  sex   min     Q1 median     Q3  max      mean       sd  n missing
+1   F -11.8 -2.925  -1.75 -1.325 -0.2 -3.333333 4.267864  6       0
+2   M  -2.9 -0.375   0.50  1.400  4.2  0.410000 2.067446 10       0</code></pre>
+<p>Overall, the mean change in theophylline during the course of the antibiotic is -0.99, but this is -3.33 for female patients and 0.41 for male patients.</p>
+<p>A one-way ANOVA model looks like this:</p>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="analysis-of-covariance.html#cb479-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex, <span class="at">data =</span> emphysema))</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: st_delta
+          Df  Sum Sq Mean Sq F value  Pr(&gt;F)  
+sex        1  52.547  52.547  5.6789 0.03189 *
+Residuals 14 129.542   9.253                  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The ANOVA F test finds a statistically significant difference between the mean <code>st_delta</code> among males and the mean <code>st_delta</code> among females. But is there more to the story?</p>
 </div>
-<div id="ref-Kim2014" class="csl-entry">
-Kim, Hae-Young. 2014. <span>“Statistical Notes for Clinical Researchers: Two-Way Analysis of Variance (ANOVA) - Exploring Possible Interaction Between Factors.”</span> <em>Restorative Dentistry &amp; Endodontics</em> 39(2): 143–47. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3978106/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3978106/</a>.
+<div id="is-there-an-association-between-age-and-sex-in-this-study" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Is there an association between <code>age</code> and <code>sex</code> in this study?</h2>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="analysis-of-covariance.html#cb481-1" aria-hidden="true" tabindex="-1"></a>emphysema <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(age <span class="sc">~</span> sex)</span></code></pre></div>
+<pre><code>  sex min    Q1 median Q3 max     mean       sd n missing
+1   F  51 61.75   64.5 68  70 63.33333 6.889606 6       0
+2   M  50 65.00   66.0 71  76 66.44444 7.568208 9       1</code></pre>
+<p>But we note that the male patients are also older than the female patients, on average (mean age for males is 66.4, for females 63.3)</p>
+<ul>
+<li>Does the fact that male patients are older affect change in theophylline level?</li>
+<li>And how should we deal with the one missing <code>age</code> value (in a male patient)?</li>
+</ul>
 </div>
-<div id="ref-RamseySchafer2002" class="csl-entry">
-Ramsey, Fred L., and Daniel W. Schafer. 2002. <em>The Statistical Sleuth: A Course in Methods of Data Analysis</em>. Second Edition. Pacific Grove, CA: Duxbury.
+<div id="adding-a-quantitative-covariate-age-to-the-model" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Adding a quantitative covariate, <code>age</code>, to the model</h2>
+<p>We could fit an ANOVA model to predict <code>st_delta</code> using <code>sex</code> and <code>age</code> directly, but only if we categorized <code>age</code> into two or more groups. Because <code>age</code> is not categorical, we cannot include it in an ANOVA. But if age is an influence, and we don’t adjust for it, it may well bias the outcome of our initial ANOVA. With a quantitative variable like <code>age</code>, we will need a method called ANCOVA, for <strong>analysis of covariance</strong>.</p>
+<div id="the-ancova-model" class="section level3" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> The ANCOVA model</h3>
+<p>ANCOVA in this case is just an ANOVA model with our outcome (<code>st_delta</code>) adjusted for a continuous covariate, called <code>age</code>. For the moment, we’ll ignore the one subject with missing <code>age</code> and simply fit the regression model with <code>sex</code> and <code>age</code>.</p>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="analysis-of-covariance.html#cb483-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">+</span> age, <span class="at">data =</span> emphysema))</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = st_delta ~ sex + age, data = emphysema)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-8.3352 -0.4789  0.6948  1.5580  3.5202 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)  
+(Intercept) -6.90266    7.92948  -0.871   0.4011  
+sexM         3.52466    1.75815   2.005   0.0681 .
+age          0.05636    0.12343   0.457   0.6561  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 3.255 on 12 degrees of freedom
+  (1 observation deleted due to missingness)
+Multiple R-squared:  0.2882,    Adjusted R-squared:  0.1696 
+F-statistic:  2.43 on 2 and 12 DF,  p-value: 0.13</code></pre>
+<p>This model assumes that the slope of the regression line between <code>st_delta</code> and <code>age</code> is the same for both sexes.</p>
+<p>Note that the model yields <code>st_delta</code> = -6.9 + 3.52 (<code>sex</code> = male) + 0.056 <code>age</code>, or</p>
+<ul>
+<li><code>st_delta</code> = -6.9 + 0.056 <code>age</code> for female patients, and</li>
+<li><code>st_delta</code> = (-6.9 + 3.52) + 0.056 <code>age</code> = -3.38 + 0.056 <code>age</code> for male patients.</li>
+</ul>
+<p>Note that we can test this assumption of equal slopes by fitting an alternative model (with a product term between <code>sex</code> and <code>age</code>) that doesn’t require the assumption, and we’ll do that later.</p>
 </div>
-<div id="ref-Riffenburgh2006" class="csl-entry">
-Riffenburgh, Robert H. 2006. <em>Statistics in Medicine</em>. Second Edition. Burlington, MA: Elsevier Academic Press.
+<div id="the-ancova-table" class="section level3" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> The ANCOVA Table</h3>
+<p>First, though, we’ll look at the ANCOVA table.</p>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="analysis-of-covariance.html#cb485-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">+</span> age, <span class="at">data =</span> emphysema))</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: st_delta
+          Df  Sum Sq Mean Sq F value  Pr(&gt;F)  
+sex        1  49.284  49.284  4.6507 0.05203 .
+age        1   2.209   2.209  0.2085 0.65612  
+Residuals 12 127.164  10.597                  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>When we tested <code>sex</code> without accounting for <code>age</code>, we found a <em>p</em> value of 0.032, which is less than our usual cutpoint of 0.05. But when we adjusted for <code>age</code>, we find that <code>sex</code> loses significance, even though <code>age</code> is not a significant influence on <code>st_delta</code> by itself, according to the ANCOVA table.</p>
 </div>
-<div id="ref-Rosenbaum2017" class="csl-entry">
-Rosenbaum, Paul R. 2017. <em>Observation and Experiment: An Introduction to Causal Inference</em>. Cambridge, MA: Harvard University Press.
 </div>
-<div id="ref-Roy2008" class="csl-entry">
-Roy, Denis, Mario Talajic, Stanley Nattel, and others. 2008. <span>“Rhythm Control Versus Rate Control for Atrial Fibrillation and Heart Failure.”</span> <em>New England Journal of Medicine</em> 358: 2667–77. <a href="http://www.nejm.org/doi/full/10.1056/NEJMoa0708789">http://www.nejm.org/doi/full/10.1056/NEJMoa0708789</a>.
+<div id="rerunning-the-ancova-model-after-simple-imputation" class="section level2" number="7.5">
+<h2><span class="header-section-number">7.5</span> Rerunning the ANCOVA model after simple imputation</h2>
+<p>We could have <em>imputed</em> the missing <code>age</code> value for patient 5, rather than just deleting that patient. Suppose we do the simplest potentially reasonable thing to do: insert the mean <code>age</code> in where the NA value currently exists.</p>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="analysis-of-covariance.html#cb487-1" aria-hidden="true" tabindex="-1"></a>emph_imp <span class="ot">&lt;-</span> <span class="fu">replace_na</span>(emphysema, <span class="fu">list</span>(<span class="at">age =</span> <span class="fu">mean</span>(emphysema<span class="sc">$</span>age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span>
+<span id="cb487-2"><a href="analysis-of-covariance.html#cb487-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb487-3"><a href="analysis-of-covariance.html#cb487-3" aria-hidden="true" tabindex="-1"></a>emph_imp</span></code></pre></div>
+<pre><code># A tibble: 16 x 7
+   patient   age sex   st_base st_day5 st_day10 st_delta
+     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+ 1       1  61   F        14.1     2.3     10.3  -11.8  
+ 2       2  70   F         7.2     5.4      7.3   -1.8  
+ 3       3  65   M        14.2    11.9     11.3   -2.30 
+ 4       4  65   M        10.3    10.7     13.8    0.400
+ 5       5  65.2 M         9.9    10.7     11.7    0.800
+ 6       6  76   M         5.2     6.8      4.2    1.60 
+ 7       7  72   M        10.4    14.6     14.1    4.20 
+ 8       8  69   F        10.5     7.2      5.4   -3.3  
+ 9       9  66   M         5       5        5.1    0    
+10      10  62   M         8.6     8.1      7.4   -0.5  
+11      11  65   F        16.6    14.9     13     -1.7  
+12      12  71   M        16.4    18.6     17.1    2.2  
+13      13  51   F        12.2    11       12.3   -1.20 
+14      14  71   M         6.6     3.7      4.5   -2.90 
+15      15  64   F        15.4    15.2     13.6   -0.2  
+16      16  50   M        10.2    10.8     11.2    0.6  </code></pre>
+<p>More on simple imputation and missing data is coming soon.</p>
+<p>For now, we can rerun the ANCOVA model on this new data set, after imputation…</p>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="analysis-of-covariance.html#cb489-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">+</span> age, <span class="at">data =</span> emph_imp))</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: st_delta
+          Df  Sum Sq Mean Sq F value  Pr(&gt;F)  
+sex        1  52.547  52.547  5.3623 0.03755 *
+age        1   2.151   2.151  0.2195 0.64721  
+Residuals 13 127.392   9.799                  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>When we do this, we see that now the <code>sex</code> variable returns to a <em>p</em> value below 0.05. Our complete case analysis (which omitted patient 5) gives us a different result than the ANCOVA based on the data after mean imputation.</p>
 </div>
-<div id="ref-Tolaney2015" class="csl-entry">
-Tolaney, Sara M, William T. Barry, T. Dang Chau, and others. 2015. <span>“Adjuvant Paclitaxel and Trastuzumab for Node-Negative, Her2-Positive Breast Cancer.”</span> <em>New England Journal of Medicine</em> 372: 134–41. <a href="http://www.nejm.org/doi/full/10.1056/NEJMoa1406281">http://www.nejm.org/doi/full/10.1056/NEJMoa1406281</a>.
+<div id="looking-at-a-factor-covariate-interaction" class="section level2" number="7.6">
+<h2><span class="header-section-number">7.6</span> Looking at a factor-covariate interaction</h2>
+<p>Let’s run a model including the interaction (product) term between <code>age</code> and <code>sex</code>, which implies that the slope of <code>age</code> on our outcome (<code>st_delta</code>) depends on the patient’s sex. We’ll use the imputed data again. Here is the new ANCOVA table, which suggests that the interaction of <code>age</code> and <code>sex</code> is small (because it accounts for only a small amount of the total Sum of Squares) and not significant (p = 0.91).</p>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="analysis-of-covariance.html#cb491-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">*</span> age, <span class="at">data =</span> emph_imp))</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: st_delta
+          Df  Sum Sq Mean Sq F value  Pr(&gt;F)  
+sex        1  52.547  52.547  4.9549 0.04594 *
+age        1   2.151   2.151  0.2028 0.66051  
+sex:age    1   0.130   0.130  0.0123 0.91355  
+Residuals 12 127.261  10.605                  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Since the interaction term is neither substantial nor significant, we probably don’t need it here. But let’s look at its interpretation anyway, just to fix ideas. To do that, we’ll need the coefficients from the underlying regression model.</p>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="analysis-of-covariance.html#cb493-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">*</span> age, <span class="at">data =</span> emph_imp))</span></code></pre></div>
+<pre><code># A tibble: 4 x 5
+  term        estimate std.error statistic p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+1 (Intercept)  -5.65      13.5      -0.420   0.682
+2 sexM          1.72      16.8       0.102   0.920
+3 age           0.0365     0.211     0.173   0.866
+4 sexM:age      0.0289     0.260     0.111   0.914</code></pre>
+<p>Our ANCOVA model for <code>st_delta</code> incorporating the <code>age</code> x <code>sex</code> product term is -5.65 + 1.72 (sex = M) + 0.037 age + 0.029 (sex = M)(age). So that means:</p>
+<ul>
+<li>our model for females is <code>st_delta</code> = -5.65 + 0.037 <code>age</code></li>
+<li>our model for males is <code>st_delta</code> = (-5.65 + 1.72) + (0.037 + 0.029) <code>age</code>, or -3.93 + 0.066 <code>age</code></li>
+</ul>
+<p>but, again, our conclusion from the ANCOVA table is that this increase in complexity (letting both the slope and intercept vary by <code>sex</code>) doesn’t add much in the way of predictive value for our <code>st_delta</code> outcome.</p>
+</div>
+<div id="centering-the-covariate-to-facilitate-ancova-interpretation" class="section level2" number="7.7">
+<h2><span class="header-section-number">7.7</span> Centering the Covariate to Facilitate ANCOVA Interpretation</h2>
+<p>When developing an ANCOVA model, we will often <strong>center</strong> or even <strong>center and rescale</strong> the covariate to facilitate interpretation of the product term. In this case, let’s center <code>age</code> and rescale it by dividing by two standard deviations.</p>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="analysis-of-covariance.html#cb495-1" aria-hidden="true" tabindex="-1"></a>emph_imp <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(age)</span></code></pre></div>
+<pre><code> min   Q1 median    Q3 max mean       sd  n missing
+  50 63.5   65.1 70.25  76 65.2 6.978061 16       0</code></pre>
+<p>Note that in our imputed data, the mean <code>age</code> is 65.2 and the standard deviation of <code>age</code> is 7 years.</p>
+<p>So we build the rescaled <code>age</code> variable that I’ll call <code>age_z</code>, and then use it to refit our model.</p>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="analysis-of-covariance.html#cb497-1" aria-hidden="true" tabindex="-1"></a>emph_imp <span class="ot">&lt;-</span> emph_imp <span class="sc">%&gt;%</span></span>
+<span id="cb497-2"><a href="analysis-of-covariance.html#cb497-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">age_z =</span> (age <span class="sc">-</span> <span class="fu">mean</span>(age))<span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">sd</span>(age)))</span>
+<span id="cb497-3"><a href="analysis-of-covariance.html#cb497-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb497-4"><a href="analysis-of-covariance.html#cb497-4" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">*</span> age_z, <span class="at">data =</span> emph_imp))</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: st_delta
+          Df  Sum Sq Mean Sq F value  Pr(&gt;F)  
+sex        1  52.547  52.547  4.9549 0.04594 *
+age_z      1   2.151   2.151  0.2028 0.66051  
+sex:age_z  1   0.130   0.130  0.0123 0.91355  
+Residuals 12 127.261  10.605                  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="analysis-of-covariance.html#cb499-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">*</span> age_z, <span class="at">data =</span> emph_imp))</span></code></pre></div>
+<pre><code># A tibble: 4 x 5
+  term        estimate std.error statistic p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+1 (Intercept)   -3.27       1.39    -2.35   0.0364
+2 sexM           3.60       1.74     2.08   0.0601
+3 age_z          0.510      2.95     0.173  0.866 
+4 sexM:age_z     0.403      3.63     0.111  0.914 </code></pre>
+<p>Comparing the two models, we have:</p>
+<ul>
+<li>(unscaled): <code>st_delta</code> = -5.65 + 1.72 (<code>sex</code> = M) + 0.037 <code>age</code> + 0.029 (<code>sex</code> = M) x (<code>age</code>)</li>
+<li>(rescaled): <code>st_delta</code> = -3.27 + 3.60 (<code>sex</code> = M) + 0.510 rescaled <code>age_z</code> + 0.402 (<code>sex</code> = M) x (rescaled <code>age_z</code>)</li>
+</ul>
+<p>In essence, the rescaled model on <code>age_z</code> is:</p>
+<ul>
+<li><code>st_delta</code> = -3.27 + 0.510 <code>age_z</code> for female subjects, and</li>
+<li><code>st_delta</code> = (-3.27 + 3.60) + (0.510 + 0.402) <code>age_z</code> = 0.33 + 0.912 <code>age_z</code> for male subjects</li>
+</ul>
+<p>Interpreting the centered, rescaled model, we have:</p>
+<ul>
+<li>no change in the ANOVA results or R-squared or residual standard deviation compared to the uncentered, unscaled model, but</li>
+<li>the intercept (-3.27) now represents the <code>st_delta</code> for a female of average age,</li>
+<li>the <code>sex</code> slope (3.60) represents the (male - female) difference in predicted <code>st_delta</code> for a person of average age,</li>
+<li>the <code>age_z</code> slope (0.510) represents the difference in predicted <code>st_delta</code> for a female one standard deviation older than the mean age as compared to a female one standard deviation younger than the mean age, and</li>
+<li>the product term’s slope (0.402) represents the male - female difference in the slope of <code>age_z</code>, so that if you add the <code>age_z</code> slope (0.510) and the interaction slope (0.402) you see the difference in predicted <code>st_delta</code> for a male one standard deviation older than the mean age as compared to a male one standard deviation younger than the mean age.</li>
+</ul>
+
 </div>
 </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="analysis-of-covariance-with-the-smart-data.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="analysis-of-variance.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="analysis-of-covariance-with-the-smart-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

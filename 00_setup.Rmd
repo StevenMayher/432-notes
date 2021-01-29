@@ -44,7 +44,7 @@ library(tidymodels)
 library(tidyverse) 
 ```
 
-## Dealing with Conflicts
+## Dealing with Conflicts {-}
 
 I'm loading a lot of packages here, and sometimes individual functions are in conflict. R's default conflict resolution system gives precedence to the most recently loaded package. This can make it hard to detect conflicts, particularly when introduced by an update to an existing package.
 
