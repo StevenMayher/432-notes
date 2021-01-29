@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Dealing with Missingness: Single Imputation | Data Science for Biological, Medical and Health Research: Notes for 432</title>
+  <meta name="description" content="Course Notes for PQHS 432 in Spring 2021." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Dealing with Missingness: Single Imputation | Data Science for Biological, Medical and Health Research: Notes for 432" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Course Notes for PQHS 432 in Spring 2021." />
+  <meta name="github-repo" content="thomaselove/432-notes" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Dealing with Missingness: Single Imputation | Data Science for Biological, Medical and Health Research: Notes for 432" />
+  
+  <meta name="twitter:description" content="Course Notes for PQHS 432 in Spring 2021." />
+  
+
+<meta name="author" content="Thomas E. Love, Ph.D." />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="brfss-smart-data-building.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="r-packages-used-in-these-notes.html"><a href="r-packages-used-in-these-notes.html"><i class="fa fa-check"></i>R Packages used in these notes</a>
+<ul>
+<li><a href="r-packages-used-in-these-notes.html#general-theme-for-ggplot-work">General Theme for <code>ggplot</code> work</a></li>
+<li class="chapter" data-level="" data-path="r-packages-used-in-these-notes.html"><a href="r-packages-used-in-these-notes.html#data-used-in-these-notes"><i class="fa fa-check"></i>Data used in these notes</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="building-table-1.html"><a href="building-table-1.html"><i class="fa fa-check"></i><b>1</b> Building Table 1</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="building-table-1.html"><a href="building-table-1.html#data-load"><i class="fa fa-check"></i><b>1.1</b> Data load</a></li>
+<li class="chapter" data-level="1.2" data-path="building-table-1.html"><a href="building-table-1.html#two-examples-from-the-new-england-journal-of-medicine"><i class="fa fa-check"></i><b>1.2</b> Two examples from the <em>New England Journal of Medicine</em></a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="building-table-1.html"><a href="building-table-1.html#a-simple-table-1"><i class="fa fa-check"></i><b>1.2.1</b> A simple Table 1</a></li>
+<li class="chapter" data-level="1.2.2" data-path="building-table-1.html"><a href="building-table-1.html#a-group-comparison"><i class="fa fa-check"></i><b>1.2.2</b> A group comparison</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="building-table-1.html"><a href="building-table-1.html#the-mr-clean-trial"><i class="fa fa-check"></i><b>1.3</b> The MR CLEAN trial</a></li>
+<li class="chapter" data-level="1.4" data-path="building-table-1.html"><a href="building-table-1.html#simulated-fakestroke-data"><i class="fa fa-check"></i><b>1.4</b> Simulated <code>fakestroke</code> data</a></li>
+<li class="chapter" data-level="1.5" data-path="building-table-1.html"><a href="building-table-1.html#building-table-1-for-fakestroke-attempt-1"><i class="fa fa-check"></i><b>1.5</b> Building Table 1 for <code>fakestroke</code>: Attempt 1</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="building-table-1.html"><a href="building-table-1.html#some-of-this-is-very-useful-and-other-parts-need-to-be-fixed."><i class="fa fa-check"></i><b>1.5.1</b> Some of this is very useful, and other parts need to be fixed.</a></li>
+<li class="chapter" data-level="1.5.2" data-path="building-table-1.html"><a href="building-table-1.html#fakestroke-cleaning-up-categorical-variables"><i class="fa fa-check"></i><b>1.5.2</b> <code>fakestroke</code> Cleaning Up Categorical Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="building-table-1.html"><a href="building-table-1.html#fakestroke-table-1-attempt-2"><i class="fa fa-check"></i><b>1.6</b> <code>fakestroke</code> Table 1: Attempt 2</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="building-table-1.html"><a href="building-table-1.html#what-summaries-should-we-show"><i class="fa fa-check"></i><b>1.6.1</b> What summaries should we show?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="building-table-1.html"><a href="building-table-1.html#obtaining-a-more-detailed-summary"><i class="fa fa-check"></i><b>1.7</b> Obtaining a more detailed Summary</a></li>
+<li class="chapter" data-level="1.8" data-path="building-table-1.html"><a href="building-table-1.html#exporting-the-completed-table-1-from-r-to-excel-or-word"><i class="fa fa-check"></i><b>1.8</b> Exporting the Completed Table 1 from R to Excel or Word</a>
+<ul>
+<li class="chapter" data-level="1.8.1" data-path="building-table-1.html"><a href="building-table-1.html#approach-a-save-and-open-in-excel"><i class="fa fa-check"></i><b>1.8.1</b> Approach A: Save and open in Excel</a></li>
+<li class="chapter" data-level="1.8.2" data-path="building-table-1.html"><a href="building-table-1.html#approach-b-produce-the-table-so-you-can-cut-and-paste-it"><i class="fa fa-check"></i><b>1.8.2</b> Approach B: Produce the Table so you can cut and paste it</a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="building-table-1.html"><a href="building-table-1.html#a-controlled-biological-experiment---the-blood-brain-barrier"><i class="fa fa-check"></i><b>1.9</b> A Controlled Biological Experiment - The Blood-Brain Barrier</a></li>
+<li class="chapter" data-level="1.10" data-path="building-table-1.html"><a href="building-table-1.html#the-bloodbrain.csv-file"><i class="fa fa-check"></i><b>1.10</b> The <code>bloodbrain.csv</code> file</a></li>
+<li class="chapter" data-level="1.11" data-path="building-table-1.html"><a href="building-table-1.html#a-table-1-for-bloodbrain"><i class="fa fa-check"></i><b>1.11</b> A Table 1 for <code>bloodbrain</code></a>
+<ul>
+<li class="chapter" data-level="1.11.1" data-path="building-table-1.html"><a href="building-table-1.html#generate-final-table-1-for-bloodbrain"><i class="fa fa-check"></i><b>1.11.1</b> Generate final Table 1 for <code>bloodbrain</code></a></li>
+<li class="chapter" data-level="1.11.2" data-path="building-table-1.html"><a href="building-table-1.html#a-more-finished-version-after-cleanup-in-word"><i class="fa fa-check"></i><b>1.11.2</b> A More Finished Version (after Cleanup in Word)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html"><i class="fa fa-check"></i><b>2</b> BRFSS SMART Data Building</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#key-resources"><i class="fa fa-check"></i><b>2.1</b> Key resources</a></li>
+<li class="chapter" data-level="2.2" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#ingesting-the-raw-data"><i class="fa fa-check"></i><b>2.2</b> Ingesting the Raw Data</a></li>
+<li class="chapter" data-level="2.3" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#ingesting-from-our-csv-file"><i class="fa fa-check"></i><b>2.3</b> Ingesting from our CSV file</a></li>
+<li class="chapter" data-level="2.4" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#what-does-the-raw-data-look-like"><i class="fa fa-check"></i><b>2.4</b> What does the raw data look like?</a></li>
+<li class="chapter" data-level="2.5" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#cleaning-the-brfss-data"><i class="fa fa-check"></i><b>2.5</b> Cleaning the BRFSS Data</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#identifying-information"><i class="fa fa-check"></i><b>2.5.1</b> Identifying Information</a></li>
+<li class="chapter" data-level="2.5.2" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#survey-method"><i class="fa fa-check"></i><b>2.5.2</b> Survey Method</a></li>
+<li class="chapter" data-level="2.5.3" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#health-status-1-item"><i class="fa fa-check"></i><b>2.5.3</b> Health Status (1 item)</a></li>
+<li class="chapter" data-level="2.5.4" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#healthy-days---health-related-quality-of-life-3-items"><i class="fa fa-check"></i><b>2.5.4</b> Healthy Days - Health-Related Quality of Life (3 items)</a></li>
+<li class="chapter" data-level="2.5.5" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#health-care-access-4-items"><i class="fa fa-check"></i><b>2.5.5</b> Health Care Access (4 items)</a></li>
+<li class="chapter" data-level="2.5.6" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#blood-pressure-2-measures"><i class="fa fa-check"></i><b>2.5.6</b> Blood Pressure (2 measures)</a></li>
+<li class="chapter" data-level="2.5.7" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#cholesterol-3-items"><i class="fa fa-check"></i><b>2.5.7</b> Cholesterol (3 items)</a></li>
+<li class="chapter" data-level="2.5.8" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#chronic-health-conditions-14-items"><i class="fa fa-check"></i><b>2.5.8</b> Chronic Health Conditions (14 items)</a></li>
+<li class="chapter" data-level="2.5.9" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#arthritis-burden-4-items"><i class="fa fa-check"></i><b>2.5.9</b> Arthritis Burden (4 items)</a></li>
+<li class="chapter" data-level="2.5.10" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#demographics-25-items"><i class="fa fa-check"></i><b>2.5.10</b> Demographics (25 items)</a></li>
+<li class="chapter" data-level="2.5.11" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#tobacco-use-2-items"><i class="fa fa-check"></i><b>2.5.11</b> Tobacco Use (2 items)</a></li>
+<li class="chapter" data-level="2.5.12" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#e-cigarettes-2-items"><i class="fa fa-check"></i><b>2.5.12</b> E-Cigarettes (2 items)</a></li>
+<li class="chapter" data-level="2.5.13" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#alcohol-consumption-6-items"><i class="fa fa-check"></i><b>2.5.13</b> Alcohol Consumption (6 items)</a></li>
+<li class="chapter" data-level="2.5.14" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#fruits-and-vegetables-8-items"><i class="fa fa-check"></i><b>2.5.14</b> Fruits and Vegetables (8 items)</a></li>
+<li class="chapter" data-level="2.5.15" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#exercise-and-physical-activity-8-items"><i class="fa fa-check"></i><b>2.5.15</b> Exercise and Physical Activity (8 items)</a></li>
+<li class="chapter" data-level="2.5.16" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#seatbelt-use-1-item"><i class="fa fa-check"></i><b>2.5.16</b> Seatbelt Use (1 item)</a></li>
+<li class="chapter" data-level="2.5.17" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#immunization-3-items"><i class="fa fa-check"></i><b>2.5.17</b> Immunization (3 items)</a></li>
+<li class="chapter" data-level="2.5.18" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#hivaids-2-items"><i class="fa fa-check"></i><b>2.5.18</b> HIV/AIDS (2 items)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#imputing-age-and-income-as-quantitative-from-thin-air"><i class="fa fa-check"></i><b>2.6</b> Imputing Age and Income as Quantitative from Thin Air</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#age_imp-imputing-age-data"><i class="fa fa-check"></i><b>2.6.1</b> <code>age_imp</code>: Imputing Age Data</a></li>
+<li class="chapter" data-level="2.6.2" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#inc_imp-imputing-income-data"><i class="fa fa-check"></i><b>2.6.2</b> <code>inc_imp</code>: Imputing Income Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#clean-data-in-the-state-of-ohio"><i class="fa fa-check"></i><b>2.7</b> Clean Data in the State of Ohio</a></li>
+<li class="chapter" data-level="2.8" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#clean-cleveland-elyria-data"><i class="fa fa-check"></i><b>2.8</b> Clean Cleveland-Elyria Data</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="brfss-smart-data-building.html"><a href="brfss-smart-data-building.html#cleveland---elyria-data"><i class="fa fa-check"></i><b>2.8.1</b> Cleveland - Elyria Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html"><i class="fa fa-check"></i><b>3</b> Dealing with Missingness: Single Imputation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#selecting-some-variables-from-the-smart_cle-data"><i class="fa fa-check"></i><b>3.1</b> Selecting Some Variables from the <code>smart_cle</code> data</a></li>
+<li class="chapter" data-level="3.2" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#smart_cle1-seeing-our-missing-data"><i class="fa fa-check"></i><b>3.2</b> <code>smart_cle1</code>: Seeing our Missing Data</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#plotting-missingness"><i class="fa fa-check"></i><b>3.2.1</b> Plotting Missingness</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#missing-data-mechanisms"><i class="fa fa-check"></i><b>3.3</b> Missing-data mechanisms</a></li>
+<li class="chapter" data-level="3.4" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#options-for-dealing-with-missingness"><i class="fa fa-check"></i><b>3.4</b> Options for Dealing with Missingness</a></li>
+<li class="chapter" data-level="3.5" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#complete-case-and-available-case-analyses"><i class="fa fa-check"></i><b>3.5</b> Complete Case (and Available Case) analyses</a></li>
+<li class="chapter" data-level="3.6" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#single-imputation"><i class="fa fa-check"></i><b>3.6</b> Single Imputation</a></li>
+<li class="chapter" data-level="3.7" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#multiple-imputation"><i class="fa fa-check"></i><b>3.7</b> Multiple Imputation</a></li>
+<li class="chapter" data-level="3.8" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#approach-1-building-a-complete-case-analysis-smart_cle1_cc"><i class="fa fa-check"></i><b>3.8</b> Approach 1: Building a Complete Case Analysis: <code>smart_cle1_cc</code></a></li>
+<li class="chapter" data-level="3.9" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#approach-2-single-imputation-to-create-smart_cle1_sh"><i class="fa fa-check"></i><b>3.9</b> Approach 2: Single Imputation to create <code>smart_cle1_sh</code></a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#what-type-of-missingness-do-we-have"><i class="fa fa-check"></i><b>3.9.1</b> What Type of Missingness Do We Have?</a></li>
+<li class="chapter" data-level="3.9.2" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#single-imputation-into-smart_cle1_sh"><i class="fa fa-check"></i><b>3.9.2</b> Single imputation into <code>smart_cle1_sh</code></a></li>
+<li class="chapter" data-level="3.9.3" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#imputing-binary-categorical-variables"><i class="fa fa-check"></i><b>3.9.3</b> Imputing Binary Categorical Variables</a></li>
+<li class="chapter" data-level="3.9.4" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#imputing-quantitative-variables"><i class="fa fa-check"></i><b>3.9.4</b> Imputing Quantitative Variables</a></li>
+<li class="chapter" data-level="3.9.5" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#imputation-results"><i class="fa fa-check"></i><b>3.9.5</b> Imputation Results</a></li>
+<li class="chapter" data-level="3.9.6" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#imputing-multi-categorical-variables"><i class="fa fa-check"></i><b>3.9.6</b> Imputing Multi-Categorical Variables</a></li>
+<li class="chapter" data-level="3.9.7" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#saving-the-new-tibbles"><i class="fa fa-check"></i><b>3.9.7</b> Saving the new tibbles</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Science for Biological, Medical and Health Research: Notes for 432</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="dealing-with-missingness-single-imputation" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Dealing with Missingness: Single Imputation</h1>
+<div id="selecting-some-variables-from-the-smart_cle-data" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Selecting Some Variables from the <code>smart_cle</code> data</h2>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="dealing-with-missingness-single-imputation.html#cb226-1" aria-hidden="true" tabindex="-1"></a>smart_cle <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/smart_cle.Rds&quot;</span>)</span>
+<span id="cb226-2"><a href="dealing-with-missingness-single-imputation.html#cb226-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb226-3"><a href="dealing-with-missingness-single-imputation.html#cb226-3" aria-hidden="true" tabindex="-1"></a>smart_cle1 <span class="ot">&lt;-</span> smart_cle <span class="sc">%&gt;%</span> </span>
+<span id="cb226-4"><a href="dealing-with-missingness-single-imputation.html#cb226-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(SEQNO, physhealth, genhealth, bmi, </span>
+<span id="cb226-5"><a href="dealing-with-missingness-single-imputation.html#cb226-5" aria-hidden="true" tabindex="-1"></a>         age_imp, female, race_eth, internet30, </span>
+<span id="cb226-6"><a href="dealing-with-missingness-single-imputation.html#cb226-6" aria-hidden="true" tabindex="-1"></a>         smoke100, activity, drinks_wk, veg_day)</span></code></pre></div>
+<p>The <code>smart_cle.Rds</code> data file available on the Data and Code page of <a href="https://github.com/THOMASELOVE/2020-432">our website</a> describes information on 99 variables for 1133 respondents to the BRFSS 2017, who live in the Cleveland-Elyria, OH, Metropolitan Statistical Area. The variables in the <code>smart_cle1.csv</code> file are listed below, along with the items that generate these responses.</p>
+<table>
+<colgroup>
+<col width="15%" />
+<col width="84%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right"><code>SEQNO</code></td>
+<td>respondent identification number (all begin with 2016)</td>
+</tr>
+<tr class="even">
+<td align="right"><code>physhealth</code></td>
+<td>Now thinking about your physical health, which includes physical illness and injury, for how many days during the past 30 days was your physical health not good?</td>
+</tr>
+<tr class="odd">
+<td align="right"><code>genhealth</code></td>
+<td>Would you say that in general, your health is … (five categories: Excellent, Very Good, Good, Fair or Poor)</td>
+</tr>
+<tr class="even">
+<td align="right"><code>bmi</code></td>
+<td>Body mass index, in kg/m<sup>2</sup></td>
+</tr>
+<tr class="odd">
+<td align="right"><code>age_imp</code></td>
+<td>Age, imputed, in years</td>
+</tr>
+<tr class="even">
+<td align="right"><code>female</code></td>
+<td>Sex, 1 = female, 0 = male</td>
+</tr>
+<tr class="odd">
+<td align="right"><code>race_eth</code></td>
+<td>Race and Ethnicity, in five categories</td>
+</tr>
+<tr class="even">
+<td align="right"><code>internet30</code></td>
+<td>Have you used the internet in the past 30 days? (1 = yes, 0 = no)</td>
+</tr>
+<tr class="odd">
+<td align="right"><code>smoke100</code></td>
+<td>Have you smoked at least 100 cigarettes in your life? (1 = yes, 0 = no)</td>
+</tr>
+<tr class="even">
+<td align="right"><code>activity</code></td>
+<td>Physical activity (Highly Active, Active, Insufficiently Active, Inactive)</td>
+</tr>
+<tr class="odd">
+<td align="right"><code>drinks_wk</code></td>
+<td>On average, how many drinks of alcohol do you consume in a week?</td>
+</tr>
+<tr class="even">
+<td align="right"><code>veg_day</code></td>
+<td>How many servings of vegetables do you consume per day, on average?</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="dealing-with-missingness-single-imputation.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(smart_cle1)</span></code></pre></div>
+<pre><code>tibble [1,133 x 12] (S3: tbl_df/tbl/data.frame)
+ $ SEQNO     : num [1:1133] 2.02e+09 2.02e+09 2.02e+09 2.02e+09 2.02e+09 ...
+ $ physhealth: num [1:1133] 4 0 0 0 0 2 2 0 0 0 ...
+ $ genhealth : Factor w/ 5 levels &quot;1_Excellent&quot;,..: 1 1 3 3 3 2 3 2 4 1 ...
+ $ bmi       : num [1:1133] NA 23.1 26.9 26.5 24.2 ...
+ $ age_imp   : num [1:1133] 51 28 37 36 88 43 23 34 58 54 ...
+ $ female    : num [1:1133] 1 1 1 1 0 0 0 0 0 1 ...
+ $ race_eth  : Factor w/ 5 levels &quot;White non-Hispanic&quot;,..: 1 1 3 1 1 1 1 3 2 1 ...
+ $ internet30: num [1:1133] 1 1 0 1 1 1 1 1 1 1 ...
+ $ smoke100  : num [1:1133] 1 0 0 1 1 1 0 0 0 1 ...
+ $ activity  : Factor w/ 4 levels &quot;Highly_Active&quot;,..: 4 4 3 1 1 NA 1 1 1 1 ...
+ $ drinks_wk : num [1:1133] 0.7 0 0 4.67 0.93 0 2 0 0 0.47 ...
+ $ veg_day   : num [1:1133] NA 3 4.06 2.07 1.31 NA 1.57 0.83 0.49 1.72 ...</code></pre>
+</div>
+<div id="smart_cle1-seeing-our-missing-data" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> <code>smart_cle1</code>: Seeing our Missing Data</h2>
+<p>The <code>naniar</code> package provides several useful functions for summarizing missingness in our data set. Like all tidy data sets, our <code>smart_cle1</code> tibble contains rows which describe observations, sometimes called <em>cases</em>, and also contains columns which describe variables.</p>
+<p>Overall, there are 1133 cases, and 1133 observations in our <code>smart_cle1</code> tibble.</p>
+<ul>
+<li>We can obtain a count of the number of missing cells in the entire tibble.</li>
+</ul>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="dealing-with-missingness-single-imputation.html#cb229-1" aria-hidden="true" tabindex="-1"></a>smart_cle1 <span class="sc">%&gt;%</span> <span class="fu">n_miss</span>()</span></code></pre></div>
+<pre><code>[1] 479</code></pre>
+<ul>
+<li>We can use the <code>miss_var_summary</code> function to get a sorted table of each variable by number missing.</li>
+</ul>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="dealing-with-missingness-single-imputation.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="fu">miss_var_summary</span>(smart_cle1) <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+variable
+</th>
+<th style="text-align:right;">
+n_miss
+</th>
+<th style="text-align:right;">
+pct_miss
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+activity
+</td>
+<td style="text-align:right;">
+109
+</td>
+<td style="text-align:right;">
+9.6204766
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+veg_day
+</td>
+<td style="text-align:right;">
+101
+</td>
+<td style="text-align:right;">
+8.9143866
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bmi
+</td>
+<td style="text-align:right;">
+91
+</td>
+<td style="text-align:right;">
+8.0317741
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+drinks_wk
+</td>
+<td style="text-align:right;">
+66
+</td>
+<td style="text-align:right;">
+5.8252427
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+smoke100
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:right;">
+3.5304501
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+race_eth
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+2.2947926
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+physhealth
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+2.1182701
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+age_imp
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0.9708738
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+internet30
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+0.6178288
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+genhealth
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.3530450
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SEQNO
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+female
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Or we can use the <code>miss_var_table</code> function to tabulate the number of variables that have each observed level of missingness.</li>
+</ul>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="dealing-with-missingness-single-imputation.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="fu">miss_var_table</span>(smart_cle1) </span></code></pre></div>
+<pre><code># A tibble: 11 x 3
+   n_miss_in_var n_vars pct_vars
+ *         &lt;int&gt;  &lt;int&gt;    &lt;dbl&gt;
+ 1             0      2    16.7 
+ 2             4      1     8.33
+ 3             7      1     8.33
+ 4            11      1     8.33
+ 5            24      1     8.33
+ 6            26      1     8.33
+ 7            40      1     8.33
+ 8            66      1     8.33
+ 9            91      1     8.33
+10           101      1     8.33
+11           109      1     8.33</code></pre>
+<ul>
+<li>Or we can get a count for a specific variable, like <code>activity</code>:</li>
+</ul>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="dealing-with-missingness-single-imputation.html#cb234-1" aria-hidden="true" tabindex="-1"></a>smart_cle1 <span class="sc">%&gt;%</span> <span class="fu">select</span>(activity) <span class="sc">%&gt;%</span> <span class="fu">n_miss</span>()</span></code></pre></div>
+<pre><code>[1] 109</code></pre>
+<ul>
+<li>We can also use <code>prop_miss_case</code> or <code>pct_miss_case</code> to specify the proportion (or percentage) of missing observations across an entire data set, or within a specific variable.</li>
+</ul>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="dealing-with-missingness-single-imputation.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop_miss_case</span>(smart_cle1)</span></code></pre></div>
+<pre><code>[1] 0.2127096</code></pre>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="dealing-with-missingness-single-imputation.html#cb238-1" aria-hidden="true" tabindex="-1"></a>smart_cle1 <span class="sc">%&gt;%</span> <span class="fu">select</span>(activity) <span class="sc">%&gt;%</span> <span class="fu">pct_miss_case</span>(.)</span></code></pre></div>
+<pre><code>[1] 9.620477</code></pre>
+<ul>
+<li>We can also use <code>prop_miss_var</code> or <code>pct_miss_var</code> to specify the proportion (or percentage) of variables with missing observations across an entire data set.</li>
+</ul>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="dealing-with-missingness-single-imputation.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop_miss_var</span>(smart_cle1)</span></code></pre></div>
+<pre><code>[1] 0.8333333</code></pre>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="dealing-with-missingness-single-imputation.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pct_miss_var</span>(smart_cle1)</span></code></pre></div>
+<pre><code>[1] 83.33333</code></pre>
+<ul>
+<li>We use <code>miss_case_table</code> to identify the number of missing values for each of the cases (rows) in our tibble.</li>
+</ul>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="dealing-with-missingness-single-imputation.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="fu">miss_case_table</span>(smart_cle1)</span></code></pre></div>
+<pre><code># A tibble: 7 x 3
+  n_miss_in_case n_cases pct_cases
+*          &lt;int&gt;   &lt;int&gt;     &lt;dbl&gt;
+1              0     892    78.7  
+2              1     129    11.4  
+3              2      51     4.50 
+4              3      22     1.94 
+5              4      21     1.85 
+6              5      10     0.883
+7              6       8     0.706</code></pre>
+<ul>
+<li>Use <code>miss_case_summary</code> to specify individual observations and count their missing values.</li>
+</ul>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="dealing-with-missingness-single-imputation.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="fu">miss_case_summary</span>(smart_cle1)</span></code></pre></div>
+<pre><code># A tibble: 1,133 x 3
+    case n_miss pct_miss
+   &lt;int&gt;  &lt;int&gt;    &lt;dbl&gt;
+ 1    17      6     50  
+ 2    42      6     50  
+ 3   254      6     50  
+ 4   425      6     50  
+ 5   521      6     50  
+ 6   729      6     50  
+ 7   757      6     50  
+ 8  1051      6     50  
+ 9    89      5     41.7
+10    94      5     41.7
+# ... with 1,123 more rows</code></pre>
+<p>The case numbers identified here are row numbers. Extract the data for case 17, for instance, with the <code>slice</code> function.</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="dealing-with-missingness-single-imputation.html#cb248-1" aria-hidden="true" tabindex="-1"></a>smart_cle1 <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">17</span>)</span></code></pre></div>
+<pre><code># A tibble: 1 x 12
+   SEQNO physhealth genhealth   bmi age_imp female race_eth internet30 smoke100
+   &lt;dbl&gt;      &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;         &lt;dbl&gt;    &lt;dbl&gt;
+1 2.02e9          0 1_Excell~    NA      50      0 White n~         NA       NA
+# ... with 3 more variables: activity &lt;fct&gt;, drinks_wk &lt;dbl&gt;, veg_day &lt;dbl&gt;</code></pre>
+<div id="plotting-missingness" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Plotting Missingness</h3>
+<p>The <code>gg_miss_var</code> function plots the number of missing observations in each variable in our data set.</p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="dealing-with-missingness-single-imputation.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gg_miss_var</span>(smart_cle1)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
+<p>So the most commonly missing variable is <code>activity</code> which, as we’ve seen, has 109 missing values.</p>
+<p>To get a general sense of the missingness in our data, we might use either the <code>vis_dat</code> or the <code>vis_miss</code> function from the <code>visdat</code> package.</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="dealing-with-missingness-single-imputation.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vis_miss</span>(smart_cle1)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="dealing-with-missingness-single-imputation.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vis_dat</span>(smart_cle1)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+</div>
+</div>
+<div id="missing-data-mechanisms" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Missing-data mechanisms</h2>
+<p>My source for this description of mechanisms is Chapter 25 of <span class="citation"><a href="references.html#ref-GelmanHill2007" role="doc-biblioref">Gelman and Hill</a> (<a href="references.html#ref-GelmanHill2007" role="doc-biblioref">2007</a>)</span>, and that chapter is <a href="http://www.stat.columbia.edu/~gelman/arm/missing.pdf">available at this link</a>.</p>
+<ol style="list-style-type: decimal">
+<li><strong>MCAR = Missingness completely at random</strong>. A variable is missing completely at random if the probability of missingness is the same for all units, for example, if for each subject, we decide whether to collect the <code>diabetes</code> status by rolling a die and refusing to answer if a “6” shows up. If data are missing completely at random, then throwing out cases with missing data does not bias your inferences.</li>
+<li><strong>Missingness that depends only on observed predictors</strong>. A more general assumption, called <strong>missing at random</strong> or <strong>MAR</strong>, is that the probability a variable is missing depends only on available information. Here, we would have to be willing to assume that the probability of nonresponse to <code>diabetes</code> depends only on the other, fully recorded variables in the data. It is often reasonable to model this process as a logistic regression, where the outcome variable equals 1 for observed cases and 0 for missing. When an outcome variable is missing at random, it is acceptable to exclude the missing cases (that is, to treat them as NA), as long as the regression controls for all the variables that affect the probability of missingness.</li>
+<li><strong>Missingness that depends on unobserved predictors</strong>. Missingness is no longer “at random” if it depends on information that has not been recorded and this information also predicts the missing values. If a particular treatment causes discomfort, a patient is more likely to drop out of the study. This missingness is not at random (unless “discomfort” is measured and observed for all patients). If missingness is not at random, it must be explicitly modeled, or else you must accept some bias in your inferences.</li>
+<li><strong>Missingness that depends on the missing value itself.</strong> Finally, a particularly difficult situation arises when the probability of missingness depends on the (potentially missing) variable itself. For example, suppose that people with higher earnings are less likely to reveal them.</li>
+</ol>
+<p>Essentially, situations 3 and 4 are referred to collectively as <strong>non-random missingness</strong>, and cause more trouble for us than 1 and 2.</p>
+</div>
+<div id="options-for-dealing-with-missingness" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Options for Dealing with Missingness</h2>
+<p>There are several available methods for dealing with missing data that are MCAR or MAR, but they basically boil down to:</p>
+<ul>
+<li>Complete Case (or Available Case) analyses</li>
+<li>Single Imputation</li>
+<li>Multiple Imputation</li>
+</ul>
+</div>
+<div id="complete-case-and-available-case-analyses" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Complete Case (and Available Case) analyses</h2>
+<p>In <strong>Complete Case</strong> analyses, rows containing NA values are omitted from the data before analyses commence. This is the default approach for many statistical software packages, and may introduce unpredictable bias and fail to include some useful, often hard-won information.</p>
+<ul>
+<li>A complete case analysis can be appropriate when the number of missing observations is not large, and the missing pattern is either MCAR (missing completely at random) or MAR (missing at random.)</li>
+<li>Two problems arise with complete-case analysis:
+<ol style="list-style-type: decimal">
+<li>If the units with missing values differ systematically from the completely observed cases, this could bias the complete-case analysis.</li>
+<li>If many variables are included in a model, there may be very few complete cases, so that most of the data would be discarded for the sake of a straightforward analysis.</li>
+</ol></li>
+<li>A related approach is <em>available-case</em> analysis where different aspects of a problem are studied with different subsets of the data, perhaps identified on the basis of what is missing in them.</li>
+</ul>
+</div>
+<div id="single-imputation" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Single Imputation</h2>
+<p>In <strong>single imputation</strong> analyses, NA values are estimated/replaced <em>one time</em> with <em>one particular data value</em> for the purpose of obtaining more complete samples, at the expense of creating some potential bias in the eventual conclusions or obtaining slightly <em>less</em> accurate estimates than would be available if there were no missing values in the data.</p>
+<ul>
+<li>A single imputation can be just a replacement with the mean or median (for a quantity) or the mode (for a categorical variable.) However, such an approach, though easy to understand, underestimates variance and ignores the relationship of missing values to other variables.</li>
+<li>Single imputation can also be done using a variety of models to try to capture information about the NA values that are available in other variables within the data set.</li>
+<li>The <code>simputation</code> package can help us execute single imputations using a wide variety of techniques, within the pipe approach used by the <code>tidyverse</code>. Another approach I have used in the past is the <code>mice</code> package, which can also perform single imputations.</li>
+</ul>
+</div>
+<div id="multiple-imputation" class="section level2" number="3.7">
+<h2><span class="header-section-number">3.7</span> Multiple Imputation</h2>
+<p><strong>Multiple imputation</strong>, where NA values are repeatedly estimated/replaced with multiple data values, for the purpose of obtaining mode complete samples <em>and</em> capturing details of the variation inherent in the fact that the data have missingness, so as to obtain <em>more</em> accurate estimates than are possible with single imputation.</p>
+<ul>
+<li>We’ll postpone the discussion of multiple imputation for a while.</li>
+</ul>
+</div>
+<div id="approach-1-building-a-complete-case-analysis-smart_cle1_cc" class="section level2" number="3.8">
+<h2><span class="header-section-number">3.8</span> Approach 1: Building a Complete Case Analysis: <code>smart_cle1_cc</code></h2>
+<p>In the 431 course, we usually dealt with missing data by restricting our analyses to respondents with complete data on all variables. Let’s start by doing that here. We’ll create a new tibble called <code>smart_cle1_cc</code> which includes all respondents with complete data on all of these variables.</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="dealing-with-missingness-single-imputation.html#cb253-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_cc <span class="ot">&lt;-</span> smart_cle1 <span class="sc">%&gt;%</span> </span>
+<span id="cb253-2"><a href="dealing-with-missingness-single-imputation.html#cb253-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb253-3"><a href="dealing-with-missingness-single-imputation.html#cb253-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb253-4"><a href="dealing-with-missingness-single-imputation.html#cb253-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(smart_cle1_cc)</span></code></pre></div>
+<pre><code>[1] 892  12</code></pre>
+<p>Our <code>smart_cle1_cc</code> tibble now has many fewer observations than its predecessors, but all of the variables in this complete cases tibble have no missing observations.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Data Set</th>
+<th align="right">Rows</th>
+<th align="right">Columns</th>
+<th align="right">Missingness?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right"><code>smart_cle</code></td>
+<td align="right">1133</td>
+<td align="right">99</td>
+<td align="right">Quite a bit.</td>
+</tr>
+<tr class="even">
+<td align="right"><code>smart_cle1</code></td>
+<td align="right">1133</td>
+<td align="right">12</td>
+<td align="right">Quite a bit.</td>
+</tr>
+<tr class="odd">
+<td align="right"><code>smart_cle1_cc</code></td>
+<td align="right">892</td>
+<td align="right">12</td>
+<td align="right">None.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="approach-2-single-imputation-to-create-smart_cle1_sh" class="section level2" number="3.9">
+<h2><span class="header-section-number">3.9</span> Approach 2: Single Imputation to create <code>smart_cle1_sh</code></h2>
+<p>Next, we’ll create a data set which has all of the rows in the original <code>smart_cle1</code> tibble, but deals with missingness by imputing (estimating / filling in) new values for each of the missing values. To do this, we’ll make heavy use of the <code>simputation</code> package in R.</p>
+<p>The <code>simputation</code> package is designed for single imputation work. Note that we’ll eventually adopt a <strong>multiple imputation</strong> strategy in some of our modeling work, and we’ll use some specialized tools to facilitate that later.</p>
+<p>To begin, we’ll create a “shadow” in our tibble to track what we’ll need to impute.</p>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="dealing-with-missingness-single-imputation.html#cb255-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="ot">&lt;-</span> <span class="fu">bind_shadow</span>(smart_cle1)</span>
+<span id="cb255-2"><a href="dealing-with-missingness-single-imputation.html#cb255-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb255-3"><a href="dealing-with-missingness-single-imputation.html#cb255-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(smart_cle1_sh)</span></code></pre></div>
+<pre><code> [1] &quot;SEQNO&quot;         &quot;physhealth&quot;    &quot;genhealth&quot;     &quot;bmi&quot;          
+ [5] &quot;age_imp&quot;       &quot;female&quot;        &quot;race_eth&quot;      &quot;internet30&quot;   
+ [9] &quot;smoke100&quot;      &quot;activity&quot;      &quot;drinks_wk&quot;     &quot;veg_day&quot;      
+[13] &quot;SEQNO_NA&quot;      &quot;physhealth_NA&quot; &quot;genhealth_NA&quot;  &quot;bmi_NA&quot;       
+[17] &quot;age_imp_NA&quot;    &quot;female_NA&quot;     &quot;race_eth_NA&quot;   &quot;internet30_NA&quot;
+[21] &quot;smoke100_NA&quot;   &quot;activity_NA&quot;   &quot;drinks_wk_NA&quot;  &quot;veg_day_NA&quot;   </code></pre>
+<p>Note that the <code>bind_shadow()</code> function doubles the number of variables in our tibble, specifically by creating a new variable for each that takes the value <code>!NA</code> or <code>NA</code>. For example, consider</p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="dealing-with-missingness-single-imputation.html#cb257-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">count</span>(activity, activity_NA)</span></code></pre></div>
+<pre><code># A tibble: 5 x 3
+  activity              activity_NA     n
+  &lt;fct&gt;                 &lt;fct&gt;       &lt;int&gt;
+1 Highly_Active         !NA           338
+2 Active                !NA           173
+3 Insufficiently_Active !NA           201
+4 Inactive              !NA           312
+5 &lt;NA&gt;                  NA            109</code></pre>
+<p>The <code>activity_NA</code> variable takes the value <code>!NA</code> (meaning not missing) when the value of the <code>activity</code> variable is known, and takes the value <code>NA</code> for observations where the <code>activity</code> variable is missing. This background tracking will be helpful to us when we try to assess the impact of imputation on some of our summaries.</p>
+<div id="what-type-of-missingness-do-we-have" class="section level3" number="3.9.1">
+<h3><span class="header-section-number">3.9.1</span> What Type of Missingness Do We Have?</h3>
+<p>There are three types of missingness that we might assume in any given setting: missing completely at random (MCAR), missing at random (MAR) and missing not at random (MNAR). Together, MCAR and MAR are sometimes called <em>ignorable</em> non-response, which essentially means that imputation provides a way to useful estimates. MNAR or missing NOT at random is sometimes called non-ignorable missingness, implying that even high-quality imputation may not be sufficient to provide useful information to us.</p>
+<p><strong>Missing Completely at Random</strong> means that the missing data points are a random subset of the data. Essentially, there is nothing that makes some data more likely to be missing than others. If the data truly match the standard for MCAR, then a complete-case analysis will be about as good as an analysis after single or multiple imputation.</p>
+<p><strong>Missing at Random</strong> means that there is a systematic relationship between the observed data and the missingness mechanism. Another way to say this is that the missing value is not related to the reason why it is missing, but is related to the other variables collected in the study. The implication is that the missingness can be accounted for by studying the variables with complete information. Imputation strategies can be very helpful here, incorporating what we know (or think we know) about the relationships between the results that are missing and the results that we see.</p>
+<ul>
+<li>Wikipedia provides a nice example. If men are less likely to fill in a depression survey, but this has nothing to do with their level of depression after accounting for the fact that they are male, then the missingess can be assumed MAR.</li>
+<li>Determining whether missingness is MAR or MNAR can be tricky. We’ll spend more time discussing this later.</li>
+</ul>
+<p><strong>Missing NOT at Random</strong> means that the missing value is related to the reason why it is missing.</p>
+<ul>
+<li><p>Continuing the Wikipedia example, if men failed to fill in a depression survey because of their level of depression, then this would be MNAR.</p></li>
+<li><p>Single imputation is most helpful in the MAR situation, although it is also appropriate when we assume MCAR.</p></li>
+<li><p>Multiple imputation will, similarly, be more helpful in MCAR and MAR situations than when data are missing NOT at random.</p></li>
+</ul>
+<p>It’s worth noting that many people are unwilling to impute values for outcomes or key predictors in a modeling setting, but are happy to impute for less important covariates. For now, we’ll assume MCAR or MAR for all of the missingness in our <code>smart_cle1</code> data, which will allow us to adopt a single imputation strategy.</p>
+</div>
+<div id="single-imputation-into-smart_cle1_sh" class="section level3" number="3.9.2">
+<h3><span class="header-section-number">3.9.2</span> Single imputation into <code>smart_cle1_sh</code></h3>
+<p>Which variables in <code>smart_cle1_sh</code> contain missing data?</p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="dealing-with-missingness-single-imputation.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="fu">miss_var_summary</span>(smart_cle1_sh)</span></code></pre></div>
+<pre><code># A tibble: 24 x 3
+   variable   n_miss pct_miss
+   &lt;chr&gt;       &lt;int&gt;    &lt;dbl&gt;
+ 1 activity      109    9.62 
+ 2 veg_day       101    8.91 
+ 3 bmi            91    8.03 
+ 4 drinks_wk      66    5.83 
+ 5 smoke100       40    3.53 
+ 6 race_eth       26    2.29 
+ 7 physhealth     24    2.12 
+ 8 age_imp        11    0.971
+ 9 internet30      7    0.618
+10 genhealth       4    0.353
+# ... with 14 more rows</code></pre>
+<p>We will impute these variables using several different strategies, all supported nicely by the <code>simputation</code> package.</p>
+<p>These include imputation methods based solely on the distribution of the complete cases of the variable being imputed.</p>
+<ul>
+<li><code>impute_median</code>: impute the median value of all non-missing observations into the missing values for the variable</li>
+<li><code>impute_rhd</code>: random “hot deck” imputation involves drawing at random from the complete cases for that variable</li>
+</ul>
+<p>Also available are imputation strategies that impute predicted values from models using other variables in the data set besides the one being imputed.</p>
+<ul>
+<li><code>impute_pmm</code>: imputation using predictive mean matching</li>
+<li><code>impute_rlm</code>: imputation using robust linear models</li>
+<li><code>impute_cart</code>: imputation using classification and regression trees</li>
+<li><code>impute_knn</code>: imputation using k-nearest neighbors methods</li>
+</ul>
+</div>
+<div id="imputing-binary-categorical-variables" class="section level3" number="3.9.3">
+<h3><span class="header-section-number">3.9.3</span> Imputing Binary Categorical Variables</h3>
+<p>Here, we’ll arbitrarily impute our 1/0 variables as follows:</p>
+<ul>
+<li>For <code>internet30</code> we’ll use the <code>impute_rhd</code> approach to draw a random observation from the existing set of 1s and 0s in the complete <code>internet30</code> data.</li>
+<li>For <code>smoke100</code> we’ll use a method called predictive mean matching (<code>impute_pmm</code>) which takes the result from a model based on the (imputed) <code>internet30</code> value and whether or not the subject is <code>female</code>, and converts it to the nearest value in the observed <code>smoke100</code> data. This is a good approach for imputing discrete variables.</li>
+</ul>
+<p>These are completely arbitrary choices, for demonstration purposes.</p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="dealing-with-missingness-single-imputation.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2020001</span>)</span>
+<span id="cb261-2"><a href="dealing-with-missingness-single-imputation.html#cb261-2" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="ot">&lt;-</span> smart_cle1_sh <span class="sc">%&gt;%</span></span>
+<span id="cb261-3"><a href="dealing-with-missingness-single-imputation.html#cb261-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb261-4"><a href="dealing-with-missingness-single-imputation.html#cb261-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_rhd</span>(., </span>
+<span id="cb261-5"><a href="dealing-with-missingness-single-imputation.html#cb261-5" aria-hidden="true" tabindex="-1"></a>               internet30 <span class="sc">~</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb261-6"><a href="dealing-with-missingness-single-imputation.html#cb261-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_pmm</span>(., smoke100 <span class="sc">~</span> internet30 <span class="sc">+</span> female) <span class="sc">%&gt;%</span></span>
+<span id="cb261-7"><a href="dealing-with-missingness-single-imputation.html#cb261-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_df</span>()</span></code></pre></div>
+<pre><code>Warning: `tbl_df()` is deprecated as of dplyr 1.0.0.
+Please use `tibble::as_tibble()` instead.
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="dealing-with-missingness-single-imputation.html#cb263-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">count</span>(smoke100, smoke100_NA)</span></code></pre></div>
+<pre><code># A tibble: 4 x 3
+  smoke100 smoke100_NA     n
+     &lt;dbl&gt; &lt;fct&gt;       &lt;int&gt;
+1        0 !NA           579
+2        0 NA             21
+3        1 !NA           514
+4        1 NA             19</code></pre>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="dealing-with-missingness-single-imputation.html#cb265-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">count</span>(internet30, internet30_NA)</span></code></pre></div>
+<pre><code># A tibble: 4 x 3
+  internet30 internet30_NA     n
+       &lt;dbl&gt; &lt;fct&gt;         &lt;int&gt;
+1          0 !NA             207
+2          0 NA                1
+3          1 !NA             919
+4          1 NA                6</code></pre>
+<p>Other approaches that may be used with 1/0 variables include <code>impute_knn</code> and <code>impute_pmm</code>.</p>
+</div>
+<div id="imputing-quantitative-variables" class="section level3" number="3.9.4">
+<h3><span class="header-section-number">3.9.4</span> Imputing Quantitative Variables</h3>
+<p>We’ll demonstrate a different approach for imputing each of the quantitative variables with missing observations. Again, we’re making purely arbitrary decisions here about what to include in each imputation. In practical work, we’d want to be a bit more thoughtful about this.</p>
+<p>Note that I’m choosing to use <code>impute_pmm</code> with the <code>physhealth</code> and <code>age_imp</code> variables. This is (in part) because I want my imputations to be integers, as the other observations are for those variables. <code>impute_rhd</code> would also accomplish this.</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="dealing-with-missingness-single-imputation.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2020001</span>)</span>
+<span id="cb267-2"><a href="dealing-with-missingness-single-imputation.html#cb267-2" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="ot">&lt;-</span> smart_cle1_sh <span class="sc">%&gt;%</span></span>
+<span id="cb267-3"><a href="dealing-with-missingness-single-imputation.html#cb267-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb267-4"><a href="dealing-with-missingness-single-imputation.html#cb267-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_rhd</span>(., veg_day <span class="sc">~</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb267-5"><a href="dealing-with-missingness-single-imputation.html#cb267-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_median</span>(., drinks_wk <span class="sc">~</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb267-6"><a href="dealing-with-missingness-single-imputation.html#cb267-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_pmm</span>(., physhealth <span class="sc">~</span> </span>
+<span id="cb267-7"><a href="dealing-with-missingness-single-imputation.html#cb267-7" aria-hidden="true" tabindex="-1"></a>                 drinks_wk <span class="sc">+</span> female <span class="sc">+</span> smoke100) <span class="sc">%&gt;%</span></span>
+<span id="cb267-8"><a href="dealing-with-missingness-single-imputation.html#cb267-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_pmm</span>(., age_imp <span class="sc">~</span> drinks_wk <span class="sc">+</span> physhealth) <span class="sc">%&gt;%</span></span>
+<span id="cb267-9"><a href="dealing-with-missingness-single-imputation.html#cb267-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_rlm</span>(., bmi <span class="sc">~</span> physhealth <span class="sc">+</span> smoke100) <span class="sc">%&gt;%</span></span>
+<span id="cb267-10"><a href="dealing-with-missingness-single-imputation.html#cb267-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_df</span>()</span></code></pre></div>
+</div>
+<div id="imputation-results" class="section level3" number="3.9.5">
+<h3><span class="header-section-number">3.9.5</span> Imputation Results</h3>
+<p>Let’s plot a few of these results, so we can see what imputation has done to the distribution of these quantities.</p>
+<ol style="list-style-type: decimal">
+<li><code>veg_day</code></li>
+</ol>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="dealing-with-missingness-single-imputation.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> veg_day_NA, <span class="at">y =</span> veg_day)) <span class="sc">+</span></span>
+<span id="cb268-2"><a href="dealing-with-missingness-single-imputation.html#cb268-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_count</span>() <span class="sc">+</span> </span>
+<span id="cb268-3"><a href="dealing-with-missingness-single-imputation.html#cb268-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Imputation Results for veg_day&quot;</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="dealing-with-missingness-single-imputation.html#cb269-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%$%</span> </span>
+<span id="cb269-2"><a href="dealing-with-missingness-single-imputation.html#cb269-2" aria-hidden="true" tabindex="-1"></a>  mosaic<span class="sc">::</span><span class="fu">favstats</span>(veg_day <span class="sc">~</span> veg_day_NA)</span></code></pre></div>
+<pre><code>Registered S3 method overwritten by &#39;mosaic&#39;:
+  method                           from   
+  fortify.SpatialPolygonsDataFrame ggplot2</code></pre>
+<pre><code>  veg_day_NA  min     Q1 median   Q3  max     mean       sd    n missing
+1        !NA 0.00 1.2675   1.72 2.42 7.49 1.912548 1.038403 1032       0
+2         NA 0.26 1.3400   1.86 2.72 5.97 2.085050 1.062316  101       0</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><code>drinks_wk</code> for which we imputed the median value…</li>
+</ol>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="dealing-with-missingness-single-imputation.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> drinks_wk_NA, <span class="at">y =</span> drinks_wk)) <span class="sc">+</span></span>
+<span id="cb272-2"><a href="dealing-with-missingness-single-imputation.html#cb272-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_count</span>() <span class="sc">+</span> </span>
+<span id="cb272-3"><a href="dealing-with-missingness-single-imputation.html#cb272-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Imputation Results for drinks_wk&quot;</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="dealing-with-missingness-single-imputation.html#cb273-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">filter</span>(drinks_wk_NA <span class="sc">==</span> <span class="st">&quot;NA&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb273-2"><a href="dealing-with-missingness-single-imputation.html#cb273-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(drinks_wk)</span></code></pre></div>
+<pre><code> drinks_wk  n percent
+      0.23 66       1</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><code>physhealth</code>, a count between 0 and 30…</li>
+</ol>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="dealing-with-missingness-single-imputation.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, </span>
+<span id="cb275-2"><a href="dealing-with-missingness-single-imputation.html#cb275-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> physhealth, <span class="at">y =</span> physhealth_NA)) <span class="sc">+</span></span>
+<span id="cb275-3"><a href="dealing-with-missingness-single-imputation.html#cb275-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>() <span class="sc">+</span></span>
+<span id="cb275-4"><a href="dealing-with-missingness-single-imputation.html#cb275-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Imputation Results for physhealth&quot;</span>)</span></code></pre></div>
+<pre><code>Picking joint bandwidth of 0.426</code></pre>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="dealing-with-missingness-single-imputation.html#cb277-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">filter</span>(physhealth_NA <span class="sc">==</span> <span class="st">&quot;NA&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb277-2"><a href="dealing-with-missingness-single-imputation.html#cb277-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(physhealth)</span></code></pre></div>
+<pre><code> physhealth  n    percent
+          3  1 0.04166667
+          4  2 0.08333333
+          5 13 0.54166667
+          6  8 0.33333333</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li><code>age_imp</code>, in (integer) years</li>
+</ol>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="dealing-with-missingness-single-imputation.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, </span>
+<span id="cb279-2"><a href="dealing-with-missingness-single-imputation.html#cb279-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> age_imp, <span class="at">color =</span> age_imp_NA)) <span class="sc">+</span></span>
+<span id="cb279-3"><a href="dealing-with-missingness-single-imputation.html#cb279-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">binwidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb279-4"><a href="dealing-with-missingness-single-imputation.html#cb279-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Imputation Results for age_imp&quot;</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="dealing-with-missingness-single-imputation.html#cb280-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">filter</span>(age_imp_NA <span class="sc">==</span> <span class="st">&quot;NA&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb280-2"><a href="dealing-with-missingness-single-imputation.html#cb280-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(age_imp)</span></code></pre></div>
+<pre><code> age_imp n    percent
+      48 1 0.09090909
+      57 7 0.63636364
+      58 1 0.09090909
+      61 1 0.09090909
+      63 1 0.09090909</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li><code>bmi</code> or body mass index</li>
+</ol>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="dealing-with-missingness-single-imputation.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> bmi, <span class="at">fill =</span> bmi_NA)) <span class="sc">+</span></span>
+<span id="cb282-2"><a href="dealing-with-missingness-single-imputation.html#cb282-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>) <span class="sc">+</span> </span>
+<span id="cb282-3"><a href="dealing-with-missingness-single-imputation.html#cb282-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Histogram of BMI and imputed BMI&quot;</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="dealing-with-missingness-single-imputation.html#cb283-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(bmi <span class="sc">~</span> bmi_NA)</span></code></pre></div>
+<pre><code>  bmi_NA     min      Q1   median       Q3      max     mean        sd    n
+1    !NA 13.3000 24.1100 27.30000 31.68000 70.56000 28.40947 6.6289286 1042
+2     NA 27.0693 27.0693 27.50229 27.66574 30.75898 27.66057 0.8964101   91
+  missing
+1       0
+2       0</code></pre>
+</div>
+<div id="imputing-multi-categorical-variables" class="section level3" number="3.9.6">
+<h3><span class="header-section-number">3.9.6</span> Imputing Multi-Categorical Variables</h3>
+<p>The three multi-categorical variables we have left to impute are <code>activity</code>, <code>race_eth</code> and <code>genhealth</code>, and each is presented as a factor in R, rather than as a character variable.</p>
+<p>We’ll arbitrarily decide to impute</p>
+<ul>
+<li><code>activity</code> and <code>genhealth</code> with a classification tree using <code>physhealth</code>, <code>bmi</code> and <code>smoke100</code>,</li>
+<li>and then impute <code>race_eth</code> with a random draw from the distribution of complete cases.</li>
+</ul>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="dealing-with-missingness-single-imputation.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2020001</span>)</span>
+<span id="cb285-2"><a href="dealing-with-missingness-single-imputation.html#cb285-2" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="ot">&lt;-</span> smart_cle1_sh <span class="sc">%&gt;%</span></span>
+<span id="cb285-3"><a href="dealing-with-missingness-single-imputation.html#cb285-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb285-4"><a href="dealing-with-missingness-single-imputation.html#cb285-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_cart</span>(., activity <span class="sc">+</span> genhealth <span class="sc">~</span> </span>
+<span id="cb285-5"><a href="dealing-with-missingness-single-imputation.html#cb285-5" aria-hidden="true" tabindex="-1"></a>                  physhealth <span class="sc">+</span> bmi <span class="sc">+</span> smoke100) <span class="sc">%&gt;%</span></span>
+<span id="cb285-6"><a href="dealing-with-missingness-single-imputation.html#cb285-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_rhd</span>(., race_eth <span class="sc">~</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb285-7"><a href="dealing-with-missingness-single-imputation.html#cb285-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_df</span>()</span></code></pre></div>
+<p>Let’s check our results.</p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="dealing-with-missingness-single-imputation.html#cb286-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">count</span>(activity_NA, activity)</span></code></pre></div>
+<pre><code># A tibble: 6 x 3
+  activity_NA activity                  n
+  &lt;fct&gt;       &lt;fct&gt;                 &lt;int&gt;
+1 !NA         Highly_Active           338
+2 !NA         Active                  173
+3 !NA         Insufficiently_Active   201
+4 !NA         Inactive                312
+5 NA          Highly_Active            90
+6 NA          Inactive                 19</code></pre>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="dealing-with-missingness-single-imputation.html#cb288-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">count</span>(race_eth_NA, race_eth)</span></code></pre></div>
+<pre><code># A tibble: 9 x 3
+  race_eth_NA race_eth                     n
+  &lt;fct&gt;       &lt;fct&gt;                    &lt;int&gt;
+1 !NA         White non-Hispanic         805
+2 !NA         Black non-Hispanic         222
+3 !NA         Other race non-Hispanic     24
+4 !NA         Multiracial non-Hispanic    22
+5 !NA         Hispanic                    34
+6 NA          White non-Hispanic          19
+7 NA          Black non-Hispanic           4
+8 NA          Multiracial non-Hispanic     2
+9 NA          Hispanic                     1</code></pre>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="dealing-with-missingness-single-imputation.html#cb290-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">count</span>(genhealth_NA, genhealth)</span></code></pre></div>
+<pre><code># A tibble: 7 x 3
+  genhealth_NA genhealth       n
+  &lt;fct&gt;        &lt;fct&gt;       &lt;int&gt;
+1 !NA          1_Excellent   164
+2 !NA          2_VeryGood    383
+3 !NA          3_Good        364
+4 !NA          4_Fair        158
+5 !NA          5_Poor         60
+6 NA           2_VeryGood      3
+7 NA           3_Good          1</code></pre>
+<p>And now, we should have no missing values in the data, at all.</p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="dealing-with-missingness-single-imputation.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">miss_case_table</span>(smart_cle1_sh)</span></code></pre></div>
+<pre><code># A tibble: 1 x 3
+  n_miss_in_case n_cases pct_cases
+*          &lt;int&gt;   &lt;int&gt;     &lt;dbl&gt;
+1              0    1133       100</code></pre>
+</div>
+<div id="saving-the-new-tibbles" class="section level3" number="3.9.7">
+<h3><span class="header-section-number">3.9.7</span> Saving the new tibbles</h3>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="dealing-with-missingness-single-imputation.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(smart_cle1_cc, <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;smart_cle1_cc.Rds&quot;</span>))</span>
+<span id="cb294-2"><a href="dealing-with-missingness-single-imputation.html#cb294-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(smart_cle1_sh, <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;smart_cle1_sh.Rds&quot;</span>))</span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="brfss-smart-data-building.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["432-notes.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
