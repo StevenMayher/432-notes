@@ -282,3 +282,135 @@
 \contentsline {subsection}{\numberline {10.5.2}Using the \texttt {residuals} command for other summaries}{268}{subsection.10.5.2}
 \contentsline {section}{\numberline {10.6}Model Validation and Correcting for Optimism}{269}{section.10.6}
 \contentsline {section}{\numberline {10.7}Building a Nomogram for Our Model}{270}{section.10.7}
+\contentsline {chapter}{\numberline {11}Logistic Regression: The Foundations}{273}{chapter.11}
+\contentsline {section}{\numberline {11.1}A First Attempt: A Linear Probability Model}{273}{section.11.1}
+\contentsline {section}{\numberline {11.2}Logistic Regression}{275}{section.11.2}
+\contentsline {section}{\numberline {11.3}The Logistic Regression Model}{276}{section.11.3}
+\contentsline {section}{\numberline {11.4}The Link Function}{276}{section.11.4}
+\contentsline {section}{\numberline {11.5}The logit or log odds}{277}{section.11.5}
+\contentsline {section}{\numberline {11.6}Interpreting the Coefficients of a Logistic Regression Model}{277}{section.11.6}
+\contentsline {section}{\numberline {11.7}The Logistic Regression has non-constant variance}{278}{section.11.7}
+\contentsline {section}{\numberline {11.8}Fitting a Logistic Regression Model to our Simulated Data}{278}{section.11.8}
+\contentsline {section}{\numberline {11.9}Plotting the Logistic Regression Model}{280}{section.11.9}
+\contentsline {chapter}{\numberline {12}Logistic Regression and the \texttt {resect} data}{283}{chapter.12}
+\contentsline {section}{\numberline {12.1}The \texttt {resect} data}{283}{section.12.1}
+\contentsline {section}{\numberline {12.2}Running A Simple Logistic Regression Model}{284}{section.12.2}
+\contentsline {subsection}{\numberline {12.2.1}Logistic Regression Can Be Harder than Linear Regression}{285}{subsection.12.2.1}
+\contentsline {section}{\numberline {12.3}Logistic Regression using \texttt {glm}}{285}{section.12.3}
+\contentsline {subsection}{\numberline {12.3.1}Interpreting the Coefficients of a Logistic Regression Model}{286}{subsection.12.3.1}
+\contentsline {subsection}{\numberline {12.3.2}Using \texttt {predict} to describe the model's fits}{287}{subsection.12.3.2}
+\contentsline {subsection}{\numberline {12.3.3}Odds Ratio interpretation of Coefficients}{287}{subsection.12.3.3}
+\contentsline {subsection}{\numberline {12.3.4}Interpreting the rest of the model output from \texttt {glm}}{288}{subsection.12.3.4}
+\contentsline {subsection}{\numberline {12.3.5}Deviance and Comparing Our Model to the Null Model}{289}{subsection.12.3.5}
+\contentsline {subsection}{\numberline {12.3.6}Using \texttt {glance} with a logistic regression model}{290}{subsection.12.3.6}
+\contentsline {section}{\numberline {12.4}Interpreting the Model Summary}{291}{section.12.4}
+\contentsline {subsection}{\numberline {12.4.1}Wald Z tests for Coefficients in a Logistic Regression}{292}{subsection.12.4.1}
+\contentsline {subsection}{\numberline {12.4.2}Confidence Intervals for the Coefficients}{292}{subsection.12.4.2}
+\contentsline {subsection}{\numberline {12.4.3}Deviance Residuals}{293}{subsection.12.4.3}
+\contentsline {subsection}{\numberline {12.4.4}Dispersion Parameter}{294}{subsection.12.4.4}
+\contentsline {subsection}{\numberline {12.4.5}Fisher Scoring iterations}{294}{subsection.12.4.5}
+\contentsline {section}{\numberline {12.5}Plotting a Simple Logistic Regression Model}{294}{section.12.5}
+\contentsline {subsection}{\numberline {12.5.1}Using \texttt {augment} to capture the fitted probabilities}{294}{subsection.12.5.1}
+\contentsline {subsection}{\numberline {12.5.2}Plotting a Logistic Regression Model's Fitted Values}{295}{subsection.12.5.2}
+\contentsline {subsection}{\numberline {12.5.3}Plotting a Simple Logistic Model using \texttt {binomial\_smooth}}{295}{subsection.12.5.3}
+\contentsline {section}{\numberline {12.6}How well does Model A classify subjects?}{296}{section.12.6}
+\contentsline {section}{\numberline {12.7}The Confusion Matrix}{297}{section.12.7}
+\contentsline {section}{\numberline {12.8}Using the \texttt {confusionMatrix} tool from the \texttt {caret} package}{298}{section.12.8}
+\contentsline {section}{\numberline {12.9}Receiver Operating Characteristic Curve Analysis}{299}{section.12.9}
+\contentsline {subsection}{\numberline {12.9.1}Interpreting the Area under the ROC curve}{300}{subsection.12.9.1}
+\contentsline {subsubsection}{\numberline {12.9.1.1}What if we are guessing?}{301}{subsubsection.12.9.1.1}
+\contentsline {subsubsection}{\numberline {12.9.1.2}What if we classify things perfectly?}{302}{subsubsection.12.9.1.2}
+\contentsline {subsubsection}{\numberline {12.9.1.3}What does ``worse than guessing'' look like?}{303}{subsubsection.12.9.1.3}
+\contentsline {subsubsection}{\numberline {12.9.1.4}What does ``better than guessing'' look like?}{304}{subsubsection.12.9.1.4}
+\contentsline {subsubsection}{\numberline {12.9.1.5}What does ``pretty good'' look like?}{305}{subsubsection.12.9.1.5}
+\contentsline {section}{\numberline {12.10}The ROC Plot for \texttt {res\_modA}}{306}{section.12.10}
+\contentsline {subsection}{\numberline {12.10.1}Another way to plot the ROC Curve}{307}{subsection.12.10.1}
+\contentsline {section}{\numberline {12.11}Assessing Residual Plots from Model A}{308}{section.12.11}
+\contentsline {section}{\numberline {12.12}Model B: A ``Kitchen Sink'' Logistic Regression Model}{310}{section.12.12}
+\contentsline {subsection}{\numberline {12.12.1}Comparing Model A to Model B}{310}{subsection.12.12.1}
+\contentsline {subsection}{\numberline {12.12.2}Interpreting Model B}{311}{subsection.12.12.2}
+\contentsline {section}{\numberline {12.13}Plotting Model B}{312}{section.12.13}
+\contentsline {subsection}{\numberline {12.13.1}Using \texttt {augment} to capture the fitted probabilities}{312}{subsection.12.13.1}
+\contentsline {subsection}{\numberline {12.13.2}Plotting Model B Fits by Observed Mortality}{312}{subsection.12.13.2}
+\contentsline {subsection}{\numberline {12.13.3}Confusion Matrix for Model B}{313}{subsection.12.13.3}
+\contentsline {subsection}{\numberline {12.13.4}The ROC curve for Model B}{314}{subsection.12.13.4}
+\contentsline {subsection}{\numberline {12.13.5}Residuals, Leverage and Influence}{315}{subsection.12.13.5}
+\contentsline {section}{\numberline {12.14}Logistic Regression using \texttt {lrm}}{316}{section.12.14}
+\contentsline {subsection}{\numberline {12.14.1}Interpreting Nagelkerke R\textsuperscript {2}}{317}{subsection.12.14.1}
+\contentsline {subsection}{\numberline {12.14.2}Interpreting the C statistic and Plotting the ROC Curve}{318}{subsection.12.14.2}
+\contentsline {subsection}{\numberline {12.14.3}The C statistic and Somers' D}{319}{subsection.12.14.3}
+\contentsline {subsection}{\numberline {12.14.4}Validating the Logistic Regression Model Summary Statistics}{320}{subsection.12.14.4}
+\contentsline {subsection}{\numberline {12.14.5}Plotting the Summary of the \texttt {lrm} approach}{320}{subsection.12.14.5}
+\contentsline {subsection}{\numberline {12.14.6}Plot In-Sample Predictions for Model C}{321}{subsection.12.14.6}
+\contentsline {subsection}{\numberline {12.14.7}ANOVA from the \texttt {lrm} approach}{323}{subsection.12.14.7}
+\contentsline {subsection}{\numberline {12.14.8}Are any points particularly influential?}{324}{subsection.12.14.8}
+\contentsline {subsection}{\numberline {12.14.9}A Nomogram for Model C}{324}{subsection.12.14.9}
+\contentsline {section}{\numberline {12.15}Model D: An Augmented Kitchen Sink Model}{325}{section.12.15}
+\contentsline {subsection}{\numberline {12.15.1}Spearman \relax $\rho ^2\relax \GenericError { }{LaTeX Error: Bad math environment delimiter}{See the LaTeX manual or LaTeX Companion for explanation.}{Your command was ignored.\MessageBreak Type I <command> <return> to replace it with another command,\MessageBreak or <return> to continue without it.} Plot}{326}{subsection.12.15.1}
+\contentsline {subsection}{\numberline {12.15.2}Fitting Model D using \texttt {lrm}}{326}{subsection.12.15.2}
+\contentsline {subsection}{\numberline {12.15.3}Assessing Model D using \texttt {lrm}'s tools}{327}{subsection.12.15.3}
+\contentsline {subsection}{\numberline {12.15.4}ANOVA and Wald Tests for Model D}{327}{subsection.12.15.4}
+\contentsline {subsection}{\numberline {12.15.5}Effect Sizes in Model D}{328}{subsection.12.15.5}
+\contentsline {subsection}{\numberline {12.15.6}Plot In-Sample Predictions for Model D}{329}{subsection.12.15.6}
+\contentsline {subsection}{\numberline {12.15.7}Plotting the ROC curve for Model D}{330}{subsection.12.15.7}
+\contentsline {subsection}{\numberline {12.15.8}Validation of Model D summaries}{332}{subsection.12.15.8}
+\contentsline {section}{\numberline {12.16}Model E: Fitting a Reduced Model in light of Model D}{333}{section.12.16}
+\contentsline {subsection}{\numberline {12.16.1}A Plot comparing the two intubation groups}{334}{subsection.12.16.1}
+\contentsline {subsection}{\numberline {12.16.2}Nomogram for Model E}{335}{subsection.12.16.2}
+\contentsline {subsection}{\numberline {12.16.3}Effect Sizes from Model E}{335}{subsection.12.16.3}
+\contentsline {subsection}{\numberline {12.16.4}Plot In-Sample Predictions for Model E}{336}{subsection.12.16.4}
+\contentsline {subsection}{\numberline {12.16.5}ANOVA for Model E}{338}{subsection.12.16.5}
+\contentsline {subsection}{\numberline {12.16.6}Validation of Model E}{338}{subsection.12.16.6}
+\contentsline {subsection}{\numberline {12.16.7}Do any points seem particularly influential?}{338}{subsection.12.16.7}
+\contentsline {subsection}{\numberline {12.16.8}Fitting Model E using \texttt {glm} to get plots about influence}{339}{subsection.12.16.8}
+\contentsline {section}{\numberline {12.17}Concordance: Comparing Model C, D and E's predictions}{339}{section.12.17}
+\contentsline {section}{\numberline {12.18}Conclusions}{342}{section.12.18}
+\contentsline {chapter}{\numberline {13}A Study of Prostate Cancer}{343}{chapter.13}
+\contentsline {section}{\numberline {13.1}Data Load and Background}{343}{section.13.1}
+\contentsline {section}{\numberline {13.2}Code Book}{344}{section.13.2}
+\contentsline {section}{\numberline {13.3}Additions for Later Use}{345}{section.13.3}
+\contentsline {section}{\numberline {13.4}Fitting and Evaluating a Two-Predictor Model}{346}{section.13.4}
+\contentsline {subsection}{\numberline {13.4.1}Using \texttt {tidy}}{346}{subsection.13.4.1}
+\contentsline {subsection}{\numberline {13.4.2}Interpretation}{347}{subsection.13.4.2}
+\contentsline {section}{\numberline {13.5}Exploring Model \texttt {c11\_prost\_A}}{347}{section.13.5}
+\contentsline {subsection}{\numberline {13.5.1}\texttt {summary} for Model \texttt {c11\_prost\_A}}{348}{subsection.13.5.1}
+\contentsline {subsection}{\numberline {13.5.2}Adjusted R\textsuperscript {2}}{349}{subsection.13.5.2}
+\contentsline {subsection}{\numberline {13.5.3}Coefficient Confidence Intervals}{349}{subsection.13.5.3}
+\contentsline {subsection}{\numberline {13.5.4}ANOVA for Model \texttt {c11\_prost\_A}}{349}{subsection.13.5.4}
+\contentsline {subsection}{\numberline {13.5.5}Residuals, Fitted Values and Standard Errors with \texttt {augment}}{350}{subsection.13.5.5}
+\contentsline {subsection}{\numberline {13.5.6}Making Predictions with \texttt {c11\_prost\_A}}{351}{subsection.13.5.6}
+\contentsline {section}{\numberline {13.6}Plotting Model \texttt {c11\_prost\_A}}{352}{section.13.6}
+\contentsline {subsubsection}{\numberline {13.6.0.1}Plot logs conventionally}{352}{subsubsection.13.6.0.1}
+\contentsline {subsubsection}{\numberline {13.6.0.2}Plot on log-log scale}{352}{subsubsection.13.6.0.2}
+\contentsline {subsection}{\numberline {13.6.1}Residual Plots of \texttt {c11\_prost\_A}}{354}{subsection.13.6.1}
+\contentsline {section}{\numberline {13.7}Cross-Validation of Model \texttt {c11\_prost\_A}}{355}{section.13.7}
+\contentsline {subsection}{\numberline {13.7.1}A Validation Split Approach}{355}{subsection.13.7.1}
+\contentsline {subsection}{\numberline {13.7.2}K-Fold Cross-Validation}{358}{subsection.13.7.2}
+\contentsline {subsection}{\numberline {13.7.3}Comparing Models with 5-fold Cross-Validation}{359}{subsection.13.7.3}
+\contentsline {chapter}{\numberline {14}Multiple Imputation and Linear Regression}{363}{chapter.14}
+\contentsline {section}{\numberline {14.1}Developing a \texttt {smart\_16} data set}{363}{section.14.1}
+\contentsline {subsection}{\numberline {14.1.1}Any missing values?}{365}{subsection.14.1.1}
+\contentsline {section}{\numberline {14.2}Obtaining a Simple Imputation with \texttt {mice}}{365}{section.14.2}
+\contentsline {section}{\numberline {14.3}Linear Regression: Considering a Transformation of the Outcome}{366}{section.14.3}
+\contentsline {section}{\numberline {14.4}Linear Regression: Considering Non-Linearity in the Predictors}{368}{section.14.4}
+\contentsline {section}{\numberline {14.5}``Main Effects'' Linear Regression with \texttt {lm} on the Complete Cases}{369}{section.14.5}
+\contentsline {subsection}{\numberline {14.5.1}Quality of Fit Statistics}{370}{subsection.14.5.1}
+\contentsline {subsection}{\numberline {14.5.2}Interpreting Effect Sizes}{370}{subsection.14.5.2}
+\contentsline {subsection}{\numberline {14.5.3}Making Predictions with the Model}{371}{subsection.14.5.3}
+\contentsline {section}{\numberline {14.6}``Augmented'' Linear Regression with \texttt {lm} on the Complete Cases}{372}{section.14.6}
+\contentsline {subsection}{\numberline {14.6.1}Quality of Fit Statistics}{374}{subsection.14.6.1}
+\contentsline {subsection}{\numberline {14.6.2}ANOVA assessing the impact of the non-linear terms}{374}{subsection.14.6.2}
+\contentsline {subsection}{\numberline {14.6.3}Interpreting Effect Sizes}{374}{subsection.14.6.3}
+\contentsline {subsection}{\numberline {14.6.4}Making Predictions with the Model}{377}{subsection.14.6.4}
+\contentsline {section}{\numberline {14.7}Using \texttt {mice} to perform Multiple Imputation}{378}{section.14.7}
+\contentsline {section}{\numberline {14.8}Running the Linear Regression in \texttt {lm} with Multiple Imputation}{380}{section.14.8}
+\contentsline {section}{\numberline {14.9}Fit the Multiple Imputation Model with \texttt {aregImpute}}{382}{section.14.9}
+\contentsline {section}{\numberline {14.10}Fit Linear Regression using \texttt {ols} and \texttt {fit.mult.impute}}{386}{section.14.10}
+\contentsline {subsection}{\numberline {14.10.1}Summaries and Coefficients}{387}{subsection.14.10.1}
+\contentsline {subsection}{\numberline {14.10.2}Effect Sizes}{388}{subsection.14.10.2}
+\contentsline {subsection}{\numberline {14.10.3}Making Predictions with this Model}{389}{subsection.14.10.3}
+\contentsline {subsection}{\numberline {14.10.4}Nomogram}{390}{subsection.14.10.4}
+\contentsline {subsection}{\numberline {14.10.5}Validating Summary Statistics}{391}{subsection.14.10.5}
+\contentsline {chapter}{\numberline {15}Using tidymodels to fit linear regressions}{393}{chapter.15}
+\contentsline {chapter}{\numberline {16}Using tidymodels to fit logistic regressions}{395}{chapter.16}
+\contentsline {chapter}{\numberline {17}Using tidymodels approaches: Next Steps}{397}{chapter.17}
