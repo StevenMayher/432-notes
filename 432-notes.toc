@@ -559,3 +559,67 @@
 \contentsline {subsection}{\numberline {19.17.7}Specify the R\textsuperscript {2} and log (likelihood) values}{497}{subsection.19.17.7}
 \contentsline {subsection}{\numberline {19.17.8}Check model assumptions}{498}{subsection.19.17.8}
 \contentsline {subsection}{\numberline {19.17.9}Predictions for Harry and Sally}{500}{subsection.19.17.9}
+\contentsline {chapter}{\numberline {20}Modeling an Ordinal Categorical Outcome in Ohio SMART}{501}{chapter.20}
+\contentsline {section}{\numberline {20.1}Preliminaries}{501}{section.20.1}
+\contentsline {section}{\numberline {20.2}A subset of the Ohio SMART data}{501}{section.20.2}
+\contentsline {subsection}{\numberline {20.2.1}Several Ways of Storing Multi-Categorical data}{502}{subsection.20.2.1}
+\contentsline {section}{\numberline {20.3}Building Cross-Tabulations}{503}{section.20.3}
+\contentsline {subsection}{\numberline {20.3.1}Using base \texttt {table} functions}{503}{subsection.20.3.1}
+\contentsline {subsubsection}{\numberline {20.3.1.1}Adding percentages within each row}{503}{subsubsection.20.3.1.1}
+\contentsline {subsubsection}{\numberline {20.3.1.2}Adding percentages within each column}{504}{subsubsection.20.3.1.2}
+\contentsline {subsection}{\numberline {20.3.2}Using \texttt {xtabs}}{504}{subsection.20.3.2}
+\contentsline {subsection}{\numberline {20.3.3}Storing a table in a tibble}{505}{subsection.20.3.3}
+\contentsline {subsection}{\numberline {20.3.4}Using \texttt {CrossTable} from the \texttt {gmodels} package}{506}{subsection.20.3.4}
+\contentsline {section}{\numberline {20.4}Graphing Categorical Data}{508}{section.20.4}
+\contentsline {subsection}{\numberline {20.4.1}A Bar Chart for a Single Variable}{508}{subsection.20.4.1}
+\contentsline {subsection}{\numberline {20.4.2}A Counts Chart for a 2-Way Cross-Tabulation}{509}{subsection.20.4.2}
+\contentsline {section}{\numberline {20.5}Building a Model for \texttt {genh} using \texttt {veg\_day}}{510}{section.20.5}
+\contentsline {subsection}{\numberline {20.5.1}A little EDA}{510}{subsection.20.5.1}
+\contentsline {subsection}{\numberline {20.5.2}Describing the Proportional-Odds Cumulative Logit Model}{511}{subsection.20.5.2}
+\contentsline {subsection}{\numberline {20.5.3}Fitting a Proportional Odds Logistic Regression with \texttt {polr}}{513}{subsection.20.5.3}
+\contentsline {section}{\numberline {20.6}Interpreting Model \texttt {m1}}{514}{section.20.6}
+\contentsline {subsection}{\numberline {20.6.1}Looking at Predictions}{514}{subsection.20.6.1}
+\contentsline {subsection}{\numberline {20.6.2}Making Predictions for Harry (and Sally) with \texttt {predict}}{515}{subsection.20.6.2}
+\contentsline {subsection}{\numberline {20.6.3}Predicting the actual classification of \texttt {genh}}{515}{subsection.20.6.3}
+\contentsline {subsection}{\numberline {20.6.4}A Cross-Tabulation of Predictions?}{515}{subsection.20.6.4}
+\contentsline {subsection}{\numberline {20.6.5}The Fitted Model Equations}{516}{subsection.20.6.5}
+\contentsline {subsection}{\numberline {20.6.6}Interpreting the \texttt {veg\_day} coefficient}{517}{subsection.20.6.6}
+\contentsline {subsection}{\numberline {20.6.7}Exponentiating the Slope Coefficient to facilitate Interpretation}{517}{subsection.20.6.7}
+\contentsline {subsection}{\numberline {20.6.8}Comparison to a Null Model}{518}{subsection.20.6.8}
+\contentsline {section}{\numberline {20.7}The Assumption of Proportional Odds}{518}{section.20.7}
+\contentsline {subsection}{\numberline {20.7.1}Testing the Proportional Odds Assumption}{520}{subsection.20.7.1}
+\contentsline {section}{\numberline {20.8}Can model \texttt {m1} be fit using \texttt {rms} tools?}{521}{section.20.8}
+\contentsline {section}{\numberline {20.9}Building a Three-Predictor Model}{522}{section.20.9}
+\contentsline {subsection}{\numberline {20.9.1}Scatterplot Matrix}{522}{subsection.20.9.1}
+\contentsline {subsection}{\numberline {20.9.2}Our Three-Predictor Model, \texttt {m2}}{523}{subsection.20.9.2}
+\contentsline {subsection}{\numberline {20.9.3}Does the three-predictor model outperform \texttt {m1}?}{524}{subsection.20.9.3}
+\contentsline {subsection}{\numberline {20.9.4}Wald tests for individual predictors}{524}{subsection.20.9.4}
+\contentsline {subsection}{\numberline {20.9.5}A Cross-Tabulation of Predictions?}{525}{subsection.20.9.5}
+\contentsline {subsection}{\numberline {20.9.6}Interpreting the Effect Sizes}{526}{subsection.20.9.6}
+\contentsline {subsection}{\numberline {20.9.7}Quality of the Model Fit}{527}{subsection.20.9.7}
+\contentsline {subsection}{\numberline {20.9.8}Validating the Summary Statistics in \texttt {m2\_lrm}}{527}{subsection.20.9.8}
+\contentsline {subsection}{\numberline {20.9.9}Testing the Proportional Odds Assumption}{528}{subsection.20.9.9}
+\contentsline {subsection}{\numberline {20.9.10}Plotting the Fitted Model}{530}{subsection.20.9.10}
+\contentsline {subsubsection}{\numberline {20.9.10.1}Nomogram}{530}{subsubsection.20.9.10.1}
+\contentsline {subsubsection}{\numberline {20.9.10.2}Using Predict and showing mean prediction on 1-5 scale}{530}{subsubsection.20.9.10.2}
+\contentsline {section}{\numberline {20.10}A Larger Model, including income group}{531}{section.20.10}
+\contentsline {subsection}{\numberline {20.10.1}Cross-Tabulation of Predicted/Observed Classifications}{532}{subsection.20.10.1}
+\contentsline {subsection}{\numberline {20.10.2}Nomogram}{533}{subsection.20.10.2}
+\contentsline {subsection}{\numberline {20.10.3}Using Predict and showing mean prediction on 1-5 scale}{534}{subsection.20.10.3}
+\contentsline {subsection}{\numberline {20.10.4}Validating the Summary Statistics in \texttt {m3\_lrm}}{534}{subsection.20.10.4}
+\contentsline {section}{\numberline {20.11}References for this Chapter}{535}{section.20.11}
+\contentsline {chapter}{\numberline {21}Analyzing Literary Styles with Multinomial Logistic Regression}{537}{chapter.21}
+\contentsline {section}{\numberline {21.1}The Authorship Example}{537}{section.21.1}
+\contentsline {section}{\numberline {21.2}Focus on 11 key words}{538}{section.21.2}
+\contentsline {subsection}{\numberline {21.2.1}Side by Side Boxplots}{539}{subsection.21.2.1}
+\contentsline {section}{\numberline {21.3}A Multinomial Logistic Regression Model}{541}{section.21.3}
+\contentsline {subsection}{\numberline {21.3.1}Testing Model 1}{542}{subsection.21.3.1}
+\contentsline {section}{\numberline {21.4}Model 2}{543}{section.21.4}
+\contentsline {subsection}{\numberline {21.4.1}Comparing Model 2 to Model 1}{544}{subsection.21.4.1}
+\contentsline {subsection}{\numberline {21.4.2}Testing Model 2}{544}{subsection.21.4.2}
+\contentsline {subsection}{\numberline {21.4.3}A little history}{544}{subsection.21.4.3}
+\contentsline {section}{\numberline {21.5}Classification Table}{545}{section.21.5}
+\contentsline {section}{\numberline {21.6}Probability Curves based on a Single Predictor}{546}{section.21.6}
+\contentsline {subsection}{\numberline {21.6.1}Produce the Plot of Estimated Probabilities based on ``been'' counts}{548}{subsection.21.6.1}
+\contentsline {subsection}{\numberline {21.6.2}Boxplot of ``been'' counts}{548}{subsection.21.6.2}
+\contentsline {subsection}{\numberline {21.6.3}Quote Sources}{549}{subsection.21.6.3}
