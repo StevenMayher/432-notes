@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.11.16)  29 JAN 2021 23:22
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.11.16)  29 JAN 2021 23:47
 entering extended mode
 **432-notes.tex
 (C:\Users\Thomas\Dropbox\2021-432\432-notes\432-notes.tex
@@ -974,16 +974,16 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [3]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 156.
-[4] [5] [6])
+[4] [5] [6] [7])
 \tf@toc=\write4
-[7] [8
-
-]
+[8]
 LaTeX Font Info:    Try loading font information for TS1+lmr on input line 172.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\ts1lmr.fd"
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [9] [10
+) [9
+
+] [10
 
 ]
 
@@ -1024,7 +1024,7 @@ Overfull \hbox (74.99878pt too wide) in paragraph at lines 400--400
 -------------------[] 
  []
 
-<images/Tolaney-snip1.png, id=466, 316.93407pt x 339.51843pt>
+<images/Tolaney-snip1.png, id=504, 316.93407pt x 339.51843pt>
 File: images/Tolaney-snip1.png Graphic file (type png)
 <use images/Tolaney-snip1.png>
 Package pdftex.def Info: images/Tolaney-snip1.png used on input line 410.
@@ -1032,7 +1032,7 @@ Package pdftex.def Info: images/Tolaney-snip1.png used on input line 410.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[16] <images/Roy-snip1.png, id=483, 636.87938pt x 345.54094pt>
+[16] <images/Roy-snip1.png, id=521, 636.87938pt x 345.54094pt>
 File: images/Roy-snip1.png Graphic file (type png)
 <use images/Roy-snip1.png>
 Package pdftex.def Info: images/Roy-snip1.png used on input line 421.
@@ -1047,7 +1047,7 @@ OF MEDICINE 17
  []
 
 [17 <C:/Users/Thomas/Dropbox/2021-432/432-notes/images/Tolaney-snip1.png>] <ima
-ges/Berkhemer-snip4complete.png, id=503, 517.935pt x 608.2725pt>
+ges/Berkhemer-snip4complete.png, id=541, 517.935pt x 608.2725pt>
 File: images/Berkhemer-snip4complete.png Graphic file (type png)
 <use images/Berkhemer-snip4complete.png>
 Package pdftex.def Info: images/Berkhemer-snip4complete.png used on input line 
@@ -1057,7 +1057,7 @@ Package pdftex.def Info: images/Berkhemer-snip4complete.png used on input line
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [18 <C:/Users/Thomas/Dropbox/2021-432/432-notes/images/Roy-snip1.png>] <images/
-Berkhemer-snip4notes.png, id=511, 517.935pt x 191.9672pt>
+Berkhemer-snip4notes.png, id=549, 517.935pt x 191.9672pt>
 File: images/Berkhemer-snip4notes.png Graphic file (type png)
 <use images/Berkhemer-snip4notes.png>
 Package pdftex.def Info: images/Berkhemer-snip4notes.png used on input line 436
@@ -1585,7 +1585,7 @@ Overfull \hbox (11.99896pt too wide) in paragraph at lines 985--985
   100.0[] 
  []
 
-[29] <images/fs-table1inExcel.png, id=591, 448.67625pt x 432.86719pt>
+[29] <images/fs-table1inExcel.png, id=629, 448.67625pt x 432.86719pt>
 File: images/fs-table1inExcel.png Graphic file (type png)
 <use images/fs-table1inExcel.png>
 Package pdftex.def Info: images/fs-table1inExcel.png used on input line 1012.
@@ -1825,7 +1825,7 @@ Overfull \hbox (38.24889pt too wide) in paragraph at lines 1362--1362
 3.41, -0.07][] 
  []
 
-<images/bb-table1inExcel.png, id=649, 436.63126pt x 315.42844pt>
+<images/bb-table1inExcel.png, id=687, 436.63126pt x 315.42844pt>
 File: images/bb-table1inExcel.png Graphic file (type png)
 <use images/bb-table1inExcel.png>
 Package pdftex.def Info: images/bb-table1inExcel.png used on input line 1377.
@@ -1833,7 +1833,7 @@ Package pdftex.def Info: images/bb-table1inExcel.png used on input line 1377.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[37] <images/bb-table1inWord.png, id=655, 505.89pt x 574.39594pt>
+[37] <images/bb-table1inWord.png, id=693, 505.89pt x 574.39594pt>
 File: images/bb-table1inWord.png Graphic file (type png)
 <use images/bb-table1inWord.png>
 Package pdftex.def Info: images/bb-table1inWord.png used on input line 1384.
@@ -2121,7 +2121,7 @@ ea              766[]
  []
 
 
-<432-notes_files/figure-latex/unnamed-chunk-8-1.pdf, id=709, 469.755pt x 325.21
+<432-notes_files/figure-latex/unnamed-chunk-8-1.pdf, id=747, 469.755pt x 325.21
 5pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (type pdf
 )
@@ -2131,7 +2131,7 @@ d on input line 1595.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 [45 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/un
 named-chunk-8-1.pdf>] [46] [47] [48] [49] [50]
-<432-notes_files/figure-latex/unnamed-chunk-12-1.pdf, id=760, 469.755pt x 325.2
+<432-notes_files/figure-latex/unnamed-chunk-12-1.pdf, id=798, 469.755pt x 325.2
 15pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (type pd
 f)
@@ -2233,7 +2233,7 @@ Overfull \hbox (16.7028pt too wide) has occurred while \output is active
  []
 
 [107]
-<432-notes_files/figure-latex/unnamed-chunk-47-1.pdf, id=1185, 469.755pt x 325.
+<432-notes_files/figure-latex/unnamed-chunk-47-1.pdf, id=1223, 469.755pt x 325.
 215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-47-1.pdf Graphic file (type pd
 f)
@@ -2252,7 +2252,7 @@ Overfull \hbox (16.7028pt too wide) has occurred while \output is active
 
 [109 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-47-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-48-1.pdf, id=1202, 469.755pt x 325.
+<432-notes_files/figure-latex/unnamed-chunk-48-1.pdf, id=1240, 469.755pt x 325.
 215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-48-1.pdf Graphic file (type pd
 f)
@@ -2349,7 +2349,7 @@ Overfull \hbox (48.74886pt too wide) in paragraph at lines 5948--5948
  []
 
 
-<432-notes_files/figure-latex/unnamed-chunk-61-1.pdf, id=1247, 469.755pt x 325.
+<432-notes_files/figure-latex/unnamed-chunk-61-1.pdf, id=1285, 469.755pt x 325.
 215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-61-1.pdf Graphic file (type pd
 f)
@@ -2359,7 +2359,7 @@ ed on input line 5961.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 [117 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-61-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-62-1.pdf, id=1259, 469.755pt x 325.
+<432-notes_files/figure-latex/unnamed-chunk-62-1.pdf, id=1297, 469.755pt x 325.
 215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-62-1.pdf Graphic file (type pd
 f)
@@ -2368,7 +2368,7 @@ Package pdftex.def Info: 432-notes_files/figure-latex/unnamed-chunk-62-1.pdf us
 ed on input line 5973.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
-<432-notes_files/figure-latex/unnamed-chunk-63-1.pdf, id=1260, 469.755pt x 325.
+<432-notes_files/figure-latex/unnamed-chunk-63-1.pdf, id=1298, 469.755pt x 325.
 215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-63-1.pdf Graphic file (type pd
 f)
@@ -2407,7 +2407,7 @@ SMART_CLE1_SH \T1/lmr/m/n/10 125
  []
 
 [125]
-<432-notes_files/figure-latex/unnamed-chunk-69-1.pdf, id=1330, 469.755pt x 325.
+<432-notes_files/figure-latex/unnamed-chunk-69-1.pdf, id=1368, 469.755pt x 325.
 215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-69-1.pdf Graphic file (type pd
 f)
@@ -2437,7 +2437,7 @@ Overfull \hbox (32.9989pt too wide) in paragraph at lines 6359--6359
  []
 
 
-<432-notes_files/figure-latex/unnamed-chunk-71-1.pdf, id=1340, 469.755pt x 325.
+<432-notes_files/figure-latex/unnamed-chunk-71-1.pdf, id=1378, 469.755pt x 325.
 215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-71-1.pdf Graphic file (type pd
 f)
@@ -2456,7 +2456,7 @@ SMART_CLE1_SH \T1/lmr/m/n/10 127
 
 [127 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-69-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-73-1.pdf, id=1352, 469.755pt x 325.
+<432-notes_files/figure-latex/unnamed-chunk-73-1.pdf, id=1390, 469.755pt x 325.
 215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-73-1.pdf Graphic file (type pd
 f)
@@ -2469,7 +2469,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [128 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-71-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-75-1.pdf, id=1363, 469.755pt x 325.
+<432-notes_files/figure-latex/unnamed-chunk-75-1.pdf, id=1401, 469.755pt x 325.
 215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-75-1.pdf Graphic file (type pd
 f)
@@ -2488,7 +2488,7 @@ SMART_CLE1_SH \T1/lmr/m/n/10 129
 
 [129 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-73-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-77-1.pdf, id=1374, 469.755pt x 325.
+<432-notes_files/figure-latex/unnamed-chunk-77-1.pdf, id=1412, 469.755pt x 325.
 215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-77-1.pdf Graphic file (type pd
 f)
@@ -2825,7 +2825,7 @@ Overfull \hbox (6.74898pt too wide) in paragraph at lines 7006--7006
  []
 
 [141]
-<432-notes_files/figure-latex/unnamed-chunk-95-1.pdf, id=1454, 469.755pt x 325.
+<432-notes_files/figure-latex/unnamed-chunk-95-1.pdf, id=1492, 469.755pt x 325.
 215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-95-1.pdf Graphic file (type pd
 f)
@@ -2835,7 +2835,7 @@ ed on input line 7048.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 [142 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-95-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-96-1.pdf, id=1465, 469.755pt x 325.
+<432-notes_files/figure-latex/unnamed-chunk-96-1.pdf, id=1503, 469.755pt x 325.
 215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-96-1.pdf Graphic file (type pd
 f)
@@ -2848,7 +2848,7 @@ Underfull \vbox (badness 2856) has occurred while \output is active []
 
 [143 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-96-1.pdf>] [144]
-<432-notes_files/figure-latex/scatter_physhealth_bmi_1-1.pdf, id=1489, 469.755p
+<432-notes_files/figure-latex/scatter_physhealth_bmi_1-1.pdf, id=1527, 469.755p
 t x 325.215pt>
 File: 432-notes_files/figure-latex/scatter_physhealth_bmi_1-1.pdf Graphic file 
 (type pdf)
@@ -2857,7 +2857,7 @@ Package pdftex.def Info: 432-notes_files/figure-latex/scatter_physhealth_bmi_1-
 1.pdf used on input line 7162.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
-<432-notes_files/figure-latex/c2_scatter_physhealth_bmi_2-1.pdf, id=1490, 469.7
+<432-notes_files/figure-latex/c2_scatter_physhealth_bmi_2-1.pdf, id=1528, 469.7
 55pt x 325.215pt>
 File: 432-notes_files/figure-latex/c2_scatter_physhealth_bmi_2-1.pdf Graphic fi
 le (type pdf)
@@ -2944,7 +2944,7 @@ Overfull \hbox (22.49893pt too wide) in paragraph at lines 7603--7603
  []
 
 
-<432-notes_files/figure-latex/unnamed-chunk-111-1.pdf, id=1559, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-111-1.pdf, id=1597, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-111-1.pdf Graphic file (type p
 df)
@@ -2956,7 +2956,7 @@ sed on input line 7622.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [153]
-<432-notes_files/figure-latex/unnamed-chunk-112-1.pdf, id=1566, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-112-1.pdf, id=1604, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-112-1.pdf Graphic file (type p
 df)
@@ -2969,7 +2969,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [154 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-111-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-113-1.pdf, id=1576, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-113-1.pdf, id=1614, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-113-1.pdf Graphic file (type p
 df)
@@ -2982,7 +2982,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [155 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-112-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-115-1.pdf, id=1586, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-115-1.pdf, id=1624, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-115-1.pdf Graphic file (type p
 df)
@@ -3015,7 +3015,7 @@ Overfull \hbox (6.0pt too wide) in alignment at lines 7709--7746
  []
 
 [159]
-<432-notes_files/figure-latex/unnamed-chunk-117-1.pdf, id=1618, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-117-1.pdf, id=1656, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-117-1.pdf Graphic file (type p
 df)
@@ -3055,7 +3055,7 @@ Overfull \hbox (59.24883pt too wide) in paragraph at lines 7791--7791
 
 [160 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-117-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-119-1.pdf, id=1632, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-119-1.pdf, id=1670, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-119-1.pdf Graphic file (type p
 df)
@@ -3138,7 +3138,7 @@ Overfull \hbox (13.57225pt too wide) in paragraph at lines 8237--8258
  []
 
 [168] [169]
-<432-notes_files/figure-latex/unnamed-chunk-136-1.pdf, id=1697, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-136-1.pdf, id=1735, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-136-1.pdf Graphic file (type p
 df)
@@ -3156,7 +3156,7 @@ Overfull \hbox (140.57309pt too wide) in paragraph at lines 8401--8446
 Underfull \vbox (badness 8094) has occurred while \output is active []
 
 [172]
-<432-notes_files/figure-latex/unnamed-chunk-139-1.pdf, id=1718, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-139-1.pdf, id=1756, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-139-1.pdf Graphic file (type p
 df)
@@ -3303,7 +3303,7 @@ Overfull \hbox (11.99896pt too wide) in paragraph at lines 8591--8591
  []
 
 
-<432-notes_files/figure-latex/unnamed-chunk-141-1.pdf, id=1739, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-141-1.pdf, id=1777, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-141-1.pdf Graphic file (type p
 df)
@@ -3315,7 +3315,7 @@ sed on input line 8606.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [175]
-<432-notes_files/figure-latex/unnamed-chunk-142-1.pdf, id=1745, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-142-1.pdf, id=1783, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-142-1.pdf Graphic file (type p
 df)
@@ -3333,7 +3333,7 @@ Chapter 6.
 [179
 
 ]
-<432-notes_files/figure-latex/c3_oneway_bonding_resin_boxplot-1.pdf, id=1783, 4
+<432-notes_files/figure-latex/c3_oneway_bonding_resin_boxplot-1.pdf, id=1821, 4
 69.755pt x 325.215pt>
 File: 432-notes_files/figure-latex/c3_oneway_bonding_resin_boxplot-1.pdf Graphi
 c file (type pdf)
@@ -3346,7 +3346,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [180]
 <432-notes_files/figure-latex/c3_oneway_bonding_resin_ridgelineplot-1.pdf, id=1
-791, 469.755pt x 325.215pt>
+829, 469.755pt x 325.215pt>
 File: 432-notes_files/figure-latex/c3_oneway_bonding_resin_ridgelineplot-1.pdf 
 Graphic file (type pdf)
 
@@ -3361,7 +3361,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 3_oneway_bonding_resin_boxplot-1.pdf>] [182 <C:/Users/Thomas/Dropbox/2021-432/4
 32-notes/432-notes_files/figure-latex/c3_oneway_bonding_resin_ridgelineplot-1.p
 df>]
-<432-notes_files/figure-latex/unnamed-chunk-148-1.pdf, id=1815, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-148-1.pdf, id=1853, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-148-1.pdf Graphic file (type p
 df)
@@ -3373,7 +3373,7 @@ sed on input line 8830.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [183]
-<432-notes_files/figure-latex/c3_bonding_points_plot-1.pdf, id=1820, 469.755pt 
+<432-notes_files/figure-latex/c3_bonding_points_plot-1.pdf, id=1858, 469.755pt 
 x 325.215pt>
 File: 432-notes_files/figure-latex/c3_bonding_points_plot-1.pdf Graphic file (t
 ype pdf)
@@ -3401,7 +3401,7 @@ RACTION \T1/lmr/m/n/10 185
 
 [185 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/c
 3_bonding_points_plot-1.pdf>]
-<432-notes_files/figure-latex/c3_ggplot_means_plot_bonding-1.pdf, id=1846, 469.
+<432-notes_files/figure-latex/c3_ggplot_means_plot_bonding-1.pdf, id=1884, 469.
 755pt x 325.215pt>
 File: 432-notes_files/figure-latex/c3_ggplot_means_plot_bonding-1.pdf Graphic f
 ile (type pdf)
@@ -3455,7 +3455,7 @@ Underfull \hbox (badness 5592) in paragraph at lines 9082--9082
 
 [189] [190] [191] [192]
 <432-notes_files/figure-latex/boxplots_c3_bonding_without_interaction-1.pdf, id
-=1892, 469.755pt x 325.215pt>
+=1930, 469.755pt x 325.215pt>
 File: 432-notes_files/figure-latex/boxplots_c3_bonding_without_interaction-1.pd
 f Graphic file (type pdf)
 
@@ -3492,7 +3492,7 @@ Overfull \hbox (40.92438pt too wide) has occurred while \output is active
  []
 
 [195]
-<432-notes_files/figure-latex/c3_ggplot_means_plot_cortisol-1.pdf, id=1917, 469
+<432-notes_files/figure-latex/c3_ggplot_means_plot_cortisol-1.pdf, id=1955, 469
 .755pt x 325.215pt>
 File: 432-notes_files/figure-latex/c3_ggplot_means_plot_cortisol-1.pdf Graphic 
 file (type pdf)
@@ -3515,7 +3515,7 @@ lmr/m/sl/10 WITHOUT INTERACTION \T1/lmr/m/n/10 197
 
 [197]
 <432-notes_files/figure-latex/boxplots_c3_cortisol_without_interaction-1.pdf, i
-d=1935, 469.755pt x 325.215pt>
+d=1973, 469.755pt x 325.215pt>
 File: 432-notes_files/figure-latex/boxplots_c3_cortisol_without_interaction-1.p
 df Graphic file (type pdf)
 
@@ -3578,7 +3578,7 @@ ON \T1/lmr/m/n/10 207
 [207] [208]
 Chapter 8.
 
-<432-notes_files/figure-latex/unnamed-chunk-167-1.pdf, id=2012, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-167-1.pdf, id=2050, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-167-1.pdf Graphic file (type p
 df)
@@ -3589,7 +3589,7 @@ sed on input line 10028.
 [209
 
 ]
-<432-notes_files/figure-latex/unnamed-chunk-168-1.pdf, id=2022, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-168-1.pdf, id=2060, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-168-1.pdf Graphic file (type p
 df)
@@ -3606,7 +3606,7 @@ Overfull \hbox (1.499pt too wide) in paragraph at lines 10137--10137
  []
 
 
-<432-notes_files/figure-latex/unnamed-chunk-171-1.pdf, id=2043, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-171-1.pdf, id=2081, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-171-1.pdf Graphic file (type p
 df)
@@ -3618,7 +3618,7 @@ sed on input line 10152.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [212]
-<432-notes_files/figure-latex/unnamed-chunk-172-1.pdf, id=2049, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-172-1.pdf, id=2087, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-172-1.pdf Graphic file (type p
 df)
@@ -3635,7 +3635,7 @@ EDICTOR (TWO-WAY ANOVA WITHOUT INTERACTION) \T1/lmr/m/n/10 213
 [213 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-171-1.pdf> <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_f
 iles/figure-latex/unnamed-chunk-172-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-173-1.pdf, id=2064, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-173-1.pdf, id=2102, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-173-1.pdf Graphic file (type p
 df)
@@ -3669,7 +3669,7 @@ CTION TERM (TWO-WAY ANOVA WITH INTERACTION) \T1/lmr/m/n/10 217
  []
 
 [217]
-<432-notes_files/figure-latex/graph_to_set_up_c8_m4-1.pdf, id=2092, 469.755pt x
+<432-notes_files/figure-latex/graph_to_set_up_c8_m4-1.pdf, id=2130, 469.755pt x
  325.215pt>
 File: 432-notes_files/figure-latex/graph_to_set_up_c8_m4-1.pdf Graphic file (ty
 pe pdf)
@@ -3739,7 +3739,7 @@ Overfull \hbox (43.49887pt too wide) in paragraph at lines 10550--10550
  []
 
 [220] [221] [222]
-<432-notes_files/figure-latex/unnamed-chunk-180-1.pdf, id=2127, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-180-1.pdf, id=2165, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-180-1.pdf Graphic file (type p
 df)
@@ -3767,7 +3767,7 @@ Y 2 STANDARD DEVIATIONS \T1/lmr/m/n/10 225
  []
 
 [225]
-<432-notes_files/figure-latex/unnamed-chunk-183-1.pdf, id=2161, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-183-1.pdf, id=2199, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-183-1.pdf Graphic file (type p
 df)
@@ -3790,7 +3790,7 @@ Underfull \hbox (badness 1237) in paragraph at lines 11058--11060
  []
 
 
-<432-notes_files/figure-latex/c8_m6_residuals_normality-1.pdf, id=2189, 469.755
+<432-notes_files/figure-latex/c8_m6_residuals_normality-1.pdf, id=2227, 469.755
 pt x 325.215pt>
 File: 432-notes_files/figure-latex/c8_m6_residuals_normality-1.pdf Graphic file
  (type pdf)
@@ -3803,7 +3803,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [229 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/c
 8_m6_residuals_normality-1.pdf>]
-<432-notes_files/figure-latex/residual_plot1_c8_m6-1.pdf, id=2203, 469.755pt x 
+<432-notes_files/figure-latex/residual_plot1_c8_m6-1.pdf, id=2241, 469.755pt x 
 325.215pt>
 File: 432-notes_files/figure-latex/residual_plot1_c8_m6-1.pdf Graphic file (typ
 e pdf)
@@ -3815,7 +3815,7 @@ f used on input line 11117.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [230]
-<432-notes_files/figure-latex/residual_plot5_c8_m6-1.pdf, id=2216, 469.755pt x 
+<432-notes_files/figure-latex/residual_plot5_c8_m6-1.pdf, id=2254, 469.755pt x 
 325.215pt>
 File: 432-notes_files/figure-latex/residual_plot5_c8_m6-1.pdf Graphic file (typ
 e pdf)
@@ -3834,7 +3834,7 @@ TION MODELS \T1/lmr/m/n/10 231
 
 [231 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/r
 esidual_plot1_c8_m6-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-185-1.pdf, id=2227, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-185-1.pdf, id=2265, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-185-1.pdf Graphic file (type p
 df)
@@ -3847,7 +3847,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [232 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/r
 esidual_plot5_c8_m6-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-186-1.pdf, id=2238, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-186-1.pdf, id=2276, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-186-1.pdf Graphic file (type p
 df)
@@ -3867,7 +3867,7 @@ TION MODELS \T1/lmr/m/n/10 233
 [233 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-185-1.pdf> <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_f
 iles/figure-latex/unnamed-chunk-186-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-187-1.pdf, id=2253, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-187-1.pdf, id=2291, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-187-1.pdf Graphic file (type p
 df)
@@ -3969,7 +3969,7 @@ Overfull \hbox (16.22165pt too wide) in alignment at lines 11231--11249
 [235
 
 ]
-<432-notes_files/figure-latex/c9_lm_and_loess_y_on_x2-1.pdf, id=2276, 469.755pt
+<432-notes_files/figure-latex/c9_lm_and_loess_y_on_x2-1.pdf, id=2314, 469.755pt
  x 325.215pt>
 File: 432-notes_files/figure-latex/c9_lm_and_loess_y_on_x2-1.pdf Graphic file (
 type pdf)
@@ -3988,7 +3988,7 @@ EAR REGRESSION MODEL
 
 [236]
 <432-notes_files/figure-latex/fit_c9_m1_and_check_residuals_for_curve-1.pdf, id
-=2282, 469.755pt x 325.215pt>
+=2320, 469.755pt x 325.215pt>
 File: 432-notes_files/figure-latex/fit_c9_m1_and_check_residuals_for_curve-1.pd
 f Graphic file (type pdf)
 
@@ -4009,7 +4009,7 @@ EAR REGRESSION MODEL
  []
 
 [238]
-<432-notes_files/figure-latex/unnamed-chunk-190-1.pdf, id=2304, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-190-1.pdf, id=2342, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-190-1.pdf Graphic file (type p
 df)
@@ -4019,7 +4019,7 @@ sed on input line 11379.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 [239 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-190-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-191-1.pdf, id=2314, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-191-1.pdf, id=2352, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-191-1.pdf Graphic file (type p
 df)
@@ -4035,7 +4035,7 @@ EAR REGRESSION MODEL
 
 [240 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-191-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-193-1.pdf, id=2326, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-193-1.pdf, id=2364, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-193-1.pdf Graphic file (type p
 df)
@@ -4102,7 +4102,7 @@ EAR REGRESSION MODEL
 
 [242 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-193-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-196-1.pdf, id=2342, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-196-1.pdf, id=2380, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-196-1.pdf Graphic file (type p
 df)
@@ -4121,7 +4121,7 @@ EAR REGRESSION MODEL
 
 [244 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-196-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-198-1.pdf, id=2356, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-198-1.pdf, id=2394, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-198-1.pdf Graphic file (type p
 df)
@@ -4134,7 +4134,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [245 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-198-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-199-1.pdf, id=2367, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-199-1.pdf, id=2405, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-199-1.pdf Graphic file (type p
 df)
@@ -4150,7 +4150,7 @@ EAR REGRESSION MODEL
 
 [246 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-199-1.pdf>] [247]
-<432-notes_files/figure-latex/unnamed-chunk-201-1.pdf, id=2385, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-201-1.pdf, id=2423, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-201-1.pdf Graphic file (type p
 df)
@@ -4185,7 +4185,7 @@ EAR REGRESSION MODEL
  []
 
 [250]
-<432-notes_files/figure-latex/unnamed-chunk-205-1.pdf, id=2404, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-205-1.pdf, id=2442, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-205-1.pdf Graphic file (type p
 df)
@@ -4302,7 +4302,7 @@ Overfull \hbox (60.59273pt too wide) has occurred while \output is active
 EAR REGRESSION MODEL
  []
 
-[256] <432-notes_files/figure-latex/line449-1.pdf, id=2463, 469.755pt x 325.215
+[256] <432-notes_files/figure-latex/line449-1.pdf, id=2501, 469.755pt x 325.215
 pt>
 File: 432-notes_files/figure-latex/line449-1.pdf Graphic file (type pdf)
 <use 432-notes_files/figure-latex/line449-1.pdf>
@@ -4337,7 +4337,7 @@ lmr/m/sl/10 FROM THE \T1/lmtt/m/sl/10 RMS \T1/lmr/m/sl/10 PACKAGE TO FIT LINEAR
  []
 
 [262] [263]
-<432-notes_files/figure-latex/unnamed-chunk-215-1.pdf, id=2514, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-215-1.pdf, id=2552, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-215-1.pdf Graphic file (type p
 df)
@@ -4364,7 +4364,7 @@ lmr/m/sl/10 FROM THE \T1/lmtt/m/sl/10 RMS \T1/lmr/m/sl/10 PACKAGE TO FIT LINEAR
  []
 
 [266]
-<432-notes_files/figure-latex/unnamed-chunk-218-1.pdf, id=2542, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-218-1.pdf, id=2580, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-218-1.pdf Graphic file (type p
 df)
@@ -4471,7 +4471,7 @@ Overfull \hbox (1.499pt too wide) in paragraph at lines 12656--12656
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [269]
-<432-notes_files/figure-latex/unnamed-chunk-221-1.pdf, id=2567, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-221-1.pdf, id=2605, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-221-1.pdf Graphic file (type p
 df)
@@ -4527,7 +4527,7 @@ Overfull \hbox (11.99896pt too wide) in paragraph at lines 12762--12762
  []
 
 
-<432-notes_files/figure-latex/unnamed-chunk-224-1.pdf, id=2584, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-224-1.pdf, id=2622, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-224-1.pdf Graphic file (type p
 df)
@@ -4565,7 +4565,7 @@ gs()\TS1/lmtt/m/n/10 ` \T1/lmtt/m/n/10 to see where this warning was generated.
  []
 
 
-<432-notes_files/figure-latex/unnamed-chunk-225-1.pdf, id=2618, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-225-1.pdf, id=2656, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-225-1.pdf Graphic file (type p
 df)
@@ -4575,7 +4575,7 @@ sed on input line 12844.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 [275] [276 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-l
 atex/unnamed-chunk-225-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-227-1.pdf, id=2636, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-227-1.pdf, id=2674, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-227-1.pdf Graphic file (type p
 df)
@@ -4585,7 +4585,7 @@ sed on input line 12893.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 [277 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-227-1.pdf>] [278]
-<432-notes_files/figure-latex/unnamed-chunk-228-1.pdf, id=2658, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-228-1.pdf, id=2696, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-228-1.pdf Graphic file (type p
 df)
@@ -4613,7 +4613,7 @@ MS/lmsy/m/n/10 j\OML/lmm/m/it/10 X[]; :::; X[]\OT1/lmr/m/n/10 ] = \OML/lmm/m/it
  []
 
 
-<432-notes_files/figure-latex/unnamed-chunk-229-1.pdf, id=2671, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-229-1.pdf, id=2709, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-229-1.pdf Graphic file (type p
 df)
@@ -4646,7 +4646,7 @@ mm/m/it/10 Y \OT1/lmr/m/n/10 = 1\OMS/lmsy/m/n/10 j\OML/lmm/m/it/10 X \OT1/lmr/m
  []
 
 [282]
-<432-notes_files/figure-latex/unnamed-chunk-235-1.pdf, id=2692, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-235-1.pdf, id=2730, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-235-1.pdf Graphic file (type p
 df)
@@ -4655,7 +4655,7 @@ Package pdftex.def Info: 432-notes_files/figure-latex/unnamed-chunk-235-1.pdf u
 sed on input line 13119.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
-<432-notes_files/figure-latex/unnamed-chunk-236-1.pdf, id=2693, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-236-1.pdf, id=2731, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-236-1.pdf Graphic file (type p
 df)
@@ -4840,7 +4840,7 @@ Overfull \hbox (69.7488pt too wide) in paragraph at lines 13740--13740
  []
 
 [296]
-<432-notes_files/figure-latex/unnamed-chunk-250-1.pdf, id=2808, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-250-1.pdf, id=2846, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-250-1.pdf Graphic file (type p
 df)
@@ -4856,7 +4856,7 @@ nomial_smooth
 
 [297 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-250-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-251-1.pdf, id=2822, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-251-1.pdf, id=2860, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-251-1.pdf Graphic file (type p
 df)
@@ -4866,7 +4866,7 @@ sed on input line 13781.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 [298 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-251-1.pdf>] [299] [300] [301] [302]
-<432-notes_files/figure-latex/unnamed-chunk-258-1.pdf, id=2860, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-258-1.pdf, id=2898, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-258-1.pdf Graphic file (type p
 df)
@@ -4878,7 +4878,7 @@ sed on input line 14054.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [303]
-<432-notes_files/figure-latex/unnamed-chunk-259-1.pdf, id=2867, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-259-1.pdf, id=2905, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-259-1.pdf Graphic file (type p
 df)
@@ -4888,7 +4888,7 @@ sed on input line 14081.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 [304 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-258-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-260-1.pdf, id=2882, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-260-1.pdf, id=2920, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-260-1.pdf Graphic file (type p
 df)
@@ -4901,7 +4901,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [305 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-259-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-261-1.pdf, id=2897, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-261-1.pdf, id=2935, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-261-1.pdf Graphic file (type p
 df)
@@ -4929,7 +4929,7 @@ Overfull \vbox (0.85632pt too high) detected at line 14204
 
 [307 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-261-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-262-1.pdf, id=2928, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-262-1.pdf, id=2966, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-262-1.pdf Graphic file (type p
 df)
@@ -4939,7 +4939,7 @@ sed on input line 14206.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 [308 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-262-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-263-1.pdf, id=2942, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-263-1.pdf, id=2980, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-263-1.pdf Graphic file (type p
 df)
@@ -4961,7 +4961,7 @@ esect$died 0) < 17 cases (resect$died 1).[]
  []
 
 
-<432-notes_files/figure-latex/unnamed-chunk-264-1.pdf, id=2957, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-264-1.pdf, id=2995, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-264-1.pdf Graphic file (type p
 df)
@@ -4971,7 +4971,7 @@ sed on input line 14270.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 [310 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-264-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-265-1.pdf, id=2969, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-265-1.pdf, id=3007, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-265-1.pdf Graphic file (type p
 df)
@@ -5086,7 +5086,7 @@ Overfull \hbox (64.49881pt too wide) in paragraph at lines 14475--14475
  []
 
 [314]
-<432-notes_files/figure-latex/unnamed-chunk-272-1.pdf, id=3003, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-272-1.pdf, id=3041, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-272-1.pdf Graphic file (type p
 df)
@@ -5096,7 +5096,7 @@ sed on input line 14489.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 [315 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-272-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-274-1.pdf, id=3015, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-274-1.pdf, id=3053, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-274-1.pdf Graphic file (type p
 df)
@@ -5108,7 +5108,7 @@ sed on input line 14562.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [316]
-<432-notes_files/figure-latex/unnamed-chunk-275-1.pdf, id=3022, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-275-1.pdf, id=3060, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-275-1.pdf Graphic file (type p
 df)
@@ -5164,7 +5164,7 @@ tau-a   0.121[]
 
 [318 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-275-1.pdf>] [319] [320]
-<432-notes_files/figure-latex/unnamed-chunk-277-1.pdf, id=3065, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-277-1.pdf, id=3103, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-277-1.pdf Graphic file (type p
 df)
@@ -5174,7 +5174,7 @@ sed on input line 14711.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 [321 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-277-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-279-1.pdf, id=3080, 469.755pt x 252
+<432-notes_files/figure-latex/unnamed-chunk-279-1.pdf, id=3118, 469.755pt x 252
 .945pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-279-1.pdf Graphic file (type p
 df)
@@ -5186,7 +5186,7 @@ sed on input line 14776.
 Underfull \vbox (badness 1596) has occurred while \output is active []
 
 [322]
-<432-notes_files/figure-latex/unnamed-chunk-280-1.pdf, id=3089, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-280-1.pdf, id=3127, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-280-1.pdf Graphic file (type p
 df)
@@ -5199,7 +5199,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [323 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-279-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-281-1.pdf, id=3106, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-281-1.pdf, id=3144, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-281-1.pdf Graphic file (type p
 df)
@@ -5255,7 +5255,7 @@ ection[]
 
 [325 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-281-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-285-1.pdf, id=3134, 469.755pt x 433
+<432-notes_files/figure-latex/unnamed-chunk-285-1.pdf, id=3172, 469.755pt x 433
 .62pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-285-1.pdf Graphic file (type p
 df)
@@ -5271,7 +5271,7 @@ Underfull \vbox (badness 6348) has occurred while \output is active []
 
 [327 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-285-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-286-1.pdf, id=3154, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-286-1.pdf, id=3192, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-286-1.pdf Graphic file (type p
 df)
@@ -5389,7 +5389,7 @@ Overfull \hbox (53.99884pt too wide) in paragraph at lines 15014--15014
  []
 
 
-<432-notes_files/figure-latex/unnamed-chunk-290-1.pdf, id=3178, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-290-1.pdf, id=3216, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-290-1.pdf Graphic file (type p
 df)
@@ -5453,7 +5453,7 @@ Overfull \hbox (6.74898pt too wide) in paragraph at lines 15049--15049
  []
 
 
-<432-notes_files/figure-latex/unnamed-chunk-291-1.pdf, id=3195, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-291-1.pdf, id=3233, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-291-1.pdf Graphic file (type p
 df)
@@ -5463,7 +5463,7 @@ sed on input line 15064.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 [331 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-291-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-292-1.pdf, id=3213, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-292-1.pdf, id=3251, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-292-1.pdf Graphic file (type p
 df)
@@ -5472,7 +5472,7 @@ Package pdftex.def Info: 432-notes_files/figure-latex/unnamed-chunk-292-1.pdf u
 sed on input line 15074.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
-<432-notes_files/figure-latex/unnamed-chunk-293-1.pdf, id=3214, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-293-1.pdf, id=3252, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-293-1.pdf Graphic file (type p
 df)
@@ -5494,7 +5494,7 @@ ect$died 0) < 17 cases (resect$died 1).[]
  []
 
 
-<432-notes_files/figure-latex/unnamed-chunk-294-1.pdf, id=3229, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-294-1.pdf, id=3267, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-294-1.pdf Graphic file (type p
 df)
@@ -5556,7 +5556,7 @@ Overfull \hbox (14.06468pt too wide) has occurred while \output is active
  []
 
 [335]
-<432-notes_files/figure-latex/unnamed-chunk-297-1.pdf, id=3259, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-297-1.pdf, id=3297, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-297-1.pdf Graphic file (type p
 df)
@@ -5569,7 +5569,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [336 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-297-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-298-1.pdf, id=3271, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-298-1.pdf, id=3309, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-298-1.pdf Graphic file (type p
 df)
@@ -5582,7 +5582,7 @@ LaTeX Warning: File `432-notes_files/figure-latex/model c effect plot-1.pdf' no
 t found on input line 15271.
 
 
-<432-notes_files/figure-latex/model c effect plot-1.pdf, id=3272, 469.755pt x 2
+<432-notes_files/figure-latex/model c effect plot-1.pdf, id=3310, 469.755pt x 2
 16.81pt>
 File: 432-notes_files/figure-latex/model c effect plot-1.pdf Graphic file (type
  pdf)
@@ -5606,7 +5606,7 @@ Overfull \hbox (14.06468pt too wide) has occurred while \output is active
 
 [337 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-298-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-299-1.pdf, id=3286, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-299-1.pdf, id=3324, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-299-1.pdf Graphic file (type p
 df)
@@ -5619,7 +5619,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [338 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/m
 odel c effect plot-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-300-1.pdf, id=3303, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-300-1.pdf, id=3341, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-300-1.pdf Graphic file (type p
 df)
@@ -5639,7 +5639,7 @@ Overfull \hbox (14.06468pt too wide) has occurred while \output is active
 [339 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-299-1.pdf> <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_f
 iles/figure-latex/unnamed-chunk-300-1.pdf>] [340]
-<432-notes_files/figure-latex/unnamed-chunk-304-1.pdf, id=3334, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-304-1.pdf, id=3372, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-304-1.pdf Graphic file (type p
 df)
@@ -5685,7 +5685,7 @@ Overfull \hbox (1.499pt too wide) in paragraph at lines 15431--15431
  []
 
 [342]
-<432-notes_files/figure-latex/unnamed-chunk-307-1.pdf, id=3351, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-307-1.pdf, id=3389, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-307-1.pdf Graphic file (type p
 df)
@@ -5990,7 +5990,7 @@ Overfull \hbox (27.74892pt too wide) in paragraph at lines 15929--15929
  []
 
 [352] [353]
-<432-notes_files/figure-latex/unnamed-chunk-317-1.pdf, id=3439, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-317-1.pdf, id=3477, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-317-1.pdf Graphic file (type p
 df)
@@ -6000,7 +6000,7 @@ sed on input line 16011.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 [354 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-317-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-318-1.pdf, id=3453, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-318-1.pdf, id=3491, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-318-1.pdf Graphic file (type p
 df)
@@ -6013,7 +6013,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [355 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-318-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-319-1.pdf, id=3465, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-319-1.pdf, id=3503, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-319-1.pdf Graphic file (type p
 df)
@@ -6022,7 +6022,7 @@ Package pdftex.def Info: 432-notes_files/figure-latex/unnamed-chunk-319-1.pdf u
 sed on input line 16052.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
-<432-notes_files/figure-latex/unnamed-chunk-320-1.pdf, id=3466, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-320-1.pdf, id=3504, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-320-1.pdf Graphic file (type p
 df)
@@ -6104,7 +6104,7 @@ Overfull \vbox (0.85596pt too high) detected at line 16712
  []
 
 [367] [368]
-<432-notes_files/figure-latex/unnamed-chunk-344-1.pdf, id=3551, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-344-1.pdf, id=3589, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-344-1.pdf Graphic file (type p
 df)
@@ -6128,7 +6128,7 @@ UTCOME \T1/lmr/m/n/10 369
 
 [369 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-344-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-346-1.pdf, id=3563, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-346-1.pdf, id=3601, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-346-1.pdf Graphic file (type p
 df)
@@ -6599,7 +6599,7 @@ on models[]
  []
 
 [385] [386]
-<432-notes_files/figure-latex/unnamed-chunk-376-1.pdf, id=3660, 469.755pt x 578
+<432-notes_files/figure-latex/unnamed-chunk-376-1.pdf, id=3698, 469.755pt x 578
 .16pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-376-1.pdf Graphic file (type p
 df)
@@ -6681,7 +6681,7 @@ Overfull \hbox (69.7488pt too wide) in paragraph at lines 17899--17899
  []
 
 
-<432-notes_files/figure-latex/unnamed-chunk-379-1.pdf, id=3681, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-379-1.pdf, id=3719, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-379-1.pdf Graphic file (type p
 df)
@@ -6694,7 +6694,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [390] [391 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-l
 atex/unnamed-chunk-379-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-382-1.pdf, id=3705, 469.755pt x 505
+<432-notes_files/figure-latex/unnamed-chunk-382-1.pdf, id=3743, 469.755pt x 505
 .89pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-382-1.pdf Graphic file (type p
 df)
@@ -7145,7 +7145,7 @@ Overfull \hbox (6.0pt too wide) in alignment at lines 18667--18734
 [413
 
 ]
-<432-notes_files/figure-latex/unnamed-chunk-396-1.pdf, id=3840, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-396-1.pdf, id=3878, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-396-1.pdf Graphic file (type p
 df)
@@ -7158,7 +7158,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [414] [415 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-l
 atex/unnamed-chunk-396-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-398-1.pdf, id=3858, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-398-1.pdf, id=3896, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-398-1.pdf Graphic file (type p
 df)
@@ -7171,7 +7171,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [416 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-398-1.pdf>] [417]
-<432-notes_files/figure-latex/unnamed-chunk-401-1.pdf, id=3878, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-401-1.pdf, id=3916, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-401-1.pdf Graphic file (type p
 df)
@@ -7184,7 +7184,7 @@ Underfull \vbox (badness 5519) has occurred while \output is active []
 
 [418 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-401-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-403-1.pdf, id=3890, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-403-1.pdf, id=3928, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-403-1.pdf Graphic file (type p
 df)
@@ -7254,7 +7254,7 @@ Overfull \hbox (43.49887pt too wide) in paragraph at lines 19154--19154
  []
 
 
-<432-notes_files/figure-latex/unnamed-chunk-409-1.pdf, id=3941, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-409-1.pdf, id=3979, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-409-1.pdf Graphic file (type p
 df)
@@ -7266,7 +7266,7 @@ sed on input line 19180.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [423]
-<432-notes_files/figure-latex/unnamed-chunk-410-1.pdf, id=3951, 469.755pt x 433
+<432-notes_files/figure-latex/unnamed-chunk-410-1.pdf, id=3989, 469.755pt x 433
 .62pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-410-1.pdf Graphic file (type p
 df)
@@ -7322,7 +7322,7 @@ Overfull \hbox (43.49887pt too wide) in paragraph at lines 19411--19411
  []
 
 
-<432-notes_files/figure-latex/unnamed-chunk-417-1.pdf, id=3992, 469.755pt x 433
+<432-notes_files/figure-latex/unnamed-chunk-417-1.pdf, id=4030, 469.755pt x 433
 .62pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-417-1.pdf Graphic file (type p
 df)
@@ -7338,7 +7338,7 @@ Overfull \hbox (3.57205pt too wide) in paragraph at lines 19663--19663
  []
 
 [434] [435]
-<432-notes_files/figure-latex/unnamed-chunk-425-1.pdf, id=4052, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-425-1.pdf, id=4090, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-425-1.pdf Graphic file (type p
 df)
@@ -7366,7 +7366,7 @@ Overfull \hbox (32.9989pt too wide) in paragraph at lines 19784--19784
  []
 
 
-<432-notes_files/figure-latex/unnamed-chunk-428-1.pdf, id=4068, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-428-1.pdf, id=4106, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-428-1.pdf Graphic file (type p
 df)
@@ -7382,7 +7382,7 @@ Underfull \vbox (badness 1655) has occurred while \output is active []
 
 [438 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-428-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-429-1.pdf, id=4087, 469.755pt x 433
+<432-notes_files/figure-latex/unnamed-chunk-429-1.pdf, id=4125, 469.755pt x 433
 .62pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-429-1.pdf Graphic file (type p
 df)
@@ -7437,7 +7437,7 @@ Overfull \hbox (17.24895pt too wide) in paragraph at lines 20144--20144
  []
 
 
-<432-notes_files/figure-latex/unnamed-chunk-437-1.pdf, id=4138, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-437-1.pdf, id=4176, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-437-1.pdf Graphic file (type p
 df)
@@ -7466,7 +7466,7 @@ oisson(),[]
  []
 
 
-<432-notes_files/figure-latex/unnamed-chunk-442-1.pdf, id=4167, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-442-1.pdf, id=4205, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-442-1.pdf Graphic file (type p
 df)
@@ -7493,7 +7493,7 @@ Overfull \hbox (1.499pt too wide) in paragraph at lines 20327--20327
  []
 
 
-<432-notes_files/figure-latex/unnamed-chunk-444-1.pdf, id=4176, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-444-1.pdf, id=4214, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-444-1.pdf Graphic file (type p
 df)
@@ -7513,7 +7513,7 @@ lmr/m/n/10 449
 
 [449 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-442-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-445-1.pdf, id=4193, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-445-1.pdf, id=4231, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-445-1.pdf Graphic file (type p
 df)
@@ -7587,7 +7587,7 @@ Overfull \hbox (74.99878pt too wide) in paragraph at lines 20624--20624
  []
 
 
-<432-notes_files/figure-latex/unnamed-chunk-453-1.pdf, id=4255, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-453-1.pdf, id=4293, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-453-1.pdf Graphic file (type p
 df)
@@ -7600,7 +7600,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [456] [457 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-l
 atex/unnamed-chunk-453-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-454-1.pdf, id=4280, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-454-1.pdf, id=4318, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-454-1.pdf Graphic file (type p
 df)
@@ -7640,7 +7640,7 @@ Overfull \hbox (17.24895pt too wide) in paragraph at lines 20731--20731
  []
 
 
-<432-notes_files/figure-latex/unnamed-chunk-457-1.pdf, id=4293, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-457-1.pdf, id=4331, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-457-1.pdf Graphic file (type p
 df)
@@ -7650,7 +7650,7 @@ sed on input line 20758.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 [459 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-457-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-458-1.pdf, id=4306, 469.755pt x 433
+<432-notes_files/figure-latex/unnamed-chunk-458-1.pdf, id=4344, 469.755pt x 433
 .62pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-458-1.pdf Graphic file (type p
 df)
@@ -7683,7 +7683,7 @@ Overfull \hbox (27.74892pt too wide) in paragraph at lines 21033--21033
  []
 
 [465] [466]
-<432-notes_files/figure-latex/unnamed-chunk-472-1.pdf, id=4364, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-472-1.pdf, id=4402, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-472-1.pdf Graphic file (type p
 df)
@@ -7693,7 +7693,7 @@ sed on input line 21148.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 [467 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-472-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-475-1.pdf, id=4378, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-475-1.pdf, id=4416, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-475-1.pdf Graphic file (type p
 df)
@@ -7747,7 +7747,7 @@ Overfull \hbox (28.09505pt too wide) has occurred while \output is active
  []
 
 [471] [472]
-<432-notes_files/figure-latex/unnamed-chunk-485-1.pdf, id=4425, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-485-1.pdf, id=4463, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-485-1.pdf Graphic file (type p
 df)
@@ -7776,7 +7776,7 @@ Overfull \hbox (30.88823pt too wide) in alignment at lines 21552--21555
 
 [474 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-485-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-488-1.pdf, id=4447, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-488-1.pdf, id=4485, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-488-1.pdf Graphic file (type p
 df)
@@ -7816,7 +7816,7 @@ Overfull \hbox (27.74892pt too wide) in paragraph at lines 21784--21784
  []
 
 [479] [480]
-<432-notes_files/figure-latex/unnamed-chunk-499-1.pdf, id=4503, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-499-1.pdf, id=4541, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-499-1.pdf Graphic file (type p
 df)
@@ -7829,7 +7829,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [481] [482 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-l
 atex/unnamed-chunk-499-1.pdf>] [483]
-<432-notes_files/figure-latex/unnamed-chunk-506-1.pdf, id=4533, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-506-1.pdf, id=4571, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-506-1.pdf Graphic file (type p
 df)
@@ -7886,7 +7886,7 @@ ERSION) \T1/lmr/m/n/10 489
  []
 
 [489]
-<432-notes_files/figure-latex/unnamed-chunk-518-1.pdf, id=4587, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-518-1.pdf, id=4625, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-518-1.pdf Graphic file (type p
 df)
@@ -7906,7 +7906,7 @@ Overfull \hbox (4.2222pt too wide) in alignment at lines 22417--22420
 
 [490 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-518-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-521-1.pdf, id=4602, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-521-1.pdf, id=4640, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-521-1.pdf Graphic file (type p
 df)
@@ -7928,7 +7928,7 @@ Overfull \hbox (90.74873pt too wide) in paragraph at lines 22497--22497
  []
 
 
-<432-notes_files/figure-latex/unnamed-chunk-524-1.pdf, id=4617, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-524-1.pdf, id=4655, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-524-1.pdf Graphic file (type p
 df)
@@ -7950,7 +7950,7 @@ Lower = 0,[]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [494] [495]
-<432-notes_files/figure-latex/unnamed-chunk-528-1.pdf, id=4653, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-528-1.pdf, id=4691, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-528-1.pdf Graphic file (type p
 df)
@@ -7972,7 +7972,7 @@ Overfull \hbox (69.7488pt too wide) in paragraph at lines 22708--22708
 
 [497 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-528-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-533-1.pdf, id=4675, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-533-1.pdf, id=4713, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-533-1.pdf Graphic file (type p
 df)
@@ -7984,7 +7984,7 @@ sed on input line 22784.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [498]
-<432-notes_files/figure-latex/unnamed-chunk-534-1.pdf, id=4683, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-534-1.pdf, id=4721, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-534-1.pdf Graphic file (type p
 df)
@@ -8359,7 +8359,7 @@ Overfull \hbox (122.24864pt too wide) in paragraph at lines 23206--23206
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [507]
-<432-notes_files/figure-latex/unnamed-chunk-548-1.pdf, id=4755, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-548-1.pdf, id=4793, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-548-1.pdf Graphic file (type p
 df)
@@ -8368,7 +8368,7 @@ Package pdftex.def Info: 432-notes_files/figure-latex/unnamed-chunk-548-1.pdf u
 sed on input line 23223.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
-<432-notes_files/figure-latex/unnamed-chunk-549-1.pdf, id=4756, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-549-1.pdf, id=4794, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-549-1.pdf Graphic file (type p
 df)
@@ -8387,7 +8387,7 @@ Overfull \hbox (79.20418pt too wide) has occurred while \output is active
 
 [508 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-548-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-550-1.pdf, id=4768, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-550-1.pdf, id=4806, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-550-1.pdf Graphic file (type p
 df)
@@ -8407,7 +8407,7 @@ Overfull \hbox (79.20418pt too wide) has occurred while \output is active
 
 [510 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-550-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-552-1.pdf, id=4792, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-552-1.pdf, id=4830, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-552-1.pdf Graphic file (type p
 df)
@@ -8562,7 +8562,7 @@ Overfull \hbox (1.499pt too wide) in paragraph at lines 23935--23935
  []
 
 
-<432-notes_files/figure-latex/unnamed-chunk-573-1.pdf, id=4870, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-573-1.pdf, id=4908, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-573-1.pdf Graphic file (type p
 df)
@@ -8692,7 +8692,7 @@ Overfull \hbox (22.49893pt too wide) in paragraph at lines 24187--24187
  []
 
 
-<432-notes_files/figure-latex/unnamed-chunk-580-1.pdf, id=4910, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-580-1.pdf, id=4948, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-580-1.pdf Graphic file (type p
 df)
@@ -8708,7 +8708,7 @@ Overfull \hbox (79.20418pt too wide) has occurred while \output is active
  []
 
 [528]
-<432-notes_files/figure-latex/unnamed-chunk-584-1.pdf, id=4935, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-584-1.pdf, id=4973, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-584-1.pdf Graphic file (type p
 df)
@@ -8721,7 +8721,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [529 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-584-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-585-1.pdf, id=4947, 722.7pt x 505.8
+<432-notes_files/figure-latex/unnamed-chunk-585-1.pdf, id=4985, 722.7pt x 505.8
 9pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-585-1.pdf Graphic file (type p
 df)
@@ -8730,7 +8730,7 @@ Package pdftex.def Info: 432-notes_files/figure-latex/unnamed-chunk-585-1.pdf u
 sed on input line 24321.
 (pdftex.def)             Requested size: 344.99533pt x 241.49672pt.
 
-<432-notes_files/figure-latex/unnamed-chunk-586-1.pdf, id=4948, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-586-1.pdf, id=4986, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-586-1.pdf Graphic file (type p
 df)
@@ -8804,7 +8804,7 @@ Overfull \hbox (79.20418pt too wide) has occurred while \output is active
  []
 
 [532]
-<432-notes_files/figure-latex/unnamed-chunk-590-1.pdf, id=4982, 722.7pt x 505.8
+<432-notes_files/figure-latex/unnamed-chunk-590-1.pdf, id=5020, 722.7pt x 505.8
 9pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-590-1.pdf Graphic file (type p
 df)
@@ -8817,7 +8817,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [533 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
 nnamed-chunk-590-1.pdf>]
-<432-notes_files/figure-latex/unnamed-chunk-591-1.pdf, id=4995, 469.755pt x 325
+<432-notes_files/figure-latex/unnamed-chunk-591-1.pdf, id=5033, 469.755pt x 325
 .215pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-591-1.pdf Graphic file (type p
 df)
@@ -8983,7 +8983,7 @@ MULTINOMIAL LOGISTIC REGRESSION
  []
 
 [538]
-<432-notes_files/figure-latex/unnamed-chunk-595-1.pdf, id=5046, 469.755pt x 722
+<432-notes_files/figure-latex/unnamed-chunk-595-1.pdf, id=5084, 469.755pt x 722
 .7pt>
 File: 432-notes_files/figure-latex/unnamed-chunk-595-1.pdf Graphic file (type p
 df)
@@ -9265,7 +9265,7 @@ LaTeX Warning: File `432-notes_files/figure-latex/plot of estimated probabiliti
 es-1.pdf' not found on input line 25183.
 
 
-<432-notes_files/figure-latex/plot of estimated probabilities-1.pdf, id=5107, 4
+<432-notes_files/figure-latex/plot of estimated probabilities-1.pdf, id=5145, 4
 69.755pt x 325.215pt>
 File: 432-notes_files/figure-latex/plot of estimated probabilities-1.pdf Graphi
 c file (type pdf)
@@ -9296,7 +9296,7 @@ by author-1.pdf' not found on input line 25205.
 
 
 <432-notes_files/figure-latex/side by side boxplot of been by author-1.pdf, id=
-5120, 469.755pt x 325.215pt>
+5158, 469.755pt x 325.215pt>
 File: 432-notes_files/figure-latex/side by side boxplot of been by author-1.pdf
  Graphic file (type pdf)
 
@@ -9311,29 +9311,955 @@ Overfull \hbox (166.17322pt too wide) in paragraph at lines 25205--25206
 
 [549 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/s
 ide by side boxplot of been by author-1.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 25278.
-
 Overfull \hbox (125.8002pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10 550 \T1/lmr/m/sl/10 CHAPTER 21.  ANALYZING LITERARY STYLES WITH 
 MULTINOMIAL LOGISTIC REGRESSION
  []
 
-[550]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 25278.
-(C:\Users\Thomas\Dropbox\2021-432\432-notes\432-notes.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 25278.
+[550
 
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 25278.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 25278.
+]
+Chapter 22.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[551] [552] [553] [554]
+Overfull \hbox (48.74886pt too wide) in paragraph at lines 25458--25458
+[]  \T1/lmtt/m/n/10 recur       min        Q1   median       Q3      max     me
+an       sd  n[] 
+ []
+
+
+Overfull \hbox (48.74886pt too wide) in paragraph at lines 25458--25458
+[]\T1/lmtt/m/n/10 1     0 1.0513350 14.414783 23.01437 38.64477 53.88091 25.511
+29 14.68242 52[] 
+ []
+
+
+Overfull \hbox (48.74886pt too wide) in paragraph at lines 25458--25458
+[]\T1/lmtt/m/n/10 2     1 0.2299795  3.367556 10.92403 24.84600 42.87474 14.985
+17 13.88893 18[] 
+ []
+
+
+Overfull \hbox (67.32957pt too wide) has occurred while \output is active
+\T1/lmr/m/sl/10 22.3.  A FIRST EXAMPLE: RECURRENT LOBAR INTRACEREBRAL HEMORRHAG
+E \T1/lmr/m/n/10 555
+ []
+
+[555]
+Overfull \hbox (53.99884pt too wide) in paragraph at lines 25514--25514
+[]         \T1/lmtt/m/n/10 n     events     *rmean *se(rmean)     median    0.9
+5LCL    0.95UCL[] 
+ []
+
+
+Overfull \hbox (53.99884pt too wide) in paragraph at lines 25514--25514
+[]     \T1/lmtt/m/n/10 70.00      18.00      40.37       2.63         NA      4
+2.87         NA[] 
+ []
+
+[556]
+<432-notes_files/figure-latex/surv_hem_base_KMplot_no_genotype-1.pdf, id=5228, 
+469.755pt x 325.215pt>
+File: 432-notes_files/figure-latex/surv_hem_base_KMplot_no_genotype-1.pdf Graph
+ic file (type pdf)
+<use 432-notes_files/figure-latex/surv_hem_base_KMplot_no_genotype-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/surv_hem_base_KMplot_no_g
+enotype-1.pdf used on input line 25581.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Overfull \hbox (67.32957pt too wide) has occurred while \output is active
+\T1/lmr/m/sl/10 22.3.  A FIRST EXAMPLE: RECURRENT LOBAR INTRACEREBRAL HEMORRHAG
+E \T1/lmr/m/n/10 557
+ []
+
+[557 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/s
+urv_hem_base_KMplot_no_genotype-1.pdf>]
+<432-notes_files/figure-latex/unnamed-chunk-606-1.pdf, id=5241, 469.755pt x 325
+.215pt>
+File: 432-notes_files/figure-latex/unnamed-chunk-606-1.pdf Graphic file (type p
+df)
+<use 432-notes_files/figure-latex/unnamed-chunk-606-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/unnamed-chunk-606-1.pdf u
+sed on input line 25606.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+[558 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
+nnamed-chunk-606-1.pdf>]
+<432-notes_files/figure-latex/unnamed-chunk-607-1.pdf, id=5259, 469.755pt x 325
+.215pt>
+File: 432-notes_files/figure-latex/unnamed-chunk-607-1.pdf Graphic file (type p
+df)
+<use 432-notes_files/figure-latex/unnamed-chunk-607-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/unnamed-chunk-607-1.pdf u
+sed on input line 25628.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+[559 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
+nnamed-chunk-607-1.pdf>]
+Underfull \hbox (badness 1253) in paragraph at lines 25662--25662
+[]\T1/lmr/bx/n/12 Kaplan-Meier Sur-vival Func-tion Es-ti-mates, by
+ []
+
+
+Overfull \hbox (43.49887pt too wide) in paragraph at lines 25682--25682
+[]\T1/lmtt/m/n/10 Warning: Vectorized input to \TS1/lmtt/m/n/10 `\T1/lmtt/m/n/1
+0 element_text()\TS1/lmtt/m/n/10 ` \T1/lmtt/m/n/10 is not officially supported.
+[] 
+ []
+
+
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 25682--25682
+[]\T1/lmtt/m/n/10 Results may be unexpected or may change in future versions of
+ ggplot2.[] 
+ []
+
+
+<432-notes_files/figure-latex/unnamed-chunk-608-1.pdf, id=5277, 469.755pt x 433
+.62pt>
+File: 432-notes_files/figure-latex/unnamed-chunk-608-1.pdf Graphic file (type p
+df)
+<use 432-notes_files/figure-latex/unnamed-chunk-608-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/unnamed-chunk-608-1.pdf u
+sed on input line 25684.
+(pdftex.def)             Requested size: 344.997pt x 318.45876pt.
+
+Underfull \vbox (badness 6364) has occurred while \output is active []
+
+[560]
+Overfull \hbox (13.16216pt too wide) has occurred while \output is active
+\T1/lmr/m/sl/10 22.5.  TESTING THE DIFFERENCE BETWEEN TWO SURVIVAL CURVES \T1/l
+mr/m/n/10 561
+ []
+
+[561 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
+nnamed-chunk-608-1.pdf>] [562]
+Overfull \hbox (43.49887pt too wide) in paragraph at lines 25773--25773
+[]\T1/lmtt/m/n/10 Warning: Vectorized input to \TS1/lmtt/m/n/10 `\T1/lmtt/m/n/1
+0 element_text()\TS1/lmtt/m/n/10 ` \T1/lmtt/m/n/10 is not officially supported.
+[] 
+ []
+
+
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 25773--25773
+[]\T1/lmtt/m/n/10 Results may be unexpected or may change in future versions of
+ ggplot2.[] 
+ []
+
+
+<432-notes_files/figure-latex/unnamed-chunk-609-1.pdf, id=5306, 469.755pt x 505
+.89pt>
+File: 432-notes_files/figure-latex/unnamed-chunk-609-1.pdf Graphic file (type p
+df)
+<use 432-notes_files/figure-latex/unnamed-chunk-609-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/unnamed-chunk-609-1.pdf u
+sed on input line 25775.
+(pdftex.def)             Requested size: 344.997pt x 371.5352pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[563] [564 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-l
+atex/unnamed-chunk-609-1.pdf>]
+Overfull \hbox (43.49887pt too wide) in paragraph at lines 25808--25808
+[]\T1/lmtt/m/n/10 Warning: Vectorized input to \TS1/lmtt/m/n/10 `\T1/lmtt/m/n/1
+0 element_text()\TS1/lmtt/m/n/10 ` \T1/lmtt/m/n/10 is not officially supported.
+[] 
+ []
+
+
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 25808--25808
+[]\T1/lmtt/m/n/10 Results may be unexpected or may change in future versions of
+ ggplot2.[] 
+ []
+
+
+<432-notes_files/figure-latex/unnamed-chunk-610-1.pdf, id=5326, 469.755pt x 505
+.89pt>
+File: 432-notes_files/figure-latex/unnamed-chunk-610-1.pdf Graphic file (type p
+df)
+<use 432-notes_files/figure-latex/unnamed-chunk-610-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/unnamed-chunk-610-1.pdf u
+sed on input line 25810.
+(pdftex.def)             Requested size: 344.997pt x 371.5352pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[565] [566 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-l
+atex/unnamed-chunk-610-1.pdf>] [567]
+<432-notes_files/figure-latex/unnamed-chunk-613-1.pdf, id=5352, 469.755pt x 325
+.215pt>
+File: 432-notes_files/figure-latex/unnamed-chunk-613-1.pdf Graphic file (type p
+df)
+<use 432-notes_files/figure-latex/unnamed-chunk-613-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/unnamed-chunk-613-1.pdf u
+sed on input line 25925.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+[568 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
+nnamed-chunk-613-1.pdf>]
+<432-notes_files/figure-latex/unnamed-chunk-615-1.pdf, id=5364, 469.755pt x 325
+.215pt>
+File: 432-notes_files/figure-latex/unnamed-chunk-615-1.pdf Graphic file (type p
+df)
+<use 432-notes_files/figure-latex/unnamed-chunk-615-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/unnamed-chunk-615-1.pdf u
+sed on input line 25998.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[569]
+<432-notes_files/figure-latex/unnamed-chunk-616-1.pdf, id=5373, 469.755pt x 325
+.215pt>
+File: 432-notes_files/figure-latex/unnamed-chunk-616-1.pdf Graphic file (type p
+df)
+<use 432-notes_files/figure-latex/unnamed-chunk-616-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/unnamed-chunk-616-1.pdf u
+sed on input line 26014.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[570 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
+nnamed-chunk-615-1.pdf>] [571 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-n
+otes_files/figure-latex/unnamed-chunk-616-1.pdf>] [572
+
+]
+Chapter 23.
+[573]
+Underfull \hbox (badness 10000) in paragraph at lines 26078--26080
+
+ []
+
+
+Overfull \hbox (47.33044pt too wide) has occurred while \output is active
+\T1/lmr/m/n/10 574 \T1/lmr/m/sl/10 CHAPTER 23.  COX REGRESSION MODELS FOR SURVI
+VAL DATA: EXAMPLE 1
+ []
+
+[574] [575]
+Overfull \hbox (69.7488pt too wide) in paragraph at lines 26231--26231
+[]      \T1/lmtt/m/n/10 n nevent statistic.log p.value.log statistic.sc p.value
+.sc statistic.wald[] 
+ []
+
+
+Overfull \hbox (69.7488pt too wide) in paragraph at lines 26231--26231
+[]  \T1/lmtt/m/n/10 <int>  <dbl>         <dbl>       <dbl>        <dbl>      <d
+bl>          <dbl>[] 
+ []
+
+
+Overfull \hbox (69.7488pt too wide) in paragraph at lines 26231--26231
+[]\T1/lmtt/m/n/10 1    70     18          6.61      0.0102         6.28     0.0
+122           5.46[] 
+ []
+
+
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 26231--26231
+[]\T1/lmtt/m/n/10 # ... with 11 more variables: p.value.wald <dbl>, statistic.r
+obust <dbl>,[] 
+ []
+
+
+Overfull \hbox (53.99884pt too wide) in paragraph at lines 26231--26231
+[]\T1/lmtt/m/n/10 #   concordance <dbl>, std.error.concordance <dbl>, logLik <d
+bl>, AIC <dbl>,[] 
+ []
+
+
+Overfull \hbox (47.33044pt too wide) has occurred while \output is active
+\T1/lmr/m/n/10 576 \T1/lmr/m/sl/10 CHAPTER 23.  COX REGRESSION MODELS FOR SURVI
+VAL DATA: EXAMPLE 1
+ []
+
+[576]
+<432-notes_files/figure-latex/unnamed-chunk-618-1.pdf, id=5427, 469.755pt x 325
+.215pt>
+File: 432-notes_files/figure-latex/unnamed-chunk-618-1.pdf Graphic file (type p
+df)
+<use 432-notes_files/figure-latex/unnamed-chunk-618-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/unnamed-chunk-618-1.pdf u
+sed on input line 26249.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+[577 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
+nnamed-chunk-618-1.pdf>]
+<432-notes_files/figure-latex/unnamed-chunk-620-1.pdf, id=5442, 469.755pt x 325
+.215pt>
+File: 432-notes_files/figure-latex/unnamed-chunk-620-1.pdf Graphic file (type p
+df)
+<use 432-notes_files/figure-latex/unnamed-chunk-620-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/unnamed-chunk-620-1.pdf u
+sed on input line 26295.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Overfull \hbox (47.33044pt too wide) has occurred while \output is active
+\T1/lmr/m/n/10 578 \T1/lmr/m/sl/10 CHAPTER 23.  COX REGRESSION MODELS FOR SURVI
+VAL DATA: EXAMPLE 1
+ []
+
+[578 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/u
+nnamed-chunk-620-1.pdf>]
+<432-notes_files/figure-latex/surv_hem_cfit_coxzph_plot-1.pdf, id=5456, 469.755
+pt x 325.215pt>
+File: 432-notes_files/figure-latex/surv_hem_cfit_coxzph_plot-1.pdf Graphic file
+ (type pdf)
+<use 432-notes_files/figure-latex/surv_hem_cfit_coxzph_plot-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/surv_hem_cfit_coxzph_plot
+-1.pdf used on input line 26333.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+[579 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/s
+urv_hem_cfit_coxzph_plot-1.pdf>]
+Overfull \hbox (1.499pt too wide) in paragraph at lines 26385--26385
+[] \T1/lmtt/m/n/10 cph(formula = hemsurv ~ genotype, data = hem, x = TRUE, y = 
+TRUE,[] 
+ []
+
+
+Overfull \hbox (47.33044pt too wide) has occurred while \output is active
+\T1/lmr/m/n/10 580 \T1/lmr/m/sl/10 CHAPTER 23.  COX REGRESSION MODELS FOR SURVI
+VAL DATA: EXAMPLE 1
+ []
+
+[580]
+<432-notes_files/figure-latex/surv_hem_cph_summary-1.pdf, id=5475, 469.755pt x 
+216.81pt>
+File: 432-notes_files/figure-latex/surv_hem_cph_summary-1.pdf Graphic file (typ
+e pdf)
+<use 432-notes_files/figure-latex/surv_hem_cph_summary-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/surv_hem_cph_summary-1.pd
+f used on input line 26445.
+(pdftex.def)             Requested size: 344.997pt x 159.22937pt.
+[581]
+<432-notes_files/figure-latex/survplot_model_hem_plot1-1.pdf, id=5484, 469.755p
+t x 325.215pt>
+File: 432-notes_files/figure-latex/survplot_model_hem_plot1-1.pdf Graphic file 
+(type pdf)
+<use 432-notes_files/figure-latex/survplot_model_hem_plot1-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/survplot_model_hem_plot1-
+1.pdf used on input line 26483.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (47.33044pt too wide) has occurred while \output is active
+\T1/lmr/m/n/10 582 \T1/lmr/m/sl/10 CHAPTER 23.  COX REGRESSION MODELS FOR SURVI
+VAL DATA: EXAMPLE 1
+ []
+
+[582 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/s
+urv_hem_cph_summary-1.pdf>]
+<432-notes_files/figure-latex/survplot_model_hem_plot2-1.pdf, id=5503, 469.755p
+t x 325.215pt>
+File: 432-notes_files/figure-latex/survplot_model_hem_plot2-1.pdf Graphic file 
+(type pdf)
+<use 432-notes_files/figure-latex/survplot_model_hem_plot2-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/survplot_model_hem_plot2-
+1.pdf used on input line 26497.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[583 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/s
+urvplot_model_hem_plot1-1.pdf>]
+<432-notes_files/figure-latex/log_rel_haz_hem_model_plot-1.pdf, id=5514, 469.75
+5pt x 325.215pt>
+File: 432-notes_files/figure-latex/log_rel_haz_hem_model_plot-1.pdf Graphic fil
+e (type pdf)
+<use 432-notes_files/figure-latex/log_rel_haz_hem_model_plot-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/log_rel_haz_hem_model_plo
+t-1.pdf used on input line 26510.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (47.33044pt too wide) has occurred while \output is active
+\T1/lmr/m/n/10 584 \T1/lmr/m/sl/10 CHAPTER 23.  COX REGRESSION MODELS FOR SURVI
+VAL DATA: EXAMPLE 1
+ []
+
+[584 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/s
+urvplot_model_hem_plot2-1.pdf>]
+<432-notes_files/figure-latex/nomogram_model_hem-1.pdf, id=5526, 469.755pt x 32
+5.215pt>
+File: 432-notes_files/figure-latex/nomogram_model_hem-1.pdf Graphic file (type 
+pdf)
+<use 432-notes_files/figure-latex/nomogram_model_hem-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/nomogram_model_hem-1.pdf 
+used on input line 26527.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[585 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/l
+og_rel_haz_hem_model_plot-1.pdf>]
+<432-notes_files/figure-latex/ph_plot_check_zph-1.pdf, id=5538, 469.755pt x 325
+.215pt>
+File: 432-notes_files/figure-latex/ph_plot_check_zph-1.pdf Graphic file (type p
+df)
+<use 432-notes_files/figure-latex/ph_plot_check_zph-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/ph_plot_check_zph-1.pdf u
+sed on input line 26563.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 4792) has occurred while \output is active []
+
+
+Overfull \hbox (47.33044pt too wide) has occurred while \output is active
+\T1/lmr/m/n/10 586 \T1/lmr/m/sl/10 CHAPTER 23.  COX REGRESSION MODELS FOR SURVI
+VAL DATA: EXAMPLE 1
+ []
+
+[586 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/n
+omogram_model_hem-1.pdf>] [587 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-
+notes_files/figure-latex/ph_plot_check_zph-1.pdf>]
+Overfull \hbox (47.33044pt too wide) has occurred while \output is active
+\T1/lmr/m/n/10 588 \T1/lmr/m/sl/10 CHAPTER 23.  COX REGRESSION MODELS FOR SURVI
+VAL DATA: EXAMPLE 1
+ []
+
+[588
+
+]
+Chapter 24.
+[589]
+Overfull \hbox (64.49881pt too wide) in paragraph at lines 26633--26633
+[]\T1/lmtt/m/n/10 $ id      <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14
+, 15, 16, 17, ...[] 
+ []
+
+
+Overfull \hbox (64.49881pt too wide) in paragraph at lines 26633--26633
+[]\T1/lmtt/m/n/10 $ age     <dbl> 20, 25, 26, 26, 27, 27, 28, 28, 31, 33, 33, 3
+3, 34, 36, 37,...[] 
+ []
+
+
+Overfull \hbox (64.49881pt too wide) in paragraph at lines 26633--26633
+[]\T1/lmtt/m/n/10 $ pblasts <dbl> 78, 64, 61, 64, 95, 80, 88, 70, 72, 58, 92, 4
+2, 26, 55, 71,...[] 
+ []
+
+
+Overfull \hbox (64.49881pt too wide) in paragraph at lines 26633--26633
+[]\T1/lmtt/m/n/10 $ pinf    <dbl> 39, 61, 55, 64, 95, 64, 88, 70, 72, 58, 92, 3
+8, 26, 55, 71,...[] 
+ []
+
+
+Overfull \hbox (64.49881pt too wide) in paragraph at lines 26633--26633
+[]\T1/lmtt/m/n/10 $ plab    <dbl> 7, 16, 12, 16, 6, 8, 20, 14, 5, 7, 5, 12, 7, 
+14, 15, 9, 12,...[] 
+ []
+
+
+Overfull \hbox (64.49881pt too wide) in paragraph at lines 26633--26633
+[]\T1/lmtt/m/n/10 $ maxtemp <dbl> 99.0, 103.0, 98.2, 100.0, 98.0, 101.0, 98.6, 
+101.0, 98.8, 9...[] 
+ []
+
+
+Overfull \hbox (64.49881pt too wide) in paragraph at lines 26633--26633
+[]\T1/lmtt/m/n/10 $ months  <dbl> 18, 31, 31, 31, 36, 1, 9, 39, 20, 4, 45, 36, 
+12, 8, 1, 15, ...[] 
+ []
+
+
+Overfull \hbox (64.49881pt too wide) in paragraph at lines 26633--26633
+[]\T1/lmtt/m/n/10 $ alive   <dbl> 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 
+0, 0, 0, 0, 1,...[] 
+ []
+
+
+Overfull \hbox (69.7488pt too wide) in paragraph at lines 26653--26653
+[] \T1/lmtt/m/n/10 [1] 18  31+ 31  31  36   1   9  39+ 20+  4  45+ 36  12   8  
+ 1  15  24   2  33[] 
+ []
+
+
+Overfull \hbox (69.7488pt too wide) in paragraph at lines 26653--26653
+[]\T1/lmtt/m/n/10 [20] 29+  7   0   1   2  12   9   1   1   9   5  27+  1  13  
+ 1   5   1   3   4[] 
+ []
+
+
+Overfull \hbox (47.33044pt too wide) has occurred while \output is active
+\T1/lmr/m/n/10 590 \T1/lmr/m/sl/10 CHAPTER 24.  COX REGRESSION MODELS FOR SURVI
+VAL DATA: EXAMPLE 2
+ []
+
+[590]
+Overfull \hbox (47.59186pt too wide) has occurred while \output is active
+\T1/lmr/m/sl/10 24.2.  MODEL A: \T1/lmtt/m/sl/10 COXPH \T1/lmr/m/sl/10 MODEL FO
+R SURVIVAL TIME USING \T1/lmtt/m/sl/10 AGE \T1/lmr/m/sl/10 AT DIAGNOSIS \T1/lmr
+/m/n/10 591
+ []
+
+[591]
+<432-notes_files/figure-latex/surv_leukem_modelA_plot-1.pdf, id=5586, 469.755pt
+ x 325.215pt>
+File: 432-notes_files/figure-latex/surv_leukem_modelA_plot-1.pdf Graphic file (
+type pdf)
+<use 432-notes_files/figure-latex/surv_leukem_modelA_plot-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/surv_leukem_modelA_plot-1
+.pdf used on input line 26774.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 7451) has occurred while \output is active []
+
+
+Overfull \hbox (47.33044pt too wide) has occurred while \output is active
+\T1/lmr/m/n/10 592 \T1/lmr/m/sl/10 CHAPTER 24.  COX REGRESSION MODELS FOR SURVI
+VAL DATA: EXAMPLE 2
+ []
+
+[592]
+<432-notes_files/figure-latex/surv_leukem_modelA_zphplot-1.pdf, id=5595, 469.75
+5pt x 325.215pt>
+File: 432-notes_files/figure-latex/surv_leukem_modelA_zphplot-1.pdf Graphic fil
+e (type pdf)
+<use 432-notes_files/figure-latex/surv_leukem_modelA_zphplot-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/surv_leukem_modelA_zphplo
+t-1.pdf used on input line 26801.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (47.59186pt too wide) has occurred while \output is active
+\T1/lmr/m/sl/10 24.2.  MODEL A: \T1/lmtt/m/sl/10 COXPH \T1/lmr/m/sl/10 MODEL FO
+R SURVIVAL TIME USING \T1/lmtt/m/sl/10 AGE \T1/lmr/m/sl/10 AT DIAGNOSIS \T1/lmr
+/m/n/10 593
+ []
+
+[593 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/s
+urv_leukem_modelA_plot-1.pdf>]
+Overfull \hbox (47.33044pt too wide) has occurred while \output is active
+\T1/lmr/m/n/10 594 \T1/lmr/m/sl/10 CHAPTER 24.  COX REGRESSION MODELS FOR SURVI
+VAL DATA: EXAMPLE 2
+ []
+
+[594 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/s
+urv_leukem_modelA_zphplot-1.pdf>]
+<432-notes_files/figure-latex/surv_leukem_modelA_cph_ggplot-1.pdf, id=5617, 469
+.755pt x 325.215pt>
+File: 432-notes_files/figure-latex/surv_leukem_modelA_cph_ggplot-1.pdf Graphic 
+file (type pdf)
+<use 432-notes_files/figure-latex/surv_leukem_modelA_cph_ggplot-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/surv_leukem_modelA_cph_gg
+plot-1.pdf used on input line 26876.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 1859) has occurred while \output is active []
+
+[595 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/s
+urv_leukem_modelA_cph_ggplot-1.pdf>]
+<432-notes_files/figure-latex/surv_leukem_modelA_cph_survplot1-1.pdf, id=5634, 
+469.755pt x 325.215pt>
+File: 432-notes_files/figure-latex/surv_leukem_modelA_cph_survplot1-1.pdf Graph
+ic file (type pdf)
+<use 432-notes_files/figure-latex/surv_leukem_modelA_cph_survplot1-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/surv_leukem_modelA_cph_su
+rvplot1-1.pdf used on input line 26892.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 26919--26919
+[]\T1/lmtt/m/n/10 Warning in regularize.values(x, y, ties, missing(ties), na.rm
+ = na.rm):[] 
+ []
+
+
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 26919--26919
+[]\T1/lmtt/m/n/10 Warning in regularize.values(x, y, ties, missing(ties), na.rm
+ = na.rm):[] 
+ []
+
+
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 26919--26919
+[]\T1/lmtt/m/n/10 Warning in regularize.values(x, y, ties, missing(ties), na.rm
+ = na.rm):[] 
+ []
+
+
+Overfull \hbox (47.33044pt too wide) has occurred while \output is active
+\T1/lmr/m/n/10 596 \T1/lmr/m/sl/10 CHAPTER 24.  COX REGRESSION MODELS FOR SURVI
+VAL DATA: EXAMPLE 2
+ []
+
+[596 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/s
+urv_leukem_modelA_cph_survplot1-1.pdf>]
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 26919--26919
+[]\T1/lmtt/m/n/10 Warning in regularize.values(x, y, ties, missing(ties), na.rm
+ = na.rm):[] 
+ []
+
+
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 26919--26919
+[]\T1/lmtt/m/n/10 Warning in regularize.values(x, y, ties, missing(ties), na.rm
+ = na.rm):[] 
+ []
+
+
+<432-notes_files/figure-latex/surv_leukem_modelA_cph_survplot2-1.pdf, id=5645, 
+469.755pt x 325.215pt>
+File: 432-notes_files/figure-latex/surv_leukem_modelA_cph_survplot2-1.pdf Graph
+ic file (type pdf)
+<use 432-notes_files/figure-latex/surv_leukem_modelA_cph_survplot2-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/surv_leukem_modelA_cph_su
+rvplot2-1.pdf used on input line 26921.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Overfull \hbox (48.74886pt too wide) in paragraph at lines 26942--26942
+[]                \T1/lmtt/m/n/10 Wald Statistics          Response: Surv(month
+s, alive == 0)[] 
+ []
+
+[597 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/s
+urv_leukem_modelA_cph_survplot2-1.pdf>]
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 26961--26961
+[]             \T1/lmtt/m/n/10 Effects              Response : Surv(months, ali
+ve == 0)[] 
+ []
+
+
+Overfull \hbox (1.499pt too wide) in paragraph at lines 26961--26961
+[] \T1/lmtt/m/n/10 Factor        Low High Diff. Effect S.E.    Lower 0.95 Upper
+ 0.95[] 
+ []
+
+
+<432-notes_files/figure-latex/surv_leukem_modelA_cph_summaryandeffects-1.pdf, i
+d=5658, 469.755pt x 216.81pt>
+File: 432-notes_files/figure-latex/surv_leukem_modelA_cph_summaryandeffects-1.p
+df Graphic file (type pdf)
+
+<use 432-notes_files/figure-latex/surv_leukem_modelA_cph_summaryandeffects-1.pd
+f>
+Package pdftex.def Info: 432-notes_files/figure-latex/surv_leukem_modelA_cph_su
+mmaryandeffects-1.pdf used on input line 26969.
+(pdftex.def)             Requested size: 344.997pt x 159.22937pt.
+
+Overfull \hbox (47.33044pt too wide) has occurred while \output is active
+\T1/lmr/m/n/10 598 \T1/lmr/m/sl/10 CHAPTER 24.  COX REGRESSION MODELS FOR SURVI
+VAL DATA: EXAMPLE 2
+ []
+
+[598 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/s
+urv_leukem_modelA_cph_summaryandeffects-1.pdf>]
+<432-notes_files/figure-latex/surv_leukem_modelA_cph_influential_points-1.pdf, 
+id=5676, 469.755pt x 325.215pt>
+File: 432-notes_files/figure-latex/surv_leukem_modelA_cph_influential_points-1.
+pdf Graphic file (type pdf)
+
+<use 432-notes_files/figure-latex/surv_leukem_modelA_cph_influential_points-1.p
+df>
+Package pdftex.def Info: 432-notes_files/figure-latex/surv_leukem_modelA_cph_in
+fluential_points-1.pdf used on input line 27009.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+[599 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/s
+urv_leukem_modelA_cph_influential_points-1.pdf>]
+<432-notes_files/figure-latex/surv_leukem_modelA_cph_proportional_hazards_assum
+ption-1.pdf, id=5689, 469.755pt x 325.215pt>
+File: 432-notes_files/figure-latex/surv_leukem_modelA_cph_proportional_hazards_
+assumption-1.pdf Graphic file (type pdf)
+
+<use 432-notes_files/figure-latex/surv_leukem_modelA_cph_proportional_hazards_a
+ssumption-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/surv_leukem_modelA_cph_pr
+oportional_hazards_assumption-1.pdf used on input line 27058.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (47.33044pt too wide) has occurred while \output is active
+\T1/lmr/m/n/10 600 \T1/lmr/m/sl/10 CHAPTER 24.  COX REGRESSION MODELS FOR SURVI
+VAL DATA: EXAMPLE 2
+ []
+
+[600 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/s
+urv_leukem_modelA_cph_proportional_hazards_assumption-1.pdf>] [601]
+<432-notes_files/figure-latex/c23_modelB_survfit_plot-1.pdf, id=5709, 469.755pt
+ x 325.215pt>
+File: 432-notes_files/figure-latex/c23_modelB_survfit_plot-1.pdf Graphic file (
+type pdf)
+<use 432-notes_files/figure-latex/c23_modelB_survfit_plot-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/c23_modelB_survfit_plot-1
+.pdf used on input line 27167.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (47.33044pt too wide) has occurred while \output is active
+\T1/lmr/m/n/10 602 \T1/lmr/m/sl/10 CHAPTER 24.  COX REGRESSION MODELS FOR SURVI
+VAL DATA: EXAMPLE 2
+ []
+
+[602]
+<432-notes_files/figure-latex/c23_modelB_cumhaz_plot-1.pdf, id=5716, 469.755pt 
+x 325.215pt>
+File: 432-notes_files/figure-latex/c23_modelB_cumhaz_plot-1.pdf Graphic file (t
+ype pdf)
+<use 432-notes_files/figure-latex/c23_modelB_cumhaz_plot-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/c23_modelB_cumhaz_plot-1.
+pdf used on input line 27181.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[603 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/c
+23_modelB_survfit_plot-1.pdf>]
+<432-notes_files/figure-latex/c23_zph_plot_modelB-1.pdf, id=5728, 469.755pt x 3
+25.215pt>
+File: 432-notes_files/figure-latex/c23_zph_plot_modelB-1.pdf Graphic file (type
+ pdf)
+<use 432-notes_files/figure-latex/c23_zph_plot_modelB-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/c23_zph_plot_modelB-1.pdf
+ used on input line 27210.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (47.33044pt too wide) has occurred while \output is active
+\T1/lmr/m/n/10 604 \T1/lmr/m/sl/10 CHAPTER 24.  COX REGRESSION MODELS FOR SURVI
+VAL DATA: EXAMPLE 2
+ []
+
+[604 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/c
+23_modelB_cumhaz_plot-1.pdf>]
+Underfull \vbox (badness 2600) has occurred while \output is active []
+
+[605 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/c
+23_zph_plot_modelB-1.pdf>]
+Overfull \hbox (47.33044pt too wide) has occurred while \output is active
+\T1/lmr/m/n/10 606 \T1/lmr/m/sl/10 CHAPTER 24.  COX REGRESSION MODELS FOR SURVI
+VAL DATA: EXAMPLE 2
+ []
+
+[606]
+<432-notes_files/figure-latex/c23_modelB2_survivalcurves-1.pdf, id=5756, 469.75
+5pt x 325.215pt>
+File: 432-notes_files/figure-latex/c23_modelB2_survivalcurves-1.pdf Graphic fil
+e (type pdf)
+<use 432-notes_files/figure-latex/c23_modelB2_survivalcurves-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/c23_modelB2_survivalcurve
+s-1.pdf used on input line 27335.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[607]
+<432-notes_files/figure-latex/c23_modelB2_testzph-1.pdf, id=5764, 469.755pt x 3
+25.215pt>
+File: 432-notes_files/figure-latex/c23_modelB2_testzph-1.pdf Graphic file (type
+ pdf)
+<use 432-notes_files/figure-latex/c23_modelB2_testzph-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/c23_modelB2_testzph-1.pdf
+ used on input line 27360.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (47.33044pt too wide) has occurred while \output is active
+\T1/lmr/m/n/10 608 \T1/lmr/m/sl/10 CHAPTER 24.  COX REGRESSION MODELS FOR SURVI
+VAL DATA: EXAMPLE 2
+ []
+
+[608 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/c
+23_modelB2_survivalcurves-1.pdf>]
+<432-notes_files/figure-latex/c23_months_spearman2_plot-1.pdf, id=5776, 469.755
+pt x 325.215pt>
+File: 432-notes_files/figure-latex/c23_months_spearman2_plot-1.pdf Graphic file
+ (type pdf)
+<use 432-notes_files/figure-latex/c23_months_spearman2_plot-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/c23_months_spearman2_plot
+-1.pdf used on input line 27373.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[609 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/c
+23_modelB2_testzph-1.pdf>]
+Overfull \hbox (47.33044pt too wide) has occurred while \output is active
+\T1/lmr/m/n/10 610 \T1/lmr/m/sl/10 CHAPTER 24.  COX REGRESSION MODELS FOR SURVI
+VAL DATA: EXAMPLE 2
+ []
+
+[610 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/c
+23_months_spearman2_plot-1.pdf>]
+Overfull \hbox (48.74886pt too wide) in paragraph at lines 27430--27430
+[]                \T1/lmtt/m/n/10 Wald Statistics          Response: Surv(month
+s, alive == 0)[] 
+ []
+
+
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 27451--27451
+[]             \T1/lmtt/m/n/10 Effects              Response : Surv(months, ali
+ve == 0)[] 
+ []
+
+
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 27451--27451
+[] \T1/lmtt/m/n/10 Factor        Low  High  Diff. Effect   S.E.    Lower 0.95 U
+pper 0.95[] 
+ []
+
+
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 27451--27451
+[] \T1/lmtt/m/n/10 age           35.0  61.0 26.0   1.06010 0.31559  0.44152   1
+.6786000[] 
+ []
+
+
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 27451--27451
+[]  \T1/lmtt/m/n/10 Hazard Ratio 35.0  61.0 26.0   2.88650      NA  1.55510   5
+.3580000[] 
+ []
+
+
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 27451--27451
+[] \T1/lmtt/m/n/10 plab           6.5  13.5  7.0  -0.51511 0.26686 -1.03820   0
+.0079317[] 
+ []
+
+
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 27451--27451
+[]  \T1/lmtt/m/n/10 Hazard Ratio  6.5  13.5  7.0   0.59744      NA  0.35411   1
+.0080000[] 
+ []
+
+
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 27451--27451
+[] \T1/lmtt/m/n/10 maxtemp       98.6 100.5  1.9   0.33979 0.21758 -0.08666   0
+.7662400[] 
+ []
+
+
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 27451--27451
+[]  \T1/lmtt/m/n/10 Hazard Ratio 98.6 100.5  1.9   1.40470      NA  0.91699   2
+.1517000[] 
+ []
+
+
+<432-notes_files/figure-latex/c23_modelC_summaries-1.pdf, id=5799, 469.755pt x 
+325.215pt>
+File: 432-notes_files/figure-latex/c23_modelC_summaries-1.pdf Graphic file (typ
+e pdf)
+<use 432-notes_files/figure-latex/c23_modelC_summaries-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/c23_modelC_summaries-1.pd
+f used on input line 27459.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 6300) has occurred while \output is active []
+
+[611]
+Overfull \hbox (47.33044pt too wide) has occurred while \output is active
+\T1/lmr/m/n/10 612 \T1/lmr/m/sl/10 CHAPTER 24.  COX REGRESSION MODELS FOR SURVI
+VAL DATA: EXAMPLE 2
+ []
+
+[612 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/c
+23_modelC_summaries-1.pdf>]
+<432-notes_files/figure-latex/c23_modelC_predictions_plot-1.pdf, id=5824, 469.7
+55pt x 289.08pt>
+File: 432-notes_files/figure-latex/c23_modelC_predictions_plot-1.pdf Graphic fi
+le (type pdf)
+<use 432-notes_files/figure-latex/c23_modelC_predictions_plot-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/c23_modelC_predictions_pl
+ot-1.pdf used on input line 27499.
+(pdftex.def)             Requested size: 344.997pt x 212.30583pt.
+
+<432-notes_files/figure-latex/c23_survplot_medians-1.pdf, id=5825, 469.755pt x 
+325.215pt>
+File: 432-notes_files/figure-latex/c23_survplot_medians-1.pdf Graphic file (typ
+e pdf)
+<use 432-notes_files/figure-latex/c23_survplot_medians-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/c23_survplot_medians-1.pd
+f used on input line 27514.
+(pdftex.def)             Requested size: 344.997pt x 238.84406pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[613 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/c
+23_modelC_predictions_plot-1.pdf>]
+<432-notes_files/figure-latex/c23_modelC_zph_check-1.pdf, id=5841, 469.755pt x 
+397.485pt>
+File: 432-notes_files/figure-latex/c23_modelC_zph_check-1.pdf Graphic file (typ
+e pdf)
+<use 432-notes_files/figure-latex/c23_modelC_zph_check-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/c23_modelC_zph_check-1.pd
+f used on input line 27541.
+(pdftex.def)             Requested size: 344.997pt x 291.92052pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (47.33044pt too wide) has occurred while \output is active
+\T1/lmr/m/n/10 614 \T1/lmr/m/sl/10 CHAPTER 24.  COX REGRESSION MODELS FOR SURVI
+VAL DATA: EXAMPLE 2
+ []
+
+[614 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/c
+23_survplot_medians-1.pdf>]
+<432-notes_files/figure-latex/c23_modelC_nomogram-1.pdf, id=5853, 469.755pt x 4
+33.62pt>
+File: 432-notes_files/figure-latex/c23_modelC_nomogram-1.pdf Graphic file (type
+ pdf)
+<use 432-notes_files/figure-latex/c23_modelC_nomogram-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/c23_modelC_nomogram-1.pdf
+ used on input line 27557.
+(pdftex.def)             Requested size: 344.997pt x 318.45876pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[615 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/c
+23_modelC_zph_check-1.pdf>]
+Underfull \vbox (badness 3492) has occurred while \output is active []
+
+
+Overfull \hbox (47.33044pt too wide) has occurred while \output is active
+\T1/lmr/m/n/10 616 \T1/lmr/m/sl/10 CHAPTER 24.  COX REGRESSION MODELS FOR SURVI
+VAL DATA: EXAMPLE 2
+ []
+
+[616 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/c
+23_modelC_nomogram-1.pdf>]
+<432-notes_files/figure-latex/c23_modelC_calibrate-1.pdf, id=5877, 469.755pt x 
+433.62pt>
+File: 432-notes_files/figure-latex/c23_modelC_calibrate-1.pdf Graphic file (typ
+e pdf)
+<use 432-notes_files/figure-latex/c23_modelC_calibrate-1.pdf>
+Package pdftex.def Info: 432-notes_files/figure-latex/c23_modelC_calibrate-1.pd
+f used on input line 27605.
+(pdftex.def)             Requested size: 344.997pt x 318.45876pt.
+[617 <C:/Users/Thomas/Dropbox/2021-432/432-notes/432-notes_files/figure-latex/c
+23_modelC_calibrate-1.pdf>]
+Overfull \hbox (47.33044pt too wide) has occurred while \output is active
+\T1/lmr/m/n/10 618 \T1/lmr/m/sl/10 CHAPTER 24.  COX REGRESSION MODELS FOR SURVI
+VAL DATA: EXAMPLE 2
+ []
+
+[618]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 27664.
+[619]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 27664.
+(C:\Users\Thomas\Dropbox\2021-432\432-notes\432-notes.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 27664.
+
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 27664.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 27664.
  ) 
 Here is how much of TeX's memory you used:
- 18463 strings out of 493705
- 314438 string characters out of 3142148
- 395715 words of memory out of 3000000
- 19186 multiletter control sequences out of 15000+200000
- 126382 words of font info for 183 fonts, out of 3000000 for 9000
+ 18990 strings out of 493705
+ 333183 string characters out of 3142148
+ 403425 words of memory out of 3000000
+ 19434 multiletter control sequences out of 15000+200000
+ 126631 words of font info for 186 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 35i,14n,35p,1148b,464s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 35i,14n,35p,1148b,472s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program F
 iles (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files (x86)/
 MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files (x86)/MiKTeX 2.9/font
@@ -9364,9 +10290,9 @@ X 2.9/fonts/type1/public/lm/lmtk10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
 lic/lm/lmtt10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmtt
 8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmtti10.pfb><C:/
 Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmtto10.pfb>
-Output written on 432-notes.pdf (550 pages, 7955698 bytes).
+Output written on 432-notes.pdf (619 pages, 8386905 bytes).
 PDF statistics:
- 6227 PDF objects out of 7423 (max. 8388607)
- 1957 named destinations out of 2073 (max. 500000)
- 20713 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 7090 PDF objects out of 7423 (max. 8388607)
+ 2192 named destinations out of 2487 (max. 500000)
+ 21055 words of extra memory for PDF output out of 24883 (max. 10000000)
 

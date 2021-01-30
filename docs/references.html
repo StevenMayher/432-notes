@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="analyzing-literary-styles-with-multinomial-logistic-regression.html"/>
+<link rel="prev" href="cox-regression-models-for-survival-data-example-2.html"/>
 
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
@@ -853,6 +853,117 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="21.6.3" data-path="analyzing-literary-styles-with-multinomial-logistic-regression.html"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#quote-sources"><i class="fa fa-check"></i><b>21.6.3</b> Quote Sources</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="22" data-path="exploring-time-to-event-survival-data.html"><a href="exploring-time-to-event-survival-data.html"><i class="fa fa-check"></i><b>22</b> Exploring Time To Event / Survival Data</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="exploring-time-to-event-survival-data.html"><a href="exploring-time-to-event-survival-data.html#an-outline-of-key-topics-discussed-in-these-notes"><i class="fa fa-check"></i><b>22.1</b> An Outline of Key Topics Discussed in these Notes</a></li>
+<li class="chapter" data-level="22.2" data-path="exploring-time-to-event-survival-data.html"><a href="exploring-time-to-event-survival-data.html#foundations-of-survival-analysis"><i class="fa fa-check"></i><b>22.2</b> Foundations of Survival Analysis</a>
+<ul>
+<li class="chapter" data-level="22.2.1" data-path="exploring-time-to-event-survival-data.html"><a href="exploring-time-to-event-survival-data.html#the-survival-function-st"><i class="fa fa-check"></i><b>22.2.1</b> The Survival Function, <span class="math inline">\(S(t)\)</span></a></li>
+<li class="chapter" data-level="22.2.2" data-path="exploring-time-to-event-survival-data.html"><a href="exploring-time-to-event-survival-data.html#kaplan-meier-estimator-of-the-survival-function"><i class="fa fa-check"></i><b>22.2.2</b> Kaplan-Meier Estimator of the Survival Function</a></li>
+<li class="chapter" data-level="22.2.3" data-path="exploring-time-to-event-survival-data.html"><a href="exploring-time-to-event-survival-data.html#creating-a-survival-object-in-r"><i class="fa fa-check"></i><b>22.2.3</b> Creating a Survival Object in R</a></li>
+</ul></li>
+<li class="chapter" data-level="22.3" data-path="exploring-time-to-event-survival-data.html"><a href="exploring-time-to-event-survival-data.html#a-first-example-recurrent-lobar-intracerebral-hemorrhage"><i class="fa fa-check"></i><b>22.3</b> A First Example: Recurrent Lobar Intracerebral Hemorrhage</a>
+<ul>
+<li class="chapter" data-level="22.3.1" data-path="exploring-time-to-event-survival-data.html"><a href="exploring-time-to-event-survival-data.html#building-a-survival-object"><i class="fa fa-check"></i><b>22.3.1</b> Building a Survival Object</a></li>
+<li class="chapter" data-level="22.3.2" data-path="exploring-time-to-event-survival-data.html"><a href="exploring-time-to-event-survival-data.html#kaplan-meier-estimate-of-the-survival-function"><i class="fa fa-check"></i><b>22.3.2</b> Kaplan-Meier Estimate of the Survival Function</a></li>
+<li class="chapter" data-level="22.3.3" data-path="exploring-time-to-event-survival-data.html"><a href="exploring-time-to-event-survival-data.html#the-kaplan-meier-plot-using-base-r"><i class="fa fa-check"></i><b>22.3.3</b> The Kaplan-Meier Plot, using Base R</a></li>
+<li class="chapter" data-level="22.3.4" data-path="exploring-time-to-event-survival-data.html"><a href="exploring-time-to-event-survival-data.html#using-survminer-to-draw-survival-curves"><i class="fa fa-check"></i><b>22.3.4</b> Using <code>survminer</code> to draw survival curves</a></li>
+<li class="chapter" data-level="22.3.5" data-path="exploring-time-to-event-survival-data.html"><a href="exploring-time-to-event-survival-data.html#a-fancy-k-m-plot-with-a-number-at-risk-table"><i class="fa fa-check"></i><b>22.3.5</b> A “Fancy” K-M Plot with a number at risk table</a></li>
+</ul></li>
+<li class="chapter" data-level="22.4" data-path="exploring-time-to-event-survival-data.html"><a href="exploring-time-to-event-survival-data.html#comparing-survival-across-the-two-genotypes"><i class="fa fa-check"></i><b>22.4</b> Comparing Survival Across the Two Genotypes</a>
+<ul>
+<li class="chapter" data-level="22.4.1" data-path="exploring-time-to-event-survival-data.html"><a href="exploring-time-to-event-survival-data.html#kaplan-meier-survival-function-estimates-by-genotype"><i class="fa fa-check"></i><b>22.4.1</b> Kaplan-Meier Survival Function Estimates, by Genotype</a></li>
+</ul></li>
+<li class="chapter" data-level="22.5" data-path="exploring-time-to-event-survival-data.html"><a href="exploring-time-to-event-survival-data.html#testing-the-difference-between-two-survival-curves"><i class="fa fa-check"></i><b>22.5</b> Testing the difference between two survival curves</a>
+<ul>
+<li class="chapter" data-level="22.5.1" data-path="exploring-time-to-event-survival-data.html"><a href="exploring-time-to-event-survival-data.html#alternative-log-rank-tests"><i class="fa fa-check"></i><b>22.5.1</b> Alternative log rank tests</a></li>
+</ul></li>
+<li class="chapter" data-level="22.6" data-path="exploring-time-to-event-survival-data.html"><a href="exploring-time-to-event-survival-data.html#a-fancy-k-m-plot-with-a-number-at-risk-table-1"><i class="fa fa-check"></i><b>22.6</b> A “Fancy” K-M Plot with a number at risk table</a>
+<ul>
+<li class="chapter" data-level="22.6.1" data-path="exploring-time-to-event-survival-data.html"><a href="exploring-time-to-event-survival-data.html#customizing-the-kaplan-meier-plot-presentation-further"><i class="fa fa-check"></i><b>22.6.1</b> Customizing the Kaplan-Meier Plot Presentation Further</a></li>
+</ul></li>
+<li class="chapter" data-level="22.7" data-path="exploring-time-to-event-survival-data.html"><a href="exploring-time-to-event-survival-data.html#the-hazard-function"><i class="fa fa-check"></i><b>22.7</b> The Hazard Function</a>
+<ul>
+<li class="chapter" data-level="22.7.1" data-path="exploring-time-to-event-survival-data.html"><a href="exploring-time-to-event-survival-data.html#the-inverse-kaplan-meier-estimator-of-ht"><i class="fa fa-check"></i><b>22.7.1</b> The Inverse Kaplan-Meier Estimator of <span class="math inline">\(H(t)\)</span></a></li>
+<li class="chapter" data-level="22.7.2" data-path="exploring-time-to-event-survival-data.html"><a href="exploring-time-to-event-survival-data.html#cumulative-hazard-function-from-inverse-k-m"><i class="fa fa-check"></i><b>22.7.2</b> Cumulative Hazard Function from Inverse K-M</a></li>
+<li class="chapter" data-level="22.7.3" data-path="exploring-time-to-event-survival-data.html"><a href="exploring-time-to-event-survival-data.html#the-nelson-aalen-estimator-of-ht"><i class="fa fa-check"></i><b>22.7.3</b> The Nelson-Aalen Estimator of <span class="math inline">\(H(t)\)</span></a></li>
+<li class="chapter" data-level="22.7.4" data-path="exploring-time-to-event-survival-data.html"><a href="exploring-time-to-event-survival-data.html#convert-wide-data-to-long"><i class="fa fa-check"></i><b>22.7.4</b> Convert Wide Data to Long</a></li>
+<li class="chapter" data-level="22.7.5" data-path="exploring-time-to-event-survival-data.html"><a href="exploring-time-to-event-survival-data.html#plot-comparison-of-hazard-estimates"><i class="fa fa-check"></i><b>22.7.5</b> Plot Comparison of Hazard Estimates</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="cox-regression-models-for-survival-data-example-1.html"><a href="cox-regression-models-for-survival-data-example-1.html"><i class="fa fa-check"></i><b>23</b> Cox Regression Models for Survival Data: Example 1</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="cox-regression-models-for-survival-data-example-1.html"><a href="cox-regression-models-for-survival-data-example-1.html#sources-used-in-building-this-material"><i class="fa fa-check"></i><b>23.1</b> Sources used in building this material</a></li>
+<li class="chapter" data-level="23.2" data-path="cox-regression-models-for-survival-data-example-1.html"><a href="cox-regression-models-for-survival-data-example-1.html#fitting-a-cox-model-in-r-with-coxph"><i class="fa fa-check"></i><b>23.2</b> Fitting a Cox Model in R with <code>coxph</code></a>
+<ul>
+<li class="chapter" data-level="23.2.1" data-path="cox-regression-models-for-survival-data-example-1.html"><a href="cox-regression-models-for-survival-data-example-1.html#summarizing-the-fit"><i class="fa fa-check"></i><b>23.2.1</b> Summarizing the Fit</a></li>
+<li class="chapter" data-level="23.2.2" data-path="cox-regression-models-for-survival-data-example-1.html"><a href="cox-regression-models-for-survival-data-example-1.html#glancing-at-the-model"><i class="fa fa-check"></i><b>23.2.2</b> Glancing at the model?</a></li>
+<li class="chapter" data-level="23.2.3" data-path="cox-regression-models-for-survival-data-example-1.html"><a href="cox-regression-models-for-survival-data-example-1.html#plot-the-baseline-survival-function"><i class="fa fa-check"></i><b>23.2.3</b> Plot the baseline survival function</a></li>
+<li class="chapter" data-level="23.2.4" data-path="cox-regression-models-for-survival-data-example-1.html"><a href="cox-regression-models-for-survival-data-example-1.html#plot-the-genotype-effect"><i class="fa fa-check"></i><b>23.2.4</b> Plot the genotype effect</a></li>
+<li class="chapter" data-level="23.2.5" data-path="cox-regression-models-for-survival-data-example-1.html"><a href="cox-regression-models-for-survival-data-example-1.html#testing-the-key-assumption-proportional-hazards"><i class="fa fa-check"></i><b>23.2.5</b> Testing the Key Assumption: Proportional Hazards</a></li>
+<li class="chapter" data-level="23.2.6" data-path="cox-regression-models-for-survival-data-example-1.html"><a href="cox-regression-models-for-survival-data-example-1.html#plotting-the-cox.zph-results-for-the-cfit-model"><i class="fa fa-check"></i><b>23.2.6</b> Plotting the <code>cox.zph</code> results for the <code>cfit</code> model</a></li>
+</ul></li>
+<li class="chapter" data-level="23.3" data-path="cox-regression-models-for-survival-data-example-1.html"><a href="cox-regression-models-for-survival-data-example-1.html#fitting-a-cox-model-using-cph-from-the-rms-package"><i class="fa fa-check"></i><b>23.3</b> Fitting a Cox Model using <code>cph</code> from the <code>rms</code> package</a>
+<ul>
+<li class="chapter" data-level="23.3.1" data-path="cox-regression-models-for-survival-data-example-1.html"><a href="cox-regression-models-for-survival-data-example-1.html#the-main-cph-results"><i class="fa fa-check"></i><b>23.3.1</b> The Main <code>cph</code> results</a></li>
+<li class="chapter" data-level="23.3.2" data-path="cox-regression-models-for-survival-data-example-1.html"><a href="cox-regression-models-for-survival-data-example-1.html#using-anova-with-cph"><i class="fa fa-check"></i><b>23.3.2</b> Using <code>anova</code> with <code>cph</code></a></li>
+<li class="chapter" data-level="23.3.3" data-path="cox-regression-models-for-survival-data-example-1.html"><a href="cox-regression-models-for-survival-data-example-1.html#effect-sizes-after-cph-fit"><i class="fa fa-check"></i><b>23.3.3</b> Effect Sizes after <code>cph</code> fit</a></li>
+<li class="chapter" data-level="23.3.4" data-path="cox-regression-models-for-survival-data-example-1.html"><a href="cox-regression-models-for-survival-data-example-1.html#validating-cph-summaries"><i class="fa fa-check"></i><b>23.3.4</b> Validating <code>cph</code> summaries</a></li>
+<li class="chapter" data-level="23.3.5" data-path="cox-regression-models-for-survival-data-example-1.html"><a href="cox-regression-models-for-survival-data-example-1.html#plotting-survival-functions-for-each-genotype"><i class="fa fa-check"></i><b>23.3.5</b> Plotting Survival Functions for each Genotype</a></li>
+<li class="chapter" data-level="23.3.6" data-path="cox-regression-models-for-survival-data-example-1.html"><a href="cox-regression-models-for-survival-data-example-1.html#genotypes-effect-on-log-relative-hazard"><i class="fa fa-check"></i><b>23.3.6</b> Genotype’s effect on log relative hazard</a></li>
+<li class="chapter" data-level="23.3.7" data-path="cox-regression-models-for-survival-data-example-1.html"><a href="cox-regression-models-for-survival-data-example-1.html#nomogram-of-our-simple-hem-model"><i class="fa fa-check"></i><b>23.3.7</b> Nomogram of our simple <code>hem</code> model</a></li>
+<li class="chapter" data-level="23.3.8" data-path="cox-regression-models-for-survival-data-example-1.html"><a href="cox-regression-models-for-survival-data-example-1.html#assessing-the-proportional-hazards-assumption"><i class="fa fa-check"></i><b>23.3.8</b> Assessing the Proportional Hazards Assumption</a></li>
+<li class="chapter" data-level="23.3.9" data-path="cox-regression-models-for-survival-data-example-1.html"><a href="cox-regression-models-for-survival-data-example-1.html#plot-to-check-ph-assumption"><i class="fa fa-check"></i><b>23.3.9</b> Plot to Check PH Assumption</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html"><i class="fa fa-check"></i><b>24</b> Cox Regression Models for Survival Data: Example 2</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#a-second-example-the-leukem-data"><i class="fa fa-check"></i><b>24.1</b> A Second Example: The <code>leukem</code> data</a>
+<ul>
+<li class="chapter" data-level="24.1.1" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#creating-our-response-a-survival-time-object"><i class="fa fa-check"></i><b>24.1.1</b> Creating our response: A survival time object</a></li>
+<li class="chapter" data-level="24.1.2" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#models-well-fit"><i class="fa fa-check"></i><b>24.1.2</b> Models We’ll Fit</a></li>
+</ul></li>
+<li class="chapter" data-level="24.2" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#model-a-coxph-model-for-survival-time-using-age-at-diagnosis"><i class="fa fa-check"></i><b>24.2</b> Model A: <code>coxph</code> Model for Survival Time using <code>age</code> at diagnosis</a>
+<ul>
+<li class="chapter" data-level="24.2.1" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#plotting-the-survival-curve-implied-by-model-a"><i class="fa fa-check"></i><b>24.2.1</b> Plotting the Survival Curve implied by Model A</a></li>
+<li class="chapter" data-level="24.2.2" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#testing-the-proportional-hazards-assumption"><i class="fa fa-check"></i><b>24.2.2</b> Testing the Proportional Hazards Assumption</a></li>
+</ul></li>
+<li class="chapter" data-level="24.3" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#building-model-a-with-cph-for-the-leukem-data"><i class="fa fa-check"></i><b>24.3</b> Building Model A with <code>cph</code> for the <code>leukem</code> data</a>
+<ul>
+<li class="chapter" data-level="24.3.1" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#plotting-the-age-effect-implied-by-our-model."><i class="fa fa-check"></i><b>24.3.1</b> Plotting the <code>age</code> effect implied by our model.</a></li>
+<li class="chapter" data-level="24.3.2" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#survival-plots-kaplan-meier-of-the-age-effect"><i class="fa fa-check"></i><b>24.3.2</b> Survival Plots (Kaplan-Meier) of the <code>age</code> effect</a></li>
+<li class="chapter" data-level="24.3.3" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#anova-test-for-the-cph-built-model-for-leukem"><i class="fa fa-check"></i><b>24.3.3</b> ANOVA test for the <code>cph</code>-built model for <code>leukem</code></a></li>
+<li class="chapter" data-level="24.3.4" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#summarizing-the-effect-sizes-from-moda_cph"><i class="fa fa-check"></i><b>24.3.4</b> Summarizing the Effect Sizes from <code>modA_cph</code></a></li>
+<li class="chapter" data-level="24.3.5" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#validating-the-cox-model-summary-statistics"><i class="fa fa-check"></i><b>24.3.5</b> Validating the Cox Model Summary Statistics</a></li>
+<li class="chapter" data-level="24.3.6" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#looking-for-influential-points"><i class="fa fa-check"></i><b>24.3.6</b> Looking for Influential Points</a></li>
+<li class="chapter" data-level="24.3.7" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#checking-the-proportional-hazards-assumption"><i class="fa fa-check"></i><b>24.3.7</b> Checking the Proportional Hazards Assumption</a></li>
+</ul></li>
+<li class="chapter" data-level="24.4" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#model-b-fitting-a-5-predictor-model-with-coxph"><i class="fa fa-check"></i><b>24.4</b> Model B: Fitting a 5-Predictor Model with <code>coxph</code></a>
+<ul>
+<li class="chapter" data-level="24.4.1" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#interpreting-the-results-from-model-b"><i class="fa fa-check"></i><b>24.4.1</b> Interpreting the Results from Model B</a></li>
+<li class="chapter" data-level="24.4.2" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#plotting-the-survival-curve-implied-by-model-b"><i class="fa fa-check"></i><b>24.4.2</b> Plotting the Survival Curve implied by Model B</a></li>
+<li class="chapter" data-level="24.4.3" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#plotting-the-cumulative-hazard-implied-by-model-b"><i class="fa fa-check"></i><b>24.4.3</b> Plotting the Cumulative Hazard implied by Model B</a></li>
+<li class="chapter" data-level="24.4.4" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#testing-the-proportional-hazards-assumption-1"><i class="fa fa-check"></i><b>24.4.4</b> Testing the Proportional Hazards Assumption</a></li>
+<li class="chapter" data-level="24.4.5" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#assessing-collinearity"><i class="fa fa-check"></i><b>24.4.5</b> Assessing Collinearity</a></li>
+</ul></li>
+<li class="chapter" data-level="24.5" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#model-b2-a-stepwise-reduction-of-model-b"><i class="fa fa-check"></i><b>24.5</b> Model B2: A Stepwise Reduction of Model B</a>
+<ul>
+<li class="chapter" data-level="24.5.1" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#the-survival-curve-implied-by-model-b2"><i class="fa fa-check"></i><b>24.5.1</b> The Survival Curve implied by Model B2</a></li>
+<li class="chapter" data-level="24.5.2" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#checking-proportional-hazards-for-model-b2"><i class="fa fa-check"></i><b>24.5.2</b> Checking Proportional Hazards for Model B2</a></li>
+</ul></li>
+<li class="chapter" data-level="24.6" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#model-c-using-a-spearman-plot-to-pick-a-model"><i class="fa fa-check"></i><b>24.6</b> Model C: Using a Spearman Plot to pick a model</a>
+<ul>
+<li class="chapter" data-level="24.6.1" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#fitting-model-c"><i class="fa fa-check"></i><b>24.6.1</b> Fitting Model C</a></li>
+<li class="chapter" data-level="24.6.2" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#anova-for-model-c"><i class="fa fa-check"></i><b>24.6.2</b> ANOVA for Model C</a></li>
+<li class="chapter" data-level="24.6.3" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#summarizing-model-c-effect-sizes"><i class="fa fa-check"></i><b>24.6.3</b> Summarizing Model C Effect Sizes</a></li>
+<li class="chapter" data-level="24.6.4" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#plotting-the-diagnosis-age-effect-in-model-c"><i class="fa fa-check"></i><b>24.6.4</b> Plotting the diagnosis <code>age</code> effect in Model C</a></li>
+<li class="chapter" data-level="24.6.5" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#survival-plot-associated-with-model-c"><i class="fa fa-check"></i><b>24.6.5</b> Survival Plot associated with Model C</a></li>
+<li class="chapter" data-level="24.6.6" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#checking-the-proportional-hazards-assumption-1"><i class="fa fa-check"></i><b>24.6.6</b> Checking the Proportional Hazards Assumption</a></li>
+<li class="chapter" data-level="24.6.7" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#model-c-nomogram"><i class="fa fa-check"></i><b>24.6.7</b> Model C Nomogram</a></li>
+<li class="chapter" data-level="24.6.8" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#validating-model-cs-summary-statistics"><i class="fa fa-check"></i><b>24.6.8</b> Validating Model C’s Summary Statistics</a></li>
+<li class="chapter" data-level="24.6.9" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#calibration-of-model-c-12-month-survival-estimates"><i class="fa fa-check"></i><b>24.6.9</b> Calibration of Model C (12-month survival estimates)</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
@@ -950,12 +1061,13 @@ Vittinghoff, Eric, David V. Glidden, Stephen C. Shiboski, and Charles E. McCullo
 
 
 
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="analyzing-literary-styles-with-multinomial-logistic-regression.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="cox-regression-models-for-survival-data-example-2.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

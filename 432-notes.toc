@@ -623,3 +623,80 @@
 \contentsline {subsection}{\numberline {21.6.1}Produce the Plot of Estimated Probabilities based on ``been'' counts}{548}{subsection.21.6.1}
 \contentsline {subsection}{\numberline {21.6.2}Boxplot of ``been'' counts}{548}{subsection.21.6.2}
 \contentsline {subsection}{\numberline {21.6.3}Quote Sources}{549}{subsection.21.6.3}
+\contentsline {chapter}{\numberline {22}Exploring Time To Event / Survival Data}{551}{chapter.22}
+\contentsline {section}{\numberline {22.1}An Outline of Key Topics Discussed in these Notes}{552}{section.22.1}
+\contentsline {section}{\numberline {22.2}Foundations of Survival Analysis}{552}{section.22.2}
+\contentsline {subsection}{\numberline {22.2.1}The Survival Function, \relax $S(t)\relax \GenericError { }{LaTeX Error: Bad math environment delimiter}{See the LaTeX manual or LaTeX Companion for explanation.}{Your command was ignored.\MessageBreak Type I <command> <return> to replace it with another command,\MessageBreak or <return> to continue without it.}}{553}{subsection.22.2.1}
+\contentsline {subsection}{\numberline {22.2.2}Kaplan-Meier Estimator of the Survival Function}{553}{subsection.22.2.2}
+\contentsline {subsection}{\numberline {22.2.3}Creating a Survival Object in R}{554}{subsection.22.2.3}
+\contentsline {section}{\numberline {22.3}A First Example: Recurrent Lobar Intracerebral Hemorrhage}{554}{section.22.3}
+\contentsline {subsection}{\numberline {22.3.1}Building a Survival Object}{555}{subsection.22.3.1}
+\contentsline {subsection}{\numberline {22.3.2}Kaplan-Meier Estimate of the Survival Function}{555}{subsection.22.3.2}
+\contentsline {subsection}{\numberline {22.3.3}The Kaplan-Meier Plot, using Base R}{557}{subsection.22.3.3}
+\contentsline {subsection}{\numberline {22.3.4}Using \texttt {survminer} to draw survival curves}{558}{subsection.22.3.4}
+\contentsline {subsection}{\numberline {22.3.5}A ``Fancy'' K-M Plot with a number at risk table}{559}{subsection.22.3.5}
+\contentsline {section}{\numberline {22.4}Comparing Survival Across the Two Genotypes}{559}{section.22.4}
+\contentsline {subsection}{\numberline {22.4.1}Kaplan-Meier Survival Function Estimates, by Genotype}{560}{subsection.22.4.1}
+\contentsline {section}{\numberline {22.5}Testing the difference between two survival curves}{561}{section.22.5}
+\contentsline {subsection}{\numberline {22.5.1}Alternative log rank tests}{562}{subsection.22.5.1}
+\contentsline {section}{\numberline {22.6}A ``Fancy'' K-M Plot with a number at risk table}{562}{section.22.6}
+\contentsline {subsection}{\numberline {22.6.1}Customizing the Kaplan-Meier Plot Presentation Further}{564}{subsection.22.6.1}
+\contentsline {section}{\numberline {22.7}The Hazard Function}{566}{section.22.7}
+\contentsline {subsection}{\numberline {22.7.1}The Inverse Kaplan-Meier Estimator of \relax $H(t)\relax \GenericError { }{LaTeX Error: Bad math environment delimiter}{See the LaTeX manual or LaTeX Companion for explanation.}{Your command was ignored.\MessageBreak Type I <command> <return> to replace it with another command,\MessageBreak or <return> to continue without it.}}{567}{subsection.22.7.1}
+\contentsline {subsection}{\numberline {22.7.2}Cumulative Hazard Function from Inverse K-M}{567}{subsection.22.7.2}
+\contentsline {subsection}{\numberline {22.7.3}The Nelson-Aalen Estimator of \relax $H(t)\relax \GenericError { }{LaTeX Error: Bad math environment delimiter}{See the LaTeX manual or LaTeX Companion for explanation.}{Your command was ignored.\MessageBreak Type I <command> <return> to replace it with another command,\MessageBreak or <return> to continue without it.}}{568}{subsection.22.7.3}
+\contentsline {subsection}{\numberline {22.7.4}Convert Wide Data to Long}{569}{subsection.22.7.4}
+\contentsline {subsection}{\numberline {22.7.5}Plot Comparison of Hazard Estimates}{569}{subsection.22.7.5}
+\contentsline {chapter}{\numberline {23}Cox Regression Models for Survival Data: Example 1}{573}{chapter.23}
+\contentsline {section}{\numberline {23.1}Sources used in building this material}{574}{section.23.1}
+\contentsline {section}{\numberline {23.2}Fitting a Cox Model in R with \texttt {coxph}}{574}{section.23.2}
+\contentsline {subsection}{\numberline {23.2.1}Summarizing the Fit}{575}{subsection.23.2.1}
+\contentsline {subsection}{\numberline {23.2.2}Glancing at the model?}{576}{subsection.23.2.2}
+\contentsline {subsection}{\numberline {23.2.3}Plot the baseline survival function}{577}{subsection.23.2.3}
+\contentsline {subsection}{\numberline {23.2.4}Plot the genotype effect}{577}{subsection.23.2.4}
+\contentsline {subsection}{\numberline {23.2.5}Testing the Key Assumption: Proportional Hazards}{578}{subsection.23.2.5}
+\contentsline {subsection}{\numberline {23.2.6}Plotting the \texttt {cox.zph} results for the \texttt {cfit} model}{579}{subsection.23.2.6}
+\contentsline {section}{\numberline {23.3}Fitting a Cox Model using \texttt {cph} from the \texttt {rms} package}{580}{section.23.3}
+\contentsline {subsection}{\numberline {23.3.1}The Main \texttt {cph} results}{580}{subsection.23.3.1}
+\contentsline {subsection}{\numberline {23.3.2}Using \texttt {anova} with \texttt {cph}}{581}{subsection.23.3.2}
+\contentsline {subsection}{\numberline {23.3.3}Effect Sizes after \texttt {cph} fit}{581}{subsection.23.3.3}
+\contentsline {subsection}{\numberline {23.3.4}Validating \texttt {cph} summaries}{582}{subsection.23.3.4}
+\contentsline {subsection}{\numberline {23.3.5}Plotting Survival Functions for each Genotype}{582}{subsection.23.3.5}
+\contentsline {subsection}{\numberline {23.3.6}Genotype's effect on log relative hazard}{584}{subsection.23.3.6}
+\contentsline {subsection}{\numberline {23.3.7}Nomogram of our simple \texttt {hem} model}{585}{subsection.23.3.7}
+\contentsline {subsection}{\numberline {23.3.8}Assessing the Proportional Hazards Assumption}{586}{subsection.23.3.8}
+\contentsline {subsection}{\numberline {23.3.9}Plot to Check PH Assumption}{586}{subsection.23.3.9}
+\contentsline {chapter}{\numberline {24}Cox Regression Models for Survival Data: Example 2}{589}{chapter.24}
+\contentsline {section}{\numberline {24.1}A Second Example: The \texttt {leukem} data}{589}{section.24.1}
+\contentsline {subsection}{\numberline {24.1.1}Creating our response: A survival time object}{590}{subsection.24.1.1}
+\contentsline {subsection}{\numberline {24.1.2}Models We'll Fit}{590}{subsection.24.1.2}
+\contentsline {section}{\numberline {24.2}Model A: \texttt {coxph} Model for Survival Time using \texttt {age} at diagnosis}{591}{section.24.2}
+\contentsline {subsection}{\numberline {24.2.1}Plotting the Survival Curve implied by Model A}{592}{subsection.24.2.1}
+\contentsline {subsection}{\numberline {24.2.2}Testing the Proportional Hazards Assumption}{593}{subsection.24.2.2}
+\contentsline {section}{\numberline {24.3}Building Model A with \texttt {cph} for the \texttt {leukem} data}{594}{section.24.3}
+\contentsline {subsection}{\numberline {24.3.1}Plotting the \texttt {age} effect implied by our model.}{595}{subsection.24.3.1}
+\contentsline {subsection}{\numberline {24.3.2}Survival Plots (Kaplan-Meier) of the \texttt {age} effect}{596}{subsection.24.3.2}
+\contentsline {subsection}{\numberline {24.3.3}ANOVA test for the \texttt {cph}-built model for \texttt {leukem}}{597}{subsection.24.3.3}
+\contentsline {subsection}{\numberline {24.3.4}Summarizing the Effect Sizes from \texttt {modA\_cph}}{598}{subsection.24.3.4}
+\contentsline {subsection}{\numberline {24.3.5}Validating the Cox Model Summary Statistics}{598}{subsection.24.3.5}
+\contentsline {subsection}{\numberline {24.3.6}Looking for Influential Points}{599}{subsection.24.3.6}
+\contentsline {subsection}{\numberline {24.3.7}Checking the Proportional Hazards Assumption}{600}{subsection.24.3.7}
+\contentsline {section}{\numberline {24.4}Model B: Fitting a 5-Predictor Model with \texttt {coxph}}{601}{section.24.4}
+\contentsline {subsection}{\numberline {24.4.1}Interpreting the Results from Model B}{601}{subsection.24.4.1}
+\contentsline {subsection}{\numberline {24.4.2}Plotting the Survival Curve implied by Model B}{602}{subsection.24.4.2}
+\contentsline {subsection}{\numberline {24.4.3}Plotting the Cumulative Hazard implied by Model B}{603}{subsection.24.4.3}
+\contentsline {subsection}{\numberline {24.4.4}Testing the Proportional Hazards Assumption}{604}{subsection.24.4.4}
+\contentsline {subsection}{\numberline {24.4.5}Assessing Collinearity}{605}{subsection.24.4.5}
+\contentsline {section}{\numberline {24.5}Model B2: A Stepwise Reduction of Model B}{606}{section.24.5}
+\contentsline {subsection}{\numberline {24.5.1}The Survival Curve implied by Model B2}{607}{subsection.24.5.1}
+\contentsline {subsection}{\numberline {24.5.2}Checking Proportional Hazards for Model B2}{608}{subsection.24.5.2}
+\contentsline {section}{\numberline {24.6}Model C: Using a Spearman Plot to pick a model}{609}{section.24.6}
+\contentsline {subsection}{\numberline {24.6.1}Fitting Model C}{610}{subsection.24.6.1}
+\contentsline {subsection}{\numberline {24.6.2}ANOVA for Model C}{611}{subsection.24.6.2}
+\contentsline {subsection}{\numberline {24.6.3}Summarizing Model C Effect Sizes}{611}{subsection.24.6.3}
+\contentsline {subsection}{\numberline {24.6.4}Plotting the diagnosis \texttt {age} effect in Model C}{612}{subsection.24.6.4}
+\contentsline {subsection}{\numberline {24.6.5}Survival Plot associated with Model C}{613}{subsection.24.6.5}
+\contentsline {subsection}{\numberline {24.6.6}Checking the Proportional Hazards Assumption}{614}{subsection.24.6.6}
+\contentsline {subsection}{\numberline {24.6.7}Model C Nomogram}{615}{subsection.24.6.7}
+\contentsline {subsection}{\numberline {24.6.8}Validating Model C's Summary Statistics}{616}{subsection.24.6.8}
+\contentsline {subsection}{\numberline {24.6.9}Calibration of Model C (12-month survival estimates)}{617}{subsection.24.6.9}
