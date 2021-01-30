@@ -442,3 +442,29 @@ plot(c8_m6, which = 5)
 
 This plot can help us identify points with large standardized residuals, large leverage values, and large influence on the model (as indicated by large values of Cook's distance.) In this case, I see no signs of any points used in the model with especially large influence, although there are some poorly fitted points (with especially large standardized residuals.)
 
+We might want to identify the point listed here as 961, which appears to have an enormous standardized residual. To do so, we can use the `slice` function from `dplyr`.
+
+```{r}
+smart_cle1_sh %>% slice(961) %>% select(SEQNO)
+```
+Now we know exactly which subject we're talking about.
+
+3. What other residual plots are available with `plot` and how do we interpret them?
+
+```{r}
+plot(c8_m6, which = 2)
+```
+
+This plot is simply a Normal Q-Q plot of the standardized residuals from our model. We're looking here for serious problems with the assumption of Normality.
+
+```{r}
+plot(c8_m6, which = 3)
+```
+
+This is a scale-location plot, designed to help us see non-constant variance in the residuals as we move across the fitted values as a linear trend, rather than as a fan shape, by plotting the square root of the residuals on the vertical axis.
+
+```{r}
+plot(c8_m6, which = 4)
+```
+
+Finally, this is an index plot of the Cook's distance values, allowing us to identify points that are particularly large. Remember that a value of 0.5 (or perhaps even 1.0) is a reasonable boundary for a substantially influential point.
