@@ -32,7 +32,7 @@
   
 <link rel="prev" href="analysis-of-covariance.html"/>
 <link rel="next" href="adding-non-linear-terms-to-a-linear-regression-model.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -306,7 +306,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.9" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#creating-a-factor-combining-sex-and-waist"><i class="fa fa-check"></i><b>6.9</b> Creating a factor combining sex and waist</a></li>
 <li class="chapter" data-level="6.10" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-means-plot-for-the-cortisol-trial-with-standard-errors"><i class="fa fa-check"></i><b>6.10</b> A Means Plot for the <code>cortisol</code> trial (with standard errors)</a></li>
-<li class="chapter" data-level="6.11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-with-interaction"><i class="fa fa-check"></i><b>6.11</b> A Two-Way ANOVA model for <code>cortisol</code> with Interaction</a></li>
+<li class="chapter" data-level="6.11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-with-interaction"><i class="fa fa-check"></i><b>6.11</b> A Two-Way ANOVA model for <code>cortisol</code> with Interaction</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#notes-on-this-question"><i class="fa fa-check"></i><b>6.11.1</b> Notes on this Question</a></li>
+</ul></li>
 <li class="chapter" data-level="6.12" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-without-interaction"><i class="fa fa-check"></i><b>6.12</b> A Two-Way ANOVA model for <code>cortisol</code> without Interaction</a>
 <ul>
 <li class="chapter" data-level="6.12.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-graph"><i class="fa fa-check"></i><b>6.12.1</b> The Graph</a></li>
@@ -985,7 +988,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="analysis-of-covariance-with-the-smart-data" class="section level1" number="8">
 <h1><span class="header-section-number">Chapter 8</span> Analysis of Covariance with the SMART data</h1>
 <p>In this chapter, we’ll work with the <code>smart_cle1_sh</code> data file again.</p>
-<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb501-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;smart_cle1_sh.Rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb505-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;smart_cle1_sh.Rds&quot;</span>))</span></code></pre></div>
 <div id="a-new-small-study-predicting-bmi" class="section level2" number="8.1">
 <h2><span class="header-section-number">8.1</span> A New Small Study: Predicting BMI</h2>
 <p>We’ll begin by investigating the problem of predicting <code>bmi</code>, at first with just three regression inputs: <code>sex</code>, <code>smoke100</code> and <code>physhealth</code>, in our <code>smart_cle1_sh</code> data set.</p>
@@ -1002,21 +1005,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">8.1.1</span> Does <code>female</code> predict <code>bmi</code> well?</h3>
 <div id="graphical-assessment" class="section level4" number="8.1.1.1">
 <h4><span class="header-section-number">8.1.1.1</span> Graphical Assessment</h4>
-<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb502-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> female, <span class="at">y =</span> bmi)) <span class="sc">+</span></span>
-<span id="cb502-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb502-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb506-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> female, <span class="at">y =</span> bmi)) <span class="sc">+</span></span>
+<span id="cb506-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb506-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
 <p>Not so helpful. We should probably specify that <code>female</code> is a factor, and try another plotting approach.</p>
-<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb503-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(female), <span class="at">y =</span> bmi)) <span class="sc">+</span></span>
-<span id="cb503-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb503-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-168-1.png" width="672" /></p>
+<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb507-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(female), <span class="at">y =</span> bmi)) <span class="sc">+</span></span>
+<span id="cb507-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb507-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
 <p>The median BMI looks a little higher for males. Let’s see if a model reflects that.</p>
 </div>
 </div>
 </div>
 <div id="c8_m1-a-simple-t-test-model" class="section level2" number="8.2">
 <h2><span class="header-section-number">8.2</span> <code>c8_m1</code>: A simple t-test model</h2>
-<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb504-1" aria-hidden="true" tabindex="-1"></a>c8_m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> female, <span class="at">data =</span> smart_cle1_sh)</span>
-<span id="cb504-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb504-2" aria-hidden="true" tabindex="-1"></a>c8_m1</span></code></pre></div>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb508-1" aria-hidden="true" tabindex="-1"></a>c8_m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> female, <span class="at">data =</span> smart_cle1_sh)</span>
+<span id="cb508-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb508-2" aria-hidden="true" tabindex="-1"></a>c8_m1</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = bmi ~ female, data = smart_cle1_sh)
@@ -1024,7 +1027,7 @@ lm(formula = bmi ~ female, data = smart_cle1_sh)
 Coefficients:
 (Intercept)       female  
     28.4941      -0.2442  </code></pre>
-<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb506-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c8_m1)</span></code></pre></div>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb510-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c8_m1)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = bmi ~ female, data = smart_cle1_sh)
@@ -1043,7 +1046,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 Residual standard error: 6.367 on 1131 degrees of freedom
 Multiple R-squared:  0.0003554, Adjusted R-squared:  -0.0005284 
 F-statistic: 0.4021 on 1 and 1131 DF,  p-value: 0.5261</code></pre>
-<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb508-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(c8_m1)</span></code></pre></div>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb512-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(c8_m1)</span></code></pre></div>
 <pre><code>                 2.5 %     97.5 %
 (Intercept) 27.9123220 29.0759609
 female      -0.9996392  0.5113054</code></pre>
@@ -1057,7 +1060,7 @@ female      -0.9996392  0.5113054</code></pre>
 <li>the model makes some enormous errors, with one subject being predicted to have a BMI 38 points lower than his/her actual BMI.</li>
 </ul>
 <p>Note that this simple regression model just gives us the t-test.</p>
-<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb510-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bmi <span class="sc">~</span> female, <span class="at">var.equal =</span> <span class="cn">TRUE</span>, <span class="at">data =</span> smart_cle1_sh)</span></code></pre></div>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb514-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bmi <span class="sc">~</span> female, <span class="at">var.equal =</span> <span class="cn">TRUE</span>, <span class="at">data =</span> smart_cle1_sh)</span></code></pre></div>
 <pre><code>
     Two Sample t-test
 
@@ -1073,23 +1076,23 @@ mean in group 0 mean in group 1
 <div id="c8_m2-adding-another-predictor-two-way-anova-without-interaction" class="section level2" number="8.3">
 <h2><span class="header-section-number">8.3</span> <code>c8_m2</code>: Adding another predictor (two-way ANOVA without interaction)</h2>
 <p>When we add in the information about <code>smoke100</code> to our original model, we might first picture the data. We could look at separate histograms,</p>
-<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb512-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> bmi)) <span class="sc">+</span></span>
-<span id="cb512-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb512-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>) <span class="sc">+</span></span>
-<span id="cb512-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb512-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(female <span class="sc">~</span> smoke100, <span class="at">labeller =</span> label_both)</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
-<p>or maybe boxplots?</p>
-<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb513-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(female), <span class="at">y =</span> bmi)) <span class="sc">+</span></span>
-<span id="cb513-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb513-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb513-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb513-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> smoke100, <span class="at">labeller =</span> label_both)</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-172-1.png" width="672" /></p>
-<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb514-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> female, <span class="at">y =</span> bmi))<span class="sc">+</span></span>
-<span id="cb514-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb514-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb514-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb514-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb514-4"><a href="analysis-of-covariance-with-the-smart-data.html#cb514-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> smoke100, <span class="at">labeller =</span> label_both)</span></code></pre></div>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb516-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> bmi)) <span class="sc">+</span></span>
+<span id="cb516-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb516-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>) <span class="sc">+</span></span>
+<span id="cb516-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb516-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(female <span class="sc">~</span> smoke100, <span class="at">labeller =</span> label_both)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-173-1.png" width="672" /></p>
+<p>or maybe boxplots?</p>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb517-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(female), <span class="at">y =</span> bmi)) <span class="sc">+</span></span>
+<span id="cb517-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb517-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb517-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb517-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> smoke100, <span class="at">labeller =</span> label_both)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-174-1.png" width="672" /></p>
+<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb518-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> female, <span class="at">y =</span> bmi))<span class="sc">+</span></span>
+<span id="cb518-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb518-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb518-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb518-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb518-4"><a href="analysis-of-covariance-with-the-smart-data.html#cb518-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> smoke100, <span class="at">labeller =</span> label_both)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
 <p>OK. Let’s try fitting a model.</p>
-<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb515-1" aria-hidden="true" tabindex="-1"></a>c8_m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> female <span class="sc">+</span> smoke100, <span class="at">data =</span> smart_cle1_sh)</span>
-<span id="cb515-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb515-2" aria-hidden="true" tabindex="-1"></a>c8_m2</span></code></pre></div>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb519-1" aria-hidden="true" tabindex="-1"></a>c8_m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> female <span class="sc">+</span> smoke100, <span class="at">data =</span> smart_cle1_sh)</span>
+<span id="cb519-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb519-2" aria-hidden="true" tabindex="-1"></a>c8_m2</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = bmi ~ female + smoke100, data = smart_cle1_sh)
@@ -1113,7 +1116,7 @@ Coefficients:
 <li><code>bmi</code> = 28.894 - 0.144 <code>female</code></li>
 </ul>
 <p>Only the intercept of the <code>bmi-female</code> model changes depending on <code>smoke100</code>.</p>
-<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb517-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c8_m2)</span></code></pre></div>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb521-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c8_m2)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = bmi ~ female + smoke100, data = smart_cle1_sh)
@@ -1133,7 +1136,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 Residual standard error: 6.356 on 1130 degrees of freedom
 Multiple R-squared:  0.004788,  Adjusted R-squared:  0.003027 
 F-statistic: 2.718 on 2 and 1130 DF,  p-value: 0.06642</code></pre>
-<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb519-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(c8_m2)</span></code></pre></div>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb523-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(c8_m2)</span></code></pre></div>
 <pre><code>                 2.5 %     97.5 %
 (Intercept) 27.3161140 28.7368281
 female      -0.8944773  0.6259881
@@ -1141,7 +1144,7 @@ smoke100     0.1072974  1.6037825</code></pre>
 <p>The slopes of both <code>female</code> and <code>smoke100</code> have confidence intervals that are completely below zero, indicating that both <code>female</code> sex and <code>smoke100</code> appear to be associated with reductions in <code>bmi</code>.</p>
 <p>The R<sup>2</sup> value suggests that just under 3% of the variation in <code>bmi</code> is accounted for by this ANOVA model.</p>
 <p>In fact, this regression (on two binary indicator variables) is simply a two-way ANOVA model without an interaction term.</p>
-<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb521-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c8_m2)</span></code></pre></div>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb525-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c8_m2)</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: bmi
@@ -1155,8 +1158,8 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div id="c8_m3-adding-the-interaction-term-two-way-anova-with-interaction" class="section level2" number="8.4">
 <h2><span class="header-section-number">8.4</span> <code>c8_m3</code>: Adding the interaction term (Two-way ANOVA with interaction)</h2>
 <p>Suppose we want to let the effect of <code>female</code> vary depending on the <code>smoke100</code> status. Then we need to incorporate an interaction term in our model.</p>
-<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb523-1" aria-hidden="true" tabindex="-1"></a>c8_m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> female <span class="sc">*</span> smoke100, <span class="at">data =</span> smart_cle1_sh)</span>
-<span id="cb523-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb523-2" aria-hidden="true" tabindex="-1"></a>c8_m3</span></code></pre></div>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb527-1" aria-hidden="true" tabindex="-1"></a>c8_m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> female <span class="sc">*</span> smoke100, <span class="at">data =</span> smart_cle1_sh)</span>
+<span id="cb527-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb527-2" aria-hidden="true" tabindex="-1"></a>c8_m3</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = bmi ~ female * smoke100, data = smart_cle1_sh)
@@ -1182,7 +1185,7 @@ Coefficients:
 <li><code>bmi</code> = 28.694 - 0.233 <code>female</code></li>
 </ul>
 <p>Now, both the slope and the intercept of the <code>bmi-female</code> model change depending on <code>smoke100</code>.</p>
-<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb525-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c8_m3)</span></code></pre></div>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb529-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c8_m3)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = bmi ~ female * smoke100, data = smart_cle1_sh)
@@ -1203,14 +1206,14 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 Residual standard error: 6.356 on 1129 degrees of freedom
 Multiple R-squared:  0.005621,  Adjusted R-squared:  0.002979 
 F-statistic: 2.127 on 3 and 1129 DF,  p-value: 0.09507</code></pre>
-<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb527-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(c8_m3)</span></code></pre></div>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb531-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(c8_m3)</span></code></pre></div>
 <pre><code>                     2.5 %     97.5 %
 (Intercept)     27.4063783 29.1315563
 female          -1.5749026  0.5621793
 smoke100        -0.7547605  1.5786121
 female:smoke100 -0.7670239  2.2742178</code></pre>
 <p>In fact, this regression (on two binary indicator variables and a product term) is simply a two-way ANOVA model with an interaction term.</p>
-<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb529-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c8_m3)</span></code></pre></div>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb533-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c8_m3)</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: bmi
@@ -1225,17 +1228,17 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </div>
 <div id="c8_m4-using-female-and-physhealth-in-a-model-for-bmi" class="section level2" number="8.5">
 <h2><span class="header-section-number">8.5</span> <code>c8_m4</code>: Using <code>female</code> and <code>physhealth</code> in a model for <code>bmi</code></h2>
-<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb531-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> physhealth, <span class="at">y =</span> bmi, <span class="at">color =</span> <span class="fu">factor</span>(female))) <span class="sc">+</span></span>
-<span id="cb531-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb531-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb531-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb531-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">col =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb531-4"><a href="analysis-of-covariance-with-the-smart-data.html#cb531-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb531-5"><a href="analysis-of-covariance-with-the-smart-data.html#cb531-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> female, <span class="at">labeller =</span> label_both) </span></code></pre></div>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb535-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> physhealth, <span class="at">y =</span> bmi, <span class="at">color =</span> <span class="fu">factor</span>(female))) <span class="sc">+</span></span>
+<span id="cb535-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb535-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb535-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb535-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">col =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb535-4"><a href="analysis-of-covariance-with-the-smart-data.html#cb535-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb535-5"><a href="analysis-of-covariance-with-the-smart-data.html#cb535-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> female, <span class="at">labeller =</span> label_both) </span></code></pre></div>
 <pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="432-notes_files/figure-html/graph_to_set_up_c8_m4-1.png" width="672" /></p>
 <p>Does the difference in slopes of <code>bmi</code> and <code>physhealth</code> for males and females appear to be substantial and important?</p>
-<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb533-1" aria-hidden="true" tabindex="-1"></a>c8_m4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> female <span class="sc">*</span> physhealth, <span class="at">data =</span> smart_cle1_sh)</span>
-<span id="cb533-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb533-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb533-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb533-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c8_m4)</span></code></pre></div>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb537-1" aria-hidden="true" tabindex="-1"></a>c8_m4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> female <span class="sc">*</span> physhealth, <span class="at">data =</span> smart_cle1_sh)</span>
+<span id="cb537-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb537-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb537-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb537-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c8_m4)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = bmi ~ female * physhealth, data = smart_cle1_sh)
@@ -1261,13 +1264,13 @@ F-statistic: 13.59 on 3 and 1129 DF,  p-value: 1.027e-08</code></pre>
 <ul>
 <li>I might start by looking at the basic summaries for each model.</li>
 </ul>
-<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb535-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(c8_m4)</span></code></pre></div>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb539-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(c8_m4)</span></code></pre></div>
 <pre><code># A tibble: 1 x 12
-  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
-      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1    0.0349        0.0323  6.26      13.6 1.03e-8     3 -3684. 7378. 7403.
+  r.squared adj.r.squared sigma statistic      p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1    0.0349        0.0323  6.26      13.6 0.0000000103     3 -3684. 7378. 7403.
 # ... with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
-<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb537-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(c8_m1)</span></code></pre></div>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb541-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(c8_m1)</span></code></pre></div>
 <pre><code># A tibble: 1 x 12
   r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1278,7 +1281,7 @@ F-statistic: 13.59 on 3 and 1129 DF,  p-value: 1.027e-08</code></pre>
 <li>Smaller AIC and smaller BIC statistics are more desirable. Here, there’s little to choose from, so <code>c8_m4</code> looks better, too.</li>
 <li>We might also consider a significance test by looking at an ANOVA model comparison. This is only appropriate because <code>c8_m1</code> is nested in <code>c8_m4</code>.</li>
 </ul>
-<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb539-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c8_m4, c8_m1)</span></code></pre></div>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb543-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c8_m4, c8_m1)</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Model 1: bmi ~ female * physhealth
@@ -1293,7 +1296,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div id="making-predictions-with-a-linear-regression-model" class="section level2" number="8.6">
 <h2><span class="header-section-number">8.6</span> Making Predictions with a Linear Regression Model</h2>
 <p>Recall model 4, which yields predictions for body mass index on the basis of the main effects of sex (<code>female</code>) and days of poor physical health (<code>physhealth</code>) and their interaction.</p>
-<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb541-1" aria-hidden="true" tabindex="-1"></a>c8_m4</span></code></pre></div>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb545-1" aria-hidden="true" tabindex="-1"></a>c8_m4</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = bmi ~ female * physhealth, data = smart_cle1_sh)
@@ -1304,8 +1307,8 @@ Coefficients:
 <div id="fitting-an-individual-prediction-and-95-prediction-interval" class="section level3" number="8.6.1">
 <h3><span class="header-section-number">8.6.1</span> Fitting an Individual Prediction and 95% Prediction Interval</h3>
 <p>What do we predict for the <code>bmi</code> of a subject who is <code>female</code> and had 8 poor physical health days in the past 30?</p>
-<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb543-1" aria-hidden="true" tabindex="-1"></a>c8_new1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">female =</span> <span class="dv">1</span>, <span class="at">physhealth =</span> <span class="dv">8</span>)</span>
-<span id="cb543-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb543-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(c8_m4, <span class="at">newdata =</span> c8_new1, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb547-1" aria-hidden="true" tabindex="-1"></a>c8_new1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">female =</span> <span class="dv">1</span>, <span class="at">physhealth =</span> <span class="dv">8</span>)</span>
+<span id="cb547-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb547-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(c8_m4, <span class="at">newdata =</span> c8_new1, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>       fit      lwr     upr
 1 28.62022 16.32454 40.9159</code></pre>
 <p>The predicted <code>bmi</code> for this new subject is shown above. The prediction interval shows the bounds of a 95% uncertainty interval for a predicted <code>bmi</code> for an individual female subject who has 8 days of poor physical health out of the past 30. From the <code>predict</code> function applied to a linear model, we can get the prediction intervals for any new data points in this manner.</p>
@@ -1315,7 +1318,7 @@ Coefficients:
 <ul>
 <li>What do we predict for the <strong>average body mass index of a population of subjects</strong> who are female and have <code>physhealth = 8</code>?</li>
 </ul>
-<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb545-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(c8_m4, <span class="at">newdata =</span> c8_new1, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb549-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(c8_m4, <span class="at">newdata =</span> c8_new1, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>       fit      lwr      upr
 1 28.62022 28.12256 29.11788</code></pre>
 <ul>
@@ -1327,11 +1330,11 @@ Coefficients:
 <ul>
 <li>How does our prediction change for a respondent if they instead have 7, or 9 poor physical health days? What if they are male, instead of female?</li>
 </ul>
-<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb547-1" aria-hidden="true" tabindex="-1"></a>c8_new2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">subjectid =</span> <span class="dv">1001</span><span class="sc">:</span><span class="dv">1006</span>, <span class="at">female =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="at">physhealth =</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>))</span>
-<span id="cb547-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb547-2" aria-hidden="true" tabindex="-1"></a>pred2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(c8_m4, <span class="at">newdata =</span> c8_new2, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>, <span class="at">level =</span> <span class="fl">0.95</span>) <span class="sc">%&gt;%</span> tbl_df</span>
-<span id="cb547-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb547-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb547-4"><a href="analysis-of-covariance-with-the-smart-data.html#cb547-4" aria-hidden="true" tabindex="-1"></a>result2 <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(c8_new2, pred2)</span>
-<span id="cb547-5"><a href="analysis-of-covariance-with-the-smart-data.html#cb547-5" aria-hidden="true" tabindex="-1"></a>result2</span></code></pre></div>
+<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb551-1" aria-hidden="true" tabindex="-1"></a>c8_new2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">subjectid =</span> <span class="dv">1001</span><span class="sc">:</span><span class="dv">1006</span>, <span class="at">female =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="at">physhealth =</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>))</span>
+<span id="cb551-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb551-2" aria-hidden="true" tabindex="-1"></a>pred2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(c8_m4, <span class="at">newdata =</span> c8_new2, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>, <span class="at">level =</span> <span class="fl">0.95</span>) <span class="sc">%&gt;%</span> tbl_df</span>
+<span id="cb551-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb551-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb551-4"><a href="analysis-of-covariance-with-the-smart-data.html#cb551-4" aria-hidden="true" tabindex="-1"></a>result2 <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(c8_new2, pred2)</span>
+<span id="cb551-5"><a href="analysis-of-covariance-with-the-smart-data.html#cb551-5" aria-hidden="true" tabindex="-1"></a>result2</span></code></pre></div>
 <pre><code># A tibble: 6 x 6
   subjectid female physhealth   fit   lwr   upr
       &lt;int&gt;  &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1350,12 +1353,12 @@ Coefficients:
 <div id="centering-the-model" class="section level2" number="8.7">
 <h2><span class="header-section-number">8.7</span> Centering the model</h2>
 <p>Our model <code>c8_m4</code> has four predictors (the constant, <code>physhealth</code>, <code>female</code> and their interaction) but just two inputs (<code>female</code> and <code>physhealth</code>.) If we <strong>center</strong> the quantitative input <code>physhealth</code> before building the model, we get a more interpretable interaction term.</p>
-<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb549-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh_c <span class="ot">&lt;-</span> smart_cle1_sh <span class="sc">%&gt;%</span></span>
-<span id="cb549-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb549-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">physhealth_c =</span> physhealth <span class="sc">-</span> <span class="fu">mean</span>(physhealth))</span>
-<span id="cb549-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb549-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb549-4"><a href="analysis-of-covariance-with-the-smart-data.html#cb549-4" aria-hidden="true" tabindex="-1"></a>c8_m4_c <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> female <span class="sc">*</span> physhealth_c, <span class="at">data =</span> smart_cle1_sh_c)</span>
-<span id="cb549-5"><a href="analysis-of-covariance-with-the-smart-data.html#cb549-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb549-6"><a href="analysis-of-covariance-with-the-smart-data.html#cb549-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c8_m4_c)</span></code></pre></div>
+<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb553-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh_c <span class="ot">&lt;-</span> smart_cle1_sh <span class="sc">%&gt;%</span></span>
+<span id="cb553-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb553-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">physhealth_c =</span> physhealth <span class="sc">-</span> <span class="fu">mean</span>(physhealth))</span>
+<span id="cb553-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb553-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb553-4"><a href="analysis-of-covariance-with-the-smart-data.html#cb553-4" aria-hidden="true" tabindex="-1"></a>c8_m4_c <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> female <span class="sc">*</span> physhealth_c, <span class="at">data =</span> smart_cle1_sh_c)</span>
+<span id="cb553-5"><a href="analysis-of-covariance-with-the-smart-data.html#cb553-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb553-6"><a href="analysis-of-covariance-with-the-smart-data.html#cb553-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c8_m4_c)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = bmi ~ female * physhealth_c, data = smart_cle1_sh_c)
@@ -1395,15 +1398,15 @@ F-statistic: 13.59 on 3 and 1129 DF,  p-value: 1.027e-08</code></pre>
 </ul>
 <div id="plot-of-model-4-on-centered-physhealth-c8_m4_c" class="section level3" number="8.7.1">
 <h3><span class="header-section-number">8.7.1</span> Plot of Model 4 on Centered <code>physhealth</code>: <code>c8_m4_c</code></h3>
-<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb551-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh_c, <span class="fu">aes</span>(<span class="at">x =</span> physhealth_c, <span class="at">y =</span> bmi, <span class="at">group =</span> female, <span class="at">col =</span> <span class="fu">factor</span>(female))) <span class="sc">+</span></span>
-<span id="cb551-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb551-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb551-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb551-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb551-4"><a href="analysis-of-covariance-with-the-smart-data.html#cb551-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">color =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb551-5"><a href="analysis-of-covariance-with-the-smart-data.html#cb551-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Poor Physical Health Days, centered&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Body Mass Index&quot;</span>,</span>
-<span id="cb551-6"><a href="analysis-of-covariance-with-the-smart-data.html#cb551-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Model `c8_m4` on centered data&quot;</span>) <span class="sc">+</span></span>
-<span id="cb551-7"><a href="analysis-of-covariance-with-the-smart-data.html#cb551-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> female, <span class="at">labeller =</span> label_both)</span></code></pre></div>
+<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb555-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh_c, <span class="fu">aes</span>(<span class="at">x =</span> physhealth_c, <span class="at">y =</span> bmi, <span class="at">group =</span> female, <span class="at">col =</span> <span class="fu">factor</span>(female))) <span class="sc">+</span></span>
+<span id="cb555-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb555-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb555-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb555-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb555-4"><a href="analysis-of-covariance-with-the-smart-data.html#cb555-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">color =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb555-5"><a href="analysis-of-covariance-with-the-smart-data.html#cb555-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Poor Physical Health Days, centered&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Body Mass Index&quot;</span>,</span>
+<span id="cb555-6"><a href="analysis-of-covariance-with-the-smart-data.html#cb555-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Model `c8_m4` on centered data&quot;</span>) <span class="sc">+</span></span>
+<span id="cb555-7"><a href="analysis-of-covariance-with-the-smart-data.html#cb555-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> female, <span class="at">labeller =</span> label_both)</span></code></pre></div>
 <pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
 </div>
 </div>
 <div id="rescaling-an-input-by-subtracting-the-mean-and-dividing-by-2-standard-deviations" class="section level2" number="8.8">
@@ -1417,13 +1420,13 @@ F-statistic: 13.59 on 3 and 1129 DF,  p-value: 1.027e-08</code></pre>
 <li>an unscaled binary (1/0) predictor with 50% probability of occurring will be exactly comparable to a rescaled continuous predictor done in this way.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb553-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh_rescale <span class="ot">&lt;-</span> smart_cle1_sh <span class="sc">%&gt;%</span></span>
-<span id="cb553-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb553-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">physhealth_z =</span> (physhealth <span class="sc">-</span> <span class="fu">mean</span>(physhealth))<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span><span class="fu">sd</span>(physhealth)))</span></code></pre></div>
+<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb557-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh_rescale <span class="ot">&lt;-</span> smart_cle1_sh <span class="sc">%&gt;%</span></span>
+<span id="cb557-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb557-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">physhealth_z =</span> (physhealth <span class="sc">-</span> <span class="fu">mean</span>(physhealth))<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span><span class="fu">sd</span>(physhealth)))</span></code></pre></div>
 <div id="refitting-model-c8_m4-to-the-rescaled-data" class="section level3" number="8.8.1">
 <h3><span class="header-section-number">8.8.1</span> Refitting model <code>c8_m4</code> to the rescaled data</h3>
-<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb554-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb554-1" aria-hidden="true" tabindex="-1"></a>c8_m4_z <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> female <span class="sc">*</span> physhealth_z, <span class="at">data =</span> smart_cle1_sh_rescale)</span>
-<span id="cb554-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb554-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb554-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb554-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c8_m4_z)</span></code></pre></div>
+<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb558-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb558-1" aria-hidden="true" tabindex="-1"></a>c8_m4_z <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> female <span class="sc">*</span> physhealth_z, <span class="at">data =</span> smart_cle1_sh_rescale)</span>
+<span id="cb558-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb558-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb558-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb558-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c8_m4_z)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = bmi ~ female * physhealth_z, data = smart_cle1_sh_rescale)
@@ -1471,7 +1474,7 @@ F-statistic: 13.59 on 3 and 1129 DF,  p-value: 1.027e-08</code></pre>
 <li>Since the standard deviation of <code>physhealth</code> is 9.12 (see below), this covers a massive range of potential values of <code>physhealth</code> from 0 all the way up to 4.68 + 2(9.12) = 22.92 days.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb556-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb556-1" aria-hidden="true" tabindex="-1"></a>mosaic<span class="sc">::</span><span class="fu">favstats</span>(<span class="sc">~</span> physhealth, <span class="at">data =</span> smart_cle1_sh)</span></code></pre></div>
+<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb560-1" aria-hidden="true" tabindex="-1"></a>mosaic<span class="sc">::</span><span class="fu">favstats</span>(<span class="sc">~</span> physhealth, <span class="at">data =</span> smart_cle1_sh)</span></code></pre></div>
 <pre><code> min Q1 median Q3 max     mean       sd    n missing
    0  0      0  4  30 4.681377 9.120899 1133       0</code></pre>
 <ul>
@@ -1480,24 +1483,24 @@ F-statistic: 13.59 on 3 and 1129 DF,  p-value: 1.027e-08</code></pre>
 </div>
 <div id="plot-of-model-on-rescaled-data" class="section level3" number="8.8.3">
 <h3><span class="header-section-number">8.8.3</span> Plot of model on rescaled data</h3>
-<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb558-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb558-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh_rescale, <span class="fu">aes</span>(<span class="at">x =</span> physhealth_z, <span class="at">y =</span> bmi, </span>
-<span id="cb558-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb558-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">group =</span> female, <span class="at">col =</span> <span class="fu">factor</span>(female))) <span class="sc">+</span></span>
-<span id="cb558-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb558-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb558-4"><a href="analysis-of-covariance-with-the-smart-data.html#cb558-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
-<span id="cb558-5"><a href="analysis-of-covariance-with-the-smart-data.html#cb558-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Is subject female?&quot;</span>) <span class="sc">+</span></span>
-<span id="cb558-6"><a href="analysis-of-covariance-with-the-smart-data.html#cb558-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Poor Physical Health Days, standardized (2 sd)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Body Mass Index&quot;</span>,</span>
-<span id="cb558-7"><a href="analysis-of-covariance-with-the-smart-data.html#cb558-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Model `c8_m4_z` on rescaled data&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb562-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh_rescale, <span class="fu">aes</span>(<span class="at">x =</span> physhealth_z, <span class="at">y =</span> bmi, </span>
+<span id="cb562-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb562-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">group =</span> female, <span class="at">col =</span> <span class="fu">factor</span>(female))) <span class="sc">+</span></span>
+<span id="cb562-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb562-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb562-4"><a href="analysis-of-covariance-with-the-smart-data.html#cb562-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb562-5"><a href="analysis-of-covariance-with-the-smart-data.html#cb562-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Is subject female?&quot;</span>) <span class="sc">+</span></span>
+<span id="cb562-6"><a href="analysis-of-covariance-with-the-smart-data.html#cb562-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Poor Physical Health Days, standardized (2 sd)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Body Mass Index&quot;</span>,</span>
+<span id="cb562-7"><a href="analysis-of-covariance-with-the-smart-data.html#cb562-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Model `c8_m4_z` on rescaled data&quot;</span>) </span></code></pre></div>
 <pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
 <p>There’s very little difference here.</p>
 </div>
 </div>
 <div id="c8_m5-what-if-we-add-more-variables" class="section level2" number="8.9">
 <h2><span class="header-section-number">8.9</span> <code>c8_m5</code>: What if we add more variables?</h2>
 <p>We can boost our R<sup>2</sup> a bit, to nearly 5%, by adding in two new variables, related to whether or not the subject (in the past 30 days) used the internet, and the average number of alcoholic drinks per week consumed by ths subject.</p>
-<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb560-1" aria-hidden="true" tabindex="-1"></a>c8_m5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> female <span class="sc">+</span> smoke100 <span class="sc">+</span> physhealth <span class="sc">+</span> internet30 <span class="sc">+</span> drinks_wk,</span>
-<span id="cb560-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb560-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> smart_cle1_sh)</span>
-<span id="cb560-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb560-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c8_m5)</span></code></pre></div>
+<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb564-1" aria-hidden="true" tabindex="-1"></a>c8_m5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> female <span class="sc">+</span> smoke100 <span class="sc">+</span> physhealth <span class="sc">+</span> internet30 <span class="sc">+</span> drinks_wk,</span>
+<span id="cb564-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb564-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> smart_cle1_sh)</span>
+<span id="cb564-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb564-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c8_m5)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = bmi ~ female + smoke100 + physhealth + internet30 + 
@@ -1524,7 +1527,7 @@ F-statistic: 10.82 on 5 and 1127 DF,  p-value: 3.48e-10</code></pre>
 <ol style="list-style-type: decimal">
 <li>Here’s the ANOVA for this model. What can we study with this?</li>
 </ol>
-<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb562-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c8_m5)</span></code></pre></div>
+<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb566-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c8_m5)</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: bmi
@@ -1540,8 +1543,8 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <ol start="2" style="list-style-type: decimal">
 <li>Consider the revised output below. Now what can we study?</li>
 </ol>
-<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb564-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(bmi <span class="sc">~</span> smoke100 <span class="sc">+</span> internet30 <span class="sc">+</span> drinks_wk <span class="sc">+</span> female <span class="sc">+</span> physhealth,</span>
-<span id="cb564-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb564-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> smart_cle1_sh))</span></code></pre></div>
+<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb568-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(bmi <span class="sc">~</span> smoke100 <span class="sc">+</span> internet30 <span class="sc">+</span> drinks_wk <span class="sc">+</span> female <span class="sc">+</span> physhealth,</span>
+<span id="cb568-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb568-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> smart_cle1_sh))</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: bmi
@@ -1557,10 +1560,10 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <ol start="3" style="list-style-type: decimal">
 <li>What does the output below let us conclude?</li>
 </ol>
-<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb566-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(bmi <span class="sc">~</span> smoke100 <span class="sc">+</span> internet30 <span class="sc">+</span> drinks_wk <span class="sc">+</span> female <span class="sc">+</span> physhealth, </span>
-<span id="cb566-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb566-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> smart_cle1_sh),</span>
-<span id="cb566-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb566-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">lm</span>(bmi <span class="sc">~</span> smoke100 <span class="sc">+</span> female <span class="sc">+</span> drinks_wk, </span>
-<span id="cb566-4"><a href="analysis-of-covariance-with-the-smart-data.html#cb566-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> smart_cle1_sh))</span></code></pre></div>
+<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb570-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(bmi <span class="sc">~</span> smoke100 <span class="sc">+</span> internet30 <span class="sc">+</span> drinks_wk <span class="sc">+</span> female <span class="sc">+</span> physhealth, </span>
+<span id="cb570-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb570-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> smart_cle1_sh),</span>
+<span id="cb570-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb570-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">lm</span>(bmi <span class="sc">~</span> smoke100 <span class="sc">+</span> female <span class="sc">+</span> drinks_wk, </span>
+<span id="cb570-4"><a href="analysis-of-covariance-with-the-smart-data.html#cb570-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> smart_cle1_sh))</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Model 1: bmi ~ smoke100 + internet30 + drinks_wk + female + physhealth
@@ -1577,9 +1580,9 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div id="c8_m6-would-adding-self-reported-health-help" class="section level2" number="8.10">
 <h2><span class="header-section-number">8.10</span> <code>c8_m6</code>: Would adding self-reported health help?</h2>
 <p>And we can do even a bit better than that by adding in a multi-categorical measure: self-reported general health.</p>
-<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb568-1" aria-hidden="true" tabindex="-1"></a>c8_m6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> female <span class="sc">+</span> smoke100 <span class="sc">+</span> physhealth <span class="sc">+</span> internet30 <span class="sc">+</span> drinks_wk <span class="sc">+</span> genhealth,</span>
-<span id="cb568-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb568-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> smart_cle1_sh)</span>
-<span id="cb568-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb568-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c8_m6)</span></code></pre></div>
+<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb572-1" aria-hidden="true" tabindex="-1"></a>c8_m6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bmi <span class="sc">~</span> female <span class="sc">+</span> smoke100 <span class="sc">+</span> physhealth <span class="sc">+</span> internet30 <span class="sc">+</span> drinks_wk <span class="sc">+</span> genhealth,</span>
+<span id="cb572-2"><a href="analysis-of-covariance-with-the-smart-data.html#cb572-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> smart_cle1_sh)</span>
+<span id="cb572-3"><a href="analysis-of-covariance-with-the-smart-data.html#cb572-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c8_m6)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = bmi ~ female + smoke100 + physhealth + internet30 + 
@@ -1611,7 +1614,7 @@ F-statistic: 12.65 on 9 and 1123 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li><p>If Harry and Marty have the same values of <code>female</code>, <code>smoke100</code>, <code>physhealth</code>, <code>internet30</code> and <code>drinks_wk</code>, but Harry rates his health as Good, and Marty rates his as Fair, then what is the difference in the predictions? Who is predicted to have a larger BMI, and by how much?</p></li>
 <li><p>What does this normal probability plot of the residuals suggest?</p></li>
 </ol>
-<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb570-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c8_m6, <span class="at">which =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb574-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c8_m6, <span class="at">which =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/c8_m6_residuals_normality-1.png" width="672" /></p>
 </div>
 <div id="key-regression-assumptions-for-building-effective-prediction-models" class="section level2" number="8.11">
@@ -1634,17 +1637,17 @@ F-statistic: 12.65 on 9 and 1123 DF,  p-value: &lt; 2.2e-16</code></pre>
 <ol style="list-style-type: decimal">
 <li>How does the assumption of linearity behind this model look?</li>
 </ol>
-<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb571-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c8_m6, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb575-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c8_m6, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/residual_plot1_c8_m6-1.png" width="672" /></p>
 <p>We see no strong signs of serious non-linearity here. There’s no obvious curve in the plot, for example. We may have a problem with increasing variance as we move to the right.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>What can we conclude from the plot below?</li>
 </ol>
-<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb572-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c8_m6, <span class="at">which =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb576-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c8_m6, <span class="at">which =</span> <span class="dv">5</span>)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/residual_plot5_c8_m6-1.png" width="672" /></p>
 <p>This plot can help us identify points with large standardized residuals, large leverage values, and large influence on the model (as indicated by large values of Cook’s distance.) In this case, I see no signs of any points used in the model with especially large influence, although there are some poorly fitted points (with especially large standardized residuals.)</p>
 <p>We might want to identify the point listed here as 961, which appears to have an enormous standardized residual. To do so, we can use the <code>slice</code> function from <code>dplyr</code>.</p>
-<div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb573-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">961</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(SEQNO)</span></code></pre></div>
+<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb577-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">961</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(SEQNO)</span></code></pre></div>
 <pre><code># A tibble: 1 x 1
        SEQNO
        &lt;dbl&gt;
@@ -1653,14 +1656,14 @@ F-statistic: 12.65 on 9 and 1123 DF,  p-value: &lt; 2.2e-16</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>What other residual plots are available with <code>plot</code> and how do we interpret them?</li>
 </ol>
-<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb575-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c8_m6, <span class="at">which =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
-<p>This plot is simply a Normal Q-Q plot of the standardized residuals from our model. We’re looking here for serious problems with the assumption of Normality.</p>
-<div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb576-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c8_m6, <span class="at">which =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
-<p>This is a scale-location plot, designed to help us see non-constant variance in the residuals as we move across the fitted values as a linear trend, rather than as a fan shape, by plotting the square root of the residuals on the vertical axis.</p>
-<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb577-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c8_m6, <span class="at">which =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb579-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c8_m6, <span class="at">which =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
+<p>This plot is simply a Normal Q-Q plot of the standardized residuals from our model. We’re looking here for serious problems with the assumption of Normality.</p>
+<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb580-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c8_m6, <span class="at">which =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-188-1.png" width="672" /></p>
+<p>This is a scale-location plot, designed to help us see non-constant variance in the residuals as we move across the fitted values as a linear trend, rather than as a fan shape, by plotting the square root of the residuals on the vertical axis.</p>
+<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="analysis-of-covariance-with-the-smart-data.html#cb581-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c8_m6, <span class="at">which =</span> <span class="dv">4</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
 <p>Finally, this is an index plot of the Cook’s distance values, allowing us to identify points that are particularly large. Remember that a value of 0.5 (or perhaps even 1.0) is a reasonable boundary for a substantially influential point.</p>
 
 </div>

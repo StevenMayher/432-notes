@@ -32,7 +32,7 @@
   
 <link rel="prev" href="analysis-of-variance-with-smart.html"/>
 <link rel="next" href="analysis-of-covariance.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -306,7 +306,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.9" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#creating-a-factor-combining-sex-and-waist"><i class="fa fa-check"></i><b>6.9</b> Creating a factor combining sex and waist</a></li>
 <li class="chapter" data-level="6.10" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-means-plot-for-the-cortisol-trial-with-standard-errors"><i class="fa fa-check"></i><b>6.10</b> A Means Plot for the <code>cortisol</code> trial (with standard errors)</a></li>
-<li class="chapter" data-level="6.11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-with-interaction"><i class="fa fa-check"></i><b>6.11</b> A Two-Way ANOVA model for <code>cortisol</code> with Interaction</a></li>
+<li class="chapter" data-level="6.11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-with-interaction"><i class="fa fa-check"></i><b>6.11</b> A Two-Way ANOVA model for <code>cortisol</code> with Interaction</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#notes-on-this-question"><i class="fa fa-check"></i><b>6.11.1</b> Notes on this Question</a></li>
+</ul></li>
 <li class="chapter" data-level="6.12" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-without-interaction"><i class="fa fa-check"></i><b>6.12</b> A Two-Way ANOVA model for <code>cortisol</code> without Interaction</a>
 <ul>
 <li class="chapter" data-level="6.12.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-graph"><i class="fa fa-check"></i><b>6.12.1</b> The Graph</a></li>
@@ -1512,24 +1515,95 @@ Residual standard error: 0.9369 on 150 degrees of freedom
 Multiple R-squared:  0.0924,    Adjusted R-squared:  0.06214 
 F-statistic: 3.054 on 5 and 150 DF,  p-value: 0.01179</code></pre>
 <p>How do you reconcile the apparent difference in significance levels between this regression summary and the ANOVA table above?</p>
+<div id="notes-on-this-question" class="section level3" number="6.11.1">
+<h3><span class="header-section-number">6.11.1</span> Notes on this Question</h3>
+<p>When we’re evaluating a two-factor ANOVA model with an interaction, we are choosing between models with either:</p>
+<ol style="list-style-type: decimal">
+<li>just one factor</li>
+<li>both factors, but only as main effects</li>
+<li>both factors and an interaction between them</li>
+</ol>
+<p>But we don’t get to pick models that include any other combination of terms. For this two-way ANOVA, then, our choices are:</p>
+<ul>
+<li>a model with `interv only</li>
+<li>a model with `fat_est only</li>
+<li>a model with both <code>interv</code> and <code>fat_est</code> but not their interaction</li>
+<li>a model with <code>interv</code> and <code>fat_est</code> and their interaction</li>
+</ul>
+<p>Those are the only modeling options available to us.</p>
+<p>First, consider the ANOVA table, repeated below…</p>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="analysis-of-variance.html#cb466-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c3_m3)</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: cort_diff
+                Df  Sum Sq Mean Sq F value  Pr(&gt;F)  
+interv           2   7.847  3.9235  4.4698 0.01301 *
+fat_est          1   4.614  4.6139  5.2564 0.02326 *
+interv:fat_est   2   0.943  0.4715  0.5371 0.58554  
+Residuals      150 131.666  0.8778                  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The conclusions here are as follows:</p>
+<ol style="list-style-type: decimal">
+<li><p>The interaction effect (<code>interv:fat_est</code>) has a large p value (0.58554) and assesses whether the two interaction terms (product terms) included in the model add detectable predictive value to the main effects model that includes only interv and fat_est alone. You are right to say that this ANOVA is sequential, which means that the p value for the interaction effect is looking at the additional effect of the interaction once we already have the main effects interv and fat_est included.</p></li>
+<li><p>The <code>interv</code> and <code>fat_est</code> terms aren’t usually evaluated with significance tests or interpreted in the ANOVA for this setting, since if we intend to include the interaction term (as this model does) we also need these main effects. If we wanted to look at those terms individually in a model without the interaction, then we’d want to fit that model (without the interaction term) to do so.</p></li>
+</ol>
+<p>Next, let’s look at the summary of the c3_m3 model, specifically the coefficients…</p>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="analysis-of-variance.html#cb468-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c3_m3)</span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = cort_diff ~ interv * fat_est, data = cortisol)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.62727 -0.75702  0.08636  0.84848  2.12647 
+
+Coefficients:
+                           Estimate Std. Error t value Pr(&gt;|t|)   
+(Intercept)                  0.6950     0.2095   3.317  0.00114 **
+intervLow                   -0.1950     0.3001  -0.650  0.51689   
+intervUC                    -0.3479     0.3091  -1.126  0.26206   
+fat_estunhealthy            -0.3435     0.2655  -1.294  0.19774   
+intervLow:fat_estunhealthy   0.1708     0.3785   0.451  0.65256   
+intervUC:fat_estunhealthy   -0.2300     0.3846  -0.598  0.55068   
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.9369 on 150 degrees of freedom
+Multiple R-squared:  0.0924,    Adjusted R-squared:  0.06214 
+F-statistic: 3.054 on 5 and 150 DF,  p-value: 0.01179</code></pre>
+<p>So here, we see two p values associated with the interaction terms (the two product terms at the bottom of the regression) but these aren’t especially helpful, because we’re either going to include the interaction (in which case both of these terms will be in the model) or we’re not going to include the interaction (in which case neither of these terms will be in the model.)</p>
+<p>So the p values provided here aren’t very helpful - like all such p values for t tests, they are looking at the value of the term in their row as the last predictor in to the model, essentially comparing the full model to the model without that specific component, but none of those tests enable us to decide which of the 4 available model choices is our best fit.</p>
+<p>Now, let’s consider the reason why, for example, the p value for <code>fat_est</code> in the <code>summary()</code> which is looking at comparing the following models …</p>
+<ul>
+<li>a model including interv (which has 2 coefficients to account for its 3 categories), <code>fat_est</code> (which has 1 coefficient to account for its 2 categories), and the <code>interv*fat_est</code> interaction terms (which are 2 terms)</li>
+<li>a model including <code>interv</code> and the <code>interv*fat_est</code> interaction (but somehow not the main effect of <code>fat_est</code>, which actually makes no sense: if we include the interaction we always include the main effect)</li>
+</ul>
+<p>to the p value for <code>fat_est</code> in the ANOVA which is looking at comparing</p>
+<ul>
+<li>the model with <code>interv</code> alone to</li>
+<li>the model with <code>interv</code> and <code>fat_est</code> as main effects, but no interaction</li>
+</ul>
+<p>Only the ANOVA p value is therefore in any way useful, and it suggests that once you have the main effect of <code>interv</code>, adding <code>fat_est</code>’s main effect adds statistically detectable value (p = 0.023)</p>
+</div>
 </div>
 <div id="a-two-way-anova-model-for-cortisol-without-interaction" class="section level2" number="6.12">
 <h2><span class="header-section-number">6.12</span> A Two-Way ANOVA model for <code>cortisol</code> without Interaction</h2>
 <div id="the-graph" class="section level3" number="6.12.1">
 <h3><span class="header-section-number">6.12.1</span> The Graph</h3>
-<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="analysis-of-variance.html#cb466-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(cortisol, <span class="fu">aes</span>(<span class="at">x =</span> interv, <span class="at">y =</span> cort_diff)) <span class="sc">+</span> </span>
-<span id="cb466-2"><a href="analysis-of-variance.html#cb466-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span>
-<span id="cb466-3"><a href="analysis-of-variance.html#cb466-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(cortisol, <span class="fu">aes</span>(<span class="at">x =</span> fat_est, <span class="at">y =</span> cort_diff)) <span class="sc">+</span></span>
-<span id="cb466-4"><a href="analysis-of-variance.html#cb466-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span>
-<span id="cb466-5"><a href="analysis-of-variance.html#cb466-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb466-6"><a href="analysis-of-variance.html#cb466-6" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(p1, p2, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="analysis-of-variance.html#cb470-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(cortisol, <span class="fu">aes</span>(<span class="at">x =</span> interv, <span class="at">y =</span> cort_diff)) <span class="sc">+</span> </span>
+<span id="cb470-2"><a href="analysis-of-variance.html#cb470-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span>
+<span id="cb470-3"><a href="analysis-of-variance.html#cb470-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(cortisol, <span class="fu">aes</span>(<span class="at">x =</span> fat_est, <span class="at">y =</span> cort_diff)) <span class="sc">+</span></span>
+<span id="cb470-4"><a href="analysis-of-variance.html#cb470-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span>
+<span id="cb470-5"><a href="analysis-of-variance.html#cb470-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb470-6"><a href="analysis-of-variance.html#cb470-6" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(p1, p2, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/boxplots_c3_cortisol_without_interaction-1.png" width="672" /></p>
 </div>
 <div id="the-anova-model" class="section level3" number="6.12.2">
 <h3><span class="header-section-number">6.12.2</span> The ANOVA Model</h3>
-<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="analysis-of-variance.html#cb467-1" aria-hidden="true" tabindex="-1"></a>c3_m4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(cort_diff <span class="sc">~</span> interv <span class="sc">+</span> fat_est, <span class="at">data =</span> cortisol)</span>
-<span id="cb467-2"><a href="analysis-of-variance.html#cb467-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb467-3"><a href="analysis-of-variance.html#cb467-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c3_m4)</span></code></pre></div>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="analysis-of-variance.html#cb471-1" aria-hidden="true" tabindex="-1"></a>c3_m4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(cort_diff <span class="sc">~</span> interv <span class="sc">+</span> fat_est, <span class="at">data =</span> cortisol)</span>
+<span id="cb471-2"><a href="analysis-of-variance.html#cb471-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb471-3"><a href="analysis-of-variance.html#cb471-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c3_m4)</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: cort_diff
@@ -1543,7 +1617,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </div>
 <div id="the-regression-summary" class="section level3" number="6.12.3">
 <h3><span class="header-section-number">6.12.3</span> The Regression Summary</h3>
-<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="analysis-of-variance.html#cb469-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c3_m4)</span></code></pre></div>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="analysis-of-variance.html#cb473-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c3_m4)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = cort_diff ~ interv + fat_est, data = cortisol)
@@ -1568,7 +1642,7 @@ F-statistic: 4.761 on 3 and 152 DF,  p-value: 0.00335</code></pre>
 <div id="tukey-hsd-comparisons" class="section level3" number="6.12.4">
 <h3><span class="header-section-number">6.12.4</span> Tukey HSD Comparisons</h3>
 <p>Without the interaction term, we can make direct comparisons between levels of the intervention, and between levels of the <code>fat_est</code> variable. This is probably best done here in a Tukey HSD comparison.</p>
-<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="analysis-of-variance.html#cb471-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(<span class="fu">aov</span>(cort_diff <span class="sc">~</span> interv <span class="sc">+</span> fat_est, <span class="at">data =</span> cortisol))</span></code></pre></div>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="analysis-of-variance.html#cb475-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(<span class="fu">aov</span>(cort_diff <span class="sc">~</span> interv <span class="sc">+</span> fat_est, <span class="at">data =</span> cortisol))</span></code></pre></div>
 <pre><code>  Tukey multiple comparisons of means
     95% family-wise confidence level
 

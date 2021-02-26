@@ -32,7 +32,7 @@
   
 <link rel="prev" href="adding-non-linear-terms-to-a-linear-regression-model.html"/>
 <link rel="next" href="logistic-regression-the-foundations.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -306,7 +306,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.9" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#creating-a-factor-combining-sex-and-waist"><i class="fa fa-check"></i><b>6.9</b> Creating a factor combining sex and waist</a></li>
 <li class="chapter" data-level="6.10" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-means-plot-for-the-cortisol-trial-with-standard-errors"><i class="fa fa-check"></i><b>6.10</b> A Means Plot for the <code>cortisol</code> trial (with standard errors)</a></li>
-<li class="chapter" data-level="6.11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-with-interaction"><i class="fa fa-check"></i><b>6.11</b> A Two-Way ANOVA model for <code>cortisol</code> with Interaction</a></li>
+<li class="chapter" data-level="6.11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-with-interaction"><i class="fa fa-check"></i><b>6.11</b> A Two-Way ANOVA model for <code>cortisol</code> with Interaction</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#notes-on-this-question"><i class="fa fa-check"></i><b>6.11.1</b> Notes on this Question</a></li>
+</ul></li>
 <li class="chapter" data-level="6.12" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-without-interaction"><i class="fa fa-check"></i><b>6.12</b> A Two-Way ANOVA model for <code>cortisol</code> without Interaction</a>
 <ul>
 <li class="chapter" data-level="6.12.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-graph"><i class="fa fa-check"></i><b>6.12.1</b> The Graph</a></li>
@@ -995,15 +998,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fitting-a-model-with-ols" class="section level2" number="10.1">
 <h2><span class="header-section-number">10.1</span> Fitting a model with <code>ols</code></h2>
 <p>We will use the <code>datadist</code> approach when fitting a linear model with <code>ols</code> from the <code>rms</code> package, so as to store additional important elements of the model fit.</p>
-<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb635-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb635-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rms)</span>
-<span id="cb635-2"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb635-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb635-3"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb635-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">datadist</span>(pollution)</span>
-<span id="cb635-4"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb635-4" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">datadist =</span> <span class="st">&quot;d&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb639-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rms)</span>
+<span id="cb639-2"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb639-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb639-3"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb639-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">datadist</span>(pollution)</span>
+<span id="cb639-4"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb639-4" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">datadist =</span> <span class="st">&quot;d&quot;</span>)</span></code></pre></div>
 <p>Next, we’ll fit the model using <code>ols</code> and place its results in <code>newmod</code>.</p>
-<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb636-1" aria-hidden="true" tabindex="-1"></a>newmod <span class="ot">&lt;-</span> <span class="fu">ols</span>(y <span class="sc">~</span> <span class="fu">rcs</span>(x9, <span class="dv">5</span>) <span class="sc">+</span> <span class="fu">rcs</span>(x6, <span class="dv">3</span>) <span class="sc">+</span> <span class="fu">pol</span>(x14, <span class="dv">2</span>) <span class="sc">+</span> </span>
-<span id="cb636-2"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb636-2" aria-hidden="true" tabindex="-1"></a>                  x1 <span class="sc">+</span> x13, </span>
-<span id="cb636-3"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb636-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> pollution, <span class="at">x =</span> <span class="cn">TRUE</span>, <span class="at">y =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb636-4"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb636-4" aria-hidden="true" tabindex="-1"></a>newmod</span></code></pre></div>
+<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb640-1" aria-hidden="true" tabindex="-1"></a>newmod <span class="ot">&lt;-</span> <span class="fu">ols</span>(y <span class="sc">~</span> <span class="fu">rcs</span>(x9, <span class="dv">5</span>) <span class="sc">+</span> <span class="fu">rcs</span>(x6, <span class="dv">3</span>) <span class="sc">+</span> <span class="fu">pol</span>(x14, <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb640-2"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb640-2" aria-hidden="true" tabindex="-1"></a>                  x1 <span class="sc">+</span> x13, </span>
+<span id="cb640-3"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb640-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> pollution, <span class="at">x =</span> <span class="cn">TRUE</span>, <span class="at">y =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb640-4"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb640-4" aria-hidden="true" tabindex="-1"></a>newmod</span></code></pre></div>
 <pre><code>Linear Regression Model
  
  ols(formula = y ~ rcs(x9, 5) + rcs(x6, 3) + pol(x14, 2) + x1 + 
@@ -1062,7 +1065,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="anova-for-an-ols-model" class="section level2" number="10.2">
 <h2><span class="header-section-number">10.2</span> ANOVA for an <code>ols</code> model</h2>
 <p>One advantage of the <code>ols</code> approach is that when you apply an <code>anova</code> to it, it separates out the linear and non-linear components of restricted cubic splines and polynomial terms (as well as product terms, if your model includes them.)</p>
-<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb638-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(newmod)</span></code></pre></div>
+<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb642-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(newmod)</span></code></pre></div>
 <pre><code>                Analysis of Variance          Response: y 
 
  Factor          d.f. Partial SS  MS         F     P     
@@ -1083,7 +1086,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="effect-estimates" class="section level2" number="10.3">
 <h2><span class="header-section-number">10.3</span> Effect Estimates</h2>
 <p>A particularly useful thing to get out of the <code>ols</code> approach that is not as easily available in <code>lm</code> (without recoding or standardizing our predictors) is a summary of the effects of each predictor in an interesting scale.</p>
-<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb640-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(newmod)</span></code></pre></div>
+<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb644-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(newmod)</span></code></pre></div>
 <pre><code>             Effects              Response : y 
 
  Factor Low   High  Diff. Effect   S.E.    Lower 0.95 Upper 0.95
@@ -1094,8 +1097,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  x13     4.00 23.75 19.75  -2.0303  2.8502  -7.7579    3.6973   </code></pre>
 <p>This “effects summary” shows the effect on <code>y</code> of moving from the 25th to the 75th percentile of each variable (along with a standard error and 95% confidence interval) while holding the other variable at the level specified at the bottom of the output.</p>
 <p>The most useful way to look at this sort of analysis is often a plot.</p>
-<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb642-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(newmod))</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-215-1.png" width="672" /></p>
+<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb646-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(newmod))</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-217-1.png" width="672" /></p>
 <p>For <code>x9</code> note from the <code>summary</code> above that the 25th percentile is 4.95 and the 75th is 15.65. Our conclusion is that the estimated effect of moving <code>x9</code> from 4.95 to 15.65 is an increase of 40.4 on <code>y</code>, with a 95% CI of (12.1, 68.7).</p>
 <p>For a categorical variable, the low level is shown first and then the high level.</p>
 <p>The plot shows the point estimate (arrow head) and then the 90% (narrowest bar), 95% (middle bar) and 99% (widest bar in lightest color) confidence intervals for each predictor’s effect.</p>
@@ -1106,7 +1109,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="simultaneous-confidence-intervals" class="section level3" number="10.3.1">
 <h3><span class="header-section-number">10.3.1</span> Simultaneous Confidence Intervals</h3>
 <p>These confidence intervals make no effort to deal with the multiple comparisons problem, but just fit individual 95% (or whatever level you choose) confidence intervals for each predictor. The natural alternative is to make an adjustment for multiple comparisons in fitting the confidence intervals, so that the set of (in this case, five - one for each predictor) confidence intervals for effect sizes has a family-wise 95% confidence level. You’ll note that the effect estimates and standard errors are unchanged from those shown above, but the confidence limits are a bit wider.</p>
-<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb643-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(newmod, <span class="at">conf.type=</span><span class="fu">c</span>(<span class="st">&#39;simultaneous&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb647-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(newmod, <span class="at">conf.type=</span><span class="fu">c</span>(<span class="st">&#39;simultaneous&#39;</span>))</span></code></pre></div>
 <pre><code>             Effects              Response : y 
 
  Factor Low   High  Diff. Effect   S.E.    Lower 0.95 Upper 0.95
@@ -1121,14 +1124,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="the-predict-function-for-an-ols-model" class="section level2" number="10.4">
 <h2><span class="header-section-number">10.4</span> The <code>Predict</code> function for an <code>ols</code> model</h2>
 <p>The <code>Predict</code> function is very flexible, and can be used to produce individual or simultaneous confidence limits.</p>
-<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb645-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Predict</span>(newmod, <span class="at">x9 =</span> <span class="dv">12</span>, <span class="at">x6 =</span> <span class="dv">12</span>, <span class="at">x14 =</span> <span class="dv">40</span>, <span class="at">x1 =</span> <span class="dv">40</span>, <span class="at">x13 =</span> <span class="dv">20</span>) <span class="co"># individual limits</span></span></code></pre></div>
+<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb649-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Predict</span>(newmod, <span class="at">x9 =</span> <span class="dv">12</span>, <span class="at">x6 =</span> <span class="dv">12</span>, <span class="at">x14 =</span> <span class="dv">40</span>, <span class="at">x1 =</span> <span class="dv">40</span>, <span class="at">x13 =</span> <span class="dv">20</span>) <span class="co"># individual limits</span></span></code></pre></div>
 <pre><code>  x9 x6 x14 x1 x13     yhat    lower   upper
 1 12 12  40 40  20 923.0982 893.0984 953.098
 
 Response variable (y): y 
 
 Limits are 0.95 confidence limits</code></pre>
-<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb647-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Predict</span>(newmod, <span class="at">x9 =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">15</span>) <span class="co"># individual limits</span></span></code></pre></div>
+<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb651-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Predict</span>(newmod, <span class="at">x9 =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">15</span>) <span class="co"># individual limits</span></span></code></pre></div>
 <pre><code>   x9    x6 x14 x1 x13     yhat    lower    upper
 1   5 11.05  30 38   9 913.7392 889.4802 937.9983
 2   6 11.05  30 38   9 916.3490 892.0082 940.6897
@@ -1147,7 +1150,7 @@ Response variable (y): y
 Adjust to: x6=11.05 x14=30 x1=38 x13=9  
 
 Limits are 0.95 confidence limits</code></pre>
-<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb649-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Predict</span>(newmod, <span class="at">x9 =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">15</span>, <span class="at">conf.type =</span> <span class="st">&#39;simult&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb653-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Predict</span>(newmod, <span class="at">x9 =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">15</span>, <span class="at">conf.type =</span> <span class="st">&#39;simult&#39;</span>)</span></code></pre></div>
 <pre><code>   x9    x6 x14 x1 x13     yhat    lower    upper
 1   5 11.05  30 38   9 913.7392 882.4115 945.0669
 2   6 11.05  30 38   9 916.3490 884.9158 947.7822
@@ -1167,8 +1170,8 @@ Adjust to: x6=11.05 x14=30 x1=38 x13=9
 
 Limits are 0.95 confidence limits</code></pre>
 <p>The plot below shows the individual effects in <code>newmod</code> in five subpanels, using the default approach of displaying the same range of values as are seen in the data. Note that each panel shows point and interval estimates of the effects, and spot the straight lines in <code>x1</code> and <code>x13</code>, the single bends in <code>x14</code> and <code>x6</code> and the wiggles in <code>x9</code>, corresponding to the amount of non-linearity specified in the model.</p>
-<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb651-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">Predict</span>(newmod))</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-218-1.png" width="672" /></p>
+<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb655-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">Predict</span>(newmod))</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-220-1.png" width="672" /></p>
 </div>
 <div id="checking-influence-via-dfbeta" class="section level2" number="10.5">
 <h2><span class="header-section-number">10.5</span> Checking Influence via <code>dfbeta</code></h2>
@@ -1184,7 +1187,7 @@ observation deleted.</li>
 <li>The default is that the DFBETA for that predictor is 0.2 or more.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb652-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.influence</span>(newmod)</span></code></pre></div>
+<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb656-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.influence</span>(newmod)</span></code></pre></div>
 <pre><code>$Intercept
 [1]  2 11 28 32 37 49 59
 
@@ -1206,7 +1209,7 @@ $x13
 <div id="using-the-residuals-command-for-dfbetas" class="section level3" number="10.5.1">
 <h3><span class="header-section-number">10.5.1</span> Using the <code>residuals</code> command for <code>dfbetas</code></h3>
 <p>To see the <code>dfbeta</code> values, standardized according to the approach I used above, you can use the following code (I’ll use <code>head</code> to just show the first few rows of results) to get a matrix of the results.</p>
-<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb654-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">residuals</span>(newmod, <span class="at">type =</span> <span class="st">&quot;dfbetas&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb658-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">residuals</span>(newmod, <span class="at">type =</span> <span class="st">&quot;dfbetas&quot;</span>))</span></code></pre></div>
 <pre><code>            [,1]         [,2]         [,3]        [,4]        [,5]        [,6]
 [1,]  0.03071160 -0.023775487 -0.004055111  0.01205425 -0.03260003 -0.02392315
 [2,] -0.38276573 -0.048404993 -0.142293606  0.17009666 -0.22350621  0.44737372
@@ -1225,11 +1228,11 @@ $x13
 <div id="using-the-residuals-command-for-other-summaries" class="section level3" number="10.5.2">
 <h3><span class="header-section-number">10.5.2</span> Using the <code>residuals</code> command for other summaries</h3>
 <p>The <code>residuals</code> command will also let you get ordinary residuals, leverage values and <code>dffits</code> values, which are the normalized differences in predicted values when observations are omitted. See <code>?residuals.ols</code> for more details.</p>
-<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb656-1" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">area =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>)</span>
-<span id="cb656-2"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb656-2" aria-hidden="true" tabindex="-1"></a>temp<span class="sc">$</span>residual <span class="ot">&lt;-</span> <span class="fu">residuals</span>(newmod, <span class="at">type =</span> <span class="st">&quot;ordinary&quot;</span>)</span>
-<span id="cb656-3"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb656-3" aria-hidden="true" tabindex="-1"></a>temp<span class="sc">$</span>leverage <span class="ot">&lt;-</span> <span class="fu">residuals</span>(newmod, <span class="at">type =</span> <span class="st">&quot;hat&quot;</span>)</span>
-<span id="cb656-4"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb656-4" aria-hidden="true" tabindex="-1"></a>temp<span class="sc">$</span>dffits <span class="ot">&lt;-</span> <span class="fu">residuals</span>(newmod, <span class="at">type =</span> <span class="st">&quot;dffits&quot;</span>)</span>
-<span id="cb656-5"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb656-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_df</span>(temp)</span></code></pre></div>
+<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb660-1" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">area =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>)</span>
+<span id="cb660-2"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb660-2" aria-hidden="true" tabindex="-1"></a>temp<span class="sc">$</span>residual <span class="ot">&lt;-</span> <span class="fu">residuals</span>(newmod, <span class="at">type =</span> <span class="st">&quot;ordinary&quot;</span>)</span>
+<span id="cb660-3"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb660-3" aria-hidden="true" tabindex="-1"></a>temp<span class="sc">$</span>leverage <span class="ot">&lt;-</span> <span class="fu">residuals</span>(newmod, <span class="at">type =</span> <span class="st">&quot;hat&quot;</span>)</span>
+<span id="cb660-4"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb660-4" aria-hidden="true" tabindex="-1"></a>temp<span class="sc">$</span>dffits <span class="ot">&lt;-</span> <span class="fu">residuals</span>(newmod, <span class="at">type =</span> <span class="st">&quot;dffits&quot;</span>)</span>
+<span id="cb660-5"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb660-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_df</span>(temp)</span></code></pre></div>
 <pre><code># A tibble: 60 x 4
     area residual leverage  dffits
    &lt;int&gt;    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
@@ -1244,14 +1247,14 @@ $x13
  9     9    66.6    0.0863  0.587 
 10    10    -4.96   0.0997 -0.0460
 # ... with 50 more rows</code></pre>
-<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb658-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(temp, <span class="fu">aes</span>(<span class="at">x =</span> area, <span class="at">y =</span> dffits)) <span class="sc">+</span></span>
-<span id="cb658-2"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb658-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb658-3"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb658-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>()</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-221-1.png" width="672" /></p>
+<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb662-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(temp, <span class="fu">aes</span>(<span class="at">x =</span> area, <span class="at">y =</span> dffits)) <span class="sc">+</span></span>
+<span id="cb662-2"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb662-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb662-3"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb662-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>()</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-223-1.png" width="672" /></p>
 <p>It appears that point 37 has the largest (positive) <code>dffits</code> value. Recall that point 37 seemed influential on several predictors and the intercept term. Point 32 has the smallest (or largest negative) <code>dffits</code>, and also appears to have been influential on several predictors and the intercept.</p>
-<div class="sourceCode" id="cb659"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb659-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb659-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(temp<span class="sc">$</span>dffits)</span></code></pre></div>
+<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb663-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(temp<span class="sc">$</span>dffits)</span></code></pre></div>
 <pre><code>[1] 37</code></pre>
-<div class="sourceCode" id="cb661"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb661-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb661-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min</span>(temp<span class="sc">$</span>dffits)</span></code></pre></div>
+<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb665-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min</span>(temp<span class="sc">$</span>dffits)</span></code></pre></div>
 <pre><code>[1] 32</code></pre>
 </div>
 </div>
@@ -1267,7 +1270,7 @@ $x13
 <li>Estimates of the intercept and slope of a calibration model</li>
 </ul>
 <p>with the following code…</p>
-<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb663-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">432002</span>); <span class="fu">validate</span>(newmod, <span class="at">method =</span> <span class="st">&quot;boot&quot;</span>, <span class="at">B =</span> <span class="dv">40</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb667-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">432002</span>); <span class="fu">validate</span>(newmod, <span class="at">method =</span> <span class="st">&quot;boot&quot;</span>, <span class="at">B =</span> <span class="dv">40</span>)</span></code></pre></div>
 <pre><code>          index.orig training      test  optimism index.corrected  n
 R-square      0.6989   0.7426    0.5749    0.1676          0.5312 40
 MSE        1145.7800 963.9565 1617.4042 -653.4478       1799.2278 40
@@ -1285,8 +1288,8 @@ Slope         1.0000   1.0000    0.8961    0.1039          0.8961 40</code></pre
 <div id="building-a-nomogram-for-our-model" class="section level2" number="10.7">
 <h2><span class="header-section-number">10.7</span> Building a Nomogram for Our Model</h2>
 <p>Another nice feature of an <code>ols</code> model object is that we can picture the model with a <strong>nomogram</strong> easily. Here is model <code>newmod</code>.</p>
-<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb665-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">nomogram</span>(newmod))</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-224-1.png" width="672" /></p>
+<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb669-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">nomogram</span>(newmod))</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-226-1.png" width="672" /></p>
 <p>For this model, we can use this plot to predict <code>y</code> as follows:</p>
 <ol style="list-style-type: decimal">
 <li>find our values of <code>x9</code> on the appropriate line</li>

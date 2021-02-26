@@ -32,7 +32,7 @@
   
 <link rel="prev" href="logistic-regression-and-the-resect-data.html"/>
 <link rel="next" href="multiple-imputation-and-linear-regression.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -306,7 +306,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.9" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#creating-a-factor-combining-sex-and-waist"><i class="fa fa-check"></i><b>6.9</b> Creating a factor combining sex and waist</a></li>
 <li class="chapter" data-level="6.10" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-means-plot-for-the-cortisol-trial-with-standard-errors"><i class="fa fa-check"></i><b>6.10</b> A Means Plot for the <code>cortisol</code> trial (with standard errors)</a></li>
-<li class="chapter" data-level="6.11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-with-interaction"><i class="fa fa-check"></i><b>6.11</b> A Two-Way ANOVA model for <code>cortisol</code> with Interaction</a></li>
+<li class="chapter" data-level="6.11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-with-interaction"><i class="fa fa-check"></i><b>6.11</b> A Two-Way ANOVA model for <code>cortisol</code> with Interaction</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#notes-on-this-question"><i class="fa fa-check"></i><b>6.11.1</b> Notes on this Question</a></li>
+</ul></li>
 <li class="chapter" data-level="6.12" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-without-interaction"><i class="fa fa-check"></i><b>6.12</b> A Two-Way ANOVA model for <code>cortisol</code> without Interaction</a>
 <ul>
 <li class="chapter" data-level="6.12.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-graph"><i class="fa fa-check"></i><b>6.12.1</b> The Graph</a></li>
@@ -987,7 +990,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-load-and-background" class="section level2" number="13.1">
 <h2><span class="header-section-number">13.1</span> Data Load and Background</h2>
 <p>The data in <code>prost.csv</code> is derived from <span class="citation"><a href="references.html#ref-Stamey1989" role="doc-biblioref">Stamey and others</a> (<a href="references.html#ref-Stamey1989" role="doc-biblioref">1989</a>)</span> who examined the relationship between the level of prostate-specific antigen and a number of clinical measures in 97 men who were about to receive a radical prostatectomy. The <code>prost</code> data, as I’ll name it in R, contains 97 rows and 11 columns.</p>
-<div class="sourceCode" id="cb823"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb823-1"><a href="a-study-of-prostate-cancer.html#cb823-1" aria-hidden="true" tabindex="-1"></a>prost</span></code></pre></div>
+<div class="sourceCode" id="cb827"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb827-1"><a href="a-study-of-prostate-cancer.html#cb827-1" aria-hidden="true" tabindex="-1"></a>prost</span></code></pre></div>
 <pre><code># A tibble: 97 x 10
    subject   lpsa lcavol lweight   age bph      svi   lcp gleason pgg45
      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
@@ -1076,40 +1079,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>a centered version of <code>lcavol</code> called <code>lcavol_c</code>,</li>
 <li>exponentiated <code>cavol</code> and <code>psa</code> results derived from the natural logarithms <code>lcavol</code> and <code>lpsa</code>.</li>
 </ul>
-<div class="sourceCode" id="cb825"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb825-1"><a href="a-study-of-prostate-cancer.html#cb825-1" aria-hidden="true" tabindex="-1"></a>prost <span class="ot">&lt;-</span> prost <span class="sc">%&gt;%</span></span>
-<span id="cb825-2"><a href="a-study-of-prostate-cancer.html#cb825-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">svi_f =</span> <span class="fu">fct_recode</span>(<span class="fu">factor</span>(svi), <span class="st">&quot;No&quot;</span> <span class="ot">=</span> <span class="st">&quot;0&quot;</span>, <span class="st">&quot;Yes&quot;</span> <span class="ot">=</span> <span class="st">&quot;1&quot;</span>),</span>
-<span id="cb825-3"><a href="a-study-of-prostate-cancer.html#cb825-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">gleason_f =</span> <span class="fu">fct_relevel</span>(gleason, <span class="fu">c</span>(<span class="st">&quot;&gt; 7&quot;</span>, <span class="st">&quot;7&quot;</span>, <span class="st">&quot;6&quot;</span>)),</span>
-<span id="cb825-4"><a href="a-study-of-prostate-cancer.html#cb825-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">bph_f =</span> <span class="fu">fct_relevel</span>(bph, <span class="fu">c</span>(<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;High&quot;</span>)),</span>
-<span id="cb825-5"><a href="a-study-of-prostate-cancer.html#cb825-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">lcavol_c =</span> lcavol <span class="sc">-</span> <span class="fu">mean</span>(lcavol),</span>
-<span id="cb825-6"><a href="a-study-of-prostate-cancer.html#cb825-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">cavol =</span> <span class="fu">exp</span>(lcavol),</span>
-<span id="cb825-7"><a href="a-study-of-prostate-cancer.html#cb825-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">psa =</span> <span class="fu">exp</span>(lpsa))</span>
-<span id="cb825-8"><a href="a-study-of-prostate-cancer.html#cb825-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb825-9"><a href="a-study-of-prostate-cancer.html#cb825-9" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(prost)</span></code></pre></div>
+<div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb829-1"><a href="a-study-of-prostate-cancer.html#cb829-1" aria-hidden="true" tabindex="-1"></a>prost <span class="ot">&lt;-</span> prost <span class="sc">%&gt;%</span></span>
+<span id="cb829-2"><a href="a-study-of-prostate-cancer.html#cb829-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">svi_f =</span> <span class="fu">fct_recode</span>(<span class="fu">factor</span>(svi), <span class="st">&quot;No&quot;</span> <span class="ot">=</span> <span class="st">&quot;0&quot;</span>, <span class="st">&quot;Yes&quot;</span> <span class="ot">=</span> <span class="st">&quot;1&quot;</span>),</span>
+<span id="cb829-3"><a href="a-study-of-prostate-cancer.html#cb829-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">gleason_f =</span> <span class="fu">fct_relevel</span>(gleason, <span class="fu">c</span>(<span class="st">&quot;&gt; 7&quot;</span>, <span class="st">&quot;7&quot;</span>, <span class="st">&quot;6&quot;</span>)),</span>
+<span id="cb829-4"><a href="a-study-of-prostate-cancer.html#cb829-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">bph_f =</span> <span class="fu">fct_relevel</span>(bph, <span class="fu">c</span>(<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;High&quot;</span>)),</span>
+<span id="cb829-5"><a href="a-study-of-prostate-cancer.html#cb829-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">lcavol_c =</span> lcavol <span class="sc">-</span> <span class="fu">mean</span>(lcavol),</span>
+<span id="cb829-6"><a href="a-study-of-prostate-cancer.html#cb829-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">cavol =</span> <span class="fu">exp</span>(lcavol),</span>
+<span id="cb829-7"><a href="a-study-of-prostate-cancer.html#cb829-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">psa =</span> <span class="fu">exp</span>(lpsa))</span>
+<span id="cb829-8"><a href="a-study-of-prostate-cancer.html#cb829-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb829-9"><a href="a-study-of-prostate-cancer.html#cb829-9" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(prost)</span></code></pre></div>
 <pre><code>Rows: 97
 Columns: 16
-$ subject   &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17...
-$ lpsa      &lt;dbl&gt; -0.4307829, -0.1625189, -0.1625189, -0.1625189, 0.3715636...
-$ lcavol    &lt;dbl&gt; -0.5798185, -0.9942523, -0.5108256, -1.2039728, 0.7514161...
-$ lweight   &lt;dbl&gt; 2.769459, 3.319626, 2.691243, 3.282789, 3.432373, 3.22882...
-$ age       &lt;dbl&gt; 50, 58, 74, 58, 62, 50, 64, 58, 47, 63, 65, 63, 63, 67, 5...
-$ bph       &lt;chr&gt; &quot;Low&quot;, &quot;Low&quot;, &quot;Low&quot;, &quot;Low&quot;, &quot;Low&quot;, &quot;Low&quot;, &quot;Medium&quot;, &quot;High...
-$ svi       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...
-$ lcp       &lt;dbl&gt; -1.3862944, -1.3862944, -1.3862944, -1.3862944, -1.386294...
-$ gleason   &lt;chr&gt; &quot;6&quot;, &quot;6&quot;, &quot;7&quot;, &quot;6&quot;, &quot;6&quot;, &quot;6&quot;, &quot;6&quot;, &quot;6&quot;, &quot;6&quot;, &quot;6&quot;, &quot;6&quot;, &quot;6...
-$ pgg45     &lt;dbl&gt; 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 5, 5, 0, 30, 0, ...
-$ svi_f     &lt;fct&gt; No, No, No, No, No, No, No, No, No, No, No, No, No, No, N...
-$ gleason_f &lt;fct&gt; 6, 6, 7, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 6, 7, 6, 6, ...
-$ bph_f     &lt;fct&gt; Low, Low, Low, Low, Low, Low, Medium, High, Low, Low, Low...
-$ lcavol_c  &lt;dbl&gt; -1.9298281, -2.3442619, -1.8608352, -2.5539824, -0.598593...
-$ cavol     &lt;dbl&gt; 0.56, 0.37, 0.60, 0.30, 2.12, 0.35, 2.09, 2.00, 0.46, 1.2...
-$ psa       &lt;dbl&gt; 0.65, 0.85, 0.85, 0.85, 1.45, 2.15, 2.15, 2.35, 2.85, 2.8...</code></pre>
+$ subject   &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1~
+$ lpsa      &lt;dbl&gt; -0.4307829, -0.1625189, -0.1625189, -0.1625189, 0.3715636, 0~
+$ lcavol    &lt;dbl&gt; -0.5798185, -0.9942523, -0.5108256, -1.2039728, 0.7514161, -~
+$ lweight   &lt;dbl&gt; 2.769459, 3.319626, 2.691243, 3.282789, 3.432373, 3.228826, ~
+$ age       &lt;dbl&gt; 50, 58, 74, 58, 62, 50, 64, 58, 47, 63, 65, 63, 63, 67, 57, ~
+$ bph       &lt;chr&gt; &quot;Low&quot;, &quot;Low&quot;, &quot;Low&quot;, &quot;Low&quot;, &quot;Low&quot;, &quot;Low&quot;, &quot;Medium&quot;, &quot;High&quot;, ~
+$ svi       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+$ lcp       &lt;dbl&gt; -1.3862944, -1.3862944, -1.3862944, -1.3862944, -1.3862944, ~
+$ gleason   &lt;chr&gt; &quot;6&quot;, &quot;6&quot;, &quot;7&quot;, &quot;6&quot;, &quot;6&quot;, &quot;6&quot;, &quot;6&quot;, &quot;6&quot;, &quot;6&quot;, &quot;6&quot;, &quot;6&quot;, &quot;6&quot;, ~
+$ pgg45     &lt;dbl&gt; 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 5, 5, 0, 30, 0, 0, ~
+$ svi_f     &lt;fct&gt; No, No, No, No, No, No, No, No, No, No, No, No, No, No, No, ~
+$ gleason_f &lt;fct&gt; 6, 6, 7, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 6, 7, 6, 6, 6, ~
+$ bph_f     &lt;fct&gt; Low, Low, Low, Low, Low, Low, Medium, High, Low, Low, Low, M~
+$ lcavol_c  &lt;dbl&gt; -1.9298281, -2.3442619, -1.8608352, -2.5539824, -0.5985935, ~
+$ cavol     &lt;dbl&gt; 0.56, 0.37, 0.60, 0.30, 2.12, 0.35, 2.09, 2.00, 0.46, 1.25, ~
+$ psa       &lt;dbl&gt; 0.65, 0.85, 0.85, 0.85, 1.45, 2.15, 2.15, 2.35, 2.85, 2.85, ~</code></pre>
 </div>
 <div id="fitting-and-evaluating-a-two-predictor-model" class="section level2" number="13.4">
 <h2><span class="header-section-number">13.4</span> Fitting and Evaluating a Two-Predictor Model</h2>
 <p>To begin, let’s use two predictors (<code>lcavol</code> and <code>svi</code>) and their interaction in a linear regression model that predicts <code>lpsa</code>. I’ll call this model <code>c11_prost_A</code></p>
 <p>Earlier, we centered the <code>lcavol</code> values to facilitate interpretation of the terms. I’ll use that centered version (called <code>lcavol_c</code>) of the quantitative predictor, and the 1/0 version of the <code>svi</code> variable[^We could certainly use the factor version of <code>svi</code> here, but it won’t change the model in any meaningful way. There’s no distinction in model <em>fitting</em> via <code>lm</code> between a 0/1 numeric variable and a No/Yes factor variable. The factor version of this information will be useful elsewhere, for instance in plotting the model.].</p>
-<div class="sourceCode" id="cb827"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb827-1"><a href="a-study-of-prostate-cancer.html#cb827-1" aria-hidden="true" tabindex="-1"></a>c11_prost_A <span class="ot">&lt;-</span> <span class="fu">lm</span>(lpsa <span class="sc">~</span> lcavol_c <span class="sc">*</span> svi, <span class="at">data =</span> prost)</span>
-<span id="cb827-2"><a href="a-study-of-prostate-cancer.html#cb827-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c11_prost_A)</span></code></pre></div>
+<div class="sourceCode" id="cb831"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb831-1"><a href="a-study-of-prostate-cancer.html#cb831-1" aria-hidden="true" tabindex="-1"></a>c11_prost_A <span class="ot">&lt;-</span> <span class="fu">lm</span>(lpsa <span class="sc">~</span> lcavol_c <span class="sc">*</span> svi, <span class="at">data =</span> prost)</span>
+<span id="cb831-2"><a href="a-study-of-prostate-cancer.html#cb831-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c11_prost_A)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = lpsa ~ lcavol_c * svi, data = prost)
@@ -1133,7 +1136,7 @@ F-statistic: 42.92 on 3 and 93 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div id="using-tidy" class="section level3" number="13.4.1">
 <h3><span class="header-section-number">13.4.1</span> Using <code>tidy</code></h3>
 <p>It can be very useful to build a data frame of the model’s results. We can use the <code>tidy</code> function in the <code>broom</code> package to do so.</p>
-<div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb829-1"><a href="a-study-of-prostate-cancer.html#cb829-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(c11_prost_A)</span></code></pre></div>
+<div class="sourceCode" id="cb833"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb833-1"><a href="a-study-of-prostate-cancer.html#cb833-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(c11_prost_A)</span></code></pre></div>
 <pre><code># A tibble: 4 x 5
   term         estimate std.error statistic  p.value
   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -1162,7 +1165,7 @@ F-statistic: 42.92 on 3 and 93 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div id="exploring-model-c11_prost_a" class="section level2" number="13.5">
 <h2><span class="header-section-number">13.5</span> Exploring Model <code>c11_prost_A</code></h2>
 <p>The <code>glance</code> function from the <code>broom</code> package builds a nice one-row summary for the model.</p>
-<div class="sourceCode" id="cb832"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb832-1"><a href="a-study-of-prostate-cancer.html#cb832-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(c11_prost_A)</span></code></pre></div>
+<div class="sourceCode" id="cb836"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb836-1"><a href="a-study-of-prostate-cancer.html#cb836-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(c11_prost_A)</span></code></pre></div>
 <pre><code># A tibble: 1 x 12
   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1179,7 +1182,7 @@ F-statistic: 42.92 on 3 and 93 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div id="summary-for-model-c11_prost_a" class="section level3" number="13.5.1">
 <h3><span class="header-section-number">13.5.1</span> <code>summary</code> for Model <code>c11_prost_A</code></h3>
 <p>If necessary, we can also run <code>summary</code> on this <code>c11_prost_A</code> object to pick up some additional summaries. Since the <code>svi</code> variable is binary, the interaction term is, too, so the <em>t</em> test here and the <em>F</em> test in the ANOVA yield the same result.</p>
-<div class="sourceCode" id="cb834"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb834-1"><a href="a-study-of-prostate-cancer.html#cb834-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c11_prost_A)</span></code></pre></div>
+<div class="sourceCode" id="cb838"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb838-1"><a href="a-study-of-prostate-cancer.html#cb838-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c11_prost_A)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = lpsa ~ lcavol_c * svi, data = prost)
@@ -1220,7 +1223,7 @@ F-statistic: 42.92 on 3 and 93 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div id="coefficient-confidence-intervals" class="section level3" number="13.5.3">
 <h3><span class="header-section-number">13.5.3</span> Coefficient Confidence Intervals</h3>
 <p>Here are the 90% confidence intervals for the coefficients in Model A. Adjust the <code>level</code> to get different intervals.</p>
-<div class="sourceCode" id="cb836"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb836-1"><a href="a-study-of-prostate-cancer.html#cb836-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(c11_prost_A, <span class="at">level =</span> <span class="fl">0.90</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb840"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb840-1"><a href="a-study-of-prostate-cancer.html#cb840-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(c11_prost_A, <span class="at">level =</span> <span class="fl">0.90</span>)</span></code></pre></div>
 <pre><code>                     5 %      95 %
 (Intercept)   2.17968697 2.4830012
 lcavol_c      0.45004577 0.7227462
@@ -1231,7 +1234,7 @@ lcavol_c:svi -0.37737623 0.5069622</code></pre>
 <div id="anova-for-model-c11_prost_a" class="section level3" number="13.5.4">
 <h3><span class="header-section-number">13.5.4</span> ANOVA for Model <code>c11_prost_A</code></h3>
 <p>The interaction term appears unnecessary. We might wind up fitting the model without it. A complete ANOVA test is available, including a <em>p</em> value, if you want it.</p>
-<div class="sourceCode" id="cb838"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb838-1"><a href="a-study-of-prostate-cancer.html#cb838-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c11_prost_A)</span></code></pre></div>
+<div class="sourceCode" id="cb842"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb842-1"><a href="a-study-of-prostate-cancer.html#cb842-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c11_prost_A)</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: lpsa
@@ -1247,8 +1250,8 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div id="residuals-fitted-values-and-standard-errors-with-augment" class="section level3" number="13.5.5">
 <h3><span class="header-section-number">13.5.5</span> Residuals, Fitted Values and Standard Errors with <code>augment</code></h3>
 <p>The <code>augment</code> function in the <code>broom</code> package builds a data frame including the data used in the model, along with predictions (fitted values), residuals and other useful information.</p>
-<div class="sourceCode" id="cb840"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb840-1"><a href="a-study-of-prostate-cancer.html#cb840-1" aria-hidden="true" tabindex="-1"></a>c11_prost_A_frame <span class="ot">&lt;-</span> <span class="fu">augment</span>(c11_prost_A) <span class="sc">%&gt;%</span> tbl_df</span>
-<span id="cb840-2"><a href="a-study-of-prostate-cancer.html#cb840-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c11_prost_A_frame)</span></code></pre></div>
+<div class="sourceCode" id="cb844"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb844-1"><a href="a-study-of-prostate-cancer.html#cb844-1" aria-hidden="true" tabindex="-1"></a>c11_prost_A_frame <span class="ot">&lt;-</span> <span class="fu">augment</span>(c11_prost_A) <span class="sc">%&gt;%</span> tbl_df</span>
+<span id="cb844-2"><a href="a-study-of-prostate-cancer.html#cb844-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c11_prost_A_frame)</span></code></pre></div>
 <pre><code>      lpsa            lcavol_c             svi            .fitted      
  Min.   :-0.4308   Min.   :-2.69708   Min.   :0.0000   Min.   :0.7498  
  1st Qu.: 1.7317   1st Qu.:-0.83719   1st Qu.:0.0000   1st Qu.:1.8404  
@@ -1256,20 +1259,20 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
  Mean   : 2.4784   Mean   : 0.00000   Mean   :0.2165   Mean   :2.4784  
  3rd Qu.: 3.0564   3rd Qu.: 0.77703   3rd Qu.:0.0000   3rd Qu.:3.0709  
  Max.   : 5.5829   Max.   : 2.47099   Max.   :1.0000   Max.   :4.5417  
-     .resid          .std.resid             .hat             .sigma      
- Min.   :-1.6305   Min.   :-2.194508   Min.   :0.01316   Min.   :0.7423  
- 1st Qu.:-0.5007   1st Qu.:-0.687945   1st Qu.:0.01562   1st Qu.:0.7569  
- Median : 0.1266   Median : 0.168917   Median :0.02498   Median :0.7617  
- Mean   : 0.0000   Mean   : 0.001249   Mean   :0.04124   Mean   :0.7595  
- 3rd Qu.: 0.4886   3rd Qu.: 0.653612   3rd Qu.:0.04939   3rd Qu.:0.7631  
- Max.   : 1.6847   Max.   : 2.261830   Max.   :0.24627   Max.   :0.7636  
-    .cooksd         
- Min.   :0.0000069  
- 1st Qu.:0.0007837  
- Median :0.0034699  
- Mean   :0.0111314  
- 3rd Qu.:0.0103533  
- Max.   :0.1341093  </code></pre>
+     .resid             .hat             .sigma          .cooksd         
+ Min.   :-1.6305   Min.   :0.01316   Min.   :0.7423   Min.   :0.0000069  
+ 1st Qu.:-0.5007   1st Qu.:0.01562   1st Qu.:0.7569   1st Qu.:0.0007837  
+ Median : 0.1266   Median :0.02498   Median :0.7617   Median :0.0034699  
+ Mean   : 0.0000   Mean   :0.04124   Mean   :0.7595   Mean   :0.0111314  
+ 3rd Qu.: 0.4886   3rd Qu.:0.04939   3rd Qu.:0.7631   3rd Qu.:0.0103533  
+ Max.   : 1.6847   Max.   :0.24627   Max.   :0.7636   Max.   :0.1341093  
+   .std.resid       
+ Min.   :-2.194508  
+ 1st Qu.:-0.687945  
+ Median : 0.168917  
+ Mean   : 0.001249  
+ 3rd Qu.: 0.653612  
+ Max.   : 2.261830  </code></pre>
 <p>Elements shown here include:</p>
 <ul>
 <li><code>.fitted</code> Fitted values of model (or predicted values)</li>
@@ -1285,14 +1288,14 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div id="making-predictions-with-c11_prost_a" class="section level3" number="13.5.6">
 <h3><span class="header-section-number">13.5.6</span> Making Predictions with <code>c11_prost_A</code></h3>
 <p>Suppose we want to predict the <code>lpsa</code> for a patient with cancer volume equal to this group’s mean, for both a patient with and without seminal vesicle invasion, and in each case, we want to use a 90% prediction interval?</p>
-<div class="sourceCode" id="cb842"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb842-1"><a href="a-study-of-prostate-cancer.html#cb842-1" aria-hidden="true" tabindex="-1"></a>newdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">lcavol_c =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="at">svi =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
-<span id="cb842-2"><a href="a-study-of-prostate-cancer.html#cb842-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(c11_prost_A, newdata, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>, <span class="at">level =</span> <span class="fl">0.90</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb846"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb846-1"><a href="a-study-of-prostate-cancer.html#cb846-1" aria-hidden="true" tabindex="-1"></a>newdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">lcavol_c =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="at">svi =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb846-2"><a href="a-study-of-prostate-cancer.html#cb846-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(c11_prost_A, newdata, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>, <span class="at">level =</span> <span class="fl">0.90</span>)</span></code></pre></div>
 <pre><code>       fit      lwr      upr
 1 2.331344 1.060462 3.602226
 2 2.932664 1.545742 4.319586</code></pre>
 <p>Since the predicted value in <code>fit</code> refers to the natural logarithm of PSA, to make the predictions in terms of PSA, we would need to exponentiate. The code below will accomplish that task.</p>
-<div class="sourceCode" id="cb844"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb844-1"><a href="a-study-of-prostate-cancer.html#cb844-1" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(c11_prost_A, newdata, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>, <span class="at">level =</span> <span class="fl">0.90</span>)</span>
-<span id="cb844-2"><a href="a-study-of-prostate-cancer.html#cb844-2" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(pred)</span></code></pre></div>
+<div class="sourceCode" id="cb848"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb848-1"><a href="a-study-of-prostate-cancer.html#cb848-1" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(c11_prost_A, newdata, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>, <span class="at">level =</span> <span class="fl">0.90</span>)</span>
+<span id="cb848-2"><a href="a-study-of-prostate-cancer.html#cb848-2" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(pred)</span></code></pre></div>
 <pre><code>       fit      lwr      upr
 1 10.29177 2.887706 36.67978
 2 18.77758 4.691450 75.15750</code></pre>
@@ -1303,42 +1306,42 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div id="plot-logs-conventionally" class="section level4" number="13.6.0.1">
 <h4><span class="header-section-number">13.6.0.1</span> Plot logs conventionally</h4>
 <p>Here, we’ll use <code>ggplot2</code> to plot the logarithms of the variables as they came to us, on a conventional coordinate scale. Note that the lines are nearly parallel. What does this suggest about our Model A?</p>
-<div class="sourceCode" id="cb846"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb846-1"><a href="a-study-of-prostate-cancer.html#cb846-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(prost, <span class="fu">aes</span>(<span class="at">x =</span> lcavol, <span class="at">y =</span> lpsa, <span class="at">group =</span> svi_f, <span class="at">color =</span> svi_f)) <span class="sc">+</span></span>
-<span id="cb846-2"><a href="a-study-of-prostate-cancer.html#cb846-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb846-3"><a href="a-study-of-prostate-cancer.html#cb846-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb846-4"><a href="a-study-of-prostate-cancer.html#cb846-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Seminal Vesicle Invasion?&quot;</span>) <span class="sc">+</span></span>
-<span id="cb846-5"><a href="a-study-of-prostate-cancer.html#cb846-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb846-6"><a href="a-study-of-prostate-cancer.html#cb846-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Log (cancer volume, cc)&quot;</span>, </span>
-<span id="cb846-7"><a href="a-study-of-prostate-cancer.html#cb846-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Log (Prostate Specific Antigen, ng/ml)&quot;</span>, </span>
-<span id="cb846-8"><a href="a-study-of-prostate-cancer.html#cb846-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Two Predictor Model c11_prost_A, including Interaction&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb850"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb850-1"><a href="a-study-of-prostate-cancer.html#cb850-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(prost, <span class="fu">aes</span>(<span class="at">x =</span> lcavol, <span class="at">y =</span> lpsa, <span class="at">group =</span> svi_f, <span class="at">color =</span> svi_f)) <span class="sc">+</span></span>
+<span id="cb850-2"><a href="a-study-of-prostate-cancer.html#cb850-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb850-3"><a href="a-study-of-prostate-cancer.html#cb850-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb850-4"><a href="a-study-of-prostate-cancer.html#cb850-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Seminal Vesicle Invasion?&quot;</span>) <span class="sc">+</span></span>
+<span id="cb850-5"><a href="a-study-of-prostate-cancer.html#cb850-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb850-6"><a href="a-study-of-prostate-cancer.html#cb850-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Log (cancer volume, cc)&quot;</span>, </span>
+<span id="cb850-7"><a href="a-study-of-prostate-cancer.html#cb850-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Log (Prostate Specific Antigen, ng/ml)&quot;</span>, </span>
+<span id="cb850-8"><a href="a-study-of-prostate-cancer.html#cb850-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Two Predictor Model c11_prost_A, including Interaction&quot;</span>)</span></code></pre></div>
 <pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-317-1.png" width="672" /></p>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-319-1.png" width="672" /></p>
 </div>
 <div id="plot-on-log-log-scale" class="section level4" number="13.6.0.2">
 <h4><span class="header-section-number">13.6.0.2</span> Plot on log-log scale</h4>
 <p>Another approach (which might be easier in some settings) would be to plot the raw values of Cancer Volume and PSA, but use logarithmic axes, again using the natural (base <em>e</em>) logarithm, as follows. If we use the default choice with `trans = “log,” we’ll find a need to select some useful break points for the grid, as I’ve done in what follows.</p>
-<div class="sourceCode" id="cb848"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb848-1"><a href="a-study-of-prostate-cancer.html#cb848-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(prost, <span class="fu">aes</span>(<span class="at">x =</span> cavol, <span class="at">y =</span> psa, <span class="at">group =</span> svi_f, <span class="at">color =</span> svi_f)) <span class="sc">+</span></span>
-<span id="cb848-2"><a href="a-study-of-prostate-cancer.html#cb848-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb848-3"><a href="a-study-of-prostate-cancer.html#cb848-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb848-4"><a href="a-study-of-prostate-cancer.html#cb848-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Seminal Vesicle Invasion?&quot;</span>) <span class="sc">+</span></span>
-<span id="cb848-5"><a href="a-study-of-prostate-cancer.html#cb848-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log&quot;</span>, </span>
-<span id="cb848-6"><a href="a-study-of-prostate-cancer.html#cb848-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">25</span>, <span class="dv">50</span>)) <span class="sc">+</span></span>
-<span id="cb848-7"><a href="a-study-of-prostate-cancer.html#cb848-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log&quot;</span>, </span>
-<span id="cb848-8"><a href="a-study-of-prostate-cancer.html#cb848-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">25</span>, <span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">200</span>)) <span class="sc">+</span></span>
-<span id="cb848-9"><a href="a-study-of-prostate-cancer.html#cb848-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb848-10"><a href="a-study-of-prostate-cancer.html#cb848-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Cancer volume, in cubic centimeters&quot;</span>, </span>
-<span id="cb848-11"><a href="a-study-of-prostate-cancer.html#cb848-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Prostate Specific Antigen, in ng/ml&quot;</span>, </span>
-<span id="cb848-12"><a href="a-study-of-prostate-cancer.html#cb848-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Two Predictor Model c11_prost_A, including Interaction&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb852"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb852-1"><a href="a-study-of-prostate-cancer.html#cb852-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(prost, <span class="fu">aes</span>(<span class="at">x =</span> cavol, <span class="at">y =</span> psa, <span class="at">group =</span> svi_f, <span class="at">color =</span> svi_f)) <span class="sc">+</span></span>
+<span id="cb852-2"><a href="a-study-of-prostate-cancer.html#cb852-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb852-3"><a href="a-study-of-prostate-cancer.html#cb852-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb852-4"><a href="a-study-of-prostate-cancer.html#cb852-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Seminal Vesicle Invasion?&quot;</span>) <span class="sc">+</span></span>
+<span id="cb852-5"><a href="a-study-of-prostate-cancer.html#cb852-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log&quot;</span>, </span>
+<span id="cb852-6"><a href="a-study-of-prostate-cancer.html#cb852-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">25</span>, <span class="dv">50</span>)) <span class="sc">+</span></span>
+<span id="cb852-7"><a href="a-study-of-prostate-cancer.html#cb852-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log&quot;</span>, </span>
+<span id="cb852-8"><a href="a-study-of-prostate-cancer.html#cb852-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">25</span>, <span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">200</span>)) <span class="sc">+</span></span>
+<span id="cb852-9"><a href="a-study-of-prostate-cancer.html#cb852-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb852-10"><a href="a-study-of-prostate-cancer.html#cb852-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Cancer volume, in cubic centimeters&quot;</span>, </span>
+<span id="cb852-11"><a href="a-study-of-prostate-cancer.html#cb852-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Prostate Specific Antigen, in ng/ml&quot;</span>, </span>
+<span id="cb852-12"><a href="a-study-of-prostate-cancer.html#cb852-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Two Predictor Model c11_prost_A, including Interaction&quot;</span>)</span></code></pre></div>
 <pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-318-1.png" width="672" /></p>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-320-1.png" width="672" /></p>
 <p>I’ve used the break point of 4 on the Y axis because of the old rule suggesting further testing for asymptomatic men with PSA of 4 or higher, but the other break points are arbitrary - they seemed to work for me, and used round numbers.</p>
 </div>
 <div id="residual-plots-of-c11_prost_a" class="section level3" number="13.6.1">
 <h3><span class="header-section-number">13.6.1</span> Residual Plots of <code>c11_prost_A</code></h3>
-<div class="sourceCode" id="cb850"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb850-1"><a href="a-study-of-prostate-cancer.html#cb850-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c11_prost_A, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-319-1.png" width="672" /></p>
-<div class="sourceCode" id="cb851"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb851-1"><a href="a-study-of-prostate-cancer.html#cb851-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c11_prost_A, <span class="at">which =</span> <span class="dv">5</span>)</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-320-1.png" width="672" /></p>
+<div class="sourceCode" id="cb854"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb854-1"><a href="a-study-of-prostate-cancer.html#cb854-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c11_prost_A, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-321-1.png" width="672" /></p>
+<div class="sourceCode" id="cb855"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb855-1"><a href="a-study-of-prostate-cancer.html#cb855-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c11_prost_A, <span class="at">which =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-322-1.png" width="672" /></p>
 </div>
 </div>
 <div id="cross-validation-of-model-c11_prost_a" class="section level2" number="13.7">
@@ -1354,30 +1357,26 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </ul>
 <p>Our goal will be to cross-validate model <code>c11_prost_A</code>, which, you’ll recall, uses <code>lcavol_c</code>, <code>svi</code> and their interaction, to predict <code>lpsa</code> in the <code>prost</code> data.</p>
 <p>We’ll start by identifying a random sample of 70% of our <code>prost</code> data in a training sample (which we’ll call <code>prost_train</code>, and leave the rest as our test sample, called <code>prost_test</code>. To do this, we’ll use the <code>createDataPartition</code> function from the <code>caret</code> package. We need only specify the data set and outcome variable, like so.</p>
-<div class="sourceCode" id="cb852"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb852-1"><a href="a-study-of-prostate-cancer.html#cb852-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4322020</span>)</span>
-<span id="cb852-2"><a href="a-study-of-prostate-cancer.html#cb852-2" aria-hidden="true" tabindex="-1"></a>split_samples <span class="ot">&lt;-</span> prost<span class="sc">$</span>lpsa <span class="sc">%&gt;%</span></span>
-<span id="cb852-3"><a href="a-study-of-prostate-cancer.html#cb852-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">createDataPartition</span>(<span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb852-4"><a href="a-study-of-prostate-cancer.html#cb852-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb852-5"><a href="a-study-of-prostate-cancer.html#cb852-5" aria-hidden="true" tabindex="-1"></a>prost_train <span class="ot">&lt;-</span> prost[split_samples,]</span></code></pre></div>
-<pre><code>Warning: The `i` argument of ``[`()` can&#39;t be a matrix as of tibble 3.0.0.
-Convert to a vector.
-This warning is displayed once every 8 hours.
-Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
-<div class="sourceCode" id="cb854"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb854-1"><a href="a-study-of-prostate-cancer.html#cb854-1" aria-hidden="true" tabindex="-1"></a>prost_test <span class="ot">&lt;-</span> prost[<span class="sc">-</span>split_samples,]</span></code></pre></div>
+<div class="sourceCode" id="cb856"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb856-1"><a href="a-study-of-prostate-cancer.html#cb856-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4322020</span>)</span>
+<span id="cb856-2"><a href="a-study-of-prostate-cancer.html#cb856-2" aria-hidden="true" tabindex="-1"></a>split_samples <span class="ot">&lt;-</span> prost<span class="sc">$</span>lpsa <span class="sc">%&gt;%</span></span>
+<span id="cb856-3"><a href="a-study-of-prostate-cancer.html#cb856-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">createDataPartition</span>(<span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb856-4"><a href="a-study-of-prostate-cancer.html#cb856-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb856-5"><a href="a-study-of-prostate-cancer.html#cb856-5" aria-hidden="true" tabindex="-1"></a>prost_train <span class="ot">&lt;-</span> prost[split_samples,]</span>
+<span id="cb856-6"><a href="a-study-of-prostate-cancer.html#cb856-6" aria-hidden="true" tabindex="-1"></a>prost_test <span class="ot">&lt;-</span> prost[<span class="sc">-</span>split_samples,]</span></code></pre></div>
 <ul>
 <li>Note the need for a comma after <code>split_samples</code> in the isolation of the training and test samples.</li>
 <li>Don’t forget to pre-specify the random seed, for replicability, as I’ve done here.</li>
 </ul>
 <p>Let’s verify that we now have the samples we expect…</p>
-<div class="sourceCode" id="cb855"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb855-1"><a href="a-study-of-prostate-cancer.html#cb855-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(prost_train)</span></code></pre></div>
+<div class="sourceCode" id="cb857"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb857-1"><a href="a-study-of-prostate-cancer.html#cb857-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(prost_train)</span></code></pre></div>
 <pre><code>[1] 70 16</code></pre>
-<div class="sourceCode" id="cb857"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb857-1"><a href="a-study-of-prostate-cancer.html#cb857-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(prost_test)</span></code></pre></div>
+<div class="sourceCode" id="cb859"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb859-1"><a href="a-study-of-prostate-cancer.html#cb859-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(prost_test)</span></code></pre></div>
 <pre><code>[1] 27 16</code></pre>
 <p>OK. Next, we’ll run the <code>c11_prost_A</code> model in the training sample.</p>
-<div class="sourceCode" id="cb859"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb859-1"><a href="a-study-of-prostate-cancer.html#cb859-1" aria-hidden="true" tabindex="-1"></a>c11_prost_A_train <span class="ot">&lt;-</span> prost_train <span class="sc">%$%</span></span>
-<span id="cb859-2"><a href="a-study-of-prostate-cancer.html#cb859-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lm</span>(lpsa <span class="sc">~</span> lcavol_c <span class="sc">*</span> svi)</span>
-<span id="cb859-3"><a href="a-study-of-prostate-cancer.html#cb859-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb859-4"><a href="a-study-of-prostate-cancer.html#cb859-4" aria-hidden="true" tabindex="-1"></a>c11_prost_A_train</span></code></pre></div>
+<div class="sourceCode" id="cb861"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb861-1"><a href="a-study-of-prostate-cancer.html#cb861-1" aria-hidden="true" tabindex="-1"></a>c11_prost_A_train <span class="ot">&lt;-</span> prost_train <span class="sc">%$%</span></span>
+<span id="cb861-2"><a href="a-study-of-prostate-cancer.html#cb861-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lm</span>(lpsa <span class="sc">~</span> lcavol_c <span class="sc">*</span> svi)</span>
+<span id="cb861-3"><a href="a-study-of-prostate-cancer.html#cb861-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb861-4"><a href="a-study-of-prostate-cancer.html#cb861-4" aria-hidden="true" tabindex="-1"></a>c11_prost_A_train</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = lpsa ~ lcavol_c * svi)
@@ -1386,14 +1385,14 @@ Coefficients:
  (Intercept)      lcavol_c           svi  lcavol_c:svi  
       2.2956        0.5919        0.6282        0.1597  </code></pre>
 <p>Then we’ll use the coefficients from this model to obtain predicted <code>lpsa</code> values in the test sample.</p>
-<div class="sourceCode" id="cb861"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb861-1"><a href="a-study-of-prostate-cancer.html#cb861-1" aria-hidden="true" tabindex="-1"></a>c11_prost_A_preds <span class="ot">&lt;-</span> </span>
-<span id="cb861-2"><a href="a-study-of-prostate-cancer.html#cb861-2" aria-hidden="true" tabindex="-1"></a>    c11_prost_A_train <span class="sc">%&gt;%</span> <span class="fu">predict</span>(prost_test)</span>
-<span id="cb861-3"><a href="a-study-of-prostate-cancer.html#cb861-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb861-4"><a href="a-study-of-prostate-cancer.html#cb861-4" aria-hidden="true" tabindex="-1"></a>c11_prost_A_preds[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb863"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb863-1"><a href="a-study-of-prostate-cancer.html#cb863-1" aria-hidden="true" tabindex="-1"></a>c11_prost_A_preds <span class="ot">&lt;-</span> </span>
+<span id="cb863-2"><a href="a-study-of-prostate-cancer.html#cb863-2" aria-hidden="true" tabindex="-1"></a>    c11_prost_A_train <span class="sc">%&gt;%</span> <span class="fu">predict</span>(prost_test)</span>
+<span id="cb863-3"><a href="a-study-of-prostate-cancer.html#cb863-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb863-4"><a href="a-study-of-prostate-cancer.html#cb863-4" aria-hidden="true" tabindex="-1"></a>c11_prost_A_preds[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
 <pre><code>       1        2        3 
 1.647217 2.210338 2.408746 </code></pre>
 <p>Now, we can use the <code>postResample</code> function from the <code>caret</code> package to obtain several key summaries of fit quality for our model. Here, we specify the estimates (or predictions), and then the observed values to the <code>postResample</code> function.</p>
-<div class="sourceCode" id="cb863"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb863-1"><a href="a-study-of-prostate-cancer.html#cb863-1" aria-hidden="true" tabindex="-1"></a><span class="fu">postResample</span>(c11_prost_A_preds, prost_test<span class="sc">$</span>lpsa)</span></code></pre></div>
+<div class="sourceCode" id="cb865"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb865-1"><a href="a-study-of-prostate-cancer.html#cb865-1" aria-hidden="true" tabindex="-1"></a><span class="fu">postResample</span>(c11_prost_A_preds, prost_test<span class="sc">$</span>lpsa)</span></code></pre></div>
 <pre><code>     RMSE  Rsquared       MAE 
 0.6651311 0.5503311 0.5524172 </code></pre>
 <p>These summary statistics are:</p>
@@ -1403,13 +1402,13 @@ Coefficients:
 <li>the MAE or mean absolute error, which is a bit less sensitive to outliers than the RMSE, because it measures the average prediction error by taking the absolute value of each error, and then grabbing the average of those values. The lower the MAE, the better the model.</li>
 </ul>
 <p>These statistics are more helpful, generally, for comparing multiple models to each other, than for making final decisions on their own. The <code>caret</code> package also provides individual functions to gather the elements of <code>postResample</code> as follows.</p>
-<div class="sourceCode" id="cb865"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb865-1"><a href="a-study-of-prostate-cancer.html#cb865-1" aria-hidden="true" tabindex="-1"></a>prost_A_summaries <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb865-2"><a href="a-study-of-prostate-cancer.html#cb865-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">RMSE =</span> <span class="fu">RMSE</span>(c11_prost_A_preds, prost_test<span class="sc">$</span>lpsa),</span>
-<span id="cb865-3"><a href="a-study-of-prostate-cancer.html#cb865-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">R2 =</span> <span class="fu">R2</span>(c11_prost_A_preds, prost_test<span class="sc">$</span>lpsa),</span>
-<span id="cb865-4"><a href="a-study-of-prostate-cancer.html#cb865-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">MAE =</span> <span class="fu">MAE</span>(c11_prost_A_preds, prost_test<span class="sc">$</span>lpsa)</span>
-<span id="cb865-5"><a href="a-study-of-prostate-cancer.html#cb865-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb865-6"><a href="a-study-of-prostate-cancer.html#cb865-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb865-7"><a href="a-study-of-prostate-cancer.html#cb865-7" aria-hidden="true" tabindex="-1"></a>prost_A_summaries</span></code></pre></div>
+<div class="sourceCode" id="cb867"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb867-1"><a href="a-study-of-prostate-cancer.html#cb867-1" aria-hidden="true" tabindex="-1"></a>prost_A_summaries <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb867-2"><a href="a-study-of-prostate-cancer.html#cb867-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">RMSE =</span> <span class="fu">RMSE</span>(c11_prost_A_preds, prost_test<span class="sc">$</span>lpsa),</span>
+<span id="cb867-3"><a href="a-study-of-prostate-cancer.html#cb867-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">R2 =</span> <span class="fu">R2</span>(c11_prost_A_preds, prost_test<span class="sc">$</span>lpsa),</span>
+<span id="cb867-4"><a href="a-study-of-prostate-cancer.html#cb867-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">MAE =</span> <span class="fu">MAE</span>(c11_prost_A_preds, prost_test<span class="sc">$</span>lpsa)</span>
+<span id="cb867-5"><a href="a-study-of-prostate-cancer.html#cb867-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb867-6"><a href="a-study-of-prostate-cancer.html#cb867-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb867-7"><a href="a-study-of-prostate-cancer.html#cb867-7" aria-hidden="true" tabindex="-1"></a>prost_A_summaries</span></code></pre></div>
 <pre><code># A tibble: 1 x 3
    RMSE    R2   MAE
   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1427,14 +1426,14 @@ Coefficients:
 <li>Compute the average of the k recorded errors. This is called the cross-validation error and serves as the primary performance metric for the model.</li>
 </ol>
 <p>Again using tools from the <code>caret</code> packages, we’ll first define our <code>trainControl</code> approach.</p>
-<div class="sourceCode" id="cb867"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb867-1"><a href="a-study-of-prostate-cancer.html#cb867-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">43220201</span>)</span>
-<span id="cb867-2"><a href="a-study-of-prostate-cancer.html#cb867-2" aria-hidden="true" tabindex="-1"></a>train.control <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;cv&quot;</span>, <span class="at">number =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb869"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb869-1"><a href="a-study-of-prostate-cancer.html#cb869-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">43220201</span>)</span>
+<span id="cb869-2"><a href="a-study-of-prostate-cancer.html#cb869-2" aria-hidden="true" tabindex="-1"></a>train.control <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;cv&quot;</span>, <span class="at">number =</span> <span class="dv">5</span>)</span></code></pre></div>
 <p>Then we train the model, and obtain the usual summaries of model fit quality.</p>
-<div class="sourceCode" id="cb868"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb868-1"><a href="a-study-of-prostate-cancer.html#cb868-1" aria-hidden="true" tabindex="-1"></a>c11_modelA_cv <span class="ot">&lt;-</span> <span class="fu">train</span>(lpsa <span class="sc">~</span> lcavol_c <span class="sc">*</span> svi, </span>
-<span id="cb868-2"><a href="a-study-of-prostate-cancer.html#cb868-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> prost, <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb868-3"><a href="a-study-of-prostate-cancer.html#cb868-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">trControl =</span> train.control)</span>
-<span id="cb868-4"><a href="a-study-of-prostate-cancer.html#cb868-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb868-5"><a href="a-study-of-prostate-cancer.html#cb868-5" aria-hidden="true" tabindex="-1"></a>c11_modelA_cv</span></code></pre></div>
+<div class="sourceCode" id="cb870"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb870-1"><a href="a-study-of-prostate-cancer.html#cb870-1" aria-hidden="true" tabindex="-1"></a>c11_modelA_cv <span class="ot">&lt;-</span> <span class="fu">train</span>(lpsa <span class="sc">~</span> lcavol_c <span class="sc">*</span> svi, </span>
+<span id="cb870-2"><a href="a-study-of-prostate-cancer.html#cb870-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> prost, <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb870-3"><a href="a-study-of-prostate-cancer.html#cb870-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">trControl =</span> train.control)</span>
+<span id="cb870-4"><a href="a-study-of-prostate-cancer.html#cb870-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb870-5"><a href="a-study-of-prostate-cancer.html#cb870-5" aria-hidden="true" tabindex="-1"></a>c11_modelA_cv</span></code></pre></div>
 <pre><code>Linear Regression 
 
 97 samples
@@ -1450,7 +1449,7 @@ Resampling results:
 
 Tuning parameter &#39;intercept&#39; was held constant at a value of TRUE</code></pre>
 <p>We can then look at the model fit by this cross-validation approach.</p>
-<div class="sourceCode" id="cb870"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb870-1"><a href="a-study-of-prostate-cancer.html#cb870-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c11_modelA_cv)</span></code></pre></div>
+<div class="sourceCode" id="cb872"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb872-1"><a href="a-study-of-prostate-cancer.html#cb872-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c11_modelA_cv)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = .outcome ~ ., data = dat)
@@ -1472,8 +1471,8 @@ Residual standard error: 0.7595 on 93 degrees of freedom
 Multiple R-squared:  0.5806,    Adjusted R-squared:  0.5671 
 F-statistic: 42.92 on 3 and 93 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>or, if you prefer,</p>
-<div class="sourceCode" id="cb872"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb872-1"><a href="a-study-of-prostate-cancer.html#cb872-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(<span class="fu">summary</span>(c11_modelA_cv), <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb872-2"><a href="a-study-of-prostate-cancer.html#cb872-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb874"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb874-1"><a href="a-study-of-prostate-cancer.html#cb874-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(<span class="fu">summary</span>(c11_modelA_cv), <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb874-2"><a href="a-study-of-prostate-cancer.html#cb874-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1596,8 +1595,8 @@ svi
 </tbody>
 </table>
 <p>and</p>
-<div class="sourceCode" id="cb873"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb873-1"><a href="a-study-of-prostate-cancer.html#cb873-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(<span class="fu">summary</span>(c11_modelA_cv)) <span class="sc">%&gt;%</span> </span>
-<span id="cb873-2"><a href="a-study-of-prostate-cancer.html#cb873-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">0</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb875"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb875-1"><a href="a-study-of-prostate-cancer.html#cb875-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(<span class="fu">summary</span>(c11_modelA_cv)) <span class="sc">%&gt;%</span> </span>
+<span id="cb875-2"><a href="a-study-of-prostate-cancer.html#cb875-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">0</span>))</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1666,9 +1665,9 @@ nobs
 </ul>
 <p>The main purpose of <em>robust</em> linear models is to reduce the influence of specifically outlier or high leverage data points.</p>
 <p>Here’s that robust fit in the original <code>prost_train</code> data set. Note that fitting a robust linear model requires the choice of a <code>psi</code> (<span class="math inline">\(\psi\)</span>) function, for which R provides three approaches, called the Huber, Hampel and Tukey bisquare approaches. In this fit, I’ll just let R pick its default choice.</p>
-<div class="sourceCode" id="cb874"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb874-1"><a href="a-study-of-prostate-cancer.html#cb874-1" aria-hidden="true" tabindex="-1"></a>modelR <span class="ot">&lt;-</span> prost_train <span class="sc">%$%</span> <span class="fu">rlm</span>(lpsa <span class="sc">~</span> lcavol_c <span class="sc">+</span> svi)</span>
-<span id="cb874-2"><a href="a-study-of-prostate-cancer.html#cb874-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb874-3"><a href="a-study-of-prostate-cancer.html#cb874-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelR)</span></code></pre></div>
+<div class="sourceCode" id="cb876"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb876-1"><a href="a-study-of-prostate-cancer.html#cb876-1" aria-hidden="true" tabindex="-1"></a>modelR <span class="ot">&lt;-</span> prost_train <span class="sc">%$%</span> <span class="fu">rlm</span>(lpsa <span class="sc">~</span> lcavol_c <span class="sc">+</span> svi)</span>
+<span id="cb876-2"><a href="a-study-of-prostate-cancer.html#cb876-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb876-3"><a href="a-study-of-prostate-cancer.html#cb876-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelR)</span></code></pre></div>
 <pre><code>
 Call: rlm(formula = lpsa ~ lcavol_c + svi)
 Residuals:
@@ -1683,9 +1682,9 @@ svi          0.7526  0.3296     2.2836
 
 Residual standard error: 0.7819 on 67 degrees of freedom</code></pre>
 <p>Compare this with the standard ordinary least squares fit to the same data (again without the interaction term), and you’ll see that in this case, the main differences are in the estimated standard errors, but the slope coefficients are also a bit smaller in the robust model.</p>
-<div class="sourceCode" id="cb876"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb876-1"><a href="a-study-of-prostate-cancer.html#cb876-1" aria-hidden="true" tabindex="-1"></a>modelO <span class="ot">&lt;-</span> prost_train <span class="sc">%$%</span> <span class="fu">lm</span>(lpsa <span class="sc">~</span> lcavol_c <span class="sc">+</span> svi)</span>
-<span id="cb876-2"><a href="a-study-of-prostate-cancer.html#cb876-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb876-3"><a href="a-study-of-prostate-cancer.html#cb876-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelO)</span></code></pre></div>
+<div class="sourceCode" id="cb878"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb878-1"><a href="a-study-of-prostate-cancer.html#cb878-1" aria-hidden="true" tabindex="-1"></a>modelO <span class="ot">&lt;-</span> prost_train <span class="sc">%$%</span> <span class="fu">lm</span>(lpsa <span class="sc">~</span> lcavol_c <span class="sc">+</span> svi)</span>
+<span id="cb878-2"><a href="a-study-of-prostate-cancer.html#cb878-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb878-3"><a href="a-study-of-prostate-cancer.html#cb878-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelO)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = lpsa ~ lcavol_c + svi)
@@ -1706,11 +1705,11 @@ Residual standard error: 0.7948 on 67 degrees of freedom
 Multiple R-squared:  0.5924,    Adjusted R-squared:  0.5803 
 F-statistic:  48.7 on 2 and 67 DF,  p-value: 8.738e-14</code></pre>
 <p>So, how can we do 5-fold cross-validation on our model R, and also let the computer pick which of the three types of initial weights (Huber, Hampel or Tukey Bisquare) might be most appropriate? As follows…</p>
-<div class="sourceCode" id="cb878"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb878-1"><a href="a-study-of-prostate-cancer.html#cb878-1" aria-hidden="true" tabindex="-1"></a>c11_modelR_cv <span class="ot">&lt;-</span> <span class="fu">train</span>(lpsa <span class="sc">~</span> lcavol_c <span class="sc">+</span> svi, </span>
-<span id="cb878-2"><a href="a-study-of-prostate-cancer.html#cb878-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> prost, <span class="at">method =</span> <span class="st">&quot;rlm&quot;</span>,</span>
-<span id="cb878-3"><a href="a-study-of-prostate-cancer.html#cb878-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">trControl =</span> train.control)</span>
-<span id="cb878-4"><a href="a-study-of-prostate-cancer.html#cb878-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb878-5"><a href="a-study-of-prostate-cancer.html#cb878-5" aria-hidden="true" tabindex="-1"></a>c11_modelR_cv</span></code></pre></div>
+<div class="sourceCode" id="cb880"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb880-1"><a href="a-study-of-prostate-cancer.html#cb880-1" aria-hidden="true" tabindex="-1"></a>c11_modelR_cv <span class="ot">&lt;-</span> <span class="fu">train</span>(lpsa <span class="sc">~</span> lcavol_c <span class="sc">+</span> svi, </span>
+<span id="cb880-2"><a href="a-study-of-prostate-cancer.html#cb880-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> prost, <span class="at">method =</span> <span class="st">&quot;rlm&quot;</span>,</span>
+<span id="cb880-3"><a href="a-study-of-prostate-cancer.html#cb880-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">trControl =</span> train.control)</span>
+<span id="cb880-4"><a href="a-study-of-prostate-cancer.html#cb880-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb880-5"><a href="a-study-of-prostate-cancer.html#cb880-5" aria-hidden="true" tabindex="-1"></a>c11_modelR_cv</span></code></pre></div>
 <pre><code>Robust Linear Model 
 
 97 samples
@@ -1732,7 +1731,7 @@ Resampling results across tuning parameters:
 RMSE was used to select the optimal model using the smallest value.
 The final values used for the model were intercept = TRUE and psi = psi.hampel.</code></pre>
 <p>Compare these RMSE, Rsquared and MAE values to those we observed in the interaction model with <code>lm</code> earlier…</p>
-<div class="sourceCode" id="cb880"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb880-1"><a href="a-study-of-prostate-cancer.html#cb880-1" aria-hidden="true" tabindex="-1"></a>c11_modelA_cv</span></code></pre></div>
+<div class="sourceCode" id="cb882"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb882-1"><a href="a-study-of-prostate-cancer.html#cb882-1" aria-hidden="true" tabindex="-1"></a>c11_modelA_cv</span></code></pre></div>
 <pre><code>Linear Regression 
 
 97 samples
@@ -1748,7 +1747,7 @@ Resampling results:
 
 Tuning parameter &#39;intercept&#39; was held constant at a value of TRUE</code></pre>
 <p>The robust model showes a larger R-Squared, smaller RMSE and smaller MAE than the interaction model. Perhaps we’ll focus further on model R going forward…</p>
-<div class="sourceCode" id="cb882"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb882-1"><a href="a-study-of-prostate-cancer.html#cb882-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c11_modelR_cv)</span></code></pre></div>
+<div class="sourceCode" id="cb884"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb884-1"><a href="a-study-of-prostate-cancer.html#cb884-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c11_modelR_cv)</span></code></pre></div>
 <pre><code>
 Call: rlm(formula = .outcome ~ ., data = dat, psi = psi)
 Residuals:

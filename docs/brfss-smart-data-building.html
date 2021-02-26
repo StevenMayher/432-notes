@@ -32,7 +32,7 @@
   
 <link rel="prev" href="building-table-1.html"/>
 <link rel="next" href="dealing-with-missingness-single-imputation.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -306,7 +306,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.9" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#creating-a-factor-combining-sex-and-waist"><i class="fa fa-check"></i><b>6.9</b> Creating a factor combining sex and waist</a></li>
 <li class="chapter" data-level="6.10" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-means-plot-for-the-cortisol-trial-with-standard-errors"><i class="fa fa-check"></i><b>6.10</b> A Means Plot for the <code>cortisol</code> trial (with standard errors)</a></li>
-<li class="chapter" data-level="6.11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-with-interaction"><i class="fa fa-check"></i><b>6.11</b> A Two-Way ANOVA model for <code>cortisol</code> with Interaction</a></li>
+<li class="chapter" data-level="6.11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-with-interaction"><i class="fa fa-check"></i><b>6.11</b> A Two-Way ANOVA model for <code>cortisol</code> with Interaction</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#notes-on-this-question"><i class="fa fa-check"></i><b>6.11.1</b> Notes on this Question</a></li>
+</ul></li>
 <li class="chapter" data-level="6.12" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-without-interaction"><i class="fa fa-check"></i><b>6.12</b> A Two-Way ANOVA model for <code>cortisol</code> without Interaction</a>
 <ul>
 <li class="chapter" data-level="6.12.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-graph"><i class="fa fa-check"></i><b>6.12.1</b> The Graph</a></li>
@@ -2166,7 +2169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>2 = Female</li>
 <li>9 = Refused</li>
 </ul>
-<p>We’ll recode that to <code>female</code> = 1 for Female, 0 Male, otherwise NA. Note the trick here is to subtract one from the coded <code>SEX</code> to get the desired <code>female</code>, but this requires that we move 9 to NA, rather than 9.</p>
+<p>We’ll recode that to <code>female</code> = 1 for Female, 0 Male, otherwise NA. Note the trick here is to subtract one from the coded <code>SEX</code> to get the desired <code>female</code>, but this requires that we move 8 to NA, rather than 9.</p>
 <div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="brfss-smart-data-building.html#cb113-1" aria-hidden="true" tabindex="-1"></a>smart_ohio_raw <span class="ot">&lt;-</span> smart_ohio_raw <span class="sc">%&gt;%</span> </span>
 <span id="cb113-2"><a href="brfss-smart-data-building.html#cb113-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">female =</span> SEX <span class="sc">-</span> <span class="dv">1</span>,</span>
 <span id="cb113-3"><a href="brfss-smart-data-building.html#cb113-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">female =</span> <span class="fu">replace</span>(female, female <span class="sc">==</span> <span class="dv">8</span>, <span class="cn">NA</span>))</span>
@@ -3333,9 +3336,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb199-80"><a href="brfss-smart-data-building.html#cb199-80" aria-hidden="true" tabindex="-1"></a>               <span class="at">NULL =</span> <span class="st">&quot;77&quot;</span>, </span>
 <span id="cb199-81"><a href="brfss-smart-data-building.html#cb199-81" aria-hidden="true" tabindex="-1"></a>               <span class="at">NULL =</span> <span class="st">&quot;99&quot;</span>)</span>
 <span id="cb199-82"><a href="brfss-smart-data-building.html#cb199-82" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
-<pre><code>Warning: Problem with `mutate()` input `exer1_type`.
-i Unknown levels in `f`: 3, 17, 21, 32, 36, 41, 42, 45, 47, 53, 55, 56, 59
-i Input `exer1_type` is `fct_recode(...)`.</code></pre>
+<pre><code>Warning: Unknown levels in `f`: 3, 17, 21, 32, 36, 41, 42, 45, 47, 53, 55, 56,
+59</code></pre>
 <p>The warning generated here is caused by the fact that some of the available types of exercise were not mentioned by people in our sample. Looking at the last few results, we can see how many people fell into several categories.</p>
 <div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="brfss-smart-data-building.html#cb201-1" aria-hidden="true" tabindex="-1"></a>smart_ohio_raw <span class="sc">%&gt;%</span> <span class="fu">count</span>(EXRACT11, exer1_type) <span class="sc">%&gt;%</span> <span class="fu">tail</span>()</span></code></pre></div>
 <pre><code># A tibble: 6 x 3
@@ -3449,9 +3451,7 @@ i Input `exer1_type` is `fct_recode(...)`.</code></pre>
 <span id="cb205-81"><a href="brfss-smart-data-building.html#cb205-81" aria-hidden="true" tabindex="-1"></a>               <span class="at">NULL =</span> <span class="st">&quot;77&quot;</span>, </span>
 <span id="cb205-82"><a href="brfss-smart-data-building.html#cb205-82" aria-hidden="true" tabindex="-1"></a>               <span class="at">NULL =</span> <span class="st">&quot;99&quot;</span>)</span>
 <span id="cb205-83"><a href="brfss-smart-data-building.html#cb205-83" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
-<pre><code>Warning: Problem with `mutate()` input `exer2_type`.
-i Unknown levels in `f`: 3, 21, 30, 39, 41, 46, 50, 62
-i Input `exer2_type` is `fct_recode(...)`.</code></pre>
+<pre><code>Warning: Unknown levels in `f`: 3, 21, 30, 39, 41, 46, 50, 62</code></pre>
 <div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="brfss-smart-data-building.html#cb207-1" aria-hidden="true" tabindex="-1"></a>smart_ohio_raw <span class="sc">%&gt;%</span> <span class="fu">count</span>(EXRACT21, exer2_type) <span class="sc">%&gt;%</span> <span class="fu">tail</span>()</span></code></pre></div>
 <pre><code># A tibble: 6 x 3
   EXRACT21 exer2_type            n

@@ -32,7 +32,7 @@
   
 <link rel="prev" href="brfss-smart-data-building.html"/>
 <link rel="next" href="summarizing-the-smart-cle1-data.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -306,7 +306,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.9" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#creating-a-factor-combining-sex-and-waist"><i class="fa fa-check"></i><b>6.9</b> Creating a factor combining sex and waist</a></li>
 <li class="chapter" data-level="6.10" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-means-plot-for-the-cortisol-trial-with-standard-errors"><i class="fa fa-check"></i><b>6.10</b> A Means Plot for the <code>cortisol</code> trial (with standard errors)</a></li>
-<li class="chapter" data-level="6.11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-with-interaction"><i class="fa fa-check"></i><b>6.11</b> A Two-Way ANOVA model for <code>cortisol</code> with Interaction</a></li>
+<li class="chapter" data-level="6.11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-with-interaction"><i class="fa fa-check"></i><b>6.11</b> A Two-Way ANOVA model for <code>cortisol</code> with Interaction</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#notes-on-this-question"><i class="fa fa-check"></i><b>6.11.1</b> Notes on this Question</a></li>
+</ul></li>
 <li class="chapter" data-level="6.12" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-without-interaction"><i class="fa fa-check"></i><b>6.12</b> A Two-Way ANOVA model for <code>cortisol</code> without Interaction</a>
 <ul>
 <li class="chapter" data-level="6.12.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-graph"><i class="fa fa-check"></i><b>6.12.1</b> The Graph</a></li>
@@ -1304,9 +1307,9 @@ female
 <p>The case numbers identified here are row numbers. Extract the data for case 17, for instance, with the <code>slice</code> function.</p>
 <div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="dealing-with-missingness-single-imputation.html#cb258-1" aria-hidden="true" tabindex="-1"></a>smart_cle1 <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">17</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 x 12
-   SEQNO physhealth genhealth   bmi age_imp female race_eth internet30 smoke100
-   &lt;dbl&gt;      &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;         &lt;dbl&gt;    &lt;dbl&gt;
-1 2.02e9          0 1_Excell~    NA      50      0 White n~         NA       NA
+    SEQNO physhealth genhealth   bmi age_imp female race_eth internet30 smoke100
+    &lt;dbl&gt;      &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;         &lt;dbl&gt;    &lt;dbl&gt;
+1  2.02e9          0 1_Excell~    NA      50      0 White n~         NA       NA
 # ... with 3 more variables: activity &lt;fct&gt;, drinks_wk &lt;dbl&gt;, veg_day &lt;dbl&gt;</code></pre>
 <div id="plotting-missingness" class="section level3" number="3.2.1">
 <h3><span class="header-section-number">3.2.1</span> Plotting Missingness</h3>
@@ -1499,10 +1502,8 @@ female
 <span id="cb271-5"><a href="dealing-with-missingness-single-imputation.html#cb271-5" aria-hidden="true" tabindex="-1"></a>               internet30 <span class="sc">~</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb271-6"><a href="dealing-with-missingness-single-imputation.html#cb271-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">impute_pmm</span>(., smoke100 <span class="sc">~</span> internet30 <span class="sc">+</span> female) <span class="sc">%&gt;%</span></span>
 <span id="cb271-7"><a href="dealing-with-missingness-single-imputation.html#cb271-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_df</span>()</span></code></pre></div>
-<pre><code>Warning: `tbl_df()` is deprecated as of dplyr 1.0.0.
-Please use `tibble::as_tibble()` instead.
-This warning is displayed once every 8 hours.
-Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
+<pre><code>Warning: `tbl_df()` was deprecated in dplyr 1.0.0.
+Please use `tibble::as_tibble()` instead.</code></pre>
 <div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="dealing-with-missingness-single-imputation.html#cb273-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">count</span>(smoke100, smoke100_NA)</span></code></pre></div>
 <pre><code># A tibble: 4 x 3
   smoke100 smoke100_NA     n

@@ -32,7 +32,7 @@
   
 <link rel="prev" href="dealing-with-missingness-single-imputation.html"/>
 <link rel="next" href="analysis-of-variance-with-smart.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -306,7 +306,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.9" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#creating-a-factor-combining-sex-and-waist"><i class="fa fa-check"></i><b>6.9</b> Creating a factor combining sex and waist</a></li>
 <li class="chapter" data-level="6.10" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-means-plot-for-the-cortisol-trial-with-standard-errors"><i class="fa fa-check"></i><b>6.10</b> A Means Plot for the <code>cortisol</code> trial (with standard errors)</a></li>
-<li class="chapter" data-level="6.11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-with-interaction"><i class="fa fa-check"></i><b>6.11</b> A Two-Way ANOVA model for <code>cortisol</code> with Interaction</a></li>
+<li class="chapter" data-level="6.11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-with-interaction"><i class="fa fa-check"></i><b>6.11</b> A Two-Way ANOVA model for <code>cortisol</code> with Interaction</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#notes-on-this-question"><i class="fa fa-check"></i><b>6.11.1</b> Notes on this Question</a></li>
+</ul></li>
 <li class="chapter" data-level="6.12" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-without-interaction"><i class="fa fa-check"></i><b>6.12</b> A Two-Way ANOVA model for <code>cortisol</code> without Interaction</a>
 <ul>
 <li class="chapter" data-level="6.12.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-graph"><i class="fa fa-check"></i><b>6.12.1</b> The Graph</a></li>
@@ -1683,14 +1686,14 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <p>Note that each of the new columns begins with <code>.</code> to avoid overwriting any data.</p>
 <div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="summarizing-the-smart-cle1-data.html#cb358-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">augment</span>(model_A))</span></code></pre></div>
 <pre><code># A tibble: 6 x 8
-  physhealth   bmi .fitted .resid .std.resid     .hat .sigma    .cooksd
-       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
-1          4  27.9    4.57 -0.572    -0.0638 0.000886   8.97 0.00000181
-2          0  23.0    3.28 -3.28     -0.366  0.00149    8.97 0.000100  
-3          0  26.9    4.31 -4.31     -0.480  0.000927   8.97 0.000107  
-4          0  26.5    4.20 -4.20     -0.468  0.000956   8.97 0.000105  
-5          0  24.2    3.60 -3.60     -0.401  0.00125    8.97 0.000101  
-6          2  27.7    4.51 -2.51     -0.281  0.000891   8.97 0.0000351 </code></pre>
+  physhealth   bmi .fitted .resid     .hat .sigma    .cooksd .std.resid
+       &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+1          4  27.9    4.57 -0.572 0.000886   8.97 0.00000181    -0.0638
+2          0  23.0    3.28 -3.28  0.00149    8.97 0.000100      -0.366 
+3          0  26.9    4.31 -4.31  0.000927   8.97 0.000107      -0.480 
+4          0  26.5    4.20 -4.20  0.000956   8.97 0.000105      -0.468 
+5          0  24.2    3.60 -3.60  0.00125    8.97 0.000101      -0.401 
+6          2  27.7    4.51 -2.51  0.000891   8.97 0.0000351     -0.281 </code></pre>
 <p>For more on the <code>broom</code> package, you may want to look at <a href="https://cran.r-project.org/web/packages/broom/vignettes/broom.html">this vignette</a>.</p>
 </div>
 </div>

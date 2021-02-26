@@ -32,7 +32,7 @@
   
 <link rel="prev" href="using-ols-from-the-rms-package-to-fit-linear-models.html"/>
 <link rel="next" href="logistic-regression-and-the-resect-data.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -306,7 +306,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.9" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#creating-a-factor-combining-sex-and-waist"><i class="fa fa-check"></i><b>6.9</b> Creating a factor combining sex and waist</a></li>
 <li class="chapter" data-level="6.10" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-means-plot-for-the-cortisol-trial-with-standard-errors"><i class="fa fa-check"></i><b>6.10</b> A Means Plot for the <code>cortisol</code> trial (with standard errors)</a></li>
-<li class="chapter" data-level="6.11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-with-interaction"><i class="fa fa-check"></i><b>6.11</b> A Two-Way ANOVA model for <code>cortisol</code> with Interaction</a></li>
+<li class="chapter" data-level="6.11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-with-interaction"><i class="fa fa-check"></i><b>6.11</b> A Two-Way ANOVA model for <code>cortisol</code> with Interaction</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#notes-on-this-question"><i class="fa fa-check"></i><b>6.11.1</b> Notes on this Question</a></li>
+</ul></li>
 <li class="chapter" data-level="6.12" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-without-interaction"><i class="fa fa-check"></i><b>6.12</b> A Two-Way ANOVA model for <code>cortisol</code> without Interaction</a>
 <ul>
 <li class="chapter" data-level="6.12.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-graph"><i class="fa fa-check"></i><b>6.12.1</b> The Graph</a></li>
@@ -988,23 +991,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="a-first-attempt-a-linear-probability-model" class="section level2" number="11.1">
 <h2><span class="header-section-number">11.1</span> A First Attempt: A Linear Probability Model</h2>
 <p>Suppose we want to predict a binary outcome which takes on the value 1 or 0, based on a single quantitative predictor. Let y be a 1/0 outcome, and x be a quantitative predictor in the following simulation.</p>
-<div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb666-1"><a href="logistic-regression-the-foundations.html#cb666-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">432</span>)</span>
-<span id="cb666-2"><a href="logistic-regression-the-foundations.html#cb666-2" aria-hidden="true" tabindex="-1"></a>sim12 <span class="ot">&lt;-</span> <span class="fu">data_frame</span>(<span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">10</span>, <span class="dv">3</span>),</span>
-<span id="cb666-3"><a href="logistic-regression-the-foundations.html#cb666-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">err =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">2</span>),</span>
-<span id="cb666-4"><a href="logistic-regression-the-foundations.html#cb666-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y =</span> <span class="fu">ifelse</span>(x <span class="sc">+</span> err <span class="sc">&gt;</span> <span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span></code></pre></div>
-<pre><code>Warning: `data_frame()` is deprecated as of tibble 1.1.0.
-Please use `tibble()` instead.
-This warning is displayed once every 8 hours.
-Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
-<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="logistic-regression-the-foundations.html#cb668-1" aria-hidden="true" tabindex="-1"></a>sim12 <span class="ot">&lt;-</span> <span class="fu">select</span>(sim12, x, y)</span>
-<span id="cb668-2"><a href="logistic-regression-the-foundations.html#cb668-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb668-3"><a href="logistic-regression-the-foundations.html#cb668-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sim12, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
+<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="logistic-regression-the-foundations.html#cb670-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">432</span>)</span>
+<span id="cb670-2"><a href="logistic-regression-the-foundations.html#cb670-2" aria-hidden="true" tabindex="-1"></a>sim12 <span class="ot">&lt;-</span> <span class="fu">data_frame</span>(<span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">10</span>, <span class="dv">3</span>),</span>
+<span id="cb670-3"><a href="logistic-regression-the-foundations.html#cb670-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">err =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">2</span>),</span>
+<span id="cb670-4"><a href="logistic-regression-the-foundations.html#cb670-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y =</span> <span class="fu">ifelse</span>(x <span class="sc">+</span> err <span class="sc">&gt;</span> <span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span></code></pre></div>
+<pre><code>Warning: `data_frame()` was deprecated in tibble 1.1.0.
+Please use `tibble()` instead.</code></pre>
+<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="logistic-regression-the-foundations.html#cb672-1" aria-hidden="true" tabindex="-1"></a>sim12 <span class="ot">&lt;-</span> <span class="fu">select</span>(sim12, x, y)</span>
+<span id="cb672-2"><a href="logistic-regression-the-foundations.html#cb672-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb672-3"><a href="logistic-regression-the-foundations.html#cb672-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sim12, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-227-1.png" width="672" /></p>
 <p>Now, we want to use our variable x here to predict our variable y (which takes on the values 0 and 1).</p>
 <p>One approach to doing this would be a linear probability model, as follows:</p>
-<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="logistic-regression-the-foundations.html#cb669-1" aria-hidden="true" tabindex="-1"></a>mod12a <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> sim12) </span>
-<span id="cb669-2"><a href="logistic-regression-the-foundations.html#cb669-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb669-3"><a href="logistic-regression-the-foundations.html#cb669-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod12a)</span></code></pre></div>
+<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="logistic-regression-the-foundations.html#cb673-1" aria-hidden="true" tabindex="-1"></a>mod12a <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> sim12) </span>
+<span id="cb673-2"><a href="logistic-regression-the-foundations.html#cb673-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb673-3"><a href="logistic-regression-the-foundations.html#cb673-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod12a)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = y ~ x, data = sim12)
@@ -1024,12 +1025,12 @@ Residual standard error: 0.3491 on 98 degrees of freedom
 Multiple R-squared:  0.5222,    Adjusted R-squared:  0.5173 
 F-statistic: 107.1 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Here’s a picture of this model. What’s wrong here?</p>
-<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="logistic-regression-the-foundations.html#cb671-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sim12, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
-<span id="cb671-2"><a href="logistic-regression-the-foundations.html#cb671-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb671-3"><a href="logistic-regression-the-foundations.html#cb671-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb671-4"><a href="logistic-regression-the-foundations.html#cb671-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Linear Probability Model&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb675-1"><a href="logistic-regression-the-foundations.html#cb675-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sim12, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb675-2"><a href="logistic-regression-the-foundations.html#cb675-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb675-3"><a href="logistic-regression-the-foundations.html#cb675-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb675-4"><a href="logistic-regression-the-foundations.html#cb675-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Linear Probability Model&quot;</span>)</span></code></pre></div>
 <pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-227-1.png" width="672" /></p>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-229-1.png" width="672" /></p>
 <p>If y can only take the values 0 and 1 (or, more precisely, if we’re trying to predict the value <span class="math inline">\(\pi\)</span> = Pr(y = 1)) then what do we do with the predictions that are outside the range of (0, 1)?</p>
 </div>
 <div id="logistic-regression" class="section level2" number="11.2">
@@ -1059,7 +1060,7 @@ logit(\pi) = log\left( \frac{\pi}{1 - \pi} \right) = \beta_0 + \beta_1 X_1 + \be
 \]</span></p>
 <p>The inverse of the logit function is called the <strong>logistic function</strong>. If logit(<span class="math inline">\(\pi\)</span>) = <span class="math inline">\(\eta\)</span>, then <span class="math inline">\(\pi = \frac{exp(\eta)}{1 + exp(\eta)}\)</span></p>
 <p>The plot below displays the logistic function <span class="math inline">\(y = \frac{e^x}{1 + e^x}\)</span></p>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-228-1.png" width="672" /></p>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-230-1.png" width="672" /></p>
 <p>As you can see in the figure above, the logistic function <span class="math inline">\(\frac{e^x}{1 + e^x}\)</span> takes any value <span class="math inline">\(x\)</span> in the real numbers and returns a value between 0 and 1.</p>
 </div>
 <div id="the-logit-or-log-odds" class="section level2" number="11.5">
@@ -1100,12 +1101,12 @@ Var[Y | X_1, ..., X_k] = \pi(1 - \pi)
 <div id="fitting-a-logistic-regression-model-to-our-simulated-data" class="section level2" number="11.8">
 <h2><span class="header-section-number">11.8</span> Fitting a Logistic Regression Model to our Simulated Data</h2>
 <p>Recall the <code>sim12</code> data we built earlier.</p>
-<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="logistic-regression-the-foundations.html#cb673-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sim12, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-229-1.png" width="672" /></p>
+<div class="sourceCode" id="cb677"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb677-1"><a href="logistic-regression-the-foundations.html#cb677-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sim12, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-231-1.png" width="672" /></p>
 <p>Here is the fitted logistic regression model.</p>
-<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb674-1"><a href="logistic-regression-the-foundations.html#cb674-1" aria-hidden="true" tabindex="-1"></a>model12b <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> sim12, <span class="at">family =</span> binomial)</span>
-<span id="cb674-2"><a href="logistic-regression-the-foundations.html#cb674-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb674-3"><a href="logistic-regression-the-foundations.html#cb674-3" aria-hidden="true" tabindex="-1"></a>model12b</span></code></pre></div>
+<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="logistic-regression-the-foundations.html#cb678-1" aria-hidden="true" tabindex="-1"></a>model12b <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> sim12, <span class="at">family =</span> binomial)</span>
+<span id="cb678-2"><a href="logistic-regression-the-foundations.html#cb678-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb678-3"><a href="logistic-regression-the-foundations.html#cb678-3" aria-hidden="true" tabindex="-1"></a>model12b</span></code></pre></div>
 <pre><code>
 Call:  glm(formula = y ~ x, family = binomial, data = sim12)
 
@@ -1125,13 +1126,13 @@ logit(Pr(y = 1)) = log\left( \frac{Pr(y = 1)}{1 - Pr(y = 1)} \right) = -9.1955 +
 logit(Pr(y = 1) | X = 12) = log\left( \frac{Pr(y = 1)}{1 - Pr(y = 1)} \right) = -9.1955 + 0.9566 * 12 = 2.2837
 \]</span></p>
 <p>And we can also get this from the <code>predict</code> function applied to our model, although the <code>predict</code> approach retains a few more decimal places internally:</p>
-<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb676-1"><a href="logistic-regression-the-foundations.html#cb676-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model12b, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">12</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="logistic-regression-the-foundations.html#cb680-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model12b, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">12</span>))</span></code></pre></div>
 <pre><code>       1 
 2.284069 </code></pre>
 <p><span class="math display">\[
 Odds(Y = 1 | X = 12) = exp(-9.20 + 0.96 * 12) = exp(2.2837) = 9.812921
 \]</span></p>
-<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="logistic-regression-the-foundations.html#cb678-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">predict</span>(model12b, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">12</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb682-1"><a href="logistic-regression-the-foundations.html#cb682-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">predict</span>(model12b, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">12</span>)))</span></code></pre></div>
 <pre><code>      1 
 9.81654 </code></pre>
 <p>The estimated <strong>probability</strong> of a yes response (Pr(y = 1), or <span class="math inline">\(\pi\)</span>) if x = 12 is just</p>
@@ -1139,33 +1140,33 @@ Odds(Y = 1 | X = 12) = exp(-9.20 + 0.96 * 12) = exp(2.2837) = 9.812921
 \pi = Pr(Y = 1 | X = 12) = \frac{Odds(Y = 1 | X = 12)}{1 + Odds(Y = 1 | X = 12)} = \frac{exp(-9.20 + 0.96 x)}{1 + exp(-9.20 + 0.96 x)} = \frac{9.812921}{1 + 9.812921} = 0.908
 \]</span></p>
 <p>Does this work out?</p>
-<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="logistic-regression-the-foundations.html#cb680-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">predict</span>(model12b, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">12</span>))) <span class="sc">/</span> </span>
-<span id="cb680-2"><a href="logistic-regression-the-foundations.html#cb680-2" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(<span class="fu">predict</span>(model12b, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">12</span>))))</span></code></pre></div>
+<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb684-1"><a href="logistic-regression-the-foundations.html#cb684-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">predict</span>(model12b, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">12</span>))) <span class="sc">/</span> </span>
+<span id="cb684-2"><a href="logistic-regression-the-foundations.html#cb684-2" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(<span class="fu">predict</span>(model12b, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">12</span>))))</span></code></pre></div>
 <pre><code>       1 
 0.907549 </code></pre>
 <p>which is also directly available by running <code>predict</code> with <code>type = "response"</code>.</p>
-<div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb682-1"><a href="logistic-regression-the-foundations.html#cb682-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model12b, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">12</span>), <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb686-1"><a href="logistic-regression-the-foundations.html#cb686-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model12b, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">12</span>), <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
 <pre><code>       1 
 0.907549 </code></pre>
 </div>
 <div id="plotting-the-logistic-regression-model" class="section level2" number="11.9">
 <h2><span class="header-section-number">11.9</span> Plotting the Logistic Regression Model</h2>
 <p>We can use the <code>augment</code> function from the <code>broom</code> package to get our fitted probabilities included in the data.</p>
-<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb684-1"><a href="logistic-regression-the-foundations.html#cb684-1" aria-hidden="true" tabindex="-1"></a>m12b.aug <span class="ot">&lt;-</span> <span class="fu">augment</span>(model12b, sim12, <span class="at">type.predict =</span> <span class="st">&quot;response&quot;</span>)</span>
-<span id="cb684-2"><a href="logistic-regression-the-foundations.html#cb684-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb684-3"><a href="logistic-regression-the-foundations.html#cb684-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(m12b.aug, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
-<span id="cb684-4"><a href="logistic-regression-the-foundations.html#cb684-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb684-5"><a href="logistic-regression-the-foundations.html#cb684-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> .fitted), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb684-6"><a href="logistic-regression-the-foundations.html#cb684-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Fitted Logistic Regression Model for sim12&quot;</span>)</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-235-1.png" width="672" /></p>
+<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb688-1"><a href="logistic-regression-the-foundations.html#cb688-1" aria-hidden="true" tabindex="-1"></a>m12b.aug <span class="ot">&lt;-</span> <span class="fu">augment</span>(model12b, sim12, <span class="at">type.predict =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb688-2"><a href="logistic-regression-the-foundations.html#cb688-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb688-3"><a href="logistic-regression-the-foundations.html#cb688-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(m12b.aug, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb688-4"><a href="logistic-regression-the-foundations.html#cb688-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb688-5"><a href="logistic-regression-the-foundations.html#cb688-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> .fitted), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb688-6"><a href="logistic-regression-the-foundations.html#cb688-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Fitted Logistic Regression Model for sim12&quot;</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-237-1.png" width="672" /></p>
 <p>I’ll add a little jitter on the vertical scale to the points, so we can avoid overlap, and also make the points a little bigger.</p>
-<div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb685-1"><a href="logistic-regression-the-foundations.html#cb685-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(m12b.aug, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
-<span id="cb685-2"><a href="logistic-regression-the-foundations.html#cb685-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="fl">0.05</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">21</span>, </span>
-<span id="cb685-3"><a href="logistic-regression-the-foundations.html#cb685-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">fill =</span> <span class="st">&quot;cornflowerblue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb685-4"><a href="logistic-regression-the-foundations.html#cb685-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> .fitted), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb685-5"><a href="logistic-regression-the-foundations.html#cb685-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Fitted Logistic Regression for sim12&quot;</span>) <span class="sc">+</span></span>
-<span id="cb685-6"><a href="logistic-regression-the-foundations.html#cb685-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-236-1.png" width="672" /></p>
+<div class="sourceCode" id="cb689"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb689-1"><a href="logistic-regression-the-foundations.html#cb689-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(m12b.aug, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb689-2"><a href="logistic-regression-the-foundations.html#cb689-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="fl">0.05</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">21</span>, </span>
+<span id="cb689-3"><a href="logistic-regression-the-foundations.html#cb689-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">fill =</span> <span class="st">&quot;cornflowerblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb689-4"><a href="logistic-regression-the-foundations.html#cb689-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> .fitted), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb689-5"><a href="logistic-regression-the-foundations.html#cb689-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Fitted Logistic Regression for sim12&quot;</span>) <span class="sc">+</span></span>
+<span id="cb689-6"><a href="logistic-regression-the-foundations.html#cb689-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-238-1.png" width="672" /></p>
 <p>All right, it’s time to move on to fitting models. We’ll do that in the next Chapter.</p>
 
 </div>

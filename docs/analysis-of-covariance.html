@@ -32,7 +32,7 @@
   
 <link rel="prev" href="analysis-of-variance.html"/>
 <link rel="next" href="analysis-of-covariance-with-the-smart-data.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -306,7 +306,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.9" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#creating-a-factor-combining-sex-and-waist"><i class="fa fa-check"></i><b>6.9</b> Creating a factor combining sex and waist</a></li>
 <li class="chapter" data-level="6.10" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-means-plot-for-the-cortisol-trial-with-standard-errors"><i class="fa fa-check"></i><b>6.10</b> A Means Plot for the <code>cortisol</code> trial (with standard errors)</a></li>
-<li class="chapter" data-level="6.11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-with-interaction"><i class="fa fa-check"></i><b>6.11</b> A Two-Way ANOVA model for <code>cortisol</code> with Interaction</a></li>
+<li class="chapter" data-level="6.11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-with-interaction"><i class="fa fa-check"></i><b>6.11</b> A Two-Way ANOVA model for <code>cortisol</code> with Interaction</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#notes-on-this-question"><i class="fa fa-check"></i><b>6.11.1</b> Notes on this Question</a></li>
+</ul></li>
 <li class="chapter" data-level="6.12" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-without-interaction"><i class="fa fa-check"></i><b>6.12</b> A Two-Way ANOVA model for <code>cortisol</code> without Interaction</a>
 <ul>
 <li class="chapter" data-level="6.12.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-graph"><i class="fa fa-check"></i><b>6.12.1</b> The Graph</a></li>
@@ -1024,10 +1027,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>We’re going to look at the change from baseline to day 5 as our outcome of interest, since the clinical expectation is that the antibiotic (azithromycin) will increase theophylline levels.</p>
-<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="analysis-of-covariance.html#cb473-1" aria-hidden="true" tabindex="-1"></a>emphysema <span class="ot">&lt;-</span> emphysema <span class="sc">%&gt;%</span> </span>
-<span id="cb473-2"><a href="analysis-of-covariance.html#cb473-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">st_delta =</span> st_day5 <span class="sc">-</span> st_base)</span>
-<span id="cb473-3"><a href="analysis-of-covariance.html#cb473-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb473-4"><a href="analysis-of-covariance.html#cb473-4" aria-hidden="true" tabindex="-1"></a>emphysema</span></code></pre></div>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="analysis-of-covariance.html#cb477-1" aria-hidden="true" tabindex="-1"></a>emphysema <span class="ot">&lt;-</span> emphysema <span class="sc">%&gt;%</span> </span>
+<span id="cb477-2"><a href="analysis-of-covariance.html#cb477-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">st_delta =</span> st_day5 <span class="sc">-</span> st_base)</span>
+<span id="cb477-3"><a href="analysis-of-covariance.html#cb477-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb477-4"><a href="analysis-of-covariance.html#cb477-4" aria-hidden="true" tabindex="-1"></a>emphysema</span></code></pre></div>
 <pre><code># A tibble: 16 x 7
    patient   age sex   st_base st_day5 st_day10 st_delta
      &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
@@ -1051,16 +1054,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="does-sex-affect-the-mean-change-in-theophylline" class="section level2" number="7.2">
 <h2><span class="header-section-number">7.2</span> Does <code>sex</code> affect the mean change in theophylline?</h2>
-<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="analysis-of-covariance.html#cb475-1" aria-hidden="true" tabindex="-1"></a>emphysema <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(st_delta)</span></code></pre></div>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="analysis-of-covariance.html#cb479-1" aria-hidden="true" tabindex="-1"></a>emphysema <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(st_delta)</span></code></pre></div>
 <pre><code>   min     Q1 median   Q3 max     mean       sd  n missing
  -11.8 -1.925  -0.35 0.65 4.2 -0.99375 3.484149 16       0</code></pre>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="analysis-of-covariance.html#cb477-1" aria-hidden="true" tabindex="-1"></a>emphysema <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(st_delta <span class="sc">~</span> sex)</span></code></pre></div>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="analysis-of-covariance.html#cb481-1" aria-hidden="true" tabindex="-1"></a>emphysema <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(st_delta <span class="sc">~</span> sex)</span></code></pre></div>
 <pre><code>  sex   min     Q1 median     Q3  max      mean       sd  n missing
 1   F -11.8 -2.925  -1.75 -1.325 -0.2 -3.333333 4.267864  6       0
 2   M  -2.9 -0.375   0.50  1.400  4.2  0.410000 2.067446 10       0</code></pre>
 <p>Overall, the mean change in theophylline during the course of the antibiotic is -0.99, but this is -3.33 for female patients and 0.41 for male patients.</p>
 <p>A one-way ANOVA model looks like this:</p>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="analysis-of-covariance.html#cb479-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex, <span class="at">data =</span> emphysema))</span></code></pre></div>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="analysis-of-covariance.html#cb483-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex, <span class="at">data =</span> emphysema))</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: st_delta
@@ -1073,7 +1076,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </div>
 <div id="is-there-an-association-between-age-and-sex-in-this-study" class="section level2" number="7.3">
 <h2><span class="header-section-number">7.3</span> Is there an association between <code>age</code> and <code>sex</code> in this study?</h2>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="analysis-of-covariance.html#cb481-1" aria-hidden="true" tabindex="-1"></a>emphysema <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(age <span class="sc">~</span> sex)</span></code></pre></div>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="analysis-of-covariance.html#cb485-1" aria-hidden="true" tabindex="-1"></a>emphysema <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(age <span class="sc">~</span> sex)</span></code></pre></div>
 <pre><code>  sex min    Q1 median Q3 max     mean       sd n missing
 1   F  51 61.75   64.5 68  70 63.33333 6.889606 6       0
 2   M  50 65.00   66.0 71  76 66.44444 7.568208 9       1</code></pre>
@@ -1089,7 +1092,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div id="the-ancova-model" class="section level3" number="7.4.1">
 <h3><span class="header-section-number">7.4.1</span> The ANCOVA model</h3>
 <p>ANCOVA in this case is just an ANOVA model with our outcome (<code>st_delta</code>) adjusted for a continuous covariate, called <code>age</code>. For the moment, we’ll ignore the one subject with missing <code>age</code> and simply fit the regression model with <code>sex</code> and <code>age</code>.</p>
-<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="analysis-of-covariance.html#cb483-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">+</span> age, <span class="at">data =</span> emphysema))</span></code></pre></div>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="analysis-of-covariance.html#cb487-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">+</span> age, <span class="at">data =</span> emphysema))</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = st_delta ~ sex + age, data = emphysema)
@@ -1121,7 +1124,7 @@ F-statistic:  2.43 on 2 and 12 DF,  p-value: 0.13</code></pre>
 <div id="the-ancova-table" class="section level3" number="7.4.2">
 <h3><span class="header-section-number">7.4.2</span> The ANCOVA Table</h3>
 <p>First, though, we’ll look at the ANCOVA table.</p>
-<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="analysis-of-covariance.html#cb485-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">+</span> age, <span class="at">data =</span> emphysema))</span></code></pre></div>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="analysis-of-covariance.html#cb489-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">+</span> age, <span class="at">data =</span> emphysema))</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: st_delta
@@ -1137,9 +1140,9 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div id="rerunning-the-ancova-model-after-simple-imputation" class="section level2" number="7.5">
 <h2><span class="header-section-number">7.5</span> Rerunning the ANCOVA model after simple imputation</h2>
 <p>We could have <em>imputed</em> the missing <code>age</code> value for patient 5, rather than just deleting that patient. Suppose we do the simplest potentially reasonable thing to do: insert the mean <code>age</code> in where the NA value currently exists.</p>
-<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="analysis-of-covariance.html#cb487-1" aria-hidden="true" tabindex="-1"></a>emph_imp <span class="ot">&lt;-</span> <span class="fu">replace_na</span>(emphysema, <span class="fu">list</span>(<span class="at">age =</span> <span class="fu">mean</span>(emphysema<span class="sc">$</span>age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span>
-<span id="cb487-2"><a href="analysis-of-covariance.html#cb487-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb487-3"><a href="analysis-of-covariance.html#cb487-3" aria-hidden="true" tabindex="-1"></a>emph_imp</span></code></pre></div>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="analysis-of-covariance.html#cb491-1" aria-hidden="true" tabindex="-1"></a>emph_imp <span class="ot">&lt;-</span> <span class="fu">replace_na</span>(emphysema, <span class="fu">list</span>(<span class="at">age =</span> <span class="fu">mean</span>(emphysema<span class="sc">$</span>age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span>
+<span id="cb491-2"><a href="analysis-of-covariance.html#cb491-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb491-3"><a href="analysis-of-covariance.html#cb491-3" aria-hidden="true" tabindex="-1"></a>emph_imp</span></code></pre></div>
 <pre><code># A tibble: 16 x 7
    patient   age sex   st_base st_day5 st_day10 st_delta
      &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
@@ -1161,7 +1164,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 16      16  50   M        10.2    10.8     11.2    0.6  </code></pre>
 <p>More on simple imputation and missing data is coming soon.</p>
 <p>For now, we can rerun the ANCOVA model on this new data set, after imputation…</p>
-<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="analysis-of-covariance.html#cb489-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">+</span> age, <span class="at">data =</span> emph_imp))</span></code></pre></div>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="analysis-of-covariance.html#cb493-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">+</span> age, <span class="at">data =</span> emph_imp))</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: st_delta
@@ -1176,7 +1179,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div id="looking-at-a-factor-covariate-interaction" class="section level2" number="7.6">
 <h2><span class="header-section-number">7.6</span> Looking at a factor-covariate interaction</h2>
 <p>Let’s run a model including the interaction (product) term between <code>age</code> and <code>sex</code>, which implies that the slope of <code>age</code> on our outcome (<code>st_delta</code>) depends on the patient’s sex. We’ll use the imputed data again. Here is the new ANCOVA table, which suggests that the interaction of <code>age</code> and <code>sex</code> is small (because it accounts for only a small amount of the total Sum of Squares) and not significant (p = 0.91).</p>
-<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="analysis-of-covariance.html#cb491-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">*</span> age, <span class="at">data =</span> emph_imp))</span></code></pre></div>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="analysis-of-covariance.html#cb495-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">*</span> age, <span class="at">data =</span> emph_imp))</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: st_delta
@@ -1188,7 +1191,7 @@ Residuals 12 127.261  10.605
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Since the interaction term is neither substantial nor significant, we probably don’t need it here. But let’s look at its interpretation anyway, just to fix ideas. To do that, we’ll need the coefficients from the underlying regression model.</p>
-<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="analysis-of-covariance.html#cb493-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">*</span> age, <span class="at">data =</span> emph_imp))</span></code></pre></div>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="analysis-of-covariance.html#cb497-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">*</span> age, <span class="at">data =</span> emph_imp))</span></code></pre></div>
 <pre><code># A tibble: 4 x 5
   term        estimate std.error statistic p.value
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
@@ -1206,15 +1209,15 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div id="centering-the-covariate-to-facilitate-ancova-interpretation" class="section level2" number="7.7">
 <h2><span class="header-section-number">7.7</span> Centering the Covariate to Facilitate ANCOVA Interpretation</h2>
 <p>When developing an ANCOVA model, we will often <strong>center</strong> or even <strong>center and rescale</strong> the covariate to facilitate interpretation of the product term. In this case, let’s center <code>age</code> and rescale it by dividing by two standard deviations.</p>
-<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="analysis-of-covariance.html#cb495-1" aria-hidden="true" tabindex="-1"></a>emph_imp <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(age)</span></code></pre></div>
+<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="analysis-of-covariance.html#cb499-1" aria-hidden="true" tabindex="-1"></a>emph_imp <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(age)</span></code></pre></div>
 <pre><code> min   Q1 median    Q3 max mean       sd  n missing
   50 63.5   65.1 70.25  76 65.2 6.978061 16       0</code></pre>
 <p>Note that in our imputed data, the mean <code>age</code> is 65.2 and the standard deviation of <code>age</code> is 7 years.</p>
 <p>So we build the rescaled <code>age</code> variable that I’ll call <code>age_z</code>, and then use it to refit our model.</p>
-<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="analysis-of-covariance.html#cb497-1" aria-hidden="true" tabindex="-1"></a>emph_imp <span class="ot">&lt;-</span> emph_imp <span class="sc">%&gt;%</span></span>
-<span id="cb497-2"><a href="analysis-of-covariance.html#cb497-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">age_z =</span> (age <span class="sc">-</span> <span class="fu">mean</span>(age))<span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">sd</span>(age)))</span>
-<span id="cb497-3"><a href="analysis-of-covariance.html#cb497-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb497-4"><a href="analysis-of-covariance.html#cb497-4" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">*</span> age_z, <span class="at">data =</span> emph_imp))</span></code></pre></div>
+<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="analysis-of-covariance.html#cb501-1" aria-hidden="true" tabindex="-1"></a>emph_imp <span class="ot">&lt;-</span> emph_imp <span class="sc">%&gt;%</span></span>
+<span id="cb501-2"><a href="analysis-of-covariance.html#cb501-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">age_z =</span> (age <span class="sc">-</span> <span class="fu">mean</span>(age))<span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">sd</span>(age)))</span>
+<span id="cb501-3"><a href="analysis-of-covariance.html#cb501-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb501-4"><a href="analysis-of-covariance.html#cb501-4" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">*</span> age_z, <span class="at">data =</span> emph_imp))</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: st_delta
@@ -1225,7 +1228,7 @@ sex:age_z  1   0.130   0.130  0.0123 0.91355
 Residuals 12 127.261  10.605                  
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="analysis-of-covariance.html#cb499-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">*</span> age_z, <span class="at">data =</span> emph_imp))</span></code></pre></div>
+<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="analysis-of-covariance.html#cb503-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">*</span> age_z, <span class="at">data =</span> emph_imp))</span></code></pre></div>
 <pre><code># A tibble: 4 x 5
   term        estimate std.error statistic p.value
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;

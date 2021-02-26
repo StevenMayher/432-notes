@@ -32,7 +32,7 @@
   
 <link rel="prev" href="using-tidymodels-approaches-next-steps.html"/>
 <link rel="next" href="modeling-a-count-outcome-in-ohio-smart.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -306,7 +306,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.9" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#creating-a-factor-combining-sex-and-waist"><i class="fa fa-check"></i><b>6.9</b> Creating a factor combining sex and waist</a></li>
 <li class="chapter" data-level="6.10" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-means-plot-for-the-cortisol-trial-with-standard-errors"><i class="fa fa-check"></i><b>6.10</b> A Means Plot for the <code>cortisol</code> trial (with standard errors)</a></li>
-<li class="chapter" data-level="6.11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-with-interaction"><i class="fa fa-check"></i><b>6.11</b> A Two-Way ANOVA model for <code>cortisol</code> with Interaction</a></li>
+<li class="chapter" data-level="6.11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-with-interaction"><i class="fa fa-check"></i><b>6.11</b> A Two-Way ANOVA model for <code>cortisol</code> with Interaction</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#notes-on-this-question"><i class="fa fa-check"></i><b>6.11.1</b> Notes on this Question</a></li>
+</ul></li>
 <li class="chapter" data-level="6.12" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-without-interaction"><i class="fa fa-check"></i><b>6.12</b> A Two-Way ANOVA model for <code>cortisol</code> without Interaction</a>
 <ul>
 <li class="chapter" data-level="6.12.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-graph"><i class="fa fa-check"></i><b>6.12.1</b> The Graph</a></li>
@@ -1041,7 +1044,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb958"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb958-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb958-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(colscr)</span></code></pre></div>
+<div class="sourceCode" id="cb960"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb960-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb960-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(colscr)</span></code></pre></div>
 <pre><code>colscr 
 
  9  Variables      26  Observations
@@ -1121,11 +1124,11 @@ Proportion 0.269 0.269 0.231 0.231
 <div id="fitting-a-logistic-regression-model-to-proportion-data" class="section level3" number="18.1.2">
 <h3><span class="header-section-number">18.1.2</span> Fitting a Logistic Regression Model to Proportion Data</h3>
 <p>Here, we have a binary outcome (was the subject screened or not?) but we have aggregated results. We can use the counts of the numbers of subjects at each clinic (in <code>subjects</code>) and the proportion who were screened (in <code>screen_rate</code>) to fit a logistic regression model, as follows:</p>
-<div class="sourceCode" id="cb960"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb960-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb960-1" aria-hidden="true" tabindex="-1"></a>m_screen1 <span class="ot">&lt;-</span>  <span class="fu">glm</span>(screen_rate <span class="sc">~</span> meanage <span class="sc">+</span> female <span class="sc">+</span> </span>
-<span id="cb960-2"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb960-2" aria-hidden="true" tabindex="-1"></a>                    pct_lowins <span class="sc">+</span> system, <span class="at">family =</span> binomial, </span>
-<span id="cb960-3"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb960-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">weights =</span> subjects, <span class="at">data =</span> colscr)</span>
-<span id="cb960-4"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb960-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb960-5"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb960-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_screen1)</span></code></pre></div>
+<div class="sourceCode" id="cb962"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb962-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb962-1" aria-hidden="true" tabindex="-1"></a>m_screen1 <span class="ot">&lt;-</span>  <span class="fu">glm</span>(screen_rate <span class="sc">~</span> meanage <span class="sc">+</span> female <span class="sc">+</span> </span>
+<span id="cb962-2"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb962-2" aria-hidden="true" tabindex="-1"></a>                    pct_lowins <span class="sc">+</span> system, <span class="at">family =</span> binomial, </span>
+<span id="cb962-3"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb962-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">weights =</span> subjects, <span class="at">data =</span> colscr)</span>
+<span id="cb962-4"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb962-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb962-5"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb962-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_screen1)</span></code></pre></div>
 <pre><code>
 Call:
 glm(formula = screen_rate ~ meanage + female + pct_lowins + system, 
@@ -1157,10 +1160,10 @@ Number of Fisher Scoring iterations: 4</code></pre>
 </div>
 <div id="fitting-a-logistic-regression-model-to-counts-of-successes-and-failures" class="section level3" number="18.1.3">
 <h3><span class="header-section-number">18.1.3</span> Fitting a Logistic Regression Model to Counts of Successes and Failures</h3>
-<div class="sourceCode" id="cb962"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb962-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb962-1" aria-hidden="true" tabindex="-1"></a>m_screen2 <span class="ot">&lt;-</span>  <span class="fu">glm</span>(<span class="fu">cbind</span>(screened, notscreened) <span class="sc">~</span> </span>
-<span id="cb962-2"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb962-2" aria-hidden="true" tabindex="-1"></a>                    meanage <span class="sc">+</span> female <span class="sc">+</span> pct_lowins <span class="sc">+</span> system, </span>
-<span id="cb962-3"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb962-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">family =</span> binomial, <span class="at">data =</span> colscr)</span>
-<span id="cb962-4"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb962-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_screen2)</span></code></pre></div>
+<div class="sourceCode" id="cb964"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb964-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb964-1" aria-hidden="true" tabindex="-1"></a>m_screen2 <span class="ot">&lt;-</span>  <span class="fu">glm</span>(<span class="fu">cbind</span>(screened, notscreened) <span class="sc">~</span> </span>
+<span id="cb964-2"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb964-2" aria-hidden="true" tabindex="-1"></a>                    meanage <span class="sc">+</span> female <span class="sc">+</span> pct_lowins <span class="sc">+</span> system, </span>
+<span id="cb964-3"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb964-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">family =</span> binomial, <span class="at">data =</span> colscr)</span>
+<span id="cb964-4"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb964-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_screen2)</span></code></pre></div>
 <pre><code>
 Call:
 glm(formula = cbind(screened, notscreened) ~ meanage + female + 
@@ -1193,15 +1196,15 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <div id="how-does-one-address-this-problem-in-rms" class="section level3" number="18.1.4">
 <h3><span class="header-section-number">18.1.4</span> How does one address this problem in <code>rms</code>?</h3>
 <p>We can use <code>Glm</code>. As an example to mirror <code>m_screen1</code>, we have the following…</p>
-<div class="sourceCode" id="cb964"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb964-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb964-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">datadist</span>(colscr)</span>
-<span id="cb964-2"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb964-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">datadist =</span> <span class="st">&quot;d&quot;</span>)</span>
-<span id="cb964-3"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb964-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb964-4"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb964-4" aria-hidden="true" tabindex="-1"></a>mod_screen_1 <span class="ot">&lt;-</span>  <span class="fu">Glm</span>(screen_rate <span class="sc">~</span> meanage <span class="sc">+</span> female <span class="sc">+</span> </span>
-<span id="cb964-5"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb964-5" aria-hidden="true" tabindex="-1"></a>                         pct_lowins <span class="sc">+</span> system, </span>
-<span id="cb964-6"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb964-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">family =</span> binomial, <span class="at">weights =</span> subjects, </span>
-<span id="cb964-7"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb964-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> colscr, <span class="at">x =</span> T, <span class="at">y =</span> T)</span>
-<span id="cb964-8"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb964-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb964-9"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb964-9" aria-hidden="true" tabindex="-1"></a>mod_screen_1</span></code></pre></div>
+<div class="sourceCode" id="cb966"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb966-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb966-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">datadist</span>(colscr)</span>
+<span id="cb966-2"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb966-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">datadist =</span> <span class="st">&quot;d&quot;</span>)</span>
+<span id="cb966-3"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb966-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb966-4"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb966-4" aria-hidden="true" tabindex="-1"></a>mod_screen_1 <span class="ot">&lt;-</span>  <span class="fu">Glm</span>(screen_rate <span class="sc">~</span> meanage <span class="sc">+</span> female <span class="sc">+</span> </span>
+<span id="cb966-5"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb966-5" aria-hidden="true" tabindex="-1"></a>                         pct_lowins <span class="sc">+</span> system, </span>
+<span id="cb966-6"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb966-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">family =</span> binomial, <span class="at">weights =</span> subjects, </span>
+<span id="cb966-7"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb966-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> colscr, <span class="at">x =</span> T, <span class="at">y =</span> T)</span>
+<span id="cb966-8"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb966-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb966-9"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb966-9" aria-hidden="true" tabindex="-1"></a>mod_screen_1</span></code></pre></div>
 <pre><code>General Linear Model
  
  Glm(formula = screen_rate ~ meanage + female + pct_lowins + system, 
@@ -1273,7 +1276,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
 </tbody>
 </table>
 <p>The goal is to use the other variables (besides subject ID) to predict whether or not a subject is up to date.</p>
-<div class="sourceCode" id="cb966"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb966-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb966-1" aria-hidden="true" tabindex="-1"></a>colscr2 <span class="sc">%&gt;%</span> <span class="fu">describe</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb968"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb968-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb968-1" aria-hidden="true" tabindex="-1"></a>colscr2 <span class="sc">%&gt;%</span> <span class="fu">describe</span>()</span></code></pre></div>
 <pre><code>. 
 
  8  Variables      172  Observations
@@ -1348,11 +1351,11 @@ up_to_date
 <div id="a-logistic-regression-model" class="section level3" number="18.2.2">
 <h3><span class="header-section-number">18.2.2</span> A logistic regression model</h3>
 <p>Here is a logistic regression model.</p>
-<div class="sourceCode" id="cb968"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb968-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb968-1" aria-hidden="true" tabindex="-1"></a>m_scr2_logistic <span class="ot">&lt;-</span> <span class="fu">glm</span>(up_to_date <span class="sc">~</span> age <span class="sc">+</span> race <span class="sc">+</span> hispanic <span class="sc">+</span> </span>
-<span id="cb968-2"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb968-2" aria-hidden="true" tabindex="-1"></a>                    insurance <span class="sc">+</span> bmi <span class="sc">+</span> sbp, </span>
-<span id="cb968-3"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb968-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">family =</span> binomial, <span class="at">data =</span> colscr2)</span>
-<span id="cb968-4"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb968-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb968-5"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb968-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_scr2_logistic)</span></code></pre></div>
+<div class="sourceCode" id="cb970"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb970-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb970-1" aria-hidden="true" tabindex="-1"></a>m_scr2_logistic <span class="ot">&lt;-</span> <span class="fu">glm</span>(up_to_date <span class="sc">~</span> age <span class="sc">+</span> race <span class="sc">+</span> hispanic <span class="sc">+</span> </span>
+<span id="cb970-2"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb970-2" aria-hidden="true" tabindex="-1"></a>                    insurance <span class="sc">+</span> bmi <span class="sc">+</span> sbp, </span>
+<span id="cb970-3"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb970-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">family =</span> binomial, <span class="at">data =</span> colscr2)</span>
+<span id="cb970-4"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb970-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb970-5"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb970-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_scr2_logistic)</span></code></pre></div>
 <pre><code>
 Call:
 glm(formula = up_to_date ~ age + race + hispanic + insurance + 
@@ -1384,7 +1387,7 @@ Residual deviance: 210.55  on 162  degrees of freedom
 AIC: 230.55
 
 Number of Fisher Scoring iterations: 4</code></pre>
-<div class="sourceCode" id="cb970"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb970-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb970-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(m_scr2_logistic)</span></code></pre></div>
+<div class="sourceCode" id="cb972"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb972-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb972-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(m_scr2_logistic)</span></code></pre></div>
 <pre><code>Waiting for profiling to be done...</code></pre>
 <pre><code>                         2.5 %       97.5 %
 (Intercept)        -2.64274441  8.157738367
@@ -1405,16 +1408,16 @@ sbp                -0.04436143 -0.005282686</code></pre>
 <li>Harry is age 65, White, non-Hispanic, with Medicare insurance, a BMI of 28 and SBP of 135.</li>
 <li>Sally is age 60, Black, Hispanic, with Medicaid insurance, a BMI of 22 and SBP of 148.</li>
 </ul>
-<div class="sourceCode" id="cb973"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb973-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb973-1" aria-hidden="true" tabindex="-1"></a>newdat_s2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">subject =</span> <span class="fu">c</span>(<span class="st">&quot;Harry&quot;</span>, <span class="st">&quot;Sally&quot;</span>),</span>
-<span id="cb973-2"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb973-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">60</span>),</span>
-<span id="cb973-3"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb973-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">race =</span> <span class="fu">c</span>(<span class="st">&quot;White&quot;</span>, <span class="st">&quot;Black&quot;</span>),</span>
-<span id="cb973-4"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb973-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">hispanic =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
-<span id="cb973-5"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb973-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">insurance =</span> <span class="fu">c</span>(<span class="st">&quot;Medicare&quot;</span>, <span class="st">&quot;Medicaid&quot;</span>),</span>
-<span id="cb973-6"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb973-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">bmi =</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">22</span>),</span>
-<span id="cb973-7"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb973-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">sbp =</span> <span class="fu">c</span>(<span class="dv">135</span>, <span class="dv">148</span>))</span>
-<span id="cb973-8"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb973-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb973-9"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb973-9" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m_scr2_logistic, <span class="at">newdata =</span> newdat_s2, </span>
-<span id="cb973-10"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb973-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb975"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb975-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-1" aria-hidden="true" tabindex="-1"></a>newdat_s2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">subject =</span> <span class="fu">c</span>(<span class="st">&quot;Harry&quot;</span>, <span class="st">&quot;Sally&quot;</span>),</span>
+<span id="cb975-2"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">60</span>),</span>
+<span id="cb975-3"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">race =</span> <span class="fu">c</span>(<span class="st">&quot;White&quot;</span>, <span class="st">&quot;Black&quot;</span>),</span>
+<span id="cb975-4"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">hispanic =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb975-5"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">insurance =</span> <span class="fu">c</span>(<span class="st">&quot;Medicare&quot;</span>, <span class="st">&quot;Medicaid&quot;</span>),</span>
+<span id="cb975-6"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">bmi =</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">22</span>),</span>
+<span id="cb975-7"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">sbp =</span> <span class="fu">c</span>(<span class="dv">135</span>, <span class="dv">148</span>))</span>
+<span id="cb975-8"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb975-9"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-9" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m_scr2_logistic, <span class="at">newdata =</span> newdat_s2, </span>
+<span id="cb975-10"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
 <pre><code>        1         2 
 0.5904364 0.4215335 </code></pre>
 <p>The prediction for Harry is 0.59, and for Sally, 0.42, by this logistic regression model.</p>
@@ -1422,12 +1425,12 @@ sbp                -0.04436143 -0.005282686</code></pre>
 <div id="a-probit-regression-model" class="section level3" number="18.2.4">
 <h3><span class="header-section-number">18.2.4</span> A probit regression model</h3>
 <p>Now, consider a probit regression, fit by changing the default link for the <code>binomial</code> family as follows:</p>
-<div class="sourceCode" id="cb975"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb975-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-1" aria-hidden="true" tabindex="-1"></a>m_scr2_probit <span class="ot">&lt;-</span> <span class="fu">glm</span>(up_to_date <span class="sc">~</span> age <span class="sc">+</span> race <span class="sc">+</span> hispanic <span class="sc">+</span> </span>
-<span id="cb975-2"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-2" aria-hidden="true" tabindex="-1"></a>                    insurance <span class="sc">+</span> bmi <span class="sc">+</span> sbp, </span>
-<span id="cb975-3"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;probit&quot;</span>), </span>
-<span id="cb975-4"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> colscr2)</span>
-<span id="cb975-5"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb975-6"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_scr2_probit)</span></code></pre></div>
+<div class="sourceCode" id="cb977"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb977-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb977-1" aria-hidden="true" tabindex="-1"></a>m_scr2_probit <span class="ot">&lt;-</span> <span class="fu">glm</span>(up_to_date <span class="sc">~</span> age <span class="sc">+</span> race <span class="sc">+</span> hispanic <span class="sc">+</span> </span>
+<span id="cb977-2"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb977-2" aria-hidden="true" tabindex="-1"></a>                    insurance <span class="sc">+</span> bmi <span class="sc">+</span> sbp, </span>
+<span id="cb977-3"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb977-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;probit&quot;</span>), </span>
+<span id="cb977-4"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb977-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> colscr2)</span>
+<span id="cb977-5"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb977-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb977-6"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb977-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_scr2_probit)</span></code></pre></div>
 <pre><code>
 Call:
 glm(formula = up_to_date ~ age + race + hispanic + insurance + 
@@ -1459,7 +1462,7 @@ Residual deviance: 210.49  on 162  degrees of freedom
 AIC: 230.49
 
 Number of Fisher Scoring iterations: 4</code></pre>
-<div class="sourceCode" id="cb977"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb977-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb977-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(m_scr2_probit)</span></code></pre></div>
+<div class="sourceCode" id="cb979"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb979-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb979-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(m_scr2_probit)</span></code></pre></div>
 <pre><code>Waiting for profiling to be done...</code></pre>
 <pre><code>                         2.5 %       97.5 %
 (Intercept)        -1.70739455  4.894713408
@@ -1476,7 +1479,7 @@ sbp                -0.02659318 -0.003148488</code></pre>
 <div id="interpreting-the-probit-models-coefficients" class="section level3" number="18.2.5">
 <h3><span class="header-section-number">18.2.5</span> Interpreting the Probit Model’s Coefficients</h3>
 <p>It is possible to use any number of link functions to ensure that predicted values in a generalized linear model fall between 0 and 1. The probit regression model, for instance, uses the inverse of the cumulative distribution function of the Normal model as its link function. Let’s look more closely at the coefficients of the probit model we just fit.</p>
-<div class="sourceCode" id="cb980"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb980-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb980-1" aria-hidden="true" tabindex="-1"></a>m_scr2_probit<span class="sc">$</span>coef</span></code></pre></div>
+<div class="sourceCode" id="cb982"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb982-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb982-1" aria-hidden="true" tabindex="-1"></a>m_scr2_probit<span class="sc">$</span>coef</span></code></pre></div>
 <pre><code>       (Intercept)                age          raceOther          raceWhite 
        1.584603569        0.013461338       -1.238445198       -0.199260184 
           hispanic  insuranceMedicaid  insuranceMedicare insuranceUninsured 
@@ -1492,7 +1495,7 @@ sbp                -0.02659318 -0.003148488</code></pre>
 <div id="what-about-harry-and-sally" class="section level3" number="18.2.6">
 <h3><span class="header-section-number">18.2.6</span> What about Harry and Sally?</h3>
 <p>Do the predictions for Harry and Sally change much with this probit model, as compared to the logistic regression?</p>
-<div class="sourceCode" id="cb982"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb982-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb982-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m_scr2_probit, <span class="at">newdata =</span> newdat_s2, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb984"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb984-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb984-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m_scr2_probit, <span class="at">newdata =</span> newdat_s2, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
 <pre><code>        1         2 
 0.5885511 0.4364027 </code></pre>
 

@@ -32,7 +32,7 @@
   
 <link rel="prev" href="modeling-a-count-outcome-in-ohio-smart.html"/>
 <link rel="next" href="analyzing-literary-styles-with-multinomial-logistic-regression.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -306,7 +306,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.9" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#creating-a-factor-combining-sex-and-waist"><i class="fa fa-check"></i><b>6.9</b> Creating a factor combining sex and waist</a></li>
 <li class="chapter" data-level="6.10" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-means-plot-for-the-cortisol-trial-with-standard-errors"><i class="fa fa-check"></i><b>6.10</b> A Means Plot for the <code>cortisol</code> trial (with standard errors)</a></li>
-<li class="chapter" data-level="6.11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-with-interaction"><i class="fa fa-check"></i><b>6.11</b> A Two-Way ANOVA model for <code>cortisol</code> with Interaction</a></li>
+<li class="chapter" data-level="6.11" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-with-interaction"><i class="fa fa-check"></i><b>6.11</b> A Two-Way ANOVA model for <code>cortisol</code> with Interaction</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#notes-on-this-question"><i class="fa fa-check"></i><b>6.11.1</b> Notes on this Question</a></li>
+</ul></li>
 <li class="chapter" data-level="6.12" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#a-two-way-anova-model-for-cortisol-without-interaction"><i class="fa fa-check"></i><b>6.12</b> A Two-Way ANOVA model for <code>cortisol</code> without Interaction</a>
 <ul>
 <li class="chapter" data-level="6.12.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-graph"><i class="fa fa-check"></i><b>6.12.1</b> The Graph</a></li>
@@ -986,9 +989,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 20</span> Modeling an Ordinal Categorical Outcome in Ohio SMART</h1>
 <div id="preliminaries-1" class="section level2" number="20.1">
 <h2><span class="header-section-number">20.1</span> Preliminaries</h2>
-<div class="sourceCode" id="cb1311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1311-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1311-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gmodels)</span>
-<span id="cb1311-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1311-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nnet)</span></code></pre></div>
-<div class="sourceCode" id="cb1312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1312-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1312-1" aria-hidden="true" tabindex="-1"></a>smart_oh <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;smart_ohio.Rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1315-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1315-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gmodels)</span>
+<span id="cb1315-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1315-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nnet)</span></code></pre></div>
+<div class="sourceCode" id="cb1316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1316-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1316-1" aria-hidden="true" tabindex="-1"></a>smart_oh <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;smart_ohio.Rds&quot;</span>))</span></code></pre></div>
 </div>
 <div id="a-subset-of-the-ohio-smart-data-1" class="section level2" number="20.2">
 <h2><span class="header-section-number">20.2</span> A subset of the Ohio SMART data</h2>
@@ -1036,26 +1039,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>To make my life easier later, I’m going to drop any subjects with missing data on these variables. I’m also going to drop the subjects who have no missing data, but have a listed <code>bmi</code> above 60.</p>
-<div class="sourceCode" id="cb1313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1313-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1313-1" aria-hidden="true" tabindex="-1"></a>sm1 <span class="ot">&lt;-</span> smart_oh <span class="sc">%&gt;%</span></span>
-<span id="cb1313-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1313-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(SEQNO, genhealth, physhealth, costprob, veg_day,</span>
-<span id="cb1313-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1313-3" aria-hidden="true" tabindex="-1"></a>           incomegroup, bmi) <span class="sc">%&gt;%</span></span>
-<span id="cb1313-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1313-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(bmi <span class="sc">&lt;=</span> <span class="dv">60</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb1313-5"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1313-5" aria-hidden="true" tabindex="-1"></a>    drop_na</span></code></pre></div>
+<div class="sourceCode" id="cb1317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1317-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1317-1" aria-hidden="true" tabindex="-1"></a>sm1 <span class="ot">&lt;-</span> smart_oh <span class="sc">%&gt;%</span></span>
+<span id="cb1317-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1317-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(SEQNO, genhealth, physhealth, costprob, veg_day,</span>
+<span id="cb1317-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1317-3" aria-hidden="true" tabindex="-1"></a>           incomegroup, bmi) <span class="sc">%&gt;%</span></span>
+<span id="cb1317-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1317-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(bmi <span class="sc">&lt;=</span> <span class="dv">60</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1317-5"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1317-5" aria-hidden="true" tabindex="-1"></a>    drop_na</span></code></pre></div>
 <p>In total, we have 5394 subjects in the <code>sm1</code> sample.</p>
 <div id="several-ways-of-storing-multi-categorical-data" class="section level3" number="20.2.1">
 <h3><span class="header-section-number">20.2.1</span> Several Ways of Storing Multi-Categorical data</h3>
 <p>We will store the information in our outcome, <code>genhealth</code> in both a numeric form (<code>gen_n</code>) and an ordered factor (<code>gen_h</code>) with some abbreviated labels) because we’ll have some use for each approach in this material.</p>
-<div class="sourceCode" id="cb1314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1314-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1314-1" aria-hidden="true" tabindex="-1"></a>sm1 <span class="ot">&lt;-</span> sm1 <span class="sc">%&gt;%</span></span>
-<span id="cb1314-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1314-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">genh =</span> <span class="fu">fct_recode</span>(genhealth,</span>
-<span id="cb1314-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1314-3" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&quot;1-E&quot;</span> <span class="ot">=</span> <span class="st">&quot;1_Excellent&quot;</span>,</span>
-<span id="cb1314-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1314-4" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&quot;2_VG&quot;</span> <span class="ot">=</span> <span class="st">&quot;2_VeryGood&quot;</span>,</span>
-<span id="cb1314-5"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1314-5" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&quot;3_G&quot;</span> <span class="ot">=</span> <span class="st">&quot;3_Good&quot;</span>,</span>
-<span id="cb1314-6"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1314-6" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&quot;4_F&quot;</span> <span class="ot">=</span> <span class="st">&quot;4_Fair&quot;</span>,</span>
-<span id="cb1314-7"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1314-7" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&quot;5_P&quot;</span> <span class="ot">=</span> <span class="st">&quot;5_Poor&quot;</span>),</span>
-<span id="cb1314-8"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1314-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">genh =</span> <span class="fu">factor</span>(genh, <span class="at">ordered =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb1314-9"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1314-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">gen_n =</span> <span class="fu">as.numeric</span>(genhealth))</span>
-<span id="cb1314-10"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1314-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1314-11"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1314-11" aria-hidden="true" tabindex="-1"></a>sm1 <span class="sc">%&gt;%</span> <span class="fu">count</span>(genh, gen_n, genhealth)</span></code></pre></div>
+<div class="sourceCode" id="cb1318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1318-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1318-1" aria-hidden="true" tabindex="-1"></a>sm1 <span class="ot">&lt;-</span> sm1 <span class="sc">%&gt;%</span></span>
+<span id="cb1318-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1318-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">genh =</span> <span class="fu">fct_recode</span>(genhealth,</span>
+<span id="cb1318-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1318-3" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&quot;1-E&quot;</span> <span class="ot">=</span> <span class="st">&quot;1_Excellent&quot;</span>,</span>
+<span id="cb1318-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1318-4" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&quot;2_VG&quot;</span> <span class="ot">=</span> <span class="st">&quot;2_VeryGood&quot;</span>,</span>
+<span id="cb1318-5"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1318-5" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&quot;3_G&quot;</span> <span class="ot">=</span> <span class="st">&quot;3_Good&quot;</span>,</span>
+<span id="cb1318-6"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1318-6" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&quot;4_F&quot;</span> <span class="ot">=</span> <span class="st">&quot;4_Fair&quot;</span>,</span>
+<span id="cb1318-7"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1318-7" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&quot;5_P&quot;</span> <span class="ot">=</span> <span class="st">&quot;5_Poor&quot;</span>),</span>
+<span id="cb1318-8"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1318-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">genh =</span> <span class="fu">factor</span>(genh, <span class="at">ordered =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1318-9"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1318-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">gen_n =</span> <span class="fu">as.numeric</span>(genhealth))</span>
+<span id="cb1318-10"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1318-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1318-11"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1318-11" aria-hidden="true" tabindex="-1"></a>sm1 <span class="sc">%&gt;%</span> <span class="fu">count</span>(genh, gen_n, genhealth)</span></code></pre></div>
 <pre><code># A tibble: 5 x 4
   genh  gen_n genhealth       n
   &lt;ord&gt; &lt;dbl&gt; &lt;fct&gt;       &lt;int&gt;
@@ -1071,7 +1074,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Is income group associated with general health?</p>
 <div id="using-base-table-functions" class="section level3" number="20.3.1">
 <h3><span class="header-section-number">20.3.1</span> Using base <code>table</code> functions</h3>
-<div class="sourceCode" id="cb1316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1316-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1316-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(<span class="fu">table</span>(sm1<span class="sc">$</span>incomegroup, sm1<span class="sc">$</span>genh))</span></code></pre></div>
+<div class="sourceCode" id="cb1320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1320-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1320-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(<span class="fu">table</span>(sm1<span class="sc">$</span>incomegroup, sm1<span class="sc">$</span>genh))</span></code></pre></div>
 <pre><code>        
           1-E 2_VG  3_G  4_F  5_P  Sum
   0-9K     14   45   60   74   40  233
@@ -1087,12 +1090,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="adding-percentages-within-each-row" class="section level4" number="20.3.1.1">
 <h4><span class="header-section-number">20.3.1.1</span> Adding percentages within each row</h4>
 <p>Here are the percentages giving each <code>genhealth</code> response within each income group.</p>
-<div class="sourceCode" id="cb1318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1318-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1318-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(</span>
-<span id="cb1318-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1318-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span><span class="fu">prop.table</span>(</span>
-<span id="cb1318-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1318-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">table</span>(sm1<span class="sc">$</span>incomegroup, sm1<span class="sc">$</span>genh)</span>
-<span id="cb1318-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1318-4" aria-hidden="true" tabindex="-1"></a>        ,<span class="dv">1</span>)</span>
-<span id="cb1318-5"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1318-5" aria-hidden="true" tabindex="-1"></a>        ,<span class="dv">1</span>)</span>
-<span id="cb1318-6"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1318-6" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb1322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1322-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1322-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(</span>
+<span id="cb1322-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1322-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span><span class="fu">prop.table</span>(</span>
+<span id="cb1322-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1322-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">table</span>(sm1<span class="sc">$</span>incomegroup, sm1<span class="sc">$</span>genh)</span>
+<span id="cb1322-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1322-4" aria-hidden="true" tabindex="-1"></a>        ,<span class="dv">1</span>)</span>
+<span id="cb1322-5"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1322-5" aria-hidden="true" tabindex="-1"></a>        ,<span class="dv">1</span>)</span>
+<span id="cb1322-6"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1322-6" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
 <pre><code>        
            1-E  2_VG   3_G   4_F   5_P   Sum
   0-9K     6.0  19.3  25.8  31.8  17.2 100.1
@@ -1109,12 +1112,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="adding-percentages-within-each-column" class="section level4" number="20.3.1.2">
 <h4><span class="header-section-number">20.3.1.2</span> Adding percentages within each column</h4>
 <p>Here are the percentages in each <code>incomegroup</code> within each <code>genhealth</code> response.</p>
-<div class="sourceCode" id="cb1320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1320-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1320-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(</span>
-<span id="cb1320-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1320-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span><span class="fu">prop.table</span>(</span>
-<span id="cb1320-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1320-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">table</span>(sm1<span class="sc">$</span>incomegroup, sm1<span class="sc">$</span>genh)</span>
-<span id="cb1320-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1320-4" aria-hidden="true" tabindex="-1"></a>        ,<span class="dv">2</span>)</span>
-<span id="cb1320-5"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1320-5" aria-hidden="true" tabindex="-1"></a>        ,<span class="dv">1</span>)</span>
-<span id="cb1320-6"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1320-6" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb1324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1324-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1324-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(</span>
+<span id="cb1324-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1324-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span><span class="fu">prop.table</span>(</span>
+<span id="cb1324-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1324-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">table</span>(sm1<span class="sc">$</span>incomegroup, sm1<span class="sc">$</span>genh)</span>
+<span id="cb1324-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1324-4" aria-hidden="true" tabindex="-1"></a>        ,<span class="dv">2</span>)</span>
+<span id="cb1324-5"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1324-5" aria-hidden="true" tabindex="-1"></a>        ,<span class="dv">1</span>)</span>
+<span id="cb1324-6"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1324-6" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
 <pre><code>        
            1-E  2_VG   3_G   4_F   5_P   Sum
   0-9K     1.7   2.5   3.6   9.2  13.4  30.4
@@ -1132,7 +1135,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="using-xtabs" class="section level3" number="20.3.2">
 <h3><span class="header-section-number">20.3.2</span> Using <code>xtabs</code></h3>
 <p>The <code>xtabs</code> function provides a formula method for obtaining cross-tabulations.</p>
-<div class="sourceCode" id="cb1322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1322-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1322-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xtabs</span>(<span class="sc">~</span> incomegroup <span class="sc">+</span> genh, <span class="at">data =</span> sm1)</span></code></pre></div>
+<div class="sourceCode" id="cb1326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1326-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1326-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xtabs</span>(<span class="sc">~</span> incomegroup <span class="sc">+</span> genh, <span class="at">data =</span> sm1)</span></code></pre></div>
 <pre><code>           genh
 incomegroup 1-E 2_VG 3_G 4_F 5_P
      0-9K    14   45  60  74  40
@@ -1147,7 +1150,7 @@ incomegroup 1-E 2_VG 3_G 4_F 5_P
 <div id="storing-a-table-in-a-tibble" class="section level3" number="20.3.3">
 <h3><span class="header-section-number">20.3.3</span> Storing a table in a tibble</h3>
 <p>We can store the elements of a cross-tabulation in a tibble, like this:</p>
-<div class="sourceCode" id="cb1324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1324-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1324-1" aria-hidden="true" tabindex="-1"></a>(sm1.tableA <span class="ot">&lt;-</span> sm1 <span class="sc">%&gt;%</span> <span class="fu">count</span>(incomegroup, genh))</span></code></pre></div>
+<div class="sourceCode" id="cb1328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1328-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1328-1" aria-hidden="true" tabindex="-1"></a>(sm1.tableA <span class="ot">&lt;-</span> sm1 <span class="sc">%&gt;%</span> <span class="fu">count</span>(incomegroup, genh))</span></code></pre></div>
 <pre><code># A tibble: 40 x 3
    incomegroup genh      n
    &lt;fct&gt;       &lt;ord&gt; &lt;int&gt;
@@ -1163,7 +1166,7 @@ incomegroup 1-E 2_VG 3_G 4_F 5_P
 10 10-14K      5_P      46
 # ... with 30 more rows</code></pre>
 <p>From such a tibble, we can visualize the data in many ways, but we can also return to <code>xtabs</code> and include the frequencies (<code>n</code>) in that setup.</p>
-<div class="sourceCode" id="cb1326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1326-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1326-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xtabs</span>(n <span class="sc">~</span> incomegroup <span class="sc">+</span> genh, <span class="at">data =</span> sm1.tableA)</span></code></pre></div>
+<div class="sourceCode" id="cb1330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1330-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1330-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xtabs</span>(n <span class="sc">~</span> incomegroup <span class="sc">+</span> genh, <span class="at">data =</span> sm1.tableA)</span></code></pre></div>
 <pre><code>           genh
 incomegroup 1-E 2_VG 3_G 4_F 5_P
      0-9K    14   45  60  74  40
@@ -1175,7 +1178,7 @@ incomegroup 1-E 2_VG 3_G 4_F 5_P
      50-74K 128  337 265  94  16
      75K+   429  735 464 103  26</code></pre>
 <p>And, we can get the <span class="math inline">\(\chi^2\)</span> test of independence, with:</p>
-<div class="sourceCode" id="cb1328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1328-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1328-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">xtabs</span>(n <span class="sc">~</span> incomegroup <span class="sc">+</span> genh, <span class="at">data =</span> sm1.tableA))</span></code></pre></div>
+<div class="sourceCode" id="cb1332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1332-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1332-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">xtabs</span>(n <span class="sc">~</span> incomegroup <span class="sc">+</span> genh, <span class="at">data =</span> sm1.tableA))</span></code></pre></div>
 <pre><code>Call: xtabs(formula = n ~ incomegroup + genh, data = sm1.tableA)
 Number of cases in table: 5394 
 Number of factors: 2 
@@ -1185,7 +1188,7 @@ Test for independence of all factors:
 <div id="using-crosstable-from-the-gmodels-package" class="section level3" number="20.3.4">
 <h3><span class="header-section-number">20.3.4</span> Using <code>CrossTable</code> from the <code>gmodels</code> package</h3>
 <p>The <code>CrossTable</code> function from the <code>gmodels</code> package produces a cross-tabulation with various counts and proportions like people often generate with SPSS and SAS.</p>
-<div class="sourceCode" id="cb1330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1330-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1330-1" aria-hidden="true" tabindex="-1"></a><span class="fu">CrossTable</span>(sm1<span class="sc">$</span>incomegroup, sm1<span class="sc">$</span>genh, <span class="at">chisq =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb1334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1334-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1334-1" aria-hidden="true" tabindex="-1"></a><span class="fu">CrossTable</span>(sm1<span class="sc">$</span>incomegroup, sm1<span class="sc">$</span>genh, <span class="at">chisq =</span> T)</span></code></pre></div>
 <pre><code>
  
    Cell Contents
@@ -1272,31 +1275,31 @@ Chi^2 =  894.1685     d.f. =  28     p =  3.216132e-170
 <h2><span class="header-section-number">20.4</span> Graphing Categorical Data</h2>
 <div id="a-bar-chart-for-a-single-variable" class="section level3" number="20.4.1">
 <h3><span class="header-section-number">20.4.1</span> A Bar Chart for a Single Variable</h3>
-<div class="sourceCode" id="cb1332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1332-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1332-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sm1, <span class="fu">aes</span>(<span class="at">x =</span> genhealth, <span class="at">fill =</span> genhealth)) <span class="sc">+</span> </span>
-<span id="cb1332-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1332-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb1332-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1332-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) <span class="sc">+</span></span>
-<span id="cb1332-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1332-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">fill =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-548-1.png" width="672" /></p>
+<div class="sourceCode" id="cb1336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1336-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1336-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sm1, <span class="fu">aes</span>(<span class="at">x =</span> genhealth, <span class="at">fill =</span> genhealth)) <span class="sc">+</span> </span>
+<span id="cb1336-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1336-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb1336-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1336-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1336-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1336-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">fill =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-550-1.png" width="672" /></p>
 <p>or, you might prefer to plot percentages, perhaps like this:</p>
-<div class="sourceCode" id="cb1333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1333-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1333-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sm1, <span class="fu">aes</span>(<span class="at">x =</span> genhealth, <span class="at">fill =</span> genhealth)) <span class="sc">+</span> </span>
-<span id="cb1333-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1333-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> (..count..)<span class="sc">/</span><span class="fu">sum</span>(..count..))) <span class="sc">+</span></span>
-<span id="cb1333-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1333-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">y =</span> (..count..)<span class="sc">/</span><span class="fu">sum</span>(..count..), </span>
-<span id="cb1333-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1333-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>((..count..) <span class="sc">/</span> </span>
-<span id="cb1333-5"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1333-5" aria-hidden="true" tabindex="-1"></a>                                        <span class="fu">sum</span>(..count..))),</span>
-<span id="cb1333-6"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1333-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">stat =</span> <span class="st">&quot;count&quot;</span>, <span class="at">vjust =</span> <span class="dv">1</span>, </span>
-<span id="cb1333-7"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1333-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb1333-8"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1333-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
-<span id="cb1333-9"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1333-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
-<span id="cb1333-10"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1333-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">fill =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb1333-11"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1333-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Percentage&quot;</span>)</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-549-1.png" width="672" /></p>
+<div class="sourceCode" id="cb1337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1337-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1337-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sm1, <span class="fu">aes</span>(<span class="at">x =</span> genhealth, <span class="at">fill =</span> genhealth)) <span class="sc">+</span> </span>
+<span id="cb1337-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1337-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> (..count..)<span class="sc">/</span><span class="fu">sum</span>(..count..))) <span class="sc">+</span></span>
+<span id="cb1337-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1337-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">y =</span> (..count..)<span class="sc">/</span><span class="fu">sum</span>(..count..), </span>
+<span id="cb1337-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1337-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>((..count..) <span class="sc">/</span> </span>
+<span id="cb1337-5"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1337-5" aria-hidden="true" tabindex="-1"></a>                                        <span class="fu">sum</span>(..count..))),</span>
+<span id="cb1337-6"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1337-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">stat =</span> <span class="st">&quot;count&quot;</span>, <span class="at">vjust =</span> <span class="dv">1</span>, </span>
+<span id="cb1337-7"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1337-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb1337-8"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1337-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb1337-9"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1337-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1337-10"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1337-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">fill =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb1337-11"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1337-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Percentage&quot;</span>)</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-551-1.png" width="672" /></p>
 <p>Use bar charts, rather than pie charts.</p>
 </div>
 <div id="a-counts-chart-for-a-2-way-cross-tabulation" class="section level3" number="20.4.2">
 <h3><span class="header-section-number">20.4.2</span> A Counts Chart for a 2-Way Cross-Tabulation</h3>
-<div class="sourceCode" id="cb1334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1334-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1334-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sm1, <span class="fu">aes</span>(<span class="at">x =</span> genhealth, <span class="at">y =</span> incomegroup)) <span class="sc">+</span> </span>
-<span id="cb1334-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1334-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_count</span>() </span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-550-1.png" width="672" /></p>
+<div class="sourceCode" id="cb1338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1338-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1338-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sm1, <span class="fu">aes</span>(<span class="at">x =</span> genhealth, <span class="at">y =</span> incomegroup)) <span class="sc">+</span> </span>
+<span id="cb1338-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1338-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_count</span>() </span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-552-1.png" width="672" /></p>
 </div>
 </div>
 <div id="building-a-model-for-genh-using-veg_day" class="section level2" number="20.5">
@@ -1305,8 +1308,8 @@ Chi^2 =  894.1685     d.f. =  28     p =  3.216132e-170
 <div id="a-little-eda" class="section level3" number="20.5.1">
 <h3><span class="header-section-number">20.5.1</span> A little EDA</h3>
 <p>Let’s start with a quick table of summary statistics.</p>
-<div class="sourceCode" id="cb1335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1335-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1335-1" aria-hidden="true" tabindex="-1"></a>sm1 <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(genh) <span class="sc">%&gt;%</span></span>
-<span id="cb1335-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1335-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="fu">n</span>(), <span class="fu">mean</span>(veg_day), <span class="fu">sd</span>(veg_day), <span class="fu">median</span>(veg_day))</span></code></pre></div>
+<div class="sourceCode" id="cb1339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1339-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1339-1" aria-hidden="true" tabindex="-1"></a>sm1 <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(genh) <span class="sc">%&gt;%</span></span>
+<span id="cb1339-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1339-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="fu">n</span>(), <span class="fu">mean</span>(veg_day), <span class="fu">sd</span>(veg_day), <span class="fu">median</span>(veg_day))</span></code></pre></div>
 <pre><code># A tibble: 5 x 5
   genh  `n()` `mean(veg_day)` `sd(veg_day)` `median(veg_day)`
 * &lt;ord&gt; &lt;int&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;
@@ -1316,12 +1319,12 @@ Chi^2 =  894.1685     d.f. =  28     p =  3.216132e-170
 4 4_F     801            1.74          1.18              1.57
 5 5_P     299            1.71          1.06              1.57</code></pre>
 <p>To actually see what’s going on, we might build a comparison boxplot, or violin plot. The plot below shows both, together, with the violin plot helping to indicate the skewed nature of the <code>veg_day</code> data and the boxplot indicating quartiles and outlying values within each <code>genhealth</code> category.</p>
-<div class="sourceCode" id="cb1337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1337-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1337-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sm1, <span class="fu">aes</span>(<span class="at">x =</span> genhealth, <span class="at">y =</span> veg_day)) <span class="sc">+</span></span>
-<span id="cb1337-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1337-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">fill =</span> genhealth), <span class="at">trim =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb1337-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1337-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb1337-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1337-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">fill =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb1337-5"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1337-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-552-1.png" width="672" /></p>
+<div class="sourceCode" id="cb1341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1341-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1341-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sm1, <span class="fu">aes</span>(<span class="at">x =</span> genhealth, <span class="at">y =</span> veg_day)) <span class="sc">+</span></span>
+<span id="cb1341-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1341-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">fill =</span> genhealth), <span class="at">trim =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb1341-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1341-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb1341-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1341-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">fill =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb1341-5"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1341-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-554-1.png" width="672" /></p>
 </div>
 <div id="describing-the-proportional-odds-cumulative-logit-model" class="section level3" number="20.5.2">
 <h3><span class="header-section-number">20.5.2</span> Describing the Proportional-Odds Cumulative Logit Model</h3>
@@ -1365,10 +1368,10 @@ logit[Pr(genh \leq 4)] = log \frac{Pr(genh \leq 4}{Pr(genh &gt; 4)} = \zeta_4 - 
 <div id="fitting-a-proportional-odds-logistic-regression-with-polr" class="section level3" number="20.5.3">
 <h3><span class="header-section-number">20.5.3</span> Fitting a Proportional Odds Logistic Regression with <code>polr</code></h3>
 <p>Our model <code>m1</code> will use proportional odds logistic regression (sometimes called an <em>ordered logit</em> model) to predict <code>genh</code> on the basis of <code>veg_day</code>. The <code>polr</code> function can help us do this. Note that we include <code>Hess = TRUE</code> to retain what is called the <em>Hessian</em> matrix, which lets R calculate standard errors more effectively in <code>summary</code> and other follow-up descriptions of the model.</p>
-<div class="sourceCode" id="cb1338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1338-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1338-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">polr</span>(genh <span class="sc">~</span> veg_day, </span>
-<span id="cb1338-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1338-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> sm1, <span class="at">Hess =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1338-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1338-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1338-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1338-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
+<div class="sourceCode" id="cb1342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1342-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1342-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">polr</span>(genh <span class="sc">~</span> veg_day, </span>
+<span id="cb1342-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1342-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> sm1, <span class="at">Hess =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1342-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1342-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1342-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1342-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
 <pre><code>Call:
 polr(formula = genh ~ veg_day, data = sm1, Hess = TRUE)
 
@@ -1385,7 +1388,7 @@ Intercepts:
 
 Residual Deviance: 15669.85 
 AIC: 15679.85 </code></pre>
-<div class="sourceCode" id="cb1340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1340-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1340-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(m1)</span></code></pre></div>
+<div class="sourceCode" id="cb1344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1344-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1344-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(m1)</span></code></pre></div>
 <pre><code>Waiting for profiling to be done...</code></pre>
 <pre><code>     2.5 %     97.5 % 
 -0.2277073 -0.1423088 </code></pre>
@@ -1430,10 +1433,10 @@ Pr(genh \leq 2) = \frac{exp(\zeta_2 + \beta_1 veg_day)}{1 + exp(\zeta_2 + \beta_
 <div id="making-predictions-for-harry-and-sally-with-predict" class="section level3" number="20.6.2">
 <h3><span class="header-section-number">20.6.2</span> Making Predictions for Harry (and Sally) with <code>predict</code></h3>
 <p>Suppose Harry eats 2 servings of vegetables per day on average, and Sally eats 1.</p>
-<div class="sourceCode" id="cb1343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1343-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1343-1" aria-hidden="true" tabindex="-1"></a>temp.dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Harry&quot;</span>, <span class="st">&quot;Sally&quot;</span>), </span>
-<span id="cb1343-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1343-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">veg_day =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</span>
-<span id="cb1343-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1343-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1343-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1343-4" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m1, temp.dat, <span class="at">type =</span> <span class="st">&quot;p&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1347-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1347-1" aria-hidden="true" tabindex="-1"></a>temp.dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Harry&quot;</span>, <span class="st">&quot;Sally&quot;</span>), </span>
+<span id="cb1347-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1347-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">veg_day =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</span>
+<span id="cb1347-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1347-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1347-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1347-4" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m1, temp.dat, <span class="at">type =</span> <span class="st">&quot;p&quot;</span>)</span></code></pre></div>
 <pre><code>        1-E      2_VG       3_G       4_F        5_P
 1 0.1522351 0.3385119 0.3097906 0.1457864 0.05367596
 2 0.1298931 0.3148971 0.3246105 0.1667285 0.06387071</code></pre>
@@ -1480,13 +1483,13 @@ Pr(genh \leq 2) = \frac{exp(\zeta_2 + \beta_1 veg_day)}{1 + exp(\zeta_2 + \beta_
 <div id="predicting-the-actual-classification-of-genh" class="section level3" number="20.6.3">
 <h3><span class="header-section-number">20.6.3</span> Predicting the actual classification of <code>genh</code></h3>
 <p>The default prediction approach actually returns the predicted <code>genh</code> classification for Harry and Sally, which is just the classification with the largest predicted probability. Here, for Harry that is Very Good, and for Sally, that’s Good.</p>
-<div class="sourceCode" id="cb1345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1345-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1345-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m1, temp.dat)</span></code></pre></div>
+<div class="sourceCode" id="cb1349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1349-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1349-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m1, temp.dat)</span></code></pre></div>
 <pre><code>[1] 2_VG 3_G 
 Levels: 1-E 2_VG 3_G 4_F 5_P</code></pre>
 </div>
 <div id="a-cross-tabulation-of-predictions" class="section level3" number="20.6.4">
 <h3><span class="header-section-number">20.6.4</span> A Cross-Tabulation of Predictions?</h3>
-<div class="sourceCode" id="cb1347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1347-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1347-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(<span class="fu">table</span>(<span class="fu">predict</span>(m1), sm1<span class="sc">$</span>genh))</span></code></pre></div>
+<div class="sourceCode" id="cb1351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1351-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1351-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(<span class="fu">table</span>(<span class="fu">predict</span>(m1), sm1<span class="sc">$</span>genh))</span></code></pre></div>
 <pre><code>      
         1-E 2_VG  3_G  4_F  5_P  Sum
   1-E     6    3    3    3    0   15
@@ -1499,7 +1502,7 @@ Levels: 1-E 2_VG 3_G 4_F 5_P</code></pre>
 </div>
 <div id="the-fitted-model-equations" class="section level3" number="20.6.5">
 <h3><span class="header-section-number">20.6.5</span> The Fitted Model Equations</h3>
-<div class="sourceCode" id="cb1349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1349-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1349-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
+<div class="sourceCode" id="cb1353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1353-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1353-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
 <pre><code>Call:
 polr(formula = genh ~ veg_day, data = sm1, Hess = TRUE)
 
@@ -1524,11 +1527,11 @@ logit[Pr(genh \leq 3)]  =  1.0202 - (-0.1847) veg_day \\
 logit[Pr(genh \leq 4)] =  2.5002 - (-0.1847) veg_day 
 \]</span></p>
 <p>Note that we can obtain these pieces separately as follows:</p>
-<div class="sourceCode" id="cb1351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1351-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1351-1" aria-hidden="true" tabindex="-1"></a>m1<span class="sc">$</span>zeta</span></code></pre></div>
+<div class="sourceCode" id="cb1355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1355-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1355-1" aria-hidden="true" tabindex="-1"></a>m1<span class="sc">$</span>zeta</span></code></pre></div>
 <pre><code>  1-E|2_VG   2_VG|3_G    3_G|4_F    4_F|5_P 
 -2.0866313 -0.4064704  1.0202035  2.5001655 </code></pre>
 <p>shows the boundary intercepts, and</p>
-<div class="sourceCode" id="cb1353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1353-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1353-1" aria-hidden="true" tabindex="-1"></a>m1<span class="sc">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb1357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1357-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1357-1" aria-hidden="true" tabindex="-1"></a>m1<span class="sc">$</span>coefficients</span></code></pre></div>
 <pre><code>   veg_day 
 -0.1847272 </code></pre>
 <p>shows the regression coefficient for <code>veg_day</code>.</p>
@@ -1548,10 +1551,10 @@ logit[Pr(genh \leq 4)] =  2.5002 - (-0.1847) veg_day
 <div id="exponentiating-the-slope-coefficient-to-facilitate-interpretation" class="section level3" number="20.6.7">
 <h3><span class="header-section-number">20.6.7</span> Exponentiating the Slope Coefficient to facilitate Interpretation</h3>
 <p>We can compute the odds ratio associated with <code>veg_day</code> and its confidence interval as follows…</p>
-<div class="sourceCode" id="cb1355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1355-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1355-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(m1))</span></code></pre></div>
+<div class="sourceCode" id="cb1359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1359-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1359-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(m1))</span></code></pre></div>
 <pre><code>  veg_day 
 0.8313311 </code></pre>
-<div class="sourceCode" id="cb1357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1357-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1357-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">confint</span>(m1))</span></code></pre></div>
+<div class="sourceCode" id="cb1361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1361-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1361-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">confint</span>(m1))</span></code></pre></div>
 <pre><code>Waiting for profiling to be done...</code></pre>
 <pre><code>    2.5 %    97.5 % 
 0.7963573 0.8673534 </code></pre>
@@ -1567,9 +1570,9 @@ logit[Pr(genh \leq 4)] =  2.5002 - (-0.1847) veg_day
 <div id="comparison-to-a-null-model-4" class="section level3" number="20.6.8">
 <h3><span class="header-section-number">20.6.8</span> Comparison to a Null Model</h3>
 <p>We can fit a model with intercepts only to test the significance of <code>veg_day</code> in our model <code>m1</code>, using the <code>anova</code> function.</p>
-<div class="sourceCode" id="cb1360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1360-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1360-1" aria-hidden="true" tabindex="-1"></a>m0 <span class="ot">&lt;-</span> <span class="fu">polr</span>(genh <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> sm1)</span>
-<span id="cb1360-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1360-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1360-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1360-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m0)</span></code></pre></div>
+<div class="sourceCode" id="cb1364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1364-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1364-1" aria-hidden="true" tabindex="-1"></a>m0 <span class="ot">&lt;-</span> <span class="fu">polr</span>(genh <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> sm1)</span>
+<span id="cb1364-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1364-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1364-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1364-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m0)</span></code></pre></div>
 <pre><code>Likelihood ratio tests of ordinal regression models
 
 Response: genh
@@ -1577,11 +1580,11 @@ Response: genh
 1       1      5390   15744.89                              
 2 veg_day      5389   15669.85 1 vs 2     1 75.04297       0</code></pre>
 <p>We could also compare model <code>m1</code> to the null model <code>m0</code> with AIC or BIC.</p>
-<div class="sourceCode" id="cb1362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1362-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1362-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(m1, m0)</span></code></pre></div>
+<div class="sourceCode" id="cb1366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1366-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1366-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(m1, m0)</span></code></pre></div>
 <pre><code>   df      AIC
 m1  5 15679.85
 m0  4 15752.89</code></pre>
-<div class="sourceCode" id="cb1364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1364-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1364-1" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(m1,m0)</span></code></pre></div>
+<div class="sourceCode" id="cb1368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1368-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1368-1" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(m1,m0)</span></code></pre></div>
 <pre><code>   df      BIC
 m1  5 15712.81
 m0  4 15779.26</code></pre>
@@ -1590,27 +1593,27 @@ m0  4 15779.26</code></pre>
 <div id="the-assumption-of-proportional-odds" class="section level2" number="20.7">
 <h2><span class="header-section-number">20.7</span> The Assumption of Proportional Odds</h2>
 <p>Let us calculate the odds for all levels of <code>genh</code> if a person eats two servings of vegetables. First, we’ll get the probabilities, in another way, to demonstrate how to do so…</p>
-<div class="sourceCode" id="cb1366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1366-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1366-1" aria-hidden="true" tabindex="-1"></a>(prob<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">exp</span>(m1<span class="sc">$</span>zeta <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span>m1<span class="sc">$</span>coefficients)<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(m1<span class="sc">$</span>zeta <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span>m1<span class="sc">$</span>coefficients)))</span></code></pre></div>
+<div class="sourceCode" id="cb1370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1370-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1370-1" aria-hidden="true" tabindex="-1"></a>(prob<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">exp</span>(m1<span class="sc">$</span>zeta <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span>m1<span class="sc">$</span>coefficients)<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(m1<span class="sc">$</span>zeta <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span>m1<span class="sc">$</span>coefficients)))</span></code></pre></div>
 <pre><code> 1-E|2_VG  2_VG|3_G   3_G|4_F   4_F|5_P 
 0.1522351 0.4907471 0.8005376 0.9463240 </code></pre>
-<div class="sourceCode" id="cb1368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1368-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1368-1" aria-hidden="true" tabindex="-1"></a>(prob<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">exp</span>(m1<span class="sc">$</span>zeta <span class="sc">-</span> <span class="dv">1</span><span class="sc">*</span>m1<span class="sc">$</span>coefficients)<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(m1<span class="sc">$</span>zeta <span class="sc">-</span> <span class="dv">1</span><span class="sc">*</span>m1<span class="sc">$</span>coefficients)))</span></code></pre></div>
+<div class="sourceCode" id="cb1372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1372-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1372-1" aria-hidden="true" tabindex="-1"></a>(prob<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">exp</span>(m1<span class="sc">$</span>zeta <span class="sc">-</span> <span class="dv">1</span><span class="sc">*</span>m1<span class="sc">$</span>coefficients)<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(m1<span class="sc">$</span>zeta <span class="sc">-</span> <span class="dv">1</span><span class="sc">*</span>m1<span class="sc">$</span>coefficients)))</span></code></pre></div>
 <pre><code> 1-E|2_VG  2_VG|3_G   3_G|4_F   4_F|5_P 
 0.1298931 0.4447902 0.7694008 0.9361293 </code></pre>
 <p>Now, we’ll calculate the odds, first for a subject eating two servings:</p>
-<div class="sourceCode" id="cb1370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1370-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1370-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">odds.2 =</span> prob<span class="fl">.2</span><span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>prob<span class="fl">.2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1374-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1374-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">odds.2 =</span> prob<span class="fl">.2</span><span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>prob<span class="fl">.2</span>))</span></code></pre></div>
 <pre><code>  1-E|2_VG   2_VG|3_G    3_G|4_F    4_F|5_P 
  0.1795724  0.9636607  4.0134766 17.6303153 </code></pre>
 <p>And here are the odds, for a subject eating one serving per day:</p>
-<div class="sourceCode" id="cb1372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1372-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1372-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">odds.1 =</span> prob<span class="fl">.1</span><span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>prob<span class="fl">.1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1376-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1376-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">odds.1 =</span> prob<span class="fl">.1</span><span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>prob<span class="fl">.1</span>))</span></code></pre></div>
 <pre><code>  1-E|2_VG   2_VG|3_G    3_G|4_F    4_F|5_P 
  0.1492841  0.8011211  3.3365277 14.6566285 </code></pre>
 <p>Now, let’s take the ratio of the odds for someone who eats two servings over the odds for someone who eats one.</p>
-<div class="sourceCode" id="cb1374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1374-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1374-1" aria-hidden="true" tabindex="-1"></a>odds<span class="fl">.2</span><span class="sc">/</span>odds<span class="fl">.1</span></span></code></pre></div>
+<div class="sourceCode" id="cb1378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1378-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1378-1" aria-hidden="true" tabindex="-1"></a>odds<span class="fl">.2</span><span class="sc">/</span>odds<span class="fl">.1</span></span></code></pre></div>
 <pre><code>1-E|2_VG 2_VG|3_G  3_G|4_F  4_F|5_P 
  1.20289  1.20289  1.20289  1.20289 </code></pre>
 <p>They are all the same. The odds ratios are equal, which means they are proportional. For any level of <code>genh</code>, the estimated odds that a person who eats 2 servings has better (lower) <code>genh</code> is about 1.2 times the odds for someone who eats one serving. Those who eat more vegetables have higher odds of better (lower) <code>genh</code>. Less than 1 means lower odds, and more than 1 means greater odds.</p>
 <p>Now, let’s take the log of the odds ratios:</p>
-<div class="sourceCode" id="cb1376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1376-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1376-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(odds<span class="fl">.2</span><span class="sc">/</span>odds<span class="fl">.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1380-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1380-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(odds<span class="fl">.2</span><span class="sc">/</span>odds<span class="fl">.1</span>)</span></code></pre></div>
 <pre><code> 1-E|2_VG  2_VG|3_G   3_G|4_F   4_F|5_P 
 0.1847272 0.1847272 0.1847272 0.1847272 </code></pre>
 <p>That should be familiar. It is the slope coefficient in the model summary, without the minus sign. R tacks on a minus sign so that higher levels of predictors correspond to the ordinal outcome falling in the higher end of its scale.</p>
@@ -1619,7 +1622,7 @@ m0  4 15779.26</code></pre>
 <h3><span class="header-section-number">20.7.1</span> Testing the Proportional Odds Assumption</h3>
 <p>One way to test the proportional odds assumption is to compare the fit of the proportional odds logistic regression to a model that does not make that assumption. A natural candidate is a <strong>multinomial logit</strong> model, which is typically used to model unordered multi-categorical outcomes, and fits a slope to each level of the <code>genh</code> outcome in this case, as opposed to the proportional odds logit, which fits only one slope across all levels.</p>
 <p>Since the proportional odds logistic regression model is nested in the multinomial logit, we can perform a likelihood ratio test. To do this, we first fit the multinomial logit model, with the <code>multinom</code> function from the <code>nnet</code> package.</p>
-<div class="sourceCode" id="cb1378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1378-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1378-1" aria-hidden="true" tabindex="-1"></a>(m1_multi <span class="ot">&lt;-</span> <span class="fu">multinom</span>(genh <span class="sc">~</span> veg_day, <span class="at">data =</span> sm1))</span></code></pre></div>
+<div class="sourceCode" id="cb1382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1382-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1382-1" aria-hidden="true" tabindex="-1"></a>(m1_multi <span class="ot">&lt;-</span> <span class="fu">multinom</span>(genh <span class="sc">~</span> veg_day, <span class="at">data =</span> sm1))</span></code></pre></div>
 <pre><code># weights:  15 (8 variable)
 initial  value 8681.308100 
 iter  10 value 7890.985276
@@ -1638,11 +1641,11 @@ Coefficients:
 Residual Deviance: 15670.5 
 AIC: 15686.5 </code></pre>
 <p>The multinomial logit fits four intercepts and four slopes, for a total of 8 estimated parameters. The proportional odds logit, as we’ve seen, fits four intercepts and one slope, for a total of 5. The difference is 3, and we use that number in the sequence below to build our test of the proportional odds assumption.</p>
-<div class="sourceCode" id="cb1381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1381-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1381-1" aria-hidden="true" tabindex="-1"></a>LL_1 <span class="ot">&lt;-</span> <span class="fu">logLik</span>(m1)</span>
-<span id="cb1381-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1381-2" aria-hidden="true" tabindex="-1"></a>LL_1m <span class="ot">&lt;-</span> <span class="fu">logLik</span>(m1_multi)</span>
-<span id="cb1381-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1381-3" aria-hidden="true" tabindex="-1"></a>(G <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> (LL_1[<span class="dv">1</span>] <span class="sc">-</span> LL_1m[<span class="dv">1</span>]))</span></code></pre></div>
+<div class="sourceCode" id="cb1385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1385-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1385-1" aria-hidden="true" tabindex="-1"></a>LL_1 <span class="ot">&lt;-</span> <span class="fu">logLik</span>(m1)</span>
+<span id="cb1385-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1385-2" aria-hidden="true" tabindex="-1"></a>LL_1m <span class="ot">&lt;-</span> <span class="fu">logLik</span>(m1_multi)</span>
+<span id="cb1385-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1385-3" aria-hidden="true" tabindex="-1"></a>(G <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> (LL_1[<span class="dv">1</span>] <span class="sc">-</span> LL_1m[<span class="dv">1</span>]))</span></code></pre></div>
 <pre><code>[1] -0.6488392</code></pre>
-<div class="sourceCode" id="cb1383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1383-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1383-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pchisq</span>(G, <span class="dv">3</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1387-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1387-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pchisq</span>(G, <span class="dv">3</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>[1] 1</code></pre>
 <p>The <em>p</em> value is very large, so it indicates that the proportional odds model fits about as well as the more complex multinomial logit. A non-significant <em>p</em> value here isn’t always the best way to assess the proportional odds assumption, but it does provide some evidence of model adequacy.</p>
 </div>
@@ -1650,11 +1653,11 @@ AIC: 15686.5 </code></pre>
 <div id="can-model-m1-be-fit-using-rms-tools" class="section level2" number="20.8">
 <h2><span class="header-section-number">20.8</span> Can model <code>m1</code> be fit using <code>rms</code> tools?</h2>
 <p>Yes.</p>
-<div class="sourceCode" id="cb1385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1385-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1385-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">datadist</span>(sm1)</span>
-<span id="cb1385-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1385-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">datadist =</span> <span class="st">&quot;d&quot;</span>)</span>
-<span id="cb1385-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1385-3" aria-hidden="true" tabindex="-1"></a>m1_lrm <span class="ot">&lt;-</span> <span class="fu">lrm</span>(genh <span class="sc">~</span> veg_day, <span class="at">data =</span> sm1, <span class="at">x =</span> T, <span class="at">y =</span> T)</span>
-<span id="cb1385-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1385-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1385-5"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1385-5" aria-hidden="true" tabindex="-1"></a>m1_lrm</span></code></pre></div>
+<div class="sourceCode" id="cb1389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1389-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1389-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">datadist</span>(sm1)</span>
+<span id="cb1389-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1389-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">datadist =</span> <span class="st">&quot;d&quot;</span>)</span>
+<span id="cb1389-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1389-3" aria-hidden="true" tabindex="-1"></a>m1_lrm <span class="ot">&lt;-</span> <span class="fu">lrm</span>(genh <span class="sc">~</span> veg_day, <span class="at">data =</span> sm1, <span class="at">x =</span> T, <span class="at">y =</span> T)</span>
+<span id="cb1389-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1389-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1389-5"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1389-5" aria-hidden="true" tabindex="-1"></a>m1_lrm</span></code></pre></div>
 <pre><code>Logistic Regression Model
  
  lrm(formula = genh ~ veg_day, data = sm1, x = T, y = T)
@@ -1681,7 +1684,7 @@ AIC: 15686.5 </code></pre>
  veg_day -0.1847 0.0218  -8.48 &lt;0.0001 
  </code></pre>
 <p>The model is highly significant (remember the large sample size) but very weak, with a Nagelkerke R<sup>2</sup> of 0.015, and a C statistic of 0.555.</p>
-<div class="sourceCode" id="cb1387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1387-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1387-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1_lrm)</span></code></pre></div>
+<div class="sourceCode" id="cb1391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1391-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1391-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1_lrm)</span></code></pre></div>
 <pre><code>             Effects              Response : genh 
 
  Factor      Low  High Diff. Effect   S.E.     Lower 0.95 Upper 0.95
@@ -1695,16 +1698,16 @@ AIC: 15686.5 </code></pre>
 <p>Now, we’ll model <code>genh</code> using <code>veg_day</code>, <code>bmi</code> and <code>costprob</code>.</p>
 <div id="scatterplot-matrix-1" class="section level3" number="20.9.1">
 <h3><span class="header-section-number">20.9.1</span> Scatterplot Matrix</h3>
-<div class="sourceCode" id="cb1389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1389-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1389-1" aria-hidden="true" tabindex="-1"></a>GGally<span class="sc">::</span><span class="fu">ggpairs</span>(sm1 <span class="sc">%&gt;%</span> </span>
-<span id="cb1389-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1389-2" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">select</span>(bmi, veg_day, costprob, genh))</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-573-1.png" width="672" /></p>
+<div class="sourceCode" id="cb1393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1393-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1393-1" aria-hidden="true" tabindex="-1"></a>GGally<span class="sc">::</span><span class="fu">ggpairs</span>(sm1 <span class="sc">%&gt;%</span> </span>
+<span id="cb1393-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1393-2" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">select</span>(bmi, veg_day, costprob, genh))</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-575-1.png" width="672" /></p>
 <p>We might choose to plot the <code>costprob</code> data as a binary factor, rather than the raw 0-1 numbers included above, but not at this time.</p>
 </div>
 <div id="our-three-predictor-model-m2" class="section level3" number="20.9.2">
 <h3><span class="header-section-number">20.9.2</span> Our Three-Predictor Model, <code>m2</code></h3>
-<div class="sourceCode" id="cb1390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1390-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1390-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">polr</span>(genh <span class="sc">~</span> veg_day <span class="sc">+</span> bmi <span class="sc">+</span> costprob, <span class="at">data =</span> sm1)</span>
-<span id="cb1390-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1390-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1390-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1390-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
+<div class="sourceCode" id="cb1394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1394-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1394-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">polr</span>(genh <span class="sc">~</span> veg_day <span class="sc">+</span> bmi <span class="sc">+</span> costprob, <span class="at">data =</span> sm1)</span>
+<span id="cb1394-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1394-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1394-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1394-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
 <pre><code>
 Re-fitting to get Hessian</code></pre>
 <pre><code>Call:
@@ -1729,7 +1732,7 @@ AIC: 15243.24 </code></pre>
 </div>
 <div id="does-the-three-predictor-model-outperform-m1" class="section level3" number="20.9.3">
 <h3><span class="header-section-number">20.9.3</span> Does the three-predictor model outperform <code>m1</code>?</h3>
-<div class="sourceCode" id="cb1393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1393-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1393-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m2)</span></code></pre></div>
+<div class="sourceCode" id="cb1397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1397-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1397-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m2)</span></code></pre></div>
 <pre><code>Likelihood ratio tests of ordinal regression models
 
 Response: genh
@@ -1737,11 +1740,11 @@ Response: genh
 1                  veg_day      5389   15669.85                              
 2 veg_day + bmi + costprob      5387   15229.24 1 vs 2     2 440.6041       0</code></pre>
 <p>There is a statistically significant improvement in fit from model 1 to model 2. The AIC and BIC are also better for the three-predictor model than they were for the model with <code>veg_day</code> alone.</p>
-<div class="sourceCode" id="cb1395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1395-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1395-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(m1, m2)</span></code></pre></div>
+<div class="sourceCode" id="cb1399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1399-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1399-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(m1, m2)</span></code></pre></div>
 <pre><code>   df      AIC
 m1  5 15679.85
 m2  7 15243.24</code></pre>
-<div class="sourceCode" id="cb1397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1397-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1397-1" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(m1, m2)</span></code></pre></div>
+<div class="sourceCode" id="cb1401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1401-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1401-1" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(m1, m2)</span></code></pre></div>
 <pre><code>   df      BIC
 m1  5 15712.81
 m2  7 15289.40</code></pre>
@@ -1749,11 +1752,11 @@ m2  7 15289.40</code></pre>
 <div id="wald-tests-for-individual-predictors" class="section level3" number="20.9.4">
 <h3><span class="header-section-number">20.9.4</span> Wald tests for individual predictors</h3>
 <p>To obtain the appropriate Wald tests, we can use <code>lrm</code> to fit the model instead.</p>
-<div class="sourceCode" id="cb1399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1399-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1399-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">datadist</span>(sm1)</span>
-<span id="cb1399-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1399-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">datadist =</span> <span class="st">&quot;d&quot;</span>)</span>
-<span id="cb1399-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1399-3" aria-hidden="true" tabindex="-1"></a>m2_lrm <span class="ot">&lt;-</span> <span class="fu">lrm</span>(genh <span class="sc">~</span> veg_day <span class="sc">+</span> bmi <span class="sc">+</span> costprob, </span>
-<span id="cb1399-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1399-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> sm1, <span class="at">x =</span> T, <span class="at">y =</span> T)</span>
-<span id="cb1399-5"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1399-5" aria-hidden="true" tabindex="-1"></a>m2_lrm</span></code></pre></div>
+<div class="sourceCode" id="cb1403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1403-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1403-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">datadist</span>(sm1)</span>
+<span id="cb1403-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1403-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">datadist =</span> <span class="st">&quot;d&quot;</span>)</span>
+<span id="cb1403-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1403-3" aria-hidden="true" tabindex="-1"></a>m2_lrm <span class="ot">&lt;-</span> <span class="fu">lrm</span>(genh <span class="sc">~</span> veg_day <span class="sc">+</span> bmi <span class="sc">+</span> costprob, </span>
+<span id="cb1403-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1403-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> sm1, <span class="at">x =</span> T, <span class="at">y =</span> T)</span>
+<span id="cb1403-5"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1403-5" aria-hidden="true" tabindex="-1"></a>m2_lrm</span></code></pre></div>
 <pre><code>Logistic Regression Model
  
  lrm(formula = genh ~ veg_day + bmi + costprob, data = sm1, x = T, 
@@ -1786,7 +1789,7 @@ m2  7 15289.40</code></pre>
 </div>
 <div id="a-cross-tabulation-of-predictions-1" class="section level3" number="20.9.5">
 <h3><span class="header-section-number">20.9.5</span> A Cross-Tabulation of Predictions?</h3>
-<div class="sourceCode" id="cb1401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1401-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1401-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(<span class="fu">table</span>(<span class="fu">predict</span>(m2), sm1<span class="sc">$</span>genh))</span></code></pre></div>
+<div class="sourceCode" id="cb1405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1405-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1405-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(<span class="fu">table</span>(<span class="fu">predict</span>(m2), sm1<span class="sc">$</span>genh))</span></code></pre></div>
 <pre><code>      
         1-E 2_VG  3_G  4_F  5_P  Sum
   1-E     6    5    4    1    0   16
@@ -1808,10 +1811,10 @@ m2  7 15289.40</code></pre>
 <li>Increasing <code>costprob</code> from 0 to 1 while holding the other predictors constant is associated with an increase (by a factor of 2.63 with 95% CI 2.23, 3.11)) of a higher <code>genh</code> value. Since higher <code>genh</code> values indicate worse health, those with <code>costprob</code> = 1 are modeled to have generally worse health.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb1403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1403-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1403-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(m2))</span></code></pre></div>
+<div class="sourceCode" id="cb1407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1407-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1407-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(m2))</span></code></pre></div>
 <pre><code>  veg_day       bmi  costprob 
 0.8425722 1.0690045 2.6333356 </code></pre>
-<div class="sourceCode" id="cb1405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1405-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1405-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">confint</span>(m2))</span></code></pre></div>
+<div class="sourceCode" id="cb1409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1409-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1409-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">confint</span>(m2))</span></code></pre></div>
 <pre><code>Waiting for profiling to be done...</code></pre>
 <pre><code>
 Re-fitting to get Hessian</code></pre>
@@ -1822,7 +1825,7 @@ costprob 2.2301783 3.110633</code></pre>
 <ul>
 <li>Or by looking at the summary provided by <code>lrm</code>, which like all such summaries produced by <code>rms</code> shows the impact of moving from the 25th to the 75th percentile on all continuous predictors.</li>
 </ul>
-<div class="sourceCode" id="cb1409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1409-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1409-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2_lrm)</span></code></pre></div>
+<div class="sourceCode" id="cb1413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1413-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1413-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2_lrm)</span></code></pre></div>
 <pre><code>             Effects              Response : genh 
 
  Factor      Low   High   Diff.  Effect   S.E.     Lower 0.95 Upper 0.95
@@ -1832,8 +1835,8 @@ costprob 2.2301783 3.110633</code></pre>
   Odds Ratio 24.33 31.988 7.6575  1.66690       NA  1.57320    1.76620  
  costprob     0.00  1.000 1.0000  0.96825 0.084871  0.80191    1.13460  
   Odds Ratio  0.00  1.000 1.0000  2.63330       NA  2.22980    3.10990  </code></pre>
-<div class="sourceCode" id="cb1411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1411-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1411-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(m2_lrm))</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-580-1.png" width="672" /></p>
+<div class="sourceCode" id="cb1415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1415-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1415-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(m2_lrm))</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-582-1.png" width="672" /></p>
 </div>
 <div id="quality-of-the-model-fit" class="section level3" number="20.9.7">
 <h3><span class="header-section-number">20.9.7</span> Quality of the Model Fit</h3>
@@ -1841,7 +1844,7 @@ costprob 2.2301783 3.110633</code></pre>
 </div>
 <div id="validating-the-summary-statistics-in-m2_lrm" class="section level3" number="20.9.8">
 <h3><span class="header-section-number">20.9.8</span> Validating the Summary Statistics in <code>m2_lrm</code></h3>
-<div class="sourceCode" id="cb1412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1412-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1412-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">43203</span>); <span class="fu">validate</span>(m2_lrm)</span></code></pre></div>
+<div class="sourceCode" id="cb1416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1416-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1416-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">43203</span>); <span class="fu">validate</span>(m2_lrm)</span></code></pre></div>
 <pre><code>          index.orig training    test optimism index.corrected  n
 Dxy           0.2583   0.2625  0.2579   0.0046          0.2537 40
 R2            0.0964   0.0989  0.0960   0.0029          0.0935 40
@@ -1859,8 +1862,8 @@ gp            0.1434   0.1448  0.1430   0.0018          0.1417 40</code></pre>
 <div id="testing-the-proportional-odds-assumption-1" class="section level3" number="20.9.9">
 <h3><span class="header-section-number">20.9.9</span> Testing the Proportional Odds Assumption</h3>
 <p>Again, we’ll fit the analogous multinomial logit model, with the <code>multinom</code> function from the <code>nnet</code> package.</p>
-<div class="sourceCode" id="cb1414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1414-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1414-1" aria-hidden="true" tabindex="-1"></a>(m2_multi <span class="ot">&lt;-</span> <span class="fu">multinom</span>(genh <span class="sc">~</span> veg_day <span class="sc">+</span> bmi <span class="sc">+</span> costprob, </span>
-<span id="cb1414-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1414-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> sm1))</span></code></pre></div>
+<div class="sourceCode" id="cb1418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1418-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1418-1" aria-hidden="true" tabindex="-1"></a>(m2_multi <span class="ot">&lt;-</span> <span class="fu">multinom</span>(genh <span class="sc">~</span> veg_day <span class="sc">+</span> bmi <span class="sc">+</span> costprob, </span>
+<span id="cb1418-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1418-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> sm1))</span></code></pre></div>
 <pre><code># weights:  25 (16 variable)
 initial  value 8681.308100 
 iter  10 value 8025.745934
@@ -1880,49 +1883,49 @@ Coefficients:
 Residual Deviance: 15191.53 
 AIC: 15223.53 </code></pre>
 <p>The multinomial logit fits four intercepts and 12 slopes, for a total of 16 estimated parameters. The proportional odds logit in model <code>m2</code>, as we’ve seen, fits four intercepts and three slopes, for a total of 7. The difference is 9, and we use that number in the sequence below to build our test of the proportional odds assumption.</p>
-<div class="sourceCode" id="cb1417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1417-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1417-1" aria-hidden="true" tabindex="-1"></a>LL_2 <span class="ot">&lt;-</span> <span class="fu">logLik</span>(m2)</span>
-<span id="cb1417-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1417-2" aria-hidden="true" tabindex="-1"></a>LL_2m <span class="ot">&lt;-</span> <span class="fu">logLik</span>(m2_multi)</span>
-<span id="cb1417-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1417-3" aria-hidden="true" tabindex="-1"></a>(G <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> (LL_2[<span class="dv">1</span>] <span class="sc">-</span> LL_2m[<span class="dv">1</span>]))</span></code></pre></div>
+<div class="sourceCode" id="cb1421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1421-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1421-1" aria-hidden="true" tabindex="-1"></a>LL_2 <span class="ot">&lt;-</span> <span class="fu">logLik</span>(m2)</span>
+<span id="cb1421-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1421-2" aria-hidden="true" tabindex="-1"></a>LL_2m <span class="ot">&lt;-</span> <span class="fu">logLik</span>(m2_multi)</span>
+<span id="cb1421-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1421-3" aria-hidden="true" tabindex="-1"></a>(G <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> (LL_2[<span class="dv">1</span>] <span class="sc">-</span> LL_2m[<span class="dv">1</span>]))</span></code></pre></div>
 <pre><code>[1] 37.70952</code></pre>
-<div class="sourceCode" id="cb1419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1419-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1419-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pchisq</span>(G, <span class="dv">9</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1423-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1423-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pchisq</span>(G, <span class="dv">9</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>[1] 1.965186e-05</code></pre>
 <p>The result is highly significant, suggesting that we have a problem somewhere with the proportional odds assumption. When this happens, I suggest you build the following plot of score residuals:</p>
-<div class="sourceCode" id="cb1421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1421-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1421-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb1421-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1421-2" aria-hidden="true" tabindex="-1"></a><span class="fu">resid</span>(m2_lrm, <span class="st">&#39;score.binary&#39;</span>, <span class="at">pl=</span><span class="cn">TRUE</span>)</span>
-<span id="cb1421-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1421-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-584-1.png" width="672" /></p>
+<div class="sourceCode" id="cb1425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1425-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1425-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb1425-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1425-2" aria-hidden="true" tabindex="-1"></a><span class="fu">resid</span>(m2_lrm, <span class="st">&#39;score.binary&#39;</span>, <span class="at">pl=</span><span class="cn">TRUE</span>)</span>
+<span id="cb1425-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1425-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-586-1.png" width="672" /></p>
 <p>From this plot, <code>bmi</code> (especially) and <code>costprob</code> vary as we move from the Very Good toward the Poor cutpoints, relative to <code>veg_day</code>, which is more stable.</p>
 </div>
 <div id="plotting-the-fitted-model" class="section level3" number="20.9.10">
 <h3><span class="header-section-number">20.9.10</span> Plotting the Fitted Model</h3>
 <div id="nomogram-1" class="section level4" number="20.9.10.1">
 <h4><span class="header-section-number">20.9.10.1</span> Nomogram</h4>
-<div class="sourceCode" id="cb1422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1422-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1422-1" aria-hidden="true" tabindex="-1"></a>fun.ge3 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">plogis</span>(x <span class="sc">-</span> m2_lrm<span class="sc">$</span>coef[<span class="dv">1</span>] <span class="sc">+</span> m2_lrm<span class="sc">$</span>coef[<span class="dv">2</span>])</span>
-<span id="cb1422-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1422-2" aria-hidden="true" tabindex="-1"></a>fun.ge4 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">plogis</span>(x <span class="sc">-</span> m2_lrm<span class="sc">$</span>coef[<span class="dv">1</span>] <span class="sc">+</span> m2_lrm<span class="sc">$</span>coef[<span class="dv">3</span>])</span>
-<span id="cb1422-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1422-3" aria-hidden="true" tabindex="-1"></a>fun.ge5 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">plogis</span>(x <span class="sc">-</span> m2_lrm<span class="sc">$</span>coef[<span class="dv">1</span>] <span class="sc">+</span> m2_lrm<span class="sc">$</span>coef[<span class="dv">4</span>])</span>
-<span id="cb1422-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1422-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1422-5"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1422-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">nomogram</span>(m2_lrm, <span class="at">fun=</span><span class="fu">list</span>(<span class="st">&#39;Prob Y &gt;= 2 (VG or worse)&#39;</span> <span class="ot">=</span> plogis, </span>
-<span id="cb1422-6"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1422-6" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;Prob Y &gt;= 3 (Good or worse)&#39;</span> <span class="ot">=</span> fun.ge3,</span>
-<span id="cb1422-7"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1422-7" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;Prob Y &gt;= 4 (Fair or Poor)&#39;</span> <span class="ot">=</span> fun.ge4,</span>
-<span id="cb1422-8"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1422-8" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;Prob Y = 5 (Poor)&#39;</span> <span class="ot">=</span> fun.ge5)))</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-585-1.png" width="960" /></p>
+<div class="sourceCode" id="cb1426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1426-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1426-1" aria-hidden="true" tabindex="-1"></a>fun.ge3 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">plogis</span>(x <span class="sc">-</span> m2_lrm<span class="sc">$</span>coef[<span class="dv">1</span>] <span class="sc">+</span> m2_lrm<span class="sc">$</span>coef[<span class="dv">2</span>])</span>
+<span id="cb1426-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1426-2" aria-hidden="true" tabindex="-1"></a>fun.ge4 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">plogis</span>(x <span class="sc">-</span> m2_lrm<span class="sc">$</span>coef[<span class="dv">1</span>] <span class="sc">+</span> m2_lrm<span class="sc">$</span>coef[<span class="dv">3</span>])</span>
+<span id="cb1426-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1426-3" aria-hidden="true" tabindex="-1"></a>fun.ge5 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">plogis</span>(x <span class="sc">-</span> m2_lrm<span class="sc">$</span>coef[<span class="dv">1</span>] <span class="sc">+</span> m2_lrm<span class="sc">$</span>coef[<span class="dv">4</span>])</span>
+<span id="cb1426-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1426-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1426-5"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1426-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">nomogram</span>(m2_lrm, <span class="at">fun=</span><span class="fu">list</span>(<span class="st">&#39;Prob Y &gt;= 2 (VG or worse)&#39;</span> <span class="ot">=</span> plogis, </span>
+<span id="cb1426-6"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1426-6" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;Prob Y &gt;= 3 (Good or worse)&#39;</span> <span class="ot">=</span> fun.ge3,</span>
+<span id="cb1426-7"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1426-7" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;Prob Y &gt;= 4 (Fair or Poor)&#39;</span> <span class="ot">=</span> fun.ge4,</span>
+<span id="cb1426-8"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1426-8" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;Prob Y = 5 (Poor)&#39;</span> <span class="ot">=</span> fun.ge5)))</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-587-1.png" width="960" /></p>
 </div>
 <div id="using-predict-and-showing-mean-prediction-on-1-5-scale" class="section level4" number="20.9.10.2">
 <h4><span class="header-section-number">20.9.10.2</span> Using Predict and showing mean prediction on 1-5 scale</h4>
-<div class="sourceCode" id="cb1423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1423-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1423-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">Predict</span>(m2_lrm, <span class="at">fun =</span> <span class="fu">Mean</span>(m2_lrm, <span class="at">code =</span> <span class="cn">TRUE</span>)))</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-586-1.png" width="672" /></p>
+<div class="sourceCode" id="cb1427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1427-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1427-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">Predict</span>(m2_lrm, <span class="at">fun =</span> <span class="fu">Mean</span>(m2_lrm, <span class="at">code =</span> <span class="cn">TRUE</span>)))</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-588-1.png" width="672" /></p>
 <p>The nomogram and Predict results would be more interesting, of course, if we included a spline or interaction term. Let’s do that in model <code>m3_lrm</code>, and also add the <code>incomegroup</code> information.</p>
 </div>
 </div>
 </div>
 <div id="a-larger-model-including-income-group" class="section level2" number="20.10">
 <h2><span class="header-section-number">20.10</span> A Larger Model, including income group</h2>
-<div class="sourceCode" id="cb1424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1424-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1424-1" aria-hidden="true" tabindex="-1"></a>m3_lrm <span class="ot">&lt;-</span> <span class="fu">lrm</span>(gen_n <span class="sc">~</span> <span class="fu">rcs</span>(veg_day,<span class="dv">3</span>) <span class="sc">+</span> <span class="fu">rcs</span>(bmi, <span class="dv">4</span>) <span class="sc">+</span> </span>
-<span id="cb1424-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1424-2" aria-hidden="true" tabindex="-1"></a>                  incomegroup <span class="sc">+</span> <span class="fu">catg</span>(costprob) <span class="sc">+</span> </span>
-<span id="cb1424-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1424-3" aria-hidden="true" tabindex="-1"></a>                  bmi <span class="sc">%ia%</span> costprob, </span>
-<span id="cb1424-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1424-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> sm1, <span class="at">x =</span> T, <span class="at">y =</span> T)</span>
-<span id="cb1424-5"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1424-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1424-6"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1424-6" aria-hidden="true" tabindex="-1"></a>m3_lrm</span></code></pre></div>
+<div class="sourceCode" id="cb1428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1428-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1428-1" aria-hidden="true" tabindex="-1"></a>m3_lrm <span class="ot">&lt;-</span> <span class="fu">lrm</span>(gen_n <span class="sc">~</span> <span class="fu">rcs</span>(veg_day,<span class="dv">3</span>) <span class="sc">+</span> <span class="fu">rcs</span>(bmi, <span class="dv">4</span>) <span class="sc">+</span> </span>
+<span id="cb1428-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1428-2" aria-hidden="true" tabindex="-1"></a>                  incomegroup <span class="sc">+</span> <span class="fu">catg</span>(costprob) <span class="sc">+</span> </span>
+<span id="cb1428-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1428-3" aria-hidden="true" tabindex="-1"></a>                  bmi <span class="sc">%ia%</span> costprob, </span>
+<span id="cb1428-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1428-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> sm1, <span class="at">x =</span> T, <span class="at">y =</span> T)</span>
+<span id="cb1428-5"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1428-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1428-6"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1428-6" aria-hidden="true" tabindex="-1"></a>m3_lrm</span></code></pre></div>
 <pre><code>Logistic Regression Model
  
  lrm(formula = gen_n ~ rcs(veg_day, 3) + rcs(bmi, 4) + incomegroup + 
@@ -1963,12 +1966,12 @@ AIC: 15223.53 </code></pre>
  bmi * costprob     -0.0259 0.0116  -2.24 0.0250  
  </code></pre>
 <p>Another option here would have been to consider building <code>incomegroup</code> as a <code>scored</code> variable, with an order on its own, but I won’t force that here. Here’s the <code>polr</code> version…</p>
-<div class="sourceCode" id="cb1426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1426-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1426-1" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">polr</span>(genh <span class="sc">~</span> <span class="fu">rcs</span>(veg_day,<span class="dv">3</span>) <span class="sc">+</span> <span class="fu">rcs</span>(bmi, <span class="dv">4</span>) <span class="sc">+</span> </span>
-<span id="cb1426-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1426-2" aria-hidden="true" tabindex="-1"></a>               incomegroup <span class="sc">+</span> costprob <span class="sc">+</span> </span>
-<span id="cb1426-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1426-3" aria-hidden="true" tabindex="-1"></a>               bmi <span class="sc">%ia%</span> costprob, <span class="at">data =</span> sm1)</span></code></pre></div>
+<div class="sourceCode" id="cb1430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1430-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1430-1" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">polr</span>(genh <span class="sc">~</span> <span class="fu">rcs</span>(veg_day,<span class="dv">3</span>) <span class="sc">+</span> <span class="fu">rcs</span>(bmi, <span class="dv">4</span>) <span class="sc">+</span> </span>
+<span id="cb1430-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1430-2" aria-hidden="true" tabindex="-1"></a>               incomegroup <span class="sc">+</span> costprob <span class="sc">+</span> </span>
+<span id="cb1430-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1430-3" aria-hidden="true" tabindex="-1"></a>               bmi <span class="sc">%ia%</span> costprob, <span class="at">data =</span> sm1)</span></code></pre></div>
 <div id="cross-tabulation-of-predictedobserved-classifications" class="section level3" number="20.10.1">
 <h3><span class="header-section-number">20.10.1</span> Cross-Tabulation of Predicted/Observed Classifications</h3>
-<div class="sourceCode" id="cb1427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1427-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1427-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(<span class="fu">table</span>(<span class="fu">predict</span>(m3), sm1<span class="sc">$</span>genh))</span></code></pre></div>
+<div class="sourceCode" id="cb1431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1431-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1431-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(<span class="fu">table</span>(<span class="fu">predict</span>(m3), sm1<span class="sc">$</span>genh))</span></code></pre></div>
 <pre><code>      
         1-E 2_VG  3_G  4_F  5_P  Sum
   1-E     3    2    0    0    0    5
@@ -1981,25 +1984,25 @@ AIC: 15223.53 </code></pre>
 </div>
 <div id="nomogram-2" class="section level3" number="20.10.2">
 <h3><span class="header-section-number">20.10.2</span> Nomogram</h3>
-<div class="sourceCode" id="cb1429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1429-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1429-1" aria-hidden="true" tabindex="-1"></a>fun.ge3 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">plogis</span>(x <span class="sc">-</span> m3_lrm<span class="sc">$</span>coef[<span class="dv">1</span>] <span class="sc">+</span> m3_lrm<span class="sc">$</span>coef[<span class="dv">2</span>])</span>
-<span id="cb1429-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1429-2" aria-hidden="true" tabindex="-1"></a>fun.ge4 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">plogis</span>(x <span class="sc">-</span> m3_lrm<span class="sc">$</span>coef[<span class="dv">1</span>] <span class="sc">+</span> m3_lrm<span class="sc">$</span>coef[<span class="dv">3</span>])</span>
-<span id="cb1429-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1429-3" aria-hidden="true" tabindex="-1"></a>fun.ge5 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">plogis</span>(x <span class="sc">-</span> m3_lrm<span class="sc">$</span>coef[<span class="dv">1</span>] <span class="sc">+</span> m3_lrm<span class="sc">$</span>coef[<span class="dv">4</span>])</span>
-<span id="cb1429-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1429-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1429-5"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1429-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">nomogram</span>(m3_lrm, <span class="at">fun=</span><span class="fu">list</span>(<span class="st">&#39;Prob Y &gt;= 2 (VG or worse)&#39;</span> <span class="ot">=</span> plogis, </span>
-<span id="cb1429-6"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1429-6" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;Prob Y &gt;= 3 (Good or worse)&#39;</span> <span class="ot">=</span> fun.ge3,</span>
-<span id="cb1429-7"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1429-7" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;Prob Y &gt;= 4 (Fair or Poor)&#39;</span> <span class="ot">=</span> fun.ge4,</span>
-<span id="cb1429-8"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1429-8" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;Prob Y = 5 (Poor)&#39;</span> <span class="ot">=</span> fun.ge5)))</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-590-1.png" width="960" /></p>
+<div class="sourceCode" id="cb1433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1433-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1433-1" aria-hidden="true" tabindex="-1"></a>fun.ge3 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">plogis</span>(x <span class="sc">-</span> m3_lrm<span class="sc">$</span>coef[<span class="dv">1</span>] <span class="sc">+</span> m3_lrm<span class="sc">$</span>coef[<span class="dv">2</span>])</span>
+<span id="cb1433-2"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1433-2" aria-hidden="true" tabindex="-1"></a>fun.ge4 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">plogis</span>(x <span class="sc">-</span> m3_lrm<span class="sc">$</span>coef[<span class="dv">1</span>] <span class="sc">+</span> m3_lrm<span class="sc">$</span>coef[<span class="dv">3</span>])</span>
+<span id="cb1433-3"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1433-3" aria-hidden="true" tabindex="-1"></a>fun.ge5 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">plogis</span>(x <span class="sc">-</span> m3_lrm<span class="sc">$</span>coef[<span class="dv">1</span>] <span class="sc">+</span> m3_lrm<span class="sc">$</span>coef[<span class="dv">4</span>])</span>
+<span id="cb1433-4"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1433-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1433-5"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1433-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">nomogram</span>(m3_lrm, <span class="at">fun=</span><span class="fu">list</span>(<span class="st">&#39;Prob Y &gt;= 2 (VG or worse)&#39;</span> <span class="ot">=</span> plogis, </span>
+<span id="cb1433-6"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1433-6" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;Prob Y &gt;= 3 (Good or worse)&#39;</span> <span class="ot">=</span> fun.ge3,</span>
+<span id="cb1433-7"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1433-7" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;Prob Y &gt;= 4 (Fair or Poor)&#39;</span> <span class="ot">=</span> fun.ge4,</span>
+<span id="cb1433-8"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1433-8" aria-hidden="true" tabindex="-1"></a>                               <span class="st">&#39;Prob Y = 5 (Poor)&#39;</span> <span class="ot">=</span> fun.ge5)))</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-592-1.png" width="960" /></p>
 </div>
 <div id="using-predict-and-showing-mean-prediction-on-1-5-scale-1" class="section level3" number="20.10.3">
 <h3><span class="header-section-number">20.10.3</span> Using Predict and showing mean prediction on 1-5 scale</h3>
-<div class="sourceCode" id="cb1430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1430-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1430-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">Predict</span>(m3_lrm, <span class="at">fun =</span> <span class="fu">Mean</span>(m3_lrm, <span class="at">code =</span> <span class="cn">TRUE</span>)))</span></code></pre></div>
-<p><img src="432-notes_files/figure-html/unnamed-chunk-591-1.png" width="672" /></p>
+<div class="sourceCode" id="cb1434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1434-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1434-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">Predict</span>(m3_lrm, <span class="at">fun =</span> <span class="fu">Mean</span>(m3_lrm, <span class="at">code =</span> <span class="cn">TRUE</span>)))</span></code></pre></div>
+<p><img src="432-notes_files/figure-html/unnamed-chunk-593-1.png" width="672" /></p>
 <p>Here, we’re plotting the mean score on the 1-5 <code>gen_n</code> scale.</p>
 </div>
 <div id="validating-the-summary-statistics-in-m3_lrm" class="section level3" number="20.10.4">
 <h3><span class="header-section-number">20.10.4</span> Validating the Summary Statistics in <code>m3_lrm</code></h3>
-<div class="sourceCode" id="cb1431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1431-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1431-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">43221</span>); <span class="fu">validate</span>(m3_lrm)</span></code></pre></div>
+<div class="sourceCode" id="cb1435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1435-1"><a href="modeling-an-ordinal-categorical-outcome-in-ohio-smart.html#cb1435-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">43221</span>); <span class="fu">validate</span>(m3_lrm)</span></code></pre></div>
 <pre><code>          index.orig training    test optimism index.corrected  n
 Dxy           0.3915   0.3928  0.3899   0.0029          0.3886 40
 R2            0.2093   0.2112  0.2071   0.0041          0.2053 40

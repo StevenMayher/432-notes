@@ -878,7 +878,7 @@ The available levels of `SEX` are:
 - 2 = Female
 - 9 = Refused
 
-We'll recode that to `female` = 1 for Female, 0 Male, otherwise NA. Note the trick here is to subtract one from the coded `SEX` to get the desired `female`, but this requires that we move 9 to NA, rather than 9.
+We'll recode that to `female` = 1 for Female, 0 Male, otherwise NA. Note the trick here is to subtract one from the coded `SEX` to get the desired `female`, but this requires that we move 8 to NA, rather than 9.
 
 ```{r eda_SEX}
 smart_ohio_raw <- smart_ohio_raw %>% 
