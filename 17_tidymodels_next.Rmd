@@ -1,4 +1,6 @@
 # Using tidymodels approaches: Next Steps
 
-Chapter to come.
+Rather than create new chapters for `tidymodels` approaches, I will instead point you to the relevant materials in *Tidy Modeling with R* by Max Kuhn and Julia Silge.
+
+That text is available at https://www.tmwr.org/.
 

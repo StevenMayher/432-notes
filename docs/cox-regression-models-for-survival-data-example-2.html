@@ -989,7 +989,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 24</span> Cox Regression Models for Survival Data: Example 2</h1>
 <div id="a-second-example-the-leukem-data" class="section level2" number="24.1">
 <h2><span class="header-section-number">24.1</span> A Second Example: The <code>leukem</code> data</h2>
-<div class="sourceCode" id="cb1547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1547-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1547-1" aria-hidden="true" tabindex="-1"></a>leukem</span></code></pre></div>
+<div class="sourceCode" id="cb1542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1542-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1542-1" aria-hidden="true" tabindex="-1"></a>leukem</span></code></pre></div>
 <pre><code># A tibble: 51 x 8
       id   age pblasts  pinf  plab maxtemp months alive
    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
@@ -1015,7 +1015,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>months</code>, which is Survival time from diagnosis (in months)</li>
 <li><code>alive</code>, which indicates Status as of the end of the study (1 = alive and thus censored, 0 = dead)</li>
 </ul>
-<div class="sourceCode" id="cb1549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1549-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1549-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(leukem)</span></code></pre></div>
+<div class="sourceCode" id="cb1544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1544-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1544-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(leukem)</span></code></pre></div>
 <pre><code>Rows: 51
 Columns: 8
 $ id      &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,~
@@ -1030,8 +1030,8 @@ $ alive   &lt;dbl&gt; 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1
 <h3><span class="header-section-number">24.1.1</span> Creating our response: A survival time object</h3>
 <p>Regardless of how we’re going to fit a survival model, we start by creating a <em>survival time</em> object that combines the information in <code>months</code> (the survival times, possibly censored) and <code>alive</code> (the censoring indicator) into a single variable we’ll call <code>stime</code> in this example.</p>
 <p>The function below correctly registers the survival time, and censors subjects who are alive at the end of the study (we need to indicate those whose times are known, and they are identified by <code>alive == 0</code>). All other subjects are alive for at least as long as we observe them, but their exact survival times are <em>right-censored</em>.</p>
-<div class="sourceCode" id="cb1551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1551-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1551-1" aria-hidden="true" tabindex="-1"></a>stime <span class="ot">&lt;-</span> <span class="fu">Surv</span>(leukem<span class="sc">$</span>months, leukem<span class="sc">$</span>alive <span class="sc">==</span> <span class="dv">0</span>)</span>
-<span id="cb1551-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1551-2" aria-hidden="true" tabindex="-1"></a>stime</span></code></pre></div>
+<div class="sourceCode" id="cb1546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1546-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1546-1" aria-hidden="true" tabindex="-1"></a>stime <span class="ot">&lt;-</span> <span class="fu">Surv</span>(leukem<span class="sc">$</span>months, leukem<span class="sc">$</span>alive <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb1546-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1546-2" aria-hidden="true" tabindex="-1"></a>stime</span></code></pre></div>
 <pre><code> [1] 18  31+ 31  31  36   1   9  39+ 20+  4  45+ 36  12   8   1  15  24   2  33 
 [20] 29+  7   0   1   2  12   9   1   1   9   5  27+  1  13   1   5   1   3   4 
 [39]  1  18   1   2   1   8   3   4  14   3  13  13   1 </code></pre>
@@ -1050,10 +1050,10 @@ $ alive   &lt;dbl&gt; 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1
 <div id="model-a-coxph-model-for-survival-time-using-age-at-diagnosis" class="section level2" number="24.2">
 <h2><span class="header-section-number">24.2</span> Model A: <code>coxph</code> Model for Survival Time using <code>age</code> at diagnosis</h2>
 <p>We’ll start by using <code>age</code> at diagnosis to predict our survival object (survival time, accounting for censoring).</p>
-<div class="sourceCode" id="cb1553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1553-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1553-1" aria-hidden="true" tabindex="-1"></a>modA <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(months, alive<span class="sc">==</span><span class="dv">0</span>) <span class="sc">~</span> age, </span>
-<span id="cb1553-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1553-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">data=</span>leukem, <span class="at">model=</span><span class="cn">TRUE</span>)</span>
-<span id="cb1553-3"><a href="cox-regression-models-for-survival-data-example-2.html#cb1553-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1553-4"><a href="cox-regression-models-for-survival-data-example-2.html#cb1553-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modA)</span></code></pre></div>
+<div class="sourceCode" id="cb1548"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1548-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1548-1" aria-hidden="true" tabindex="-1"></a>modA <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(months, alive<span class="sc">==</span><span class="dv">0</span>) <span class="sc">~</span> age, </span>
+<span id="cb1548-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1548-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">data=</span>leukem, <span class="at">model=</span><span class="cn">TRUE</span>)</span>
+<span id="cb1548-3"><a href="cox-regression-models-for-survival-data-example-2.html#cb1548-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1548-4"><a href="cox-regression-models-for-survival-data-example-2.html#cb1548-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modA)</span></code></pre></div>
 <pre><code>Call:
 coxph(formula = Surv(months, alive == 0) ~ age, data = leukem, 
     model = TRUE)
@@ -1091,7 +1091,7 @@ Score (logrank) test = 12.29  on 1 df,   p=5e-04</code></pre>
 <li>The likelihood ratio test compares the entire model to the null model (intercept-only). Again, run an ANOVA (technically an analysis of deviance) to get more details on the likelihood-ratio test.</li>
 </ul></li>
 </ol>
-<div class="sourceCode" id="cb1555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1555-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1555-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modA)</span></code></pre></div>
+<div class="sourceCode" id="cb1550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1550-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1550-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modA)</span></code></pre></div>
 <pre><code>Analysis of Deviance Table
  Cox model: response is Surv(months, alive == 0)
 Terms added sequentially (first to last)
@@ -1103,31 +1103,31 @@ age  -137.02 11.849  1   0.000577 ***
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <div id="plotting-the-survival-curve-implied-by-model-a" class="section level3" number="24.2.1">
 <h3><span class="header-section-number">24.2.1</span> Plotting the Survival Curve implied by Model A</h3>
-<div class="sourceCode" id="cb1557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1557-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1557-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">survfit</span>(modA), <span class="at">ylab=</span><span class="st">&quot;Probability of Survival&quot;</span>,</span>
-<span id="cb1557-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1557-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Months in Study&quot;</span>, <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1552-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1552-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">survfit</span>(modA), <span class="at">ylab=</span><span class="st">&quot;Probability of Survival&quot;</span>,</span>
+<span id="cb1552-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1552-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Months in Study&quot;</span>, <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>))</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/surv_leukem_modelA_plot-1.png" width="672" /></p>
 </div>
 <div id="testing-the-proportional-hazards-assumption" class="section level3" number="24.2.2">
 <h3><span class="header-section-number">24.2.2</span> Testing the Proportional Hazards Assumption</h3>
 <p>As we’ve noted, the key assumption in a Cox model is that the hazards are <strong>proportional</strong>.</p>
-<div class="sourceCode" id="cb1558"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1558-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1558-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cox.zph</span>(modA)</span></code></pre></div>
+<div class="sourceCode" id="cb1553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1553-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1553-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cox.zph</span>(modA)</span></code></pre></div>
 <pre><code>       chisq df    p
 age     1.05  1 0.31
 GLOBAL  1.05  1 0.31</code></pre>
 <p>A significant result here would indicate a problem with the proportional hazards assumption - again, not the case here. We can also plot the results:</p>
-<div class="sourceCode" id="cb1560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1560-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1560-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">cox.zph</span>(modA))</span></code></pre></div>
+<div class="sourceCode" id="cb1555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1555-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1555-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">cox.zph</span>(modA))</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/surv_leukem_modelA_zphplot-1.png" width="672" /></p>
 <p>We’re looking for the smooth curve to be fairly level across the time horizon here, as opposed to substantially increasing or decreasing in level as time passes.</p>
 </div>
 </div>
 <div id="building-model-a-with-cph-for-the-leukem-data" class="section level2" number="24.3">
 <h2><span class="header-section-number">24.3</span> Building Model A with <code>cph</code> for the <code>leukem</code> data</h2>
-<div class="sourceCode" id="cb1561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1561-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1561-1" aria-hidden="true" tabindex="-1"></a><span class="fu">units</span>(leukem<span class="sc">$</span>months) <span class="ot">&lt;-</span> <span class="st">&quot;month&quot;</span></span>
-<span id="cb1561-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1561-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">datadist</span>(leukem)</span>
-<span id="cb1561-3"><a href="cox-regression-models-for-survival-data-example-2.html#cb1561-3" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">datadist=</span><span class="st">&quot;d&quot;</span>)</span>
-<span id="cb1561-4"><a href="cox-regression-models-for-survival-data-example-2.html#cb1561-4" aria-hidden="true" tabindex="-1"></a>modA_cph <span class="ot">&lt;-</span> <span class="fu">cph</span>(<span class="fu">Surv</span>(months, alive<span class="sc">==</span><span class="dv">0</span>) <span class="sc">~</span> age, <span class="at">data=</span>leukem, </span>
-<span id="cb1561-5"><a href="cox-regression-models-for-survival-data-example-2.html#cb1561-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">x=</span><span class="cn">TRUE</span>, <span class="at">y=</span><span class="cn">TRUE</span>, <span class="at">surv=</span><span class="cn">TRUE</span>, <span class="at">time.inc=</span><span class="dv">12</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb1562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1562-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1562-1" aria-hidden="true" tabindex="-1"></a>modA_cph</span></code></pre></div>
+<div class="sourceCode" id="cb1556"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1556-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1556-1" aria-hidden="true" tabindex="-1"></a><span class="fu">units</span>(leukem<span class="sc">$</span>months) <span class="ot">&lt;-</span> <span class="st">&quot;month&quot;</span></span>
+<span id="cb1556-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1556-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">datadist</span>(leukem)</span>
+<span id="cb1556-3"><a href="cox-regression-models-for-survival-data-example-2.html#cb1556-3" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">datadist=</span><span class="st">&quot;d&quot;</span>)</span>
+<span id="cb1556-4"><a href="cox-regression-models-for-survival-data-example-2.html#cb1556-4" aria-hidden="true" tabindex="-1"></a>modA_cph <span class="ot">&lt;-</span> <span class="fu">cph</span>(<span class="fu">Surv</span>(months, alive<span class="sc">==</span><span class="dv">0</span>) <span class="sc">~</span> age, <span class="at">data=</span>leukem, </span>
+<span id="cb1556-5"><a href="cox-regression-models-for-survival-data-example-2.html#cb1556-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">x=</span><span class="cn">TRUE</span>, <span class="at">y=</span><span class="cn">TRUE</span>, <span class="at">surv=</span><span class="cn">TRUE</span>, <span class="at">time.inc=</span><span class="dv">12</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1557-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1557-1" aria-hidden="true" tabindex="-1"></a>modA_cph</span></code></pre></div>
 <pre><code>Cox Proportional Hazards Model
  
  cph(formula = Surv(months, alive == 0) ~ age, data = leukem, 
@@ -1144,30 +1144,30 @@ GLOBAL  1.05  1 0.31</code></pre>
      Coef   S.E.   Wald Z Pr(&gt;|Z|)
  age 0.0324 0.0095 3.40   0.0007  
  </code></pre>
-<div class="sourceCode" id="cb1564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1564-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1564-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(modA_cph)) <span class="co"># hazard ratio estimate</span></span></code></pre></div>
+<div class="sourceCode" id="cb1559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1559-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1559-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(modA_cph)) <span class="co"># hazard ratio estimate</span></span></code></pre></div>
 <pre><code>     age 
 1.032923 </code></pre>
-<div class="sourceCode" id="cb1566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1566-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1566-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">confint</span>(modA_cph)) <span class="co"># hazard ratio 95% CI</span></span></code></pre></div>
+<div class="sourceCode" id="cb1561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1561-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1561-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">confint</span>(modA_cph)) <span class="co"># hazard ratio 95% CI</span></span></code></pre></div>
 <pre><code>       2.5 %   97.5 %
 age 1.013826 1.052379</code></pre>
 <div id="plotting-the-age-effect-implied-by-our-model." class="section level3" number="24.3.1">
 <h3><span class="header-section-number">24.3.1</span> Plotting the <code>age</code> effect implied by our model.</h3>
 <p>We can plot the <code>age</code> effect implied by the model, using <code>ggplot2</code>, as follows…</p>
-<div class="sourceCode" id="cb1568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1568-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1568-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">Predict</span>(modA_cph, age))</span></code></pre></div>
+<div class="sourceCode" id="cb1563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1563-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1563-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">Predict</span>(modA_cph, age))</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/surv_leukem_modelA_cph_ggplot-1.png" width="672" /></p>
 </div>
 <div id="survival-plots-kaplan-meier-of-the-age-effect" class="section level3" number="24.3.2">
 <h3><span class="header-section-number">24.3.2</span> Survival Plots (Kaplan-Meier) of the <code>age</code> effect</h3>
 <p>The first survival plot I’ll show displays 95% confidence intervals for the probability of survival at the median <code>age</code> at diagnosis in the sample, which turns out to be 50 years, with numbers of patients still at risk indicated every 12 months of time in the study. We can substitute in <strong>conf = <code>bars</code></strong> to get a different flavor for this sort of plot.</p>
-<div class="sourceCode" id="cb1569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1569-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1569-1" aria-hidden="true" tabindex="-1"></a><span class="fu">survplot</span>(modA_cph, <span class="at">age=</span><span class="fu">median</span>(leukem<span class="sc">$</span>age), <span class="at">conf.int=</span>.<span class="dv">95</span>, </span>
-<span id="cb1569-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1569-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">col=</span><span class="st">&#39;blue&#39;</span>, <span class="at">time.inc=</span><span class="dv">12</span>, <span class="at">n.risk=</span><span class="cn">TRUE</span>,</span>
-<span id="cb1569-3"><a href="cox-regression-models-for-survival-data-example-2.html#cb1569-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">conf=</span><span class="st">&#39;bands&#39;</span>, <span class="at">type=</span><span class="st">&quot;kaplan-meier&quot;</span>, </span>
-<span id="cb1569-4"><a href="cox-regression-models-for-survival-data-example-2.html#cb1569-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab=</span><span class="st">&quot;Study Survival Time in Months&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1564-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1564-1" aria-hidden="true" tabindex="-1"></a><span class="fu">survplot</span>(modA_cph, <span class="at">age=</span><span class="fu">median</span>(leukem<span class="sc">$</span>age), <span class="at">conf.int=</span>.<span class="dv">95</span>, </span>
+<span id="cb1564-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1564-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">col=</span><span class="st">&#39;blue&#39;</span>, <span class="at">time.inc=</span><span class="dv">12</span>, <span class="at">n.risk=</span><span class="cn">TRUE</span>,</span>
+<span id="cb1564-3"><a href="cox-regression-models-for-survival-data-example-2.html#cb1564-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">conf=</span><span class="st">&#39;bands&#39;</span>, <span class="at">type=</span><span class="st">&quot;kaplan-meier&quot;</span>, </span>
+<span id="cb1564-4"><a href="cox-regression-models-for-survival-data-example-2.html#cb1564-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab=</span><span class="st">&quot;Study Survival Time in Months&quot;</span>)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/surv_leukem_modelA_cph_survplot1-1.png" width="672" /></p>
 <p>Or we can generate a survival plot that shows survival probabilities over time across a range of values for <code>age</code> at diagnosis, as follows…</p>
-<div class="sourceCode" id="cb1570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1570-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1570-1" aria-hidden="true" tabindex="-1"></a><span class="fu">survplot</span>(modA_cph, <span class="at">levels.only=</span><span class="cn">TRUE</span>, <span class="at">time.inc=</span><span class="dv">12</span>, </span>
-<span id="cb1570-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1570-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">type=</span><span class="st">&quot;kaplan-meier&quot;</span>, </span>
-<span id="cb1570-3"><a href="cox-regression-models-for-survival-data-example-2.html#cb1570-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab=</span><span class="st">&quot;Study Survival Time in Months&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1565-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1565-1" aria-hidden="true" tabindex="-1"></a><span class="fu">survplot</span>(modA_cph, <span class="at">levels.only=</span><span class="cn">TRUE</span>, <span class="at">time.inc=</span><span class="dv">12</span>, </span>
+<span id="cb1565-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1565-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">type=</span><span class="st">&quot;kaplan-meier&quot;</span>, </span>
+<span id="cb1565-3"><a href="cox-regression-models-for-survival-data-example-2.html#cb1565-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab=</span><span class="st">&quot;Study Survival Time in Months&quot;</span>)</span></code></pre></div>
 <pre><code>Warning in regularize.values(x, y, ties, missing(ties), na.rm = na.rm):
 collapsing to unique &#39;x&#39; values
 
@@ -1188,7 +1188,7 @@ collapsing to unique &#39;x&#39; values</code></pre>
 <div id="anova-test-for-the-cph-built-model-for-leukem" class="section level3" number="24.3.3">
 <h3><span class="header-section-number">24.3.3</span> ANOVA test for the <code>cph</code>-built model for <code>leukem</code></h3>
 <p>We can run a likelihood-ratio (drop in deviance) test of the significance of the <code>age</code> effect…</p>
-<div class="sourceCode" id="cb1572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1572-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1572-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modA_cph)</span></code></pre></div>
+<div class="sourceCode" id="cb1567"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1567-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1567-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modA_cph)</span></code></pre></div>
 <pre><code>                Wald Statistics          Response: Surv(months, alive == 0) 
 
  Factor     Chi-Square d.f. P    
@@ -1198,19 +1198,19 @@ collapsing to unique &#39;x&#39; values</code></pre>
 <div id="summarizing-the-effect-sizes-from-moda_cph" class="section level3" number="24.3.4">
 <h3><span class="header-section-number">24.3.4</span> Summarizing the Effect Sizes from <code>modA_cph</code></h3>
 <p>We can generate the usual summaries of effect size in this context, too.</p>
-<div class="sourceCode" id="cb1574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1574-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1574-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modA_cph)</span></code></pre></div>
+<div class="sourceCode" id="cb1569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1569-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1569-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modA_cph)</span></code></pre></div>
 <pre><code>             Effects              Response : Surv(months, alive == 0) 
 
  Factor        Low High Diff. Effect S.E.    Lower 0.95 Upper 0.95
  age           35  61   26    0.8422 0.24755 0.35701    1.3274    
   Hazard Ratio 35  61   26    2.3215      NA 1.42910    3.7712    </code></pre>
-<div class="sourceCode" id="cb1576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1576-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1576-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(modA_cph))</span></code></pre></div>
+<div class="sourceCode" id="cb1571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1571-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1571-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(modA_cph))</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/surv_leukem_modelA_cph_summaryandeffects-1.png" width="672" /></p>
 <p>As with all <code>rms</code> package effect estimates, this quantitative predictor (<code>age</code>) yields an effect comparing <code>age</code> at the 25th percentile of the sample (<code>age</code> = 35) to <code>age</code> at the 75th percentile (<code>age</code> = 61). So the hazard ratio is 2.32, with 95% CI (1.43, 3.77) for the effect of moving 26 years. Our <code>coxph</code> version of this same model showed a hazard ratio for the effect of moving just a single year.</p>
 </div>
 <div id="validating-the-cox-model-summary-statistics" class="section level3" number="24.3.5">
 <h3><span class="header-section-number">24.3.5</span> Validating the Cox Model Summary Statistics</h3>
-<div class="sourceCode" id="cb1577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1577-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1577-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">432410</span>); <span class="fu">validate</span>(modA_cph)</span></code></pre></div>
+<div class="sourceCode" id="cb1572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1572-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1572-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">432410</span>); <span class="fu">validate</span>(modA_cph)</span></code></pre></div>
 <pre><code>      index.orig training   test optimism index.corrected  n
 Dxy       0.3007   0.2950 0.3007  -0.0057          0.3064 40
 R2        0.2081   0.2226 0.2081   0.0145          0.1936 40
@@ -1224,15 +1224,15 @@ g         0.6210   0.6492 0.6210   0.0282          0.5928 40</code></pre>
 <div id="looking-for-influential-points" class="section level3" number="24.3.6">
 <h3><span class="header-section-number">24.3.6</span> Looking for Influential Points</h3>
 <p>This plot shows the influence of each point, in terms of DFBETA - the impact on the coefficient of <code>age</code> in the model were that specific point to be removed from the data set. We can also identify the row numbers of the largest (positive and negative) DFBETAs.</p>
-<div class="sourceCode" id="cb1579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1579-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1579-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">residuals</span>(modA_cph, <span class="at">type=</span><span class="st">&quot;dfbeta&quot;</span>, </span>
-<span id="cb1579-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1579-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">collapse =</span> leukem<span class="sc">$</span>id) <span class="sc">~</span> </span>
-<span id="cb1579-3"><a href="cox-regression-models-for-survival-data-example-2.html#cb1579-3" aria-hidden="true" tabindex="-1"></a>       leukem<span class="sc">$</span>id, <span class="at">main=</span><span class="st">&quot;Index Plot of DFBETA for Age&quot;</span>, </span>
-<span id="cb1579-4"><a href="cox-regression-models-for-survival-data-example-2.html#cb1579-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">type=</span><span class="st">&quot;h&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;DFBETA in modelA_cph&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1574-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1574-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">residuals</span>(modA_cph, <span class="at">type=</span><span class="st">&quot;dfbeta&quot;</span>, </span>
+<span id="cb1574-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1574-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">collapse =</span> leukem<span class="sc">$</span>id) <span class="sc">~</span> </span>
+<span id="cb1574-3"><a href="cox-regression-models-for-survival-data-example-2.html#cb1574-3" aria-hidden="true" tabindex="-1"></a>       leukem<span class="sc">$</span>id, <span class="at">main=</span><span class="st">&quot;Index Plot of DFBETA for Age&quot;</span>, </span>
+<span id="cb1574-4"><a href="cox-regression-models-for-survival-data-example-2.html#cb1574-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">type=</span><span class="st">&quot;h&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;DFBETA in modelA_cph&quot;</span>)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/surv_leukem_modelA_cph_influential_points-1.png" width="672" /></p>
-<div class="sourceCode" id="cb1580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1580-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1580-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(<span class="fu">residuals</span>(modA_cph, <span class="at">type=</span><span class="st">&quot;dfbeta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1575-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1575-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(<span class="fu">residuals</span>(modA_cph, <span class="at">type=</span><span class="st">&quot;dfbeta&quot;</span>))</span></code></pre></div>
 <pre><code>8 
 8 </code></pre>
-<div class="sourceCode" id="cb1582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1582-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1582-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min</span>(<span class="fu">residuals</span>(modA_cph, <span class="at">type=</span><span class="st">&quot;dfbeta&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1577-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1577-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min</span>(<span class="fu">residuals</span>(modA_cph, <span class="at">type=</span><span class="st">&quot;dfbeta&quot;</span>))</span></code></pre></div>
 <pre><code>50 
 50 </code></pre>
 <p>The DFBETAs look very small here. Changes in the <span class="math inline">\(\beta\)</span> estimates as large as 0.002 don’t have a meaningful impact in this case, so I don’t see anything particularly influential.</p>
@@ -1240,11 +1240,11 @@ g         0.6210   0.6492 0.6210   0.0282          0.5928 40</code></pre>
 <div id="checking-the-proportional-hazards-assumption" class="section level3" number="24.3.7">
 <h3><span class="header-section-number">24.3.7</span> Checking the Proportional Hazards Assumption</h3>
 <p>As before, we can check the proportional hazards assumption with a test, or plot.</p>
-<div class="sourceCode" id="cb1584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1584-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1584-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cox.zph</span>(modA_cph)</span></code></pre></div>
+<div class="sourceCode" id="cb1579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1579-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1579-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cox.zph</span>(modA_cph)</span></code></pre></div>
 <pre><code>       chisq df    p
 age     1.05  1 0.31
 GLOBAL  1.05  1 0.31</code></pre>
-<div class="sourceCode" id="cb1586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1586-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1586-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">cox.zph</span>(modA_cph))</span></code></pre></div>
+<div class="sourceCode" id="cb1581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1581-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1581-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">cox.zph</span>(modA_cph))</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/surv_leukem_modelA_cph_proportional_hazards_assumption-1.png" width="672" /></p>
 <p>Still no serious signs of trouble, of course. We’ll see what happens when we fit a bigger model.</p>
 </div>
@@ -1252,9 +1252,9 @@ GLOBAL  1.05  1 0.31</code></pre>
 <div id="model-b-fitting-a-5-predictor-model-with-coxph" class="section level2" number="24.4">
 <h2><span class="header-section-number">24.4</span> Model B: Fitting a 5-Predictor Model with <code>coxph</code></h2>
 <p>Next, we use the <code>coxph</code> function from the <code>survival</code> package to apply a Cox regression model to predict the survival time using the main effects of the five predictors: <code>age</code>, <code>pblasts</code>, <code>pinf</code>, <code>plab</code> and <code>maxtemp</code>.</p>
-<div class="sourceCode" id="cb1587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1587-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1587-1" aria-hidden="true" tabindex="-1"></a>modB <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(months, alive<span class="sc">==</span><span class="dv">0</span>) <span class="sc">~</span> </span>
-<span id="cb1587-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1587-2" aria-hidden="true" tabindex="-1"></a>          age <span class="sc">+</span> pblasts <span class="sc">+</span> pinf <span class="sc">+</span> plab <span class="sc">+</span> maxtemp, <span class="at">data=</span>leukem)</span>
-<span id="cb1587-3"><a href="cox-regression-models-for-survival-data-example-2.html#cb1587-3" aria-hidden="true" tabindex="-1"></a>modB</span></code></pre></div>
+<div class="sourceCode" id="cb1582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1582-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1582-1" aria-hidden="true" tabindex="-1"></a>modB <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(months, alive<span class="sc">==</span><span class="dv">0</span>) <span class="sc">~</span> </span>
+<span id="cb1582-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1582-2" aria-hidden="true" tabindex="-1"></a>          age <span class="sc">+</span> pblasts <span class="sc">+</span> pinf <span class="sc">+</span> plab <span class="sc">+</span> maxtemp, <span class="at">data=</span>leukem)</span>
+<span id="cb1582-3"><a href="cox-regression-models-for-survival-data-example-2.html#cb1582-3" aria-hidden="true" tabindex="-1"></a>modB</span></code></pre></div>
 <pre><code>Call:
 coxph(formula = Surv(months, alive == 0) ~ age + pblasts + pinf + 
     plab + maxtemp, data = leukem)
@@ -1271,7 +1271,7 @@ n= 51, number of events= 45 </code></pre>
 <p>The Wald tests suggest that <code>age</code> and perhaps <code>plab</code> are the only terms which appear to be significant after accounting for the other predictors in the model.</p>
 <div id="interpreting-the-results-from-model-b" class="section level3" number="24.4.1">
 <h3><span class="header-section-number">24.4.1</span> Interpreting the Results from Model B</h3>
-<div class="sourceCode" id="cb1589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1589-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1589-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modB)</span></code></pre></div>
+<div class="sourceCode" id="cb1584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1584-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1584-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modB)</span></code></pre></div>
 <pre><code>Call:
 coxph(formula = Surv(months, alive == 0) ~ age + pblasts + pinf + 
     plab + maxtemp, data = leukem)
@@ -1299,7 +1299,7 @@ Likelihood ratio test= 18.48  on 5 df,   p=0.002
 Wald test            = 17.62  on 5 df,   p=0.003
 Score (logrank) test = 18.96  on 5 df,   p=0.002</code></pre>
 <p>Again, it appears that only <code>age</code> has a statistically significant effect, as last predictor in.</p>
-<div class="sourceCode" id="cb1591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1591-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1591-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modB)</span></code></pre></div>
+<div class="sourceCode" id="cb1586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1586-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1586-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modB)</span></code></pre></div>
 <pre><code>Analysis of Deviance Table
  Cox model: response is Surv(months, alive == 0)
 Terms added sequentially (first to last)
@@ -1317,20 +1317,20 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </div>
 <div id="plotting-the-survival-curve-implied-by-model-b" class="section level3" number="24.4.2">
 <h3><span class="header-section-number">24.4.2</span> Plotting the Survival Curve implied by Model B</h3>
-<div class="sourceCode" id="cb1593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1593-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1593-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">survfit</span>(modB), <span class="at">ylab=</span><span class="st">&quot;Probability of Survival&quot;</span>, </span>
-<span id="cb1593-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1593-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Months in Study&quot;</span>, <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1588-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1588-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">survfit</span>(modB), <span class="at">ylab=</span><span class="st">&quot;Probability of Survival&quot;</span>, </span>
+<span id="cb1588-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1588-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Months in Study&quot;</span>, <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>))</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/c23_modelB_survfit_plot-1.png" width="672" /></p>
 <p>The crosses in the plot indicate censoring points, while the drops indicate people who have died, and are thus no longer at risk.</p>
 </div>
 <div id="plotting-the-cumulative-hazard-implied-by-model-b" class="section level3" number="24.4.3">
 <h3><span class="header-section-number">24.4.3</span> Plotting the Cumulative Hazard implied by Model B</h3>
-<div class="sourceCode" id="cb1594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1594-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1594-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">survfit</span>(modB, <span class="at">type=</span><span class="st">&quot;fleming&quot;</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>), </span>
-<span id="cb1594-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1594-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">fun=</span><span class="st">&quot;cumhaz&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;Cumulative Hazard&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Months in Study&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1589-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1589-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">survfit</span>(modB, <span class="at">type=</span><span class="st">&quot;fleming&quot;</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>), </span>
+<span id="cb1589-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1589-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">fun=</span><span class="st">&quot;cumhaz&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;Cumulative Hazard&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Months in Study&quot;</span>)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/c23_modelB_cumhaz_plot-1.png" width="672" /></p>
 </div>
 <div id="testing-the-proportional-hazards-assumption-1" class="section level3" number="24.4.4">
 <h3><span class="header-section-number">24.4.4</span> Testing the Proportional Hazards Assumption</h3>
-<div class="sourceCode" id="cb1595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1595-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1595-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cox.zph</span>(modB, <span class="at">transform=</span><span class="st">&quot;km&quot;</span>, <span class="at">global=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1590-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1590-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cox.zph</span>(modB, <span class="at">transform=</span><span class="st">&quot;km&quot;</span>, <span class="at">global=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>        chisq df     p
 age      1.87  1 0.171
 pblasts  4.37  1 0.037
@@ -1339,13 +1339,13 @@ plab     1.19  1 0.275
 maxtemp  1.53  1 0.216
 GLOBAL   9.22  5 0.101</code></pre>
 <p>Note that we get a global test, and a separate test for each predictor. None show significant problems. We can plot the scaled Schoenfeld residuals directly with <code>ggcoxzph</code> from the <code>survminer</code> package.</p>
-<div class="sourceCode" id="cb1597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1597-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1597-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggcoxzph</span>(<span class="fu">cox.zph</span>(modB))</span></code></pre></div>
+<div class="sourceCode" id="cb1592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1592-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1592-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggcoxzph</span>(<span class="fu">cox.zph</span>(modB))</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/c23_zph_plot_modelB-1.png" width="672" /></p>
 </div>
 <div id="assessing-collinearity" class="section level3" number="24.4.5">
 <h3><span class="header-section-number">24.4.5</span> Assessing Collinearity</h3>
 <p>Perhaps we have some collinearity here, which might imply that we could sensibly fit a smaller model, which would be appealing anyway, with only 45 actual events - we should probably be sticking to a model with no more than 2 or perhaps as many as 3 coefficients to be estimated.</p>
-<div class="sourceCode" id="cb1598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1598-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1598-1" aria-hidden="true" tabindex="-1"></a>rms<span class="sc">::</span><span class="fu">vif</span>(modB)</span></code></pre></div>
+<div class="sourceCode" id="cb1593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1593-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1593-1" aria-hidden="true" tabindex="-1"></a>rms<span class="sc">::</span><span class="fu">vif</span>(modB)</span></code></pre></div>
 <pre><code>     age  pblasts     pinf     plab  maxtemp 
 1.081775 3.029862 3.000944 1.035400 1.045249 </code></pre>
 <p>The variance inflation factors don’t look enormous - it may be that removing one of these variables will help make the others look more significant. Let’s consider a stepwise variable selection algorithm to see what results…</p>
@@ -1356,7 +1356,7 @@ GLOBAL   9.22  5 0.101</code></pre>
 </div>
 <div id="model-b2-a-stepwise-reduction-of-model-b" class="section level2" number="24.5">
 <h2><span class="header-section-number">24.5</span> Model B2: A Stepwise Reduction of Model B</h2>
-<div class="sourceCode" id="cb1600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1600-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1600-1" aria-hidden="true" tabindex="-1"></a>stats<span class="sc">::</span><span class="fu">step</span>(modB)</span></code></pre></div>
+<div class="sourceCode" id="cb1595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1595-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1595-1" aria-hidden="true" tabindex="-1"></a>stats<span class="sc">::</span><span class="fu">step</span>(modB)</span></code></pre></div>
 <pre><code>Start:  AIC=277.4
 Surv(months, alive == 0) ~ age + pblasts + pinf + plab + maxtemp
 
@@ -1398,8 +1398,8 @@ plab -0.057558  0.944067  0.038476 -1.496 0.134662
 Likelihood ratio test=16.25  on 3 df, p=0.001008
 n= 51, number of events= 45 </code></pre>
 <p>The stepwise procedure lands on a model with three predictors. How does this result look, practically?</p>
-<div class="sourceCode" id="cb1603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1603-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1603-1" aria-hidden="true" tabindex="-1"></a>modB2 <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(months, alive<span class="sc">==</span><span class="dv">0</span>) <span class="sc">~</span> age <span class="sc">+</span> pinf <span class="sc">+</span> plab, <span class="at">data=</span>leukem)</span>
-<span id="cb1603-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1603-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modB2)</span></code></pre></div>
+<div class="sourceCode" id="cb1598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1598-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1598-1" aria-hidden="true" tabindex="-1"></a>modB2 <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(months, alive<span class="sc">==</span><span class="dv">0</span>) <span class="sc">~</span> age <span class="sc">+</span> pinf <span class="sc">+</span> plab, <span class="at">data=</span>leukem)</span>
+<span id="cb1598-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1598-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modB2)</span></code></pre></div>
 <pre><code>Call:
 coxph(formula = Surv(months, alive == 0) ~ age + pinf + plab, 
     data = leukem)
@@ -1424,34 +1424,34 @@ Wald test            = 15.28  on 3 df,   p=0.002
 Score (logrank) test = 16.21  on 3 df,   p=0.001</code></pre>
 <div id="the-survival-curve-implied-by-model-b2" class="section level3" number="24.5.1">
 <h3><span class="header-section-number">24.5.1</span> The Survival Curve implied by Model B2</h3>
-<div class="sourceCode" id="cb1605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1605-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1605-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">survfit</span>(modB2), <span class="at">ylab=</span><span class="st">&quot;Probability of Survival&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Months in Study&quot;</span>, </span>
-<span id="cb1605-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1605-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1600-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1600-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">survfit</span>(modB2), <span class="at">ylab=</span><span class="st">&quot;Probability of Survival&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;Months in Study&quot;</span>, </span>
+<span id="cb1600-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1600-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>))</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/c23_modelB2_survivalcurves-1.png" width="672" /></p>
 </div>
 <div id="checking-proportional-hazards-for-model-b2" class="section level3" number="24.5.2">
 <h3><span class="header-section-number">24.5.2</span> Checking Proportional Hazards for Model B2</h3>
-<div class="sourceCode" id="cb1606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1606-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1606-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cox.zph</span>(modB2, <span class="at">transform=</span><span class="st">&quot;km&quot;</span>, <span class="at">global=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1601-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1601-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cox.zph</span>(modB2, <span class="at">transform=</span><span class="st">&quot;km&quot;</span>, <span class="at">global=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>       chisq df     p
 age     1.66  1 0.197
 pinf    3.20  1 0.074
 plab    2.17  1 0.141
 GLOBAL  6.07  3 0.108</code></pre>
-<div class="sourceCode" id="cb1608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1608-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1608-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggcoxzph</span>(<span class="fu">cox.zph</span>(modB2))</span></code></pre></div>
+<div class="sourceCode" id="cb1603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1603-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1603-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggcoxzph</span>(<span class="fu">cox.zph</span>(modB2))</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/c23_modelB2_testzph-1.png" width="672" /></p>
 </div>
 </div>
 <div id="model-c-using-a-spearman-plot-to-pick-a-model" class="section level2" number="24.6">
 <h2><span class="header-section-number">24.6</span> Model C: Using a Spearman Plot to pick a model</h2>
 <p>If we want to use the <strong>Spearman</strong> <span class="math inline">\(\rho^2\)</span> plot to consider how we might perhaps incorporate non-linear terms describing any or all of the five potential predictors (<code>age</code>, <code>pblasts</code>, <code>pinf</code>, <code>plab</code> and <code>maxtemp</code>) for survival time, we need to do so on the raw <code>months</code> variable, rather than the survival object (<code>stime = Surv(months, alive==0))</code> which accounts for censoring…</p>
-<div class="sourceCode" id="cb1609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1609-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1609-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">spearman2</span>(months <span class="sc">~</span> age <span class="sc">+</span> pblasts <span class="sc">+</span> pinf <span class="sc">+</span> plab <span class="sc">+</span> maxtemp, <span class="at">data=</span>leukem))</span></code></pre></div>
+<div class="sourceCode" id="cb1604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1604-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1604-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">spearman2</span>(months <span class="sc">~</span> age <span class="sc">+</span> pblasts <span class="sc">+</span> pinf <span class="sc">+</span> plab <span class="sc">+</span> maxtemp, <span class="at">data=</span>leukem))</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/c23_months_spearman2_plot-1.png" width="672" /></p>
 <p>Recognizing that we can probably only fit a small model safely (since we observe only 45 actual [uncensored] survival times) I will consider a non-linear term in <code>age</code> (specifically a restricted cubic spline with 3 knots), along with linear terms for <code>plab</code> and <code>maxtemp</code>. I’m mostly just looking for a new model to study for this example.</p>
 <div id="fitting-model-c" class="section level3" number="24.6.1">
 <h3><span class="header-section-number">24.6.1</span> Fitting Model C</h3>
-<div class="sourceCode" id="cb1610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1610-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1610-1" aria-hidden="true" tabindex="-1"></a><span class="co"># still have datadist set up for leukem</span></span>
-<span id="cb1610-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1610-2" aria-hidden="true" tabindex="-1"></a>modC <span class="ot">&lt;-</span> <span class="fu">cph</span>(<span class="fu">Surv</span>(months, alive<span class="sc">==</span><span class="dv">0</span>) <span class="sc">~</span> <span class="fu">rcs</span>(age, <span class="dv">3</span>) <span class="sc">+</span> plab <span class="sc">+</span> maxtemp, </span>
-<span id="cb1610-3"><a href="cox-regression-models-for-survival-data-example-2.html#cb1610-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">data=</span>leukem, <span class="at">x=</span><span class="cn">TRUE</span>, <span class="at">y=</span><span class="cn">TRUE</span>, <span class="at">surv=</span><span class="cn">TRUE</span>, <span class="at">time.inc=</span><span class="dv">12</span>)</span>
-<span id="cb1610-4"><a href="cox-regression-models-for-survival-data-example-2.html#cb1610-4" aria-hidden="true" tabindex="-1"></a>modC</span></code></pre></div>
+<div class="sourceCode" id="cb1605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1605-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1605-1" aria-hidden="true" tabindex="-1"></a><span class="co"># still have datadist set up for leukem</span></span>
+<span id="cb1605-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1605-2" aria-hidden="true" tabindex="-1"></a>modC <span class="ot">&lt;-</span> <span class="fu">cph</span>(<span class="fu">Surv</span>(months, alive<span class="sc">==</span><span class="dv">0</span>) <span class="sc">~</span> <span class="fu">rcs</span>(age, <span class="dv">3</span>) <span class="sc">+</span> plab <span class="sc">+</span> maxtemp, </span>
+<span id="cb1605-3"><a href="cox-regression-models-for-survival-data-example-2.html#cb1605-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">data=</span>leukem, <span class="at">x=</span><span class="cn">TRUE</span>, <span class="at">y=</span><span class="cn">TRUE</span>, <span class="at">surv=</span><span class="cn">TRUE</span>, <span class="at">time.inc=</span><span class="dv">12</span>)</span>
+<span id="cb1605-4"><a href="cox-regression-models-for-survival-data-example-2.html#cb1605-4" aria-hidden="true" tabindex="-1"></a>modC</span></code></pre></div>
 <pre><code>Cox Proportional Hazards Model
  
  cph(formula = Surv(months, alive == 0) ~ rcs(age, 3) + plab + 
@@ -1475,7 +1475,7 @@ GLOBAL  6.07  3 0.108</code></pre>
 </div>
 <div id="anova-for-model-c" class="section level3" number="24.6.2">
 <h3><span class="header-section-number">24.6.2</span> ANOVA for Model C</h3>
-<div class="sourceCode" id="cb1612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1612-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1612-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modC)</span></code></pre></div>
+<div class="sourceCode" id="cb1607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1607-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1607-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modC)</span></code></pre></div>
 <pre><code>                Wald Statistics          Response: Surv(months, alive == 0) 
 
  Factor     Chi-Square d.f. P     
@@ -1487,7 +1487,7 @@ GLOBAL  6.07  3 0.108</code></pre>
 </div>
 <div id="summarizing-model-c-effect-sizes" class="section level3" number="24.6.3">
 <h3><span class="header-section-number">24.6.3</span> Summarizing Model C Effect Sizes</h3>
-<div class="sourceCode" id="cb1614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1614-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1614-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modC)</span></code></pre></div>
+<div class="sourceCode" id="cb1609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1609-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1609-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modC)</span></code></pre></div>
 <pre><code>             Effects              Response : Surv(months, alive == 0) 
 
  Factor        Low  High  Diff. Effect   S.E.    Lower 0.95 Upper 0.95
@@ -1497,59 +1497,59 @@ GLOBAL  6.07  3 0.108</code></pre>
   Hazard Ratio  6.5  13.5  7.0   0.59744      NA  0.35411   1.0080000 
  maxtemp       98.6 100.5  1.9   0.33979 0.21758 -0.08666   0.7662400 
   Hazard Ratio 98.6 100.5  1.9   1.40470      NA  0.91699   2.1517000 </code></pre>
-<div class="sourceCode" id="cb1616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1616-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1616-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(modC))</span></code></pre></div>
+<div class="sourceCode" id="cb1611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1611-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1611-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(modC))</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/c23_modelC_summaries-1.png" width="672" /></p>
 </div>
 <div id="plotting-the-diagnosis-age-effect-in-model-c" class="section level3" number="24.6.4">
 <h3><span class="header-section-number">24.6.4</span> Plotting the diagnosis <code>age</code> effect in Model C</h3>
 <p>Of course, we’re no longer assuming that the log relative hazard is linear in <code>age</code>, once we include a restricted cubic spline for <code>age</code> in our Model C. So our hazard ratio and confidence intervals for <code>age</code> are a bit trickier to understand.</p>
-<div class="sourceCode" id="cb1617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1617-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1617-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(modC))</span></code></pre></div>
+<div class="sourceCode" id="cb1612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1612-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1612-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(modC))</span></code></pre></div>
 <pre><code>      age      age&#39;      plab   maxtemp 
 1.0837479 0.9390008 0.9290553 1.1958265 </code></pre>
-<div class="sourceCode" id="cb1619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1619-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1619-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">confint</span>(modC))</span></code></pre></div>
+<div class="sourceCode" id="cb1614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1614-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1614-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">confint</span>(modC))</span></code></pre></div>
 <pre><code>            2.5 %   97.5 %
 age     1.0252687 1.145563
 age&#39;    0.8798328 1.002148
 plab    0.8621662 1.001134
 maxtemp 0.9554141 1.496734</code></pre>
 <p>We can use <code>ggplot</code> and the <code>Predict</code> function to produce plots of the log Relative Hazard associated with any of our predictors, while holding the others constant at their medians. The effects of <code>maxtemp</code> and <code>plab</code> in our Model C are linear in the log Relative Hazard, but <code>age</code>, thanks to our use of a restricted cubic spline with 3 knots, shows a single bend.</p>
-<div class="sourceCode" id="cb1621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1621-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1621-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">Predict</span>(modC, age))</span></code></pre></div>
+<div class="sourceCode" id="cb1616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1616-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1616-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">Predict</span>(modC, age))</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/c23_modelC_predictions_plot-1.png" width="672" /></p>
 </div>
 <div id="survival-plot-associated-with-model-c" class="section level3" number="24.6.5">
 <h3><span class="header-section-number">24.6.5</span> Survival Plot associated with Model C</h3>
 <p>Let’s look at a survival plot associated with Model C for a subject with median values of our three predictors.</p>
-<div class="sourceCode" id="cb1622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1622-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1622-1" aria-hidden="true" tabindex="-1"></a><span class="fu">survplot</span>(modC, <span class="at">age=</span><span class="fu">median</span>(leukem<span class="sc">$</span>age), <span class="at">conf.int=</span><span class="fl">0.95</span>, <span class="at">col=</span><span class="st">&quot;blue&quot;</span>, </span>
-<span id="cb1622-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1622-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">time.inc=</span><span class="dv">12</span>, <span class="at">n.risk=</span><span class="cn">TRUE</span>, <span class="at">conf=</span><span class="st">&#39;bands&#39;</span>,</span>
-<span id="cb1622-3"><a href="cox-regression-models-for-survival-data-example-2.html#cb1622-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab=</span><span class="st">&quot;Study Time in Months&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1617-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1617-1" aria-hidden="true" tabindex="-1"></a><span class="fu">survplot</span>(modC, <span class="at">age=</span><span class="fu">median</span>(leukem<span class="sc">$</span>age), <span class="at">conf.int=</span><span class="fl">0.95</span>, <span class="at">col=</span><span class="st">&quot;blue&quot;</span>, </span>
+<span id="cb1617-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1617-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">time.inc=</span><span class="dv">12</span>, <span class="at">n.risk=</span><span class="cn">TRUE</span>, <span class="at">conf=</span><span class="st">&#39;bands&#39;</span>,</span>
+<span id="cb1617-3"><a href="cox-regression-models-for-survival-data-example-2.html#cb1617-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab=</span><span class="st">&quot;Study Time in Months&quot;</span>)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/c23_survplot_medians-1.png" width="672" /></p>
 <p>As before, we could fit such a plot to compare results across multiple <code>age</code> values, if desired.</p>
 </div>
 <div id="checking-the-proportional-hazards-assumption-1" class="section level3" number="24.6.6">
 <h3><span class="header-section-number">24.6.6</span> Checking the Proportional Hazards Assumption</h3>
-<div class="sourceCode" id="cb1623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1623-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1623-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cox.zph</span>(modC, <span class="at">transform=</span><span class="st">&quot;km&quot;</span>, <span class="at">global=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1618-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1618-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cox.zph</span>(modC, <span class="at">transform=</span><span class="st">&quot;km&quot;</span>, <span class="at">global=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>            chisq df     p
 rcs(age, 3)  2.39  2 0.303
 plab         1.55  1 0.214
 maxtemp      1.14  1 0.285
 GLOBAL       8.27  4 0.082</code></pre>
-<div class="sourceCode" id="cb1625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1625-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1625-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggcoxzph</span>(<span class="fu">cox.zph</span>(modC))</span></code></pre></div>
+<div class="sourceCode" id="cb1620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1620-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1620-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggcoxzph</span>(<span class="fu">cox.zph</span>(modC))</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/c23_modelC_zph_check-1.png" width="672" /></p>
 </div>
 <div id="model-c-nomogram" class="section level3" number="24.6.7">
 <h3><span class="header-section-number">24.6.7</span> Model C Nomogram</h3>
-<div class="sourceCode" id="cb1626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1626-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1626-1" aria-hidden="true" tabindex="-1"></a>sv <span class="ot">&lt;-</span> <span class="fu">Survival</span>(modC)</span>
-<span id="cb1626-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1626-2" aria-hidden="true" tabindex="-1"></a>surv12 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">sv</span>(<span class="dv">12</span>, <span class="at">lp=</span>x)</span>
-<span id="cb1626-3"><a href="cox-regression-models-for-survival-data-example-2.html#cb1626-3" aria-hidden="true" tabindex="-1"></a>surv24 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">sv</span>(<span class="dv">24</span>, <span class="at">lp=</span>x)</span>
-<span id="cb1626-4"><a href="cox-regression-models-for-survival-data-example-2.html#cb1626-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1626-5"><a href="cox-regression-models-for-survival-data-example-2.html#cb1626-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">nomogram</span>(modC, <span class="at">fun=</span><span class="fu">list</span>(surv12, surv24), </span>
-<span id="cb1626-6"><a href="cox-regression-models-for-survival-data-example-2.html#cb1626-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">funlabel=</span><span class="fu">c</span>(<span class="st">&#39;12-month survival&#39;</span>, <span class="st">&#39;24-month survival&#39;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb1621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1621-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1621-1" aria-hidden="true" tabindex="-1"></a>sv <span class="ot">&lt;-</span> <span class="fu">Survival</span>(modC)</span>
+<span id="cb1621-2"><a href="cox-regression-models-for-survival-data-example-2.html#cb1621-2" aria-hidden="true" tabindex="-1"></a>surv12 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">sv</span>(<span class="dv">12</span>, <span class="at">lp=</span>x)</span>
+<span id="cb1621-3"><a href="cox-regression-models-for-survival-data-example-2.html#cb1621-3" aria-hidden="true" tabindex="-1"></a>surv24 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">sv</span>(<span class="dv">24</span>, <span class="at">lp=</span>x)</span>
+<span id="cb1621-4"><a href="cox-regression-models-for-survival-data-example-2.html#cb1621-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1621-5"><a href="cox-regression-models-for-survival-data-example-2.html#cb1621-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">nomogram</span>(modC, <span class="at">fun=</span><span class="fu">list</span>(surv12, surv24), </span>
+<span id="cb1621-6"><a href="cox-regression-models-for-survival-data-example-2.html#cb1621-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">funlabel=</span><span class="fu">c</span>(<span class="st">&#39;12-month survival&#39;</span>, <span class="st">&#39;24-month survival&#39;</span>)))</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/c23_modelC_nomogram-1.png" width="672" /></p>
 </div>
 <div id="validating-model-cs-summary-statistics" class="section level3" number="24.6.8">
 <h3><span class="header-section-number">24.6.8</span> Validating Model C’s Summary Statistics</h3>
 <p>We can validate the model for Somers’ <span class="math inline">\(D_{xy}\)</span>, which is the rank correlation between the predicted log hazard and observed survival time, and for slope shrinkage.</p>
-<div class="sourceCode" id="cb1627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1627-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1627-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">43234</span>); <span class="fu">validate</span>(modC, <span class="at">B=</span><span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1622-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1622-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">43234</span>); <span class="fu">validate</span>(modC, <span class="at">B=</span><span class="dv">100</span>)</span></code></pre></div>
 <pre><code>      index.orig training   test optimism index.corrected   n
 Dxy       0.4385   0.4749 0.4144   0.0605          0.3780 100
 R2        0.3222   0.3716 0.2785   0.0931          0.2292 100
@@ -1568,7 +1568,7 @@ g         0.9466   1.0751 0.8364   0.2387          0.7078 100</code></pre>
 hazards.</p>
 </blockquote>
 <p>The <code>u</code> variable specifies the length of time at which we look at the calibration. I’ve specified the <code>units</code> earlier to be months.</p>
-<div class="sourceCode" id="cb1629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1629-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1629-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">43233</span>); <span class="fu">plot</span>(rms<span class="sc">::</span><span class="fu">calibrate</span>(modC, <span class="at">B =</span> <span class="dv">10</span>, <span class="at">u =</span> <span class="dv">12</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1624-1"><a href="cox-regression-models-for-survival-data-example-2.html#cb1624-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">43233</span>); <span class="fu">plot</span>(rms<span class="sc">::</span><span class="fu">calibrate</span>(modC, <span class="at">B =</span> <span class="dv">10</span>, <span class="at">u =</span> <span class="dv">12</span>))</span></code></pre></div>
 <pre><code>Using Cox survival estimates at 12 months</code></pre>
 <p><img src="432-notes_files/figure-html/c23_modelC_calibrate-1.png" width="672" /></p>
 <p>The model seems neither especially well calibrated nor especially poorly so - looking at the comparison of the blue curve to the gray, our predictions basically aren’t aggressive enough - more people are surviving to a year in our low predicted probability of 12 month survival group, and fewer people are surviving on the high end of the x-axis than should be the case.</p>

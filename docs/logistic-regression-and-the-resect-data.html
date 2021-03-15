@@ -1929,11 +1929,16 @@ Prediction FALSE TRUE
 <h3><span class="header-section-number">12.14.1</span> Interpreting Nagelkerke R<sup>2</sup></h3>
 <p>There are many ways to calculate <span class="math inline">\(R^2\)</span> for logistic regression.</p>
 <ul>
-<li>At the unfortunate <a href="http://www.ats.ucla.edu/stat/mult_pkg/faq/general/Psuedo_RSquareds.htm">URL linked here</a> (unfortunate because the term “pseudo” is misspelled) there is a nice summary of the key issue, which is that there are at least three different ways to think about <span class="math inline">\(R^2\)</span> in linear regression that are equivalent in that context, but when you move to a categorical outcome, which interpretation you use leads you down a different path for extension to the new type of outcome.</li>
+<li>At the <a href="https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faq-what-are-pseudo-r-squareds/">URL linked here</a> there is a nice summary of the key issue, which is that there are at least three different ways to think about <span class="math inline">\(R^2\)</span> in linear regression that are equivalent in that context, but when you move to a categorical outcome, which interpretation you use leads you down a different path for extension to the new type of outcome. In linear regression…
+<ul>
+<li>You might think of <span class="math inline">\(R^2\)</span> as a measure of the proportion of variability explained.</li>
+<li>You might think of <span class="math inline">\(R^2\)</span> as measuring the improvement from a null model to a fitted model.</li>
+<li>You might think of <span class="math inline">\(R^2\)</span> as the square of the correlation coefficient.</li>
+</ul></li>
 <li>Paul Allison, for instance, describes several at <a href="http://statisticalhorizons.com/r2logistic">this link</a> in a post entitled “What’s the Best R-Squared for Logistic Regression?”</li>
 <li>Jonathan Bartlett looks at McFadden’s pseudo <span class="math inline">\(R^2\)</span> in some detail (including some R code) at <a href="http://thestatsgeek.com/2014/02/08/r-squared-in-logistic-regression/">this link</a>, in a post entitled “R squared in logistic regression”</li>
 </ul>
-<p>The Nagelkerke approach that is presented as <code>R2</code> in the <code>lrm</code> output is as good as most of the available approaches, and has the positive feature that it does reach 1 if the fitted model shows as much improvement as possible over the null model (which predicts the mean response for all subjects, and has R<sup>2</sup> = 0). The greater the improvement, the higher the Nagelkerke R<sup>2</sup>.</p>
+<p>The Nagelkerke approach that is presented as <code>R2</code> in the <code>lrm</code> output is as good as most of the available approaches, and has the positive feature that it does reach 1 if the fitted model shows as much improvement as possible over the null model (which predicts the mean response for all subjects, and has <span class="math inline">\(R^2\)</span> = 0). The greater the improvement, the higher the Nagelkerke <span class="math inline">\(R^2\)</span>.</p>
 <p>For model A, our Nagelkerke R<sup>2</sup> = 0.167, which is pretty poor. It doesn’t technically mean that 16.7% of any sort of variation has been explained, though.</p>
 </div>
 <div id="interpreting-the-c-statistic-and-plotting-the-roc-curve" class="section level3" number="12.14.2">

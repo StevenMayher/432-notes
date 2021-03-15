@@ -1013,7 +1013,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="analysis-of-variance.html#cb418-1" aria-hidden="true" tabindex="-1"></a>bonding <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(resin) <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="fu">mean</span>(strength), <span class="fu">median</span>(strength))</span></code></pre></div>
 <pre><code># A tibble: 4 x 4
   resin     n `mean(strength)` `median(strength)`
-* &lt;chr&gt; &lt;int&gt;            &lt;dbl&gt;              &lt;dbl&gt;
+  &lt;chr&gt; &lt;int&gt;            &lt;dbl&gt;              &lt;dbl&gt;
 1 A        20             18.4               18.0
 2 B        20             22.2               22.7
 3 C        20             25.2               25.7

@@ -991,10 +991,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">21.1</span> The Authorship Example</h2>
 <p>This example is based on the work of Jeffrey S. Simonoff (2003) <em>Analyzing Categorical Data</em> in Chapter 10. Related data and R code are available at <a href="http://people.stern.nyu.edu/jsimonof/AnalCatData/Splus/" class="uri">http://people.stern.nyu.edu/jsimonof/AnalCatData/Splus/</a>. Meanwhile, the data set and analysis are based on the work of Peng RD and Hengartner NW (2002) Quantitative analysis of literary styles, <em>The American Statistician</em>, 56, 175-185.</p>
 <p>The <code>authorship.csv</code> data file contains 841 rows. Each row describes a block of text that contains 1700 total words from one of several books by four authors: Jane Austen (samples from 7 books), Jack London (6 books), John Milton (2 books), or William Shakespeare (12 books). The data include counts within the blocks of text of 69 function words, such as “a,” “by,” “no,” “that” and “with.” The goal of our analysis, mirroring that of Simonoff, will be to use the incidence of these function words to build a model that distinguishes the authors.</p>
-<div class="sourceCode" id="cb1437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1437-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1437-1" aria-hidden="true" tabindex="-1"></a>authorship<span class="sc">$</span>Author <span class="ot">&lt;-</span> <span class="fu">factor</span>(authorship<span class="sc">$</span>Author, </span>
-<span id="cb1437-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1437-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Shakespeare&quot;</span>, <span class="st">&quot;Austen&quot;</span>, <span class="st">&quot;London&quot;</span>, <span class="st">&quot;Milton&quot;</span>))</span>
-<span id="cb1437-3"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1437-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1437-4"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1437-4" aria-hidden="true" tabindex="-1"></a>authorship</span></code></pre></div>
+<div class="sourceCode" id="cb1435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1435-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1435-1" aria-hidden="true" tabindex="-1"></a>authorship<span class="sc">$</span>Author <span class="ot">&lt;-</span> <span class="fu">factor</span>(authorship<span class="sc">$</span>Author, </span>
+<span id="cb1435-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1435-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Shakespeare&quot;</span>, <span class="st">&quot;Austen&quot;</span>, <span class="st">&quot;London&quot;</span>, <span class="st">&quot;Milton&quot;</span>))</span>
+<span id="cb1435-3"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1435-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1435-4"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1435-4" aria-hidden="true" tabindex="-1"></a>authorship</span></code></pre></div>
 <pre><code># A tibble: 841 x 71
    BookID Author     a   all  also    an   and   any   are    as    at    be
     &lt;dbl&gt; &lt;fct&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1038,14 +1038,14 @@ Signifying nothing.</p>
 <ul>
 <li>“be,” “been,” “had,” “it,” “may,” “not,” “on,” “the,” “upon,” “was” and “which”</li>
 </ul>
-<div class="sourceCode" id="cb1439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1439-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1439-1" aria-hidden="true" tabindex="-1"></a>auth2 <span class="ot">&lt;-</span> authorship <span class="sc">%&gt;%</span></span>
-<span id="cb1439-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1439-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(Author, BookID, be, been, had, it, may, not, </span>
-<span id="cb1439-3"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1439-3" aria-hidden="true" tabindex="-1"></a>           on, the, upon, was, which)</span>
-<span id="cb1439-4"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1439-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1439-5"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1439-5" aria-hidden="true" tabindex="-1"></a>auth2.long <span class="ot">&lt;-</span> auth2 <span class="sc">%&gt;%</span></span>
-<span id="cb1439-6"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1439-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gather</span>(<span class="st">&quot;word&quot;</span>, <span class="st">&quot;n&quot;</span>, <span class="dv">3</span><span class="sc">:</span><span class="dv">13</span>)</span>
-<span id="cb1439-7"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1439-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1439-8"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1439-8" aria-hidden="true" tabindex="-1"></a>auth2.long</span></code></pre></div>
+<div class="sourceCode" id="cb1437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1437-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1437-1" aria-hidden="true" tabindex="-1"></a>auth2 <span class="ot">&lt;-</span> authorship <span class="sc">%&gt;%</span></span>
+<span id="cb1437-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1437-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(Author, BookID, be, been, had, it, may, not, </span>
+<span id="cb1437-3"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1437-3" aria-hidden="true" tabindex="-1"></a>           on, the, upon, was, which)</span>
+<span id="cb1437-4"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1437-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1437-5"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1437-5" aria-hidden="true" tabindex="-1"></a>auth2.long <span class="ot">&lt;-</span> auth2 <span class="sc">%&gt;%</span></span>
+<span id="cb1437-6"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1437-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gather</span>(<span class="st">&quot;word&quot;</span>, <span class="st">&quot;n&quot;</span>, <span class="dv">3</span><span class="sc">:</span><span class="dv">13</span>)</span>
+<span id="cb1437-7"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1437-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1437-8"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1437-8" aria-hidden="true" tabindex="-1"></a>auth2.long</span></code></pre></div>
 <pre><code># A tibble: 9,251 x 4
    Author BookID word      n
    &lt;fct&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;
@@ -1062,11 +1062,11 @@ Signifying nothing.</p>
 # ... with 9,241 more rows</code></pre>
 <div id="side-by-side-boxplots" class="section level3" number="21.2.1">
 <h3><span class="header-section-number">21.2.1</span> Side by Side Boxplots</h3>
-<div class="sourceCode" id="cb1441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1441-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1441-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(auth2.long, <span class="fu">aes</span>(<span class="at">x =</span> Author, <span class="at">y =</span> n)) <span class="sc">+</span></span>
-<span id="cb1441-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1441-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb1441-3"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1441-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> word, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb1441-4"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1441-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb1441-5"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1441-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1439-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1439-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(auth2.long, <span class="fu">aes</span>(<span class="at">x =</span> Author, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb1439-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1439-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb1439-3"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1439-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> word, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb1439-4"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1439-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb1439-5"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1439-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-597-1.png" width="672" /></p>
 <blockquote>
 <p>Oh! do not attack me with your watch. A watch is always too fast or too slow. I cannot be dictated to by a watch.</p>
@@ -1076,9 +1076,9 @@ Signifying nothing.</p>
 <div id="a-multinomial-logistic-regression-model" class="section level2" number="21.3">
 <h2><span class="header-section-number">21.3</span> A Multinomial Logistic Regression Model</h2>
 <p>Let’s start with a multinomial model to predict <code>Author</code> on the basis of these 11 key predictors, using the <code>multinom</code> function from the <code>nnet</code> package.</p>
-<div class="sourceCode" id="cb1442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1442-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1442-1" aria-hidden="true" tabindex="-1"></a>authnom1 <span class="ot">&lt;-</span> <span class="fu">multinom</span>(Author <span class="sc">~</span> be <span class="sc">+</span> been <span class="sc">+</span> had <span class="sc">+</span> it <span class="sc">+</span> may <span class="sc">+</span> not <span class="sc">+</span> on <span class="sc">+</span> </span>
-<span id="cb1442-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1442-2" aria-hidden="true" tabindex="-1"></a>                         the <span class="sc">+</span> upon <span class="sc">+</span> was <span class="sc">+</span> which, <span class="at">data=</span>authorship, </span>
-<span id="cb1442-3"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1442-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">maxit=</span><span class="dv">200</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1440-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1440-1" aria-hidden="true" tabindex="-1"></a>authnom1 <span class="ot">&lt;-</span> <span class="fu">multinom</span>(Author <span class="sc">~</span> be <span class="sc">+</span> been <span class="sc">+</span> had <span class="sc">+</span> it <span class="sc">+</span> may <span class="sc">+</span> not <span class="sc">+</span> on <span class="sc">+</span> </span>
+<span id="cb1440-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1440-2" aria-hidden="true" tabindex="-1"></a>                         the <span class="sc">+</span> upon <span class="sc">+</span> was <span class="sc">+</span> which, <span class="at">data=</span>authorship, </span>
+<span id="cb1440-3"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1440-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">maxit=</span><span class="dv">200</span>)</span></code></pre></div>
 <pre><code># weights:  52 (36 variable)
 initial  value 1165.873558 
 iter  10 value 293.806160
@@ -1095,7 +1095,7 @@ iter 110 value 45.868017
 iter 120 value 45.863256
 final  value 45.863228 
 converged</code></pre>
-<div class="sourceCode" id="cb1444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1444-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1444-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(authnom1)</span></code></pre></div>
+<div class="sourceCode" id="cb1442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1442-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1442-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(authnom1)</span></code></pre></div>
 <pre><code>Call:
 multinom(formula = Author ~ be + been + had + it + may + not + 
     on + the + upon + was + which, data = authorship, maxit = 200)
@@ -1124,8 +1124,8 @@ Residual Deviance: 91.72646
 AIC: 163.7265 </code></pre>
 <div id="testing-model-1" class="section level3" number="21.3.1">
 <h3><span class="header-section-number">21.3.1</span> Testing Model 1</h3>
-<div class="sourceCode" id="cb1446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1446-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1446-1" aria-hidden="true" tabindex="-1"></a>z1 <span class="ot">&lt;-</span> <span class="fu">summary</span>(authnom1)<span class="sc">$</span>coefficients<span class="sc">/</span><span class="fu">summary</span>(authnom1)<span class="sc">$</span>standard.errors</span>
-<span id="cb1446-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1446-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(z1,<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1444-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1444-1" aria-hidden="true" tabindex="-1"></a>z1 <span class="ot">&lt;-</span> <span class="fu">summary</span>(authnom1)<span class="sc">$</span>coefficients<span class="sc">/</span><span class="fu">summary</span>(authnom1)<span class="sc">$</span>standard.errors</span>
+<span id="cb1444-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1444-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(z1,<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>       (Intercept)    be  been  had    it   may   not   on   the  upon  was
 Austen       -3.17  2.98  1.73 1.71  0.04 -0.50 -0.82 2.70 -0.68 -3.30 3.88
 London       -2.73 -0.39  0.52 1.72  0.76 -0.03 -2.26 2.55  3.90 -2.71 3.83
@@ -1134,8 +1134,8 @@ Milton       -0.33 -0.68 -1.54 1.67 -3.56 -0.19  0.43 2.34  1.83 -3.17 1.67
 Austen  0.63
 London -2.32
 Milton -0.28</code></pre>
-<div class="sourceCode" id="cb1448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1448-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1448-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(z1), <span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">*</span> <span class="dv">2</span></span>
-<span id="cb1448-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1448-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">round</span>(p1,<span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1446-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1446-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(z1), <span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb1446-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1446-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">round</span>(p1,<span class="dv">3</span>))</span></code></pre></div>
 <table>
 <caption>Table continues below</caption>
 <colgroup>
@@ -1247,9 +1247,9 @@ Milton -0.28</code></pre>
 </div>
 <div id="model-2" class="section level2" number="21.4">
 <h2><span class="header-section-number">21.4</span> Model 2</h2>
-<div class="sourceCode" id="cb1449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1449-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1449-1" aria-hidden="true" tabindex="-1"></a>authnom2 <span class="ot">&lt;-</span> <span class="fu">multinom</span>(Author <span class="sc">~</span> be <span class="sc">+</span> had <span class="sc">+</span> it <span class="sc">+</span> not <span class="sc">+</span> on <span class="sc">+</span> </span>
-<span id="cb1449-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1449-2" aria-hidden="true" tabindex="-1"></a>                         the <span class="sc">+</span> upon <span class="sc">+</span> was <span class="sc">+</span> which, <span class="at">data=</span>authorship, </span>
-<span id="cb1449-3"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1449-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">maxit=</span><span class="dv">200</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1447-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1447-1" aria-hidden="true" tabindex="-1"></a>authnom2 <span class="ot">&lt;-</span> <span class="fu">multinom</span>(Author <span class="sc">~</span> be <span class="sc">+</span> had <span class="sc">+</span> it <span class="sc">+</span> not <span class="sc">+</span> on <span class="sc">+</span> </span>
+<span id="cb1447-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1447-2" aria-hidden="true" tabindex="-1"></a>                         the <span class="sc">+</span> upon <span class="sc">+</span> was <span class="sc">+</span> which, <span class="at">data=</span>authorship, </span>
+<span id="cb1447-3"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1447-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">maxit=</span><span class="dv">200</span>)</span></code></pre></div>
 <pre><code># weights:  44 (30 variable)
 initial  value 1165.873558 
 iter  10 value 304.985478
@@ -1264,7 +1264,7 @@ iter  90 value 50.834262
 iter 100 value 50.743136
 final  value 50.743111 
 converged</code></pre>
-<div class="sourceCode" id="cb1451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1451-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1451-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(authnom2)</span></code></pre></div>
+<div class="sourceCode" id="cb1449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1449-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1449-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(authnom2)</span></code></pre></div>
 <pre><code>Call:
 multinom(formula = Author ~ be + had + it + not + on + the + 
     upon + was + which, data = authorship, maxit = 200)
@@ -1293,7 +1293,7 @@ Residual Deviance: 101.4862
 AIC: 161.4862 </code></pre>
 <div id="comparing-model-2-to-model-1" class="section level3" number="21.4.1">
 <h3><span class="header-section-number">21.4.1</span> Comparing Model 2 to Model 1</h3>
-<div class="sourceCode" id="cb1453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1453-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1453-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(authnom1, authnom2)</span></code></pre></div>
+<div class="sourceCode" id="cb1451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1451-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1451-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(authnom1, authnom2)</span></code></pre></div>
 <pre><code>Likelihood ratio tests of Multinomial Models
 
 Response: Author
@@ -1306,14 +1306,14 @@ Response: Author
 </div>
 <div id="testing-model-2" class="section level3" number="21.4.2">
 <h3><span class="header-section-number">21.4.2</span> Testing Model 2</h3>
-<div class="sourceCode" id="cb1455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1455-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1455-1" aria-hidden="true" tabindex="-1"></a>z2 <span class="ot">&lt;-</span> <span class="fu">summary</span>(authnom2)<span class="sc">$</span>coefficients<span class="sc">/</span><span class="fu">summary</span>(authnom2)<span class="sc">$</span>standard.errors</span>
-<span id="cb1455-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1455-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(z2,<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1453-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1453-1" aria-hidden="true" tabindex="-1"></a>z2 <span class="ot">&lt;-</span> <span class="fu">summary</span>(authnom2)<span class="sc">$</span>coefficients<span class="sc">/</span><span class="fu">summary</span>(authnom2)<span class="sc">$</span>standard.errors</span>
+<span id="cb1453-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1453-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(z2,<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>       (Intercept)    be  had    it   not   on   the  upon  was which
 Austen       -3.51  3.56 3.04  0.30 -0.42 2.40 -0.06 -3.47 4.29  0.43
 London       -3.09 -0.84 2.62  1.04 -2.41 2.39  4.69 -2.64 4.24 -2.62
 Milton       -0.48 -0.47 0.84 -3.80  0.45 2.83  1.66 -2.82 1.83 -0.45</code></pre>
-<div class="sourceCode" id="cb1457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1457-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1457-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(z2), <span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">*</span> <span class="dv">2</span></span>
-<span id="cb1457-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1457-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(p2,<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1455-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1455-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(z2), <span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb1455-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1455-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(p2,<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>       (Intercept)    be   had    it   not    on   the  upon   was which
 Austen       0.000 0.000 0.002 0.762 0.674 0.016 0.950 0.001 0.000 0.664
 London       0.002 0.399 0.009 0.299 0.016 0.017 0.000 0.008 0.000 0.009
@@ -1334,7 +1334,7 @@ Milton       0.628 0.639 0.398 0.000 0.653 0.005 0.096 0.005 0.067 0.650</code><
 <div id="classification-table" class="section level2" number="21.5">
 <h2><span class="header-section-number">21.5</span> Classification Table</h2>
 <p>How well does this model (model 2) distinguish these authors based on blocks of 1700 words of text?</p>
-<div class="sourceCode" id="cb1459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1459-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1459-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(authorship<span class="sc">$</span>Author, <span class="fu">predict</span>(authnom2))</span></code></pre></div>
+<div class="sourceCode" id="cb1457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1457-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1457-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(authorship<span class="sc">$</span>Author, <span class="fu">predict</span>(authnom2))</span></code></pre></div>
 <pre><code>             
               Shakespeare Austen London Milton
   Shakespeare         168      3      1      1
@@ -1371,12 +1371,12 @@ Triumphing over Death, and Chance, and thee, O Time!</p>
 <h2><span class="header-section-number">21.6</span> Probability Curves based on a Single Predictor</h2>
 <p>In situations where only one predictor is used, we can develop nice plots of estimated probabilities for each group as a function of the predictor. Suppose we look at the single word “been” (note that this was left out of Model 2.)</p>
 <p>Note that the possible values for counts of “been” in the data range from 0 to 27…</p>
-<div class="sourceCode" id="cb1461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1461-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1461-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(authorship<span class="sc">$</span>been)</span></code></pre></div>
+<div class="sourceCode" id="cb1459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1459-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1459-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(authorship<span class="sc">$</span>been)</span></code></pre></div>
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   0.000   2.000   4.000   4.614   7.000  27.000 </code></pre>
 <p>Now, we’ll build a model to predict the author based solely on the counts of the word “been.”</p>
-<div class="sourceCode" id="cb1463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1463-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1463-1" aria-hidden="true" tabindex="-1"></a>authnom3 <span class="ot">&lt;-</span> <span class="fu">multinom</span>(Author <span class="sc">~</span> been, </span>
-<span id="cb1463-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1463-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data=</span>authorship, <span class="at">maxit=</span><span class="dv">200</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1461-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1461-1" aria-hidden="true" tabindex="-1"></a>authnom3 <span class="ot">&lt;-</span> <span class="fu">multinom</span>(Author <span class="sc">~</span> been, </span>
+<span id="cb1461-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1461-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data=</span>authorship, <span class="at">maxit=</span><span class="dv">200</span>)</span></code></pre></div>
 <pre><code># weights:  12 (6 variable)
 initial  value 1165.873558 
 iter  10 value 757.915093
@@ -1384,28 +1384,28 @@ iter  20 value 755.454631
 final  value 755.454551 
 converged</code></pre>
 <p>Next, we’ll build a grid of the predicted log odds for each author (as compared to Shakespeare) using the fitted coefficients. The grid will cover every possible value from 0 to 27, increasing by 0.1, using the following trick in R.</p>
-<div class="sourceCode" id="cb1465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1465-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1465-1" aria-hidden="true" tabindex="-1"></a>beengrid <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="dv">1</span>,<span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">270</span>)<span class="sc">/</span><span class="dv">10</span>)</span>
-<span id="cb1465-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1465-2" aria-hidden="true" tabindex="-1"></a>austenlogit <span class="ot">&lt;-</span> beengrid <span class="sc">%*%</span> <span class="fu">coef</span>(authnom3)[<span class="dv">1</span>,]</span>
-<span id="cb1465-3"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1465-3" aria-hidden="true" tabindex="-1"></a>londonlogit <span class="ot">&lt;-</span> beengrid <span class="sc">%*%</span> <span class="fu">coef</span>(authnom3)[<span class="dv">2</span>,]</span>
-<span id="cb1465-4"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1465-4" aria-hidden="true" tabindex="-1"></a>miltonlogit <span class="ot">&lt;-</span> beengrid <span class="sc">%*%</span> <span class="fu">coef</span>(authnom3)[<span class="dv">3</span>,]</span></code></pre></div>
+<div class="sourceCode" id="cb1463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1463-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1463-1" aria-hidden="true" tabindex="-1"></a>beengrid <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="dv">1</span>,<span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">270</span>)<span class="sc">/</span><span class="dv">10</span>)</span>
+<span id="cb1463-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1463-2" aria-hidden="true" tabindex="-1"></a>austenlogit <span class="ot">&lt;-</span> beengrid <span class="sc">%*%</span> <span class="fu">coef</span>(authnom3)[<span class="dv">1</span>,]</span>
+<span id="cb1463-3"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1463-3" aria-hidden="true" tabindex="-1"></a>londonlogit <span class="ot">&lt;-</span> beengrid <span class="sc">%*%</span> <span class="fu">coef</span>(authnom3)[<span class="dv">2</span>,]</span>
+<span id="cb1463-4"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1463-4" aria-hidden="true" tabindex="-1"></a>miltonlogit <span class="ot">&lt;-</span> beengrid <span class="sc">%*%</span> <span class="fu">coef</span>(authnom3)[<span class="dv">3</span>,]</span></code></pre></div>
 <p>Next, we’ll use that grid of logit values to estimate the fitted probabilities for each value of “been” between 0 and 27.</p>
-<div class="sourceCode" id="cb1466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1466-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1466-1" aria-hidden="true" tabindex="-1"></a>austenprob <span class="ot">&lt;-</span> <span class="fu">exp</span>(austenlogit)<span class="sc">/</span> </span>
-<span id="cb1466-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1466-2" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">exp</span>(austenlogit) <span class="sc">+</span> <span class="fu">exp</span>(londonlogit) <span class="sc">+</span> </span>
-<span id="cb1466-3"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1466-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">exp</span>(miltonlogit) <span class="sc">+</span> <span class="dv">1</span>)</span>
-<span id="cb1466-4"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1466-4" aria-hidden="true" tabindex="-1"></a>londonprob <span class="ot">&lt;-</span> <span class="fu">exp</span>(londonlogit)<span class="sc">/</span> </span>
-<span id="cb1466-5"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1466-5" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">exp</span>(austenlogit) <span class="sc">+</span> <span class="fu">exp</span>(londonlogit) <span class="sc">+</span> </span>
-<span id="cb1466-6"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1466-6" aria-hidden="true" tabindex="-1"></a>         <span class="fu">exp</span>(miltonlogit) <span class="sc">+</span> <span class="dv">1</span>)</span>
-<span id="cb1466-7"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1466-7" aria-hidden="true" tabindex="-1"></a>miltonprob <span class="ot">&lt;-</span> <span class="fu">exp</span>(miltonlogit)<span class="sc">/</span> </span>
-<span id="cb1466-8"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1466-8" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">exp</span>(austenlogit) <span class="sc">+</span> <span class="fu">exp</span>(londonlogit) <span class="sc">+</span> </span>
-<span id="cb1466-9"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1466-9" aria-hidden="true" tabindex="-1"></a>         <span class="fu">exp</span>(miltonlogit) <span class="sc">+</span> <span class="dv">1</span>)</span>
-<span id="cb1466-10"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1466-10" aria-hidden="true" tabindex="-1"></a>shakesprob <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> austenprob <span class="sc">-</span> londonprob <span class="sc">-</span> miltonprob</span>
-<span id="cb1466-11"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1466-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1466-12"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1466-12" aria-hidden="true" tabindex="-1"></a>been_dat <span class="ot">&lt;-</span> <span class="fu">data_frame</span>(<span class="at">been_count =</span> beengrid[,<span class="dv">2</span>], </span>
-<span id="cb1466-13"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1466-13" aria-hidden="true" tabindex="-1"></a>                       <span class="at">austen =</span> austenprob[,<span class="dv">1</span>], </span>
-<span id="cb1466-14"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1466-14" aria-hidden="true" tabindex="-1"></a>                       <span class="at">london =</span> londonprob[,<span class="dv">1</span>], </span>
-<span id="cb1466-15"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1466-15" aria-hidden="true" tabindex="-1"></a>                       <span class="at">milton =</span> miltonprob[,<span class="dv">1</span>], </span>
-<span id="cb1466-16"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1466-16" aria-hidden="true" tabindex="-1"></a>                       <span class="at">shakespeare =</span> shakesprob[,<span class="dv">1</span>])</span>
-<span id="cb1466-17"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1466-17" aria-hidden="true" tabindex="-1"></a>been_dat</span></code></pre></div>
+<div class="sourceCode" id="cb1464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1464-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1464-1" aria-hidden="true" tabindex="-1"></a>austenprob <span class="ot">&lt;-</span> <span class="fu">exp</span>(austenlogit)<span class="sc">/</span> </span>
+<span id="cb1464-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1464-2" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">exp</span>(austenlogit) <span class="sc">+</span> <span class="fu">exp</span>(londonlogit) <span class="sc">+</span> </span>
+<span id="cb1464-3"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1464-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">exp</span>(miltonlogit) <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb1464-4"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1464-4" aria-hidden="true" tabindex="-1"></a>londonprob <span class="ot">&lt;-</span> <span class="fu">exp</span>(londonlogit)<span class="sc">/</span> </span>
+<span id="cb1464-5"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1464-5" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">exp</span>(austenlogit) <span class="sc">+</span> <span class="fu">exp</span>(londonlogit) <span class="sc">+</span> </span>
+<span id="cb1464-6"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1464-6" aria-hidden="true" tabindex="-1"></a>         <span class="fu">exp</span>(miltonlogit) <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb1464-7"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1464-7" aria-hidden="true" tabindex="-1"></a>miltonprob <span class="ot">&lt;-</span> <span class="fu">exp</span>(miltonlogit)<span class="sc">/</span> </span>
+<span id="cb1464-8"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1464-8" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">exp</span>(austenlogit) <span class="sc">+</span> <span class="fu">exp</span>(londonlogit) <span class="sc">+</span> </span>
+<span id="cb1464-9"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1464-9" aria-hidden="true" tabindex="-1"></a>         <span class="fu">exp</span>(miltonlogit) <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb1464-10"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1464-10" aria-hidden="true" tabindex="-1"></a>shakesprob <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> austenprob <span class="sc">-</span> londonprob <span class="sc">-</span> miltonprob</span>
+<span id="cb1464-11"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1464-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1464-12"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1464-12" aria-hidden="true" tabindex="-1"></a>been_dat <span class="ot">&lt;-</span> <span class="fu">data_frame</span>(<span class="at">been_count =</span> beengrid[,<span class="dv">2</span>], </span>
+<span id="cb1464-13"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1464-13" aria-hidden="true" tabindex="-1"></a>                       <span class="at">austen =</span> austenprob[,<span class="dv">1</span>], </span>
+<span id="cb1464-14"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1464-14" aria-hidden="true" tabindex="-1"></a>                       <span class="at">london =</span> londonprob[,<span class="dv">1</span>], </span>
+<span id="cb1464-15"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1464-15" aria-hidden="true" tabindex="-1"></a>                       <span class="at">milton =</span> miltonprob[,<span class="dv">1</span>], </span>
+<span id="cb1464-16"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1464-16" aria-hidden="true" tabindex="-1"></a>                       <span class="at">shakespeare =</span> shakesprob[,<span class="dv">1</span>])</span>
+<span id="cb1464-17"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1464-17" aria-hidden="true" tabindex="-1"></a>been_dat</span></code></pre></div>
 <pre><code># A tibble: 271 x 5
    been_count austen london milton shakespeare
         &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;       &lt;dbl&gt;
@@ -1421,9 +1421,9 @@ converged</code></pre>
 10        0.9 0.0644  0.256  0.171       0.509
 # ... with 261 more rows</code></pre>
 <p>Now, we gather the data by author name and probability</p>
-<div class="sourceCode" id="cb1468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1468-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1468-1" aria-hidden="true" tabindex="-1"></a>been_dat_long <span class="ot">&lt;-</span> been_dat <span class="sc">%&gt;%</span></span>
-<span id="cb1468-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1468-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gather</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;prob&quot;</span>, <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>)</span>
-<span id="cb1468-3"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1468-3" aria-hidden="true" tabindex="-1"></a>been_dat_long</span></code></pre></div>
+<div class="sourceCode" id="cb1466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1466-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1466-1" aria-hidden="true" tabindex="-1"></a>been_dat_long <span class="ot">&lt;-</span> been_dat <span class="sc">%&gt;%</span></span>
+<span id="cb1466-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1466-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gather</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;prob&quot;</span>, <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb1466-3"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1466-3" aria-hidden="true" tabindex="-1"></a>been_dat_long</span></code></pre></div>
 <pre><code># A tibble: 1,084 x 3
    been_count name     prob
         &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
@@ -1440,27 +1440,27 @@ converged</code></pre>
 # ... with 1,074 more rows</code></pre>
 <div id="produce-the-plot-of-estimated-probabilities-based-on-been-counts" class="section level3" number="21.6.1">
 <h3><span class="header-section-number">21.6.1</span> Produce the Plot of Estimated Probabilities based on “been” counts</h3>
-<div class="sourceCode" id="cb1470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1470-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1470-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(been_dat_long, <span class="fu">aes</span>(<span class="at">x =</span> been_count, <span class="at">y =</span> prob, </span>
-<span id="cb1470-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1470-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">col =</span> name)) <span class="sc">+</span></span>
-<span id="cb1470-3"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1470-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span> </span>
-<span id="cb1470-4"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1470-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb1470-5"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1470-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Count of the word `been`&quot;</span>, </span>
-<span id="cb1470-6"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1470-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Model probability&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1468-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1468-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(been_dat_long, <span class="fu">aes</span>(<span class="at">x =</span> been_count, <span class="at">y =</span> prob, </span>
+<span id="cb1468-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1468-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">col =</span> name)) <span class="sc">+</span></span>
+<span id="cb1468-3"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1468-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span> </span>
+<span id="cb1468-4"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1468-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb1468-5"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1468-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Count of the word `been`&quot;</span>, </span>
+<span id="cb1468-6"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1468-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Model probability&quot;</span>)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/plot%20of%20estimated%20probabilities-1.png" width="672" /></p>
 </div>
 <div id="boxplot-of-been-counts" class="section level3" number="21.6.2">
 <h3><span class="header-section-number">21.6.2</span> Boxplot of “been” counts</h3>
 <p>Compare this to what we see in the raw counts of the word “been.”</p>
-<div class="sourceCode" id="cb1471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1471-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1471-1" aria-hidden="true" tabindex="-1"></a>been.long <span class="ot">&lt;-</span> <span class="fu">filter</span>(auth2.long, word <span class="sc">==</span> <span class="st">&quot;been&quot;</span>)</span>
-<span id="cb1471-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1471-2" aria-hidden="true" tabindex="-1"></a>been.long<span class="sc">$</span>Auth <span class="ot">&lt;-</span> <span class="fu">fct_relevel</span>(been.long<span class="sc">$</span>Author, </span>
-<span id="cb1471-3"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1471-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;Austen&quot;</span>, <span class="st">&quot;London&quot;</span>, <span class="st">&quot;Milton&quot;</span>, <span class="st">&quot;Shakespeare&quot;</span>)</span>
-<span id="cb1471-4"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1471-4" aria-hidden="true" tabindex="-1"></a><span class="co"># releveling to make the colors match the model plot</span></span>
-<span id="cb1471-5"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1471-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1471-6"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1471-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(been.long, <span class="fu">aes</span>(<span class="at">x =</span> Auth, <span class="at">y =</span> n, <span class="at">fill =</span> Auth)) <span class="sc">+</span></span>
-<span id="cb1471-7"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1471-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb1471-8"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1471-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">fill =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb1471-9"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1471-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb1471-10"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1471-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Count of the word `been`&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1469-1"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1469-1" aria-hidden="true" tabindex="-1"></a>been.long <span class="ot">&lt;-</span> <span class="fu">filter</span>(auth2.long, word <span class="sc">==</span> <span class="st">&quot;been&quot;</span>)</span>
+<span id="cb1469-2"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1469-2" aria-hidden="true" tabindex="-1"></a>been.long<span class="sc">$</span>Auth <span class="ot">&lt;-</span> <span class="fu">fct_relevel</span>(been.long<span class="sc">$</span>Author, </span>
+<span id="cb1469-3"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1469-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;Austen&quot;</span>, <span class="st">&quot;London&quot;</span>, <span class="st">&quot;Milton&quot;</span>, <span class="st">&quot;Shakespeare&quot;</span>)</span>
+<span id="cb1469-4"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1469-4" aria-hidden="true" tabindex="-1"></a><span class="co"># releveling to make the colors match the model plot</span></span>
+<span id="cb1469-5"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1469-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1469-6"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1469-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(been.long, <span class="fu">aes</span>(<span class="at">x =</span> Auth, <span class="at">y =</span> n, <span class="at">fill =</span> Auth)) <span class="sc">+</span></span>
+<span id="cb1469-7"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1469-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb1469-8"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1469-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">fill =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb1469-9"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1469-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb1469-10"><a href="analyzing-literary-styles-with-multinomial-logistic-regression.html#cb1469-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Count of the word `been`&quot;</span>)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/side%20by%20side%20boxplot%20of%20been%20by%20author-1.png" width="672" /></p>
 </div>
 <div id="quote-sources" class="section level3" number="21.6.3">

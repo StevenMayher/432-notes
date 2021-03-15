@@ -775,11 +775,14 @@ The C statistic is estimated to be `r round(res_modC$stats["C"],3)`, with an ass
 
 There are many ways to calculate $R^2$ for logistic regression. 
 
-- At the unfortunate [URL linked here](http://www.ats.ucla.edu/stat/mult_pkg/faq/general/Psuedo_RSquareds.htm) (unfortunate because the term "pseudo" is misspelled) there is a nice summary of the key issue, which is that there are at least three different ways to think about $R^2$ in linear regression that are equivalent in that context, but when you move to a categorical outcome, which interpretation you use leads you down a different path for extension to the new type of outcome.
+- At the [URL linked here](https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faq-what-are-pseudo-r-squareds/) there is a nice summary of the key issue, which is that there are at least three different ways to think about $R^2$ in linear regression that are equivalent in that context, but when you move to a categorical outcome, which interpretation you use leads you down a different path for extension to the new type of outcome. In linear regression...
+    - You might think of $R^2$ as a measure of the proportion of variability explained.
+    - You might think of $R^2$ as measuring the improvement from a null model to a fitted model.
+    - You might think of $R^2$ as the square of the correlation coefficient.
 - Paul Allison, for instance, describes several at [this link](http://statisticalhorizons.com/r2logistic) in a post entitled "What's the Best R-Squared for Logistic Regression?"
 - Jonathan Bartlett looks at McFadden's pseudo $R^2$ in some detail (including some R code) at [this link](http://thestatsgeek.com/2014/02/08/r-squared-in-logistic-regression/), in a post entitled "R squared in logistic regression"
 
-The Nagelkerke approach that is presented as `R2` in the `lrm` output is as good as most of the available approaches, and has the positive feature that it does reach 1 if the fitted model shows as much improvement as possible over the null model (which predicts the mean response for all subjects, and has R^2^ = 0). The greater the improvement, the higher the Nagelkerke R^2^.
+The Nagelkerke approach that is presented as `R2` in the `lrm` output is as good as most of the available approaches, and has the positive feature that it does reach 1 if the fitted model shows as much improvement as possible over the null model (which predicts the mean response for all subjects, and has $R^2$ = 0). The greater the improvement, the higher the Nagelkerke $R^2$.
 
 For model A, our Nagelkerke R^2^ = `r round(res_modC$stats["R2"],3)`, which is pretty poor. It doesn't technically mean that `r round(100*res_modC$stats["R2"],1)`% of any sort of variation has been explained, though.
 
