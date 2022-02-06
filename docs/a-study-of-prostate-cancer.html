@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 13 A Study of Prostate Cancer | Data Science for Biological, Medical and Health Research: Notes for 432</title>
   <meta name="description" content="Course Notes for PQHS 432 in Spring 2021." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 13 A Study of Prostate Cancer | Data Science for Biological, Medical and Health Research: Notes for 432" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="logistic-regression-and-the-resect-data.html"/>
 <link rel="next" href="multiple-imputation-and-linear-regression.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,13 +50,15 @@
 
 
 
-
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -114,6 +117,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 </head>
@@ -230,30 +256,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9.7" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#saving-the-new-tibbles"><i class="fa fa-check"></i><b>3.9.7</b> Saving the new tibbles</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing the <code>smart_cle1</code> data</a>
+<li class="chapter" data-level="4" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing the <code>smart_cle1</code> data</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#general-approaches-to-obtaining-numeric-summaries"><i class="fa fa-check"></i><b>4.1</b> General Approaches to Obtaining Numeric Summaries</a>
+<li class="chapter" data-level="4.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#general-approaches-to-obtaining-numeric-summaries"><i class="fa fa-check"></i><b>4.1</b> General Approaches to Obtaining Numeric Summaries</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#summary-for-a-data-frame"><i class="fa fa-check"></i><b>4.1.1</b> <code>summary</code> for a data frame</a></li>
-<li class="chapter" data-level="4.1.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#the-inspect-function-from-the-mosaic-package"><i class="fa fa-check"></i><b>4.1.2</b> The <code>inspect</code> function from the <code>mosaic</code> package</a></li>
-<li class="chapter" data-level="4.1.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#the-describe-function-in-hmisc"><i class="fa fa-check"></i><b>4.1.3</b> The <code>describe</code> function in <code>Hmisc</code></a></li>
+<li class="chapter" data-level="4.1.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#summary-for-a-data-frame"><i class="fa fa-check"></i><b>4.1.1</b> <code>summary</code> for a data frame</a></li>
+<li class="chapter" data-level="4.1.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#the-inspect-function-from-the-mosaic-package"><i class="fa fa-check"></i><b>4.1.2</b> The <code>inspect</code> function from the <code>mosaic</code> package</a></li>
+<li class="chapter" data-level="4.1.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#the-describe-function-in-hmisc"><i class="fa fa-check"></i><b>4.1.3</b> The <code>describe</code> function in <code>Hmisc</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#counting-as-exploratory-data-analysis"><i class="fa fa-check"></i><b>4.2</b> Counting as exploratory data analysis</a>
+<li class="chapter" data-level="4.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#counting-as-exploratory-data-analysis"><i class="fa fa-check"></i><b>4.2</b> Counting as exploratory data analysis</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#did-genhealth-vary-by-smoking-status"><i class="fa fa-check"></i><b>4.2.1</b> Did <code>genhealth</code> vary by smoking status?</a></li>
-<li class="chapter" data-level="4.2.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#whats-the-distribution-of-physhealth"><i class="fa fa-check"></i><b>4.2.2</b> What’s the distribution of <code>physhealth</code>?</a></li>
-<li class="chapter" data-level="4.2.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#whats-the-distribution-of-bmi"><i class="fa fa-check"></i><b>4.2.3</b> What’s the distribution of <code>bmi</code>?</a></li>
-<li class="chapter" data-level="4.2.4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-many-of-the-respondents-have-a-bmi-below-30"><i class="fa fa-check"></i><b>4.2.4</b> How many of the respondents have a BMI below 30?</a></li>
-<li class="chapter" data-level="4.2.5" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-many-of-the-respondents-with-a-bmi-30-are-highly-active"><i class="fa fa-check"></i><b>4.2.5</b> How many of the respondents with a BMI &lt; 30 are highly active?</a></li>
-<li class="chapter" data-level="4.2.6" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#is-obesity-associated-with-smoking-history"><i class="fa fa-check"></i><b>4.2.6</b> Is obesity associated with smoking history?</a></li>
-<li class="chapter" data-level="4.2.7" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#comparing-drinks_wk-summaries-by-obesity-status"><i class="fa fa-check"></i><b>4.2.7</b> Comparing <code>drinks_wk</code> summaries by obesity status</a></li>
+<li class="chapter" data-level="4.2.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#did-genhealth-vary-by-smoking-status"><i class="fa fa-check"></i><b>4.2.1</b> Did <code>genhealth</code> vary by smoking status?</a></li>
+<li class="chapter" data-level="4.2.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#whats-the-distribution-of-physhealth"><i class="fa fa-check"></i><b>4.2.2</b> What’s the distribution of <code>physhealth</code>?</a></li>
+<li class="chapter" data-level="4.2.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#whats-the-distribution-of-bmi"><i class="fa fa-check"></i><b>4.2.3</b> What’s the distribution of <code>bmi</code>?</a></li>
+<li class="chapter" data-level="4.2.4" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#how-many-of-the-respondents-have-a-bmi-below-30"><i class="fa fa-check"></i><b>4.2.4</b> How many of the respondents have a BMI below 30?</a></li>
+<li class="chapter" data-level="4.2.5" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#how-many-of-the-respondents-with-a-bmi-30-are-highly-active"><i class="fa fa-check"></i><b>4.2.5</b> How many of the respondents with a BMI &lt; 30 are highly active?</a></li>
+<li class="chapter" data-level="4.2.6" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#is-obesity-associated-with-smoking-history"><i class="fa fa-check"></i><b>4.2.6</b> Is obesity associated with smoking history?</a></li>
+<li class="chapter" data-level="4.2.7" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#comparing-drinks_wk-summaries-by-obesity-status"><i class="fa fa-check"></i><b>4.2.7</b> Comparing <code>drinks_wk</code> summaries by obesity status</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#can-bmi-predict-physhealth"><i class="fa fa-check"></i><b>4.3</b> Can <code>bmi</code> predict <code>physhealth</code>?</a>
+<li class="chapter" data-level="4.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#can-bmi-predict-physhealth"><i class="fa fa-check"></i><b>4.3</b> Can <code>bmi</code> predict <code>physhealth</code>?</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#fitting-a-simple-regression-model"><i class="fa fa-check"></i><b>4.3.1</b> Fitting a Simple Regression Model</a></li>
-<li class="chapter" data-level="4.3.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#model-summary-for-a-simple-one-predictor-regression"><i class="fa fa-check"></i><b>4.3.2</b> Model Summary for a Simple (One-Predictor) Regression</a></li>
-<li class="chapter" data-level="4.3.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#using-the-broom-package"><i class="fa fa-check"></i><b>4.3.3</b> Using the <code>broom</code> package</a></li>
-<li class="chapter" data-level="4.3.4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-does-the-model-do-residuals-vs.-fitted-values"><i class="fa fa-check"></i><b>4.3.4</b> How does the model do? (Residuals vs. Fitted Values)</a></li>
+<li class="chapter" data-level="4.3.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#fitting-a-simple-regression-model"><i class="fa fa-check"></i><b>4.3.1</b> Fitting a Simple Regression Model</a></li>
+<li class="chapter" data-level="4.3.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#model-summary-for-a-simple-one-predictor-regression"><i class="fa fa-check"></i><b>4.3.2</b> Model Summary for a Simple (One-Predictor) Regression</a></li>
+<li class="chapter" data-level="4.3.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#using-the-broom-package"><i class="fa fa-check"></i><b>4.3.3</b> Using the <code>broom</code> package</a></li>
+<li class="chapter" data-level="4.3.4" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#how-does-the-model-do-residuals-vs.-fitted-values"><i class="fa fa-check"></i><b>4.3.4</b> How does the model do? (Residuals vs. Fitted Values)</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html"><i class="fa fa-check"></i><b>5</b> Analysis of Variance with SMART</a>
@@ -339,7 +365,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#a-new-small-study-predicting-bmi"><i class="fa fa-check"></i><b>8.1</b> A New Small Study: Predicting BMI</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#does-female-predict-bmi-well"><i class="fa fa-check"></i><b>8.1.1</b> Does <code>female</code> predict <code>bmi</code> well?</a></li>
+<li class="chapter" data-level="8.1.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#does-smoke100-predict-bmi-well"><i class="fa fa-check"></i><b>8.1.1</b> Does <code>smoke100</code> predict <code>bmi</code> well?</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m1-a-simple-t-test-model"><i class="fa fa-check"></i><b>8.2</b> <code>c8_m1</code>: A simple t-test model</a></li>
 <li class="chapter" data-level="8.3" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m2-adding-another-predictor-two-way-anova-without-interaction"><i class="fa fa-check"></i><b>8.3</b> <code>c8_m2</code>: Adding another predictor (two-way ANOVA without interaction)</a></li>
@@ -483,7 +509,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12.14" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#logistic-regression-using-lrm"><i class="fa fa-check"></i><b>12.14</b> Logistic Regression using <code>lrm</code></a>
 <ul>
-<li class="chapter" data-level="12.14.1" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#interpreting-nagelkerke-r2"><i class="fa fa-check"></i><b>12.14.1</b> Interpreting Nagelkerke R<sup>2</sup></a></li>
+<li class="chapter" data-level="12.14.1" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#interpreting-nagelkerke-r2"><i class="fa fa-check"></i><b>12.14.1</b> Interpreting Nagelkerke <span class="math inline">\(R^2\)</span></a></li>
 <li class="chapter" data-level="12.14.2" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#interpreting-the-c-statistic-and-plotting-the-roc-curve"><i class="fa fa-check"></i><b>12.14.2</b> Interpreting the C statistic and Plotting the ROC Curve</a></li>
 <li class="chapter" data-level="12.14.3" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#the-c-statistic-and-somers-d"><i class="fa fa-check"></i><b>12.14.3</b> The C statistic and Somers’ D</a></li>
 <li class="chapter" data-level="12.14.4" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#validating-the-logistic-regression-model-summary-statistics"><i class="fa fa-check"></i><b>12.14.4</b> Validating the Logistic Regression Model Summary Statistics</a></li>
@@ -531,7 +557,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.5" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#exploring-model-c11_prost_a"><i class="fa fa-check"></i><b>13.5</b> Exploring Model <code>c11_prost_A</code></a>
 <ul>
 <li class="chapter" data-level="13.5.1" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#summary-for-model-c11_prost_a"><i class="fa fa-check"></i><b>13.5.1</b> <code>summary</code> for Model <code>c11_prost_A</code></a></li>
-<li class="chapter" data-level="13.5.2" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#adjusted-r2"><i class="fa fa-check"></i><b>13.5.2</b> Adjusted R<sup>2</sup></a></li>
+<li class="chapter" data-level="13.5.2" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#adjusted-r2"><i class="fa fa-check"></i><b>13.5.2</b> Adjusted <span class="math inline">\(R^2\)</span></a></li>
 <li class="chapter" data-level="13.5.3" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#coefficient-confidence-intervals"><i class="fa fa-check"></i><b>13.5.3</b> Coefficient Confidence Intervals</a></li>
 <li class="chapter" data-level="13.5.4" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#anova-for-model-c11_prost_a"><i class="fa fa-check"></i><b>13.5.4</b> ANOVA for Model <code>c11_prost_A</code></a></li>
 <li class="chapter" data-level="13.5.5" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#residuals-fitted-values-and-standard-errors-with-augment"><i class="fa fa-check"></i><b>13.5.5</b> Residuals, Fitted Values and Standard Errors with <code>augment</code></a></li>
@@ -628,7 +654,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="19.5.1" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#interpreting-the-coefficients"><i class="fa fa-check"></i><b>19.5.1</b> Interpreting the Coefficients</a></li>
 <li class="chapter" data-level="19.5.2" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals"><i class="fa fa-check"></i><b>19.5.2</b> Store fitted values and residuals</a></li>
-<li class="chapter" data-level="19.5.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values"><i class="fa fa-check"></i><b>19.5.3</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.5.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values"><i class="fa fa-check"></i><b>19.5.3</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.5.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions"><i class="fa fa-check"></i><b>19.5.4</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.5.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally"><i class="fa fa-check"></i><b>19.5.5</b> Predictions for Harry and Sally</a></li>
 <li class="chapter" data-level="19.5.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#notes"><i class="fa fa-check"></i><b>19.5.6</b> Notes</a></li>
@@ -637,8 +663,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="19.6.1" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#interpreting-the-coefficients-1"><i class="fa fa-check"></i><b>19.6.1</b> Interpreting the Coefficients</a></li>
 <li class="chapter" data-level="19.6.2" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-1"><i class="fa fa-check"></i><b>19.6.2</b> Store fitted values and residuals</a></li>
-<li class="chapter" data-level="19.6.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-1"><i class="fa fa-check"></i><b>19.6.3</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
-<li class="chapter" data-level="19.6.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#getting-r2-on-the-scale-of-physhealth"><i class="fa fa-check"></i><b>19.6.4</b> Getting R<sup>2</sup> on the scale of <code>physhealth</code></a></li>
+<li class="chapter" data-level="19.6.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-1"><i class="fa fa-check"></i><b>19.6.3</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.6.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#getting-r2-on-the-scale-of-physhealth"><i class="fa fa-check"></i><b>19.6.4</b> Getting <span class="math inline">\(R^2\)</span> on the scale of <code>physhealth</code></a></li>
 <li class="chapter" data-level="19.6.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-1"><i class="fa fa-check"></i><b>19.6.5</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.6.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-1"><i class="fa fa-check"></i><b>19.6.6</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -650,7 +676,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.7.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#correcting-for-overdispersion-with-coeftestcoefci"><i class="fa fa-check"></i><b>19.7.4</b> Correcting for Overdispersion with <code>coeftest</code>/<code>coefci</code></a></li>
 <li class="chapter" data-level="19.7.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-2"><i class="fa fa-check"></i><b>19.7.5</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.7.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-see-the-fit-of-a-count-regression-model"><i class="fa fa-check"></i><b>19.7.6</b> Rootogram: see the fit of a count regression model</a></li>
-<li class="chapter" data-level="19.7.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-2"><i class="fa fa-check"></i><b>19.7.7</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.7.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-2"><i class="fa fa-check"></i><b>19.7.7</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.7.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-2"><i class="fa fa-check"></i><b>19.7.8</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.7.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#using-glm.diag.plots-from-the-boot-package"><i class="fa fa-check"></i><b>19.7.9</b> Using <code>glm.diag.plots</code> from the <code>boot</code> package</a></li>
 <li class="chapter" data-level="19.7.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-2"><i class="fa fa-check"></i><b>19.7.10</b> Predictions for Harry and Sally</a></li>
@@ -665,7 +691,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.9.2" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#interpreting-the-coefficients-3"><i class="fa fa-check"></i><b>19.9.2</b> Interpreting the Coefficients</a></li>
 <li class="chapter" data-level="19.9.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#testing-the-predictors-1"><i class="fa fa-check"></i><b>19.9.3</b> Testing the Predictors</a></li>
 <li class="chapter" data-level="19.9.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-3"><i class="fa fa-check"></i><b>19.9.4</b> Store fitted values and residuals</a></li>
-<li class="chapter" data-level="19.9.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-3"><i class="fa fa-check"></i><b>19.9.5</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.9.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-3"><i class="fa fa-check"></i><b>19.9.5</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.9.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-3"><i class="fa fa-check"></i><b>19.9.6</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.9.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-3"><i class="fa fa-check"></i><b>19.9.7</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -689,7 +715,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.11.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-4"><i class="fa fa-check"></i><b>19.11.6</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.11.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-negative-binomial-model"><i class="fa fa-check"></i><b>19.11.7</b> Rootogram for Negative Binomial model</a></li>
 <li class="chapter" data-level="19.11.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#simulating-what-the-negative-binomial-model-predicts"><i class="fa fa-check"></i><b>19.11.8</b> Simulating what the Negative Binomial model predicts</a></li>
-<li class="chapter" data-level="19.11.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-4"><i class="fa fa-check"></i><b>19.11.9</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.11.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-4"><i class="fa fa-check"></i><b>19.11.9</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.11.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-4"><i class="fa fa-check"></i><b>19.11.10</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.11.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-4"><i class="fa fa-check"></i><b>19.11.11</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -704,7 +730,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.13.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-5"><i class="fa fa-check"></i><b>19.13.6</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.13.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#modeled-number-of-zero-counts"><i class="fa fa-check"></i><b>19.13.7</b> Modeled Number of Zero Counts</a></li>
 <li class="chapter" data-level="19.13.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-zip-model"><i class="fa fa-check"></i><b>19.13.8</b> Rootogram for ZIP model</a></li>
-<li class="chapter" data-level="19.13.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values"><i class="fa fa-check"></i><b>19.13.9</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.13.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values"><i class="fa fa-check"></i><b>19.13.9</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.13.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-5"><i class="fa fa-check"></i><b>19.13.10</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.13.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-5"><i class="fa fa-check"></i><b>19.13.11</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -718,7 +744,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.14.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-6"><i class="fa fa-check"></i><b>19.14.6</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.14.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#modeled-number-of-zero-counts-1"><i class="fa fa-check"></i><b>19.14.7</b> Modeled Number of Zero Counts</a></li>
 <li class="chapter" data-level="19.14.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-zero-inflated-negative-binomial-model"><i class="fa fa-check"></i><b>19.14.8</b> Rootogram for Zero-Inflated Negative Binomial model</a></li>
-<li class="chapter" data-level="19.14.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-1"><i class="fa fa-check"></i><b>19.14.9</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.14.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-1"><i class="fa fa-check"></i><b>19.14.9</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.14.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-6"><i class="fa fa-check"></i><b>19.14.10</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.14.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-6"><i class="fa fa-check"></i><b>19.14.11</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -734,7 +760,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.15.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#modeled-number-of-zero-counts-2"><i class="fa fa-check"></i><b>19.15.8</b> Modeled Number of Zero Counts</a></li>
 <li class="chapter" data-level="19.15.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-hurdle-model"><i class="fa fa-check"></i><b>19.15.9</b> Rootogram for Hurdle Model</a></li>
 <li class="chapter" data-level="19.15.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#understanding-the-modeled-counts-in-detail"><i class="fa fa-check"></i><b>19.15.10</b> Understanding the Modeled Counts in Detail</a></li>
-<li class="chapter" data-level="19.15.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-2"><i class="fa fa-check"></i><b>19.15.11</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.15.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-2"><i class="fa fa-check"></i><b>19.15.11</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.15.12" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-7"><i class="fa fa-check"></i><b>19.15.12</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.15.13" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-7"><i class="fa fa-check"></i><b>19.15.13</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -749,7 +775,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.16.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#testing-the-predictors-6"><i class="fa fa-check"></i><b>19.16.7</b> Testing the Predictors</a></li>
 <li class="chapter" data-level="19.16.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-8"><i class="fa fa-check"></i><b>19.16.8</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.16.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-nb-hurdle-model"><i class="fa fa-check"></i><b>19.16.9</b> Rootogram for NB Hurdle Model</a></li>
-<li class="chapter" data-level="19.16.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-3"><i class="fa fa-check"></i><b>19.16.10</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.16.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-3"><i class="fa fa-check"></i><b>19.16.10</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.16.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-8"><i class="fa fa-check"></i><b>19.16.11</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.16.12" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-8"><i class="fa fa-check"></i><b>19.16.12</b> Predictions for Harry and Sally</a></li>
 <li class="chapter" data-level="19.16.13" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#note-fitting-a-different-hurdle-model-for-counts-and-przero"><i class="fa fa-check"></i><b>19.16.13</b> Note: Fitting a Different Hurdle Model for Counts and Pr(zero)</a></li>
@@ -763,7 +789,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.17.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-9"><i class="fa fa-check"></i><b>19.17.4</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.17.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#building-something-like-a-rootogram"><i class="fa fa-check"></i><b>19.17.5</b> Building Something Like a Rootogram</a></li>
 <li class="chapter" data-level="19.17.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#tables-of-the-observed-and-fitted-physhealth-from-tobit"><i class="fa fa-check"></i><b>19.17.6</b> Tables of the Observed and Fitted <code>physhealth</code> from Tobit</a></li>
-<li class="chapter" data-level="19.17.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-4"><i class="fa fa-check"></i><b>19.17.7</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.17.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-4"><i class="fa fa-check"></i><b>19.17.7</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.17.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-9"><i class="fa fa-check"></i><b>19.17.8</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.17.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-9"><i class="fa fa-check"></i><b>19.17.9</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -945,9 +971,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="24.4.1" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#interpreting-the-results-from-model-b"><i class="fa fa-check"></i><b>24.4.1</b> Interpreting the Results from Model B</a></li>
 <li class="chapter" data-level="24.4.2" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#plotting-the-survival-curve-implied-by-model-b"><i class="fa fa-check"></i><b>24.4.2</b> Plotting the Survival Curve implied by Model B</a></li>
-<li class="chapter" data-level="24.4.3" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#plotting-the-cumulative-hazard-implied-by-model-b"><i class="fa fa-check"></i><b>24.4.3</b> Plotting the Cumulative Hazard implied by Model B</a></li>
-<li class="chapter" data-level="24.4.4" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#testing-the-proportional-hazards-assumption-1"><i class="fa fa-check"></i><b>24.4.4</b> Testing the Proportional Hazards Assumption</a></li>
-<li class="chapter" data-level="24.4.5" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#assessing-collinearity"><i class="fa fa-check"></i><b>24.4.5</b> Assessing Collinearity</a></li>
+<li class="chapter" data-level="24.4.3" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#testing-the-proportional-hazards-assumption-1"><i class="fa fa-check"></i><b>24.4.3</b> Testing the Proportional Hazards Assumption</a></li>
+<li class="chapter" data-level="24.4.4" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#assessing-collinearity"><i class="fa fa-check"></i><b>24.4.4</b> Assessing Collinearity</a></li>
 </ul></li>
 <li class="chapter" data-level="24.5" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#model-b2-a-stepwise-reduction-of-model-b"><i class="fa fa-check"></i><b>24.5</b> Model B2: A Stepwise Reduction of Model B</a>
 <ul>
@@ -989,8 +1014,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 13</span> A Study of Prostate Cancer</h1>
 <div id="data-load-and-background" class="section level2" number="13.1">
 <h2><span class="header-section-number">13.1</span> Data Load and Background</h2>
-<p>The data in <code>prost.csv</code> is derived from <span class="citation"><a href="references.html#ref-Stamey1989" role="doc-biblioref">Stamey and others</a> (<a href="references.html#ref-Stamey1989" role="doc-biblioref">1989</a>)</span> who examined the relationship between the level of prostate-specific antigen and a number of clinical measures in 97 men who were about to receive a radical prostatectomy. The <code>prost</code> data, as I’ll name it in R, contains 97 rows and 11 columns.</p>
-<div class="sourceCode" id="cb827"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb827-1"><a href="a-study-of-prostate-cancer.html#cb827-1" aria-hidden="true" tabindex="-1"></a>prost</span></code></pre></div>
+<p>The data in <code>prost.csv</code> is derived from <span class="citation"><a href="#ref-Stamey1989" role="doc-biblioref">Stamey et al.</a> (<a href="#ref-Stamey1989" role="doc-biblioref">1989</a>)</span> who examined the relationship between the level of prostate-specific antigen and a number of clinical measures in 97 men who were about to receive a radical prostatectomy. The <code>prost</code> data, as I’ll name it in R, contains 97 rows and 11 columns.</p>
+<div class="sourceCode" id="cb834"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb834-1"><a href="a-study-of-prostate-cancer.html#cb834-1" aria-hidden="true" tabindex="-1"></a>prost</span></code></pre></div>
 <pre><code># A tibble: 97 x 10
    subject   lpsa lcavol lweight   age bph      svi   lcp gleason pgg45
      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
@@ -1079,15 +1104,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>a centered version of <code>lcavol</code> called <code>lcavol_c</code>,</li>
 <li>exponentiated <code>cavol</code> and <code>psa</code> results derived from the natural logarithms <code>lcavol</code> and <code>lpsa</code>.</li>
 </ul>
-<div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb829-1"><a href="a-study-of-prostate-cancer.html#cb829-1" aria-hidden="true" tabindex="-1"></a>prost <span class="ot">&lt;-</span> prost <span class="sc">%&gt;%</span></span>
-<span id="cb829-2"><a href="a-study-of-prostate-cancer.html#cb829-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">svi_f =</span> <span class="fu">fct_recode</span>(<span class="fu">factor</span>(svi), <span class="st">&quot;No&quot;</span> <span class="ot">=</span> <span class="st">&quot;0&quot;</span>, <span class="st">&quot;Yes&quot;</span> <span class="ot">=</span> <span class="st">&quot;1&quot;</span>),</span>
-<span id="cb829-3"><a href="a-study-of-prostate-cancer.html#cb829-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">gleason_f =</span> <span class="fu">fct_relevel</span>(gleason, <span class="fu">c</span>(<span class="st">&quot;&gt; 7&quot;</span>, <span class="st">&quot;7&quot;</span>, <span class="st">&quot;6&quot;</span>)),</span>
-<span id="cb829-4"><a href="a-study-of-prostate-cancer.html#cb829-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">bph_f =</span> <span class="fu">fct_relevel</span>(bph, <span class="fu">c</span>(<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;High&quot;</span>)),</span>
-<span id="cb829-5"><a href="a-study-of-prostate-cancer.html#cb829-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">lcavol_c =</span> lcavol <span class="sc">-</span> <span class="fu">mean</span>(lcavol),</span>
-<span id="cb829-6"><a href="a-study-of-prostate-cancer.html#cb829-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">cavol =</span> <span class="fu">exp</span>(lcavol),</span>
-<span id="cb829-7"><a href="a-study-of-prostate-cancer.html#cb829-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">psa =</span> <span class="fu">exp</span>(lpsa))</span>
-<span id="cb829-8"><a href="a-study-of-prostate-cancer.html#cb829-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb829-9"><a href="a-study-of-prostate-cancer.html#cb829-9" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(prost)</span></code></pre></div>
+<div class="sourceCode" id="cb836"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb836-1"><a href="a-study-of-prostate-cancer.html#cb836-1" aria-hidden="true" tabindex="-1"></a>prost <span class="ot">&lt;-</span> prost <span class="sc">%&gt;%</span></span>
+<span id="cb836-2"><a href="a-study-of-prostate-cancer.html#cb836-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">svi_f =</span> <span class="fu">fct_recode</span>(<span class="fu">factor</span>(svi), <span class="st">&quot;No&quot;</span> <span class="ot">=</span> <span class="st">&quot;0&quot;</span>, <span class="st">&quot;Yes&quot;</span> <span class="ot">=</span> <span class="st">&quot;1&quot;</span>),</span>
+<span id="cb836-3"><a href="a-study-of-prostate-cancer.html#cb836-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">gleason_f =</span> <span class="fu">fct_relevel</span>(gleason, <span class="fu">c</span>(<span class="st">&quot;&gt; 7&quot;</span>, <span class="st">&quot;7&quot;</span>, <span class="st">&quot;6&quot;</span>)),</span>
+<span id="cb836-4"><a href="a-study-of-prostate-cancer.html#cb836-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">bph_f =</span> <span class="fu">fct_relevel</span>(bph, <span class="fu">c</span>(<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;High&quot;</span>)),</span>
+<span id="cb836-5"><a href="a-study-of-prostate-cancer.html#cb836-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">lcavol_c =</span> lcavol <span class="sc">-</span> <span class="fu">mean</span>(lcavol),</span>
+<span id="cb836-6"><a href="a-study-of-prostate-cancer.html#cb836-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">cavol =</span> <span class="fu">exp</span>(lcavol),</span>
+<span id="cb836-7"><a href="a-study-of-prostate-cancer.html#cb836-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">psa =</span> <span class="fu">exp</span>(lpsa))</span>
+<span id="cb836-8"><a href="a-study-of-prostate-cancer.html#cb836-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb836-9"><a href="a-study-of-prostate-cancer.html#cb836-9" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(prost)</span></code></pre></div>
 <pre><code>Rows: 97
 Columns: 16
 $ subject   &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1~
@@ -1111,8 +1136,8 @@ $ psa       &lt;dbl&gt; 0.65, 0.85, 0.85, 0.85, 1.45, 2.15, 2.15, 2.35, 2.85, 2.
 <h2><span class="header-section-number">13.4</span> Fitting and Evaluating a Two-Predictor Model</h2>
 <p>To begin, let’s use two predictors (<code>lcavol</code> and <code>svi</code>) and their interaction in a linear regression model that predicts <code>lpsa</code>. I’ll call this model <code>c11_prost_A</code></p>
 <p>Earlier, we centered the <code>lcavol</code> values to facilitate interpretation of the terms. I’ll use that centered version (called <code>lcavol_c</code>) of the quantitative predictor, and the 1/0 version of the <code>svi</code> variable[^We could certainly use the factor version of <code>svi</code> here, but it won’t change the model in any meaningful way. There’s no distinction in model <em>fitting</em> via <code>lm</code> between a 0/1 numeric variable and a No/Yes factor variable. The factor version of this information will be useful elsewhere, for instance in plotting the model.].</p>
-<div class="sourceCode" id="cb831"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb831-1"><a href="a-study-of-prostate-cancer.html#cb831-1" aria-hidden="true" tabindex="-1"></a>c11_prost_A <span class="ot">&lt;-</span> <span class="fu">lm</span>(lpsa <span class="sc">~</span> lcavol_c <span class="sc">*</span> svi, <span class="at">data =</span> prost)</span>
-<span id="cb831-2"><a href="a-study-of-prostate-cancer.html#cb831-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c11_prost_A)</span></code></pre></div>
+<div class="sourceCode" id="cb838"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb838-1"><a href="a-study-of-prostate-cancer.html#cb838-1" aria-hidden="true" tabindex="-1"></a>c11_prost_A <span class="ot">&lt;-</span> <span class="fu">lm</span>(lpsa <span class="sc">~</span> lcavol_c <span class="sc">*</span> svi, <span class="at">data =</span> prost)</span>
+<span id="cb838-2"><a href="a-study-of-prostate-cancer.html#cb838-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c11_prost_A)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = lpsa ~ lcavol_c * svi, data = prost)
@@ -1136,7 +1161,7 @@ F-statistic: 42.92 on 3 and 93 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div id="using-tidy" class="section level3" number="13.4.1">
 <h3><span class="header-section-number">13.4.1</span> Using <code>tidy</code></h3>
 <p>It can be very useful to build a data frame of the model’s results. We can use the <code>tidy</code> function in the <code>broom</code> package to do so.</p>
-<div class="sourceCode" id="cb833"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb833-1"><a href="a-study-of-prostate-cancer.html#cb833-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(c11_prost_A)</span></code></pre></div>
+<div class="sourceCode" id="cb840"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb840-1"><a href="a-study-of-prostate-cancer.html#cb840-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(c11_prost_A)</span></code></pre></div>
 <pre><code># A tibble: 4 x 5
   term         estimate std.error statistic  p.value
   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -1165,7 +1190,7 @@ F-statistic: 42.92 on 3 and 93 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div id="exploring-model-c11_prost_a" class="section level2" number="13.5">
 <h2><span class="header-section-number">13.5</span> Exploring Model <code>c11_prost_A</code></h2>
 <p>The <code>glance</code> function from the <code>broom</code> package builds a nice one-row summary for the model.</p>
-<div class="sourceCode" id="cb836"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb836-1"><a href="a-study-of-prostate-cancer.html#cb836-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(c11_prost_A)</span></code></pre></div>
+<div class="sourceCode" id="cb843"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb843-1"><a href="a-study-of-prostate-cancer.html#cb843-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(c11_prost_A)</span></code></pre></div>
 <pre><code># A tibble: 1 x 12
   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1182,7 +1207,7 @@ F-statistic: 42.92 on 3 and 93 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div id="summary-for-model-c11_prost_a" class="section level3" number="13.5.1">
 <h3><span class="header-section-number">13.5.1</span> <code>summary</code> for Model <code>c11_prost_A</code></h3>
 <p>If necessary, we can also run <code>summary</code> on this <code>c11_prost_A</code> object to pick up some additional summaries. Since the <code>svi</code> variable is binary, the interaction term is, too, so the <em>t</em> test here and the <em>F</em> test in the ANOVA yield the same result.</p>
-<div class="sourceCode" id="cb838"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb838-1"><a href="a-study-of-prostate-cancer.html#cb838-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c11_prost_A)</span></code></pre></div>
+<div class="sourceCode" id="cb845"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb845-1"><a href="a-study-of-prostate-cancer.html#cb845-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c11_prost_A)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = lpsa ~ lcavol_c * svi, data = prost)
@@ -1206,24 +1231,24 @@ F-statistic: 42.92 on 3 and 93 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>If you’ve forgotten the details of the pieces of this summary, review the Part C Notes from 431.</p>
 </div>
 <div id="adjusted-r2" class="section level3" number="13.5.2">
-<h3><span class="header-section-number">13.5.2</span> Adjusted R<sup>2</sup></h3>
-<p>R<sup>2</sup> is greedy.</p>
+<h3><span class="header-section-number">13.5.2</span> Adjusted <span class="math inline">\(R^2\)</span></h3>
+<p><span class="math inline">\(R^2\)</span> is greedy.</p>
 <ul>
-<li>R<sup>2</sup> will always suggest that we make our models as big as possible, often including variables of dubious predictive value.</li>
-<li>As a result, there are various methods for penalizing R<sup>2</sup> so that we wind up with smaller models.</li>
-<li>The <strong>adjusted R<sup>2</sup></strong> is often a useful way to compare multiple models for the same response.
+<li><span class="math inline">\(R^2\)</span> will always suggest that we make our models as big as possible, often including variables of dubious predictive value.</li>
+<li>As a result, there are various methods for penalizing <span class="math inline">\(R^2\)</span> so that we wind up with smaller models.</li>
+<li>The <strong>adjusted <span class="math inline">\(R^2\)</span></strong> is often a useful way to compare multiple models for the same response.
 <ul>
 <li><span class="math inline">\(R^2_{adj} = 1 - \frac{(1-R^2)(n - 1)}{n - k}\)</span>, where <span class="math inline">\(n\)</span> = the number of observations and <span class="math inline">\(k\)</span> is the number of coefficients estimated by the regression (including the intercept and any slopes).</li>
 <li>So, in this case, <span class="math inline">\(R^2_{adj} = 1 - \frac{(1 - 0.5806)(97 - 1)}{97 - 4} = 0.5671\)</span></li>
-<li>The adjusted R<sup>2</sup> value is not, technically, a proportion of anything, but it is comparable across models for the same outcome.</li>
-<li>The adjusted R<sup>2</sup> will always be less than the (unadjusted) R<sup>2</sup>.</li>
+<li>The adjusted <span class="math inline">\(R^2\)</span> value is not, technically, a proportion of anything, but it is comparable across models for the same outcome.</li>
+<li>The adjusted <span class="math inline">\(R^2\)</span> will always be less than the (unadjusted) <span class="math inline">\(R^2\)</span>.</li>
 </ul></li>
 </ul>
 </div>
 <div id="coefficient-confidence-intervals" class="section level3" number="13.5.3">
 <h3><span class="header-section-number">13.5.3</span> Coefficient Confidence Intervals</h3>
 <p>Here are the 90% confidence intervals for the coefficients in Model A. Adjust the <code>level</code> to get different intervals.</p>
-<div class="sourceCode" id="cb840"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb840-1"><a href="a-study-of-prostate-cancer.html#cb840-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(c11_prost_A, <span class="at">level =</span> <span class="fl">0.90</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb847"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb847-1"><a href="a-study-of-prostate-cancer.html#cb847-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(c11_prost_A, <span class="at">level =</span> <span class="fl">0.90</span>)</span></code></pre></div>
 <pre><code>                     5 %      95 %
 (Intercept)   2.17968697 2.4830012
 lcavol_c      0.45004577 0.7227462
@@ -1234,7 +1259,7 @@ lcavol_c:svi -0.37737623 0.5069622</code></pre>
 <div id="anova-for-model-c11_prost_a" class="section level3" number="13.5.4">
 <h3><span class="header-section-number">13.5.4</span> ANOVA for Model <code>c11_prost_A</code></h3>
 <p>The interaction term appears unnecessary. We might wind up fitting the model without it. A complete ANOVA test is available, including a <em>p</em> value, if you want it.</p>
-<div class="sourceCode" id="cb842"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb842-1"><a href="a-study-of-prostate-cancer.html#cb842-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c11_prost_A)</span></code></pre></div>
+<div class="sourceCode" id="cb849"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb849-1"><a href="a-study-of-prostate-cancer.html#cb849-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(c11_prost_A)</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: lpsa
@@ -1250,8 +1275,8 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div id="residuals-fitted-values-and-standard-errors-with-augment" class="section level3" number="13.5.5">
 <h3><span class="header-section-number">13.5.5</span> Residuals, Fitted Values and Standard Errors with <code>augment</code></h3>
 <p>The <code>augment</code> function in the <code>broom</code> package builds a data frame including the data used in the model, along with predictions (fitted values), residuals and other useful information.</p>
-<div class="sourceCode" id="cb844"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb844-1"><a href="a-study-of-prostate-cancer.html#cb844-1" aria-hidden="true" tabindex="-1"></a>c11_prost_A_frame <span class="ot">&lt;-</span> <span class="fu">augment</span>(c11_prost_A) <span class="sc">%&gt;%</span> tbl_df</span>
-<span id="cb844-2"><a href="a-study-of-prostate-cancer.html#cb844-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c11_prost_A_frame)</span></code></pre></div>
+<div class="sourceCode" id="cb851"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb851-1"><a href="a-study-of-prostate-cancer.html#cb851-1" aria-hidden="true" tabindex="-1"></a>c11_prost_A_frame <span class="ot">&lt;-</span> <span class="fu">augment</span>(c11_prost_A) <span class="sc">%&gt;%</span> tbl_df</span>
+<span id="cb851-2"><a href="a-study-of-prostate-cancer.html#cb851-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c11_prost_A_frame)</span></code></pre></div>
 <pre><code>      lpsa            lcavol_c             svi            .fitted      
  Min.   :-0.4308   Min.   :-2.69708   Min.   :0.0000   Min.   :0.7498  
  1st Qu.: 1.7317   1st Qu.:-0.83719   1st Qu.:0.0000   1st Qu.:1.8404  
@@ -1288,14 +1313,14 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div id="making-predictions-with-c11_prost_a" class="section level3" number="13.5.6">
 <h3><span class="header-section-number">13.5.6</span> Making Predictions with <code>c11_prost_A</code></h3>
 <p>Suppose we want to predict the <code>lpsa</code> for a patient with cancer volume equal to this group’s mean, for both a patient with and without seminal vesicle invasion, and in each case, we want to use a 90% prediction interval?</p>
-<div class="sourceCode" id="cb846"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb846-1"><a href="a-study-of-prostate-cancer.html#cb846-1" aria-hidden="true" tabindex="-1"></a>newdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">lcavol_c =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="at">svi =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
-<span id="cb846-2"><a href="a-study-of-prostate-cancer.html#cb846-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(c11_prost_A, newdata, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>, <span class="at">level =</span> <span class="fl">0.90</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb853"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb853-1"><a href="a-study-of-prostate-cancer.html#cb853-1" aria-hidden="true" tabindex="-1"></a>newdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">lcavol_c =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="at">svi =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb853-2"><a href="a-study-of-prostate-cancer.html#cb853-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(c11_prost_A, newdata, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>, <span class="at">level =</span> <span class="fl">0.90</span>)</span></code></pre></div>
 <pre><code>       fit      lwr      upr
 1 2.331344 1.060462 3.602226
 2 2.932664 1.545742 4.319586</code></pre>
 <p>Since the predicted value in <code>fit</code> refers to the natural logarithm of PSA, to make the predictions in terms of PSA, we would need to exponentiate. The code below will accomplish that task.</p>
-<div class="sourceCode" id="cb848"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb848-1"><a href="a-study-of-prostate-cancer.html#cb848-1" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(c11_prost_A, newdata, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>, <span class="at">level =</span> <span class="fl">0.90</span>)</span>
-<span id="cb848-2"><a href="a-study-of-prostate-cancer.html#cb848-2" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(pred)</span></code></pre></div>
+<div class="sourceCode" id="cb855"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb855-1"><a href="a-study-of-prostate-cancer.html#cb855-1" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(c11_prost_A, newdata, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>, <span class="at">level =</span> <span class="fl">0.90</span>)</span>
+<span id="cb855-2"><a href="a-study-of-prostate-cancer.html#cb855-2" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(pred)</span></code></pre></div>
 <pre><code>       fit      lwr      upr
 1 10.29177 2.887706 36.67978
 2 18.77758 4.691450 75.15750</code></pre>
@@ -1306,41 +1331,41 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div id="plot-logs-conventionally" class="section level4" number="13.6.0.1">
 <h4><span class="header-section-number">13.6.0.1</span> Plot logs conventionally</h4>
 <p>Here, we’ll use <code>ggplot2</code> to plot the logarithms of the variables as they came to us, on a conventional coordinate scale. Note that the lines are nearly parallel. What does this suggest about our Model A?</p>
-<div class="sourceCode" id="cb850"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb850-1"><a href="a-study-of-prostate-cancer.html#cb850-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(prost, <span class="fu">aes</span>(<span class="at">x =</span> lcavol, <span class="at">y =</span> lpsa, <span class="at">group =</span> svi_f, <span class="at">color =</span> svi_f)) <span class="sc">+</span></span>
-<span id="cb850-2"><a href="a-study-of-prostate-cancer.html#cb850-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb850-3"><a href="a-study-of-prostate-cancer.html#cb850-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb850-4"><a href="a-study-of-prostate-cancer.html#cb850-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Seminal Vesicle Invasion?&quot;</span>) <span class="sc">+</span></span>
-<span id="cb850-5"><a href="a-study-of-prostate-cancer.html#cb850-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb850-6"><a href="a-study-of-prostate-cancer.html#cb850-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Log (cancer volume, cc)&quot;</span>, </span>
-<span id="cb850-7"><a href="a-study-of-prostate-cancer.html#cb850-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Log (Prostate Specific Antigen, ng/ml)&quot;</span>, </span>
-<span id="cb850-8"><a href="a-study-of-prostate-cancer.html#cb850-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Two Predictor Model c11_prost_A, including Interaction&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb857"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb857-1"><a href="a-study-of-prostate-cancer.html#cb857-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(prost, <span class="fu">aes</span>(<span class="at">x =</span> lcavol, <span class="at">y =</span> lpsa, <span class="at">group =</span> svi_f, <span class="at">color =</span> svi_f)) <span class="sc">+</span></span>
+<span id="cb857-2"><a href="a-study-of-prostate-cancer.html#cb857-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb857-3"><a href="a-study-of-prostate-cancer.html#cb857-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb857-4"><a href="a-study-of-prostate-cancer.html#cb857-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Seminal Vesicle Invasion?&quot;</span>) <span class="sc">+</span></span>
+<span id="cb857-5"><a href="a-study-of-prostate-cancer.html#cb857-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb857-6"><a href="a-study-of-prostate-cancer.html#cb857-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Log (cancer volume, cc)&quot;</span>, </span>
+<span id="cb857-7"><a href="a-study-of-prostate-cancer.html#cb857-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Log (Prostate Specific Antigen, ng/ml)&quot;</span>, </span>
+<span id="cb857-8"><a href="a-study-of-prostate-cancer.html#cb857-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Two Predictor Model c11_prost_A, including Interaction&quot;</span>)</span></code></pre></div>
 <pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-319-1.png" width="672" /></p>
 </div>
 <div id="plot-on-log-log-scale" class="section level4" number="13.6.0.2">
 <h4><span class="header-section-number">13.6.0.2</span> Plot on log-log scale</h4>
 <p>Another approach (which might be easier in some settings) would be to plot the raw values of Cancer Volume and PSA, but use logarithmic axes, again using the natural (base <em>e</em>) logarithm, as follows. If we use the default choice with `trans = “log,” we’ll find a need to select some useful break points for the grid, as I’ve done in what follows.</p>
-<div class="sourceCode" id="cb852"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb852-1"><a href="a-study-of-prostate-cancer.html#cb852-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(prost, <span class="fu">aes</span>(<span class="at">x =</span> cavol, <span class="at">y =</span> psa, <span class="at">group =</span> svi_f, <span class="at">color =</span> svi_f)) <span class="sc">+</span></span>
-<span id="cb852-2"><a href="a-study-of-prostate-cancer.html#cb852-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb852-3"><a href="a-study-of-prostate-cancer.html#cb852-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb852-4"><a href="a-study-of-prostate-cancer.html#cb852-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Seminal Vesicle Invasion?&quot;</span>) <span class="sc">+</span></span>
-<span id="cb852-5"><a href="a-study-of-prostate-cancer.html#cb852-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log&quot;</span>, </span>
-<span id="cb852-6"><a href="a-study-of-prostate-cancer.html#cb852-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">25</span>, <span class="dv">50</span>)) <span class="sc">+</span></span>
-<span id="cb852-7"><a href="a-study-of-prostate-cancer.html#cb852-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log&quot;</span>, </span>
-<span id="cb852-8"><a href="a-study-of-prostate-cancer.html#cb852-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">25</span>, <span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">200</span>)) <span class="sc">+</span></span>
-<span id="cb852-9"><a href="a-study-of-prostate-cancer.html#cb852-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb852-10"><a href="a-study-of-prostate-cancer.html#cb852-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Cancer volume, in cubic centimeters&quot;</span>, </span>
-<span id="cb852-11"><a href="a-study-of-prostate-cancer.html#cb852-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Prostate Specific Antigen, in ng/ml&quot;</span>, </span>
-<span id="cb852-12"><a href="a-study-of-prostate-cancer.html#cb852-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Two Predictor Model c11_prost_A, including Interaction&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb859"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb859-1"><a href="a-study-of-prostate-cancer.html#cb859-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(prost, <span class="fu">aes</span>(<span class="at">x =</span> cavol, <span class="at">y =</span> psa, <span class="at">group =</span> svi_f, <span class="at">color =</span> svi_f)) <span class="sc">+</span></span>
+<span id="cb859-2"><a href="a-study-of-prostate-cancer.html#cb859-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb859-3"><a href="a-study-of-prostate-cancer.html#cb859-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb859-4"><a href="a-study-of-prostate-cancer.html#cb859-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Seminal Vesicle Invasion?&quot;</span>) <span class="sc">+</span></span>
+<span id="cb859-5"><a href="a-study-of-prostate-cancer.html#cb859-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log&quot;</span>, </span>
+<span id="cb859-6"><a href="a-study-of-prostate-cancer.html#cb859-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">25</span>, <span class="dv">50</span>)) <span class="sc">+</span></span>
+<span id="cb859-7"><a href="a-study-of-prostate-cancer.html#cb859-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log&quot;</span>, </span>
+<span id="cb859-8"><a href="a-study-of-prostate-cancer.html#cb859-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">25</span>, <span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">200</span>)) <span class="sc">+</span></span>
+<span id="cb859-9"><a href="a-study-of-prostate-cancer.html#cb859-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb859-10"><a href="a-study-of-prostate-cancer.html#cb859-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Cancer volume, in cubic centimeters&quot;</span>, </span>
+<span id="cb859-11"><a href="a-study-of-prostate-cancer.html#cb859-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Prostate Specific Antigen, in ng/ml&quot;</span>, </span>
+<span id="cb859-12"><a href="a-study-of-prostate-cancer.html#cb859-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Two Predictor Model c11_prost_A, including Interaction&quot;</span>)</span></code></pre></div>
 <pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-320-1.png" width="672" /></p>
 <p>I’ve used the break point of 4 on the Y axis because of the old rule suggesting further testing for asymptomatic men with PSA of 4 or higher, but the other break points are arbitrary - they seemed to work for me, and used round numbers.</p>
 </div>
 <div id="residual-plots-of-c11_prost_a" class="section level3" number="13.6.1">
 <h3><span class="header-section-number">13.6.1</span> Residual Plots of <code>c11_prost_A</code></h3>
-<div class="sourceCode" id="cb854"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb854-1"><a href="a-study-of-prostate-cancer.html#cb854-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c11_prost_A, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb861"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb861-1"><a href="a-study-of-prostate-cancer.html#cb861-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c11_prost_A, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-321-1.png" width="672" /></p>
-<div class="sourceCode" id="cb855"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb855-1"><a href="a-study-of-prostate-cancer.html#cb855-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c11_prost_A, <span class="at">which =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb862"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb862-1"><a href="a-study-of-prostate-cancer.html#cb862-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c11_prost_A, <span class="at">which =</span> <span class="dv">5</span>)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-322-1.png" width="672" /></p>
 </div>
 </div>
@@ -1357,26 +1382,26 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </ul>
 <p>Our goal will be to cross-validate model <code>c11_prost_A</code>, which, you’ll recall, uses <code>lcavol_c</code>, <code>svi</code> and their interaction, to predict <code>lpsa</code> in the <code>prost</code> data.</p>
 <p>We’ll start by identifying a random sample of 70% of our <code>prost</code> data in a training sample (which we’ll call <code>prost_train</code>, and leave the rest as our test sample, called <code>prost_test</code>. To do this, we’ll use the <code>createDataPartition</code> function from the <code>caret</code> package. We need only specify the data set and outcome variable, like so.</p>
-<div class="sourceCode" id="cb856"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb856-1"><a href="a-study-of-prostate-cancer.html#cb856-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4322020</span>)</span>
-<span id="cb856-2"><a href="a-study-of-prostate-cancer.html#cb856-2" aria-hidden="true" tabindex="-1"></a>split_samples <span class="ot">&lt;-</span> prost<span class="sc">$</span>lpsa <span class="sc">%&gt;%</span></span>
-<span id="cb856-3"><a href="a-study-of-prostate-cancer.html#cb856-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">createDataPartition</span>(<span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb856-4"><a href="a-study-of-prostate-cancer.html#cb856-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb856-5"><a href="a-study-of-prostate-cancer.html#cb856-5" aria-hidden="true" tabindex="-1"></a>prost_train <span class="ot">&lt;-</span> prost[split_samples,]</span>
-<span id="cb856-6"><a href="a-study-of-prostate-cancer.html#cb856-6" aria-hidden="true" tabindex="-1"></a>prost_test <span class="ot">&lt;-</span> prost[<span class="sc">-</span>split_samples,]</span></code></pre></div>
+<div class="sourceCode" id="cb863"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb863-1"><a href="a-study-of-prostate-cancer.html#cb863-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4322020</span>)</span>
+<span id="cb863-2"><a href="a-study-of-prostate-cancer.html#cb863-2" aria-hidden="true" tabindex="-1"></a>split_samples <span class="ot">&lt;-</span> prost<span class="sc">$</span>lpsa <span class="sc">%&gt;%</span></span>
+<span id="cb863-3"><a href="a-study-of-prostate-cancer.html#cb863-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">createDataPartition</span>(<span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb863-4"><a href="a-study-of-prostate-cancer.html#cb863-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb863-5"><a href="a-study-of-prostate-cancer.html#cb863-5" aria-hidden="true" tabindex="-1"></a>prost_train <span class="ot">&lt;-</span> prost[split_samples,]</span>
+<span id="cb863-6"><a href="a-study-of-prostate-cancer.html#cb863-6" aria-hidden="true" tabindex="-1"></a>prost_test <span class="ot">&lt;-</span> prost[<span class="sc">-</span>split_samples,]</span></code></pre></div>
 <ul>
 <li>Note the need for a comma after <code>split_samples</code> in the isolation of the training and test samples.</li>
 <li>Don’t forget to pre-specify the random seed, for replicability, as I’ve done here.</li>
 </ul>
 <p>Let’s verify that we now have the samples we expect…</p>
-<div class="sourceCode" id="cb857"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb857-1"><a href="a-study-of-prostate-cancer.html#cb857-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(prost_train)</span></code></pre></div>
+<div class="sourceCode" id="cb864"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb864-1"><a href="a-study-of-prostate-cancer.html#cb864-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(prost_train)</span></code></pre></div>
 <pre><code>[1] 70 16</code></pre>
-<div class="sourceCode" id="cb859"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb859-1"><a href="a-study-of-prostate-cancer.html#cb859-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(prost_test)</span></code></pre></div>
+<div class="sourceCode" id="cb866"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb866-1"><a href="a-study-of-prostate-cancer.html#cb866-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(prost_test)</span></code></pre></div>
 <pre><code>[1] 27 16</code></pre>
 <p>OK. Next, we’ll run the <code>c11_prost_A</code> model in the training sample.</p>
-<div class="sourceCode" id="cb861"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb861-1"><a href="a-study-of-prostate-cancer.html#cb861-1" aria-hidden="true" tabindex="-1"></a>c11_prost_A_train <span class="ot">&lt;-</span> prost_train <span class="sc">%$%</span></span>
-<span id="cb861-2"><a href="a-study-of-prostate-cancer.html#cb861-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lm</span>(lpsa <span class="sc">~</span> lcavol_c <span class="sc">*</span> svi)</span>
-<span id="cb861-3"><a href="a-study-of-prostate-cancer.html#cb861-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb861-4"><a href="a-study-of-prostate-cancer.html#cb861-4" aria-hidden="true" tabindex="-1"></a>c11_prost_A_train</span></code></pre></div>
+<div class="sourceCode" id="cb868"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb868-1"><a href="a-study-of-prostate-cancer.html#cb868-1" aria-hidden="true" tabindex="-1"></a>c11_prost_A_train <span class="ot">&lt;-</span> prost_train <span class="sc">%$%</span></span>
+<span id="cb868-2"><a href="a-study-of-prostate-cancer.html#cb868-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lm</span>(lpsa <span class="sc">~</span> lcavol_c <span class="sc">*</span> svi)</span>
+<span id="cb868-3"><a href="a-study-of-prostate-cancer.html#cb868-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb868-4"><a href="a-study-of-prostate-cancer.html#cb868-4" aria-hidden="true" tabindex="-1"></a>c11_prost_A_train</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = lpsa ~ lcavol_c * svi)
@@ -1385,14 +1410,14 @@ Coefficients:
  (Intercept)      lcavol_c           svi  lcavol_c:svi  
       2.2956        0.5919        0.6282        0.1597  </code></pre>
 <p>Then we’ll use the coefficients from this model to obtain predicted <code>lpsa</code> values in the test sample.</p>
-<div class="sourceCode" id="cb863"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb863-1"><a href="a-study-of-prostate-cancer.html#cb863-1" aria-hidden="true" tabindex="-1"></a>c11_prost_A_preds <span class="ot">&lt;-</span> </span>
-<span id="cb863-2"><a href="a-study-of-prostate-cancer.html#cb863-2" aria-hidden="true" tabindex="-1"></a>    c11_prost_A_train <span class="sc">%&gt;%</span> <span class="fu">predict</span>(prost_test)</span>
-<span id="cb863-3"><a href="a-study-of-prostate-cancer.html#cb863-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb863-4"><a href="a-study-of-prostate-cancer.html#cb863-4" aria-hidden="true" tabindex="-1"></a>c11_prost_A_preds[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb870"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb870-1"><a href="a-study-of-prostate-cancer.html#cb870-1" aria-hidden="true" tabindex="-1"></a>c11_prost_A_preds <span class="ot">&lt;-</span> </span>
+<span id="cb870-2"><a href="a-study-of-prostate-cancer.html#cb870-2" aria-hidden="true" tabindex="-1"></a>    c11_prost_A_train <span class="sc">%&gt;%</span> <span class="fu">predict</span>(prost_test)</span>
+<span id="cb870-3"><a href="a-study-of-prostate-cancer.html#cb870-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb870-4"><a href="a-study-of-prostate-cancer.html#cb870-4" aria-hidden="true" tabindex="-1"></a>c11_prost_A_preds[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
 <pre><code>       1        2        3 
 1.647217 2.210338 2.408746 </code></pre>
 <p>Now, we can use the <code>postResample</code> function from the <code>caret</code> package to obtain several key summaries of fit quality for our model. Here, we specify the estimates (or predictions), and then the observed values to the <code>postResample</code> function.</p>
-<div class="sourceCode" id="cb865"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb865-1"><a href="a-study-of-prostate-cancer.html#cb865-1" aria-hidden="true" tabindex="-1"></a><span class="fu">postResample</span>(c11_prost_A_preds, prost_test<span class="sc">$</span>lpsa)</span></code></pre></div>
+<div class="sourceCode" id="cb872"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb872-1"><a href="a-study-of-prostate-cancer.html#cb872-1" aria-hidden="true" tabindex="-1"></a><span class="fu">postResample</span>(c11_prost_A_preds, prost_test<span class="sc">$</span>lpsa)</span></code></pre></div>
 <pre><code>     RMSE  Rsquared       MAE 
 0.6651311 0.5503311 0.5524172 </code></pre>
 <p>These summary statistics are:</p>
@@ -1402,13 +1427,13 @@ Coefficients:
 <li>the MAE or mean absolute error, which is a bit less sensitive to outliers than the RMSE, because it measures the average prediction error by taking the absolute value of each error, and then grabbing the average of those values. The lower the MAE, the better the model.</li>
 </ul>
 <p>These statistics are more helpful, generally, for comparing multiple models to each other, than for making final decisions on their own. The <code>caret</code> package also provides individual functions to gather the elements of <code>postResample</code> as follows.</p>
-<div class="sourceCode" id="cb867"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb867-1"><a href="a-study-of-prostate-cancer.html#cb867-1" aria-hidden="true" tabindex="-1"></a>prost_A_summaries <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb867-2"><a href="a-study-of-prostate-cancer.html#cb867-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">RMSE =</span> <span class="fu">RMSE</span>(c11_prost_A_preds, prost_test<span class="sc">$</span>lpsa),</span>
-<span id="cb867-3"><a href="a-study-of-prostate-cancer.html#cb867-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">R2 =</span> <span class="fu">R2</span>(c11_prost_A_preds, prost_test<span class="sc">$</span>lpsa),</span>
-<span id="cb867-4"><a href="a-study-of-prostate-cancer.html#cb867-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">MAE =</span> <span class="fu">MAE</span>(c11_prost_A_preds, prost_test<span class="sc">$</span>lpsa)</span>
-<span id="cb867-5"><a href="a-study-of-prostate-cancer.html#cb867-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb867-6"><a href="a-study-of-prostate-cancer.html#cb867-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb867-7"><a href="a-study-of-prostate-cancer.html#cb867-7" aria-hidden="true" tabindex="-1"></a>prost_A_summaries</span></code></pre></div>
+<div class="sourceCode" id="cb874"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb874-1"><a href="a-study-of-prostate-cancer.html#cb874-1" aria-hidden="true" tabindex="-1"></a>prost_A_summaries <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb874-2"><a href="a-study-of-prostate-cancer.html#cb874-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">RMSE =</span> <span class="fu">RMSE</span>(c11_prost_A_preds, prost_test<span class="sc">$</span>lpsa),</span>
+<span id="cb874-3"><a href="a-study-of-prostate-cancer.html#cb874-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">R2 =</span> <span class="fu">R2</span>(c11_prost_A_preds, prost_test<span class="sc">$</span>lpsa),</span>
+<span id="cb874-4"><a href="a-study-of-prostate-cancer.html#cb874-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">MAE =</span> <span class="fu">MAE</span>(c11_prost_A_preds, prost_test<span class="sc">$</span>lpsa)</span>
+<span id="cb874-5"><a href="a-study-of-prostate-cancer.html#cb874-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb874-6"><a href="a-study-of-prostate-cancer.html#cb874-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb874-7"><a href="a-study-of-prostate-cancer.html#cb874-7" aria-hidden="true" tabindex="-1"></a>prost_A_summaries</span></code></pre></div>
 <pre><code># A tibble: 1 x 3
    RMSE    R2   MAE
   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1426,14 +1451,14 @@ Coefficients:
 <li>Compute the average of the k recorded errors. This is called the cross-validation error and serves as the primary performance metric for the model.</li>
 </ol>
 <p>Again using tools from the <code>caret</code> packages, we’ll first define our <code>trainControl</code> approach.</p>
-<div class="sourceCode" id="cb869"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb869-1"><a href="a-study-of-prostate-cancer.html#cb869-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">43220201</span>)</span>
-<span id="cb869-2"><a href="a-study-of-prostate-cancer.html#cb869-2" aria-hidden="true" tabindex="-1"></a>train.control <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;cv&quot;</span>, <span class="at">number =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb876"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb876-1"><a href="a-study-of-prostate-cancer.html#cb876-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">43220201</span>)</span>
+<span id="cb876-2"><a href="a-study-of-prostate-cancer.html#cb876-2" aria-hidden="true" tabindex="-1"></a>train.control <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;cv&quot;</span>, <span class="at">number =</span> <span class="dv">5</span>)</span></code></pre></div>
 <p>Then we train the model, and obtain the usual summaries of model fit quality.</p>
-<div class="sourceCode" id="cb870"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb870-1"><a href="a-study-of-prostate-cancer.html#cb870-1" aria-hidden="true" tabindex="-1"></a>c11_modelA_cv <span class="ot">&lt;-</span> <span class="fu">train</span>(lpsa <span class="sc">~</span> lcavol_c <span class="sc">*</span> svi, </span>
-<span id="cb870-2"><a href="a-study-of-prostate-cancer.html#cb870-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> prost, <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb870-3"><a href="a-study-of-prostate-cancer.html#cb870-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">trControl =</span> train.control)</span>
-<span id="cb870-4"><a href="a-study-of-prostate-cancer.html#cb870-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb870-5"><a href="a-study-of-prostate-cancer.html#cb870-5" aria-hidden="true" tabindex="-1"></a>c11_modelA_cv</span></code></pre></div>
+<div class="sourceCode" id="cb877"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb877-1"><a href="a-study-of-prostate-cancer.html#cb877-1" aria-hidden="true" tabindex="-1"></a>c11_modelA_cv <span class="ot">&lt;-</span> <span class="fu">train</span>(lpsa <span class="sc">~</span> lcavol_c <span class="sc">*</span> svi, </span>
+<span id="cb877-2"><a href="a-study-of-prostate-cancer.html#cb877-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> prost, <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb877-3"><a href="a-study-of-prostate-cancer.html#cb877-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">trControl =</span> train.control)</span>
+<span id="cb877-4"><a href="a-study-of-prostate-cancer.html#cb877-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb877-5"><a href="a-study-of-prostate-cancer.html#cb877-5" aria-hidden="true" tabindex="-1"></a>c11_modelA_cv</span></code></pre></div>
 <pre><code>Linear Regression 
 
 97 samples
@@ -1449,7 +1474,7 @@ Resampling results:
 
 Tuning parameter &#39;intercept&#39; was held constant at a value of TRUE</code></pre>
 <p>We can then look at the model fit by this cross-validation approach.</p>
-<div class="sourceCode" id="cb872"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb872-1"><a href="a-study-of-prostate-cancer.html#cb872-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c11_modelA_cv)</span></code></pre></div>
+<div class="sourceCode" id="cb879"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb879-1"><a href="a-study-of-prostate-cancer.html#cb879-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c11_modelA_cv)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = .outcome ~ ., data = dat)
@@ -1471,8 +1496,8 @@ Residual standard error: 0.7595 on 93 degrees of freedom
 Multiple R-squared:  0.5806,    Adjusted R-squared:  0.5671 
 F-statistic: 42.92 on 3 and 93 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>or, if you prefer,</p>
-<div class="sourceCode" id="cb874"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb874-1"><a href="a-study-of-prostate-cancer.html#cb874-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(<span class="fu">summary</span>(c11_modelA_cv), <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb874-2"><a href="a-study-of-prostate-cancer.html#cb874-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb881"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb881-1"><a href="a-study-of-prostate-cancer.html#cb881-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(<span class="fu">summary</span>(c11_modelA_cv), <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb881-2"><a href="a-study-of-prostate-cancer.html#cb881-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1595,8 +1620,8 @@ svi
 </tbody>
 </table>
 <p>and</p>
-<div class="sourceCode" id="cb875"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb875-1"><a href="a-study-of-prostate-cancer.html#cb875-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(<span class="fu">summary</span>(c11_modelA_cv)) <span class="sc">%&gt;%</span> </span>
-<span id="cb875-2"><a href="a-study-of-prostate-cancer.html#cb875-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">0</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb882"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb882-1"><a href="a-study-of-prostate-cancer.html#cb882-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(<span class="fu">summary</span>(c11_modelA_cv)) <span class="sc">%&gt;%</span> </span>
+<span id="cb882-2"><a href="a-study-of-prostate-cancer.html#cb882-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">0</span>))</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1665,9 +1690,9 @@ nobs
 </ul>
 <p>The main purpose of <em>robust</em> linear models is to reduce the influence of specifically outlier or high leverage data points.</p>
 <p>Here’s that robust fit in the original <code>prost_train</code> data set. Note that fitting a robust linear model requires the choice of a <code>psi</code> (<span class="math inline">\(\psi\)</span>) function, for which R provides three approaches, called the Huber, Hampel and Tukey bisquare approaches. In this fit, I’ll just let R pick its default choice.</p>
-<div class="sourceCode" id="cb876"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb876-1"><a href="a-study-of-prostate-cancer.html#cb876-1" aria-hidden="true" tabindex="-1"></a>modelR <span class="ot">&lt;-</span> prost_train <span class="sc">%$%</span> <span class="fu">rlm</span>(lpsa <span class="sc">~</span> lcavol_c <span class="sc">+</span> svi)</span>
-<span id="cb876-2"><a href="a-study-of-prostate-cancer.html#cb876-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb876-3"><a href="a-study-of-prostate-cancer.html#cb876-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelR)</span></code></pre></div>
+<div class="sourceCode" id="cb883"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb883-1"><a href="a-study-of-prostate-cancer.html#cb883-1" aria-hidden="true" tabindex="-1"></a>modelR <span class="ot">&lt;-</span> prost_train <span class="sc">%$%</span> <span class="fu">rlm</span>(lpsa <span class="sc">~</span> lcavol_c <span class="sc">+</span> svi)</span>
+<span id="cb883-2"><a href="a-study-of-prostate-cancer.html#cb883-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb883-3"><a href="a-study-of-prostate-cancer.html#cb883-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelR)</span></code></pre></div>
 <pre><code>
 Call: rlm(formula = lpsa ~ lcavol_c + svi)
 Residuals:
@@ -1682,9 +1707,9 @@ svi          0.7526  0.3296     2.2836
 
 Residual standard error: 0.7819 on 67 degrees of freedom</code></pre>
 <p>Compare this with the standard ordinary least squares fit to the same data (again without the interaction term), and you’ll see that in this case, the main differences are in the estimated standard errors, but the slope coefficients are also a bit smaller in the robust model.</p>
-<div class="sourceCode" id="cb878"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb878-1"><a href="a-study-of-prostate-cancer.html#cb878-1" aria-hidden="true" tabindex="-1"></a>modelO <span class="ot">&lt;-</span> prost_train <span class="sc">%$%</span> <span class="fu">lm</span>(lpsa <span class="sc">~</span> lcavol_c <span class="sc">+</span> svi)</span>
-<span id="cb878-2"><a href="a-study-of-prostate-cancer.html#cb878-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb878-3"><a href="a-study-of-prostate-cancer.html#cb878-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelO)</span></code></pre></div>
+<div class="sourceCode" id="cb885"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb885-1"><a href="a-study-of-prostate-cancer.html#cb885-1" aria-hidden="true" tabindex="-1"></a>modelO <span class="ot">&lt;-</span> prost_train <span class="sc">%$%</span> <span class="fu">lm</span>(lpsa <span class="sc">~</span> lcavol_c <span class="sc">+</span> svi)</span>
+<span id="cb885-2"><a href="a-study-of-prostate-cancer.html#cb885-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb885-3"><a href="a-study-of-prostate-cancer.html#cb885-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelO)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = lpsa ~ lcavol_c + svi)
@@ -1705,11 +1730,11 @@ Residual standard error: 0.7948 on 67 degrees of freedom
 Multiple R-squared:  0.5924,    Adjusted R-squared:  0.5803 
 F-statistic:  48.7 on 2 and 67 DF,  p-value: 8.738e-14</code></pre>
 <p>So, how can we do 5-fold cross-validation on our model R, and also let the computer pick which of the three types of initial weights (Huber, Hampel or Tukey Bisquare) might be most appropriate? As follows…</p>
-<div class="sourceCode" id="cb880"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb880-1"><a href="a-study-of-prostate-cancer.html#cb880-1" aria-hidden="true" tabindex="-1"></a>c11_modelR_cv <span class="ot">&lt;-</span> <span class="fu">train</span>(lpsa <span class="sc">~</span> lcavol_c <span class="sc">+</span> svi, </span>
-<span id="cb880-2"><a href="a-study-of-prostate-cancer.html#cb880-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> prost, <span class="at">method =</span> <span class="st">&quot;rlm&quot;</span>,</span>
-<span id="cb880-3"><a href="a-study-of-prostate-cancer.html#cb880-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">trControl =</span> train.control)</span>
-<span id="cb880-4"><a href="a-study-of-prostate-cancer.html#cb880-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb880-5"><a href="a-study-of-prostate-cancer.html#cb880-5" aria-hidden="true" tabindex="-1"></a>c11_modelR_cv</span></code></pre></div>
+<div class="sourceCode" id="cb887"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb887-1"><a href="a-study-of-prostate-cancer.html#cb887-1" aria-hidden="true" tabindex="-1"></a>c11_modelR_cv <span class="ot">&lt;-</span> <span class="fu">train</span>(lpsa <span class="sc">~</span> lcavol_c <span class="sc">+</span> svi, </span>
+<span id="cb887-2"><a href="a-study-of-prostate-cancer.html#cb887-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> prost, <span class="at">method =</span> <span class="st">&quot;rlm&quot;</span>,</span>
+<span id="cb887-3"><a href="a-study-of-prostate-cancer.html#cb887-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">trControl =</span> train.control)</span>
+<span id="cb887-4"><a href="a-study-of-prostate-cancer.html#cb887-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb887-5"><a href="a-study-of-prostate-cancer.html#cb887-5" aria-hidden="true" tabindex="-1"></a>c11_modelR_cv</span></code></pre></div>
 <pre><code>Robust Linear Model 
 
 97 samples
@@ -1731,7 +1756,7 @@ Resampling results across tuning parameters:
 RMSE was used to select the optimal model using the smallest value.
 The final values used for the model were intercept = TRUE and psi = psi.hampel.</code></pre>
 <p>Compare these RMSE, Rsquared and MAE values to those we observed in the interaction model with <code>lm</code> earlier…</p>
-<div class="sourceCode" id="cb882"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb882-1"><a href="a-study-of-prostate-cancer.html#cb882-1" aria-hidden="true" tabindex="-1"></a>c11_modelA_cv</span></code></pre></div>
+<div class="sourceCode" id="cb889"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb889-1"><a href="a-study-of-prostate-cancer.html#cb889-1" aria-hidden="true" tabindex="-1"></a>c11_modelA_cv</span></code></pre></div>
 <pre><code>Linear Regression 
 
 97 samples
@@ -1747,7 +1772,7 @@ Resampling results:
 
 Tuning parameter &#39;intercept&#39; was held constant at a value of TRUE</code></pre>
 <p>The robust model showes a larger R-Squared, smaller RMSE and smaller MAE than the interaction model. Perhaps we’ll focus further on model R going forward…</p>
-<div class="sourceCode" id="cb884"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb884-1"><a href="a-study-of-prostate-cancer.html#cb884-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c11_modelR_cv)</span></code></pre></div>
+<div class="sourceCode" id="cb891"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb891-1"><a href="a-study-of-prostate-cancer.html#cb891-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(c11_modelR_cv)</span></code></pre></div>
 <pre><code>
 Call: rlm(formula = .outcome ~ ., data = dat, psi = psi)
 Residuals:
@@ -1766,6 +1791,12 @@ Residual standard error: 0.7483 on 94 degrees of freedom</code></pre>
 </div>
 </div>
 </div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Stamey1989" class="csl-entry">
+Stamey, J. N. Kabalin, T. A. et al. 1989. <span>“Prostate Specific Antigen in the Diagnosis and Treatment of Adenocarcinoma of the Prostate: II. Radical Prostatectomy Treated Patients.”</span> <em>Journal of Urology</em> 141(5): 1076–83. <a href="https://www.ncbi.nlm.nih.gov/pubmed/2468795">https://www.ncbi.nlm.nih.gov/pubmed/2468795</a>.
+</div>
+</div>
 <div class="footnotes">
 <hr />
 <ol start="8">
@@ -1782,7 +1813,6 @@ Residual standard error: 0.7483 on 94 degrees of freedom</code></pre>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1801,6 +1831,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -1821,6 +1852,10 @@ gitbook.start({
 "text": null
 },
 "download": ["432-notes.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

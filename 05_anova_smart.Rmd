@@ -29,7 +29,7 @@ ggplot(smart_cle1_sh, aes(x = activity, y = bmi,
                           fill = activity)) +
   geom_violin(alpha = 0.3) +
   geom_boxplot(width = 0.3, notch = TRUE) + 
-  guides(fill = FALSE) +
+  guides(fill = "none") +
   coord_flip() +
   labs(title = "BMI as a function of Activity Level",
        subtitle = "Subjects in the SMART CLE data",
@@ -51,7 +51,7 @@ ggplot(smart_cle1_sh, aes(x = activity, y = log(bmi),
                           fill = activity)) +
   geom_violin(alpha = 0.3) +
   geom_boxplot(width = 0.3, notch = TRUE) + 
-  guides(fill = FALSE) +
+  guides(fill = "none") +
   coord_flip() +
   labs(title = "log(BMI) as a function of Activity Level",
        subtitle = "Subjects in the SMART CLE data",

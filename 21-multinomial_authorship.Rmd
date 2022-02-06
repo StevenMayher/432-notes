@@ -233,7 +233,7 @@ been.long$Auth <- fct_relevel(been.long$Author,
 
 ggplot(been.long, aes(x = Auth, y = n, fill = Auth)) +
     geom_boxplot() +
-    guides(fill = FALSE) +
+    guides(fill = "none") +
     theme_bw() +
     labs(x = "", y = "Count of the word `been`")
 ```

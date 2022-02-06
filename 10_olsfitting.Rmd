@@ -189,7 +189,7 @@ So, for `R-square` we see that our original estimate was 0.6989
 
 - Our estimated `R-square` across `n` = 40 training samples was 0.7426, but in the resulting tests, the average `R-square` was only 0.5749
 - This suggests an optimism of 0.7426 - 0.5749 = 0.1676 (after rounding).
-- We then apply that optimism to obtain a new estimate of R^2^ corrected for overfitting, at 0.5312, which is probably a better estimate of what our results might look like in new data that were similar to (but not the same as) the data we used in building `newmod` than our initial estimate of 0.6989
+- We then apply that optimism to obtain a new estimate of $R^2$ corrected for overfitting, at 0.5312, which is probably a better estimate of what our results might look like in new data that were similar to (but not the same as) the data we used in building `newmod` than our initial estimate of 0.6989
 
 We also obtain optimism-corrected estimates of the mean squared error (square of the residual standard deviation), the g index, and the intercept and slope of the calibration model. The "corrected" slope is a shrinkage factor that takes overfitting into account.
 

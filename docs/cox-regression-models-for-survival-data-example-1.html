@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 23 Cox Regression Models for Survival Data: Example 1 | Data Science for Biological, Medical and Health Research: Notes for 432</title>
   <meta name="description" content="Course Notes for PQHS 432 in Spring 2021." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 23 Cox Regression Models for Survival Data: Example 1 | Data Science for Biological, Medical and Health Research: Notes for 432" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="exploring-time-to-event-survival-data.html"/>
 <link rel="next" href="cox-regression-models-for-survival-data-example-2.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,13 +50,15 @@
 
 
 
-
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -114,6 +117,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 </head>
@@ -230,30 +256,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9.7" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#saving-the-new-tibbles"><i class="fa fa-check"></i><b>3.9.7</b> Saving the new tibbles</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing the <code>smart_cle1</code> data</a>
+<li class="chapter" data-level="4" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing the <code>smart_cle1</code> data</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#general-approaches-to-obtaining-numeric-summaries"><i class="fa fa-check"></i><b>4.1</b> General Approaches to Obtaining Numeric Summaries</a>
+<li class="chapter" data-level="4.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#general-approaches-to-obtaining-numeric-summaries"><i class="fa fa-check"></i><b>4.1</b> General Approaches to Obtaining Numeric Summaries</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#summary-for-a-data-frame"><i class="fa fa-check"></i><b>4.1.1</b> <code>summary</code> for a data frame</a></li>
-<li class="chapter" data-level="4.1.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#the-inspect-function-from-the-mosaic-package"><i class="fa fa-check"></i><b>4.1.2</b> The <code>inspect</code> function from the <code>mosaic</code> package</a></li>
-<li class="chapter" data-level="4.1.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#the-describe-function-in-hmisc"><i class="fa fa-check"></i><b>4.1.3</b> The <code>describe</code> function in <code>Hmisc</code></a></li>
+<li class="chapter" data-level="4.1.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#summary-for-a-data-frame"><i class="fa fa-check"></i><b>4.1.1</b> <code>summary</code> for a data frame</a></li>
+<li class="chapter" data-level="4.1.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#the-inspect-function-from-the-mosaic-package"><i class="fa fa-check"></i><b>4.1.2</b> The <code>inspect</code> function from the <code>mosaic</code> package</a></li>
+<li class="chapter" data-level="4.1.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#the-describe-function-in-hmisc"><i class="fa fa-check"></i><b>4.1.3</b> The <code>describe</code> function in <code>Hmisc</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#counting-as-exploratory-data-analysis"><i class="fa fa-check"></i><b>4.2</b> Counting as exploratory data analysis</a>
+<li class="chapter" data-level="4.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#counting-as-exploratory-data-analysis"><i class="fa fa-check"></i><b>4.2</b> Counting as exploratory data analysis</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#did-genhealth-vary-by-smoking-status"><i class="fa fa-check"></i><b>4.2.1</b> Did <code>genhealth</code> vary by smoking status?</a></li>
-<li class="chapter" data-level="4.2.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#whats-the-distribution-of-physhealth"><i class="fa fa-check"></i><b>4.2.2</b> What’s the distribution of <code>physhealth</code>?</a></li>
-<li class="chapter" data-level="4.2.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#whats-the-distribution-of-bmi"><i class="fa fa-check"></i><b>4.2.3</b> What’s the distribution of <code>bmi</code>?</a></li>
-<li class="chapter" data-level="4.2.4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-many-of-the-respondents-have-a-bmi-below-30"><i class="fa fa-check"></i><b>4.2.4</b> How many of the respondents have a BMI below 30?</a></li>
-<li class="chapter" data-level="4.2.5" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-many-of-the-respondents-with-a-bmi-30-are-highly-active"><i class="fa fa-check"></i><b>4.2.5</b> How many of the respondents with a BMI &lt; 30 are highly active?</a></li>
-<li class="chapter" data-level="4.2.6" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#is-obesity-associated-with-smoking-history"><i class="fa fa-check"></i><b>4.2.6</b> Is obesity associated with smoking history?</a></li>
-<li class="chapter" data-level="4.2.7" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#comparing-drinks_wk-summaries-by-obesity-status"><i class="fa fa-check"></i><b>4.2.7</b> Comparing <code>drinks_wk</code> summaries by obesity status</a></li>
+<li class="chapter" data-level="4.2.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#did-genhealth-vary-by-smoking-status"><i class="fa fa-check"></i><b>4.2.1</b> Did <code>genhealth</code> vary by smoking status?</a></li>
+<li class="chapter" data-level="4.2.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#whats-the-distribution-of-physhealth"><i class="fa fa-check"></i><b>4.2.2</b> What’s the distribution of <code>physhealth</code>?</a></li>
+<li class="chapter" data-level="4.2.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#whats-the-distribution-of-bmi"><i class="fa fa-check"></i><b>4.2.3</b> What’s the distribution of <code>bmi</code>?</a></li>
+<li class="chapter" data-level="4.2.4" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#how-many-of-the-respondents-have-a-bmi-below-30"><i class="fa fa-check"></i><b>4.2.4</b> How many of the respondents have a BMI below 30?</a></li>
+<li class="chapter" data-level="4.2.5" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#how-many-of-the-respondents-with-a-bmi-30-are-highly-active"><i class="fa fa-check"></i><b>4.2.5</b> How many of the respondents with a BMI &lt; 30 are highly active?</a></li>
+<li class="chapter" data-level="4.2.6" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#is-obesity-associated-with-smoking-history"><i class="fa fa-check"></i><b>4.2.6</b> Is obesity associated with smoking history?</a></li>
+<li class="chapter" data-level="4.2.7" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#comparing-drinks_wk-summaries-by-obesity-status"><i class="fa fa-check"></i><b>4.2.7</b> Comparing <code>drinks_wk</code> summaries by obesity status</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#can-bmi-predict-physhealth"><i class="fa fa-check"></i><b>4.3</b> Can <code>bmi</code> predict <code>physhealth</code>?</a>
+<li class="chapter" data-level="4.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#can-bmi-predict-physhealth"><i class="fa fa-check"></i><b>4.3</b> Can <code>bmi</code> predict <code>physhealth</code>?</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#fitting-a-simple-regression-model"><i class="fa fa-check"></i><b>4.3.1</b> Fitting a Simple Regression Model</a></li>
-<li class="chapter" data-level="4.3.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#model-summary-for-a-simple-one-predictor-regression"><i class="fa fa-check"></i><b>4.3.2</b> Model Summary for a Simple (One-Predictor) Regression</a></li>
-<li class="chapter" data-level="4.3.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#using-the-broom-package"><i class="fa fa-check"></i><b>4.3.3</b> Using the <code>broom</code> package</a></li>
-<li class="chapter" data-level="4.3.4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-does-the-model-do-residuals-vs.-fitted-values"><i class="fa fa-check"></i><b>4.3.4</b> How does the model do? (Residuals vs. Fitted Values)</a></li>
+<li class="chapter" data-level="4.3.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#fitting-a-simple-regression-model"><i class="fa fa-check"></i><b>4.3.1</b> Fitting a Simple Regression Model</a></li>
+<li class="chapter" data-level="4.3.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#model-summary-for-a-simple-one-predictor-regression"><i class="fa fa-check"></i><b>4.3.2</b> Model Summary for a Simple (One-Predictor) Regression</a></li>
+<li class="chapter" data-level="4.3.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#using-the-broom-package"><i class="fa fa-check"></i><b>4.3.3</b> Using the <code>broom</code> package</a></li>
+<li class="chapter" data-level="4.3.4" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#how-does-the-model-do-residuals-vs.-fitted-values"><i class="fa fa-check"></i><b>4.3.4</b> How does the model do? (Residuals vs. Fitted Values)</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html"><i class="fa fa-check"></i><b>5</b> Analysis of Variance with SMART</a>
@@ -339,7 +365,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#a-new-small-study-predicting-bmi"><i class="fa fa-check"></i><b>8.1</b> A New Small Study: Predicting BMI</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#does-female-predict-bmi-well"><i class="fa fa-check"></i><b>8.1.1</b> Does <code>female</code> predict <code>bmi</code> well?</a></li>
+<li class="chapter" data-level="8.1.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#does-smoke100-predict-bmi-well"><i class="fa fa-check"></i><b>8.1.1</b> Does <code>smoke100</code> predict <code>bmi</code> well?</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m1-a-simple-t-test-model"><i class="fa fa-check"></i><b>8.2</b> <code>c8_m1</code>: A simple t-test model</a></li>
 <li class="chapter" data-level="8.3" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m2-adding-another-predictor-two-way-anova-without-interaction"><i class="fa fa-check"></i><b>8.3</b> <code>c8_m2</code>: Adding another predictor (two-way ANOVA without interaction)</a></li>
@@ -483,7 +509,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12.14" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#logistic-regression-using-lrm"><i class="fa fa-check"></i><b>12.14</b> Logistic Regression using <code>lrm</code></a>
 <ul>
-<li class="chapter" data-level="12.14.1" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#interpreting-nagelkerke-r2"><i class="fa fa-check"></i><b>12.14.1</b> Interpreting Nagelkerke R<sup>2</sup></a></li>
+<li class="chapter" data-level="12.14.1" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#interpreting-nagelkerke-r2"><i class="fa fa-check"></i><b>12.14.1</b> Interpreting Nagelkerke <span class="math inline">\(R^2\)</span></a></li>
 <li class="chapter" data-level="12.14.2" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#interpreting-the-c-statistic-and-plotting-the-roc-curve"><i class="fa fa-check"></i><b>12.14.2</b> Interpreting the C statistic and Plotting the ROC Curve</a></li>
 <li class="chapter" data-level="12.14.3" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#the-c-statistic-and-somers-d"><i class="fa fa-check"></i><b>12.14.3</b> The C statistic and Somers’ D</a></li>
 <li class="chapter" data-level="12.14.4" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#validating-the-logistic-regression-model-summary-statistics"><i class="fa fa-check"></i><b>12.14.4</b> Validating the Logistic Regression Model Summary Statistics</a></li>
@@ -531,7 +557,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.5" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#exploring-model-c11_prost_a"><i class="fa fa-check"></i><b>13.5</b> Exploring Model <code>c11_prost_A</code></a>
 <ul>
 <li class="chapter" data-level="13.5.1" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#summary-for-model-c11_prost_a"><i class="fa fa-check"></i><b>13.5.1</b> <code>summary</code> for Model <code>c11_prost_A</code></a></li>
-<li class="chapter" data-level="13.5.2" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#adjusted-r2"><i class="fa fa-check"></i><b>13.5.2</b> Adjusted R<sup>2</sup></a></li>
+<li class="chapter" data-level="13.5.2" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#adjusted-r2"><i class="fa fa-check"></i><b>13.5.2</b> Adjusted <span class="math inline">\(R^2\)</span></a></li>
 <li class="chapter" data-level="13.5.3" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#coefficient-confidence-intervals"><i class="fa fa-check"></i><b>13.5.3</b> Coefficient Confidence Intervals</a></li>
 <li class="chapter" data-level="13.5.4" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#anova-for-model-c11_prost_a"><i class="fa fa-check"></i><b>13.5.4</b> ANOVA for Model <code>c11_prost_A</code></a></li>
 <li class="chapter" data-level="13.5.5" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#residuals-fitted-values-and-standard-errors-with-augment"><i class="fa fa-check"></i><b>13.5.5</b> Residuals, Fitted Values and Standard Errors with <code>augment</code></a></li>
@@ -628,7 +654,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="19.5.1" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#interpreting-the-coefficients"><i class="fa fa-check"></i><b>19.5.1</b> Interpreting the Coefficients</a></li>
 <li class="chapter" data-level="19.5.2" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals"><i class="fa fa-check"></i><b>19.5.2</b> Store fitted values and residuals</a></li>
-<li class="chapter" data-level="19.5.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values"><i class="fa fa-check"></i><b>19.5.3</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.5.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values"><i class="fa fa-check"></i><b>19.5.3</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.5.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions"><i class="fa fa-check"></i><b>19.5.4</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.5.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally"><i class="fa fa-check"></i><b>19.5.5</b> Predictions for Harry and Sally</a></li>
 <li class="chapter" data-level="19.5.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#notes"><i class="fa fa-check"></i><b>19.5.6</b> Notes</a></li>
@@ -637,8 +663,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="19.6.1" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#interpreting-the-coefficients-1"><i class="fa fa-check"></i><b>19.6.1</b> Interpreting the Coefficients</a></li>
 <li class="chapter" data-level="19.6.2" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-1"><i class="fa fa-check"></i><b>19.6.2</b> Store fitted values and residuals</a></li>
-<li class="chapter" data-level="19.6.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-1"><i class="fa fa-check"></i><b>19.6.3</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
-<li class="chapter" data-level="19.6.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#getting-r2-on-the-scale-of-physhealth"><i class="fa fa-check"></i><b>19.6.4</b> Getting R<sup>2</sup> on the scale of <code>physhealth</code></a></li>
+<li class="chapter" data-level="19.6.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-1"><i class="fa fa-check"></i><b>19.6.3</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.6.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#getting-r2-on-the-scale-of-physhealth"><i class="fa fa-check"></i><b>19.6.4</b> Getting <span class="math inline">\(R^2\)</span> on the scale of <code>physhealth</code></a></li>
 <li class="chapter" data-level="19.6.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-1"><i class="fa fa-check"></i><b>19.6.5</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.6.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-1"><i class="fa fa-check"></i><b>19.6.6</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -650,7 +676,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.7.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#correcting-for-overdispersion-with-coeftestcoefci"><i class="fa fa-check"></i><b>19.7.4</b> Correcting for Overdispersion with <code>coeftest</code>/<code>coefci</code></a></li>
 <li class="chapter" data-level="19.7.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-2"><i class="fa fa-check"></i><b>19.7.5</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.7.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-see-the-fit-of-a-count-regression-model"><i class="fa fa-check"></i><b>19.7.6</b> Rootogram: see the fit of a count regression model</a></li>
-<li class="chapter" data-level="19.7.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-2"><i class="fa fa-check"></i><b>19.7.7</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.7.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-2"><i class="fa fa-check"></i><b>19.7.7</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.7.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-2"><i class="fa fa-check"></i><b>19.7.8</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.7.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#using-glm.diag.plots-from-the-boot-package"><i class="fa fa-check"></i><b>19.7.9</b> Using <code>glm.diag.plots</code> from the <code>boot</code> package</a></li>
 <li class="chapter" data-level="19.7.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-2"><i class="fa fa-check"></i><b>19.7.10</b> Predictions for Harry and Sally</a></li>
@@ -665,7 +691,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.9.2" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#interpreting-the-coefficients-3"><i class="fa fa-check"></i><b>19.9.2</b> Interpreting the Coefficients</a></li>
 <li class="chapter" data-level="19.9.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#testing-the-predictors-1"><i class="fa fa-check"></i><b>19.9.3</b> Testing the Predictors</a></li>
 <li class="chapter" data-level="19.9.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-3"><i class="fa fa-check"></i><b>19.9.4</b> Store fitted values and residuals</a></li>
-<li class="chapter" data-level="19.9.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-3"><i class="fa fa-check"></i><b>19.9.5</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.9.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-3"><i class="fa fa-check"></i><b>19.9.5</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.9.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-3"><i class="fa fa-check"></i><b>19.9.6</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.9.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-3"><i class="fa fa-check"></i><b>19.9.7</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -689,7 +715,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.11.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-4"><i class="fa fa-check"></i><b>19.11.6</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.11.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-negative-binomial-model"><i class="fa fa-check"></i><b>19.11.7</b> Rootogram for Negative Binomial model</a></li>
 <li class="chapter" data-level="19.11.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#simulating-what-the-negative-binomial-model-predicts"><i class="fa fa-check"></i><b>19.11.8</b> Simulating what the Negative Binomial model predicts</a></li>
-<li class="chapter" data-level="19.11.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-4"><i class="fa fa-check"></i><b>19.11.9</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.11.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-4"><i class="fa fa-check"></i><b>19.11.9</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.11.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-4"><i class="fa fa-check"></i><b>19.11.10</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.11.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-4"><i class="fa fa-check"></i><b>19.11.11</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -704,7 +730,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.13.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-5"><i class="fa fa-check"></i><b>19.13.6</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.13.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#modeled-number-of-zero-counts"><i class="fa fa-check"></i><b>19.13.7</b> Modeled Number of Zero Counts</a></li>
 <li class="chapter" data-level="19.13.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-zip-model"><i class="fa fa-check"></i><b>19.13.8</b> Rootogram for ZIP model</a></li>
-<li class="chapter" data-level="19.13.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values"><i class="fa fa-check"></i><b>19.13.9</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.13.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values"><i class="fa fa-check"></i><b>19.13.9</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.13.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-5"><i class="fa fa-check"></i><b>19.13.10</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.13.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-5"><i class="fa fa-check"></i><b>19.13.11</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -718,7 +744,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.14.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-6"><i class="fa fa-check"></i><b>19.14.6</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.14.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#modeled-number-of-zero-counts-1"><i class="fa fa-check"></i><b>19.14.7</b> Modeled Number of Zero Counts</a></li>
 <li class="chapter" data-level="19.14.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-zero-inflated-negative-binomial-model"><i class="fa fa-check"></i><b>19.14.8</b> Rootogram for Zero-Inflated Negative Binomial model</a></li>
-<li class="chapter" data-level="19.14.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-1"><i class="fa fa-check"></i><b>19.14.9</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.14.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-1"><i class="fa fa-check"></i><b>19.14.9</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.14.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-6"><i class="fa fa-check"></i><b>19.14.10</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.14.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-6"><i class="fa fa-check"></i><b>19.14.11</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -734,7 +760,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.15.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#modeled-number-of-zero-counts-2"><i class="fa fa-check"></i><b>19.15.8</b> Modeled Number of Zero Counts</a></li>
 <li class="chapter" data-level="19.15.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-hurdle-model"><i class="fa fa-check"></i><b>19.15.9</b> Rootogram for Hurdle Model</a></li>
 <li class="chapter" data-level="19.15.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#understanding-the-modeled-counts-in-detail"><i class="fa fa-check"></i><b>19.15.10</b> Understanding the Modeled Counts in Detail</a></li>
-<li class="chapter" data-level="19.15.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-2"><i class="fa fa-check"></i><b>19.15.11</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.15.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-2"><i class="fa fa-check"></i><b>19.15.11</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.15.12" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-7"><i class="fa fa-check"></i><b>19.15.12</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.15.13" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-7"><i class="fa fa-check"></i><b>19.15.13</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -749,7 +775,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.16.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#testing-the-predictors-6"><i class="fa fa-check"></i><b>19.16.7</b> Testing the Predictors</a></li>
 <li class="chapter" data-level="19.16.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-8"><i class="fa fa-check"></i><b>19.16.8</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.16.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-nb-hurdle-model"><i class="fa fa-check"></i><b>19.16.9</b> Rootogram for NB Hurdle Model</a></li>
-<li class="chapter" data-level="19.16.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-3"><i class="fa fa-check"></i><b>19.16.10</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.16.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-3"><i class="fa fa-check"></i><b>19.16.10</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.16.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-8"><i class="fa fa-check"></i><b>19.16.11</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.16.12" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-8"><i class="fa fa-check"></i><b>19.16.12</b> Predictions for Harry and Sally</a></li>
 <li class="chapter" data-level="19.16.13" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#note-fitting-a-different-hurdle-model-for-counts-and-przero"><i class="fa fa-check"></i><b>19.16.13</b> Note: Fitting a Different Hurdle Model for Counts and Pr(zero)</a></li>
@@ -763,7 +789,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.17.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-9"><i class="fa fa-check"></i><b>19.17.4</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.17.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#building-something-like-a-rootogram"><i class="fa fa-check"></i><b>19.17.5</b> Building Something Like a Rootogram</a></li>
 <li class="chapter" data-level="19.17.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#tables-of-the-observed-and-fitted-physhealth-from-tobit"><i class="fa fa-check"></i><b>19.17.6</b> Tables of the Observed and Fitted <code>physhealth</code> from Tobit</a></li>
-<li class="chapter" data-level="19.17.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-4"><i class="fa fa-check"></i><b>19.17.7</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.17.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-4"><i class="fa fa-check"></i><b>19.17.7</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.17.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-9"><i class="fa fa-check"></i><b>19.17.8</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.17.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-9"><i class="fa fa-check"></i><b>19.17.9</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -945,9 +971,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="24.4.1" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#interpreting-the-results-from-model-b"><i class="fa fa-check"></i><b>24.4.1</b> Interpreting the Results from Model B</a></li>
 <li class="chapter" data-level="24.4.2" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#plotting-the-survival-curve-implied-by-model-b"><i class="fa fa-check"></i><b>24.4.2</b> Plotting the Survival Curve implied by Model B</a></li>
-<li class="chapter" data-level="24.4.3" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#plotting-the-cumulative-hazard-implied-by-model-b"><i class="fa fa-check"></i><b>24.4.3</b> Plotting the Cumulative Hazard implied by Model B</a></li>
-<li class="chapter" data-level="24.4.4" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#testing-the-proportional-hazards-assumption-1"><i class="fa fa-check"></i><b>24.4.4</b> Testing the Proportional Hazards Assumption</a></li>
-<li class="chapter" data-level="24.4.5" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#assessing-collinearity"><i class="fa fa-check"></i><b>24.4.5</b> Assessing Collinearity</a></li>
+<li class="chapter" data-level="24.4.3" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#testing-the-proportional-hazards-assumption-1"><i class="fa fa-check"></i><b>24.4.3</b> Testing the Proportional Hazards Assumption</a></li>
+<li class="chapter" data-level="24.4.4" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#assessing-collinearity"><i class="fa fa-check"></i><b>24.4.4</b> Assessing Collinearity</a></li>
 </ul></li>
 <li class="chapter" data-level="24.5" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#model-b2-a-stepwise-reduction-of-model-b"><i class="fa fa-check"></i><b>24.5</b> Model B2: A Stepwise Reduction of Model B</a>
 <ul>
@@ -1029,8 +1054,8 @@ h(t | x) = h_0(t) exp[\beta_1 x]
 <div id="fitting-a-cox-model-in-r-with-coxph" class="section level2" number="23.2">
 <h2><span class="header-section-number">23.2</span> Fitting a Cox Model in R with <code>coxph</code></h2>
 <p>As a first example, I’ll fit a model to predict time to recurrence in the <code>hem</code> data, on the basis of a single predictor: <code>genotype</code>.</p>
-<div class="sourceCode" id="cb1508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1508-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1508-1" aria-hidden="true" tabindex="-1"></a>cfit <span class="ot">&lt;-</span> <span class="fu">with</span>(hem, <span class="fu">coxph</span>(<span class="fu">Surv</span>(time, recur) <span class="sc">~</span> genotype))</span>
-<span id="cb1508-2"><a href="cox-regression-models-for-survival-data-example-1.html#cb1508-2" aria-hidden="true" tabindex="-1"></a>cfit</span></code></pre></div>
+<div class="sourceCode" id="cb1514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1514-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1514-1" aria-hidden="true" tabindex="-1"></a>cfit <span class="ot">&lt;-</span> <span class="fu">with</span>(hem, <span class="fu">coxph</span>(<span class="fu">Surv</span>(time, recur) <span class="sc">~</span> genotype))</span>
+<span id="cb1514-2"><a href="cox-regression-models-for-survival-data-example-1.html#cb1514-2" aria-hidden="true" tabindex="-1"></a>cfit</span></code></pre></div>
 <pre><code>Call:
 coxph(formula = Surv(time, recur) ~ genotype)
 
@@ -1045,7 +1070,7 @@ n= 70, number of events= 18 </code></pre>
 </ul>
 <div id="summarizing-the-fit" class="section level3" number="23.2.1">
 <h3><span class="header-section-number">23.2.1</span> Summarizing the Fit</h3>
-<div class="sourceCode" id="cb1510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1510-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1510-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cfit)</span></code></pre></div>
+<div class="sourceCode" id="cb1516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1516-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1516-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cfit)</span></code></pre></div>
 <pre><code>Call:
 coxph(formula = Surv(time, recur) ~ genotype)
 
@@ -1074,7 +1099,7 @@ Score (logrank) test = 6.28  on 1 df,   p=0.01</code></pre>
 </ul></li>
 </ul>
 <p>We can also <code>tidy</code> the hazard ratio estimate with the <code>broom</code> package.</p>
-<div class="sourceCode" id="cb1512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1512-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1512-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(cfit, <span class="at">exponentiate =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1518-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1518-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(cfit, <span class="at">exponentiate =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code># A tibble: 1 x 5
   term     estimate std.error statistic p.value
   &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
@@ -1082,11 +1107,11 @@ Score (logrank) test = 6.28  on 1 df,   p=0.01</code></pre>
 <p>In addition, we have several other summaries:</p>
 <ul>
 <li>The <em>concordance</em> measure is only appropriate when we have at least one continuous predictor in our Cox model.</li>
-<li>The Cox &amp; Snell pseudo-R<sup>2</sup> reflects the improvement of the model we’ve fit over the model with an intercept alone, but isn’t a proportion of anything (hence the listing of the maximum possible value).</li>
+<li>The Cox &amp; Snell pseudo-<span class="math inline">\(R^2\)</span> reflects the improvement of the model we’ve fit over the model with an intercept alone, but isn’t a proportion of anything (hence the listing of the maximum possible value).</li>
 <li>The Likelihood ratio, Wald and Score (logrank) tests provide insight into the overall significance of the model.</li>
 </ul>
 <p>We can obtain a more detailed description of the likelihood-ratio test of the model with <code>anova</code>.</p>
-<div class="sourceCode" id="cb1514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1514-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1514-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(cfit)</span></code></pre></div>
+<div class="sourceCode" id="cb1520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1520-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1520-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(cfit)</span></code></pre></div>
 <pre><code>Analysis of Deviance Table
  Cox model: response is Surv(time, recur)
 Terms added sequentially (first to last)
@@ -1099,7 +1124,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </div>
 <div id="glancing-at-the-model" class="section level3" number="23.2.2">
 <h3><span class="header-section-number">23.2.2</span> Glancing at the model?</h3>
-<div class="sourceCode" id="cb1516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1516-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1516-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(cfit)</span></code></pre></div>
+<div class="sourceCode" id="cb1522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1522-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1522-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(cfit)</span></code></pre></div>
 <pre><code># A tibble: 1 x 18
       n nevent statistic.log p.value.log statistic.sc p.value.sc statistic.wald
   &lt;int&gt;  &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt;
@@ -1113,41 +1138,41 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div id="plot-the-baseline-survival-function" class="section level3" number="23.2.3">
 <h3><span class="header-section-number">23.2.3</span> Plot the baseline survival function</h3>
 <p>Here, we’ll plot the time in terms of months, but scaled to 12 month (one year) groups.</p>
-<div class="sourceCode" id="cb1518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1518-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1518-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">survfit</span>(cfit), <span class="at">xscale =</span> <span class="dv">12</span>,</span>
-<span id="cb1518-2"><a href="cox-regression-models-for-survival-data-example-1.html#cb1518-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Years after initial hemorrhage&quot;</span>,</span>
-<span id="cb1518-3"><a href="cox-regression-models-for-survival-data-example-1.html#cb1518-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Proportion without recurrent hemorrhage&quot;</span>,</span>
-<span id="cb1518-4"><a href="cox-regression-models-for-survival-data-example-1.html#cb1518-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Baseline Survival Function&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1524-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1524-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">survfit</span>(cfit), <span class="at">xscale =</span> <span class="dv">12</span>,</span>
+<span id="cb1524-2"><a href="cox-regression-models-for-survival-data-example-1.html#cb1524-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Years after initial hemorrhage&quot;</span>,</span>
+<span id="cb1524-3"><a href="cox-regression-models-for-survival-data-example-1.html#cb1524-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Proportion without recurrent hemorrhage&quot;</span>,</span>
+<span id="cb1524-4"><a href="cox-regression-models-for-survival-data-example-1.html#cb1524-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Baseline Survival Function&quot;</span>)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-620-1.png" width="672" /></p>
 </div>
 <div id="plot-the-genotype-effect" class="section level3" number="23.2.4">
 <h3><span class="header-section-number">23.2.4</span> Plot the genotype effect</h3>
 <p>There are several ways to build these plots. One approach follows. Another uses a <code>cph</code> fit and the <code>survplot</code> function from the <code>rms</code> package.</p>
-<div class="sourceCode" id="cb1519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1519-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1519-1" aria-hidden="true" tabindex="-1"></a>newdat <span class="ot">&lt;-</span> <span class="fu">with</span>(hem, </span>
-<span id="cb1519-2"><a href="cox-regression-models-for-survival-data-example-1.html#cb1519-2" aria-hidden="true" tabindex="-1"></a>               <span class="fu">data.frame</span>(</span>
-<span id="cb1519-3"><a href="cox-regression-models-for-survival-data-example-1.html#cb1519-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">genotype =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb1519-4"><a href="cox-regression-models-for-survival-data-example-1.html#cb1519-4" aria-hidden="true" tabindex="-1"></a>               )</span>
-<span id="cb1519-5"><a href="cox-regression-models-for-survival-data-example-1.html#cb1519-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1519-6"><a href="cox-regression-models-for-survival-data-example-1.html#cb1519-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1519-7"><a href="cox-regression-models-for-survival-data-example-1.html#cb1519-7" aria-hidden="true" tabindex="-1"></a>newdat</span></code></pre></div>
+<div class="sourceCode" id="cb1525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1525-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1525-1" aria-hidden="true" tabindex="-1"></a>newdat <span class="ot">&lt;-</span> <span class="fu">with</span>(hem, </span>
+<span id="cb1525-2"><a href="cox-regression-models-for-survival-data-example-1.html#cb1525-2" aria-hidden="true" tabindex="-1"></a>               <span class="fu">data.frame</span>(</span>
+<span id="cb1525-3"><a href="cox-regression-models-for-survival-data-example-1.html#cb1525-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">genotype =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb1525-4"><a href="cox-regression-models-for-survival-data-example-1.html#cb1525-4" aria-hidden="true" tabindex="-1"></a>               )</span>
+<span id="cb1525-5"><a href="cox-regression-models-for-survival-data-example-1.html#cb1525-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1525-6"><a href="cox-regression-models-for-survival-data-example-1.html#cb1525-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1525-7"><a href="cox-regression-models-for-survival-data-example-1.html#cb1525-7" aria-hidden="true" tabindex="-1"></a>newdat</span></code></pre></div>
 <pre><code>  genotype
 1        1
 2        0</code></pre>
-<div class="sourceCode" id="cb1521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1521-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1521-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">survfit</span>(cfit, <span class="at">newdata =</span> newdat), <span class="at">xscale =</span> <span class="dv">12</span>,</span>
-<span id="cb1521-2"><a href="cox-regression-models-for-survival-data-example-1.html#cb1521-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">conf.int =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1521-3"><a href="cox-regression-models-for-survival-data-example-1.html#cb1521-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>),</span>
-<span id="cb1521-4"><a href="cox-regression-models-for-survival-data-example-1.html#cb1521-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Years after initial hemorrhage&quot;</span>,</span>
-<span id="cb1521-5"><a href="cox-regression-models-for-survival-data-example-1.html#cb1521-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Proportion without recurrent hemorrhage&quot;</span>,</span>
-<span id="cb1521-6"><a href="cox-regression-models-for-survival-data-example-1.html#cb1521-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Plotting the genotype effects from the cfit Model&quot;</span>)</span>
-<span id="cb1521-7"><a href="cox-regression-models-for-survival-data-example-1.html#cb1521-7" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="fl">0.5</span>, <span class="fl">0.2</span>, </span>
-<span id="cb1521-8"><a href="cox-regression-models-for-survival-data-example-1.html#cb1521-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend=</span><span class="fu">c</span>(</span>
-<span id="cb1521-9"><a href="cox-regression-models-for-survival-data-example-1.html#cb1521-9" aria-hidden="true" tabindex="-1"></a>         <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Homozygous &quot;</span>, epsilon, <span class="st">&quot;3 / &quot;</span>, </span>
-<span id="cb1521-10"><a href="cox-regression-models-for-survival-data-example-1.html#cb1521-10" aria-hidden="true" tabindex="-1"></a>                   epsilon, <span class="st">&quot;3&quot;</span>)), </span>
-<span id="cb1521-11"><a href="cox-regression-models-for-survival-data-example-1.html#cb1521-11" aria-hidden="true" tabindex="-1"></a>         <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;At least one &quot;</span>, epsilon,<span class="st">&quot;2 or &quot;</span>,</span>
-<span id="cb1521-12"><a href="cox-regression-models-for-survival-data-example-1.html#cb1521-12" aria-hidden="true" tabindex="-1"></a>                   epsilon,<span class="st">&quot;4 Allele&quot;</span>))</span>
-<span id="cb1521-13"><a href="cox-regression-models-for-survival-data-example-1.html#cb1521-13" aria-hidden="true" tabindex="-1"></a>       ),</span>
-<span id="cb1521-14"><a href="cox-regression-models-for-survival-data-example-1.html#cb1521-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty =</span> <span class="dv">1</span>, </span>
-<span id="cb1521-15"><a href="cox-regression-models-for-survival-data-example-1.html#cb1521-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>),</span>
-<span id="cb1521-16"><a href="cox-regression-models-for-survival-data-example-1.html#cb1521-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">text.col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1527-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1527-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">survfit</span>(cfit, <span class="at">newdata =</span> newdat), <span class="at">xscale =</span> <span class="dv">12</span>,</span>
+<span id="cb1527-2"><a href="cox-regression-models-for-survival-data-example-1.html#cb1527-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">conf.int =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1527-3"><a href="cox-regression-models-for-survival-data-example-1.html#cb1527-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>),</span>
+<span id="cb1527-4"><a href="cox-regression-models-for-survival-data-example-1.html#cb1527-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Years after initial hemorrhage&quot;</span>,</span>
+<span id="cb1527-5"><a href="cox-regression-models-for-survival-data-example-1.html#cb1527-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Proportion without recurrent hemorrhage&quot;</span>,</span>
+<span id="cb1527-6"><a href="cox-regression-models-for-survival-data-example-1.html#cb1527-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Plotting the genotype effects from the cfit Model&quot;</span>)</span>
+<span id="cb1527-7"><a href="cox-regression-models-for-survival-data-example-1.html#cb1527-7" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="fl">0.5</span>, <span class="fl">0.2</span>, </span>
+<span id="cb1527-8"><a href="cox-regression-models-for-survival-data-example-1.html#cb1527-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend=</span><span class="fu">c</span>(</span>
+<span id="cb1527-9"><a href="cox-regression-models-for-survival-data-example-1.html#cb1527-9" aria-hidden="true" tabindex="-1"></a>         <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;Homozygous &quot;</span>, epsilon, <span class="st">&quot;3 / &quot;</span>, </span>
+<span id="cb1527-10"><a href="cox-regression-models-for-survival-data-example-1.html#cb1527-10" aria-hidden="true" tabindex="-1"></a>                   epsilon, <span class="st">&quot;3&quot;</span>)), </span>
+<span id="cb1527-11"><a href="cox-regression-models-for-survival-data-example-1.html#cb1527-11" aria-hidden="true" tabindex="-1"></a>         <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;At least one &quot;</span>, epsilon,<span class="st">&quot;2 or &quot;</span>,</span>
+<span id="cb1527-12"><a href="cox-regression-models-for-survival-data-example-1.html#cb1527-12" aria-hidden="true" tabindex="-1"></a>                   epsilon,<span class="st">&quot;4 Allele&quot;</span>))</span>
+<span id="cb1527-13"><a href="cox-regression-models-for-survival-data-example-1.html#cb1527-13" aria-hidden="true" tabindex="-1"></a>       ),</span>
+<span id="cb1527-14"><a href="cox-regression-models-for-survival-data-example-1.html#cb1527-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty =</span> <span class="dv">1</span>, </span>
+<span id="cb1527-15"><a href="cox-regression-models-for-survival-data-example-1.html#cb1527-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>),</span>
+<span id="cb1527-16"><a href="cox-regression-models-for-survival-data-example-1.html#cb1527-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">text.col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-622-1.png" width="672" /></p>
 </div>
 <div id="testing-the-key-assumption-proportional-hazards" class="section level3" number="23.2.5">
@@ -1156,7 +1181,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <ul>
 <li>A small <span class="math inline">\(p\)</span> value would indicate a violation of the proportionality assumption.</li>
 </ul>
-<div class="sourceCode" id="cb1522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1522-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1522-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cox.zph</span>(cfit, <span class="at">transform=</span><span class="st">&quot;km&quot;</span>, <span class="at">global=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1528-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1528-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cox.zph</span>(cfit, <span class="at">transform=</span><span class="st">&quot;km&quot;</span>, <span class="at">global=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>         chisq df    p
 genotype  2.09  1 0.15
 GLOBAL    2.09  1 0.15</code></pre>
@@ -1165,7 +1190,7 @@ GLOBAL    2.09  1 0.15</code></pre>
 <div id="plotting-the-cox.zph-results-for-the-cfit-model" class="section level3" number="23.2.6">
 <h3><span class="header-section-number">23.2.6</span> Plotting the <code>cox.zph</code> results for the <code>cfit</code> model</h3>
 <p><code>cox.zph</code> function can be used to generate a plot for each of the individual predictors in the model. Of course, in this case, we have just one predictor: <code>genotype</code>. If the proportional hazards assumption is appropriate, then we should see a slope of essentially zero in each such plot. A slope that is seriously different from zero suggests a violation of the proportional hazards assumption.</p>
-<div class="sourceCode" id="cb1524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1524-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1524-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">cox.zph</span>(cfit, <span class="at">transform=</span><span class="st">&quot;km&quot;</span>, <span class="at">global=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1530-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1530-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">cox.zph</span>(cfit, <span class="at">transform=</span><span class="st">&quot;km&quot;</span>, <span class="at">global=</span><span class="cn">TRUE</span>))</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/surv_hem_cfit_coxzph_plot-1.png" width="672" /></p>
 <p>The plot suggests only a slight rise in the plotted values over time, suggesting no serious problem with the proportional hazards assumption. This combined testing and plotting approach is a reasonable starting place for assessing the proportional hazards assumption, but it’s likely insufficient for good practical work.</p>
 <p>Should the proportional hazards assumption fit less well, we have two main options: (1) fit a non-linear term in the covariate in question, and (2) fit a different type of regression model that doesn’t require the proportional hazards assumption.</p>
@@ -1174,18 +1199,18 @@ GLOBAL    2.09  1 0.15</code></pre>
 <div id="fitting-a-cox-model-using-cph-from-the-rms-package" class="section level2" number="23.3">
 <h2><span class="header-section-number">23.3</span> Fitting a Cox Model using <code>cph</code> from the <code>rms</code> package</h2>
 <p>To set up a <code>cph</code> fit for our comparison of genotypes in the <code>hem</code> data, we’ll follow these steps.</p>
-<div class="sourceCode" id="cb1525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1525-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1525-1" aria-hidden="true" tabindex="-1"></a><span class="fu">units</span>(hem<span class="sc">$</span>time) <span class="ot">&lt;-</span> <span class="st">&quot;month&quot;</span></span>
-<span id="cb1525-2"><a href="cox-regression-models-for-survival-data-example-1.html#cb1525-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">datadist</span>(hem)</span>
-<span id="cb1525-3"><a href="cox-regression-models-for-survival-data-example-1.html#cb1525-3" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">datadist =</span> <span class="st">&quot;d&quot;</span>)</span>
-<span id="cb1525-4"><a href="cox-regression-models-for-survival-data-example-1.html#cb1525-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1525-5"><a href="cox-regression-models-for-survival-data-example-1.html#cb1525-5" aria-hidden="true" tabindex="-1"></a>hemsurv <span class="ot">&lt;-</span> <span class="fu">Surv</span>(<span class="at">time =</span> hem<span class="sc">$</span>time, <span class="at">event =</span> hem<span class="sc">$</span>recur)</span>
-<span id="cb1525-6"><a href="cox-regression-models-for-survival-data-example-1.html#cb1525-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1525-7"><a href="cox-regression-models-for-survival-data-example-1.html#cb1525-7" aria-hidden="true" tabindex="-1"></a>model_hem <span class="ot">&lt;-</span> <span class="fu">cph</span>(hemsurv <span class="sc">~</span> genotype, <span class="at">data =</span> hem, </span>
-<span id="cb1525-8"><a href="cox-regression-models-for-survival-data-example-1.html#cb1525-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">x =</span> <span class="cn">TRUE</span>, <span class="at">y =</span> <span class="cn">TRUE</span>, <span class="at">surv =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1531-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1531-1" aria-hidden="true" tabindex="-1"></a><span class="fu">units</span>(hem<span class="sc">$</span>time) <span class="ot">&lt;-</span> <span class="st">&quot;month&quot;</span></span>
+<span id="cb1531-2"><a href="cox-regression-models-for-survival-data-example-1.html#cb1531-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">datadist</span>(hem)</span>
+<span id="cb1531-3"><a href="cox-regression-models-for-survival-data-example-1.html#cb1531-3" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">datadist =</span> <span class="st">&quot;d&quot;</span>)</span>
+<span id="cb1531-4"><a href="cox-regression-models-for-survival-data-example-1.html#cb1531-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1531-5"><a href="cox-regression-models-for-survival-data-example-1.html#cb1531-5" aria-hidden="true" tabindex="-1"></a>hemsurv <span class="ot">&lt;-</span> <span class="fu">Surv</span>(<span class="at">time =</span> hem<span class="sc">$</span>time, <span class="at">event =</span> hem<span class="sc">$</span>recur)</span>
+<span id="cb1531-6"><a href="cox-regression-models-for-survival-data-example-1.html#cb1531-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1531-7"><a href="cox-regression-models-for-survival-data-example-1.html#cb1531-7" aria-hidden="true" tabindex="-1"></a>model_hem <span class="ot">&lt;-</span> <span class="fu">cph</span>(hemsurv <span class="sc">~</span> genotype, <span class="at">data =</span> hem, </span>
+<span id="cb1531-8"><a href="cox-regression-models-for-survival-data-example-1.html#cb1531-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">x =</span> <span class="cn">TRUE</span>, <span class="at">y =</span> <span class="cn">TRUE</span>, <span class="at">surv =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Note that the <code>surv = TRUE</code> piece is required to get some of the follow-up analyses to work smoothly.</p>
 <div id="the-main-cph-results" class="section level3" number="23.3.1">
 <h3><span class="header-section-number">23.3.1</span> The Main <code>cph</code> results</h3>
-<div class="sourceCode" id="cb1526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1526-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1526-1" aria-hidden="true" tabindex="-1"></a>model_hem</span></code></pre></div>
+<div class="sourceCode" id="cb1532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1532-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1532-1" aria-hidden="true" tabindex="-1"></a>model_hem</span></code></pre></div>
 <pre><code>Cox Proportional Hazards Model
  
  cph(formula = hemsurv ~ genotype, data = hem, x = TRUE, y = TRUE, 
@@ -1204,7 +1229,7 @@ GLOBAL    2.09  1 0.15</code></pre>
  </code></pre>
 <p>Included here are likelihood ratio and score tests for the model as a whole (as compared to the intercept-only model), as well as the usual discrimination indexes.</p>
 <ul>
-<li>These include both an R<sup>2</sup> analog due to Nagelkerke (which can go all the way up to 1), and</li>
+<li>These include both an <span class="math inline">\(R^2\)</span> analog due to Nagelkerke (which can go all the way up to 1), and</li>
 <li>Somers’ <span class="math inline">\(Dxy\)</span>, which can also produce an estimate of the C statistic (area under the curve) via the formula C = 0.5 + Dxy / 2, so here C = 0.5 + (.244/2) = 0.622</li>
 <li>For lots more on survival analysis C statistics, look at the <code>survAUC</code> package in R.</li>
 </ul>
@@ -1213,7 +1238,7 @@ GLOBAL    2.09  1 0.15</code></pre>
 <div id="using-anova-with-cph" class="section level3" number="23.3.2">
 <h3><span class="header-section-number">23.3.2</span> Using <code>anova</code> with <code>cph</code></h3>
 <p>As in other <code>rms</code> fits, we can use <code>anova</code> to obtain more detailed (in terms of combining nonlinear terms and, if available, interactions) tests.</p>
-<div class="sourceCode" id="cb1528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1528-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1528-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model_hem)</span></code></pre></div>
+<div class="sourceCode" id="cb1534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1534-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1534-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model_hem)</span></code></pre></div>
 <pre><code>                Wald Statistics          Response: hemsurv 
 
  Factor     Chi-Square d.f. P     
@@ -1223,19 +1248,19 @@ GLOBAL    2.09  1 0.15</code></pre>
 <div id="effect-sizes-after-cph-fit" class="section level3" number="23.3.3">
 <h3><span class="header-section-number">23.3.3</span> Effect Sizes after <code>cph</code> fit</h3>
 <p>We can use <code>summary</code> on a <code>cph</code> object to get and plot effect size estimates (here, these are hazard ratios.)</p>
-<div class="sourceCode" id="cb1530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1530-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1530-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_hem)</span></code></pre></div>
+<div class="sourceCode" id="cb1536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1536-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1536-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_hem)</span></code></pre></div>
 <pre><code>             Effects              Response : hemsurv 
 
  Factor        Low High Diff. Effect S.E.   Lower 0.95 Upper 0.95
  genotype      0   1    1     1.3317 0.5699 0.21468     2.4486   
   Hazard Ratio 0   1    1     3.7873     NA 1.23950    11.5730   </code></pre>
-<div class="sourceCode" id="cb1532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1532-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1532-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(model_hem))</span></code></pre></div>
+<div class="sourceCode" id="cb1538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1538-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1538-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(model_hem))</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/surv_hem_cph_summary-1.png" width="672" /></p>
 </div>
 <div id="validating-cph-summaries" class="section level3" number="23.3.4">
 <h3><span class="header-section-number">23.3.4</span> Validating <code>cph</code> summaries</h3>
 <p>For details on these last few indices (D, U, Q, etc.), visit <code>?validate.cph</code> in R.</p>
-<div class="sourceCode" id="cb1533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1533-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1533-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">43201</span>); <span class="fu">validate</span>(model_hem)</span></code></pre></div>
+<div class="sourceCode" id="cb1539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1539-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1539-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">43201</span>); <span class="fu">validate</span>(model_hem)</span></code></pre></div>
 <pre><code>      index.orig training    test optimism index.corrected  n
 Dxy       0.2441   0.2508  0.2197   0.0311          0.2130 40
 R2        0.1058   0.1203  0.1058   0.0144          0.0914 40
@@ -1248,39 +1273,39 @@ g         0.6705   0.7908  0.6705   0.1203          0.5502 40</code></pre>
 <div id="plotting-survival-functions-for-each-genotype" class="section level3" number="23.3.5">
 <h3><span class="header-section-number">23.3.5</span> Plotting Survival Functions for each Genotype</h3>
 <p>Here is the <code>survplot</code> approach I mentioned earlier.</p>
-<div class="sourceCode" id="cb1535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1535-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1535-1" aria-hidden="true" tabindex="-1"></a><span class="fu">survplot</span>(model_hem, genotype, </span>
-<span id="cb1535-2"><a href="cox-regression-models-for-survival-data-example-1.html#cb1535-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">n.risk=</span><span class="cn">TRUE</span>, <span class="at">time.inc=</span><span class="dv">12</span>,</span>
-<span id="cb1535-3"><a href="cox-regression-models-for-survival-data-example-1.html#cb1535-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;magenta&quot;</span>, <span class="st">&quot;dodgerblue&quot;</span>),</span>
-<span id="cb1535-4"><a href="cox-regression-models-for-survival-data-example-1.html#cb1535-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab=</span><span class="st">&quot;Hemorrhage-Free Survival in Months&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1541-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1541-1" aria-hidden="true" tabindex="-1"></a><span class="fu">survplot</span>(model_hem, genotype, </span>
+<span id="cb1541-2"><a href="cox-regression-models-for-survival-data-example-1.html#cb1541-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">n.risk=</span><span class="cn">TRUE</span>, <span class="at">time.inc=</span><span class="dv">12</span>,</span>
+<span id="cb1541-3"><a href="cox-regression-models-for-survival-data-example-1.html#cb1541-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;magenta&quot;</span>, <span class="st">&quot;dodgerblue&quot;</span>),</span>
+<span id="cb1541-4"><a href="cox-regression-models-for-survival-data-example-1.html#cb1541-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab=</span><span class="st">&quot;Hemorrhage-Free Survival in Months&quot;</span>)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/survplot_model_hem_plot1-1.png" width="672" /></p>
 <p>We can add, for instance, confidence interval bars, with:</p>
-<div class="sourceCode" id="cb1536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1536-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1536-1" aria-hidden="true" tabindex="-1"></a><span class="fu">survplot</span>(model_hem, genotype, </span>
-<span id="cb1536-2"><a href="cox-regression-models-for-survival-data-example-1.html#cb1536-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">lwd=</span><span class="dv">3</span>, <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">conf.int=</span>.<span class="dv">95</span>,</span>
-<span id="cb1536-3"><a href="cox-regression-models-for-survival-data-example-1.html#cb1536-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">n.risk=</span><span class="cn">TRUE</span>, <span class="at">time.inc =</span> <span class="dv">12</span>, <span class="at">conf=</span><span class="st">&#39;bars&#39;</span>,</span>
-<span id="cb1536-4"><a href="cox-regression-models-for-survival-data-example-1.html#cb1536-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;magenta&quot;</span>, <span class="st">&quot;dodgerblue&quot;</span>),</span>
-<span id="cb1536-5"><a href="cox-regression-models-for-survival-data-example-1.html#cb1536-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab=</span><span class="st">&quot;Hemorrhage-Free Survival Time in Months&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1542-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1542-1" aria-hidden="true" tabindex="-1"></a><span class="fu">survplot</span>(model_hem, genotype, </span>
+<span id="cb1542-2"><a href="cox-regression-models-for-survival-data-example-1.html#cb1542-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">lwd=</span><span class="dv">3</span>, <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">conf.int=</span>.<span class="dv">95</span>,</span>
+<span id="cb1542-3"><a href="cox-regression-models-for-survival-data-example-1.html#cb1542-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">n.risk=</span><span class="cn">TRUE</span>, <span class="at">time.inc =</span> <span class="dv">12</span>, <span class="at">conf=</span><span class="st">&#39;bars&#39;</span>,</span>
+<span id="cb1542-4"><a href="cox-regression-models-for-survival-data-example-1.html#cb1542-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;magenta&quot;</span>, <span class="st">&quot;dodgerblue&quot;</span>),</span>
+<span id="cb1542-5"><a href="cox-regression-models-for-survival-data-example-1.html#cb1542-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab=</span><span class="st">&quot;Hemorrhage-Free Survival Time in Months&quot;</span>)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/survplot_model_hem_plot2-1.png" width="672" /></p>
 <p>For more details, check out R’s help file on <code>survplot</code>.</p>
 </div>
 <div id="genotypes-effect-on-log-relative-hazard" class="section level3" number="23.3.6">
 <h3><span class="header-section-number">23.3.6</span> Genotype’s effect on log relative hazard</h3>
-<div class="sourceCode" id="cb1537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1537-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1537-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">Predict</span>(model_hem, genotype))</span></code></pre></div>
+<div class="sourceCode" id="cb1543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1543-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1543-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">Predict</span>(model_hem, genotype))</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/log_rel_haz_hem_model_plot-1.png" width="672" /></p>
 </div>
 <div id="nomogram-of-our-simple-hem-model" class="section level3" number="23.3.7">
 <h3><span class="header-section-number">23.3.7</span> Nomogram of our simple <code>hem</code> model</h3>
 <p>We can estimate 1-year and 3-year hemorrhage-free survival probabilities, for example, with this model, and incorporate these results into our nomogram.</p>
-<div class="sourceCode" id="cb1538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1538-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1538-1" aria-hidden="true" tabindex="-1"></a>survx <span class="ot">&lt;-</span> <span class="fu">Survival</span>(model_hem)</span>
-<span id="cb1538-2"><a href="cox-regression-models-for-survival-data-example-1.html#cb1538-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">nomogram</span>(model_hem, <span class="at">fun=</span><span class="fu">list</span>(<span class="cf">function</span>(x) <span class="fu">survx</span>(<span class="dv">12</span>, x),</span>
-<span id="cb1538-3"><a href="cox-regression-models-for-survival-data-example-1.html#cb1538-3" aria-hidden="true" tabindex="-1"></a>                            <span class="cf">function</span>(x) <span class="fu">survx</span>(<span class="dv">36</span>, x)),</span>
-<span id="cb1538-4"><a href="cox-regression-models-for-survival-data-example-1.html#cb1538-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">funlabel=</span><span class="fu">c</span>(<span class="st">&quot;12-month Pr(Survival)&quot;</span>, </span>
-<span id="cb1538-5"><a href="cox-regression-models-for-survival-data-example-1.html#cb1538-5" aria-hidden="true" tabindex="-1"></a>                       <span class="st">&quot;36-month Pr(Survival)&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb1544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1544-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1544-1" aria-hidden="true" tabindex="-1"></a>survx <span class="ot">&lt;-</span> <span class="fu">Survival</span>(model_hem)</span>
+<span id="cb1544-2"><a href="cox-regression-models-for-survival-data-example-1.html#cb1544-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">nomogram</span>(model_hem, <span class="at">fun=</span><span class="fu">list</span>(<span class="cf">function</span>(x) <span class="fu">survx</span>(<span class="dv">12</span>, x),</span>
+<span id="cb1544-3"><a href="cox-regression-models-for-survival-data-example-1.html#cb1544-3" aria-hidden="true" tabindex="-1"></a>                            <span class="cf">function</span>(x) <span class="fu">survx</span>(<span class="dv">36</span>, x)),</span>
+<span id="cb1544-4"><a href="cox-regression-models-for-survival-data-example-1.html#cb1544-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">funlabel=</span><span class="fu">c</span>(<span class="st">&quot;12-month Pr(Survival)&quot;</span>, </span>
+<span id="cb1544-5"><a href="cox-regression-models-for-survival-data-example-1.html#cb1544-5" aria-hidden="true" tabindex="-1"></a>                       <span class="st">&quot;36-month Pr(Survival)&quot;</span>)))</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/nomogram_model_hem-1.png" width="672" /></p>
 <p>Again, this is just a very simple model, with one binary predictor.</p>
 </div>
 <div id="assessing-the-proportional-hazards-assumption" class="section level3" number="23.3.8">
 <h3><span class="header-section-number">23.3.8</span> Assessing the Proportional Hazards Assumption</h3>
-<div class="sourceCode" id="cb1539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1539-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1539-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cox.zph</span>(model_hem, <span class="at">transform=</span><span class="st">&quot;km&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1545-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1545-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cox.zph</span>(model_hem, <span class="at">transform=</span><span class="st">&quot;km&quot;</span>)</span></code></pre></div>
 <pre><code>         chisq df    p
 genotype  2.09  1 0.15
 GLOBAL    2.09  1 0.15</code></pre>
@@ -1291,7 +1316,7 @@ GLOBAL    2.09  1 0.15</code></pre>
 </div>
 <div id="plot-to-check-ph-assumption" class="section level3" number="23.3.9">
 <h3><span class="header-section-number">23.3.9</span> Plot to Check PH Assumption</h3>
-<div class="sourceCode" id="cb1541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1541-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1541-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">cox.zph</span>(model_hem, <span class="st">&quot;identity&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1547-1"><a href="cox-regression-models-for-survival-data-example-1.html#cb1547-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">cox.zph</span>(model_hem, <span class="st">&quot;identity&quot;</span>))</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/ph_plot_check_zph-1.png" width="672" /></p>
 
 </div>
@@ -1307,7 +1332,6 @@ GLOBAL    2.09  1 0.15</code></pre>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1326,6 +1350,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -1346,6 +1371,10 @@ gitbook.start({
 "text": null
 },
 "download": ["432-notes.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

@@ -335,13 +335,13 @@ glance(mod5b_rcs)
 glance(mod5c_rcs)
 ```
 
-Model | Knots | R^2^ | Adj. R^2^ | AIC | BIC
+Model | Knots | $R^2$ | Adj. $R^2$ | AIC | BIC
 ----: | ----: | ----: | ----: | ----: | ----:
 5a | 3 | 0.146 | 0.116 | 663.4 | 671.8
 5b | 4 | 0.249 | 0.209 | 657.7 | **668.2**
 5c | 5 | 0.288 | **0.237** | **656.5** | 669.1
 
-Within our sample, the five-knot RCS outperforms the 3- and 4-knot versions on adjusted R^2^ and AIC (barely) and does a little worse than the 4-knot RCS on BIC. 
+Within our sample, the five-knot RCS outperforms the 3- and 4-knot versions on adjusted $R^2$ and AIC (barely) and does a little worse than the 4-knot RCS on BIC. 
 
 Of course, we could also use the cross-validation methods we've developed for other linear regressions to assess predictive capacity of these models. I'll skip that for now.
 
@@ -405,7 +405,7 @@ So if you have 97 observations in your data, then you can probably just barely j
     + increases the difficulty of interpreting individual predictor effects
     + overall F test is significant, but individual t tests may not be
     
-Suppose we want to assess whether variable $X_j$ is collinear with the other predictors in a model. We run a regression predicting $X_j$ using the other predictors, and obtain the R^2^. The VIF is defined as 1 / (1 - this R^2^), and we usually interpret VIFs above 5 as indicating a serious multicollinearity problem (i.e. R^2^ values for this predictor of 0.8 and above would thus concern us.)
+Suppose we want to assess whether variable $X_j$ is collinear with the other predictors in a model. We run a regression predicting $X_j$ using the other predictors, and obtain the $R^2$. The VIF is defined as 1 / (1 - this $R^2$), and we usually interpret VIFs above 5 as indicating a serious multicollinearity problem (i.e. $R^2$ values for this predictor of 0.8 and above would thus concern us.)
 
 ```{r}
 car::vif(lm(y ~ x1 + x2 + x3 + x4 + x5 + x6, data = pollution))
@@ -480,7 +480,7 @@ This `anova` suggests that we have at least some predictive value in each spline
 
 We can certainly assess this big, complex model using `lm` in comparison to other models:
 
-- with in-sample summary statistics like adjusted R^2^, AIC and BIC,
+- with in-sample summary statistics like adjusted $R^2$, AIC and BIC,
 - we can assess its assumptions with residual plots, and 
 - we can also compare out-of-sample predictive quality through cross-validation,
 

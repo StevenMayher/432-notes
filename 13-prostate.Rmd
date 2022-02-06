@@ -120,17 +120,17 @@ summary(c11_prost_A)
 
 If you've forgotten the details of the pieces of this summary, review the Part C Notes from 431.
 
-### Adjusted R^2^
+### Adjusted $R^2$
 
-R^2^ is greedy. 
+$R^2$ is greedy. 
 
-- R^2^ will always suggest that we make our models as big as possible, often including variables of dubious predictive value.
-- As a result, there are various methods for penalizing R^2^ so that we wind up with smaller models. 
-- The **adjusted R^2^** is often a useful way to compare multiple models for the same response. 
+- $R^2$ will always suggest that we make our models as big as possible, often including variables of dubious predictive value.
+- As a result, there are various methods for penalizing $R^2$ so that we wind up with smaller models. 
+- The **adjusted $R^2$** is often a useful way to compare multiple models for the same response. 
     - $R^2_{adj} = 1 - \frac{(1-R^2)(n - 1)}{n - k}$, where $n$ = the number of observations and $k$ is the number of coefficients estimated by the regression (including the intercept and any slopes).
     - So, in this case, $R^2_{adj} = 1 - \frac{(1 - 0.5806)(97 - 1)}{97 - 4} = 0.5671$
-    - The adjusted R^2^ value is not, technically, a proportion of anything, but it is comparable across models for the same outcome. 
-    - The adjusted R^2^ will always be less than the (unadjusted) R^2^.
+    - The adjusted $R^2$ value is not, technically, a proportion of anything, but it is comparable across models for the same outcome. 
+    - The adjusted $R^2$ will always be less than the (unadjusted) $R^2$.
 
 ### Coefficient Confidence Intervals
 

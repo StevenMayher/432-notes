@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 22 Exploring Time To Event / Survival Data | Data Science for Biological, Medical and Health Research: Notes for 432</title>
   <meta name="description" content="Course Notes for PQHS 432 in Spring 2021." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 22 Exploring Time To Event / Survival Data | Data Science for Biological, Medical and Health Research: Notes for 432" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="analyzing-literary-styles-with-multinomial-logistic-regression.html"/>
 <link rel="next" href="cox-regression-models-for-survival-data-example-1.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,13 +50,15 @@
 
 
 
-
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -114,6 +117,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 </head>
@@ -230,30 +256,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9.7" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#saving-the-new-tibbles"><i class="fa fa-check"></i><b>3.9.7</b> Saving the new tibbles</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing the <code>smart_cle1</code> data</a>
+<li class="chapter" data-level="4" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing the <code>smart_cle1</code> data</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#general-approaches-to-obtaining-numeric-summaries"><i class="fa fa-check"></i><b>4.1</b> General Approaches to Obtaining Numeric Summaries</a>
+<li class="chapter" data-level="4.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#general-approaches-to-obtaining-numeric-summaries"><i class="fa fa-check"></i><b>4.1</b> General Approaches to Obtaining Numeric Summaries</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#summary-for-a-data-frame"><i class="fa fa-check"></i><b>4.1.1</b> <code>summary</code> for a data frame</a></li>
-<li class="chapter" data-level="4.1.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#the-inspect-function-from-the-mosaic-package"><i class="fa fa-check"></i><b>4.1.2</b> The <code>inspect</code> function from the <code>mosaic</code> package</a></li>
-<li class="chapter" data-level="4.1.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#the-describe-function-in-hmisc"><i class="fa fa-check"></i><b>4.1.3</b> The <code>describe</code> function in <code>Hmisc</code></a></li>
+<li class="chapter" data-level="4.1.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#summary-for-a-data-frame"><i class="fa fa-check"></i><b>4.1.1</b> <code>summary</code> for a data frame</a></li>
+<li class="chapter" data-level="4.1.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#the-inspect-function-from-the-mosaic-package"><i class="fa fa-check"></i><b>4.1.2</b> The <code>inspect</code> function from the <code>mosaic</code> package</a></li>
+<li class="chapter" data-level="4.1.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#the-describe-function-in-hmisc"><i class="fa fa-check"></i><b>4.1.3</b> The <code>describe</code> function in <code>Hmisc</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#counting-as-exploratory-data-analysis"><i class="fa fa-check"></i><b>4.2</b> Counting as exploratory data analysis</a>
+<li class="chapter" data-level="4.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#counting-as-exploratory-data-analysis"><i class="fa fa-check"></i><b>4.2</b> Counting as exploratory data analysis</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#did-genhealth-vary-by-smoking-status"><i class="fa fa-check"></i><b>4.2.1</b> Did <code>genhealth</code> vary by smoking status?</a></li>
-<li class="chapter" data-level="4.2.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#whats-the-distribution-of-physhealth"><i class="fa fa-check"></i><b>4.2.2</b> What’s the distribution of <code>physhealth</code>?</a></li>
-<li class="chapter" data-level="4.2.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#whats-the-distribution-of-bmi"><i class="fa fa-check"></i><b>4.2.3</b> What’s the distribution of <code>bmi</code>?</a></li>
-<li class="chapter" data-level="4.2.4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-many-of-the-respondents-have-a-bmi-below-30"><i class="fa fa-check"></i><b>4.2.4</b> How many of the respondents have a BMI below 30?</a></li>
-<li class="chapter" data-level="4.2.5" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-many-of-the-respondents-with-a-bmi-30-are-highly-active"><i class="fa fa-check"></i><b>4.2.5</b> How many of the respondents with a BMI &lt; 30 are highly active?</a></li>
-<li class="chapter" data-level="4.2.6" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#is-obesity-associated-with-smoking-history"><i class="fa fa-check"></i><b>4.2.6</b> Is obesity associated with smoking history?</a></li>
-<li class="chapter" data-level="4.2.7" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#comparing-drinks_wk-summaries-by-obesity-status"><i class="fa fa-check"></i><b>4.2.7</b> Comparing <code>drinks_wk</code> summaries by obesity status</a></li>
+<li class="chapter" data-level="4.2.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#did-genhealth-vary-by-smoking-status"><i class="fa fa-check"></i><b>4.2.1</b> Did <code>genhealth</code> vary by smoking status?</a></li>
+<li class="chapter" data-level="4.2.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#whats-the-distribution-of-physhealth"><i class="fa fa-check"></i><b>4.2.2</b> What’s the distribution of <code>physhealth</code>?</a></li>
+<li class="chapter" data-level="4.2.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#whats-the-distribution-of-bmi"><i class="fa fa-check"></i><b>4.2.3</b> What’s the distribution of <code>bmi</code>?</a></li>
+<li class="chapter" data-level="4.2.4" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#how-many-of-the-respondents-have-a-bmi-below-30"><i class="fa fa-check"></i><b>4.2.4</b> How many of the respondents have a BMI below 30?</a></li>
+<li class="chapter" data-level="4.2.5" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#how-many-of-the-respondents-with-a-bmi-30-are-highly-active"><i class="fa fa-check"></i><b>4.2.5</b> How many of the respondents with a BMI &lt; 30 are highly active?</a></li>
+<li class="chapter" data-level="4.2.6" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#is-obesity-associated-with-smoking-history"><i class="fa fa-check"></i><b>4.2.6</b> Is obesity associated with smoking history?</a></li>
+<li class="chapter" data-level="4.2.7" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#comparing-drinks_wk-summaries-by-obesity-status"><i class="fa fa-check"></i><b>4.2.7</b> Comparing <code>drinks_wk</code> summaries by obesity status</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#can-bmi-predict-physhealth"><i class="fa fa-check"></i><b>4.3</b> Can <code>bmi</code> predict <code>physhealth</code>?</a>
+<li class="chapter" data-level="4.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#can-bmi-predict-physhealth"><i class="fa fa-check"></i><b>4.3</b> Can <code>bmi</code> predict <code>physhealth</code>?</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#fitting-a-simple-regression-model"><i class="fa fa-check"></i><b>4.3.1</b> Fitting a Simple Regression Model</a></li>
-<li class="chapter" data-level="4.3.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#model-summary-for-a-simple-one-predictor-regression"><i class="fa fa-check"></i><b>4.3.2</b> Model Summary for a Simple (One-Predictor) Regression</a></li>
-<li class="chapter" data-level="4.3.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#using-the-broom-package"><i class="fa fa-check"></i><b>4.3.3</b> Using the <code>broom</code> package</a></li>
-<li class="chapter" data-level="4.3.4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-does-the-model-do-residuals-vs.-fitted-values"><i class="fa fa-check"></i><b>4.3.4</b> How does the model do? (Residuals vs. Fitted Values)</a></li>
+<li class="chapter" data-level="4.3.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#fitting-a-simple-regression-model"><i class="fa fa-check"></i><b>4.3.1</b> Fitting a Simple Regression Model</a></li>
+<li class="chapter" data-level="4.3.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#model-summary-for-a-simple-one-predictor-regression"><i class="fa fa-check"></i><b>4.3.2</b> Model Summary for a Simple (One-Predictor) Regression</a></li>
+<li class="chapter" data-level="4.3.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#using-the-broom-package"><i class="fa fa-check"></i><b>4.3.3</b> Using the <code>broom</code> package</a></li>
+<li class="chapter" data-level="4.3.4" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#how-does-the-model-do-residuals-vs.-fitted-values"><i class="fa fa-check"></i><b>4.3.4</b> How does the model do? (Residuals vs. Fitted Values)</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html"><i class="fa fa-check"></i><b>5</b> Analysis of Variance with SMART</a>
@@ -339,7 +365,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#a-new-small-study-predicting-bmi"><i class="fa fa-check"></i><b>8.1</b> A New Small Study: Predicting BMI</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#does-female-predict-bmi-well"><i class="fa fa-check"></i><b>8.1.1</b> Does <code>female</code> predict <code>bmi</code> well?</a></li>
+<li class="chapter" data-level="8.1.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#does-smoke100-predict-bmi-well"><i class="fa fa-check"></i><b>8.1.1</b> Does <code>smoke100</code> predict <code>bmi</code> well?</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m1-a-simple-t-test-model"><i class="fa fa-check"></i><b>8.2</b> <code>c8_m1</code>: A simple t-test model</a></li>
 <li class="chapter" data-level="8.3" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m2-adding-another-predictor-two-way-anova-without-interaction"><i class="fa fa-check"></i><b>8.3</b> <code>c8_m2</code>: Adding another predictor (two-way ANOVA without interaction)</a></li>
@@ -483,7 +509,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12.14" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#logistic-regression-using-lrm"><i class="fa fa-check"></i><b>12.14</b> Logistic Regression using <code>lrm</code></a>
 <ul>
-<li class="chapter" data-level="12.14.1" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#interpreting-nagelkerke-r2"><i class="fa fa-check"></i><b>12.14.1</b> Interpreting Nagelkerke R<sup>2</sup></a></li>
+<li class="chapter" data-level="12.14.1" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#interpreting-nagelkerke-r2"><i class="fa fa-check"></i><b>12.14.1</b> Interpreting Nagelkerke <span class="math inline">\(R^2\)</span></a></li>
 <li class="chapter" data-level="12.14.2" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#interpreting-the-c-statistic-and-plotting-the-roc-curve"><i class="fa fa-check"></i><b>12.14.2</b> Interpreting the C statistic and Plotting the ROC Curve</a></li>
 <li class="chapter" data-level="12.14.3" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#the-c-statistic-and-somers-d"><i class="fa fa-check"></i><b>12.14.3</b> The C statistic and Somers’ D</a></li>
 <li class="chapter" data-level="12.14.4" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#validating-the-logistic-regression-model-summary-statistics"><i class="fa fa-check"></i><b>12.14.4</b> Validating the Logistic Regression Model Summary Statistics</a></li>
@@ -531,7 +557,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.5" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#exploring-model-c11_prost_a"><i class="fa fa-check"></i><b>13.5</b> Exploring Model <code>c11_prost_A</code></a>
 <ul>
 <li class="chapter" data-level="13.5.1" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#summary-for-model-c11_prost_a"><i class="fa fa-check"></i><b>13.5.1</b> <code>summary</code> for Model <code>c11_prost_A</code></a></li>
-<li class="chapter" data-level="13.5.2" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#adjusted-r2"><i class="fa fa-check"></i><b>13.5.2</b> Adjusted R<sup>2</sup></a></li>
+<li class="chapter" data-level="13.5.2" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#adjusted-r2"><i class="fa fa-check"></i><b>13.5.2</b> Adjusted <span class="math inline">\(R^2\)</span></a></li>
 <li class="chapter" data-level="13.5.3" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#coefficient-confidence-intervals"><i class="fa fa-check"></i><b>13.5.3</b> Coefficient Confidence Intervals</a></li>
 <li class="chapter" data-level="13.5.4" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#anova-for-model-c11_prost_a"><i class="fa fa-check"></i><b>13.5.4</b> ANOVA for Model <code>c11_prost_A</code></a></li>
 <li class="chapter" data-level="13.5.5" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#residuals-fitted-values-and-standard-errors-with-augment"><i class="fa fa-check"></i><b>13.5.5</b> Residuals, Fitted Values and Standard Errors with <code>augment</code></a></li>
@@ -628,7 +654,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="19.5.1" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#interpreting-the-coefficients"><i class="fa fa-check"></i><b>19.5.1</b> Interpreting the Coefficients</a></li>
 <li class="chapter" data-level="19.5.2" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals"><i class="fa fa-check"></i><b>19.5.2</b> Store fitted values and residuals</a></li>
-<li class="chapter" data-level="19.5.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values"><i class="fa fa-check"></i><b>19.5.3</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.5.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values"><i class="fa fa-check"></i><b>19.5.3</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.5.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions"><i class="fa fa-check"></i><b>19.5.4</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.5.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally"><i class="fa fa-check"></i><b>19.5.5</b> Predictions for Harry and Sally</a></li>
 <li class="chapter" data-level="19.5.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#notes"><i class="fa fa-check"></i><b>19.5.6</b> Notes</a></li>
@@ -637,8 +663,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="19.6.1" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#interpreting-the-coefficients-1"><i class="fa fa-check"></i><b>19.6.1</b> Interpreting the Coefficients</a></li>
 <li class="chapter" data-level="19.6.2" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-1"><i class="fa fa-check"></i><b>19.6.2</b> Store fitted values and residuals</a></li>
-<li class="chapter" data-level="19.6.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-1"><i class="fa fa-check"></i><b>19.6.3</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
-<li class="chapter" data-level="19.6.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#getting-r2-on-the-scale-of-physhealth"><i class="fa fa-check"></i><b>19.6.4</b> Getting R<sup>2</sup> on the scale of <code>physhealth</code></a></li>
+<li class="chapter" data-level="19.6.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-1"><i class="fa fa-check"></i><b>19.6.3</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.6.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#getting-r2-on-the-scale-of-physhealth"><i class="fa fa-check"></i><b>19.6.4</b> Getting <span class="math inline">\(R^2\)</span> on the scale of <code>physhealth</code></a></li>
 <li class="chapter" data-level="19.6.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-1"><i class="fa fa-check"></i><b>19.6.5</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.6.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-1"><i class="fa fa-check"></i><b>19.6.6</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -650,7 +676,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.7.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#correcting-for-overdispersion-with-coeftestcoefci"><i class="fa fa-check"></i><b>19.7.4</b> Correcting for Overdispersion with <code>coeftest</code>/<code>coefci</code></a></li>
 <li class="chapter" data-level="19.7.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-2"><i class="fa fa-check"></i><b>19.7.5</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.7.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-see-the-fit-of-a-count-regression-model"><i class="fa fa-check"></i><b>19.7.6</b> Rootogram: see the fit of a count regression model</a></li>
-<li class="chapter" data-level="19.7.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-2"><i class="fa fa-check"></i><b>19.7.7</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.7.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-2"><i class="fa fa-check"></i><b>19.7.7</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.7.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-2"><i class="fa fa-check"></i><b>19.7.8</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.7.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#using-glm.diag.plots-from-the-boot-package"><i class="fa fa-check"></i><b>19.7.9</b> Using <code>glm.diag.plots</code> from the <code>boot</code> package</a></li>
 <li class="chapter" data-level="19.7.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-2"><i class="fa fa-check"></i><b>19.7.10</b> Predictions for Harry and Sally</a></li>
@@ -665,7 +691,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.9.2" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#interpreting-the-coefficients-3"><i class="fa fa-check"></i><b>19.9.2</b> Interpreting the Coefficients</a></li>
 <li class="chapter" data-level="19.9.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#testing-the-predictors-1"><i class="fa fa-check"></i><b>19.9.3</b> Testing the Predictors</a></li>
 <li class="chapter" data-level="19.9.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-3"><i class="fa fa-check"></i><b>19.9.4</b> Store fitted values and residuals</a></li>
-<li class="chapter" data-level="19.9.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-3"><i class="fa fa-check"></i><b>19.9.5</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.9.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-3"><i class="fa fa-check"></i><b>19.9.5</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.9.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-3"><i class="fa fa-check"></i><b>19.9.6</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.9.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-3"><i class="fa fa-check"></i><b>19.9.7</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -689,7 +715,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.11.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-4"><i class="fa fa-check"></i><b>19.11.6</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.11.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-negative-binomial-model"><i class="fa fa-check"></i><b>19.11.7</b> Rootogram for Negative Binomial model</a></li>
 <li class="chapter" data-level="19.11.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#simulating-what-the-negative-binomial-model-predicts"><i class="fa fa-check"></i><b>19.11.8</b> Simulating what the Negative Binomial model predicts</a></li>
-<li class="chapter" data-level="19.11.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-4"><i class="fa fa-check"></i><b>19.11.9</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.11.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-4"><i class="fa fa-check"></i><b>19.11.9</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.11.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-4"><i class="fa fa-check"></i><b>19.11.10</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.11.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-4"><i class="fa fa-check"></i><b>19.11.11</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -704,7 +730,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.13.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-5"><i class="fa fa-check"></i><b>19.13.6</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.13.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#modeled-number-of-zero-counts"><i class="fa fa-check"></i><b>19.13.7</b> Modeled Number of Zero Counts</a></li>
 <li class="chapter" data-level="19.13.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-zip-model"><i class="fa fa-check"></i><b>19.13.8</b> Rootogram for ZIP model</a></li>
-<li class="chapter" data-level="19.13.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values"><i class="fa fa-check"></i><b>19.13.9</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.13.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values"><i class="fa fa-check"></i><b>19.13.9</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.13.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-5"><i class="fa fa-check"></i><b>19.13.10</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.13.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-5"><i class="fa fa-check"></i><b>19.13.11</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -718,7 +744,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.14.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-6"><i class="fa fa-check"></i><b>19.14.6</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.14.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#modeled-number-of-zero-counts-1"><i class="fa fa-check"></i><b>19.14.7</b> Modeled Number of Zero Counts</a></li>
 <li class="chapter" data-level="19.14.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-zero-inflated-negative-binomial-model"><i class="fa fa-check"></i><b>19.14.8</b> Rootogram for Zero-Inflated Negative Binomial model</a></li>
-<li class="chapter" data-level="19.14.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-1"><i class="fa fa-check"></i><b>19.14.9</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.14.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-1"><i class="fa fa-check"></i><b>19.14.9</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.14.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-6"><i class="fa fa-check"></i><b>19.14.10</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.14.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-6"><i class="fa fa-check"></i><b>19.14.11</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -734,7 +760,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.15.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#modeled-number-of-zero-counts-2"><i class="fa fa-check"></i><b>19.15.8</b> Modeled Number of Zero Counts</a></li>
 <li class="chapter" data-level="19.15.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-hurdle-model"><i class="fa fa-check"></i><b>19.15.9</b> Rootogram for Hurdle Model</a></li>
 <li class="chapter" data-level="19.15.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#understanding-the-modeled-counts-in-detail"><i class="fa fa-check"></i><b>19.15.10</b> Understanding the Modeled Counts in Detail</a></li>
-<li class="chapter" data-level="19.15.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-2"><i class="fa fa-check"></i><b>19.15.11</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.15.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-2"><i class="fa fa-check"></i><b>19.15.11</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.15.12" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-7"><i class="fa fa-check"></i><b>19.15.12</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.15.13" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-7"><i class="fa fa-check"></i><b>19.15.13</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -749,7 +775,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.16.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#testing-the-predictors-6"><i class="fa fa-check"></i><b>19.16.7</b> Testing the Predictors</a></li>
 <li class="chapter" data-level="19.16.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-8"><i class="fa fa-check"></i><b>19.16.8</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.16.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-nb-hurdle-model"><i class="fa fa-check"></i><b>19.16.9</b> Rootogram for NB Hurdle Model</a></li>
-<li class="chapter" data-level="19.16.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-3"><i class="fa fa-check"></i><b>19.16.10</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.16.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-3"><i class="fa fa-check"></i><b>19.16.10</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.16.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-8"><i class="fa fa-check"></i><b>19.16.11</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.16.12" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-8"><i class="fa fa-check"></i><b>19.16.12</b> Predictions for Harry and Sally</a></li>
 <li class="chapter" data-level="19.16.13" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#note-fitting-a-different-hurdle-model-for-counts-and-przero"><i class="fa fa-check"></i><b>19.16.13</b> Note: Fitting a Different Hurdle Model for Counts and Pr(zero)</a></li>
@@ -763,7 +789,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.17.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-9"><i class="fa fa-check"></i><b>19.17.4</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.17.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#building-something-like-a-rootogram"><i class="fa fa-check"></i><b>19.17.5</b> Building Something Like a Rootogram</a></li>
 <li class="chapter" data-level="19.17.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#tables-of-the-observed-and-fitted-physhealth-from-tobit"><i class="fa fa-check"></i><b>19.17.6</b> Tables of the Observed and Fitted <code>physhealth</code> from Tobit</a></li>
-<li class="chapter" data-level="19.17.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-4"><i class="fa fa-check"></i><b>19.17.7</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.17.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-4"><i class="fa fa-check"></i><b>19.17.7</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.17.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-9"><i class="fa fa-check"></i><b>19.17.8</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.17.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-9"><i class="fa fa-check"></i><b>19.17.9</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -945,9 +971,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="24.4.1" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#interpreting-the-results-from-model-b"><i class="fa fa-check"></i><b>24.4.1</b> Interpreting the Results from Model B</a></li>
 <li class="chapter" data-level="24.4.2" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#plotting-the-survival-curve-implied-by-model-b"><i class="fa fa-check"></i><b>24.4.2</b> Plotting the Survival Curve implied by Model B</a></li>
-<li class="chapter" data-level="24.4.3" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#plotting-the-cumulative-hazard-implied-by-model-b"><i class="fa fa-check"></i><b>24.4.3</b> Plotting the Cumulative Hazard implied by Model B</a></li>
-<li class="chapter" data-level="24.4.4" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#testing-the-proportional-hazards-assumption-1"><i class="fa fa-check"></i><b>24.4.4</b> Testing the Proportional Hazards Assumption</a></li>
-<li class="chapter" data-level="24.4.5" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#assessing-collinearity"><i class="fa fa-check"></i><b>24.4.5</b> Assessing Collinearity</a></li>
+<li class="chapter" data-level="24.4.3" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#testing-the-proportional-hazards-assumption-1"><i class="fa fa-check"></i><b>24.4.3</b> Testing the Proportional Hazards Assumption</a></li>
+<li class="chapter" data-level="24.4.4" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#assessing-collinearity"><i class="fa fa-check"></i><b>24.4.4</b> Assessing Collinearity</a></li>
 </ul></li>
 <li class="chapter" data-level="24.5" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#model-b2-a-stepwise-reduction-of-model-b"><i class="fa fa-check"></i><b>24.5</b> Model B2: A Stepwise Reduction of Model B</a>
 <ul>
@@ -1091,7 +1116,7 @@ t_{(1)} \leq t_{(2)} \leq t_{(3)} \leq ... t_{(n)}
 <li><code>recur</code> = indicator of whether or not they had a recurrent event (1 = subject had a recurrence, 0 subject did not have a recurrence), and</li>
 <li><code>genotype</code> = the subject’s apolipoprotein E genotype (0 = Homozygous <span class="math inline">\(\epsilon3/\epsilon3\)</span> and 1 = At least one <span class="math inline">\(\epsilon2\)</span> or <span class="math inline">\(\epsilon4\)</span> allele)</li>
 </ul>
-<div class="sourceCode" id="cb1470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1470-1"><a href="exploring-time-to-event-survival-data.html#cb1470-1" aria-hidden="true" tabindex="-1"></a>hem <span class="sc">%&gt;%</span> <span class="fu">head</span>(.,<span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1476-1"><a href="exploring-time-to-event-survival-data.html#cb1476-1" aria-hidden="true" tabindex="-1"></a>hem <span class="sc">%&gt;%</span> <span class="fu">head</span>(.,<span class="dv">4</span>)</span></code></pre></div>
 <pre><code># A tibble: 4 x 4
      id genotype  time recur
   &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1099,12 +1124,12 @@ t_{(1)} \leq t_{(2)} \leq t_{(3)} \leq ... t_{(n)}
 2     2        0 1.05      0
 3     3        1 1.38      0
 4     4        1 1.41      1</code></pre>
-<div class="sourceCode" id="cb1472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1472-1"><a href="exploring-time-to-event-survival-data.html#cb1472-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(hem<span class="sc">$</span>recur)</span></code></pre></div>
+<div class="sourceCode" id="cb1478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1478-1"><a href="exploring-time-to-event-survival-data.html#cb1478-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(hem<span class="sc">$</span>recur)</span></code></pre></div>
 <pre><code>
  0  1 
 52 18 </code></pre>
 <p>We have 70 patients at the start, and observe 18 events (rest are censored.)</p>
-<div class="sourceCode" id="cb1474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1474-1"><a href="exploring-time-to-event-survival-data.html#cb1474-1" aria-hidden="true" tabindex="-1"></a>mosaic<span class="sc">::</span><span class="fu">favstats</span>(time <span class="sc">~</span> recur, <span class="at">data =</span> hem)</span></code></pre></div>
+<div class="sourceCode" id="cb1480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1480-1"><a href="exploring-time-to-event-survival-data.html#cb1480-1" aria-hidden="true" tabindex="-1"></a>mosaic<span class="sc">::</span><span class="fu">favstats</span>(time <span class="sc">~</span> recur, <span class="at">data =</span> hem)</span></code></pre></div>
 <pre><code>  recur       min        Q1   median       Q3      max     mean       sd  n
 1     0 1.0513350 14.414783 23.01437 38.64477 53.88091 25.51129 14.68242 52
 2     1 0.2299795  3.367556 10.92403 24.84600 42.87474 14.98517 13.88893 18
@@ -1114,9 +1139,9 @@ t_{(1)} \leq t_{(2)} \leq t_{(3)} \leq ... t_{(n)}
 <p>The median survival time looks like 23 weeks in the patients who do not exhibit a recurrence, but only 11 weeks in those who do.</p>
 <div id="building-a-survival-object" class="section level3" number="22.3.1">
 <h3><span class="header-section-number">22.3.1</span> Building a Survival Object</h3>
-<div class="sourceCode" id="cb1476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1476-1"><a href="exploring-time-to-event-survival-data.html#cb1476-1" aria-hidden="true" tabindex="-1"></a>hemsurv <span class="ot">&lt;-</span> <span class="fu">Surv</span>(<span class="at">time =</span> hem<span class="sc">$</span>time, <span class="at">event =</span> hem<span class="sc">$</span>recur)</span>
-<span id="cb1476-2"><a href="exploring-time-to-event-survival-data.html#cb1476-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1476-3"><a href="exploring-time-to-event-survival-data.html#cb1476-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(hemsurv, <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1482-1"><a href="exploring-time-to-event-survival-data.html#cb1482-1" aria-hidden="true" tabindex="-1"></a>hemsurv <span class="ot">&lt;-</span> <span class="fu">Surv</span>(<span class="at">time =</span> hem<span class="sc">$</span>time, <span class="at">event =</span> hem<span class="sc">$</span>recur)</span>
+<span id="cb1482-2"><a href="exploring-time-to-event-survival-data.html#cb1482-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1482-3"><a href="exploring-time-to-event-survival-data.html#cb1482-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(hemsurv, <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>[1] 0.2299795  1.0513350+ 1.3798770+ 1.4127311 </code></pre>
 <p>This object both displays the survival time for each subject, and indicates whether or not the subject’s follow-up was <em>censored</em> before a recurrent event occurred. Survival times with a <code>+</code> sign indicate censoring.</p>
 <ul>
@@ -1128,20 +1153,20 @@ t_{(1)} \leq t_{(2)} \leq t_{(3)} \leq ... t_{(n)}
 <div id="kaplan-meier-estimate-of-the-survival-function" class="section level3" number="22.3.2">
 <h3><span class="header-section-number">22.3.2</span> Kaplan-Meier Estimate of the Survival Function</h3>
 <p>To build a Kaplan-Meier estimate of the survival function (to account properly for censoring), we take the survival object we have created, and use the <code>survfit</code> function from the <code>survival</code> package.</p>
-<div class="sourceCode" id="cb1478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1478-1"><a href="exploring-time-to-event-survival-data.html#cb1478-1" aria-hidden="true" tabindex="-1"></a>hemfit1 <span class="ot">&lt;-</span> <span class="fu">survfit</span>(hemsurv <span class="sc">~</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1484-1"><a href="exploring-time-to-event-survival-data.html#cb1484-1" aria-hidden="true" tabindex="-1"></a>hemfit1 <span class="ot">&lt;-</span> <span class="fu">survfit</span>(hemsurv <span class="sc">~</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>We can look at the <code>hemfit1</code> object directly, although the K-M estimate is usually plotted.</p>
-<div class="sourceCode" id="cb1479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1479-1"><a href="exploring-time-to-event-survival-data.html#cb1479-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(hemfit1, <span class="at">print.rmean=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1485-1"><a href="exploring-time-to-event-survival-data.html#cb1485-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(hemfit1, <span class="at">print.rmean=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>Call: survfit(formula = hemsurv ~ 1)
 
-         n     events     *rmean *se(rmean)     median    0.95LCL    0.95UCL 
-     70.00      18.00      40.37       2.63         NA      42.87         NA 
+      n events rmean* se(rmean) median 0.95LCL 0.95UCL
+[1,] 70     18   40.4      2.63     NA    42.9      NA
     * restricted mean with upper limit =  53.9 </code></pre>
 <p>We see that 18 events occurred out of a total of 70 subjects. The median survival time is listed as <code>NA</code> (missing) which implies it cannot be estimated by this simple model.</p>
 <ul>
 <li>This is because only 18 of our 70 subjects have a known recurrence-free survival time (the rest are censored), so we don’t actually know what the median survival time will be across our 70 subjects. Apparently, R can produce a lower bound on a 95% confidence interval for the median survival time, but not the actual point estimate.</li>
 </ul>
 <p>We also observe a <strong>restricted mean survival time</strong> estimate. The restricted mean uses as its upper limit the largest observed or censored survival time, which here is a censored value: 53.9 months. So it is the mean survival time, assuming all censored subjects lived hemorrhage-free for 53.9 months.</p>
-<div class="sourceCode" id="cb1481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1481-1"><a href="exploring-time-to-event-survival-data.html#cb1481-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(hemfit1)</span></code></pre></div>
+<div class="sourceCode" id="cb1487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1487-1"><a href="exploring-time-to-event-survival-data.html#cb1487-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(hemfit1)</span></code></pre></div>
 <pre><code>Call: survfit(formula = hemsurv ~ 1)
 
   time n.risk n.event survival std.err lower 95% CI upper 95% CI
@@ -1173,9 +1198,9 @@ t_{(1)} \leq t_{(2)} \leq t_{(3)} \leq ... t_{(n)}
 <div id="the-kaplan-meier-plot-using-base-r" class="section level3" number="22.3.3">
 <h3><span class="header-section-number">22.3.3</span> The Kaplan-Meier Plot, using Base R</h3>
 <p>Now, let’s plot the Kaplan-Meier estimate, so we can see what is going on.</p>
-<div class="sourceCode" id="cb1483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1483-1"><a href="exploring-time-to-event-survival-data.html#cb1483-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hemfit1, <span class="at">ylab=</span><span class="st">&quot;Pr(Hemorrhage-Free Survival)&quot;</span>,</span>
-<span id="cb1483-2"><a href="exploring-time-to-event-survival-data.html#cb1483-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Months of Follow-Up&quot;</span>,</span>
-<span id="cb1483-3"><a href="exploring-time-to-event-survival-data.html#cb1483-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Kaplan-Meier Plot for hem Data&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1489-1"><a href="exploring-time-to-event-survival-data.html#cb1489-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hemfit1, <span class="at">ylab=</span><span class="st">&quot;Pr(Hemorrhage-Free Survival)&quot;</span>,</span>
+<span id="cb1489-2"><a href="exploring-time-to-event-survival-data.html#cb1489-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Months of Follow-Up&quot;</span>,</span>
+<span id="cb1489-3"><a href="exploring-time-to-event-survival-data.html#cb1489-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Kaplan-Meier Plot for hem Data&quot;</span>)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/surv_hem_base_KMplot_no_genotype-1.png" width="672" /></p>
 <p>The solid line indicates estimated hemorrhage-free survival probability. The dotted lines identify pointwise confidence intervals (default 95%).</p>
 <ul>
@@ -1187,7 +1212,7 @@ t_{(1)} \leq t_{(2)} \leq t_{(3)} \leq ... t_{(n)}
 <div id="using-survminer-to-draw-survival-curves" class="section level3" number="22.3.4">
 <h3><span class="header-section-number">22.3.4</span> Using <code>survminer</code> to draw survival curves</h3>
 <p>Another approach to plotting the Kaplan-Meier estimate comes from <code>ggsurvplot</code>, from the <code>survminer</code> package.</p>
-<div class="sourceCode" id="cb1484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1484-1"><a href="exploring-time-to-event-survival-data.html#cb1484-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsurvplot</span>(hemfit1, <span class="at">data =</span> hem)</span></code></pre></div>
+<div class="sourceCode" id="cb1490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1490-1"><a href="exploring-time-to-event-survival-data.html#cb1490-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsurvplot</span>(hemfit1, <span class="at">data =</span> hem)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-608-1.png" width="672" /></p>
 <p>Again, the solid line indicates estimated hemorrhage-free survival probability. The crosses indicate censoring. The steps down indicate events (recurrences,) and the shading indicates (default 95%) pointwise confidence intervals. By <strong>pointwise</strong> confidence intervals, I mean that these bounds apply only to individual points in the time scale.</p>
 <p>For more on an alternative approach, using <em>simultaneous confidence bands</em>, visit the OpenIntro Statistics <a href="https://www.openintro.org/stat/surv.php">Survival Analysis in R materials, written by David Diez</a>, which are also posted on <a href="https://github.com/THOMASELOVE/432-2018/blob/master/texts/Diez_OpenIntro_survival_analysis_in_R.pdf">our web site</a>.</p>
@@ -1195,12 +1220,12 @@ t_{(1)} \leq t_{(2)} \leq t_{(3)} \leq ... t_{(n)}
 <div id="a-fancy-k-m-plot-with-a-number-at-risk-table" class="section level3" number="22.3.5">
 <h3><span class="header-section-number">22.3.5</span> A “Fancy” K-M Plot with a number at risk table</h3>
 <p>We can do a lot more with these plots. Following the suggestions at <a href="https://github.com/kassambara/survminer/" class="uri">https://github.com/kassambara/survminer/</a> we can create the following…</p>
-<div class="sourceCode" id="cb1485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1485-1"><a href="exploring-time-to-event-survival-data.html#cb1485-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsurvplot</span>(hemfit1, <span class="at">data =</span> hem,</span>
-<span id="cb1485-2"><a href="exploring-time-to-event-survival-data.html#cb1485-2" aria-hidden="true" tabindex="-1"></a>   <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="co"># Add confidence interval</span></span>
-<span id="cb1485-3"><a href="exploring-time-to-event-survival-data.html#cb1485-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">risk.table =</span> <span class="cn">TRUE</span>, <span class="co"># Add risk table</span></span>
-<span id="cb1485-4"><a href="exploring-time-to-event-survival-data.html#cb1485-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">xlab =</span> <span class="st">&quot;Time in months&quot;</span>, <span class="co"># adjust X axis label</span></span>
-<span id="cb1485-5"><a href="exploring-time-to-event-survival-data.html#cb1485-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">break.time.by =</span> <span class="dv">12</span> <span class="co"># add tick every 12 months</span></span>
-<span id="cb1485-6"><a href="exploring-time-to-event-survival-data.html#cb1485-6" aria-hidden="true" tabindex="-1"></a>   )</span></code></pre></div>
+<div class="sourceCode" id="cb1491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1491-1"><a href="exploring-time-to-event-survival-data.html#cb1491-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsurvplot</span>(hemfit1, <span class="at">data =</span> hem,</span>
+<span id="cb1491-2"><a href="exploring-time-to-event-survival-data.html#cb1491-2" aria-hidden="true" tabindex="-1"></a>   <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="co"># Add confidence interval</span></span>
+<span id="cb1491-3"><a href="exploring-time-to-event-survival-data.html#cb1491-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">risk.table =</span> <span class="cn">TRUE</span>, <span class="co"># Add risk table</span></span>
+<span id="cb1491-4"><a href="exploring-time-to-event-survival-data.html#cb1491-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">xlab =</span> <span class="st">&quot;Time in months&quot;</span>, <span class="co"># adjust X axis label</span></span>
+<span id="cb1491-5"><a href="exploring-time-to-event-survival-data.html#cb1491-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">break.time.by =</span> <span class="dv">12</span> <span class="co"># add tick every 12 months</span></span>
+<span id="cb1491-6"><a href="exploring-time-to-event-survival-data.html#cb1491-6" aria-hidden="true" tabindex="-1"></a>   )</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-609-1.png" width="672" /></p>
 <p>This sort of plot is really designed to work best when we compare multiple groups in terms of their survival. So let’s do that.</p>
 </div>
@@ -1208,13 +1233,13 @@ t_{(1)} \leq t_{(2)} \leq t_{(3)} \leq ... t_{(n)}
 <div id="comparing-survival-across-the-two-genotypes" class="section level2" number="22.4">
 <h2><span class="header-section-number">22.4</span> Comparing Survival Across the Two Genotypes</h2>
 <p>Now, suppose we want to compare the hemorrhage-free survival functions for subjects classified by their apoliprotein E genotype. Working with the same survival object <code>hemsurv</code> we now run the <code>survfit</code> function to compare across the two <code>genotype</code> groups.</p>
-<div class="sourceCode" id="cb1486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1486-1"><a href="exploring-time-to-event-survival-data.html#cb1486-1" aria-hidden="true" tabindex="-1"></a>hemfit2 <span class="ot">&lt;-</span> <span class="fu">survfit</span>(hemsurv <span class="sc">~</span> hem<span class="sc">$</span>genotype)</span>
-<span id="cb1486-2"><a href="exploring-time-to-event-survival-data.html#cb1486-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(hemfit2, <span class="at">print.rmean=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1492-1"><a href="exploring-time-to-event-survival-data.html#cb1492-1" aria-hidden="true" tabindex="-1"></a>hemfit2 <span class="ot">&lt;-</span> <span class="fu">survfit</span>(hemsurv <span class="sc">~</span> hem<span class="sc">$</span>genotype)</span>
+<span id="cb1492-2"><a href="exploring-time-to-event-survival-data.html#cb1492-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(hemfit2, <span class="at">print.rmean=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>Call: survfit(formula = hemsurv ~ hem$genotype)
 
-                n events *rmean *se(rmean) median 0.95LCL 0.95UCL
-hem$genotype=0 32      4   47.8       2.87     NA      NA      NA
-hem$genotype=1 38     14   33.9       3.77   37.5    24.9      NA
+                n events rmean* se(rmean) median 0.95LCL 0.95UCL
+hem$genotype=0 32      4   47.8      2.87     NA      NA      NA
+hem$genotype=1 38     14   33.9      3.77   37.5    24.9      NA
     * restricted mean with upper limit =  53.9 </code></pre>
 <ul>
 <li>In <code>genotype = 0</code> (the subjects who are Homozygous <span class="math inline">\(\epsilon3/\epsilon3\)</span>,) we had 32 subjects, and observed 4 recurrent hemorrhages. Our estimated restricted mean survival time in those subjects is 44.8 months and we cannot estimate a median survival time because only a small fraction of our subjects were not censored.</li>
@@ -1223,14 +1248,14 @@ hem$genotype=1 38     14   33.9       3.77   37.5    24.9      NA
 <div id="kaplan-meier-survival-function-estimates-by-genotype" class="section level3" number="22.4.1">
 <h3><span class="header-section-number">22.4.1</span> Kaplan-Meier Survival Function Estimates, by Genotype</h3>
 <p>I find I have to crank the <code>fig.height</code> in Markdown up to at least 6 to get the risk table to show up nicely in this setting.</p>
-<div class="sourceCode" id="cb1488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1488-1"><a href="exploring-time-to-event-survival-data.html#cb1488-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsurvplot</span>(hemfit2, <span class="at">data =</span> hem,</span>
-<span id="cb1488-2"><a href="exploring-time-to-event-survival-data.html#cb1488-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">conf.int =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1488-3"><a href="exploring-time-to-event-survival-data.html#cb1488-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlab =</span> <span class="st">&quot;Time in months&quot;</span>,</span>
-<span id="cb1488-4"><a href="exploring-time-to-event-survival-data.html#cb1488-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">break.time.by =</span> <span class="dv">12</span>,</span>
-<span id="cb1488-5"><a href="exploring-time-to-event-survival-data.html#cb1488-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">legend.labs =</span> <span class="fu">c</span>(<span class="st">&quot;Homozygous&quot;</span>, <span class="st">&quot;Heterozygous&quot;</span>),</span>
-<span id="cb1488-6"><a href="exploring-time-to-event-survival-data.html#cb1488-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">risk.table =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1488-7"><a href="exploring-time-to-event-survival-data.html#cb1488-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">risk.table.height =</span> <span class="fl">0.25</span></span>
-<span id="cb1488-8"><a href="exploring-time-to-event-survival-data.html#cb1488-8" aria-hidden="true" tabindex="-1"></a>           )</span></code></pre></div>
+<div class="sourceCode" id="cb1494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1494-1"><a href="exploring-time-to-event-survival-data.html#cb1494-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsurvplot</span>(hemfit2, <span class="at">data =</span> hem,</span>
+<span id="cb1494-2"><a href="exploring-time-to-event-survival-data.html#cb1494-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">conf.int =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1494-3"><a href="exploring-time-to-event-survival-data.html#cb1494-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlab =</span> <span class="st">&quot;Time in months&quot;</span>,</span>
+<span id="cb1494-4"><a href="exploring-time-to-event-survival-data.html#cb1494-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">break.time.by =</span> <span class="dv">12</span>,</span>
+<span id="cb1494-5"><a href="exploring-time-to-event-survival-data.html#cb1494-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">legend.labs =</span> <span class="fu">c</span>(<span class="st">&quot;Homozygous&quot;</span>, <span class="st">&quot;Heterozygous&quot;</span>),</span>
+<span id="cb1494-6"><a href="exploring-time-to-event-survival-data.html#cb1494-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">risk.table =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1494-7"><a href="exploring-time-to-event-survival-data.html#cb1494-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">risk.table.height =</span> <span class="fl">0.25</span></span>
+<span id="cb1494-8"><a href="exploring-time-to-event-survival-data.html#cb1494-8" aria-hidden="true" tabindex="-1"></a>           )</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-610-1.png" width="672" /></p>
 <p>It appears that patients who were homozygous for the <span class="math inline">\(\epsilon3\)</span> allele of this gene (i.e. <code>genotype</code> = 0 in the hemorrhage data) had a much better prognosis than others (<code>genotype</code> = 1.)</p>
 </div>
@@ -1238,7 +1263,7 @@ hem$genotype=1 38     14   33.9       3.77   37.5    24.9      NA
 <div id="testing-the-difference-between-two-survival-curves" class="section level2" number="22.5">
 <h2><span class="header-section-number">22.5</span> Testing the difference between two survival curves</h2>
 <p>To obtain a significance test comparing these two survival curves, we turn to a <em>log rank</em> test, which tests the null hypothesis <span class="math inline">\(H_0: S_1(t) = S_2(t)\)</span> for all <span class="math inline">\(t\)</span> where the two exposures have survival functions <span class="math inline">\(S_1(t)\)</span> and <span class="math inline">\(S_2(t)\)</span>. We use the <code>survdiff</code> function to explore this test, which uses a <span class="math inline">\(\chi^2\)</span> statistic to do the testing.</p>
-<div class="sourceCode" id="cb1489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1489-1"><a href="exploring-time-to-event-survival-data.html#cb1489-1" aria-hidden="true" tabindex="-1"></a><span class="fu">survdiff</span>(hemsurv <span class="sc">~</span> hem<span class="sc">$</span>genotype)</span></code></pre></div>
+<div class="sourceCode" id="cb1495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1495-1"><a href="exploring-time-to-event-survival-data.html#cb1495-1" aria-hidden="true" tabindex="-1"></a><span class="fu">survdiff</span>(hemsurv <span class="sc">~</span> hem<span class="sc">$</span>genotype)</span></code></pre></div>
 <pre><code>Call:
 survdiff(formula = hemsurv ~ hem$genotype)
 
@@ -1254,7 +1279,7 @@ hem$genotype=1 38       14     8.72      3.19      6.28
 <div id="alternative-log-rank-tests" class="section level3" number="22.5.1">
 <h3><span class="header-section-number">22.5.1</span> Alternative log rank tests</h3>
 <p>An alternative approach to testing is the <em>Peto and Peto modification of the Gehan-Wilcoxon test</em>, which results from adding <code>rho=1</code> to the <code>survdiff</code> function (<code>rho=0</code>, the default, yields the log rank test.)</p>
-<div class="sourceCode" id="cb1491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1491-1"><a href="exploring-time-to-event-survival-data.html#cb1491-1" aria-hidden="true" tabindex="-1"></a><span class="fu">survdiff</span>(hemsurv <span class="sc">~</span> hem<span class="sc">$</span>genotype, <span class="at">rho=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1497-1"><a href="exploring-time-to-event-survival-data.html#cb1497-1" aria-hidden="true" tabindex="-1"></a><span class="fu">survdiff</span>(hemsurv <span class="sc">~</span> hem<span class="sc">$</span>genotype, <span class="at">rho=</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>Call:
 survdiff(formula = hemsurv ~ hem$genotype, rho = 1)
 
@@ -1272,40 +1297,40 @@ hem$genotype=1 38    11.79     7.54      2.39      5.46
 <div id="a-fancy-k-m-plot-with-a-number-at-risk-table-1" class="section level2" number="22.6">
 <h2><span class="header-section-number">22.6</span> A “Fancy” K-M Plot with a number at risk table</h2>
 <p>We can add the log rank test result to our “fancy” K-M plot. Visit <a href="https://github.com/kassambara/survminer/" class="uri">https://github.com/kassambara/survminer/</a> for more options.</p>
-<div class="sourceCode" id="cb1493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1493-1"><a href="exploring-time-to-event-survival-data.html#cb1493-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsurvplot</span>(hemfit2, <span class="at">data =</span> hem, <span class="at">size =</span> <span class="dv">1</span>,</span>
-<span id="cb1493-2"><a href="exploring-time-to-event-survival-data.html#cb1493-2" aria-hidden="true" tabindex="-1"></a>   <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;purple&quot;</span>, <span class="st">&quot;darkgoldenrod&quot;</span>), <span class="co"># custom colors</span></span>
-<span id="cb1493-3"><a href="exploring-time-to-event-survival-data.html#cb1493-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="co"># Add confidence interval</span></span>
-<span id="cb1493-4"><a href="exploring-time-to-event-survival-data.html#cb1493-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">pval =</span> <span class="cn">TRUE</span>, <span class="co"># Add p-value</span></span>
-<span id="cb1493-5"><a href="exploring-time-to-event-survival-data.html#cb1493-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">risk.table =</span> <span class="cn">TRUE</span>, <span class="co"># Add risk table</span></span>
-<span id="cb1493-6"><a href="exploring-time-to-event-survival-data.html#cb1493-6" aria-hidden="true" tabindex="-1"></a>   <span class="at">risk.table.height =</span> <span class="fl">0.25</span>, <span class="co"># change if you have &gt;2 groups</span></span>
-<span id="cb1493-7"><a href="exploring-time-to-event-survival-data.html#cb1493-7" aria-hidden="true" tabindex="-1"></a>   <span class="at">risk.table.y.text.col =</span> T, <span class="co"># show colors in table listing</span></span>
-<span id="cb1493-8"><a href="exploring-time-to-event-survival-data.html#cb1493-8" aria-hidden="true" tabindex="-1"></a>   <span class="at">xlab =</span> <span class="st">&quot;Time in months&quot;</span>, <span class="co"># adjust X axis label</span></span>
-<span id="cb1493-9"><a href="exploring-time-to-event-survival-data.html#cb1493-9" aria-hidden="true" tabindex="-1"></a>   <span class="at">break.time.by =</span> <span class="dv">12</span>, <span class="co"># break X axis in time intervals</span></span>
-<span id="cb1493-10"><a href="exploring-time-to-event-survival-data.html#cb1493-10" aria-hidden="true" tabindex="-1"></a>   <span class="at">legend.labs =</span> <span class="fu">c</span>(<span class="st">&quot;Homozygous&quot;</span>, <span class="st">&quot;Heterozygous&quot;</span>), <span class="co"># labels</span></span>
-<span id="cb1493-11"><a href="exploring-time-to-event-survival-data.html#cb1493-11" aria-hidden="true" tabindex="-1"></a>   <span class="at">ggtheme =</span> <span class="fu">theme_bw</span>() <span class="co"># Change ggplot2 theme</span></span>
-<span id="cb1493-12"><a href="exploring-time-to-event-survival-data.html#cb1493-12" aria-hidden="true" tabindex="-1"></a>   )</span></code></pre></div>
+<div class="sourceCode" id="cb1499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1499-1"><a href="exploring-time-to-event-survival-data.html#cb1499-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsurvplot</span>(hemfit2, <span class="at">data =</span> hem, <span class="at">size =</span> <span class="dv">1</span>,</span>
+<span id="cb1499-2"><a href="exploring-time-to-event-survival-data.html#cb1499-2" aria-hidden="true" tabindex="-1"></a>   <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;purple&quot;</span>, <span class="st">&quot;darkgoldenrod&quot;</span>), <span class="co"># custom colors</span></span>
+<span id="cb1499-3"><a href="exploring-time-to-event-survival-data.html#cb1499-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="co"># Add confidence interval</span></span>
+<span id="cb1499-4"><a href="exploring-time-to-event-survival-data.html#cb1499-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">pval =</span> <span class="cn">TRUE</span>, <span class="co"># Add p-value</span></span>
+<span id="cb1499-5"><a href="exploring-time-to-event-survival-data.html#cb1499-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">risk.table =</span> <span class="cn">TRUE</span>, <span class="co"># Add risk table</span></span>
+<span id="cb1499-6"><a href="exploring-time-to-event-survival-data.html#cb1499-6" aria-hidden="true" tabindex="-1"></a>   <span class="at">risk.table.height =</span> <span class="fl">0.25</span>, <span class="co"># change if you have &gt;2 groups</span></span>
+<span id="cb1499-7"><a href="exploring-time-to-event-survival-data.html#cb1499-7" aria-hidden="true" tabindex="-1"></a>   <span class="at">risk.table.y.text.col =</span> T, <span class="co"># show colors in table listing</span></span>
+<span id="cb1499-8"><a href="exploring-time-to-event-survival-data.html#cb1499-8" aria-hidden="true" tabindex="-1"></a>   <span class="at">xlab =</span> <span class="st">&quot;Time in months&quot;</span>, <span class="co"># adjust X axis label</span></span>
+<span id="cb1499-9"><a href="exploring-time-to-event-survival-data.html#cb1499-9" aria-hidden="true" tabindex="-1"></a>   <span class="at">break.time.by =</span> <span class="dv">12</span>, <span class="co"># break X axis in time intervals</span></span>
+<span id="cb1499-10"><a href="exploring-time-to-event-survival-data.html#cb1499-10" aria-hidden="true" tabindex="-1"></a>   <span class="at">legend.labs =</span> <span class="fu">c</span>(<span class="st">&quot;Homozygous&quot;</span>, <span class="st">&quot;Heterozygous&quot;</span>), <span class="co"># labels</span></span>
+<span id="cb1499-11"><a href="exploring-time-to-event-survival-data.html#cb1499-11" aria-hidden="true" tabindex="-1"></a>   <span class="at">ggtheme =</span> <span class="fu">theme_bw</span>() <span class="co"># Change ggplot2 theme</span></span>
+<span id="cb1499-12"><a href="exploring-time-to-event-survival-data.html#cb1499-12" aria-hidden="true" tabindex="-1"></a>   )</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-611-1.png" width="672" /></p>
 <div id="customizing-the-kaplan-meier-plot-presentation-further" class="section level3" number="22.6.1">
 <h3><span class="header-section-number">22.6.1</span> Customizing the Kaplan-Meier Plot Presentation Further</h3>
 <p>We can even add a plot of the number of censored subjects at each time point, as well as a median survival pointer (which, of course, we’ve seen that we can’t estimate in one of the groups), and customize the style of the confidence intervals. Again, see <a href="https://github.com/kassambara/survminer/" class="uri">https://github.com/kassambara/survminer/</a> for even more customized results.</p>
-<div class="sourceCode" id="cb1494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1494-1"><a href="exploring-time-to-event-survival-data.html#cb1494-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsurvplot</span>(hemfit2,              </span>
-<span id="cb1494-2"><a href="exploring-time-to-event-survival-data.html#cb1494-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">data =</span> hem, </span>
-<span id="cb1494-3"><a href="exploring-time-to-event-survival-data.html#cb1494-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#E7B800&quot;</span>, <span class="st">&quot;#2E9FDF&quot;</span>),</span>
-<span id="cb1494-4"><a href="exploring-time-to-event-survival-data.html#cb1494-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">risk.table =</span> <span class="cn">TRUE</span>,      </span>
-<span id="cb1494-5"><a href="exploring-time-to-event-survival-data.html#cb1494-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">pval =</span> <span class="cn">TRUE</span>,           </span>
-<span id="cb1494-6"><a href="exploring-time-to-event-survival-data.html#cb1494-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">conf.int =</span> <span class="cn">TRUE</span>,       </span>
-<span id="cb1494-7"><a href="exploring-time-to-event-survival-data.html#cb1494-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlab =</span> <span class="st">&quot;Time in months&quot;</span>, </span>
-<span id="cb1494-8"><a href="exploring-time-to-event-survival-data.html#cb1494-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">break.time.by =</span> <span class="dv">12</span>,     </span>
-<span id="cb1494-9"><a href="exploring-time-to-event-survival-data.html#cb1494-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">ggtheme =</span> <span class="fu">theme_light</span>(),</span>
-<span id="cb1494-10"><a href="exploring-time-to-event-survival-data.html#cb1494-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">risk.table.y.text.col =</span> T,</span>
-<span id="cb1494-11"><a href="exploring-time-to-event-survival-data.html#cb1494-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">risk.table.height =</span> <span class="fl">0.25</span>, </span>
-<span id="cb1494-12"><a href="exploring-time-to-event-survival-data.html#cb1494-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">risk.table.y.text =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb1494-13"><a href="exploring-time-to-event-survival-data.html#cb1494-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">ncensor.plot =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1494-14"><a href="exploring-time-to-event-survival-data.html#cb1494-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">ncensor.plot.height =</span> <span class="fl">0.25</span>,</span>
-<span id="cb1494-15"><a href="exploring-time-to-event-survival-data.html#cb1494-15" aria-hidden="true" tabindex="-1"></a>           <span class="at">conf.int.style =</span> <span class="st">&quot;step&quot;</span>,</span>
-<span id="cb1494-16"><a href="exploring-time-to-event-survival-data.html#cb1494-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">surv.median.line =</span> <span class="st">&quot;hv&quot;</span>,</span>
-<span id="cb1494-17"><a href="exploring-time-to-event-survival-data.html#cb1494-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">legend.labs =</span> <span class="fu">c</span>(<span class="st">&quot;Homozygous&quot;</span>, <span class="st">&quot;Heterozygous&quot;</span>)</span>
-<span id="cb1494-18"><a href="exploring-time-to-event-survival-data.html#cb1494-18" aria-hidden="true" tabindex="-1"></a>        )</span></code></pre></div>
+<div class="sourceCode" id="cb1500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1500-1"><a href="exploring-time-to-event-survival-data.html#cb1500-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsurvplot</span>(hemfit2,              </span>
+<span id="cb1500-2"><a href="exploring-time-to-event-survival-data.html#cb1500-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">data =</span> hem, </span>
+<span id="cb1500-3"><a href="exploring-time-to-event-survival-data.html#cb1500-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#E7B800&quot;</span>, <span class="st">&quot;#2E9FDF&quot;</span>),</span>
+<span id="cb1500-4"><a href="exploring-time-to-event-survival-data.html#cb1500-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">risk.table =</span> <span class="cn">TRUE</span>,      </span>
+<span id="cb1500-5"><a href="exploring-time-to-event-survival-data.html#cb1500-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">pval =</span> <span class="cn">TRUE</span>,           </span>
+<span id="cb1500-6"><a href="exploring-time-to-event-survival-data.html#cb1500-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">conf.int =</span> <span class="cn">TRUE</span>,       </span>
+<span id="cb1500-7"><a href="exploring-time-to-event-survival-data.html#cb1500-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlab =</span> <span class="st">&quot;Time in months&quot;</span>, </span>
+<span id="cb1500-8"><a href="exploring-time-to-event-survival-data.html#cb1500-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">break.time.by =</span> <span class="dv">12</span>,     </span>
+<span id="cb1500-9"><a href="exploring-time-to-event-survival-data.html#cb1500-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">ggtheme =</span> <span class="fu">theme_light</span>(),</span>
+<span id="cb1500-10"><a href="exploring-time-to-event-survival-data.html#cb1500-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">risk.table.y.text.col =</span> T,</span>
+<span id="cb1500-11"><a href="exploring-time-to-event-survival-data.html#cb1500-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">risk.table.height =</span> <span class="fl">0.25</span>, </span>
+<span id="cb1500-12"><a href="exploring-time-to-event-survival-data.html#cb1500-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">risk.table.y.text =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb1500-13"><a href="exploring-time-to-event-survival-data.html#cb1500-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">ncensor.plot =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1500-14"><a href="exploring-time-to-event-survival-data.html#cb1500-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">ncensor.plot.height =</span> <span class="fl">0.25</span>,</span>
+<span id="cb1500-15"><a href="exploring-time-to-event-survival-data.html#cb1500-15" aria-hidden="true" tabindex="-1"></a>           <span class="at">conf.int.style =</span> <span class="st">&quot;step&quot;</span>,</span>
+<span id="cb1500-16"><a href="exploring-time-to-event-survival-data.html#cb1500-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">surv.median.line =</span> <span class="st">&quot;hv&quot;</span>,</span>
+<span id="cb1500-17"><a href="exploring-time-to-event-survival-data.html#cb1500-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">legend.labs =</span> <span class="fu">c</span>(<span class="st">&quot;Homozygous&quot;</span>, <span class="st">&quot;Heterozygous&quot;</span>)</span>
+<span id="cb1500-18"><a href="exploring-time-to-event-survival-data.html#cb1500-18" aria-hidden="true" tabindex="-1"></a>        )</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-612-1.png" width="672" /></p>
 </div>
 </div>
@@ -1337,41 +1362,41 @@ hem$genotype=1 38    11.79     7.54      2.39      5.46
 <li>To start, we will take the negative of the log of the Kaplan-Meier survival estimate. That takes care of the first <em>t</em>-1 levels of the eventual estimate.</li>
 <li>To complete the process, we will repeat the final one of those time-specific estimates at the end.</li>
 </ul>
-<div class="sourceCode" id="cb1495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1495-1"><a href="exploring-time-to-event-survival-data.html#cb1495-1" aria-hidden="true" tabindex="-1"></a><span class="co"># hemsurv &lt;- Surv(hem$time, hem$recur) </span></span>
-<span id="cb1495-2"><a href="exploring-time-to-event-survival-data.html#cb1495-2" aria-hidden="true" tabindex="-1"></a><span class="co"># hemfit1 &lt;- survfit(hemsurv ~ 1)</span></span>
-<span id="cb1495-3"><a href="exploring-time-to-event-survival-data.html#cb1495-3" aria-hidden="true" tabindex="-1"></a>H_est1 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log</span>(hemfit1<span class="sc">$</span>surv)</span>
-<span id="cb1495-4"><a href="exploring-time-to-event-survival-data.html#cb1495-4" aria-hidden="true" tabindex="-1"></a>H_est1 <span class="ot">&lt;-</span> <span class="fu">c</span>(H_est1, <span class="fu">tail</span>(H_est1, <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1501-1"><a href="exploring-time-to-event-survival-data.html#cb1501-1" aria-hidden="true" tabindex="-1"></a><span class="co"># hemsurv &lt;- Surv(hem$time, hem$recur) </span></span>
+<span id="cb1501-2"><a href="exploring-time-to-event-survival-data.html#cb1501-2" aria-hidden="true" tabindex="-1"></a><span class="co"># hemfit1 &lt;- survfit(hemsurv ~ 1)</span></span>
+<span id="cb1501-3"><a href="exploring-time-to-event-survival-data.html#cb1501-3" aria-hidden="true" tabindex="-1"></a>H_est1 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log</span>(hemfit1<span class="sc">$</span>surv)</span>
+<span id="cb1501-4"><a href="exploring-time-to-event-survival-data.html#cb1501-4" aria-hidden="true" tabindex="-1"></a>H_est1 <span class="ot">&lt;-</span> <span class="fu">c</span>(H_est1, <span class="fu">tail</span>(H_est1, <span class="dv">1</span>))</span></code></pre></div>
 <p>Here are the first five, and last five values of the hazard function estimate.</p>
-<div class="sourceCode" id="cb1496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1496-1"><a href="exploring-time-to-event-survival-data.html#cb1496-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(H_est1,<span class="dv">5</span>) <span class="co"># first 5 values</span></span></code></pre></div>
+<div class="sourceCode" id="cb1502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1502-1"><a href="exploring-time-to-event-survival-data.html#cb1502-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(H_est1,<span class="dv">5</span>) <span class="co"># first 5 values</span></span></code></pre></div>
 <pre><code>[1] 0.01438874 0.01438874 0.01438874 0.02942661 0.02942661</code></pre>
-<div class="sourceCode" id="cb1498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1498-1"><a href="exploring-time-to-event-survival-data.html#cb1498-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(H_est1, <span class="dv">5</span>) <span class="co"># last 5</span></span></code></pre></div>
+<div class="sourceCode" id="cb1504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1504-1"><a href="exploring-time-to-event-survival-data.html#cb1504-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(H_est1, <span class="dv">5</span>) <span class="co"># last 5</span></span></code></pre></div>
 <pre><code>[1] 0.5602049 0.5602049 0.5602049 0.5602049 0.5602049</code></pre>
 <p>We can create a little data frame containing the times and hazard estimates, like this:</p>
-<div class="sourceCode" id="cb1500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1500-1"><a href="exploring-time-to-event-survival-data.html#cb1500-1" aria-hidden="true" tabindex="-1"></a>haz_hem <span class="ot">&lt;-</span> <span class="fu">data_frame</span>(</span>
-<span id="cb1500-2"><a href="exploring-time-to-event-survival-data.html#cb1500-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">time =</span> <span class="fu">c</span>(hemfit1<span class="sc">$</span>time, <span class="fu">tail</span>(hemfit1<span class="sc">$</span>time, <span class="dv">1</span>)),</span>
-<span id="cb1500-3"><a href="exploring-time-to-event-survival-data.html#cb1500-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">inverse_KM =</span> H_est1</span>
-<span id="cb1500-4"><a href="exploring-time-to-event-survival-data.html#cb1500-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb1506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1506-1"><a href="exploring-time-to-event-survival-data.html#cb1506-1" aria-hidden="true" tabindex="-1"></a>haz_hem <span class="ot">&lt;-</span> <span class="fu">data_frame</span>(</span>
+<span id="cb1506-2"><a href="exploring-time-to-event-survival-data.html#cb1506-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">time =</span> <span class="fu">c</span>(hemfit1<span class="sc">$</span>time, <span class="fu">tail</span>(hemfit1<span class="sc">$</span>time, <span class="dv">1</span>)),</span>
+<span id="cb1506-3"><a href="exploring-time-to-event-survival-data.html#cb1506-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">inverse_KM =</span> H_est1</span>
+<span id="cb1506-4"><a href="exploring-time-to-event-survival-data.html#cb1506-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 </div>
 <div id="cumulative-hazard-function-from-inverse-k-m" class="section level3" number="22.7.2">
 <h3><span class="header-section-number">22.7.2</span> Cumulative Hazard Function from Inverse K-M</h3>
 <p>Since we’ve built the data set of times and hazard values, we can use the <code>geom_step</code> function in <code>ggplot2</code>.</p>
-<div class="sourceCode" id="cb1501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1501-1"><a href="exploring-time-to-event-survival-data.html#cb1501-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(haz_hem, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> inverse_KM)) <span class="sc">+</span> </span>
-<span id="cb1501-2"><a href="exploring-time-to-event-survival-data.html#cb1501-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_step</span>() <span class="sc">+</span> </span>
-<span id="cb1501-3"><a href="exploring-time-to-event-survival-data.html#cb1501-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">24</span>, <span class="dv">36</span>, <span class="dv">48</span>)) <span class="sc">+</span></span>
-<span id="cb1501-4"><a href="exploring-time-to-event-survival-data.html#cb1501-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Months of Follow-Up&quot;</span>, </span>
-<span id="cb1501-5"><a href="exploring-time-to-event-survival-data.html#cb1501-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Cumulative Hazard&quot;</span>,</span>
-<span id="cb1501-6"><a href="exploring-time-to-event-survival-data.html#cb1501-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Cumulative Hazard Function via Inverse K-M&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1507-1"><a href="exploring-time-to-event-survival-data.html#cb1507-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(haz_hem, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> inverse_KM)) <span class="sc">+</span> </span>
+<span id="cb1507-2"><a href="exploring-time-to-event-survival-data.html#cb1507-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_step</span>() <span class="sc">+</span> </span>
+<span id="cb1507-3"><a href="exploring-time-to-event-survival-data.html#cb1507-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">24</span>, <span class="dv">36</span>, <span class="dv">48</span>)) <span class="sc">+</span></span>
+<span id="cb1507-4"><a href="exploring-time-to-event-survival-data.html#cb1507-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Months of Follow-Up&quot;</span>, </span>
+<span id="cb1507-5"><a href="exploring-time-to-event-survival-data.html#cb1507-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Cumulative Hazard&quot;</span>,</span>
+<span id="cb1507-6"><a href="exploring-time-to-event-survival-data.html#cb1507-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Cumulative Hazard Function via Inverse K-M&quot;</span>)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-615-1.png" width="672" /></p>
 </div>
 <div id="the-nelson-aalen-estimator-of-ht" class="section level3" number="22.7.3">
 <h3><span class="header-section-number">22.7.3</span> The Nelson-Aalen Estimator of <span class="math inline">\(H(t)\)</span></h3>
 <p>An alternative estimate of the cumulative hazard is called the Nelson-Aalen estimate, captured here in <code>H_est2</code>.</p>
-<div class="sourceCode" id="cb1502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1502-1"><a href="exploring-time-to-event-survival-data.html#cb1502-1" aria-hidden="true" tabindex="-1"></a>h_st <span class="ot">&lt;-</span> hemfit1<span class="sc">$</span>n.event <span class="sc">/</span> hemfit1<span class="sc">$</span>n.risk</span>
-<span id="cb1502-2"><a href="exploring-time-to-event-survival-data.html#cb1502-2" aria-hidden="true" tabindex="-1"></a>H_est2 <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(h_st)</span>
-<span id="cb1502-3"><a href="exploring-time-to-event-survival-data.html#cb1502-3" aria-hidden="true" tabindex="-1"></a>H_est2 <span class="ot">&lt;-</span> <span class="fu">c</span>(H_est2, <span class="fu">tail</span>(H_est2, <span class="dv">1</span>))</span>
-<span id="cb1502-4"><a href="exploring-time-to-event-survival-data.html#cb1502-4" aria-hidden="true" tabindex="-1"></a>haz_hem<span class="sc">$</span>Nelson_Aalen <span class="ot">&lt;-</span> H_est2</span>
-<span id="cb1502-5"><a href="exploring-time-to-event-survival-data.html#cb1502-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1502-6"><a href="exploring-time-to-event-survival-data.html#cb1502-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(haz_hem)</span></code></pre></div>
+<div class="sourceCode" id="cb1508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1508-1"><a href="exploring-time-to-event-survival-data.html#cb1508-1" aria-hidden="true" tabindex="-1"></a>h_st <span class="ot">&lt;-</span> hemfit1<span class="sc">$</span>n.event <span class="sc">/</span> hemfit1<span class="sc">$</span>n.risk</span>
+<span id="cb1508-2"><a href="exploring-time-to-event-survival-data.html#cb1508-2" aria-hidden="true" tabindex="-1"></a>H_est2 <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(h_st)</span>
+<span id="cb1508-3"><a href="exploring-time-to-event-survival-data.html#cb1508-3" aria-hidden="true" tabindex="-1"></a>H_est2 <span class="ot">&lt;-</span> <span class="fu">c</span>(H_est2, <span class="fu">tail</span>(H_est2, <span class="dv">1</span>))</span>
+<span id="cb1508-4"><a href="exploring-time-to-event-survival-data.html#cb1508-4" aria-hidden="true" tabindex="-1"></a>haz_hem<span class="sc">$</span>Nelson_Aalen <span class="ot">&lt;-</span> H_est2</span>
+<span id="cb1508-5"><a href="exploring-time-to-event-survival-data.html#cb1508-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1508-6"><a href="exploring-time-to-event-survival-data.html#cb1508-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(haz_hem)</span></code></pre></div>
 <pre><code># A tibble: 6 x 3
    time inverse_KM Nelson_Aalen
   &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;
@@ -1385,11 +1410,11 @@ hem$genotype=1 38    11.79     7.54      2.39      5.46
 <div id="convert-wide-data-to-long" class="section level3" number="22.7.4">
 <h3><span class="header-section-number">22.7.4</span> Convert Wide Data to Long</h3>
 <p>In order to easily plot the two hazard function estimates in the same graph, we’ll want to convert these data from wide format to long format, with the <code>gather</code> function.</p>
-<div class="sourceCode" id="cb1504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1504-1"><a href="exploring-time-to-event-survival-data.html#cb1504-1" aria-hidden="true" tabindex="-1"></a>haz_hem_comp <span class="ot">&lt;-</span> <span class="fu">gather</span>(haz_hem, <span class="at">key =</span> <span class="st">&quot;method&quot;</span>, </span>
-<span id="cb1504-2"><a href="exploring-time-to-event-survival-data.html#cb1504-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">value =</span> <span class="st">&quot;hazardest&quot;</span>, </span>
-<span id="cb1504-3"><a href="exploring-time-to-event-survival-data.html#cb1504-3" aria-hidden="true" tabindex="-1"></a>                       inverse_KM<span class="sc">:</span>Nelson_Aalen)</span>
-<span id="cb1504-4"><a href="exploring-time-to-event-survival-data.html#cb1504-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1504-5"><a href="exploring-time-to-event-survival-data.html#cb1504-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(haz_hem_comp)</span></code></pre></div>
+<div class="sourceCode" id="cb1510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1510-1"><a href="exploring-time-to-event-survival-data.html#cb1510-1" aria-hidden="true" tabindex="-1"></a>haz_hem_comp <span class="ot">&lt;-</span> <span class="fu">gather</span>(haz_hem, <span class="at">key =</span> <span class="st">&quot;method&quot;</span>, </span>
+<span id="cb1510-2"><a href="exploring-time-to-event-survival-data.html#cb1510-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">value =</span> <span class="st">&quot;hazardest&quot;</span>, </span>
+<span id="cb1510-3"><a href="exploring-time-to-event-survival-data.html#cb1510-3" aria-hidden="true" tabindex="-1"></a>                       inverse_KM<span class="sc">:</span>Nelson_Aalen)</span>
+<span id="cb1510-4"><a href="exploring-time-to-event-survival-data.html#cb1510-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1510-5"><a href="exploring-time-to-event-survival-data.html#cb1510-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(haz_hem_comp)</span></code></pre></div>
 <pre><code># A tibble: 6 x 3
    time method     hazardest
   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;
@@ -1402,23 +1427,23 @@ hem$genotype=1 38    11.79     7.54      2.39      5.46
 </div>
 <div id="plot-comparison-of-hazard-estimates" class="section level3" number="22.7.5">
 <h3><span class="header-section-number">22.7.5</span> Plot Comparison of Hazard Estimates</h3>
-<div class="sourceCode" id="cb1506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1506-1"><a href="exploring-time-to-event-survival-data.html#cb1506-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(haz_hem_comp, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> hazardest, </span>
-<span id="cb1506-2"><a href="exploring-time-to-event-survival-data.html#cb1506-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col =</span> method)) <span class="sc">+</span> </span>
-<span id="cb1506-3"><a href="exploring-time-to-event-survival-data.html#cb1506-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_step</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
-<span id="cb1506-4"><a href="exploring-time-to-event-survival-data.html#cb1506-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">24</span>, <span class="dv">36</span>, <span class="dv">48</span>)) <span class="sc">+</span></span>
-<span id="cb1506-5"><a href="exploring-time-to-event-survival-data.html#cb1506-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Months of Follow-Up&quot;</span>, </span>
-<span id="cb1506-6"><a href="exploring-time-to-event-survival-data.html#cb1506-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Cumulative Hazard&quot;</span>,</span>
-<span id="cb1506-7"><a href="exploring-time-to-event-survival-data.html#cb1506-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Cumulative Hazard Function&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb1506-8"><a href="exploring-time-to-event-survival-data.html#cb1506-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb1512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1512-1"><a href="exploring-time-to-event-survival-data.html#cb1512-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(haz_hem_comp, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> hazardest, </span>
+<span id="cb1512-2"><a href="exploring-time-to-event-survival-data.html#cb1512-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col =</span> method)) <span class="sc">+</span> </span>
+<span id="cb1512-3"><a href="exploring-time-to-event-survival-data.html#cb1512-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_step</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb1512-4"><a href="exploring-time-to-event-survival-data.html#cb1512-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">24</span>, <span class="dv">36</span>, <span class="dv">48</span>)) <span class="sc">+</span></span>
+<span id="cb1512-5"><a href="exploring-time-to-event-survival-data.html#cb1512-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Months of Follow-Up&quot;</span>, </span>
+<span id="cb1512-6"><a href="exploring-time-to-event-survival-data.html#cb1512-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Cumulative Hazard&quot;</span>,</span>
+<span id="cb1512-7"><a href="exploring-time-to-event-survival-data.html#cb1512-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Cumulative Hazard Function&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb1512-8"><a href="exploring-time-to-event-survival-data.html#cb1512-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-617-1.png" width="672" /></p>
 <p>We can see that the two cumulative hazard function estimates are nearly identical in this case. We could instead compare the two functions in faceted plots, if that would be helpful.</p>
-<div class="sourceCode" id="cb1507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1507-1"><a href="exploring-time-to-event-survival-data.html#cb1507-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(haz_hem_comp, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> hazardest)) <span class="sc">+</span> </span>
-<span id="cb1507-2"><a href="exploring-time-to-event-survival-data.html#cb1507-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_step</span>() <span class="sc">+</span> </span>
-<span id="cb1507-3"><a href="exploring-time-to-event-survival-data.html#cb1507-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">24</span>, <span class="dv">36</span>, <span class="dv">48</span>)) <span class="sc">+</span></span>
-<span id="cb1507-4"><a href="exploring-time-to-event-survival-data.html#cb1507-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Months of Follow-Up&quot;</span>, </span>
-<span id="cb1507-5"><a href="exploring-time-to-event-survival-data.html#cb1507-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Cumulative Hazard&quot;</span>,</span>
-<span id="cb1507-6"><a href="exploring-time-to-event-survival-data.html#cb1507-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Cumulative Hazard Function&quot;</span>) <span class="sc">+</span></span>
-<span id="cb1507-7"><a href="exploring-time-to-event-survival-data.html#cb1507-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(method <span class="sc">~</span> .) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb1513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1513-1"><a href="exploring-time-to-event-survival-data.html#cb1513-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(haz_hem_comp, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> hazardest)) <span class="sc">+</span> </span>
+<span id="cb1513-2"><a href="exploring-time-to-event-survival-data.html#cb1513-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_step</span>() <span class="sc">+</span> </span>
+<span id="cb1513-3"><a href="exploring-time-to-event-survival-data.html#cb1513-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="dv">24</span>, <span class="dv">36</span>, <span class="dv">48</span>)) <span class="sc">+</span></span>
+<span id="cb1513-4"><a href="exploring-time-to-event-survival-data.html#cb1513-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Months of Follow-Up&quot;</span>, </span>
+<span id="cb1513-5"><a href="exploring-time-to-event-survival-data.html#cb1513-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Cumulative Hazard&quot;</span>,</span>
+<span id="cb1513-6"><a href="exploring-time-to-event-survival-data.html#cb1513-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Cumulative Hazard Function&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1513-7"><a href="exploring-time-to-event-survival-data.html#cb1513-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(method <span class="sc">~</span> .) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-618-1.png" width="672" /></p>
 <p>Next, we will consider the issue of modeling a survival outcome using Cox proportional hazards regression.</p>
 
@@ -1441,7 +1466,6 @@ hem$genotype=1 38    11.79     7.54      2.39      5.46
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1460,6 +1484,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -1480,6 +1505,10 @@ gitbook.start({
 "text": null
 },
 "download": ["432-notes.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

@@ -8,251 +8,251 @@
 \contentsline {section}{\numberline {1.2}Two examples from the \emph {New England Journal of Medicine}}{16}{section.1.2}
 \contentsline {subsection}{\numberline {1.2.1}A simple Table 1}{16}{subsection.1.2.1}
 \contentsline {subsection}{\numberline {1.2.2}A group comparison}{17}{subsection.1.2.2}
-\contentsline {section}{\numberline {1.3}The MR CLEAN trial}{18}{section.1.3}
-\contentsline {section}{\numberline {1.4}Simulated \texttt {fakestroke} data}{20}{section.1.4}
-\contentsline {section}{\numberline {1.5}Building Table 1 for \texttt {fakestroke}: Attempt 1}{21}{section.1.5}
-\contentsline {subsection}{\numberline {1.5.1}Some of this is very useful, and other parts need to be fixed.}{22}{subsection.1.5.1}
-\contentsline {subsection}{\numberline {1.5.2}\texttt {fakestroke} Cleaning Up Categorical Variables}{23}{subsection.1.5.2}
-\contentsline {section}{\numberline {1.6}\texttt {fakestroke} Table 1: Attempt 2}{24}{section.1.6}
-\contentsline {subsection}{\numberline {1.6.1}What summaries should we show?}{24}{subsection.1.6.1}
-\contentsline {section}{\numberline {1.7}Obtaining a more detailed Summary}{27}{section.1.7}
-\contentsline {section}{\numberline {1.8}Exporting the Completed Table 1 from R to Excel or Word}{30}{section.1.8}
-\contentsline {subsection}{\numberline {1.8.1}Approach A: Save and open in Excel}{30}{subsection.1.8.1}
-\contentsline {subsection}{\numberline {1.8.2}Approach B: Produce the Table so you can cut and paste it}{31}{subsection.1.8.2}
-\contentsline {section}{\numberline {1.9}A Controlled Biological Experiment - The Blood-Brain Barrier}{32}{section.1.9}
-\contentsline {section}{\numberline {1.10}The \texttt {bloodbrain.csv} file}{32}{section.1.10}
-\contentsline {section}{\numberline {1.11}A Table 1 for \texttt {bloodbrain}}{33}{section.1.11}
-\contentsline {subsection}{\numberline {1.11.1}Generate final Table 1 for \texttt {bloodbrain}}{36}{subsection.1.11.1}
-\contentsline {subsection}{\numberline {1.11.2}A More Finished Version (after Cleanup in Word)}{39}{subsection.1.11.2}
-\contentsline {chapter}{\numberline {2}BRFSS SMART Data Building}{41}{chapter.2}
-\contentsline {section}{\numberline {2.1}Key resources}{41}{section.2.1}
-\contentsline {section}{\numberline {2.2}Ingesting the Raw Data}{42}{section.2.2}
-\contentsline {section}{\numberline {2.3}Ingesting from our CSV file}{43}{section.2.3}
-\contentsline {section}{\numberline {2.4}What does the raw data look like?}{43}{section.2.4}
-\contentsline {section}{\numberline {2.5}Cleaning the BRFSS Data}{44}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}Identifying Information}{44}{subsection.2.5.1}
-\contentsline {subsection}{\numberline {2.5.2}Survey Method}{45}{subsection.2.5.2}
-\contentsline {subsubsection}{\numberline {2.5.2.1}\texttt {DISPCODE} and its cleanup to \texttt {completed}}{45}{subsubsection.2.5.2.1}
-\contentsline {subsubsection}{\numberline {2.5.2.2}\texttt {STATERE1} and \texttt {SAFETIME} and their reduction to \texttt {landline}}{46}{subsubsection.2.5.2.2}
-\contentsline {subsubsection}{\numberline {2.5.2.3}\texttt {HHADULT} and its cleanup to \texttt {hhadults}}{46}{subsubsection.2.5.2.3}
-\contentsline {subsection}{\numberline {2.5.3}Health Status (1 item)}{47}{subsection.2.5.3}
-\contentsline {subsubsection}{\numberline {2.5.3.1}\texttt {GENHLTH} and its cleanup to \texttt {genhealth}}{47}{subsubsection.2.5.3.1}
-\contentsline {subsection}{\numberline {2.5.4}Healthy Days - Health-Related Quality of Life (3 items)}{48}{subsection.2.5.4}
-\contentsline {subsubsection}{\numberline {2.5.4.1}\texttt {PHYSHLTH} and its cleanup to \texttt {physhealth}}{48}{subsubsection.2.5.4.1}
-\contentsline {subsubsection}{\numberline {2.5.4.2}\texttt {MENTHLTH} and its cleanup to \texttt {menthealth}}{49}{subsubsection.2.5.4.2}
-\contentsline {subsubsection}{\numberline {2.5.4.3}\texttt {POORHLTH} and its cleanup to \texttt {poorhealth}}{50}{subsubsection.2.5.4.3}
-\contentsline {subsection}{\numberline {2.5.5}Health Care Access (4 items)}{51}{subsection.2.5.5}
-\contentsline {subsubsection}{\numberline {2.5.5.1}\texttt {HLTHPLN1} and its cleanup to \texttt {healthplan}}{51}{subsubsection.2.5.5.1}
-\contentsline {subsubsection}{\numberline {2.5.5.2}\texttt {PERSDOC2} and its cleanup to \texttt {hasdoc} and to \texttt {numdocs2}}{52}{subsubsection.2.5.5.2}
-\contentsline {subsubsection}{\numberline {2.5.5.3}\texttt {MEDCOST} and its cleanup to \texttt {costprob}}{53}{subsubsection.2.5.5.3}
-\contentsline {subsubsection}{\numberline {2.5.5.4}\texttt {CHECKUP1} and its cleanup to \texttt {t\_checkup}}{54}{subsubsection.2.5.5.4}
-\contentsline {subsection}{\numberline {2.5.6}Blood Pressure (2 measures)}{55}{subsection.2.5.6}
-\contentsline {subsubsection}{\numberline {2.5.6.1}\texttt {BPHIGH4} and its cleanup to \texttt {bp\_high}}{55}{subsubsection.2.5.6.1}
-\contentsline {subsubsection}{\numberline {2.5.6.2}\texttt {BPMEDS} and its cleanup to \texttt {bp\_meds}}{56}{subsubsection.2.5.6.2}
-\contentsline {subsection}{\numberline {2.5.7}Cholesterol (3 items)}{57}{subsection.2.5.7}
-\contentsline {subsubsection}{\numberline {2.5.7.1}\texttt {CHOLCHK1} and its cleanup to \texttt {t\_chol}}{57}{subsubsection.2.5.7.1}
-\contentsline {subsubsection}{\numberline {2.5.7.2}\texttt {TOLDHI2} and its cleanup to \texttt {chol\_high}}{58}{subsubsection.2.5.7.2}
-\contentsline {subsubsection}{\numberline {2.5.7.3}\texttt {CHOLMED1} and its cleanup to \texttt {chol\_meds}}{58}{subsubsection.2.5.7.3}
-\contentsline {subsection}{\numberline {2.5.8}Chronic Health Conditions (14 items)}{59}{subsection.2.5.8}
-\contentsline {subsubsection}{\numberline {2.5.8.1}Self-reported diagnosis history (11 items)}{59}{subsubsection.2.5.8.1}
-\contentsline {subsubsection}{\numberline {2.5.8.2}\texttt {\_ASTHMS1} and its cleanup to \texttt {asthma}}{61}{subsubsection.2.5.8.2}
-\contentsline {subsubsection}{\numberline {2.5.8.3}\texttt {DIABETE3} and its cleanup to \texttt {hx\_diabetes} and \texttt {dm\_status}}{61}{subsubsection.2.5.8.3}
-\contentsline {subsubsection}{\numberline {2.5.8.4}\texttt {DIABAGE2} and its cleanup to \texttt {dm\_age}}{62}{subsubsection.2.5.8.4}
-\contentsline {subsection}{\numberline {2.5.9}Arthritis Burden (4 items)}{63}{subsection.2.5.9}
-\contentsline {subsubsection}{\numberline {2.5.9.1}\texttt {LMTJOIN3} (Limited because of joint symptoms), and its cleanup to \texttt {arth\_lims}}{63}{subsubsection.2.5.9.1}
-\contentsline {subsubsection}{\numberline {2.5.9.2}\texttt {ARTHDIS2} (Does Arthritis Affect Whether You Work), and its cleanup to \texttt {arth\_work}}{64}{subsubsection.2.5.9.2}
-\contentsline {subsubsection}{\numberline {2.5.9.3}\texttt {ARTHSOCL} (Social Activities Limited Because of Joint Symptoms) and its cleanup to \texttt {arth\_soc}}{64}{subsubsection.2.5.9.3}
-\contentsline {subsubsection}{\numberline {2.5.9.4}\texttt {JOINPAI1} (How Bad Was Joint Pain - scale of 0-10) and its cleanup to \texttt {joint\_pain}}{65}{subsubsection.2.5.9.4}
-\contentsline {subsection}{\numberline {2.5.10}Demographics (25 items)}{66}{subsection.2.5.10}
-\contentsline {subsubsection}{\numberline {2.5.10.1}\texttt {\_AGEG5YR}, which we'll edit into \texttt {agegroup}}{66}{subsubsection.2.5.10.1}
-\contentsline {subsubsection}{\numberline {2.5.10.2}\texttt {\_MRACE1} recoded to \texttt {race}}{67}{subsubsection.2.5.10.2}
-\contentsline {subsubsection}{\numberline {2.5.10.3}\texttt {\_HISPANC} recoded to \texttt {hispanic}}{68}{subsubsection.2.5.10.3}
-\contentsline {subsubsection}{\numberline {2.5.10.4}\texttt {\_RACEGR3} recoded to \texttt {race\_eth}}{69}{subsubsection.2.5.10.4}
-\contentsline {subsubsection}{\numberline {2.5.10.5}\texttt {SEX} recoded to \texttt {female}}{69}{subsubsection.2.5.10.5}
-\contentsline {subsubsection}{\numberline {2.5.10.6}\texttt {MARITAL} status, revised to \texttt {marital}}{70}{subsubsection.2.5.10.6}
-\contentsline {subsubsection}{\numberline {2.5.10.7}\texttt {EDUCA} recoded to \texttt {educgroup}}{71}{subsubsection.2.5.10.7}
-\contentsline {subsubsection}{\numberline {2.5.10.8}\texttt {RENTHOM1} recoded to \texttt {home\_own}}{72}{subsubsection.2.5.10.8}
-\contentsline {subsubsection}{\numberline {2.5.10.9}\texttt {CPDEMO1A} and its cleanup to \texttt {cell\_own}}{72}{subsubsection.2.5.10.9}
-\contentsline {subsubsection}{\numberline {2.5.10.10}\texttt {VETERAN3} and its cleanup to \texttt {veteran}}{73}{subsubsection.2.5.10.10}
-\contentsline {subsubsection}{\numberline {2.5.10.11}\texttt {EMPLOY1} and its cleanup to \texttt {employment}}{74}{subsubsection.2.5.10.11}
-\contentsline {subsubsection}{\numberline {2.5.10.12}\texttt {CHILDREN} and its cleanup to \texttt {kids}}{75}{subsubsection.2.5.10.12}
-\contentsline {subsubsection}{\numberline {2.5.10.13}\texttt {INCOME2} to \texttt {incomegroup}}{75}{subsubsection.2.5.10.13}
-\contentsline {subsubsection}{\numberline {2.5.10.14}\texttt {INTERNET} and its cleanup to \texttt {internet30}}{76}{subsubsection.2.5.10.14}
-\contentsline {subsubsection}{\numberline {2.5.10.15}\texttt {WTKG3} is \texttt {weight\_kg}}{77}{subsubsection.2.5.10.15}
-\contentsline {subsubsection}{\numberline {2.5.10.16}\texttt {HEIGHT3} is replaced with \texttt {height\_m}}{77}{subsubsection.2.5.10.16}
-\contentsline {subsubsection}{\numberline {2.5.10.17}\texttt {bmi} is calculated from \texttt {height\_m} and \texttt {weight\_kg}}{78}{subsubsection.2.5.10.17}
-\contentsline {subsubsection}{\numberline {2.5.10.18}\texttt {bmigroup} is calculated from \texttt {bmi}}{78}{subsubsection.2.5.10.18}
-\contentsline {subsubsection}{\numberline {2.5.10.19}\texttt {PREGNANT} and its cleanup to \texttt {pregnant}}{79}{subsubsection.2.5.10.19}
-\contentsline {subsubsection}{\numberline {2.5.10.20}\texttt {DEAF} and its cleanup to \texttt {deaf}}{80}{subsubsection.2.5.10.20}
-\contentsline {subsubsection}{\numberline {2.5.10.21}\texttt {BLIND} and its cleanup to \texttt {blind}}{80}{subsubsection.2.5.10.21}
-\contentsline {subsubsection}{\numberline {2.5.10.22}\texttt {DECIDE} and its cleanup to \texttt {decide}}{81}{subsubsection.2.5.10.22}
-\contentsline {subsubsection}{\numberline {2.5.10.23}\texttt {DIFFWALK} and its cleanup to \texttt {diffwalk}}{81}{subsubsection.2.5.10.23}
-\contentsline {subsubsection}{\numberline {2.5.10.24}\texttt {DIFFDRES} and its cleanup to \texttt {diffdress}}{82}{subsubsection.2.5.10.24}
-\contentsline {subsubsection}{\numberline {2.5.10.25}\texttt {DIFFALON} and its cleanup to \texttt {diffalone}}{83}{subsubsection.2.5.10.25}
-\contentsline {subsection}{\numberline {2.5.11}Tobacco Use (2 items)}{83}{subsection.2.5.11}
-\contentsline {subsubsection}{\numberline {2.5.11.1}\texttt {SMOKE100} and its cleanup to \texttt {smoke100}}{83}{subsubsection.2.5.11.1}
-\contentsline {subsubsection}{\numberline {2.5.11.2}\texttt {\_SMOKER3} and its cleanup to \texttt {smoker}}{84}{subsubsection.2.5.11.2}
-\contentsline {subsection}{\numberline {2.5.12}E-Cigarettes (2 items)}{85}{subsection.2.5.12}
-\contentsline {subsubsection}{\numberline {2.5.12.1}\texttt {ECIGARET} and its cleanup to \texttt {ecig\_ever}}{85}{subsubsection.2.5.12.1}
-\contentsline {subsubsection}{\numberline {2.5.12.2}\texttt {\_ECIGSTS} and its cleanup to \texttt {ecigs}}{85}{subsubsection.2.5.12.2}
-\contentsline {subsection}{\numberline {2.5.13}Alcohol Consumption (6 items)}{86}{subsection.2.5.13}
-\contentsline {subsubsection}{\numberline {2.5.13.1}\texttt {ALCDAY5} and its cleanup to \texttt {alcdays}}{86}{subsubsection.2.5.13.1}
-\contentsline {subsubsection}{\numberline {2.5.13.2}\texttt {AVEDRNK2} and its cleanup to \texttt {avgdrinks}}{87}{subsubsection.2.5.13.2}
-\contentsline {subsubsection}{\numberline {2.5.13.3}\texttt {MAXDRNKS} and its cleanup to \texttt {maxdrinks}}{88}{subsubsection.2.5.13.3}
-\contentsline {subsubsection}{\numberline {2.5.13.4}\texttt {\_RFBING5} and its cleanup to \texttt {binge}}{88}{subsubsection.2.5.13.4}
-\contentsline {subsubsection}{\numberline {2.5.13.5}\texttt {\_DRNKWEK} and its cleanup to \texttt {drinks\_wk}}{89}{subsubsection.2.5.13.5}
-\contentsline {subsubsection}{\numberline {2.5.13.6}\texttt {\_RFDRHV5} and its cleanup to \texttt {drink\_heavy}}{89}{subsubsection.2.5.13.6}
-\contentsline {subsection}{\numberline {2.5.14}Fruits and Vegetables (8 items)}{90}{subsection.2.5.14}
-\contentsline {subsubsection}{\numberline {2.5.14.1}\texttt {\_FRUTSU1} and its cleanup to \texttt {fruit\_day}}{90}{subsubsection.2.5.14.1}
-\contentsline {subsubsection}{\numberline {2.5.14.2}\texttt {\_VEGESU1} and its cleanup to \texttt {veg\_day}}{91}{subsubsection.2.5.14.2}
-\contentsline {subsubsection}{\numberline {2.5.14.3}\texttt {FTJUDA2\_} and its cleanup to \texttt {eat\_juice}}{91}{subsubsection.2.5.14.3}
-\contentsline {subsubsection}{\numberline {2.5.14.4}\texttt {FRUTDA2\_} and its cleanup to \texttt {eat\_fruit}}{92}{subsubsection.2.5.14.4}
-\contentsline {subsubsection}{\numberline {2.5.14.5}\texttt {GRENDA1\_} and its cleanup to \texttt {eat\_greenveg}}{92}{subsubsection.2.5.14.5}
-\contentsline {subsubsection}{\numberline {2.5.14.6}\texttt {FRNCHDA\_} and its cleanup to \texttt {eat\_fries}}{93}{subsubsection.2.5.14.6}
-\contentsline {subsubsection}{\numberline {2.5.14.7}\texttt {POTADA1\_} and its cleanup to \texttt {eat\_potato}}{93}{subsubsection.2.5.14.7}
-\contentsline {subsubsection}{\numberline {2.5.14.8}\texttt {VEGEDA2\_} and its cleanup to \texttt {eat\_otherveg}}{94}{subsubsection.2.5.14.8}
-\contentsline {subsection}{\numberline {2.5.15}Exercise and Physical Activity (8 items)}{94}{subsection.2.5.15}
-\contentsline {subsubsection}{\numberline {2.5.15.1}\texttt {\_TOTINDA} and its cleanup to \texttt {exerany}}{94}{subsubsection.2.5.15.1}
-\contentsline {subsubsection}{\numberline {2.5.15.2}\texttt {\_PACAT1} and its cleanup to \texttt {activity}}{95}{subsubsection.2.5.15.2}
-\contentsline {subsubsection}{\numberline {2.5.15.3}\texttt {\_PAINDX1} and its cleanup to \texttt {rec\_aerobic}}{96}{subsubsection.2.5.15.3}
-\contentsline {subsubsection}{\numberline {2.5.15.4}\texttt {\_PASTRNG} and its cleanup to \texttt {rec\_strength}}{96}{subsubsection.2.5.15.4}
-\contentsline {subsubsection}{\numberline {2.5.15.5}\texttt {EXRACT11} and its cleanup to \texttt {exer1\_type}}{97}{subsubsection.2.5.15.5}
-\contentsline {subsubsection}{\numberline {2.5.15.6}\texttt {EXRACT21} and its cleanup to \texttt {exer2\_type}}{99}{subsubsection.2.5.15.6}
-\contentsline {subsubsection}{\numberline {2.5.15.7}\texttt {\_MINAC11} and its cleanup to \texttt {exer1\_min}}{102}{subsubsection.2.5.15.7}
-\contentsline {subsubsection}{\numberline {2.5.15.8}\texttt {\_MINAC21} and its cleanup to \texttt {exer2\_min}}{103}{subsubsection.2.5.15.8}
-\contentsline {subsection}{\numberline {2.5.16}Seatbelt Use (1 item)}{103}{subsection.2.5.16}
-\contentsline {subsubsection}{\numberline {2.5.16.1}\texttt {SEATBELT} and its cleanup to \texttt {seatbelt}}{103}{subsubsection.2.5.16.1}
-\contentsline {subsection}{\numberline {2.5.17}Immunization (3 items)}{104}{subsection.2.5.17}
-\contentsline {subsubsection}{\numberline {2.5.17.1}\texttt {FLUSHOT6} and its cleanup to \texttt {vax\_flu}}{104}{subsubsection.2.5.17.1}
-\contentsline {subsubsection}{\numberline {2.5.17.2}\texttt {PNEUVAC3} and its cleanup to \texttt {vax\_pneumo}}{105}{subsubsection.2.5.17.2}
-\contentsline {subsubsection}{\numberline {2.5.17.3}\texttt {SHINGLE2} and its cleanup to \texttt {vax\_shingles}}{105}{subsubsection.2.5.17.3}
-\contentsline {subsection}{\numberline {2.5.18}HIV/AIDS (2 items)}{106}{subsection.2.5.18}
-\contentsline {subsubsection}{\numberline {2.5.18.1}\texttt {HIVTST6} and its cleanup to \texttt {hiv\_test}}{106}{subsubsection.2.5.18.1}
-\contentsline {subsubsection}{\numberline {2.5.18.2}\texttt {HIVRISK5} and its cleanup to \texttt {hiv\_risk}}{106}{subsubsection.2.5.18.2}
-\contentsline {section}{\numberline {2.6}Imputing Age and Income as Quantitative from Thin Air}{107}{section.2.6}
-\contentsline {subsection}{\numberline {2.6.1}\texttt {age\_imp}: Imputing Age Data}{107}{subsection.2.6.1}
-\contentsline {subsection}{\numberline {2.6.2}\texttt {inc\_imp}: Imputing Income Data}{109}{subsection.2.6.2}
-\contentsline {section}{\numberline {2.7}Clean Data in the State of Ohio}{110}{section.2.7}
-\contentsline {section}{\numberline {2.8}Clean Cleveland-Elyria Data}{111}{section.2.8}
-\contentsline {subsection}{\numberline {2.8.1}Cleveland - Elyria Data}{111}{subsection.2.8.1}
-\contentsline {chapter}{\numberline {3}Dealing with Missingness: Single Imputation}{113}{chapter.3}
-\contentsline {section}{\numberline {3.1}Selecting Some Variables from the \texttt {smart\_cle} data}{113}{section.3.1}
-\contentsline {section}{\numberline {3.2}\texttt {smart\_cle1}: Seeing our Missing Data}{114}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Plotting Missingness}{117}{subsection.3.2.1}
-\contentsline {section}{\numberline {3.3}Missing-data mechanisms}{119}{section.3.3}
-\contentsline {section}{\numberline {3.4}Options for Dealing with Missingness}{120}{section.3.4}
-\contentsline {section}{\numberline {3.5}Complete Case (and Available Case) analyses}{120}{section.3.5}
-\contentsline {section}{\numberline {3.6}Single Imputation}{121}{section.3.6}
-\contentsline {section}{\numberline {3.7}Multiple Imputation}{121}{section.3.7}
-\contentsline {section}{\numberline {3.8}Approach 1: Building a Complete Case Analysis: \texttt {smart\_cle1\_cc}}{121}{section.3.8}
-\contentsline {section}{\numberline {3.9}Approach 2: Single Imputation to create \texttt {smart\_cle1\_sh}}{122}{section.3.9}
-\contentsline {subsection}{\numberline {3.9.1}What Type of Missingness Do We Have?}{123}{subsection.3.9.1}
-\contentsline {subsection}{\numberline {3.9.2}Single imputation into \texttt {smart\_cle1\_sh}}{124}{subsection.3.9.2}
-\contentsline {subsection}{\numberline {3.9.3}Imputing Binary Categorical Variables}{125}{subsection.3.9.3}
-\contentsline {subsection}{\numberline {3.9.4}Imputing Quantitative Variables}{126}{subsection.3.9.4}
-\contentsline {subsection}{\numberline {3.9.5}Imputation Results}{126}{subsection.3.9.5}
-\contentsline {subsection}{\numberline {3.9.6}Imputing Multi-Categorical Variables}{131}{subsection.3.9.6}
-\contentsline {subsection}{\numberline {3.9.7}Saving the new tibbles}{133}{subsection.3.9.7}
-\contentsline {chapter}{\numberline {4}Summarizing the \texttt {smart\_cle1} data}{135}{chapter.4}
-\contentsline {section}{\numberline {4.1}General Approaches to Obtaining Numeric Summaries}{136}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}\texttt {summary} for a data frame}{136}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}The \texttt {inspect} function from the \texttt {mosaic} package}{137}{subsection.4.1.2}
-\contentsline {subsection}{\numberline {4.1.3}The \texttt {describe} function in \texttt {Hmisc}}{138}{subsection.4.1.3}
-\contentsline {section}{\numberline {4.2}Counting as exploratory data analysis}{139}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Did \texttt {genhealth} vary by smoking status?}{140}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}What's the distribution of \texttt {physhealth}?}{141}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}What's the distribution of \texttt {bmi}?}{143}{subsection.4.2.3}
-\contentsline {subsection}{\numberline {4.2.4}How many of the respondents have a BMI below 30?}{143}{subsection.4.2.4}
-\contentsline {subsection}{\numberline {4.2.5}How many of the respondents with a BMI \textless {} 30 are highly active?}{144}{subsection.4.2.5}
-\contentsline {subsection}{\numberline {4.2.6}Is obesity associated with smoking history?}{144}{subsection.4.2.6}
-\contentsline {subsection}{\numberline {4.2.7}Comparing \texttt {drinks\_wk} summaries by obesity status}{144}{subsection.4.2.7}
-\contentsline {section}{\numberline {4.3}Can \texttt {bmi} predict \texttt {physhealth}?}{145}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Fitting a Simple Regression Model}{146}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Model Summary for a Simple (One-Predictor) Regression}{147}{subsection.4.3.2}
-\contentsline {subsubsection}{\numberline {4.3.2.1}Residuals}{147}{subsubsection.4.3.2.1}
-\contentsline {subsubsection}{\numberline {4.3.2.2}Coefficients section}{149}{subsubsection.4.3.2.2}
-\contentsline {subsubsection}{\numberline {4.3.2.3}Model Fit Summaries}{150}{subsubsection.4.3.2.3}
-\contentsline {subsection}{\numberline {4.3.3}Using the \texttt {broom} package}{151}{subsection.4.3.3}
-\contentsline {subsubsection}{\numberline {4.3.3.1}The \texttt {tidy} function}{151}{subsubsection.4.3.3.1}
-\contentsline {subsubsection}{\numberline {4.3.3.2}The \texttt {glance} function}{152}{subsubsection.4.3.3.2}
-\contentsline {subsubsection}{\numberline {4.3.3.3}The \texttt {augment} function}{152}{subsubsection.4.3.3.3}
-\contentsline {subsection}{\numberline {4.3.4}How does the model do? (Residuals vs.\nobreakspace {}Fitted Values)}{153}{subsection.4.3.4}
-\contentsline {chapter}{\numberline {5}Analysis of Variance with SMART}{159}{chapter.5}
-\contentsline {section}{\numberline {5.1}A One-Factor Analysis of Variance}{159}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Can \texttt {activity} be used to predict \texttt {bmi}?}{160}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}Should we transform \texttt {bmi}?}{161}{subsection.5.1.2}
-\contentsline {subsection}{\numberline {5.1.3}Building the ANOVA model}{162}{subsection.5.1.3}
-\contentsline {subsection}{\numberline {5.1.4}The ANOVA table}{163}{subsection.5.1.4}
-\contentsline {subsection}{\numberline {5.1.5}The Model Coefficients}{163}{subsection.5.1.5}
-\contentsline {subsection}{\numberline {5.1.6}Using \texttt {broom::tidy} to explore the coefficients}{165}{subsection.5.1.6}
-\contentsline {subsection}{\numberline {5.1.7}Using \texttt {broom::glance} to summarize the model's fit}{165}{subsection.5.1.7}
-\contentsline {subsection}{\numberline {5.1.8}Using \texttt {broom::augment} to make predictions}{166}{subsection.5.1.8}
-\contentsline {section}{\numberline {5.2}A Two-Factor ANOVA (without Interaction)}{167}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Model Coefficients}{168}{subsection.5.2.1}
-\contentsline {section}{\numberline {5.3}A Two-Factor ANOVA (with Interaction)}{171}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Model Coefficients}{171}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Is the interaction term necessary?}{174}{subsection.5.3.2}
-\contentsline {subsubsection}{\numberline {5.3.2.1}The Interaction Plot}{174}{subsubsection.5.3.2.1}
-\contentsline {subsubsection}{\numberline {5.3.2.2}Does the interaction account for substantial variation?}{177}{subsubsection.5.3.2.2}
-\contentsline {subsubsection}{\numberline {5.3.2.3}Does the interaction account for statistically detectable variation?}{178}{subsubsection.5.3.2.3}
-\contentsline {chapter}{\numberline {6}Analysis of Variance}{179}{chapter.6}
-\contentsline {section}{\numberline {6.1}The \texttt {bonding} data: A Designed Dental Experiment}{179}{section.6.1}
-\contentsline {section}{\numberline {6.2}A One-Factor Analysis of Variance}{180}{section.6.2}
-\contentsline {subsection}{\numberline {6.2.1}Look at the Data!}{180}{subsection.6.2.1}
-\contentsline {subsection}{\numberline {6.2.2}Table of Summary Statistics}{182}{subsection.6.2.2}
-\contentsline {section}{\numberline {6.3}A Two-Way ANOVA: Looking at Two Factors}{184}{section.6.3}
-\contentsline {section}{\numberline {6.4}A Means Plot (with standard deviations) to check for interaction}{185}{section.6.4}
-\contentsline {subsection}{\numberline {6.4.1}Summarizing the data after grouping by \texttt {resin} and \texttt {light}}{187}{subsection.6.4.1}
-\contentsline {section}{\numberline {6.5}Fitting the Two-Way ANOVA model with Interaction}{187}{section.6.5}
-\contentsline {subsection}{\numberline {6.5.1}The ANOVA table for our model}{188}{subsection.6.5.1}
-\contentsline {subsection}{\numberline {6.5.2}Is the interaction important?}{188}{subsection.6.5.2}
-\contentsline {subsection}{\numberline {6.5.3}Interpreting the Interaction}{189}{subsection.6.5.3}
-\contentsline {section}{\numberline {6.6}Comparing Individual Combinations of \texttt {resin} and \texttt {light}}{190}{section.6.6}
-\contentsline {section}{\numberline {6.7}The \texttt {bonding} model without Interaction}{191}{section.6.7}
-\contentsline {section}{\numberline {6.8}\texttt {cortisol}: A Hypothetical Clinical Trial}{193}{section.6.8}
-\contentsline {subsection}{\numberline {6.8.1}Codebook and Raw Data for \texttt {cortisol}}{193}{subsection.6.8.1}
-\contentsline {section}{\numberline {6.9}Creating a factor combining sex and waist}{194}{section.6.9}
-\contentsline {section}{\numberline {6.10}A Means Plot for the \texttt {cortisol} trial (with standard errors)}{195}{section.6.10}
-\contentsline {section}{\numberline {6.11}A Two-Way ANOVA model for \texttt {cortisol} with Interaction}{196}{section.6.11}
-\contentsline {subsection}{\numberline {6.11.1}Notes on this Question}{197}{subsection.6.11.1}
-\contentsline {section}{\numberline {6.12}A Two-Way ANOVA model for \texttt {cortisol} without Interaction}{200}{section.6.12}
-\contentsline {subsection}{\numberline {6.12.1}The Graph}{200}{subsection.6.12.1}
-\contentsline {subsection}{\numberline {6.12.2}The ANOVA Model}{200}{subsection.6.12.2}
-\contentsline {subsection}{\numberline {6.12.3}The Regression Summary}{201}{subsection.6.12.3}
-\contentsline {subsection}{\numberline {6.12.4}Tukey HSD Comparisons}{201}{subsection.6.12.4}
-\contentsline {chapter}{\numberline {7}Analysis of Covariance}{203}{chapter.7}
-\contentsline {section}{\numberline {7.1}An Emphysema Study}{203}{section.7.1}
-\contentsline {subsection}{\numberline {7.1.1}Codebook}{203}{subsection.7.1.1}
-\contentsline {section}{\numberline {7.2}Does \texttt {sex} affect the mean change in theophylline?}{204}{section.7.2}
-\contentsline {section}{\numberline {7.3}Is there an association between \texttt {age} and \texttt {sex} in this study?}{205}{section.7.3}
-\contentsline {section}{\numberline {7.4}Adding a quantitative covariate, \texttt {age}, to the model}{205}{section.7.4}
-\contentsline {subsection}{\numberline {7.4.1}The ANCOVA model}{205}{subsection.7.4.1}
-\contentsline {subsection}{\numberline {7.4.2}The ANCOVA Table}{206}{subsection.7.4.2}
-\contentsline {section}{\numberline {7.5}Rerunning the ANCOVA model after simple imputation}{207}{section.7.5}
-\contentsline {section}{\numberline {7.6}Looking at a factor-covariate interaction}{208}{section.7.6}
-\contentsline {section}{\numberline {7.7}Centering the Covariate to Facilitate ANCOVA Interpretation}{209}{section.7.7}
-\contentsline {chapter}{\numberline {8}Analysis of Covariance with the SMART data}{211}{chapter.8}
-\contentsline {section}{\numberline {8.1}A New Small Study: Predicting BMI}{211}{section.8.1}
-\contentsline {subsection}{\numberline {8.1.1}Does \texttt {female} predict \texttt {bmi} well?}{211}{subsection.8.1.1}
-\contentsline {subsubsection}{\numberline {8.1.1.1}Graphical Assessment}{211}{subsubsection.8.1.1.1}
-\contentsline {section}{\numberline {8.2}\texttt {c8\_m1}: A simple t-test model}{213}{section.8.2}
-\contentsline {section}{\numberline {8.3}\texttt {c8\_m2}: Adding another predictor (two-way ANOVA without interaction)}{214}{section.8.3}
-\contentsline {section}{\numberline {8.4}\texttt {c8\_m3}: Adding the interaction term (Two-way ANOVA with interaction)}{218}{section.8.4}
-\contentsline {section}{\numberline {8.5}\texttt {c8\_m4}: Using \texttt {female} and \texttt {physhealth} in a model for \texttt {bmi}}{220}{section.8.5}
-\contentsline {section}{\numberline {8.6}Making Predictions with a Linear Regression Model}{222}{section.8.6}
-\contentsline {subsection}{\numberline {8.6.1}Fitting an Individual Prediction and 95\% Prediction Interval}{222}{subsection.8.6.1}
-\contentsline {subsection}{\numberline {8.6.2}Confidence Interval for an Average Prediction}{223}{subsection.8.6.2}
-\contentsline {subsection}{\numberline {8.6.3}Fitting Multiple Individual Predictions to New Data}{223}{subsection.8.6.3}
-\contentsline {section}{\numberline {8.7}Centering the model}{223}{section.8.7}
-\contentsline {subsection}{\numberline {8.7.1}Plot of Model 4 on Centered \texttt {physhealth}: \texttt {c8\_m4\_c}}{225}{subsection.8.7.1}
-\contentsline {section}{\numberline {8.8}Rescaling an input by subtracting the mean and dividing by 2 standard deviations}{225}{section.8.8}
-\contentsline {subsection}{\numberline {8.8.1}Refitting model \texttt {c8\_m4} to the rescaled data}{226}{subsection.8.8.1}
-\contentsline {subsection}{\numberline {8.8.2}Interpreting the model on rescaled data}{226}{subsection.8.8.2}
-\contentsline {subsection}{\numberline {8.8.3}Plot of model on rescaled data}{227}{subsection.8.8.3}
-\contentsline {section}{\numberline {8.9}\texttt {c8\_m5}: What if we add more variables?}{228}{section.8.9}
-\contentsline {section}{\numberline {8.10}\texttt {c8\_m6}: Would adding self-reported health help?}{230}{section.8.10}
-\contentsline {section}{\numberline {8.11}Key Regression Assumptions for Building Effective Prediction Models}{232}{section.8.11}
-\contentsline {subsection}{\numberline {8.11.1}Checking Assumptions in model \texttt {c8\_m6}}{232}{subsection.8.11.1}
+\contentsline {section}{\numberline {1.3}The MR CLEAN trial}{17}{section.1.3}
+\contentsline {section}{\numberline {1.4}Simulated \texttt {fakestroke} data}{19}{section.1.4}
+\contentsline {section}{\numberline {1.5}Building Table 1 for \texttt {fakestroke}: Attempt 1}{20}{section.1.5}
+\contentsline {subsection}{\numberline {1.5.1}Some of this is very useful, and other parts need to be fixed.}{21}{subsection.1.5.1}
+\contentsline {subsection}{\numberline {1.5.2}\texttt {fakestroke} Cleaning Up Categorical Variables}{22}{subsection.1.5.2}
+\contentsline {section}{\numberline {1.6}\texttt {fakestroke} Table 1: Attempt 2}{22}{section.1.6}
+\contentsline {subsection}{\numberline {1.6.1}What summaries should we show?}{23}{subsection.1.6.1}
+\contentsline {section}{\numberline {1.7}Obtaining a more detailed Summary}{25}{section.1.7}
+\contentsline {section}{\numberline {1.8}Exporting the Completed Table 1 from R to Excel or Word}{29}{section.1.8}
+\contentsline {subsection}{\numberline {1.8.1}Approach A: Save and open in Excel}{29}{subsection.1.8.1}
+\contentsline {subsection}{\numberline {1.8.2}Approach B: Produce the Table so you can cut and paste it}{30}{subsection.1.8.2}
+\contentsline {section}{\numberline {1.9}A Controlled Biological Experiment - The Blood-Brain Barrier}{31}{section.1.9}
+\contentsline {section}{\numberline {1.10}The \texttt {bloodbrain.csv} file}{31}{section.1.10}
+\contentsline {section}{\numberline {1.11}A Table 1 for \texttt {bloodbrain}}{32}{section.1.11}
+\contentsline {subsection}{\numberline {1.11.1}Generate final Table 1 for \texttt {bloodbrain}}{35}{subsection.1.11.1}
+\contentsline {subsection}{\numberline {1.11.2}A More Finished Version (after Cleanup in Word)}{38}{subsection.1.11.2}
+\contentsline {chapter}{\numberline {2}BRFSS SMART Data Building}{39}{chapter.2}
+\contentsline {section}{\numberline {2.1}Key resources}{39}{section.2.1}
+\contentsline {section}{\numberline {2.2}Ingesting the Raw Data}{40}{section.2.2}
+\contentsline {section}{\numberline {2.3}Ingesting from our CSV file}{41}{section.2.3}
+\contentsline {section}{\numberline {2.4}What does the raw data look like?}{41}{section.2.4}
+\contentsline {section}{\numberline {2.5}Cleaning the BRFSS Data}{42}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Identifying Information}{42}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}Survey Method}{43}{subsection.2.5.2}
+\contentsline {subsubsection}{\numberline {2.5.2.1}\texttt {DISPCODE} and its cleanup to \texttt {completed}}{43}{subsubsection.2.5.2.1}
+\contentsline {subsubsection}{\numberline {2.5.2.2}\texttt {STATERE1} and \texttt {SAFETIME} and their reduction to \texttt {landline}}{44}{subsubsection.2.5.2.2}
+\contentsline {subsubsection}{\numberline {2.5.2.3}\texttt {HHADULT} and its cleanup to \texttt {hhadults}}{44}{subsubsection.2.5.2.3}
+\contentsline {subsection}{\numberline {2.5.3}Health Status (1 item)}{45}{subsection.2.5.3}
+\contentsline {subsubsection}{\numberline {2.5.3.1}\texttt {GENHLTH} and its cleanup to \texttt {genhealth}}{45}{subsubsection.2.5.3.1}
+\contentsline {subsection}{\numberline {2.5.4}Healthy Days - Health-Related Quality of Life (3 items)}{46}{subsection.2.5.4}
+\contentsline {subsubsection}{\numberline {2.5.4.1}\texttt {PHYSHLTH} and its cleanup to \texttt {physhealth}}{46}{subsubsection.2.5.4.1}
+\contentsline {subsubsection}{\numberline {2.5.4.2}\texttt {MENTHLTH} and its cleanup to \texttt {menthealth}}{47}{subsubsection.2.5.4.2}
+\contentsline {subsubsection}{\numberline {2.5.4.3}\texttt {POORHLTH} and its cleanup to \texttt {poorhealth}}{48}{subsubsection.2.5.4.3}
+\contentsline {subsection}{\numberline {2.5.5}Health Care Access (4 items)}{49}{subsection.2.5.5}
+\contentsline {subsubsection}{\numberline {2.5.5.1}\texttt {HLTHPLN1} and its cleanup to \texttt {healthplan}}{50}{subsubsection.2.5.5.1}
+\contentsline {subsubsection}{\numberline {2.5.5.2}\texttt {PERSDOC2} and its cleanup to \texttt {hasdoc} and to \texttt {numdocs2}}{50}{subsubsection.2.5.5.2}
+\contentsline {subsubsection}{\numberline {2.5.5.3}\texttt {MEDCOST} and its cleanup to \texttt {costprob}}{51}{subsubsection.2.5.5.3}
+\contentsline {subsubsection}{\numberline {2.5.5.4}\texttt {CHECKUP1} and its cleanup to \texttt {t\_checkup}}{52}{subsubsection.2.5.5.4}
+\contentsline {subsection}{\numberline {2.5.6}Blood Pressure (2 measures)}{53}{subsection.2.5.6}
+\contentsline {subsubsection}{\numberline {2.5.6.1}\texttt {BPHIGH4} and its cleanup to \texttt {bp\_high}}{53}{subsubsection.2.5.6.1}
+\contentsline {subsubsection}{\numberline {2.5.6.2}\texttt {BPMEDS} and its cleanup to \texttt {bp\_meds}}{54}{subsubsection.2.5.6.2}
+\contentsline {subsection}{\numberline {2.5.7}Cholesterol (3 items)}{55}{subsection.2.5.7}
+\contentsline {subsubsection}{\numberline {2.5.7.1}\texttt {CHOLCHK1} and its cleanup to \texttt {t\_chol}}{55}{subsubsection.2.5.7.1}
+\contentsline {subsubsection}{\numberline {2.5.7.2}\texttt {TOLDHI2} and its cleanup to \texttt {chol\_high}}{56}{subsubsection.2.5.7.2}
+\contentsline {subsubsection}{\numberline {2.5.7.3}\texttt {CHOLMED1} and its cleanup to \texttt {chol\_meds}}{56}{subsubsection.2.5.7.3}
+\contentsline {subsection}{\numberline {2.5.8}Chronic Health Conditions (14 items)}{57}{subsection.2.5.8}
+\contentsline {subsubsection}{\numberline {2.5.8.1}Self-reported diagnosis history (11 items)}{57}{subsubsection.2.5.8.1}
+\contentsline {subsubsection}{\numberline {2.5.8.2}\texttt {\_ASTHMS1} and its cleanup to \texttt {asthma}}{59}{subsubsection.2.5.8.2}
+\contentsline {subsubsection}{\numberline {2.5.8.3}\texttt {DIABETE3} and its cleanup to \texttt {hx\_diabetes} and \texttt {dm\_status}}{59}{subsubsection.2.5.8.3}
+\contentsline {subsubsection}{\numberline {2.5.8.4}\texttt {DIABAGE2} and its cleanup to \texttt {dm\_age}}{60}{subsubsection.2.5.8.4}
+\contentsline {subsection}{\numberline {2.5.9}Arthritis Burden (4 items)}{61}{subsection.2.5.9}
+\contentsline {subsubsection}{\numberline {2.5.9.1}\texttt {LMTJOIN3} (Limited because of joint symptoms), and its cleanup to \texttt {arth\_lims}}{61}{subsubsection.2.5.9.1}
+\contentsline {subsubsection}{\numberline {2.5.9.2}\texttt {ARTHDIS2} (Does Arthritis Affect Whether You Work), and its cleanup to \texttt {arth\_work}}{62}{subsubsection.2.5.9.2}
+\contentsline {subsubsection}{\numberline {2.5.9.3}\texttt {ARTHSOCL} (Social Activities Limited Because of Joint Symptoms) and its cleanup to \texttt {arth\_soc}}{62}{subsubsection.2.5.9.3}
+\contentsline {subsubsection}{\numberline {2.5.9.4}\texttt {JOINPAI1} (How Bad Was Joint Pain - scale of 0-10) and its cleanup to \texttt {joint\_pain}}{63}{subsubsection.2.5.9.4}
+\contentsline {subsection}{\numberline {2.5.10}Demographics (25 items)}{64}{subsection.2.5.10}
+\contentsline {subsubsection}{\numberline {2.5.10.1}\texttt {\_AGEG5YR}, which we'll edit into \texttt {agegroup}}{64}{subsubsection.2.5.10.1}
+\contentsline {subsubsection}{\numberline {2.5.10.2}\texttt {\_MRACE1} recoded to \texttt {race}}{65}{subsubsection.2.5.10.2}
+\contentsline {subsubsection}{\numberline {2.5.10.3}\texttt {\_HISPANC} recoded to \texttt {hispanic}}{66}{subsubsection.2.5.10.3}
+\contentsline {subsubsection}{\numberline {2.5.10.4}\texttt {\_RACEGR3} recoded to \texttt {race\_eth}}{67}{subsubsection.2.5.10.4}
+\contentsline {subsubsection}{\numberline {2.5.10.5}\texttt {SEX} recoded to \texttt {female}}{67}{subsubsection.2.5.10.5}
+\contentsline {subsubsection}{\numberline {2.5.10.6}\texttt {MARITAL} status, revised to \texttt {marital}}{68}{subsubsection.2.5.10.6}
+\contentsline {subsubsection}{\numberline {2.5.10.7}\texttt {EDUCA} recoded to \texttt {educgroup}}{69}{subsubsection.2.5.10.7}
+\contentsline {subsubsection}{\numberline {2.5.10.8}\texttt {RENTHOM1} recoded to \texttt {home\_own}}{70}{subsubsection.2.5.10.8}
+\contentsline {subsubsection}{\numberline {2.5.10.9}\texttt {CPDEMO1A} and its cleanup to \texttt {cell\_own}}{70}{subsubsection.2.5.10.9}
+\contentsline {subsubsection}{\numberline {2.5.10.10}\texttt {VETERAN3} and its cleanup to \texttt {veteran}}{71}{subsubsection.2.5.10.10}
+\contentsline {subsubsection}{\numberline {2.5.10.11}\texttt {EMPLOY1} and its cleanup to \texttt {employment}}{72}{subsubsection.2.5.10.11}
+\contentsline {subsubsection}{\numberline {2.5.10.12}\texttt {CHILDREN} and its cleanup to \texttt {kids}}{73}{subsubsection.2.5.10.12}
+\contentsline {subsubsection}{\numberline {2.5.10.13}\texttt {INCOME2} to \texttt {incomegroup}}{73}{subsubsection.2.5.10.13}
+\contentsline {subsubsection}{\numberline {2.5.10.14}\texttt {INTERNET} and its cleanup to \texttt {internet30}}{74}{subsubsection.2.5.10.14}
+\contentsline {subsubsection}{\numberline {2.5.10.15}\texttt {WTKG3} is \texttt {weight\_kg}}{75}{subsubsection.2.5.10.15}
+\contentsline {subsubsection}{\numberline {2.5.10.16}\texttt {HEIGHT3} is replaced with \texttt {height\_m}}{75}{subsubsection.2.5.10.16}
+\contentsline {subsubsection}{\numberline {2.5.10.17}\texttt {bmi} is calculated from \texttt {height\_m} and \texttt {weight\_kg}}{76}{subsubsection.2.5.10.17}
+\contentsline {subsubsection}{\numberline {2.5.10.18}\texttt {bmigroup} is calculated from \texttt {bmi}}{76}{subsubsection.2.5.10.18}
+\contentsline {subsubsection}{\numberline {2.5.10.19}\texttt {PREGNANT} and its cleanup to \texttt {pregnant}}{77}{subsubsection.2.5.10.19}
+\contentsline {subsubsection}{\numberline {2.5.10.20}\texttt {DEAF} and its cleanup to \texttt {deaf}}{78}{subsubsection.2.5.10.20}
+\contentsline {subsubsection}{\numberline {2.5.10.21}\texttt {BLIND} and its cleanup to \texttt {blind}}{78}{subsubsection.2.5.10.21}
+\contentsline {subsubsection}{\numberline {2.5.10.22}\texttt {DECIDE} and its cleanup to \texttt {decide}}{79}{subsubsection.2.5.10.22}
+\contentsline {subsubsection}{\numberline {2.5.10.23}\texttt {DIFFWALK} and its cleanup to \texttt {diffwalk}}{79}{subsubsection.2.5.10.23}
+\contentsline {subsubsection}{\numberline {2.5.10.24}\texttt {DIFFDRES} and its cleanup to \texttt {diffdress}}{80}{subsubsection.2.5.10.24}
+\contentsline {subsubsection}{\numberline {2.5.10.25}\texttt {DIFFALON} and its cleanup to \texttt {diffalone}}{81}{subsubsection.2.5.10.25}
+\contentsline {subsection}{\numberline {2.5.11}Tobacco Use (2 items)}{81}{subsection.2.5.11}
+\contentsline {subsubsection}{\numberline {2.5.11.1}\texttt {SMOKE100} and its cleanup to \texttt {smoke100}}{81}{subsubsection.2.5.11.1}
+\contentsline {subsubsection}{\numberline {2.5.11.2}\texttt {\_SMOKER3} and its cleanup to \texttt {smoker}}{82}{subsubsection.2.5.11.2}
+\contentsline {subsection}{\numberline {2.5.12}E-Cigarettes (2 items)}{83}{subsection.2.5.12}
+\contentsline {subsubsection}{\numberline {2.5.12.1}\texttt {ECIGARET} and its cleanup to \texttt {ecig\_ever}}{83}{subsubsection.2.5.12.1}
+\contentsline {subsubsection}{\numberline {2.5.12.2}\texttt {\_ECIGSTS} and its cleanup to \texttt {ecigs}}{83}{subsubsection.2.5.12.2}
+\contentsline {subsection}{\numberline {2.5.13}Alcohol Consumption (6 items)}{84}{subsection.2.5.13}
+\contentsline {subsubsection}{\numberline {2.5.13.1}\texttt {ALCDAY5} and its cleanup to \texttt {alcdays}}{84}{subsubsection.2.5.13.1}
+\contentsline {subsubsection}{\numberline {2.5.13.2}\texttt {AVEDRNK2} and its cleanup to \texttt {avgdrinks}}{85}{subsubsection.2.5.13.2}
+\contentsline {subsubsection}{\numberline {2.5.13.3}\texttt {MAXDRNKS} and its cleanup to \texttt {maxdrinks}}{86}{subsubsection.2.5.13.3}
+\contentsline {subsubsection}{\numberline {2.5.13.4}\texttt {\_RFBING5} and its cleanup to \texttt {binge}}{86}{subsubsection.2.5.13.4}
+\contentsline {subsubsection}{\numberline {2.5.13.5}\texttt {\_DRNKWEK} and its cleanup to \texttt {drinks\_wk}}{87}{subsubsection.2.5.13.5}
+\contentsline {subsubsection}{\numberline {2.5.13.6}\texttt {\_RFDRHV5} and its cleanup to \texttt {drink\_heavy}}{87}{subsubsection.2.5.13.6}
+\contentsline {subsection}{\numberline {2.5.14}Fruits and Vegetables (8 items)}{88}{subsection.2.5.14}
+\contentsline {subsubsection}{\numberline {2.5.14.1}\texttt {\_FRUTSU1} and its cleanup to \texttt {fruit\_day}}{88}{subsubsection.2.5.14.1}
+\contentsline {subsubsection}{\numberline {2.5.14.2}\texttt {\_VEGESU1} and its cleanup to \texttt {veg\_day}}{89}{subsubsection.2.5.14.2}
+\contentsline {subsubsection}{\numberline {2.5.14.3}\texttt {FTJUDA2\_} and its cleanup to \texttt {eat\_juice}}{89}{subsubsection.2.5.14.3}
+\contentsline {subsubsection}{\numberline {2.5.14.4}\texttt {FRUTDA2\_} and its cleanup to \texttt {eat\_fruit}}{90}{subsubsection.2.5.14.4}
+\contentsline {subsubsection}{\numberline {2.5.14.5}\texttt {GRENDA1\_} and its cleanup to \texttt {eat\_greenveg}}{90}{subsubsection.2.5.14.5}
+\contentsline {subsubsection}{\numberline {2.5.14.6}\texttt {FRNCHDA\_} and its cleanup to \texttt {eat\_fries}}{91}{subsubsection.2.5.14.6}
+\contentsline {subsubsection}{\numberline {2.5.14.7}\texttt {POTADA1\_} and its cleanup to \texttt {eat\_potato}}{91}{subsubsection.2.5.14.7}
+\contentsline {subsubsection}{\numberline {2.5.14.8}\texttt {VEGEDA2\_} and its cleanup to \texttt {eat\_otherveg}}{92}{subsubsection.2.5.14.8}
+\contentsline {subsection}{\numberline {2.5.15}Exercise and Physical Activity (8 items)}{92}{subsection.2.5.15}
+\contentsline {subsubsection}{\numberline {2.5.15.1}\texttt {\_TOTINDA} and its cleanup to \texttt {exerany}}{92}{subsubsection.2.5.15.1}
+\contentsline {subsubsection}{\numberline {2.5.15.2}\texttt {\_PACAT1} and its cleanup to \texttt {activity}}{93}{subsubsection.2.5.15.2}
+\contentsline {subsubsection}{\numberline {2.5.15.3}\texttt {\_PAINDX1} and its cleanup to \texttt {rec\_aerobic}}{94}{subsubsection.2.5.15.3}
+\contentsline {subsubsection}{\numberline {2.5.15.4}\texttt {\_PASTRNG} and its cleanup to \texttt {rec\_strength}}{94}{subsubsection.2.5.15.4}
+\contentsline {subsubsection}{\numberline {2.5.15.5}\texttt {EXRACT11} and its cleanup to \texttt {exer1\_type}}{95}{subsubsection.2.5.15.5}
+\contentsline {subsubsection}{\numberline {2.5.15.6}\texttt {EXRACT21} and its cleanup to \texttt {exer2\_type}}{97}{subsubsection.2.5.15.6}
+\contentsline {subsubsection}{\numberline {2.5.15.7}\texttt {\_MINAC11} and its cleanup to \texttt {exer1\_min}}{100}{subsubsection.2.5.15.7}
+\contentsline {subsubsection}{\numberline {2.5.15.8}\texttt {\_MINAC21} and its cleanup to \texttt {exer2\_min}}{101}{subsubsection.2.5.15.8}
+\contentsline {subsection}{\numberline {2.5.16}Seatbelt Use (1 item)}{101}{subsection.2.5.16}
+\contentsline {subsubsection}{\numberline {2.5.16.1}\texttt {SEATBELT} and its cleanup to \texttt {seatbelt}}{101}{subsubsection.2.5.16.1}
+\contentsline {subsection}{\numberline {2.5.17}Immunization (3 items)}{102}{subsection.2.5.17}
+\contentsline {subsubsection}{\numberline {2.5.17.1}\texttt {FLUSHOT6} and its cleanup to \texttt {vax\_flu}}{102}{subsubsection.2.5.17.1}
+\contentsline {subsubsection}{\numberline {2.5.17.2}\texttt {PNEUVAC3} and its cleanup to \texttt {vax\_pneumo}}{103}{subsubsection.2.5.17.2}
+\contentsline {subsubsection}{\numberline {2.5.17.3}\texttt {SHINGLE2} and its cleanup to \texttt {vax\_shingles}}{103}{subsubsection.2.5.17.3}
+\contentsline {subsection}{\numberline {2.5.18}HIV/AIDS (2 items)}{104}{subsection.2.5.18}
+\contentsline {subsubsection}{\numberline {2.5.18.1}\texttt {HIVTST6} and its cleanup to \texttt {hiv\_test}}{104}{subsubsection.2.5.18.1}
+\contentsline {subsubsection}{\numberline {2.5.18.2}\texttt {HIVRISK5} and its cleanup to \texttt {hiv\_risk}}{104}{subsubsection.2.5.18.2}
+\contentsline {section}{\numberline {2.6}Imputing Age and Income as Quantitative from Thin Air}{105}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}\texttt {age\_imp}: Imputing Age Data}{105}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}\texttt {inc\_imp}: Imputing Income Data}{107}{subsection.2.6.2}
+\contentsline {section}{\numberline {2.7}Clean Data in the State of Ohio}{108}{section.2.7}
+\contentsline {section}{\numberline {2.8}Clean Cleveland-Elyria Data}{109}{section.2.8}
+\contentsline {subsection}{\numberline {2.8.1}Cleveland - Elyria Data}{109}{subsection.2.8.1}
+\contentsline {chapter}{\numberline {3}Dealing with Missingness: Single Imputation}{111}{chapter.3}
+\contentsline {section}{\numberline {3.1}Selecting Some Variables from the \texttt {smart\_cle} data}{111}{section.3.1}
+\contentsline {section}{\numberline {3.2}\texttt {smart\_cle1}: Seeing our Missing Data}{112}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Plotting Missingness}{115}{subsection.3.2.1}
+\contentsline {section}{\numberline {3.3}Missing-data mechanisms}{117}{section.3.3}
+\contentsline {section}{\numberline {3.4}Options for Dealing with Missingness}{118}{section.3.4}
+\contentsline {section}{\numberline {3.5}Complete Case (and Available Case) analyses}{118}{section.3.5}
+\contentsline {section}{\numberline {3.6}Single Imputation}{119}{section.3.6}
+\contentsline {section}{\numberline {3.7}Multiple Imputation}{119}{section.3.7}
+\contentsline {section}{\numberline {3.8}Approach 1: Building a Complete Case Analysis: \texttt {smart\_cle1\_cc}}{119}{section.3.8}
+\contentsline {section}{\numberline {3.9}Approach 2: Single Imputation to create \texttt {smart\_cle1\_sh}}{120}{section.3.9}
+\contentsline {subsection}{\numberline {3.9.1}What Type of Missingness Do We Have?}{121}{subsection.3.9.1}
+\contentsline {subsection}{\numberline {3.9.2}Single imputation into \texttt {smart\_cle1\_sh}}{122}{subsection.3.9.2}
+\contentsline {subsection}{\numberline {3.9.3}Imputing Binary Categorical Variables}{123}{subsection.3.9.3}
+\contentsline {subsection}{\numberline {3.9.4}Imputing Quantitative Variables}{124}{subsection.3.9.4}
+\contentsline {subsection}{\numberline {3.9.5}Imputation Results}{124}{subsection.3.9.5}
+\contentsline {subsection}{\numberline {3.9.6}Imputing Multi-Categorical Variables}{129}{subsection.3.9.6}
+\contentsline {subsection}{\numberline {3.9.7}Saving the new tibbles}{131}{subsection.3.9.7}
+\contentsline {chapter}{\numberline {4}Summarizing the \texttt {smart\_cle1} data}{133}{chapter.4}
+\contentsline {section}{\numberline {4.1}General Approaches to Obtaining Numeric Summaries}{134}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}\texttt {summary} for a data frame}{134}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}The \texttt {inspect} function from the \texttt {mosaic} package}{135}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}The \texttt {describe} function in \texttt {Hmisc}}{136}{subsection.4.1.3}
+\contentsline {section}{\numberline {4.2}Counting as exploratory data analysis}{137}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Did \texttt {genhealth} vary by smoking status?}{138}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}What's the distribution of \texttt {physhealth}?}{139}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}What's the distribution of \texttt {bmi}?}{141}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}How many of the respondents have a BMI below 30?}{141}{subsection.4.2.4}
+\contentsline {subsection}{\numberline {4.2.5}How many of the respondents with a BMI \textless {} 30 are highly active?}{142}{subsection.4.2.5}
+\contentsline {subsection}{\numberline {4.2.6}Is obesity associated with smoking history?}{142}{subsection.4.2.6}
+\contentsline {subsection}{\numberline {4.2.7}Comparing \texttt {drinks\_wk} summaries by obesity status}{142}{subsection.4.2.7}
+\contentsline {section}{\numberline {4.3}Can \texttt {bmi} predict \texttt {physhealth}?}{143}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Fitting a Simple Regression Model}{144}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Model Summary for a Simple (One-Predictor) Regression}{145}{subsection.4.3.2}
+\contentsline {subsubsection}{\numberline {4.3.2.1}Residuals}{145}{subsubsection.4.3.2.1}
+\contentsline {subsubsection}{\numberline {4.3.2.2}Coefficients section}{147}{subsubsection.4.3.2.2}
+\contentsline {subsubsection}{\numberline {4.3.2.3}Model Fit Summaries}{148}{subsubsection.4.3.2.3}
+\contentsline {subsection}{\numberline {4.3.3}Using the \texttt {broom} package}{149}{subsection.4.3.3}
+\contentsline {subsubsection}{\numberline {4.3.3.1}The \texttt {tidy} function}{149}{subsubsection.4.3.3.1}
+\contentsline {subsubsection}{\numberline {4.3.3.2}The \texttt {glance} function}{150}{subsubsection.4.3.3.2}
+\contentsline {subsubsection}{\numberline {4.3.3.3}The \texttt {augment} function}{150}{subsubsection.4.3.3.3}
+\contentsline {subsection}{\numberline {4.3.4}How does the model do? (Residuals vs.\nobreakspace {}Fitted Values)}{151}{subsection.4.3.4}
+\contentsline {chapter}{\numberline {5}Analysis of Variance with SMART}{157}{chapter.5}
+\contentsline {section}{\numberline {5.1}A One-Factor Analysis of Variance}{157}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Can \texttt {activity} be used to predict \texttt {bmi}?}{158}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Should we transform \texttt {bmi}?}{159}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}Building the ANOVA model}{160}{subsection.5.1.3}
+\contentsline {subsection}{\numberline {5.1.4}The ANOVA table}{161}{subsection.5.1.4}
+\contentsline {subsection}{\numberline {5.1.5}The Model Coefficients}{161}{subsection.5.1.5}
+\contentsline {subsection}{\numberline {5.1.6}Using \texttt {broom::tidy} to explore the coefficients}{163}{subsection.5.1.6}
+\contentsline {subsection}{\numberline {5.1.7}Using \texttt {broom::glance} to summarize the model's fit}{163}{subsection.5.1.7}
+\contentsline {subsection}{\numberline {5.1.8}Using \texttt {broom::augment} to make predictions}{164}{subsection.5.1.8}
+\contentsline {section}{\numberline {5.2}A Two-Factor ANOVA (without Interaction)}{165}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Model Coefficients}{166}{subsection.5.2.1}
+\contentsline {section}{\numberline {5.3}A Two-Factor ANOVA (with Interaction)}{169}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Model Coefficients}{169}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Is the interaction term necessary?}{172}{subsection.5.3.2}
+\contentsline {subsubsection}{\numberline {5.3.2.1}The Interaction Plot}{172}{subsubsection.5.3.2.1}
+\contentsline {subsubsection}{\numberline {5.3.2.2}Does the interaction account for substantial variation?}{175}{subsubsection.5.3.2.2}
+\contentsline {subsubsection}{\numberline {5.3.2.3}Does the interaction account for statistically detectable variation?}{176}{subsubsection.5.3.2.3}
+\contentsline {chapter}{\numberline {6}Analysis of Variance}{177}{chapter.6}
+\contentsline {section}{\numberline {6.1}The \texttt {bonding} data: A Designed Dental Experiment}{177}{section.6.1}
+\contentsline {section}{\numberline {6.2}A One-Factor Analysis of Variance}{178}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Look at the Data!}{178}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Table of Summary Statistics}{180}{subsection.6.2.2}
+\contentsline {section}{\numberline {6.3}A Two-Way ANOVA: Looking at Two Factors}{182}{section.6.3}
+\contentsline {section}{\numberline {6.4}A Means Plot (with standard deviations) to check for interaction}{183}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Summarizing the data after grouping by \texttt {resin} and \texttt {light}}{185}{subsection.6.4.1}
+\contentsline {section}{\numberline {6.5}Fitting the Two-Way ANOVA model with Interaction}{185}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}The ANOVA table for our model}{186}{subsection.6.5.1}
+\contentsline {subsection}{\numberline {6.5.2}Is the interaction important?}{186}{subsection.6.5.2}
+\contentsline {subsection}{\numberline {6.5.3}Interpreting the Interaction}{187}{subsection.6.5.3}
+\contentsline {section}{\numberline {6.6}Comparing Individual Combinations of \texttt {resin} and \texttt {light}}{188}{section.6.6}
+\contentsline {section}{\numberline {6.7}The \texttt {bonding} model without Interaction}{189}{section.6.7}
+\contentsline {section}{\numberline {6.8}\texttt {cortisol}: A Hypothetical Clinical Trial}{191}{section.6.8}
+\contentsline {subsection}{\numberline {6.8.1}Codebook and Raw Data for \texttt {cortisol}}{191}{subsection.6.8.1}
+\contentsline {section}{\numberline {6.9}Creating a factor combining sex and waist}{192}{section.6.9}
+\contentsline {section}{\numberline {6.10}A Means Plot for the \texttt {cortisol} trial (with standard errors)}{193}{section.6.10}
+\contentsline {section}{\numberline {6.11}A Two-Way ANOVA model for \texttt {cortisol} with Interaction}{194}{section.6.11}
+\contentsline {subsection}{\numberline {6.11.1}Notes on this Question}{195}{subsection.6.11.1}
+\contentsline {section}{\numberline {6.12}A Two-Way ANOVA model for \texttt {cortisol} without Interaction}{198}{section.6.12}
+\contentsline {subsection}{\numberline {6.12.1}The Graph}{198}{subsection.6.12.1}
+\contentsline {subsection}{\numberline {6.12.2}The ANOVA Model}{198}{subsection.6.12.2}
+\contentsline {subsection}{\numberline {6.12.3}The Regression Summary}{199}{subsection.6.12.3}
+\contentsline {subsection}{\numberline {6.12.4}Tukey HSD Comparisons}{199}{subsection.6.12.4}
+\contentsline {chapter}{\numberline {7}Analysis of Covariance}{201}{chapter.7}
+\contentsline {section}{\numberline {7.1}An Emphysema Study}{201}{section.7.1}
+\contentsline {subsection}{\numberline {7.1.1}Codebook}{201}{subsection.7.1.1}
+\contentsline {section}{\numberline {7.2}Does \texttt {sex} affect the mean change in theophylline?}{202}{section.7.2}
+\contentsline {section}{\numberline {7.3}Is there an association between \texttt {age} and \texttt {sex} in this study?}{203}{section.7.3}
+\contentsline {section}{\numberline {7.4}Adding a quantitative covariate, \texttt {age}, to the model}{203}{section.7.4}
+\contentsline {subsection}{\numberline {7.4.1}The ANCOVA model}{203}{subsection.7.4.1}
+\contentsline {subsection}{\numberline {7.4.2}The ANCOVA Table}{204}{subsection.7.4.2}
+\contentsline {section}{\numberline {7.5}Rerunning the ANCOVA model after simple imputation}{205}{section.7.5}
+\contentsline {section}{\numberline {7.6}Looking at a factor-covariate interaction}{206}{section.7.6}
+\contentsline {section}{\numberline {7.7}Centering the Covariate to Facilitate ANCOVA Interpretation}{207}{section.7.7}
+\contentsline {chapter}{\numberline {8}Analysis of Covariance with the SMART data}{209}{chapter.8}
+\contentsline {section}{\numberline {8.1}A New Small Study: Predicting BMI}{209}{section.8.1}
+\contentsline {subsection}{\numberline {8.1.1}Does \texttt {smoke100} predict \texttt {bmi} well?}{209}{subsection.8.1.1}
+\contentsline {subsubsection}{\numberline {8.1.1.1}Graphical Assessment}{209}{subsubsection.8.1.1.1}
+\contentsline {section}{\numberline {8.2}\texttt {c8\_m1}: A simple t-test model}{211}{section.8.2}
+\contentsline {section}{\numberline {8.3}\texttt {c8\_m2}: Adding another predictor (two-way ANOVA without interaction)}{213}{section.8.3}
+\contentsline {section}{\numberline {8.4}\texttt {c8\_m3}: Adding the interaction term (Two-way ANOVA with interaction)}{216}{section.8.4}
+\contentsline {section}{\numberline {8.5}\texttt {c8\_m4}: Using \texttt {female} and \texttt {physhealth} in a model for \texttt {bmi}}{218}{section.8.5}
+\contentsline {section}{\numberline {8.6}Making Predictions with a Linear Regression Model}{221}{section.8.6}
+\contentsline {subsection}{\numberline {8.6.1}Fitting an Individual Prediction and 95\% Prediction Interval}{221}{subsection.8.6.1}
+\contentsline {subsection}{\numberline {8.6.2}Confidence Interval for an Average Prediction}{221}{subsection.8.6.2}
+\contentsline {subsection}{\numberline {8.6.3}Fitting Multiple Individual Predictions to New Data}{222}{subsection.8.6.3}
+\contentsline {section}{\numberline {8.7}Centering the model}{222}{section.8.7}
+\contentsline {subsection}{\numberline {8.7.1}Plot of Model 4 on Centered \texttt {physhealth}: \texttt {c8\_m4\_c}}{223}{subsection.8.7.1}
+\contentsline {section}{\numberline {8.8}Rescaling an input by subtracting the mean and dividing by 2 standard deviations}{224}{section.8.8}
+\contentsline {subsection}{\numberline {8.8.1}Refitting model \texttt {c8\_m4} to the rescaled data}{225}{subsection.8.8.1}
+\contentsline {subsection}{\numberline {8.8.2}Interpreting the model on rescaled data}{225}{subsection.8.8.2}
+\contentsline {subsection}{\numberline {8.8.3}Plot of model on rescaled data}{226}{subsection.8.8.3}
+\contentsline {section}{\numberline {8.9}\texttt {c8\_m5}: What if we add more variables?}{227}{section.8.9}
+\contentsline {section}{\numberline {8.10}\texttt {c8\_m6}: Would adding self-reported health help?}{229}{section.8.10}
+\contentsline {section}{\numberline {8.11}Key Regression Assumptions for Building Effective Prediction Models}{230}{section.8.11}
+\contentsline {subsection}{\numberline {8.11.1}Checking Assumptions in model \texttt {c8\_m6}}{231}{subsection.8.11.1}
 \contentsline {chapter}{\numberline {9}Adding Non-linear Terms to a Linear Regression Model}{237}{chapter.9}
 \contentsline {section}{\numberline {9.1}The \texttt {pollution} data}{237}{section.9.1}
 \contentsline {section}{\numberline {9.2}Fitting a straight line model to predict \texttt {y} from \texttt {x2}}{238}{section.9.2}
@@ -337,7 +337,7 @@
 \contentsline {subsection}{\numberline {12.13.4}The ROC curve for Model B}{318}{subsection.12.13.4}
 \contentsline {subsection}{\numberline {12.13.5}Residuals, Leverage and Influence}{319}{subsection.12.13.5}
 \contentsline {section}{\numberline {12.14}Logistic Regression using \texttt {lrm}}{320}{section.12.14}
-\contentsline {subsection}{\numberline {12.14.1}Interpreting Nagelkerke R\textsuperscript {2}}{321}{subsection.12.14.1}
+\contentsline {subsection}{\numberline {12.14.1}Interpreting Nagelkerke \relax $R^2\relax \GenericError { }{LaTeX Error: Bad math environment delimiter}{See the LaTeX manual or LaTeX Companion for explanation.}{Your command was ignored.\MessageBreak Type I <command> <return> to replace it with another command,\MessageBreak or <return> to continue without it.}}{321}{subsection.12.14.1}
 \contentsline {subsection}{\numberline {12.14.2}Interpreting the C statistic and Plotting the ROC Curve}{322}{subsection.12.14.2}
 \contentsline {subsection}{\numberline {12.14.3}The C statistic and Somers' D}{323}{subsection.12.14.3}
 \contentsline {subsection}{\numberline {12.14.4}Validating the Logistic Regression Model Summary Statistics}{324}{subsection.12.14.4}
@@ -375,7 +375,7 @@
 \contentsline {subsection}{\numberline {13.4.2}Interpretation}{351}{subsection.13.4.2}
 \contentsline {section}{\numberline {13.5}Exploring Model \texttt {c11\_prost\_A}}{351}{section.13.5}
 \contentsline {subsection}{\numberline {13.5.1}\texttt {summary} for Model \texttt {c11\_prost\_A}}{352}{subsection.13.5.1}
-\contentsline {subsection}{\numberline {13.5.2}Adjusted R\textsuperscript {2}}{353}{subsection.13.5.2}
+\contentsline {subsection}{\numberline {13.5.2}Adjusted \relax $R^2\relax \GenericError { }{LaTeX Error: Bad math environment delimiter}{See the LaTeX manual or LaTeX Companion for explanation.}{Your command was ignored.\MessageBreak Type I <command> <return> to replace it with another command,\MessageBreak or <return> to continue without it.}}{353}{subsection.13.5.2}
 \contentsline {subsection}{\numberline {13.5.3}Coefficient Confidence Intervals}{353}{subsection.13.5.3}
 \contentsline {subsection}{\numberline {13.5.4}ANOVA for Model \texttt {c11\_prost\_A}}{353}{subsection.13.5.4}
 \contentsline {subsection}{\numberline {13.5.5}Residuals, Fitted Values and Standard Errors with \texttt {augment}}{354}{subsection.13.5.5}
@@ -444,15 +444,15 @@
 \contentsline {section}{\numberline {19.5}The OLS Approach}{423}{section.19.5}
 \contentsline {subsection}{\numberline {19.5.1}Interpreting the Coefficients}{424}{subsection.19.5.1}
 \contentsline {subsection}{\numberline {19.5.2}Store fitted values and residuals}{424}{subsection.19.5.2}
-\contentsline {subsection}{\numberline {19.5.3}Specify the R\textsuperscript {2} and log(likelihood) values}{425}{subsection.19.5.3}
+\contentsline {subsection}{\numberline {19.5.3}Specify the \relax $R^2\relax \GenericError { }{LaTeX Error: Bad math environment delimiter}{See the LaTeX manual or LaTeX Companion for explanation.}{Your command was ignored.\MessageBreak Type I <command> <return> to replace it with another command,\MessageBreak or <return> to continue without it.} and log(likelihood) values}{425}{subsection.19.5.3}
 \contentsline {subsection}{\numberline {19.5.4}Check model assumptions}{425}{subsection.19.5.4}
 \contentsline {subsection}{\numberline {19.5.5}Predictions for Harry and Sally}{427}{subsection.19.5.5}
 \contentsline {subsection}{\numberline {19.5.6}Notes}{428}{subsection.19.5.6}
 \contentsline {section}{\numberline {19.6}OLS model on log(\texttt {physhealth} + 1) days}{428}{section.19.6}
 \contentsline {subsection}{\numberline {19.6.1}Interpreting the Coefficients}{429}{subsection.19.6.1}
 \contentsline {subsection}{\numberline {19.6.2}Store fitted values and residuals}{430}{subsection.19.6.2}
-\contentsline {subsection}{\numberline {19.6.3}Specify the R\textsuperscript {2} and log(likelihood) values}{431}{subsection.19.6.3}
-\contentsline {subsection}{\numberline {19.6.4}Getting R\textsuperscript {2} on the scale of \texttt {physhealth}}{431}{subsection.19.6.4}
+\contentsline {subsection}{\numberline {19.6.3}Specify the \relax $R^2\relax \GenericError { }{LaTeX Error: Bad math environment delimiter}{See the LaTeX manual or LaTeX Companion for explanation.}{Your command was ignored.\MessageBreak Type I <command> <return> to replace it with another command,\MessageBreak or <return> to continue without it.} and log(likelihood) values}{431}{subsection.19.6.3}
+\contentsline {subsection}{\numberline {19.6.4}Getting \relax $R^2\relax \GenericError { }{LaTeX Error: Bad math environment delimiter}{See the LaTeX manual or LaTeX Companion for explanation.}{Your command was ignored.\MessageBreak Type I <command> <return> to replace it with another command,\MessageBreak or <return> to continue without it.} on the scale of \texttt {physhealth}}{431}{subsection.19.6.4}
 \contentsline {subsection}{\numberline {19.6.5}Check model assumptions}{431}{subsection.19.6.5}
 \contentsline {subsection}{\numberline {19.6.6}Predictions for Harry and Sally}{432}{subsection.19.6.6}
 \contentsline {section}{\numberline {19.7}A Poisson Regression Model}{433}{section.19.7}
@@ -462,7 +462,7 @@
 \contentsline {subsection}{\numberline {19.7.4}Correcting for Overdispersion with \texttt {coeftest}/\texttt {coefci}}{436}{subsection.19.7.4}
 \contentsline {subsection}{\numberline {19.7.5}Store fitted values and residuals}{437}{subsection.19.7.5}
 \contentsline {subsection}{\numberline {19.7.6}Rootogram: see the fit of a count regression model}{438}{subsection.19.7.6}
-\contentsline {subsection}{\numberline {19.7.7}Specify the R\textsuperscript {2} and log(likelihood) values}{438}{subsection.19.7.7}
+\contentsline {subsection}{\numberline {19.7.7}Specify the \relax $R^2\relax \GenericError { }{LaTeX Error: Bad math environment delimiter}{See the LaTeX manual or LaTeX Companion for explanation.}{Your command was ignored.\MessageBreak Type I <command> <return> to replace it with another command,\MessageBreak or <return> to continue without it.} and log(likelihood) values}{438}{subsection.19.7.7}
 \contentsline {subsection}{\numberline {19.7.8}Check model assumptions}{439}{subsection.19.7.8}
 \contentsline {subsection}{\numberline {19.7.9}Using \texttt {glm.diag.plots} from the \texttt {boot} package}{440}{subsection.19.7.9}
 \contentsline {subsection}{\numberline {19.7.10}Predictions for Harry and Sally}{441}{subsection.19.7.10}
@@ -473,7 +473,7 @@
 \contentsline {subsection}{\numberline {19.9.2}Interpreting the Coefficients}{445}{subsection.19.9.2}
 \contentsline {subsection}{\numberline {19.9.3}Testing the Predictors}{445}{subsection.19.9.3}
 \contentsline {subsection}{\numberline {19.9.4}Store fitted values and residuals}{446}{subsection.19.9.4}
-\contentsline {subsection}{\numberline {19.9.5}Specify the R\textsuperscript {2} and log(likelihood) values}{446}{subsection.19.9.5}
+\contentsline {subsection}{\numberline {19.9.5}Specify the \relax $R^2\relax \GenericError { }{LaTeX Error: Bad math environment delimiter}{See the LaTeX manual or LaTeX Companion for explanation.}{Your command was ignored.\MessageBreak Type I <command> <return> to replace it with another command,\MessageBreak or <return> to continue without it.} and log(likelihood) values}{446}{subsection.19.9.5}
 \contentsline {subsection}{\numberline {19.9.6}Check model assumptions}{447}{subsection.19.9.6}
 \contentsline {subsection}{\numberline {19.9.7}Predictions for Harry and Sally}{448}{subsection.19.9.7}
 \contentsline {section}{\numberline {19.10}Poisson and Quasi-Poisson models using \texttt {Glm} from the \texttt {rms} package}{449}{section.19.10}
@@ -493,7 +493,7 @@
 \contentsline {subsection}{\numberline {19.11.6}Store fitted values and residuals}{458}{subsection.19.11.6}
 \contentsline {subsection}{\numberline {19.11.7}Rootogram for Negative Binomial model}{458}{subsection.19.11.7}
 \contentsline {subsection}{\numberline {19.11.8}Simulating what the Negative Binomial model predicts}{459}{subsection.19.11.8}
-\contentsline {subsection}{\numberline {19.11.9}Specify the R\textsuperscript {2} and log(likelihood) values}{460}{subsection.19.11.9}
+\contentsline {subsection}{\numberline {19.11.9}Specify the \relax $R^2\relax \GenericError { }{LaTeX Error: Bad math environment delimiter}{See the LaTeX manual or LaTeX Companion for explanation.}{Your command was ignored.\MessageBreak Type I <command> <return> to replace it with another command,\MessageBreak or <return> to continue without it.} and log(likelihood) values}{460}{subsection.19.11.9}
 \contentsline {subsection}{\numberline {19.11.10}Check model assumptions}{461}{subsection.19.11.10}
 \contentsline {subsection}{\numberline {19.11.11}Predictions for Harry and Sally}{462}{subsection.19.11.11}
 \contentsline {section}{\numberline {19.12}The Problem: Too Few Zeros}{463}{section.19.12}
@@ -506,7 +506,7 @@
 \contentsline {subsection}{\numberline {19.13.6}Store fitted values and residuals}{468}{subsection.19.13.6}
 \contentsline {subsection}{\numberline {19.13.7}Modeled Number of Zero Counts}{468}{subsection.19.13.7}
 \contentsline {subsection}{\numberline {19.13.8}Rootogram for ZIP model}{468}{subsection.19.13.8}
-\contentsline {subsection}{\numberline {19.13.9}Specify the R\textsuperscript {2} and log (likelihood) values}{469}{subsection.19.13.9}
+\contentsline {subsection}{\numberline {19.13.9}Specify the \relax $R^2\relax \GenericError { }{LaTeX Error: Bad math environment delimiter}{See the LaTeX manual or LaTeX Companion for explanation.}{Your command was ignored.\MessageBreak Type I <command> <return> to replace it with another command,\MessageBreak or <return> to continue without it.} and log (likelihood) values}{469}{subsection.19.13.9}
 \contentsline {subsection}{\numberline {19.13.10}Check model assumptions}{470}{subsection.19.13.10}
 \contentsline {subsection}{\numberline {19.13.11}Predictions for Harry and Sally}{470}{subsection.19.13.11}
 \contentsline {section}{\numberline {19.14}The Zero-Inflated Negative Binomial Regression Model}{471}{section.19.14}
@@ -518,7 +518,7 @@
 \contentsline {subsection}{\numberline {19.14.6}Store fitted values and residuals}{474}{subsection.19.14.6}
 \contentsline {subsection}{\numberline {19.14.7}Modeled Number of Zero Counts}{475}{subsection.19.14.7}
 \contentsline {subsection}{\numberline {19.14.8}Rootogram for Zero-Inflated Negative Binomial model}{475}{subsection.19.14.8}
-\contentsline {subsection}{\numberline {19.14.9}Specify the R\textsuperscript {2} and log (likelihood) values}{476}{subsection.19.14.9}
+\contentsline {subsection}{\numberline {19.14.9}Specify the \relax $R^2\relax \GenericError { }{LaTeX Error: Bad math environment delimiter}{See the LaTeX manual or LaTeX Companion for explanation.}{Your command was ignored.\MessageBreak Type I <command> <return> to replace it with another command,\MessageBreak or <return> to continue without it.} and log (likelihood) values}{476}{subsection.19.14.9}
 \contentsline {subsection}{\numberline {19.14.10}Check model assumptions}{477}{subsection.19.14.10}
 \contentsline {subsection}{\numberline {19.14.11}Predictions for Harry and Sally}{477}{subsection.19.14.11}
 \contentsline {section}{\numberline {19.15}A ``hurdle'' model (with Poisson)}{478}{section.19.15}
@@ -532,7 +532,7 @@
 \contentsline {subsection}{\numberline {19.15.8}Modeled Number of Zero Counts}{483}{subsection.19.15.8}
 \contentsline {subsection}{\numberline {19.15.9}Rootogram for Hurdle Model}{483}{subsection.19.15.9}
 \contentsline {subsection}{\numberline {19.15.10}Understanding the Modeled Counts in Detail}{484}{subsection.19.15.10}
-\contentsline {subsection}{\numberline {19.15.11}Specify the R\textsuperscript {2} and log (likelihood) values}{485}{subsection.19.15.11}
+\contentsline {subsection}{\numberline {19.15.11}Specify the \relax $R^2\relax \GenericError { }{LaTeX Error: Bad math environment delimiter}{See the LaTeX manual or LaTeX Companion for explanation.}{Your command was ignored.\MessageBreak Type I <command> <return> to replace it with another command,\MessageBreak or <return> to continue without it.} and log (likelihood) values}{485}{subsection.19.15.11}
 \contentsline {subsection}{\numberline {19.15.12}Check model assumptions}{486}{subsection.19.15.12}
 \contentsline {subsection}{\numberline {19.15.13}Predictions for Harry and Sally}{486}{subsection.19.15.13}
 \contentsline {section}{\numberline {19.16}A ``hurdle'' model (with negative binomial for overdispersion)}{487}{section.19.16}
@@ -545,7 +545,7 @@
 \contentsline {subsection}{\numberline {19.16.7}Testing the Predictors}{490}{subsection.19.16.7}
 \contentsline {subsection}{\numberline {19.16.8}Store fitted values and residuals}{491}{subsection.19.16.8}
 \contentsline {subsection}{\numberline {19.16.9}Rootogram for NB Hurdle Model}{492}{subsection.19.16.9}
-\contentsline {subsection}{\numberline {19.16.10}Specify the R\textsuperscript {2} and log (likelihood) values}{492}{subsection.19.16.10}
+\contentsline {subsection}{\numberline {19.16.10}Specify the \relax $R^2\relax \GenericError { }{LaTeX Error: Bad math environment delimiter}{See the LaTeX manual or LaTeX Companion for explanation.}{Your command was ignored.\MessageBreak Type I <command> <return> to replace it with another command,\MessageBreak or <return> to continue without it.} and log (likelihood) values}{492}{subsection.19.16.10}
 \contentsline {subsection}{\numberline {19.16.11}Check model assumptions}{493}{subsection.19.16.11}
 \contentsline {subsection}{\numberline {19.16.12}Predictions for Harry and Sally}{493}{subsection.19.16.12}
 \contentsline {subsection}{\numberline {19.16.13}Note: Fitting a Different Hurdle Model for Counts and Pr(zero)}{494}{subsection.19.16.13}
@@ -557,7 +557,7 @@
 \contentsline {subsection}{\numberline {19.17.4}Store fitted values and residuals}{498}{subsection.19.17.4}
 \contentsline {subsection}{\numberline {19.17.5}Building Something Like a Rootogram}{498}{subsection.19.17.5}
 \contentsline {subsection}{\numberline {19.17.6}Tables of the Observed and Fitted \texttt {physhealth} from Tobit}{499}{subsection.19.17.6}
-\contentsline {subsection}{\numberline {19.17.7}Specify the R\textsuperscript {2} and log (likelihood) values}{499}{subsection.19.17.7}
+\contentsline {subsection}{\numberline {19.17.7}Specify the \relax $R^2\relax \GenericError { }{LaTeX Error: Bad math environment delimiter}{See the LaTeX manual or LaTeX Companion for explanation.}{Your command was ignored.\MessageBreak Type I <command> <return> to replace it with another command,\MessageBreak or <return> to continue without it.} and log (likelihood) values}{499}{subsection.19.17.7}
 \contentsline {subsection}{\numberline {19.17.8}Check model assumptions}{500}{subsection.19.17.8}
 \contentsline {subsection}{\numberline {19.17.9}Predictions for Harry and Sally}{502}{subsection.19.17.9}
 \contentsline {chapter}{\numberline {20}Modeling an Ordinal Categorical Outcome in Ohio SMART}{503}{chapter.20}
@@ -672,7 +672,7 @@
 \contentsline {subsection}{\numberline {24.1.1}Creating our response: A survival time object}{590}{subsection.24.1.1}
 \contentsline {subsection}{\numberline {24.1.2}Models We'll Fit}{590}{subsection.24.1.2}
 \contentsline {section}{\numberline {24.2}Model A: \texttt {coxph} Model for Survival Time using \texttt {age} at diagnosis}{591}{section.24.2}
-\contentsline {subsection}{\numberline {24.2.1}Plotting the Survival Curve implied by Model A}{592}{subsection.24.2.1}
+\contentsline {subsection}{\numberline {24.2.1}Plotting the Survival Curve implied by Model A}{593}{subsection.24.2.1}
 \contentsline {subsection}{\numberline {24.2.2}Testing the Proportional Hazards Assumption}{593}{subsection.24.2.2}
 \contentsline {section}{\numberline {24.3}Building Model A with \texttt {cph} for the \texttt {leukem} data}{594}{section.24.3}
 \contentsline {subsection}{\numberline {24.3.1}Plotting the \texttt {age} effect implied by our model.}{595}{subsection.24.3.1}
@@ -685,19 +685,18 @@
 \contentsline {section}{\numberline {24.4}Model B: Fitting a 5-Predictor Model with \texttt {coxph}}{601}{section.24.4}
 \contentsline {subsection}{\numberline {24.4.1}Interpreting the Results from Model B}{601}{subsection.24.4.1}
 \contentsline {subsection}{\numberline {24.4.2}Plotting the Survival Curve implied by Model B}{602}{subsection.24.4.2}
-\contentsline {subsection}{\numberline {24.4.3}Plotting the Cumulative Hazard implied by Model B}{603}{subsection.24.4.3}
-\contentsline {subsection}{\numberline {24.4.4}Testing the Proportional Hazards Assumption}{604}{subsection.24.4.4}
-\contentsline {subsection}{\numberline {24.4.5}Assessing Collinearity}{605}{subsection.24.4.5}
-\contentsline {section}{\numberline {24.5}Model B2: A Stepwise Reduction of Model B}{606}{section.24.5}
-\contentsline {subsection}{\numberline {24.5.1}The Survival Curve implied by Model B2}{607}{subsection.24.5.1}
-\contentsline {subsection}{\numberline {24.5.2}Checking Proportional Hazards for Model B2}{608}{subsection.24.5.2}
-\contentsline {section}{\numberline {24.6}Model C: Using a Spearman Plot to pick a model}{609}{section.24.6}
-\contentsline {subsection}{\numberline {24.6.1}Fitting Model C}{610}{subsection.24.6.1}
-\contentsline {subsection}{\numberline {24.6.2}ANOVA for Model C}{611}{subsection.24.6.2}
-\contentsline {subsection}{\numberline {24.6.3}Summarizing Model C Effect Sizes}{611}{subsection.24.6.3}
-\contentsline {subsection}{\numberline {24.6.4}Plotting the diagnosis \texttt {age} effect in Model C}{612}{subsection.24.6.4}
-\contentsline {subsection}{\numberline {24.6.5}Survival Plot associated with Model C}{613}{subsection.24.6.5}
-\contentsline {subsection}{\numberline {24.6.6}Checking the Proportional Hazards Assumption}{614}{subsection.24.6.6}
-\contentsline {subsection}{\numberline {24.6.7}Model C Nomogram}{615}{subsection.24.6.7}
-\contentsline {subsection}{\numberline {24.6.8}Validating Model C's Summary Statistics}{616}{subsection.24.6.8}
-\contentsline {subsection}{\numberline {24.6.9}Calibration of Model C (12-month survival estimates)}{617}{subsection.24.6.9}
+\contentsline {subsection}{\numberline {24.4.3}Testing the Proportional Hazards Assumption}{603}{subsection.24.4.3}
+\contentsline {subsection}{\numberline {24.4.4}Assessing Collinearity}{604}{subsection.24.4.4}
+\contentsline {section}{\numberline {24.5}Model B2: A Stepwise Reduction of Model B}{605}{section.24.5}
+\contentsline {subsection}{\numberline {24.5.1}The Survival Curve implied by Model B2}{606}{subsection.24.5.1}
+\contentsline {subsection}{\numberline {24.5.2}Checking Proportional Hazards for Model B2}{607}{subsection.24.5.2}
+\contentsline {section}{\numberline {24.6}Model C: Using a Spearman Plot to pick a model}{608}{section.24.6}
+\contentsline {subsection}{\numberline {24.6.1}Fitting Model C}{609}{subsection.24.6.1}
+\contentsline {subsection}{\numberline {24.6.2}ANOVA for Model C}{610}{subsection.24.6.2}
+\contentsline {subsection}{\numberline {24.6.3}Summarizing Model C Effect Sizes}{610}{subsection.24.6.3}
+\contentsline {subsection}{\numberline {24.6.4}Plotting the diagnosis \texttt {age} effect in Model C}{611}{subsection.24.6.4}
+\contentsline {subsection}{\numberline {24.6.5}Survival Plot associated with Model C}{612}{subsection.24.6.5}
+\contentsline {subsection}{\numberline {24.6.6}Checking the Proportional Hazards Assumption}{613}{subsection.24.6.6}
+\contentsline {subsection}{\numberline {24.6.7}Model C Nomogram}{614}{subsection.24.6.7}
+\contentsline {subsection}{\numberline {24.6.8}Validating Model C's Summary Statistics}{615}{subsection.24.6.8}
+\contentsline {subsection}{\numberline {24.6.9}Calibration of Model C (12-month survival estimates)}{616}{subsection.24.6.9}

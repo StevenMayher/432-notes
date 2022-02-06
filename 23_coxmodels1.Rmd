@@ -74,7 +74,7 @@ tidy(cfit, exponentiate = TRUE)
 In addition, we have several other summaries:
 
 - The *concordance* measure is only appropriate when we have at least one continuous predictor in our Cox model.
-- The Cox & Snell pseudo-R^2^ reflects the improvement of the model we've fit over the model with an intercept alone, but isn't a proportion of anything (hence the listing of the maximum possible value).
+- The Cox & Snell pseudo-$R^2$ reflects the improvement of the model we've fit over the model with an intercept alone, but isn't a proportion of anything (hence the listing of the maximum possible value).
 - The Likelihood ratio, Wald and Score (logrank) tests provide insight into the overall significance of the model.
 
 We can obtain a more detailed description of the likelihood-ratio test of the model with `anova`.
@@ -185,7 +185,7 @@ model_hem
 
 Included here are likelihood ratio and score tests for the model as a whole (as compared to the intercept-only model), as well as the usual discrimination indexes. 
 
-- These include both an R^2^ analog due to Nagelkerke (which can go all the way up to 1), and 
+- These include both an $R^2$ analog due to Nagelkerke (which can go all the way up to 1), and 
 - Somers' $Dxy$, which can also produce an estimate of the C statistic  (area under the curve) via the formula C = 0.5 + Dxy / 2, so here C = 0.5 + (.244/2) = 0.622
 - For lots more on survival analysis C statistics, look at the `survAUC` package in R.
 

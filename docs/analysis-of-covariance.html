@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Analysis of Covariance | Data Science for Biological, Medical and Health Research: Notes for 432</title>
   <meta name="description" content="Course Notes for PQHS 432 in Spring 2021." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Analysis of Covariance | Data Science for Biological, Medical and Health Research: Notes for 432" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="analysis-of-variance.html"/>
 <link rel="next" href="analysis-of-covariance-with-the-smart-data.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,13 +50,15 @@
 
 
 
-
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -114,6 +117,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 </head>
@@ -230,30 +256,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9.7" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#saving-the-new-tibbles"><i class="fa fa-check"></i><b>3.9.7</b> Saving the new tibbles</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing the <code>smart_cle1</code> data</a>
+<li class="chapter" data-level="4" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing the <code>smart_cle1</code> data</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#general-approaches-to-obtaining-numeric-summaries"><i class="fa fa-check"></i><b>4.1</b> General Approaches to Obtaining Numeric Summaries</a>
+<li class="chapter" data-level="4.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#general-approaches-to-obtaining-numeric-summaries"><i class="fa fa-check"></i><b>4.1</b> General Approaches to Obtaining Numeric Summaries</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#summary-for-a-data-frame"><i class="fa fa-check"></i><b>4.1.1</b> <code>summary</code> for a data frame</a></li>
-<li class="chapter" data-level="4.1.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#the-inspect-function-from-the-mosaic-package"><i class="fa fa-check"></i><b>4.1.2</b> The <code>inspect</code> function from the <code>mosaic</code> package</a></li>
-<li class="chapter" data-level="4.1.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#the-describe-function-in-hmisc"><i class="fa fa-check"></i><b>4.1.3</b> The <code>describe</code> function in <code>Hmisc</code></a></li>
+<li class="chapter" data-level="4.1.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#summary-for-a-data-frame"><i class="fa fa-check"></i><b>4.1.1</b> <code>summary</code> for a data frame</a></li>
+<li class="chapter" data-level="4.1.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#the-inspect-function-from-the-mosaic-package"><i class="fa fa-check"></i><b>4.1.2</b> The <code>inspect</code> function from the <code>mosaic</code> package</a></li>
+<li class="chapter" data-level="4.1.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#the-describe-function-in-hmisc"><i class="fa fa-check"></i><b>4.1.3</b> The <code>describe</code> function in <code>Hmisc</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#counting-as-exploratory-data-analysis"><i class="fa fa-check"></i><b>4.2</b> Counting as exploratory data analysis</a>
+<li class="chapter" data-level="4.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#counting-as-exploratory-data-analysis"><i class="fa fa-check"></i><b>4.2</b> Counting as exploratory data analysis</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#did-genhealth-vary-by-smoking-status"><i class="fa fa-check"></i><b>4.2.1</b> Did <code>genhealth</code> vary by smoking status?</a></li>
-<li class="chapter" data-level="4.2.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#whats-the-distribution-of-physhealth"><i class="fa fa-check"></i><b>4.2.2</b> What’s the distribution of <code>physhealth</code>?</a></li>
-<li class="chapter" data-level="4.2.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#whats-the-distribution-of-bmi"><i class="fa fa-check"></i><b>4.2.3</b> What’s the distribution of <code>bmi</code>?</a></li>
-<li class="chapter" data-level="4.2.4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-many-of-the-respondents-have-a-bmi-below-30"><i class="fa fa-check"></i><b>4.2.4</b> How many of the respondents have a BMI below 30?</a></li>
-<li class="chapter" data-level="4.2.5" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-many-of-the-respondents-with-a-bmi-30-are-highly-active"><i class="fa fa-check"></i><b>4.2.5</b> How many of the respondents with a BMI &lt; 30 are highly active?</a></li>
-<li class="chapter" data-level="4.2.6" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#is-obesity-associated-with-smoking-history"><i class="fa fa-check"></i><b>4.2.6</b> Is obesity associated with smoking history?</a></li>
-<li class="chapter" data-level="4.2.7" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#comparing-drinks_wk-summaries-by-obesity-status"><i class="fa fa-check"></i><b>4.2.7</b> Comparing <code>drinks_wk</code> summaries by obesity status</a></li>
+<li class="chapter" data-level="4.2.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#did-genhealth-vary-by-smoking-status"><i class="fa fa-check"></i><b>4.2.1</b> Did <code>genhealth</code> vary by smoking status?</a></li>
+<li class="chapter" data-level="4.2.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#whats-the-distribution-of-physhealth"><i class="fa fa-check"></i><b>4.2.2</b> What’s the distribution of <code>physhealth</code>?</a></li>
+<li class="chapter" data-level="4.2.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#whats-the-distribution-of-bmi"><i class="fa fa-check"></i><b>4.2.3</b> What’s the distribution of <code>bmi</code>?</a></li>
+<li class="chapter" data-level="4.2.4" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#how-many-of-the-respondents-have-a-bmi-below-30"><i class="fa fa-check"></i><b>4.2.4</b> How many of the respondents have a BMI below 30?</a></li>
+<li class="chapter" data-level="4.2.5" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#how-many-of-the-respondents-with-a-bmi-30-are-highly-active"><i class="fa fa-check"></i><b>4.2.5</b> How many of the respondents with a BMI &lt; 30 are highly active?</a></li>
+<li class="chapter" data-level="4.2.6" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#is-obesity-associated-with-smoking-history"><i class="fa fa-check"></i><b>4.2.6</b> Is obesity associated with smoking history?</a></li>
+<li class="chapter" data-level="4.2.7" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#comparing-drinks_wk-summaries-by-obesity-status"><i class="fa fa-check"></i><b>4.2.7</b> Comparing <code>drinks_wk</code> summaries by obesity status</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#can-bmi-predict-physhealth"><i class="fa fa-check"></i><b>4.3</b> Can <code>bmi</code> predict <code>physhealth</code>?</a>
+<li class="chapter" data-level="4.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#can-bmi-predict-physhealth"><i class="fa fa-check"></i><b>4.3</b> Can <code>bmi</code> predict <code>physhealth</code>?</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#fitting-a-simple-regression-model"><i class="fa fa-check"></i><b>4.3.1</b> Fitting a Simple Regression Model</a></li>
-<li class="chapter" data-level="4.3.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#model-summary-for-a-simple-one-predictor-regression"><i class="fa fa-check"></i><b>4.3.2</b> Model Summary for a Simple (One-Predictor) Regression</a></li>
-<li class="chapter" data-level="4.3.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#using-the-broom-package"><i class="fa fa-check"></i><b>4.3.3</b> Using the <code>broom</code> package</a></li>
-<li class="chapter" data-level="4.3.4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-does-the-model-do-residuals-vs.-fitted-values"><i class="fa fa-check"></i><b>4.3.4</b> How does the model do? (Residuals vs. Fitted Values)</a></li>
+<li class="chapter" data-level="4.3.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#fitting-a-simple-regression-model"><i class="fa fa-check"></i><b>4.3.1</b> Fitting a Simple Regression Model</a></li>
+<li class="chapter" data-level="4.3.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#model-summary-for-a-simple-one-predictor-regression"><i class="fa fa-check"></i><b>4.3.2</b> Model Summary for a Simple (One-Predictor) Regression</a></li>
+<li class="chapter" data-level="4.3.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#using-the-broom-package"><i class="fa fa-check"></i><b>4.3.3</b> Using the <code>broom</code> package</a></li>
+<li class="chapter" data-level="4.3.4" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#how-does-the-model-do-residuals-vs.-fitted-values"><i class="fa fa-check"></i><b>4.3.4</b> How does the model do? (Residuals vs. Fitted Values)</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html"><i class="fa fa-check"></i><b>5</b> Analysis of Variance with SMART</a>
@@ -339,7 +365,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#a-new-small-study-predicting-bmi"><i class="fa fa-check"></i><b>8.1</b> A New Small Study: Predicting BMI</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#does-female-predict-bmi-well"><i class="fa fa-check"></i><b>8.1.1</b> Does <code>female</code> predict <code>bmi</code> well?</a></li>
+<li class="chapter" data-level="8.1.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#does-smoke100-predict-bmi-well"><i class="fa fa-check"></i><b>8.1.1</b> Does <code>smoke100</code> predict <code>bmi</code> well?</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m1-a-simple-t-test-model"><i class="fa fa-check"></i><b>8.2</b> <code>c8_m1</code>: A simple t-test model</a></li>
 <li class="chapter" data-level="8.3" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m2-adding-another-predictor-two-way-anova-without-interaction"><i class="fa fa-check"></i><b>8.3</b> <code>c8_m2</code>: Adding another predictor (two-way ANOVA without interaction)</a></li>
@@ -483,7 +509,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12.14" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#logistic-regression-using-lrm"><i class="fa fa-check"></i><b>12.14</b> Logistic Regression using <code>lrm</code></a>
 <ul>
-<li class="chapter" data-level="12.14.1" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#interpreting-nagelkerke-r2"><i class="fa fa-check"></i><b>12.14.1</b> Interpreting Nagelkerke R<sup>2</sup></a></li>
+<li class="chapter" data-level="12.14.1" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#interpreting-nagelkerke-r2"><i class="fa fa-check"></i><b>12.14.1</b> Interpreting Nagelkerke <span class="math inline">\(R^2\)</span></a></li>
 <li class="chapter" data-level="12.14.2" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#interpreting-the-c-statistic-and-plotting-the-roc-curve"><i class="fa fa-check"></i><b>12.14.2</b> Interpreting the C statistic and Plotting the ROC Curve</a></li>
 <li class="chapter" data-level="12.14.3" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#the-c-statistic-and-somers-d"><i class="fa fa-check"></i><b>12.14.3</b> The C statistic and Somers’ D</a></li>
 <li class="chapter" data-level="12.14.4" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#validating-the-logistic-regression-model-summary-statistics"><i class="fa fa-check"></i><b>12.14.4</b> Validating the Logistic Regression Model Summary Statistics</a></li>
@@ -531,7 +557,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.5" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#exploring-model-c11_prost_a"><i class="fa fa-check"></i><b>13.5</b> Exploring Model <code>c11_prost_A</code></a>
 <ul>
 <li class="chapter" data-level="13.5.1" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#summary-for-model-c11_prost_a"><i class="fa fa-check"></i><b>13.5.1</b> <code>summary</code> for Model <code>c11_prost_A</code></a></li>
-<li class="chapter" data-level="13.5.2" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#adjusted-r2"><i class="fa fa-check"></i><b>13.5.2</b> Adjusted R<sup>2</sup></a></li>
+<li class="chapter" data-level="13.5.2" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#adjusted-r2"><i class="fa fa-check"></i><b>13.5.2</b> Adjusted <span class="math inline">\(R^2\)</span></a></li>
 <li class="chapter" data-level="13.5.3" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#coefficient-confidence-intervals"><i class="fa fa-check"></i><b>13.5.3</b> Coefficient Confidence Intervals</a></li>
 <li class="chapter" data-level="13.5.4" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#anova-for-model-c11_prost_a"><i class="fa fa-check"></i><b>13.5.4</b> ANOVA for Model <code>c11_prost_A</code></a></li>
 <li class="chapter" data-level="13.5.5" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#residuals-fitted-values-and-standard-errors-with-augment"><i class="fa fa-check"></i><b>13.5.5</b> Residuals, Fitted Values and Standard Errors with <code>augment</code></a></li>
@@ -628,7 +654,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="19.5.1" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#interpreting-the-coefficients"><i class="fa fa-check"></i><b>19.5.1</b> Interpreting the Coefficients</a></li>
 <li class="chapter" data-level="19.5.2" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals"><i class="fa fa-check"></i><b>19.5.2</b> Store fitted values and residuals</a></li>
-<li class="chapter" data-level="19.5.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values"><i class="fa fa-check"></i><b>19.5.3</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.5.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values"><i class="fa fa-check"></i><b>19.5.3</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.5.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions"><i class="fa fa-check"></i><b>19.5.4</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.5.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally"><i class="fa fa-check"></i><b>19.5.5</b> Predictions for Harry and Sally</a></li>
 <li class="chapter" data-level="19.5.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#notes"><i class="fa fa-check"></i><b>19.5.6</b> Notes</a></li>
@@ -637,8 +663,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="19.6.1" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#interpreting-the-coefficients-1"><i class="fa fa-check"></i><b>19.6.1</b> Interpreting the Coefficients</a></li>
 <li class="chapter" data-level="19.6.2" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-1"><i class="fa fa-check"></i><b>19.6.2</b> Store fitted values and residuals</a></li>
-<li class="chapter" data-level="19.6.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-1"><i class="fa fa-check"></i><b>19.6.3</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
-<li class="chapter" data-level="19.6.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#getting-r2-on-the-scale-of-physhealth"><i class="fa fa-check"></i><b>19.6.4</b> Getting R<sup>2</sup> on the scale of <code>physhealth</code></a></li>
+<li class="chapter" data-level="19.6.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-1"><i class="fa fa-check"></i><b>19.6.3</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.6.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#getting-r2-on-the-scale-of-physhealth"><i class="fa fa-check"></i><b>19.6.4</b> Getting <span class="math inline">\(R^2\)</span> on the scale of <code>physhealth</code></a></li>
 <li class="chapter" data-level="19.6.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-1"><i class="fa fa-check"></i><b>19.6.5</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.6.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-1"><i class="fa fa-check"></i><b>19.6.6</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -650,7 +676,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.7.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#correcting-for-overdispersion-with-coeftestcoefci"><i class="fa fa-check"></i><b>19.7.4</b> Correcting for Overdispersion with <code>coeftest</code>/<code>coefci</code></a></li>
 <li class="chapter" data-level="19.7.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-2"><i class="fa fa-check"></i><b>19.7.5</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.7.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-see-the-fit-of-a-count-regression-model"><i class="fa fa-check"></i><b>19.7.6</b> Rootogram: see the fit of a count regression model</a></li>
-<li class="chapter" data-level="19.7.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-2"><i class="fa fa-check"></i><b>19.7.7</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.7.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-2"><i class="fa fa-check"></i><b>19.7.7</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.7.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-2"><i class="fa fa-check"></i><b>19.7.8</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.7.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#using-glm.diag.plots-from-the-boot-package"><i class="fa fa-check"></i><b>19.7.9</b> Using <code>glm.diag.plots</code> from the <code>boot</code> package</a></li>
 <li class="chapter" data-level="19.7.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-2"><i class="fa fa-check"></i><b>19.7.10</b> Predictions for Harry and Sally</a></li>
@@ -665,7 +691,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.9.2" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#interpreting-the-coefficients-3"><i class="fa fa-check"></i><b>19.9.2</b> Interpreting the Coefficients</a></li>
 <li class="chapter" data-level="19.9.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#testing-the-predictors-1"><i class="fa fa-check"></i><b>19.9.3</b> Testing the Predictors</a></li>
 <li class="chapter" data-level="19.9.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-3"><i class="fa fa-check"></i><b>19.9.4</b> Store fitted values and residuals</a></li>
-<li class="chapter" data-level="19.9.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-3"><i class="fa fa-check"></i><b>19.9.5</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.9.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-3"><i class="fa fa-check"></i><b>19.9.5</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.9.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-3"><i class="fa fa-check"></i><b>19.9.6</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.9.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-3"><i class="fa fa-check"></i><b>19.9.7</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -689,7 +715,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.11.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-4"><i class="fa fa-check"></i><b>19.11.6</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.11.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-negative-binomial-model"><i class="fa fa-check"></i><b>19.11.7</b> Rootogram for Negative Binomial model</a></li>
 <li class="chapter" data-level="19.11.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#simulating-what-the-negative-binomial-model-predicts"><i class="fa fa-check"></i><b>19.11.8</b> Simulating what the Negative Binomial model predicts</a></li>
-<li class="chapter" data-level="19.11.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-4"><i class="fa fa-check"></i><b>19.11.9</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.11.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-4"><i class="fa fa-check"></i><b>19.11.9</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.11.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-4"><i class="fa fa-check"></i><b>19.11.10</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.11.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-4"><i class="fa fa-check"></i><b>19.11.11</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -704,7 +730,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.13.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-5"><i class="fa fa-check"></i><b>19.13.6</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.13.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#modeled-number-of-zero-counts"><i class="fa fa-check"></i><b>19.13.7</b> Modeled Number of Zero Counts</a></li>
 <li class="chapter" data-level="19.13.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-zip-model"><i class="fa fa-check"></i><b>19.13.8</b> Rootogram for ZIP model</a></li>
-<li class="chapter" data-level="19.13.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values"><i class="fa fa-check"></i><b>19.13.9</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.13.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values"><i class="fa fa-check"></i><b>19.13.9</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.13.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-5"><i class="fa fa-check"></i><b>19.13.10</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.13.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-5"><i class="fa fa-check"></i><b>19.13.11</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -718,7 +744,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.14.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-6"><i class="fa fa-check"></i><b>19.14.6</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.14.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#modeled-number-of-zero-counts-1"><i class="fa fa-check"></i><b>19.14.7</b> Modeled Number of Zero Counts</a></li>
 <li class="chapter" data-level="19.14.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-zero-inflated-negative-binomial-model"><i class="fa fa-check"></i><b>19.14.8</b> Rootogram for Zero-Inflated Negative Binomial model</a></li>
-<li class="chapter" data-level="19.14.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-1"><i class="fa fa-check"></i><b>19.14.9</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.14.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-1"><i class="fa fa-check"></i><b>19.14.9</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.14.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-6"><i class="fa fa-check"></i><b>19.14.10</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.14.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-6"><i class="fa fa-check"></i><b>19.14.11</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -734,7 +760,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.15.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#modeled-number-of-zero-counts-2"><i class="fa fa-check"></i><b>19.15.8</b> Modeled Number of Zero Counts</a></li>
 <li class="chapter" data-level="19.15.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-hurdle-model"><i class="fa fa-check"></i><b>19.15.9</b> Rootogram for Hurdle Model</a></li>
 <li class="chapter" data-level="19.15.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#understanding-the-modeled-counts-in-detail"><i class="fa fa-check"></i><b>19.15.10</b> Understanding the Modeled Counts in Detail</a></li>
-<li class="chapter" data-level="19.15.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-2"><i class="fa fa-check"></i><b>19.15.11</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.15.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-2"><i class="fa fa-check"></i><b>19.15.11</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.15.12" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-7"><i class="fa fa-check"></i><b>19.15.12</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.15.13" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-7"><i class="fa fa-check"></i><b>19.15.13</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -749,7 +775,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.16.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#testing-the-predictors-6"><i class="fa fa-check"></i><b>19.16.7</b> Testing the Predictors</a></li>
 <li class="chapter" data-level="19.16.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-8"><i class="fa fa-check"></i><b>19.16.8</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.16.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-nb-hurdle-model"><i class="fa fa-check"></i><b>19.16.9</b> Rootogram for NB Hurdle Model</a></li>
-<li class="chapter" data-level="19.16.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-3"><i class="fa fa-check"></i><b>19.16.10</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.16.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-3"><i class="fa fa-check"></i><b>19.16.10</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.16.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-8"><i class="fa fa-check"></i><b>19.16.11</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.16.12" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-8"><i class="fa fa-check"></i><b>19.16.12</b> Predictions for Harry and Sally</a></li>
 <li class="chapter" data-level="19.16.13" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#note-fitting-a-different-hurdle-model-for-counts-and-przero"><i class="fa fa-check"></i><b>19.16.13</b> Note: Fitting a Different Hurdle Model for Counts and Pr(zero)</a></li>
@@ -763,7 +789,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.17.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-9"><i class="fa fa-check"></i><b>19.17.4</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.17.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#building-something-like-a-rootogram"><i class="fa fa-check"></i><b>19.17.5</b> Building Something Like a Rootogram</a></li>
 <li class="chapter" data-level="19.17.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#tables-of-the-observed-and-fitted-physhealth-from-tobit"><i class="fa fa-check"></i><b>19.17.6</b> Tables of the Observed and Fitted <code>physhealth</code> from Tobit</a></li>
-<li class="chapter" data-level="19.17.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-4"><i class="fa fa-check"></i><b>19.17.7</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.17.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-4"><i class="fa fa-check"></i><b>19.17.7</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.17.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-9"><i class="fa fa-check"></i><b>19.17.8</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.17.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-9"><i class="fa fa-check"></i><b>19.17.9</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -945,9 +971,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="24.4.1" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#interpreting-the-results-from-model-b"><i class="fa fa-check"></i><b>24.4.1</b> Interpreting the Results from Model B</a></li>
 <li class="chapter" data-level="24.4.2" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#plotting-the-survival-curve-implied-by-model-b"><i class="fa fa-check"></i><b>24.4.2</b> Plotting the Survival Curve implied by Model B</a></li>
-<li class="chapter" data-level="24.4.3" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#plotting-the-cumulative-hazard-implied-by-model-b"><i class="fa fa-check"></i><b>24.4.3</b> Plotting the Cumulative Hazard implied by Model B</a></li>
-<li class="chapter" data-level="24.4.4" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#testing-the-proportional-hazards-assumption-1"><i class="fa fa-check"></i><b>24.4.4</b> Testing the Proportional Hazards Assumption</a></li>
-<li class="chapter" data-level="24.4.5" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#assessing-collinearity"><i class="fa fa-check"></i><b>24.4.5</b> Assessing Collinearity</a></li>
+<li class="chapter" data-level="24.4.3" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#testing-the-proportional-hazards-assumption-1"><i class="fa fa-check"></i><b>24.4.3</b> Testing the Proportional Hazards Assumption</a></li>
+<li class="chapter" data-level="24.4.4" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#assessing-collinearity"><i class="fa fa-check"></i><b>24.4.4</b> Assessing Collinearity</a></li>
 </ul></li>
 <li class="chapter" data-level="24.5" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#model-b2-a-stepwise-reduction-of-model-b"><i class="fa fa-check"></i><b>24.5</b> Model B2: A Stepwise Reduction of Model B</a>
 <ul>
@@ -989,7 +1014,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 7</span> Analysis of Covariance</h1>
 <div id="an-emphysema-study" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> An Emphysema Study</h2>
-<p>My source for this example is <span class="citation"><a href="references.html#ref-Riffenburgh2006" role="doc-biblioref">Riffenburgh</a> (<a href="references.html#ref-Riffenburgh2006" role="doc-biblioref">2006</a>)</span>, section 18.4. Serum theophylline levels (in mg/dl) were measured in 16 patients with emphysema at baseline, then 5 days later (at the end of a course of antibiotics) and then at 10 days after baseline. Clinicians anticipate that the antibiotic will increase the theophylline level. The data are stored in the <code>emphysema.csv</code> data file, and note that the age for patient 5 is not available.</p>
+<p>My source for this example is <span class="citation"><a href="#ref-Riffenburgh2006" role="doc-biblioref">Riffenburgh</a> (<a href="#ref-Riffenburgh2006" role="doc-biblioref">2006</a>)</span>, section 18.4. Serum theophylline levels (in mg/dl) were measured in 16 patients with emphysema at baseline, then 5 days later (at the end of a course of antibiotics) and then at 10 days after baseline. Clinicians anticipate that the antibiotic will increase the theophylline level. The data are stored in the <code>emphysema.csv</code> data file, and note that the age for patient 5 is not available.</p>
 <div id="codebook" class="section level3" number="7.1.1">
 <h3><span class="header-section-number">7.1.1</span> Codebook</h3>
 <table>
@@ -1027,43 +1052,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>We’re going to look at the change from baseline to day 5 as our outcome of interest, since the clinical expectation is that the antibiotic (azithromycin) will increase theophylline levels.</p>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="analysis-of-covariance.html#cb477-1" aria-hidden="true" tabindex="-1"></a>emphysema <span class="ot">&lt;-</span> emphysema <span class="sc">%&gt;%</span> </span>
-<span id="cb477-2"><a href="analysis-of-covariance.html#cb477-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">st_delta =</span> st_day5 <span class="sc">-</span> st_base)</span>
-<span id="cb477-3"><a href="analysis-of-covariance.html#cb477-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb477-4"><a href="analysis-of-covariance.html#cb477-4" aria-hidden="true" tabindex="-1"></a>emphysema</span></code></pre></div>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="analysis-of-covariance.html#cb480-1" aria-hidden="true" tabindex="-1"></a>emphysema <span class="ot">&lt;-</span> emphysema <span class="sc">%&gt;%</span> </span>
+<span id="cb480-2"><a href="analysis-of-covariance.html#cb480-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">st_delta =</span> st_day5 <span class="sc">-</span> st_base)</span>
+<span id="cb480-3"><a href="analysis-of-covariance.html#cb480-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb480-4"><a href="analysis-of-covariance.html#cb480-4" aria-hidden="true" tabindex="-1"></a>emphysema</span></code></pre></div>
 <pre><code># A tibble: 16 x 7
    patient   age sex   st_base st_day5 st_day10 st_delta
      &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
  1       1    61 F        14.1     2.3     10.3  -11.8  
  2       2    70 F         7.2     5.4      7.3   -1.8  
- 3       3    65 M        14.2    11.9     11.3   -2.30 
+ 3       3    65 M        14.2    11.9     11.3   -2.3  
  4       4    65 M        10.3    10.7     13.8    0.400
  5       5    NA M         9.9    10.7     11.7    0.800
- 6       6    76 M         5.2     6.8      4.2    1.60 
- 7       7    72 M        10.4    14.6     14.1    4.20 
+ 6       6    76 M         5.2     6.8      4.2    1.6  
+ 7       7    72 M        10.4    14.6     14.1    4.2  
  8       8    69 F        10.5     7.2      5.4   -3.3  
  9       9    66 M         5       5        5.1    0    
 10      10    62 M         8.6     8.1      7.4   -0.5  
-11      11    65 F        16.6    14.9     13     -1.7  
-12      12    71 M        16.4    18.6     17.1    2.2  
-13      13    51 F        12.2    11       12.3   -1.20 
-14      14    71 M         6.6     3.7      4.5   -2.90 
-15      15    64 F        15.4    15.2     13.6   -0.2  
-16      16    50 M        10.2    10.8     11.2    0.6  </code></pre>
+11      11    65 F        16.6    14.9     13     -1.70 
+12      12    71 M        16.4    18.6     17.1    2.20 
+13      13    51 F        12.2    11       12.3   -1.2  
+14      14    71 M         6.6     3.7      4.5   -2.9  
+15      15    64 F        15.4    15.2     13.6   -0.200
+16      16    50 M        10.2    10.8     11.2    0.600</code></pre>
 </div>
 </div>
 <div id="does-sex-affect-the-mean-change-in-theophylline" class="section level2" number="7.2">
 <h2><span class="header-section-number">7.2</span> Does <code>sex</code> affect the mean change in theophylline?</h2>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="analysis-of-covariance.html#cb479-1" aria-hidden="true" tabindex="-1"></a>emphysema <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(st_delta)</span></code></pre></div>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="analysis-of-covariance.html#cb482-1" aria-hidden="true" tabindex="-1"></a>emphysema <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(st_delta)</span></code></pre></div>
 <pre><code>   min     Q1 median   Q3 max     mean       sd  n missing
  -11.8 -1.925  -0.35 0.65 4.2 -0.99375 3.484149 16       0</code></pre>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="analysis-of-covariance.html#cb481-1" aria-hidden="true" tabindex="-1"></a>emphysema <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(st_delta <span class="sc">~</span> sex)</span></code></pre></div>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="analysis-of-covariance.html#cb484-1" aria-hidden="true" tabindex="-1"></a>emphysema <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(st_delta <span class="sc">~</span> sex)</span></code></pre></div>
 <pre><code>  sex   min     Q1 median     Q3  max      mean       sd  n missing
 1   F -11.8 -2.925  -1.75 -1.325 -0.2 -3.333333 4.267864  6       0
 2   M  -2.9 -0.375   0.50  1.400  4.2  0.410000 2.067446 10       0</code></pre>
 <p>Overall, the mean change in theophylline during the course of the antibiotic is -0.99, but this is -3.33 for female patients and 0.41 for male patients.</p>
 <p>A one-way ANOVA model looks like this:</p>
-<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="analysis-of-covariance.html#cb483-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex, <span class="at">data =</span> emphysema))</span></code></pre></div>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="analysis-of-covariance.html#cb486-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex, <span class="at">data =</span> emphysema))</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: st_delta
@@ -1076,7 +1101,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </div>
 <div id="is-there-an-association-between-age-and-sex-in-this-study" class="section level2" number="7.3">
 <h2><span class="header-section-number">7.3</span> Is there an association between <code>age</code> and <code>sex</code> in this study?</h2>
-<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="analysis-of-covariance.html#cb485-1" aria-hidden="true" tabindex="-1"></a>emphysema <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(age <span class="sc">~</span> sex)</span></code></pre></div>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="analysis-of-covariance.html#cb488-1" aria-hidden="true" tabindex="-1"></a>emphysema <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(age <span class="sc">~</span> sex)</span></code></pre></div>
 <pre><code>  sex min    Q1 median Q3 max     mean       sd n missing
 1   F  51 61.75   64.5 68  70 63.33333 6.889606 6       0
 2   M  50 65.00   66.0 71  76 66.44444 7.568208 9       1</code></pre>
@@ -1092,7 +1117,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div id="the-ancova-model" class="section level3" number="7.4.1">
 <h3><span class="header-section-number">7.4.1</span> The ANCOVA model</h3>
 <p>ANCOVA in this case is just an ANOVA model with our outcome (<code>st_delta</code>) adjusted for a continuous covariate, called <code>age</code>. For the moment, we’ll ignore the one subject with missing <code>age</code> and simply fit the regression model with <code>sex</code> and <code>age</code>.</p>
-<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="analysis-of-covariance.html#cb487-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">+</span> age, <span class="at">data =</span> emphysema))</span></code></pre></div>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="analysis-of-covariance.html#cb490-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">+</span> age, <span class="at">data =</span> emphysema))</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = st_delta ~ sex + age, data = emphysema)
@@ -1124,7 +1149,7 @@ F-statistic:  2.43 on 2 and 12 DF,  p-value: 0.13</code></pre>
 <div id="the-ancova-table" class="section level3" number="7.4.2">
 <h3><span class="header-section-number">7.4.2</span> The ANCOVA Table</h3>
 <p>First, though, we’ll look at the ANCOVA table.</p>
-<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="analysis-of-covariance.html#cb489-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">+</span> age, <span class="at">data =</span> emphysema))</span></code></pre></div>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="analysis-of-covariance.html#cb492-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">+</span> age, <span class="at">data =</span> emphysema))</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: st_delta
@@ -1140,31 +1165,31 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div id="rerunning-the-ancova-model-after-simple-imputation" class="section level2" number="7.5">
 <h2><span class="header-section-number">7.5</span> Rerunning the ANCOVA model after simple imputation</h2>
 <p>We could have <em>imputed</em> the missing <code>age</code> value for patient 5, rather than just deleting that patient. Suppose we do the simplest potentially reasonable thing to do: insert the mean <code>age</code> in where the NA value currently exists.</p>
-<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="analysis-of-covariance.html#cb491-1" aria-hidden="true" tabindex="-1"></a>emph_imp <span class="ot">&lt;-</span> <span class="fu">replace_na</span>(emphysema, <span class="fu">list</span>(<span class="at">age =</span> <span class="fu">mean</span>(emphysema<span class="sc">$</span>age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span>
-<span id="cb491-2"><a href="analysis-of-covariance.html#cb491-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb491-3"><a href="analysis-of-covariance.html#cb491-3" aria-hidden="true" tabindex="-1"></a>emph_imp</span></code></pre></div>
+<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="analysis-of-covariance.html#cb494-1" aria-hidden="true" tabindex="-1"></a>emph_imp <span class="ot">&lt;-</span> <span class="fu">replace_na</span>(emphysema, <span class="fu">list</span>(<span class="at">age =</span> <span class="fu">mean</span>(emphysema<span class="sc">$</span>age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span>
+<span id="cb494-2"><a href="analysis-of-covariance.html#cb494-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb494-3"><a href="analysis-of-covariance.html#cb494-3" aria-hidden="true" tabindex="-1"></a>emph_imp</span></code></pre></div>
 <pre><code># A tibble: 16 x 7
    patient   age sex   st_base st_day5 st_day10 st_delta
      &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
  1       1  61   F        14.1     2.3     10.3  -11.8  
  2       2  70   F         7.2     5.4      7.3   -1.8  
- 3       3  65   M        14.2    11.9     11.3   -2.30 
+ 3       3  65   M        14.2    11.9     11.3   -2.3  
  4       4  65   M        10.3    10.7     13.8    0.400
  5       5  65.2 M         9.9    10.7     11.7    0.800
- 6       6  76   M         5.2     6.8      4.2    1.60 
- 7       7  72   M        10.4    14.6     14.1    4.20 
+ 6       6  76   M         5.2     6.8      4.2    1.6  
+ 7       7  72   M        10.4    14.6     14.1    4.2  
  8       8  69   F        10.5     7.2      5.4   -3.3  
  9       9  66   M         5       5        5.1    0    
 10      10  62   M         8.6     8.1      7.4   -0.5  
-11      11  65   F        16.6    14.9     13     -1.7  
-12      12  71   M        16.4    18.6     17.1    2.2  
-13      13  51   F        12.2    11       12.3   -1.20 
-14      14  71   M         6.6     3.7      4.5   -2.90 
-15      15  64   F        15.4    15.2     13.6   -0.2  
-16      16  50   M        10.2    10.8     11.2    0.6  </code></pre>
+11      11  65   F        16.6    14.9     13     -1.70 
+12      12  71   M        16.4    18.6     17.1    2.20 
+13      13  51   F        12.2    11       12.3   -1.2  
+14      14  71   M         6.6     3.7      4.5   -2.9  
+15      15  64   F        15.4    15.2     13.6   -0.200
+16      16  50   M        10.2    10.8     11.2    0.600</code></pre>
 <p>More on simple imputation and missing data is coming soon.</p>
 <p>For now, we can rerun the ANCOVA model on this new data set, after imputation…</p>
-<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="analysis-of-covariance.html#cb493-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">+</span> age, <span class="at">data =</span> emph_imp))</span></code></pre></div>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="analysis-of-covariance.html#cb496-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">+</span> age, <span class="at">data =</span> emph_imp))</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: st_delta
@@ -1179,7 +1204,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div id="looking-at-a-factor-covariate-interaction" class="section level2" number="7.6">
 <h2><span class="header-section-number">7.6</span> Looking at a factor-covariate interaction</h2>
 <p>Let’s run a model including the interaction (product) term between <code>age</code> and <code>sex</code>, which implies that the slope of <code>age</code> on our outcome (<code>st_delta</code>) depends on the patient’s sex. We’ll use the imputed data again. Here is the new ANCOVA table, which suggests that the interaction of <code>age</code> and <code>sex</code> is small (because it accounts for only a small amount of the total Sum of Squares) and not significant (p = 0.91).</p>
-<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="analysis-of-covariance.html#cb495-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">*</span> age, <span class="at">data =</span> emph_imp))</span></code></pre></div>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="analysis-of-covariance.html#cb498-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">*</span> age, <span class="at">data =</span> emph_imp))</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: st_delta
@@ -1191,7 +1216,7 @@ Residuals 12 127.261  10.605
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Since the interaction term is neither substantial nor significant, we probably don’t need it here. But let’s look at its interpretation anyway, just to fix ideas. To do that, we’ll need the coefficients from the underlying regression model.</p>
-<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="analysis-of-covariance.html#cb497-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">*</span> age, <span class="at">data =</span> emph_imp))</span></code></pre></div>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="analysis-of-covariance.html#cb500-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">*</span> age, <span class="at">data =</span> emph_imp))</span></code></pre></div>
 <pre><code># A tibble: 4 x 5
   term        estimate std.error statistic p.value
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
@@ -1209,15 +1234,15 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div id="centering-the-covariate-to-facilitate-ancova-interpretation" class="section level2" number="7.7">
 <h2><span class="header-section-number">7.7</span> Centering the Covariate to Facilitate ANCOVA Interpretation</h2>
 <p>When developing an ANCOVA model, we will often <strong>center</strong> or even <strong>center and rescale</strong> the covariate to facilitate interpretation of the product term. In this case, let’s center <code>age</code> and rescale it by dividing by two standard deviations.</p>
-<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="analysis-of-covariance.html#cb499-1" aria-hidden="true" tabindex="-1"></a>emph_imp <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(age)</span></code></pre></div>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="analysis-of-covariance.html#cb502-1" aria-hidden="true" tabindex="-1"></a>emph_imp <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(age)</span></code></pre></div>
 <pre><code> min   Q1 median    Q3 max mean       sd  n missing
   50 63.5   65.1 70.25  76 65.2 6.978061 16       0</code></pre>
 <p>Note that in our imputed data, the mean <code>age</code> is 65.2 and the standard deviation of <code>age</code> is 7 years.</p>
 <p>So we build the rescaled <code>age</code> variable that I’ll call <code>age_z</code>, and then use it to refit our model.</p>
-<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="analysis-of-covariance.html#cb501-1" aria-hidden="true" tabindex="-1"></a>emph_imp <span class="ot">&lt;-</span> emph_imp <span class="sc">%&gt;%</span></span>
-<span id="cb501-2"><a href="analysis-of-covariance.html#cb501-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">age_z =</span> (age <span class="sc">-</span> <span class="fu">mean</span>(age))<span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">sd</span>(age)))</span>
-<span id="cb501-3"><a href="analysis-of-covariance.html#cb501-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb501-4"><a href="analysis-of-covariance.html#cb501-4" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">*</span> age_z, <span class="at">data =</span> emph_imp))</span></code></pre></div>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="analysis-of-covariance.html#cb504-1" aria-hidden="true" tabindex="-1"></a>emph_imp <span class="ot">&lt;-</span> emph_imp <span class="sc">%&gt;%</span></span>
+<span id="cb504-2"><a href="analysis-of-covariance.html#cb504-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">age_z =</span> (age <span class="sc">-</span> <span class="fu">mean</span>(age))<span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">sd</span>(age)))</span>
+<span id="cb504-3"><a href="analysis-of-covariance.html#cb504-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb504-4"><a href="analysis-of-covariance.html#cb504-4" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">*</span> age_z, <span class="at">data =</span> emph_imp))</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: st_delta
@@ -1228,7 +1253,7 @@ sex:age_z  1   0.130   0.130  0.0123 0.91355
 Residuals 12 127.261  10.605                  
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="analysis-of-covariance.html#cb503-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">*</span> age_z, <span class="at">data =</span> emph_imp))</span></code></pre></div>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="analysis-of-covariance.html#cb506-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(<span class="fu">lm</span>(st_delta <span class="sc">~</span> sex <span class="sc">*</span> age_z, <span class="at">data =</span> emph_imp))</span></code></pre></div>
 <pre><code># A tibble: 4 x 5
   term        estimate std.error statistic p.value
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
@@ -1257,6 +1282,12 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 
 </div>
 </div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Riffenburgh2006" class="csl-entry">
+Riffenburgh, Robert H. 2006. <em>Statistics in Medicine</em>. Second Edition. Burlington, MA: Elsevier Academic Press.
+</div>
+</div>
             </section>
 
           </div>
@@ -1267,7 +1298,6 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1286,6 +1316,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -1306,6 +1337,10 @@ gitbook.start({
 "text": null
 },
 "download": ["432-notes.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

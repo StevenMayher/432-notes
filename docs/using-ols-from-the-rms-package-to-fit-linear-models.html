@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 10 Using ols from the rms package to fit linear models | Data Science for Biological, Medical and Health Research: Notes for 432</title>
   <meta name="description" content="Course Notes for PQHS 432 in Spring 2021." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 10 Using ols from the rms package to fit linear models | Data Science for Biological, Medical and Health Research: Notes for 432" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="adding-non-linear-terms-to-a-linear-regression-model.html"/>
 <link rel="next" href="logistic-regression-the-foundations.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,13 +50,15 @@
 
 
 
-
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -114,6 +117,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 </head>
@@ -230,30 +256,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9.7" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#saving-the-new-tibbles"><i class="fa fa-check"></i><b>3.9.7</b> Saving the new tibbles</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing the <code>smart_cle1</code> data</a>
+<li class="chapter" data-level="4" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing the <code>smart_cle1</code> data</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#general-approaches-to-obtaining-numeric-summaries"><i class="fa fa-check"></i><b>4.1</b> General Approaches to Obtaining Numeric Summaries</a>
+<li class="chapter" data-level="4.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#general-approaches-to-obtaining-numeric-summaries"><i class="fa fa-check"></i><b>4.1</b> General Approaches to Obtaining Numeric Summaries</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#summary-for-a-data-frame"><i class="fa fa-check"></i><b>4.1.1</b> <code>summary</code> for a data frame</a></li>
-<li class="chapter" data-level="4.1.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#the-inspect-function-from-the-mosaic-package"><i class="fa fa-check"></i><b>4.1.2</b> The <code>inspect</code> function from the <code>mosaic</code> package</a></li>
-<li class="chapter" data-level="4.1.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#the-describe-function-in-hmisc"><i class="fa fa-check"></i><b>4.1.3</b> The <code>describe</code> function in <code>Hmisc</code></a></li>
+<li class="chapter" data-level="4.1.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#summary-for-a-data-frame"><i class="fa fa-check"></i><b>4.1.1</b> <code>summary</code> for a data frame</a></li>
+<li class="chapter" data-level="4.1.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#the-inspect-function-from-the-mosaic-package"><i class="fa fa-check"></i><b>4.1.2</b> The <code>inspect</code> function from the <code>mosaic</code> package</a></li>
+<li class="chapter" data-level="4.1.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#the-describe-function-in-hmisc"><i class="fa fa-check"></i><b>4.1.3</b> The <code>describe</code> function in <code>Hmisc</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#counting-as-exploratory-data-analysis"><i class="fa fa-check"></i><b>4.2</b> Counting as exploratory data analysis</a>
+<li class="chapter" data-level="4.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#counting-as-exploratory-data-analysis"><i class="fa fa-check"></i><b>4.2</b> Counting as exploratory data analysis</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#did-genhealth-vary-by-smoking-status"><i class="fa fa-check"></i><b>4.2.1</b> Did <code>genhealth</code> vary by smoking status?</a></li>
-<li class="chapter" data-level="4.2.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#whats-the-distribution-of-physhealth"><i class="fa fa-check"></i><b>4.2.2</b> What’s the distribution of <code>physhealth</code>?</a></li>
-<li class="chapter" data-level="4.2.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#whats-the-distribution-of-bmi"><i class="fa fa-check"></i><b>4.2.3</b> What’s the distribution of <code>bmi</code>?</a></li>
-<li class="chapter" data-level="4.2.4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-many-of-the-respondents-have-a-bmi-below-30"><i class="fa fa-check"></i><b>4.2.4</b> How many of the respondents have a BMI below 30?</a></li>
-<li class="chapter" data-level="4.2.5" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-many-of-the-respondents-with-a-bmi-30-are-highly-active"><i class="fa fa-check"></i><b>4.2.5</b> How many of the respondents with a BMI &lt; 30 are highly active?</a></li>
-<li class="chapter" data-level="4.2.6" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#is-obesity-associated-with-smoking-history"><i class="fa fa-check"></i><b>4.2.6</b> Is obesity associated with smoking history?</a></li>
-<li class="chapter" data-level="4.2.7" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#comparing-drinks_wk-summaries-by-obesity-status"><i class="fa fa-check"></i><b>4.2.7</b> Comparing <code>drinks_wk</code> summaries by obesity status</a></li>
+<li class="chapter" data-level="4.2.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#did-genhealth-vary-by-smoking-status"><i class="fa fa-check"></i><b>4.2.1</b> Did <code>genhealth</code> vary by smoking status?</a></li>
+<li class="chapter" data-level="4.2.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#whats-the-distribution-of-physhealth"><i class="fa fa-check"></i><b>4.2.2</b> What’s the distribution of <code>physhealth</code>?</a></li>
+<li class="chapter" data-level="4.2.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#whats-the-distribution-of-bmi"><i class="fa fa-check"></i><b>4.2.3</b> What’s the distribution of <code>bmi</code>?</a></li>
+<li class="chapter" data-level="4.2.4" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#how-many-of-the-respondents-have-a-bmi-below-30"><i class="fa fa-check"></i><b>4.2.4</b> How many of the respondents have a BMI below 30?</a></li>
+<li class="chapter" data-level="4.2.5" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#how-many-of-the-respondents-with-a-bmi-30-are-highly-active"><i class="fa fa-check"></i><b>4.2.5</b> How many of the respondents with a BMI &lt; 30 are highly active?</a></li>
+<li class="chapter" data-level="4.2.6" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#is-obesity-associated-with-smoking-history"><i class="fa fa-check"></i><b>4.2.6</b> Is obesity associated with smoking history?</a></li>
+<li class="chapter" data-level="4.2.7" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#comparing-drinks_wk-summaries-by-obesity-status"><i class="fa fa-check"></i><b>4.2.7</b> Comparing <code>drinks_wk</code> summaries by obesity status</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#can-bmi-predict-physhealth"><i class="fa fa-check"></i><b>4.3</b> Can <code>bmi</code> predict <code>physhealth</code>?</a>
+<li class="chapter" data-level="4.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#can-bmi-predict-physhealth"><i class="fa fa-check"></i><b>4.3</b> Can <code>bmi</code> predict <code>physhealth</code>?</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#fitting-a-simple-regression-model"><i class="fa fa-check"></i><b>4.3.1</b> Fitting a Simple Regression Model</a></li>
-<li class="chapter" data-level="4.3.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#model-summary-for-a-simple-one-predictor-regression"><i class="fa fa-check"></i><b>4.3.2</b> Model Summary for a Simple (One-Predictor) Regression</a></li>
-<li class="chapter" data-level="4.3.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#using-the-broom-package"><i class="fa fa-check"></i><b>4.3.3</b> Using the <code>broom</code> package</a></li>
-<li class="chapter" data-level="4.3.4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-does-the-model-do-residuals-vs.-fitted-values"><i class="fa fa-check"></i><b>4.3.4</b> How does the model do? (Residuals vs. Fitted Values)</a></li>
+<li class="chapter" data-level="4.3.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#fitting-a-simple-regression-model"><i class="fa fa-check"></i><b>4.3.1</b> Fitting a Simple Regression Model</a></li>
+<li class="chapter" data-level="4.3.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#model-summary-for-a-simple-one-predictor-regression"><i class="fa fa-check"></i><b>4.3.2</b> Model Summary for a Simple (One-Predictor) Regression</a></li>
+<li class="chapter" data-level="4.3.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#using-the-broom-package"><i class="fa fa-check"></i><b>4.3.3</b> Using the <code>broom</code> package</a></li>
+<li class="chapter" data-level="4.3.4" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#how-does-the-model-do-residuals-vs.-fitted-values"><i class="fa fa-check"></i><b>4.3.4</b> How does the model do? (Residuals vs. Fitted Values)</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html"><i class="fa fa-check"></i><b>5</b> Analysis of Variance with SMART</a>
@@ -339,7 +365,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#a-new-small-study-predicting-bmi"><i class="fa fa-check"></i><b>8.1</b> A New Small Study: Predicting BMI</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#does-female-predict-bmi-well"><i class="fa fa-check"></i><b>8.1.1</b> Does <code>female</code> predict <code>bmi</code> well?</a></li>
+<li class="chapter" data-level="8.1.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#does-smoke100-predict-bmi-well"><i class="fa fa-check"></i><b>8.1.1</b> Does <code>smoke100</code> predict <code>bmi</code> well?</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m1-a-simple-t-test-model"><i class="fa fa-check"></i><b>8.2</b> <code>c8_m1</code>: A simple t-test model</a></li>
 <li class="chapter" data-level="8.3" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m2-adding-another-predictor-two-way-anova-without-interaction"><i class="fa fa-check"></i><b>8.3</b> <code>c8_m2</code>: Adding another predictor (two-way ANOVA without interaction)</a></li>
@@ -483,7 +509,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12.14" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#logistic-regression-using-lrm"><i class="fa fa-check"></i><b>12.14</b> Logistic Regression using <code>lrm</code></a>
 <ul>
-<li class="chapter" data-level="12.14.1" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#interpreting-nagelkerke-r2"><i class="fa fa-check"></i><b>12.14.1</b> Interpreting Nagelkerke R<sup>2</sup></a></li>
+<li class="chapter" data-level="12.14.1" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#interpreting-nagelkerke-r2"><i class="fa fa-check"></i><b>12.14.1</b> Interpreting Nagelkerke <span class="math inline">\(R^2\)</span></a></li>
 <li class="chapter" data-level="12.14.2" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#interpreting-the-c-statistic-and-plotting-the-roc-curve"><i class="fa fa-check"></i><b>12.14.2</b> Interpreting the C statistic and Plotting the ROC Curve</a></li>
 <li class="chapter" data-level="12.14.3" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#the-c-statistic-and-somers-d"><i class="fa fa-check"></i><b>12.14.3</b> The C statistic and Somers’ D</a></li>
 <li class="chapter" data-level="12.14.4" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#validating-the-logistic-regression-model-summary-statistics"><i class="fa fa-check"></i><b>12.14.4</b> Validating the Logistic Regression Model Summary Statistics</a></li>
@@ -531,7 +557,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.5" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#exploring-model-c11_prost_a"><i class="fa fa-check"></i><b>13.5</b> Exploring Model <code>c11_prost_A</code></a>
 <ul>
 <li class="chapter" data-level="13.5.1" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#summary-for-model-c11_prost_a"><i class="fa fa-check"></i><b>13.5.1</b> <code>summary</code> for Model <code>c11_prost_A</code></a></li>
-<li class="chapter" data-level="13.5.2" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#adjusted-r2"><i class="fa fa-check"></i><b>13.5.2</b> Adjusted R<sup>2</sup></a></li>
+<li class="chapter" data-level="13.5.2" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#adjusted-r2"><i class="fa fa-check"></i><b>13.5.2</b> Adjusted <span class="math inline">\(R^2\)</span></a></li>
 <li class="chapter" data-level="13.5.3" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#coefficient-confidence-intervals"><i class="fa fa-check"></i><b>13.5.3</b> Coefficient Confidence Intervals</a></li>
 <li class="chapter" data-level="13.5.4" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#anova-for-model-c11_prost_a"><i class="fa fa-check"></i><b>13.5.4</b> ANOVA for Model <code>c11_prost_A</code></a></li>
 <li class="chapter" data-level="13.5.5" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#residuals-fitted-values-and-standard-errors-with-augment"><i class="fa fa-check"></i><b>13.5.5</b> Residuals, Fitted Values and Standard Errors with <code>augment</code></a></li>
@@ -628,7 +654,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="19.5.1" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#interpreting-the-coefficients"><i class="fa fa-check"></i><b>19.5.1</b> Interpreting the Coefficients</a></li>
 <li class="chapter" data-level="19.5.2" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals"><i class="fa fa-check"></i><b>19.5.2</b> Store fitted values and residuals</a></li>
-<li class="chapter" data-level="19.5.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values"><i class="fa fa-check"></i><b>19.5.3</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.5.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values"><i class="fa fa-check"></i><b>19.5.3</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.5.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions"><i class="fa fa-check"></i><b>19.5.4</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.5.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally"><i class="fa fa-check"></i><b>19.5.5</b> Predictions for Harry and Sally</a></li>
 <li class="chapter" data-level="19.5.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#notes"><i class="fa fa-check"></i><b>19.5.6</b> Notes</a></li>
@@ -637,8 +663,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="19.6.1" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#interpreting-the-coefficients-1"><i class="fa fa-check"></i><b>19.6.1</b> Interpreting the Coefficients</a></li>
 <li class="chapter" data-level="19.6.2" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-1"><i class="fa fa-check"></i><b>19.6.2</b> Store fitted values and residuals</a></li>
-<li class="chapter" data-level="19.6.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-1"><i class="fa fa-check"></i><b>19.6.3</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
-<li class="chapter" data-level="19.6.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#getting-r2-on-the-scale-of-physhealth"><i class="fa fa-check"></i><b>19.6.4</b> Getting R<sup>2</sup> on the scale of <code>physhealth</code></a></li>
+<li class="chapter" data-level="19.6.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-1"><i class="fa fa-check"></i><b>19.6.3</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.6.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#getting-r2-on-the-scale-of-physhealth"><i class="fa fa-check"></i><b>19.6.4</b> Getting <span class="math inline">\(R^2\)</span> on the scale of <code>physhealth</code></a></li>
 <li class="chapter" data-level="19.6.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-1"><i class="fa fa-check"></i><b>19.6.5</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.6.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-1"><i class="fa fa-check"></i><b>19.6.6</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -650,7 +676,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.7.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#correcting-for-overdispersion-with-coeftestcoefci"><i class="fa fa-check"></i><b>19.7.4</b> Correcting for Overdispersion with <code>coeftest</code>/<code>coefci</code></a></li>
 <li class="chapter" data-level="19.7.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-2"><i class="fa fa-check"></i><b>19.7.5</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.7.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-see-the-fit-of-a-count-regression-model"><i class="fa fa-check"></i><b>19.7.6</b> Rootogram: see the fit of a count regression model</a></li>
-<li class="chapter" data-level="19.7.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-2"><i class="fa fa-check"></i><b>19.7.7</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.7.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-2"><i class="fa fa-check"></i><b>19.7.7</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.7.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-2"><i class="fa fa-check"></i><b>19.7.8</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.7.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#using-glm.diag.plots-from-the-boot-package"><i class="fa fa-check"></i><b>19.7.9</b> Using <code>glm.diag.plots</code> from the <code>boot</code> package</a></li>
 <li class="chapter" data-level="19.7.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-2"><i class="fa fa-check"></i><b>19.7.10</b> Predictions for Harry and Sally</a></li>
@@ -665,7 +691,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.9.2" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#interpreting-the-coefficients-3"><i class="fa fa-check"></i><b>19.9.2</b> Interpreting the Coefficients</a></li>
 <li class="chapter" data-level="19.9.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#testing-the-predictors-1"><i class="fa fa-check"></i><b>19.9.3</b> Testing the Predictors</a></li>
 <li class="chapter" data-level="19.9.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-3"><i class="fa fa-check"></i><b>19.9.4</b> Store fitted values and residuals</a></li>
-<li class="chapter" data-level="19.9.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-3"><i class="fa fa-check"></i><b>19.9.5</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.9.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-3"><i class="fa fa-check"></i><b>19.9.5</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.9.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-3"><i class="fa fa-check"></i><b>19.9.6</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.9.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-3"><i class="fa fa-check"></i><b>19.9.7</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -689,7 +715,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.11.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-4"><i class="fa fa-check"></i><b>19.11.6</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.11.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-negative-binomial-model"><i class="fa fa-check"></i><b>19.11.7</b> Rootogram for Negative Binomial model</a></li>
 <li class="chapter" data-level="19.11.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#simulating-what-the-negative-binomial-model-predicts"><i class="fa fa-check"></i><b>19.11.8</b> Simulating what the Negative Binomial model predicts</a></li>
-<li class="chapter" data-level="19.11.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-4"><i class="fa fa-check"></i><b>19.11.9</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.11.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-4"><i class="fa fa-check"></i><b>19.11.9</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.11.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-4"><i class="fa fa-check"></i><b>19.11.10</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.11.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-4"><i class="fa fa-check"></i><b>19.11.11</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -704,7 +730,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.13.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-5"><i class="fa fa-check"></i><b>19.13.6</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.13.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#modeled-number-of-zero-counts"><i class="fa fa-check"></i><b>19.13.7</b> Modeled Number of Zero Counts</a></li>
 <li class="chapter" data-level="19.13.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-zip-model"><i class="fa fa-check"></i><b>19.13.8</b> Rootogram for ZIP model</a></li>
-<li class="chapter" data-level="19.13.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values"><i class="fa fa-check"></i><b>19.13.9</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.13.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values"><i class="fa fa-check"></i><b>19.13.9</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.13.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-5"><i class="fa fa-check"></i><b>19.13.10</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.13.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-5"><i class="fa fa-check"></i><b>19.13.11</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -718,7 +744,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.14.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-6"><i class="fa fa-check"></i><b>19.14.6</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.14.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#modeled-number-of-zero-counts-1"><i class="fa fa-check"></i><b>19.14.7</b> Modeled Number of Zero Counts</a></li>
 <li class="chapter" data-level="19.14.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-zero-inflated-negative-binomial-model"><i class="fa fa-check"></i><b>19.14.8</b> Rootogram for Zero-Inflated Negative Binomial model</a></li>
-<li class="chapter" data-level="19.14.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-1"><i class="fa fa-check"></i><b>19.14.9</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.14.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-1"><i class="fa fa-check"></i><b>19.14.9</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.14.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-6"><i class="fa fa-check"></i><b>19.14.10</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.14.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-6"><i class="fa fa-check"></i><b>19.14.11</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -734,7 +760,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.15.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#modeled-number-of-zero-counts-2"><i class="fa fa-check"></i><b>19.15.8</b> Modeled Number of Zero Counts</a></li>
 <li class="chapter" data-level="19.15.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-hurdle-model"><i class="fa fa-check"></i><b>19.15.9</b> Rootogram for Hurdle Model</a></li>
 <li class="chapter" data-level="19.15.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#understanding-the-modeled-counts-in-detail"><i class="fa fa-check"></i><b>19.15.10</b> Understanding the Modeled Counts in Detail</a></li>
-<li class="chapter" data-level="19.15.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-2"><i class="fa fa-check"></i><b>19.15.11</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.15.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-2"><i class="fa fa-check"></i><b>19.15.11</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.15.12" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-7"><i class="fa fa-check"></i><b>19.15.12</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.15.13" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-7"><i class="fa fa-check"></i><b>19.15.13</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -749,7 +775,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.16.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#testing-the-predictors-6"><i class="fa fa-check"></i><b>19.16.7</b> Testing the Predictors</a></li>
 <li class="chapter" data-level="19.16.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-8"><i class="fa fa-check"></i><b>19.16.8</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.16.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-nb-hurdle-model"><i class="fa fa-check"></i><b>19.16.9</b> Rootogram for NB Hurdle Model</a></li>
-<li class="chapter" data-level="19.16.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-3"><i class="fa fa-check"></i><b>19.16.10</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.16.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-3"><i class="fa fa-check"></i><b>19.16.10</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.16.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-8"><i class="fa fa-check"></i><b>19.16.11</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.16.12" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-8"><i class="fa fa-check"></i><b>19.16.12</b> Predictions for Harry and Sally</a></li>
 <li class="chapter" data-level="19.16.13" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#note-fitting-a-different-hurdle-model-for-counts-and-przero"><i class="fa fa-check"></i><b>19.16.13</b> Note: Fitting a Different Hurdle Model for Counts and Pr(zero)</a></li>
@@ -763,7 +789,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.17.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-9"><i class="fa fa-check"></i><b>19.17.4</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.17.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#building-something-like-a-rootogram"><i class="fa fa-check"></i><b>19.17.5</b> Building Something Like a Rootogram</a></li>
 <li class="chapter" data-level="19.17.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#tables-of-the-observed-and-fitted-physhealth-from-tobit"><i class="fa fa-check"></i><b>19.17.6</b> Tables of the Observed and Fitted <code>physhealth</code> from Tobit</a></li>
-<li class="chapter" data-level="19.17.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-4"><i class="fa fa-check"></i><b>19.17.7</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.17.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-4"><i class="fa fa-check"></i><b>19.17.7</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.17.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-9"><i class="fa fa-check"></i><b>19.17.8</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.17.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-9"><i class="fa fa-check"></i><b>19.17.9</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -945,9 +971,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="24.4.1" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#interpreting-the-results-from-model-b"><i class="fa fa-check"></i><b>24.4.1</b> Interpreting the Results from Model B</a></li>
 <li class="chapter" data-level="24.4.2" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#plotting-the-survival-curve-implied-by-model-b"><i class="fa fa-check"></i><b>24.4.2</b> Plotting the Survival Curve implied by Model B</a></li>
-<li class="chapter" data-level="24.4.3" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#plotting-the-cumulative-hazard-implied-by-model-b"><i class="fa fa-check"></i><b>24.4.3</b> Plotting the Cumulative Hazard implied by Model B</a></li>
-<li class="chapter" data-level="24.4.4" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#testing-the-proportional-hazards-assumption-1"><i class="fa fa-check"></i><b>24.4.4</b> Testing the Proportional Hazards Assumption</a></li>
-<li class="chapter" data-level="24.4.5" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#assessing-collinearity"><i class="fa fa-check"></i><b>24.4.5</b> Assessing Collinearity</a></li>
+<li class="chapter" data-level="24.4.3" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#testing-the-proportional-hazards-assumption-1"><i class="fa fa-check"></i><b>24.4.3</b> Testing the Proportional Hazards Assumption</a></li>
+<li class="chapter" data-level="24.4.4" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#assessing-collinearity"><i class="fa fa-check"></i><b>24.4.4</b> Assessing Collinearity</a></li>
 </ul></li>
 <li class="chapter" data-level="24.5" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#model-b2-a-stepwise-reduction-of-model-b"><i class="fa fa-check"></i><b>24.5</b> Model B2: A Stepwise Reduction of Model B</a>
 <ul>
@@ -994,19 +1019,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>a polynomial in 2 degrees on <code>x14</code></li>
 <li>linear terms for <code>x1</code> and <code>x13</code></li>
 </ul>
-<p>but this model was hard to evaluate in some ways. Now, instead of using <code>lm</code> to fit this model, we’ll use a new function called <code>ols</code> from the <code>rms</code> package developed by Frank Harrell and colleagues, in part to support ideas developed in <span class="citation"><a href="references.html#ref-Harrell2001" role="doc-biblioref">Harrell</a> (<a href="references.html#ref-Harrell2001" role="doc-biblioref">2001</a>)</span> for clinical prediction models.</p>
+<p>but this model was hard to evaluate in some ways. Now, instead of using <code>lm</code> to fit this model, we’ll use a new function called <code>ols</code> from the <code>rms</code> package developed by Frank Harrell and colleagues, in part to support ideas developed in <span class="citation"><a href="#ref-Harrell2001" role="doc-biblioref">Harrell</a> (<a href="#ref-Harrell2001" role="doc-biblioref">2001</a>)</span> for clinical prediction models.</p>
 <div id="fitting-a-model-with-ols" class="section level2" number="10.1">
 <h2><span class="header-section-number">10.1</span> Fitting a model with <code>ols</code></h2>
 <p>We will use the <code>datadist</code> approach when fitting a linear model with <code>ols</code> from the <code>rms</code> package, so as to store additional important elements of the model fit.</p>
-<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb639-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rms)</span>
-<span id="cb639-2"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb639-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb639-3"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb639-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">datadist</span>(pollution)</span>
-<span id="cb639-4"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb639-4" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">datadist =</span> <span class="st">&quot;d&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb646-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rms)</span>
+<span id="cb646-2"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb646-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb646-3"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb646-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">datadist</span>(pollution)</span>
+<span id="cb646-4"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb646-4" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">datadist =</span> <span class="st">&quot;d&quot;</span>)</span></code></pre></div>
 <p>Next, we’ll fit the model using <code>ols</code> and place its results in <code>newmod</code>.</p>
-<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb640-1" aria-hidden="true" tabindex="-1"></a>newmod <span class="ot">&lt;-</span> <span class="fu">ols</span>(y <span class="sc">~</span> <span class="fu">rcs</span>(x9, <span class="dv">5</span>) <span class="sc">+</span> <span class="fu">rcs</span>(x6, <span class="dv">3</span>) <span class="sc">+</span> <span class="fu">pol</span>(x14, <span class="dv">2</span>) <span class="sc">+</span> </span>
-<span id="cb640-2"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb640-2" aria-hidden="true" tabindex="-1"></a>                  x1 <span class="sc">+</span> x13, </span>
-<span id="cb640-3"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb640-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> pollution, <span class="at">x =</span> <span class="cn">TRUE</span>, <span class="at">y =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb640-4"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb640-4" aria-hidden="true" tabindex="-1"></a>newmod</span></code></pre></div>
+<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb647-1" aria-hidden="true" tabindex="-1"></a>newmod <span class="ot">&lt;-</span> <span class="fu">ols</span>(y <span class="sc">~</span> <span class="fu">rcs</span>(x9, <span class="dv">5</span>) <span class="sc">+</span> <span class="fu">rcs</span>(x6, <span class="dv">3</span>) <span class="sc">+</span> <span class="fu">pol</span>(x14, <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb647-2"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb647-2" aria-hidden="true" tabindex="-1"></a>                  x1 <span class="sc">+</span> x13, </span>
+<span id="cb647-3"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb647-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> pollution, <span class="at">x =</span> <span class="cn">TRUE</span>, <span class="at">y =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb647-4"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb647-4" aria-hidden="true" tabindex="-1"></a>newmod</span></code></pre></div>
 <pre><code>Linear Regression Model
  
  ols(formula = y ~ rcs(x9, 5) + rcs(x6, 3) + pol(x14, 2) + x1 + 
@@ -1065,7 +1090,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="anova-for-an-ols-model" class="section level2" number="10.2">
 <h2><span class="header-section-number">10.2</span> ANOVA for an <code>ols</code> model</h2>
 <p>One advantage of the <code>ols</code> approach is that when you apply an <code>anova</code> to it, it separates out the linear and non-linear components of restricted cubic splines and polynomial terms (as well as product terms, if your model includes them.)</p>
-<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb642-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(newmod)</span></code></pre></div>
+<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb649-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(newmod)</span></code></pre></div>
 <pre><code>                Analysis of Variance          Response: y 
 
  Factor          d.f. Partial SS  MS         F     P     
@@ -1086,7 +1111,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="effect-estimates" class="section level2" number="10.3">
 <h2><span class="header-section-number">10.3</span> Effect Estimates</h2>
 <p>A particularly useful thing to get out of the <code>ols</code> approach that is not as easily available in <code>lm</code> (without recoding or standardizing our predictors) is a summary of the effects of each predictor in an interesting scale.</p>
-<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb644-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(newmod)</span></code></pre></div>
+<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb651-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(newmod)</span></code></pre></div>
 <pre><code>             Effects              Response : y 
 
  Factor Low   High  Diff. Effect   S.E.    Lower 0.95 Upper 0.95
@@ -1097,7 +1122,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  x13     4.00 23.75 19.75  -2.0303  2.8502  -7.7579    3.6973   </code></pre>
 <p>This “effects summary” shows the effect on <code>y</code> of moving from the 25th to the 75th percentile of each variable (along with a standard error and 95% confidence interval) while holding the other variable at the level specified at the bottom of the output.</p>
 <p>The most useful way to look at this sort of analysis is often a plot.</p>
-<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb646-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(newmod))</span></code></pre></div>
+<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb653-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">summary</span>(newmod))</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-217-1.png" width="672" /></p>
 <p>For <code>x9</code> note from the <code>summary</code> above that the 25th percentile is 4.95 and the 75th is 15.65. Our conclusion is that the estimated effect of moving <code>x9</code> from 4.95 to 15.65 is an increase of 40.4 on <code>y</code>, with a 95% CI of (12.1, 68.7).</p>
 <p>For a categorical variable, the low level is shown first and then the high level.</p>
@@ -1109,7 +1134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="simultaneous-confidence-intervals" class="section level3" number="10.3.1">
 <h3><span class="header-section-number">10.3.1</span> Simultaneous Confidence Intervals</h3>
 <p>These confidence intervals make no effort to deal with the multiple comparisons problem, but just fit individual 95% (or whatever level you choose) confidence intervals for each predictor. The natural alternative is to make an adjustment for multiple comparisons in fitting the confidence intervals, so that the set of (in this case, five - one for each predictor) confidence intervals for effect sizes has a family-wise 95% confidence level. You’ll note that the effect estimates and standard errors are unchanged from those shown above, but the confidence limits are a bit wider.</p>
-<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb647-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(newmod, <span class="at">conf.type=</span><span class="fu">c</span>(<span class="st">&#39;simultaneous&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb654-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(newmod, <span class="at">conf.type=</span><span class="fu">c</span>(<span class="st">&#39;simultaneous&#39;</span>))</span></code></pre></div>
 <pre><code>             Effects              Response : y 
 
  Factor Low   High  Diff. Effect   S.E.    Lower 0.95 Upper 0.95
@@ -1124,14 +1149,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="the-predict-function-for-an-ols-model" class="section level2" number="10.4">
 <h2><span class="header-section-number">10.4</span> The <code>Predict</code> function for an <code>ols</code> model</h2>
 <p>The <code>Predict</code> function is very flexible, and can be used to produce individual or simultaneous confidence limits.</p>
-<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb649-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Predict</span>(newmod, <span class="at">x9 =</span> <span class="dv">12</span>, <span class="at">x6 =</span> <span class="dv">12</span>, <span class="at">x14 =</span> <span class="dv">40</span>, <span class="at">x1 =</span> <span class="dv">40</span>, <span class="at">x13 =</span> <span class="dv">20</span>) <span class="co"># individual limits</span></span></code></pre></div>
+<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb656-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Predict</span>(newmod, <span class="at">x9 =</span> <span class="dv">12</span>, <span class="at">x6 =</span> <span class="dv">12</span>, <span class="at">x14 =</span> <span class="dv">40</span>, <span class="at">x1 =</span> <span class="dv">40</span>, <span class="at">x13 =</span> <span class="dv">20</span>) <span class="co"># individual limits</span></span></code></pre></div>
 <pre><code>  x9 x6 x14 x1 x13     yhat    lower   upper
 1 12 12  40 40  20 923.0982 893.0984 953.098
 
 Response variable (y): y 
 
 Limits are 0.95 confidence limits</code></pre>
-<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb651-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Predict</span>(newmod, <span class="at">x9 =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">15</span>) <span class="co"># individual limits</span></span></code></pre></div>
+<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb658-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Predict</span>(newmod, <span class="at">x9 =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">15</span>) <span class="co"># individual limits</span></span></code></pre></div>
 <pre><code>   x9    x6 x14 x1 x13     yhat    lower    upper
 1   5 11.05  30 38   9 913.7392 889.4802 937.9983
 2   6 11.05  30 38   9 916.3490 892.0082 940.6897
@@ -1150,7 +1175,7 @@ Response variable (y): y
 Adjust to: x6=11.05 x14=30 x1=38 x13=9  
 
 Limits are 0.95 confidence limits</code></pre>
-<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb653-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Predict</span>(newmod, <span class="at">x9 =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">15</span>, <span class="at">conf.type =</span> <span class="st">&#39;simult&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb660-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Predict</span>(newmod, <span class="at">x9 =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">15</span>, <span class="at">conf.type =</span> <span class="st">&#39;simult&#39;</span>)</span></code></pre></div>
 <pre><code>   x9    x6 x14 x1 x13     yhat    lower    upper
 1   5 11.05  30 38   9 913.7392 882.4115 945.0669
 2   6 11.05  30 38   9 916.3490 884.9158 947.7822
@@ -1170,7 +1195,7 @@ Adjust to: x6=11.05 x14=30 x1=38 x13=9
 
 Limits are 0.95 confidence limits</code></pre>
 <p>The plot below shows the individual effects in <code>newmod</code> in five subpanels, using the default approach of displaying the same range of values as are seen in the data. Note that each panel shows point and interval estimates of the effects, and spot the straight lines in <code>x1</code> and <code>x13</code>, the single bends in <code>x14</code> and <code>x6</code> and the wiggles in <code>x9</code>, corresponding to the amount of non-linearity specified in the model.</p>
-<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb655-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">Predict</span>(newmod))</span></code></pre></div>
+<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb662-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">Predict</span>(newmod))</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-220-1.png" width="672" /></p>
 </div>
 <div id="checking-influence-via-dfbeta" class="section level2" number="10.5">
@@ -1187,7 +1212,7 @@ observation deleted.</li>
 <li>The default is that the DFBETA for that predictor is 0.2 or more.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb656-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.influence</span>(newmod)</span></code></pre></div>
+<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb663-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.influence</span>(newmod)</span></code></pre></div>
 <pre><code>$Intercept
 [1]  2 11 28 32 37 49 59
 
@@ -1209,7 +1234,7 @@ $x13
 <div id="using-the-residuals-command-for-dfbetas" class="section level3" number="10.5.1">
 <h3><span class="header-section-number">10.5.1</span> Using the <code>residuals</code> command for <code>dfbetas</code></h3>
 <p>To see the <code>dfbeta</code> values, standardized according to the approach I used above, you can use the following code (I’ll use <code>head</code> to just show the first few rows of results) to get a matrix of the results.</p>
-<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb658-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">residuals</span>(newmod, <span class="at">type =</span> <span class="st">&quot;dfbetas&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb665-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">residuals</span>(newmod, <span class="at">type =</span> <span class="st">&quot;dfbetas&quot;</span>))</span></code></pre></div>
 <pre><code>            [,1]         [,2]         [,3]        [,4]        [,5]        [,6]
 [1,]  0.03071160 -0.023775487 -0.004055111  0.01205425 -0.03260003 -0.02392315
 [2,] -0.38276573 -0.048404993 -0.142293606  0.17009666 -0.22350621  0.44737372
@@ -1228,11 +1253,11 @@ $x13
 <div id="using-the-residuals-command-for-other-summaries" class="section level3" number="10.5.2">
 <h3><span class="header-section-number">10.5.2</span> Using the <code>residuals</code> command for other summaries</h3>
 <p>The <code>residuals</code> command will also let you get ordinary residuals, leverage values and <code>dffits</code> values, which are the normalized differences in predicted values when observations are omitted. See <code>?residuals.ols</code> for more details.</p>
-<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb660-1" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">area =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>)</span>
-<span id="cb660-2"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb660-2" aria-hidden="true" tabindex="-1"></a>temp<span class="sc">$</span>residual <span class="ot">&lt;-</span> <span class="fu">residuals</span>(newmod, <span class="at">type =</span> <span class="st">&quot;ordinary&quot;</span>)</span>
-<span id="cb660-3"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb660-3" aria-hidden="true" tabindex="-1"></a>temp<span class="sc">$</span>leverage <span class="ot">&lt;-</span> <span class="fu">residuals</span>(newmod, <span class="at">type =</span> <span class="st">&quot;hat&quot;</span>)</span>
-<span id="cb660-4"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb660-4" aria-hidden="true" tabindex="-1"></a>temp<span class="sc">$</span>dffits <span class="ot">&lt;-</span> <span class="fu">residuals</span>(newmod, <span class="at">type =</span> <span class="st">&quot;dffits&quot;</span>)</span>
-<span id="cb660-5"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb660-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_df</span>(temp)</span></code></pre></div>
+<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb667-1" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">area =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>)</span>
+<span id="cb667-2"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb667-2" aria-hidden="true" tabindex="-1"></a>temp<span class="sc">$</span>residual <span class="ot">&lt;-</span> <span class="fu">residuals</span>(newmod, <span class="at">type =</span> <span class="st">&quot;ordinary&quot;</span>)</span>
+<span id="cb667-3"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb667-3" aria-hidden="true" tabindex="-1"></a>temp<span class="sc">$</span>leverage <span class="ot">&lt;-</span> <span class="fu">residuals</span>(newmod, <span class="at">type =</span> <span class="st">&quot;hat&quot;</span>)</span>
+<span id="cb667-4"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb667-4" aria-hidden="true" tabindex="-1"></a>temp<span class="sc">$</span>dffits <span class="ot">&lt;-</span> <span class="fu">residuals</span>(newmod, <span class="at">type =</span> <span class="st">&quot;dffits&quot;</span>)</span>
+<span id="cb667-5"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb667-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_df</span>(temp)</span></code></pre></div>
 <pre><code># A tibble: 60 x 4
     area residual leverage  dffits
    &lt;int&gt;    &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
@@ -1247,14 +1272,14 @@ $x13
  9     9    66.6    0.0863  0.587 
 10    10    -4.96   0.0997 -0.0460
 # ... with 50 more rows</code></pre>
-<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb662-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(temp, <span class="fu">aes</span>(<span class="at">x =</span> area, <span class="at">y =</span> dffits)) <span class="sc">+</span></span>
-<span id="cb662-2"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb662-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb662-3"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb662-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb669-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(temp, <span class="fu">aes</span>(<span class="at">x =</span> area, <span class="at">y =</span> dffits)) <span class="sc">+</span></span>
+<span id="cb669-2"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb669-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb669-3"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb669-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>()</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-223-1.png" width="672" /></p>
 <p>It appears that point 37 has the largest (positive) <code>dffits</code> value. Recall that point 37 seemed influential on several predictors and the intercept term. Point 32 has the smallest (or largest negative) <code>dffits</code>, and also appears to have been influential on several predictors and the intercept.</p>
-<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb663-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(temp<span class="sc">$</span>dffits)</span></code></pre></div>
+<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb670-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(temp<span class="sc">$</span>dffits)</span></code></pre></div>
 <pre><code>[1] 37</code></pre>
-<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb665-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min</span>(temp<span class="sc">$</span>dffits)</span></code></pre></div>
+<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb672-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min</span>(temp<span class="sc">$</span>dffits)</span></code></pre></div>
 <pre><code>[1] 32</code></pre>
 </div>
 </div>
@@ -1270,7 +1295,7 @@ $x13
 <li>Estimates of the intercept and slope of a calibration model</li>
 </ul>
 <p>with the following code…</p>
-<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb667-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">432002</span>); <span class="fu">validate</span>(newmod, <span class="at">method =</span> <span class="st">&quot;boot&quot;</span>, <span class="at">B =</span> <span class="dv">40</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb674-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb674-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">432002</span>); <span class="fu">validate</span>(newmod, <span class="at">method =</span> <span class="st">&quot;boot&quot;</span>, <span class="at">B =</span> <span class="dv">40</span>)</span></code></pre></div>
 <pre><code>          index.orig training      test  optimism index.corrected  n
 R-square      0.6989   0.7426    0.5749    0.1676          0.5312 40
 MSE        1145.7800 963.9565 1617.4042 -653.4478       1799.2278 40
@@ -1281,14 +1306,14 @@ Slope         1.0000   1.0000    0.8961    0.1039          0.8961 40</code></pre
 <ul>
 <li>Our estimated <code>R-square</code> across <code>n</code> = 40 training samples was 0.7426, but in the resulting tests, the average <code>R-square</code> was only 0.5749</li>
 <li>This suggests an optimism of 0.7426 - 0.5749 = 0.1676 (after rounding).</li>
-<li>We then apply that optimism to obtain a new estimate of R<sup>2</sup> corrected for overfitting, at 0.5312, which is probably a better estimate of what our results might look like in new data that were similar to (but not the same as) the data we used in building <code>newmod</code> than our initial estimate of 0.6989</li>
+<li>We then apply that optimism to obtain a new estimate of <span class="math inline">\(R^2\)</span> corrected for overfitting, at 0.5312, which is probably a better estimate of what our results might look like in new data that were similar to (but not the same as) the data we used in building <code>newmod</code> than our initial estimate of 0.6989</li>
 </ul>
 <p>We also obtain optimism-corrected estimates of the mean squared error (square of the residual standard deviation), the g index, and the intercept and slope of the calibration model. The “corrected” slope is a shrinkage factor that takes overfitting into account.</p>
 </div>
 <div id="building-a-nomogram-for-our-model" class="section level2" number="10.7">
 <h2><span class="header-section-number">10.7</span> Building a Nomogram for Our Model</h2>
 <p>Another nice feature of an <code>ols</code> model object is that we can picture the model with a <strong>nomogram</strong> easily. Here is model <code>newmod</code>.</p>
-<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb669-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">nomogram</span>(newmod))</span></code></pre></div>
+<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb676-1"><a href="using-ols-from-the-rms-package-to-fit-linear-models.html#cb676-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">nomogram</span>(newmod))</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-226-1.png" width="672" /></p>
 <p>For this model, we can use this plot to predict <code>y</code> as follows:</p>
 <ol style="list-style-type: decimal">
@@ -1302,6 +1327,12 @@ Slope         1.0000   1.0000    0.8961    0.1039          0.8961 40</code></pre
 
 </div>
 </div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Harrell2001" class="csl-entry">
+Harrell, Frank E. 2001. <em>Regression Modeling Strategies</em>. New York: Springer.
+</div>
+</div>
             </section>
 
           </div>
@@ -1312,7 +1343,6 @@ Slope         1.0000   1.0000    0.8961    0.1039          0.8961 40</code></pre
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1331,6 +1361,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -1351,6 +1382,10 @@ gitbook.start({
 "text": null
 },
 "download": ["432-notes.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

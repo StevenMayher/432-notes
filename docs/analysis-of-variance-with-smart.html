@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Analysis of Variance with SMART | Data Science for Biological, Medical and Health Research: Notes for 432</title>
   <meta name="description" content="Course Notes for PQHS 432 in Spring 2021." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Analysis of Variance with SMART | Data Science for Biological, Medical and Health Research: Notes for 432" />
   <meta property="og:type" content="book" />
@@ -30,10 +30,11 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="summarizing-the-smart-cle1-data.html"/>
+<link rel="prev" href="summarizing-the-smart_cle1-data.html"/>
 <link rel="next" href="analysis-of-variance.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,13 +50,15 @@
 
 
 
-
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -114,6 +117,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 </head>
@@ -230,30 +256,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9.7" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#saving-the-new-tibbles"><i class="fa fa-check"></i><b>3.9.7</b> Saving the new tibbles</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing the <code>smart_cle1</code> data</a>
+<li class="chapter" data-level="4" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing the <code>smart_cle1</code> data</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#general-approaches-to-obtaining-numeric-summaries"><i class="fa fa-check"></i><b>4.1</b> General Approaches to Obtaining Numeric Summaries</a>
+<li class="chapter" data-level="4.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#general-approaches-to-obtaining-numeric-summaries"><i class="fa fa-check"></i><b>4.1</b> General Approaches to Obtaining Numeric Summaries</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#summary-for-a-data-frame"><i class="fa fa-check"></i><b>4.1.1</b> <code>summary</code> for a data frame</a></li>
-<li class="chapter" data-level="4.1.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#the-inspect-function-from-the-mosaic-package"><i class="fa fa-check"></i><b>4.1.2</b> The <code>inspect</code> function from the <code>mosaic</code> package</a></li>
-<li class="chapter" data-level="4.1.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#the-describe-function-in-hmisc"><i class="fa fa-check"></i><b>4.1.3</b> The <code>describe</code> function in <code>Hmisc</code></a></li>
+<li class="chapter" data-level="4.1.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#summary-for-a-data-frame"><i class="fa fa-check"></i><b>4.1.1</b> <code>summary</code> for a data frame</a></li>
+<li class="chapter" data-level="4.1.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#the-inspect-function-from-the-mosaic-package"><i class="fa fa-check"></i><b>4.1.2</b> The <code>inspect</code> function from the <code>mosaic</code> package</a></li>
+<li class="chapter" data-level="4.1.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#the-describe-function-in-hmisc"><i class="fa fa-check"></i><b>4.1.3</b> The <code>describe</code> function in <code>Hmisc</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#counting-as-exploratory-data-analysis"><i class="fa fa-check"></i><b>4.2</b> Counting as exploratory data analysis</a>
+<li class="chapter" data-level="4.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#counting-as-exploratory-data-analysis"><i class="fa fa-check"></i><b>4.2</b> Counting as exploratory data analysis</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#did-genhealth-vary-by-smoking-status"><i class="fa fa-check"></i><b>4.2.1</b> Did <code>genhealth</code> vary by smoking status?</a></li>
-<li class="chapter" data-level="4.2.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#whats-the-distribution-of-physhealth"><i class="fa fa-check"></i><b>4.2.2</b> What’s the distribution of <code>physhealth</code>?</a></li>
-<li class="chapter" data-level="4.2.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#whats-the-distribution-of-bmi"><i class="fa fa-check"></i><b>4.2.3</b> What’s the distribution of <code>bmi</code>?</a></li>
-<li class="chapter" data-level="4.2.4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-many-of-the-respondents-have-a-bmi-below-30"><i class="fa fa-check"></i><b>4.2.4</b> How many of the respondents have a BMI below 30?</a></li>
-<li class="chapter" data-level="4.2.5" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-many-of-the-respondents-with-a-bmi-30-are-highly-active"><i class="fa fa-check"></i><b>4.2.5</b> How many of the respondents with a BMI &lt; 30 are highly active?</a></li>
-<li class="chapter" data-level="4.2.6" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#is-obesity-associated-with-smoking-history"><i class="fa fa-check"></i><b>4.2.6</b> Is obesity associated with smoking history?</a></li>
-<li class="chapter" data-level="4.2.7" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#comparing-drinks_wk-summaries-by-obesity-status"><i class="fa fa-check"></i><b>4.2.7</b> Comparing <code>drinks_wk</code> summaries by obesity status</a></li>
+<li class="chapter" data-level="4.2.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#did-genhealth-vary-by-smoking-status"><i class="fa fa-check"></i><b>4.2.1</b> Did <code>genhealth</code> vary by smoking status?</a></li>
+<li class="chapter" data-level="4.2.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#whats-the-distribution-of-physhealth"><i class="fa fa-check"></i><b>4.2.2</b> What’s the distribution of <code>physhealth</code>?</a></li>
+<li class="chapter" data-level="4.2.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#whats-the-distribution-of-bmi"><i class="fa fa-check"></i><b>4.2.3</b> What’s the distribution of <code>bmi</code>?</a></li>
+<li class="chapter" data-level="4.2.4" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#how-many-of-the-respondents-have-a-bmi-below-30"><i class="fa fa-check"></i><b>4.2.4</b> How many of the respondents have a BMI below 30?</a></li>
+<li class="chapter" data-level="4.2.5" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#how-many-of-the-respondents-with-a-bmi-30-are-highly-active"><i class="fa fa-check"></i><b>4.2.5</b> How many of the respondents with a BMI &lt; 30 are highly active?</a></li>
+<li class="chapter" data-level="4.2.6" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#is-obesity-associated-with-smoking-history"><i class="fa fa-check"></i><b>4.2.6</b> Is obesity associated with smoking history?</a></li>
+<li class="chapter" data-level="4.2.7" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#comparing-drinks_wk-summaries-by-obesity-status"><i class="fa fa-check"></i><b>4.2.7</b> Comparing <code>drinks_wk</code> summaries by obesity status</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#can-bmi-predict-physhealth"><i class="fa fa-check"></i><b>4.3</b> Can <code>bmi</code> predict <code>physhealth</code>?</a>
+<li class="chapter" data-level="4.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#can-bmi-predict-physhealth"><i class="fa fa-check"></i><b>4.3</b> Can <code>bmi</code> predict <code>physhealth</code>?</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#fitting-a-simple-regression-model"><i class="fa fa-check"></i><b>4.3.1</b> Fitting a Simple Regression Model</a></li>
-<li class="chapter" data-level="4.3.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#model-summary-for-a-simple-one-predictor-regression"><i class="fa fa-check"></i><b>4.3.2</b> Model Summary for a Simple (One-Predictor) Regression</a></li>
-<li class="chapter" data-level="4.3.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#using-the-broom-package"><i class="fa fa-check"></i><b>4.3.3</b> Using the <code>broom</code> package</a></li>
-<li class="chapter" data-level="4.3.4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-does-the-model-do-residuals-vs.-fitted-values"><i class="fa fa-check"></i><b>4.3.4</b> How does the model do? (Residuals vs. Fitted Values)</a></li>
+<li class="chapter" data-level="4.3.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#fitting-a-simple-regression-model"><i class="fa fa-check"></i><b>4.3.1</b> Fitting a Simple Regression Model</a></li>
+<li class="chapter" data-level="4.3.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#model-summary-for-a-simple-one-predictor-regression"><i class="fa fa-check"></i><b>4.3.2</b> Model Summary for a Simple (One-Predictor) Regression</a></li>
+<li class="chapter" data-level="4.3.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#using-the-broom-package"><i class="fa fa-check"></i><b>4.3.3</b> Using the <code>broom</code> package</a></li>
+<li class="chapter" data-level="4.3.4" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#how-does-the-model-do-residuals-vs.-fitted-values"><i class="fa fa-check"></i><b>4.3.4</b> How does the model do? (Residuals vs. Fitted Values)</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html"><i class="fa fa-check"></i><b>5</b> Analysis of Variance with SMART</a>
@@ -339,7 +365,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#a-new-small-study-predicting-bmi"><i class="fa fa-check"></i><b>8.1</b> A New Small Study: Predicting BMI</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#does-female-predict-bmi-well"><i class="fa fa-check"></i><b>8.1.1</b> Does <code>female</code> predict <code>bmi</code> well?</a></li>
+<li class="chapter" data-level="8.1.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#does-smoke100-predict-bmi-well"><i class="fa fa-check"></i><b>8.1.1</b> Does <code>smoke100</code> predict <code>bmi</code> well?</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m1-a-simple-t-test-model"><i class="fa fa-check"></i><b>8.2</b> <code>c8_m1</code>: A simple t-test model</a></li>
 <li class="chapter" data-level="8.3" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m2-adding-another-predictor-two-way-anova-without-interaction"><i class="fa fa-check"></i><b>8.3</b> <code>c8_m2</code>: Adding another predictor (two-way ANOVA without interaction)</a></li>
@@ -483,7 +509,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12.14" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#logistic-regression-using-lrm"><i class="fa fa-check"></i><b>12.14</b> Logistic Regression using <code>lrm</code></a>
 <ul>
-<li class="chapter" data-level="12.14.1" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#interpreting-nagelkerke-r2"><i class="fa fa-check"></i><b>12.14.1</b> Interpreting Nagelkerke R<sup>2</sup></a></li>
+<li class="chapter" data-level="12.14.1" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#interpreting-nagelkerke-r2"><i class="fa fa-check"></i><b>12.14.1</b> Interpreting Nagelkerke <span class="math inline">\(R^2\)</span></a></li>
 <li class="chapter" data-level="12.14.2" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#interpreting-the-c-statistic-and-plotting-the-roc-curve"><i class="fa fa-check"></i><b>12.14.2</b> Interpreting the C statistic and Plotting the ROC Curve</a></li>
 <li class="chapter" data-level="12.14.3" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#the-c-statistic-and-somers-d"><i class="fa fa-check"></i><b>12.14.3</b> The C statistic and Somers’ D</a></li>
 <li class="chapter" data-level="12.14.4" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#validating-the-logistic-regression-model-summary-statistics"><i class="fa fa-check"></i><b>12.14.4</b> Validating the Logistic Regression Model Summary Statistics</a></li>
@@ -531,7 +557,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.5" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#exploring-model-c11_prost_a"><i class="fa fa-check"></i><b>13.5</b> Exploring Model <code>c11_prost_A</code></a>
 <ul>
 <li class="chapter" data-level="13.5.1" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#summary-for-model-c11_prost_a"><i class="fa fa-check"></i><b>13.5.1</b> <code>summary</code> for Model <code>c11_prost_A</code></a></li>
-<li class="chapter" data-level="13.5.2" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#adjusted-r2"><i class="fa fa-check"></i><b>13.5.2</b> Adjusted R<sup>2</sup></a></li>
+<li class="chapter" data-level="13.5.2" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#adjusted-r2"><i class="fa fa-check"></i><b>13.5.2</b> Adjusted <span class="math inline">\(R^2\)</span></a></li>
 <li class="chapter" data-level="13.5.3" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#coefficient-confidence-intervals"><i class="fa fa-check"></i><b>13.5.3</b> Coefficient Confidence Intervals</a></li>
 <li class="chapter" data-level="13.5.4" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#anova-for-model-c11_prost_a"><i class="fa fa-check"></i><b>13.5.4</b> ANOVA for Model <code>c11_prost_A</code></a></li>
 <li class="chapter" data-level="13.5.5" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#residuals-fitted-values-and-standard-errors-with-augment"><i class="fa fa-check"></i><b>13.5.5</b> Residuals, Fitted Values and Standard Errors with <code>augment</code></a></li>
@@ -628,7 +654,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="19.5.1" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#interpreting-the-coefficients"><i class="fa fa-check"></i><b>19.5.1</b> Interpreting the Coefficients</a></li>
 <li class="chapter" data-level="19.5.2" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals"><i class="fa fa-check"></i><b>19.5.2</b> Store fitted values and residuals</a></li>
-<li class="chapter" data-level="19.5.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values"><i class="fa fa-check"></i><b>19.5.3</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.5.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values"><i class="fa fa-check"></i><b>19.5.3</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.5.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions"><i class="fa fa-check"></i><b>19.5.4</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.5.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally"><i class="fa fa-check"></i><b>19.5.5</b> Predictions for Harry and Sally</a></li>
 <li class="chapter" data-level="19.5.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#notes"><i class="fa fa-check"></i><b>19.5.6</b> Notes</a></li>
@@ -637,8 +663,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="19.6.1" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#interpreting-the-coefficients-1"><i class="fa fa-check"></i><b>19.6.1</b> Interpreting the Coefficients</a></li>
 <li class="chapter" data-level="19.6.2" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-1"><i class="fa fa-check"></i><b>19.6.2</b> Store fitted values and residuals</a></li>
-<li class="chapter" data-level="19.6.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-1"><i class="fa fa-check"></i><b>19.6.3</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
-<li class="chapter" data-level="19.6.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#getting-r2-on-the-scale-of-physhealth"><i class="fa fa-check"></i><b>19.6.4</b> Getting R<sup>2</sup> on the scale of <code>physhealth</code></a></li>
+<li class="chapter" data-level="19.6.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-1"><i class="fa fa-check"></i><b>19.6.3</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.6.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#getting-r2-on-the-scale-of-physhealth"><i class="fa fa-check"></i><b>19.6.4</b> Getting <span class="math inline">\(R^2\)</span> on the scale of <code>physhealth</code></a></li>
 <li class="chapter" data-level="19.6.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-1"><i class="fa fa-check"></i><b>19.6.5</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.6.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-1"><i class="fa fa-check"></i><b>19.6.6</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -650,7 +676,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.7.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#correcting-for-overdispersion-with-coeftestcoefci"><i class="fa fa-check"></i><b>19.7.4</b> Correcting for Overdispersion with <code>coeftest</code>/<code>coefci</code></a></li>
 <li class="chapter" data-level="19.7.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-2"><i class="fa fa-check"></i><b>19.7.5</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.7.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-see-the-fit-of-a-count-regression-model"><i class="fa fa-check"></i><b>19.7.6</b> Rootogram: see the fit of a count regression model</a></li>
-<li class="chapter" data-level="19.7.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-2"><i class="fa fa-check"></i><b>19.7.7</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.7.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-2"><i class="fa fa-check"></i><b>19.7.7</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.7.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-2"><i class="fa fa-check"></i><b>19.7.8</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.7.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#using-glm.diag.plots-from-the-boot-package"><i class="fa fa-check"></i><b>19.7.9</b> Using <code>glm.diag.plots</code> from the <code>boot</code> package</a></li>
 <li class="chapter" data-level="19.7.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-2"><i class="fa fa-check"></i><b>19.7.10</b> Predictions for Harry and Sally</a></li>
@@ -665,7 +691,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.9.2" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#interpreting-the-coefficients-3"><i class="fa fa-check"></i><b>19.9.2</b> Interpreting the Coefficients</a></li>
 <li class="chapter" data-level="19.9.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#testing-the-predictors-1"><i class="fa fa-check"></i><b>19.9.3</b> Testing the Predictors</a></li>
 <li class="chapter" data-level="19.9.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-3"><i class="fa fa-check"></i><b>19.9.4</b> Store fitted values and residuals</a></li>
-<li class="chapter" data-level="19.9.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-3"><i class="fa fa-check"></i><b>19.9.5</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.9.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-3"><i class="fa fa-check"></i><b>19.9.5</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.9.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-3"><i class="fa fa-check"></i><b>19.9.6</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.9.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-3"><i class="fa fa-check"></i><b>19.9.7</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -689,7 +715,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.11.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-4"><i class="fa fa-check"></i><b>19.11.6</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.11.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-negative-binomial-model"><i class="fa fa-check"></i><b>19.11.7</b> Rootogram for Negative Binomial model</a></li>
 <li class="chapter" data-level="19.11.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#simulating-what-the-negative-binomial-model-predicts"><i class="fa fa-check"></i><b>19.11.8</b> Simulating what the Negative Binomial model predicts</a></li>
-<li class="chapter" data-level="19.11.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-4"><i class="fa fa-check"></i><b>19.11.9</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.11.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-4"><i class="fa fa-check"></i><b>19.11.9</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.11.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-4"><i class="fa fa-check"></i><b>19.11.10</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.11.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-4"><i class="fa fa-check"></i><b>19.11.11</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -704,7 +730,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.13.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-5"><i class="fa fa-check"></i><b>19.13.6</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.13.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#modeled-number-of-zero-counts"><i class="fa fa-check"></i><b>19.13.7</b> Modeled Number of Zero Counts</a></li>
 <li class="chapter" data-level="19.13.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-zip-model"><i class="fa fa-check"></i><b>19.13.8</b> Rootogram for ZIP model</a></li>
-<li class="chapter" data-level="19.13.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values"><i class="fa fa-check"></i><b>19.13.9</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.13.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values"><i class="fa fa-check"></i><b>19.13.9</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.13.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-5"><i class="fa fa-check"></i><b>19.13.10</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.13.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-5"><i class="fa fa-check"></i><b>19.13.11</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -718,7 +744,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.14.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-6"><i class="fa fa-check"></i><b>19.14.6</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.14.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#modeled-number-of-zero-counts-1"><i class="fa fa-check"></i><b>19.14.7</b> Modeled Number of Zero Counts</a></li>
 <li class="chapter" data-level="19.14.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-zero-inflated-negative-binomial-model"><i class="fa fa-check"></i><b>19.14.8</b> Rootogram for Zero-Inflated Negative Binomial model</a></li>
-<li class="chapter" data-level="19.14.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-1"><i class="fa fa-check"></i><b>19.14.9</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.14.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-1"><i class="fa fa-check"></i><b>19.14.9</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.14.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-6"><i class="fa fa-check"></i><b>19.14.10</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.14.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-6"><i class="fa fa-check"></i><b>19.14.11</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -734,7 +760,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.15.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#modeled-number-of-zero-counts-2"><i class="fa fa-check"></i><b>19.15.8</b> Modeled Number of Zero Counts</a></li>
 <li class="chapter" data-level="19.15.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-hurdle-model"><i class="fa fa-check"></i><b>19.15.9</b> Rootogram for Hurdle Model</a></li>
 <li class="chapter" data-level="19.15.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#understanding-the-modeled-counts-in-detail"><i class="fa fa-check"></i><b>19.15.10</b> Understanding the Modeled Counts in Detail</a></li>
-<li class="chapter" data-level="19.15.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-2"><i class="fa fa-check"></i><b>19.15.11</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.15.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-2"><i class="fa fa-check"></i><b>19.15.11</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.15.12" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-7"><i class="fa fa-check"></i><b>19.15.12</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.15.13" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-7"><i class="fa fa-check"></i><b>19.15.13</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -749,7 +775,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.16.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#testing-the-predictors-6"><i class="fa fa-check"></i><b>19.16.7</b> Testing the Predictors</a></li>
 <li class="chapter" data-level="19.16.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-8"><i class="fa fa-check"></i><b>19.16.8</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.16.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-nb-hurdle-model"><i class="fa fa-check"></i><b>19.16.9</b> Rootogram for NB Hurdle Model</a></li>
-<li class="chapter" data-level="19.16.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-3"><i class="fa fa-check"></i><b>19.16.10</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.16.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-3"><i class="fa fa-check"></i><b>19.16.10</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.16.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-8"><i class="fa fa-check"></i><b>19.16.11</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.16.12" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-8"><i class="fa fa-check"></i><b>19.16.12</b> Predictions for Harry and Sally</a></li>
 <li class="chapter" data-level="19.16.13" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#note-fitting-a-different-hurdle-model-for-counts-and-przero"><i class="fa fa-check"></i><b>19.16.13</b> Note: Fitting a Different Hurdle Model for Counts and Pr(zero)</a></li>
@@ -763,7 +789,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.17.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-9"><i class="fa fa-check"></i><b>19.17.4</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.17.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#building-something-like-a-rootogram"><i class="fa fa-check"></i><b>19.17.5</b> Building Something Like a Rootogram</a></li>
 <li class="chapter" data-level="19.17.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#tables-of-the-observed-and-fitted-physhealth-from-tobit"><i class="fa fa-check"></i><b>19.17.6</b> Tables of the Observed and Fitted <code>physhealth</code> from Tobit</a></li>
-<li class="chapter" data-level="19.17.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-4"><i class="fa fa-check"></i><b>19.17.7</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.17.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-4"><i class="fa fa-check"></i><b>19.17.7</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.17.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-9"><i class="fa fa-check"></i><b>19.17.8</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.17.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-9"><i class="fa fa-check"></i><b>19.17.9</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -945,9 +971,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="24.4.1" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#interpreting-the-results-from-model-b"><i class="fa fa-check"></i><b>24.4.1</b> Interpreting the Results from Model B</a></li>
 <li class="chapter" data-level="24.4.2" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#plotting-the-survival-curve-implied-by-model-b"><i class="fa fa-check"></i><b>24.4.2</b> Plotting the Survival Curve implied by Model B</a></li>
-<li class="chapter" data-level="24.4.3" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#plotting-the-cumulative-hazard-implied-by-model-b"><i class="fa fa-check"></i><b>24.4.3</b> Plotting the Cumulative Hazard implied by Model B</a></li>
-<li class="chapter" data-level="24.4.4" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#testing-the-proportional-hazards-assumption-1"><i class="fa fa-check"></i><b>24.4.4</b> Testing the Proportional Hazards Assumption</a></li>
-<li class="chapter" data-level="24.4.5" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#assessing-collinearity"><i class="fa fa-check"></i><b>24.4.5</b> Assessing Collinearity</a></li>
+<li class="chapter" data-level="24.4.3" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#testing-the-proportional-hazards-assumption-1"><i class="fa fa-check"></i><b>24.4.3</b> Testing the Proportional Hazards Assumption</a></li>
+<li class="chapter" data-level="24.4.4" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#assessing-collinearity"><i class="fa fa-check"></i><b>24.4.4</b> Assessing Collinearity</a></li>
 </ul></li>
 <li class="chapter" data-level="24.5" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#model-b2-a-stepwise-reduction-of-model-b"><i class="fa fa-check"></i><b>24.5</b> Model B2: A Stepwise Reduction of Model B</a>
 <ul>
@@ -988,7 +1013,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="analysis-of-variance-with-smart" class="section level1" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Analysis of Variance with SMART</h1>
 <p>In this chapter, we’ll work with the <code>smart_cle1_sh</code> data file again.</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="analysis-of-variance-with-smart.html#cb367-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;smart_cle1_sh.Rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="analysis-of-variance-with-smart.html#cb370-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;smart_cle1_sh.Rds&quot;</span>))</span></code></pre></div>
 <p>The variables we’ll look at in this chapter are as follows.</p>
 <table>
 <colgroup>
@@ -1037,18 +1062,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We’ll be predicting body mass index, at first using a single factor as a predictor: the <code>activity</code> level.</p>
 <div id="can-activity-be-used-to-predict-bmi" class="section level3" number="5.1.1">
 <h3><span class="header-section-number">5.1.1</span> Can <code>activity</code> be used to predict <code>bmi</code>?</h3>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="analysis-of-variance-with-smart.html#cb368-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> activity, <span class="at">y =</span> bmi, </span>
-<span id="cb368-2"><a href="analysis-of-variance-with-smart.html#cb368-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">fill =</span> activity)) <span class="sc">+</span></span>
-<span id="cb368-3"><a href="analysis-of-variance-with-smart.html#cb368-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb368-4"><a href="analysis-of-variance-with-smart.html#cb368-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.3</span>, <span class="at">notch =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
-<span id="cb368-5"><a href="analysis-of-variance-with-smart.html#cb368-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb368-6"><a href="analysis-of-variance-with-smart.html#cb368-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb368-7"><a href="analysis-of-variance-with-smart.html#cb368-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;BMI as a function of Activity Level&quot;</span>,</span>
-<span id="cb368-8"><a href="analysis-of-variance-with-smart.html#cb368-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Subjects in the SMART CLE data&quot;</span>,</span>
-<span id="cb368-9"><a href="analysis-of-variance-with-smart.html#cb368-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Body Mass Index&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="analysis-of-variance-with-smart.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> activity, <span class="at">y =</span> bmi, </span>
+<span id="cb371-2"><a href="analysis-of-variance-with-smart.html#cb371-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">fill =</span> activity)) <span class="sc">+</span></span>
+<span id="cb371-3"><a href="analysis-of-variance-with-smart.html#cb371-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb371-4"><a href="analysis-of-variance-with-smart.html#cb371-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.3</span>, <span class="at">notch =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb371-5"><a href="analysis-of-variance-with-smart.html#cb371-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb371-6"><a href="analysis-of-variance-with-smart.html#cb371-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb371-7"><a href="analysis-of-variance-with-smart.html#cb371-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;BMI as a function of Activity Level&quot;</span>,</span>
+<span id="cb371-8"><a href="analysis-of-variance-with-smart.html#cb371-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Subjects in the SMART CLE data&quot;</span>,</span>
+<span id="cb371-9"><a href="analysis-of-variance-with-smart.html#cb371-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Body Mass Index&quot;</span>)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-117-1.png" width="672" /></p>
 <p>Here’s a numerical summary of the distributions of <code>bmi</code> within each <code>activity</code> group.</p>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="analysis-of-variance-with-smart.html#cb369-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(bmi <span class="sc">~</span> activity)</span></code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="analysis-of-variance-with-smart.html#cb372-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(bmi <span class="sc">~</span> activity)</span></code></pre></div>
 <pre><code>               activity   min      Q1   median     Q3   max     mean       sd
 1         Highly_Active 13.30 23.6275 26.99000 28.930 50.46 27.02253 5.217496
 2                Active 17.07 24.2400 27.06930 29.520 44.67 27.36157 5.151796
@@ -1063,18 +1088,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="should-we-transform-bmi" class="section level3" number="5.1.2">
 <h3><span class="header-section-number">5.1.2</span> Should we transform <code>bmi</code>?</h3>
 <p>The analysis of variance is something of a misnomer. What we’re doing is using the variance to say something about population means. In light of the apparent right skew of the <code>bmi</code> results in each <code>activity</code> group, might it be a better choice to use a logarithmic transformation? We’ll use the natural logarithm here, which in R, is symbolized by <code>log</code>.</p>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="analysis-of-variance-with-smart.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> activity, <span class="at">y =</span> <span class="fu">log</span>(bmi), </span>
-<span id="cb371-2"><a href="analysis-of-variance-with-smart.html#cb371-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">fill =</span> activity)) <span class="sc">+</span></span>
-<span id="cb371-3"><a href="analysis-of-variance-with-smart.html#cb371-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb371-4"><a href="analysis-of-variance-with-smart.html#cb371-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.3</span>, <span class="at">notch =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
-<span id="cb371-5"><a href="analysis-of-variance-with-smart.html#cb371-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb371-6"><a href="analysis-of-variance-with-smart.html#cb371-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb371-7"><a href="analysis-of-variance-with-smart.html#cb371-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;log(BMI) as a function of Activity Level&quot;</span>,</span>
-<span id="cb371-8"><a href="analysis-of-variance-with-smart.html#cb371-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Subjects in the SMART CLE data&quot;</span>,</span>
-<span id="cb371-9"><a href="analysis-of-variance-with-smart.html#cb371-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;log(Body Mass Index)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="analysis-of-variance-with-smart.html#cb374-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smart_cle1_sh, <span class="fu">aes</span>(<span class="at">x =</span> activity, <span class="at">y =</span> <span class="fu">log</span>(bmi), </span>
+<span id="cb374-2"><a href="analysis-of-variance-with-smart.html#cb374-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">fill =</span> activity)) <span class="sc">+</span></span>
+<span id="cb374-3"><a href="analysis-of-variance-with-smart.html#cb374-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb374-4"><a href="analysis-of-variance-with-smart.html#cb374-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> <span class="fl">0.3</span>, <span class="at">notch =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb374-5"><a href="analysis-of-variance-with-smart.html#cb374-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb374-6"><a href="analysis-of-variance-with-smart.html#cb374-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb374-7"><a href="analysis-of-variance-with-smart.html#cb374-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;log(BMI) as a function of Activity Level&quot;</span>,</span>
+<span id="cb374-8"><a href="analysis-of-variance-with-smart.html#cb374-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Subjects in the SMART CLE data&quot;</span>,</span>
+<span id="cb374-9"><a href="analysis-of-variance-with-smart.html#cb374-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;log(Body Mass Index)&quot;</span>)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-119-1.png" width="672" /></p>
 <p>The logarithmic transformation yields distributions that look much more symmetric in each <code>activity</code> group, so we’ll proceed to build our regression model predicting <code>log(bmi)</code> using <code>activity</code>. Here’s the numerical summary of these logged results:</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="analysis-of-variance-with-smart.html#cb372-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(<span class="fu">log</span>(bmi) <span class="sc">~</span> activity)</span></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="analysis-of-variance-with-smart.html#cb375-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%$%</span> mosaic<span class="sc">::</span><span class="fu">favstats</span>(<span class="fu">log</span>(bmi) <span class="sc">~</span> activity)</span></code></pre></div>
 <pre><code>               activity      min       Q1   median       Q3      max     mean
 1         Highly_Active 2.587764 3.162411 3.295466 3.364879 3.921181 3.279246
 2                Active 2.837323 3.188004 3.298400 3.385068 3.799302 3.292032
@@ -1088,9 +1113,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="building-the-anova-model" class="section level3" number="5.1.3">
 <h3><span class="header-section-number">5.1.3</span> Building the ANOVA model</h3>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="analysis-of-variance-with-smart.html#cb374-1" aria-hidden="true" tabindex="-1"></a>model_5a <span class="ot">&lt;-</span> smart_cle1_sh <span class="sc">%$%</span> <span class="fu">lm</span>(<span class="fu">log</span>(bmi) <span class="sc">~</span> activity)</span>
-<span id="cb374-2"><a href="analysis-of-variance-with-smart.html#cb374-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-3"><a href="analysis-of-variance-with-smart.html#cb374-3" aria-hidden="true" tabindex="-1"></a>model_5a</span></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="analysis-of-variance-with-smart.html#cb377-1" aria-hidden="true" tabindex="-1"></a>model_5a <span class="ot">&lt;-</span> smart_cle1_sh <span class="sc">%$%</span> <span class="fu">lm</span>(<span class="fu">log</span>(bmi) <span class="sc">~</span> activity)</span>
+<span id="cb377-2"><a href="analysis-of-variance-with-smart.html#cb377-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb377-3"><a href="analysis-of-variance-with-smart.html#cb377-3" aria-hidden="true" tabindex="-1"></a>model_5a</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = log(bmi) ~ activity)
@@ -1137,8 +1162,8 @@ activityInsufficiently_Active               activityInactive
 </tbody>
 </table>
 <p>Those predicted <code>log(bmi)</code> values should look familiar. They are just the means of <code>log(bmi)</code> in each group, but I’m sure you’ll also notice that the predicted <code>bmi</code> values are not exact matches for the observed means of <code>bmi</code>.</p>
-<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="analysis-of-variance-with-smart.html#cb377-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(activity) <span class="sc">%&gt;%</span></span>
-<span id="cb377-2"><a href="analysis-of-variance-with-smart.html#cb377-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(<span class="fu">log</span>(bmi)), <span class="fu">mean</span>(bmi))</span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="analysis-of-variance-with-smart.html#cb380-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(activity) <span class="sc">%&gt;%</span></span>
+<span id="cb380-2"><a href="analysis-of-variance-with-smart.html#cb380-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(<span class="fu">log</span>(bmi)), <span class="fu">mean</span>(bmi))</span></code></pre></div>
 <pre><code># A tibble: 4 x 3
   activity              `mean(log(bmi))` `mean(bmi)`
   &lt;fct&gt;                            &lt;dbl&gt;       &lt;dbl&gt;
@@ -1150,7 +1175,7 @@ activityInsufficiently_Active               activityInactive
 <div id="the-anova-table" class="section level3" number="5.1.4">
 <h3><span class="header-section-number">5.1.4</span> The ANOVA table</h3>
 <p>Now, let’s press on to look at the ANOVA results for this model.</p>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="analysis-of-variance-with-smart.html#cb379-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model_5a)</span></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="analysis-of-variance-with-smart.html#cb382-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model_5a)</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: log(bmi)
@@ -1169,7 +1194,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div id="the-model-coefficients" class="section level3" number="5.1.5">
 <h3><span class="header-section-number">5.1.5</span> The Model Coefficients</h3>
 <p>To address the question of effect size for the various levels of <code>activity</code> on <code>log(bmi)</code>, we could look directly at the regression model coefficients. For that, we might look at the model <code>summary</code>.</p>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="analysis-of-variance-with-smart.html#cb381-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_5a)</span></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="analysis-of-variance-with-smart.html#cb384-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_5a)</span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = log(bmi) ~ activity)
@@ -1191,7 +1216,7 @@ Residual standard error: 0.2057 on 1129 degrees of freedom
 Multiple R-squared:  0.04133,   Adjusted R-squared:  0.03878 
 F-statistic: 16.22 on 3 and 1129 DF,  p-value: 2.496e-10</code></pre>
 <p>If we want to see the confidence intervals around these estimates, we could use</p>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="analysis-of-variance-with-smart.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(model_5a, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="analysis-of-variance-with-smart.html#cb386-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(model_5a, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>                                    2.5 %     97.5 %
 (Intercept)                    3.25973769 3.29875522
 activityActive                -0.02357630 0.04914707
@@ -1209,8 +1234,8 @@ activityInactive               0.06767944 0.12676300</code></pre>
 <div id="using-broomtidy-to-explore-the-coefficients" class="section level3" number="5.1.6">
 <h3><span class="header-section-number">5.1.6</span> Using <code>broom::tidy</code> to explore the coefficients</h3>
 <p>A better strategy for displaying the coefficients in any regression model is to use the <code>tidy</code> function from the <code>broom</code> package.</p>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="analysis-of-variance-with-smart.html#cb385-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model_5a, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb385-2"><a href="analysis-of-variance-with-smart.html#cb385-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="analysis-of-variance-with-smart.html#cb388-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model_5a, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb388-2"><a href="analysis-of-variance-with-smart.html#cb388-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1335,8 +1360,8 @@ activityInactive
 </div>
 <div id="using-broomglance-to-summarize-the-models-fit" class="section level3" number="5.1.7">
 <h3><span class="header-section-number">5.1.7</span> Using <code>broom::glance</code> to summarize the model’s fit</h3>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="analysis-of-variance-with-smart.html#cb386-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(model_5a) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb386-2"><a href="analysis-of-variance-with-smart.html#cb386-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="analysis-of-variance-with-smart.html#cb389-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(model_5a) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb389-2"><a href="analysis-of-variance-with-smart.html#cb389-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">3</span>))</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1370,8 +1395,8 @@ sigma
 <li>The <code>adj.r.squared</code> or adjusted <span class="math inline">\(R^2\)</span> value incorporates a small penalty for the number of predictors included in the model. Adjusted <span class="math inline">\(R^2\)</span> is useful for models with more than one predictor, not simple regression models like this one. Like <span class="math inline">\(R^2\)</span> and most of these other summaries, its primary value comes when making comparisons between models for the same outcome.</li>
 <li>The <code>sigma</code> or <span class="math inline">\(\sigma\)</span> is the residual standard error. Doubling this value gives us a good idea of the range of errors made by the model (approximately 95% of the time if the normal distribution assumption for the residuals holds perfectly.)</li>
 </ul>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="analysis-of-variance-with-smart.html#cb387-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(model_5a) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">7</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb387-2"><a href="analysis-of-variance-with-smart.html#cb387-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="analysis-of-variance-with-smart.html#cb390-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(model_5a) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">4</span><span class="sc">:</span><span class="dv">7</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb390-2"><a href="analysis-of-variance-with-smart.html#cb390-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">2</span>))</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1411,8 +1436,8 @@ logLik
 <li>The <code>df</code> indicates the model degrees of freedom, and in this case simply specifies the number of parameters fitted attributed to the model. Models that require more <code>df</code> for estimation require larger sample sizes.</li>
 <li>The <code>logLik</code> is the log likelihood for the model. This is a function of the sample size, but we can compare the fit of multiple models by comparing this value across different models for the same outcome. You want to maximize the log-likelihood.</li>
 </ul>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="analysis-of-variance-with-smart.html#cb388-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(model_5a) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">8</span><span class="sc">:</span><span class="dv">9</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb388-2"><a href="analysis-of-variance-with-smart.html#cb388-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="analysis-of-variance-with-smart.html#cb391-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(model_5a) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">8</span><span class="sc">:</span><span class="dv">9</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb391-2"><a href="analysis-of-variance-with-smart.html#cb391-2" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1442,9 +1467,9 @@ BIC
 <div id="using-broomaugment-to-make-predictions" class="section level3" number="5.1.8">
 <h3><span class="header-section-number">5.1.8</span> Using <code>broom::augment</code> to make predictions</h3>
 <p>We can obtain residuals and predicted (fitted) values for the points used to fit the model with <code>augment</code> from the <code>broom</code> package.</p>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="analysis-of-variance-with-smart.html#cb389-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(model_5a, <span class="at">se_fit =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb389-2"><a href="analysis-of-variance-with-smart.html#cb389-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb389-3"><a href="analysis-of-variance-with-smart.html#cb389-3" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="analysis-of-variance-with-smart.html#cb392-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(model_5a, <span class="at">se_fit =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb392-2"><a href="analysis-of-variance-with-smart.html#cb392-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb392-3"><a href="analysis-of-variance-with-smart.html#cb392-3" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1541,9 +1566,9 @@ Highly_Active
 <li>The <code>.se.fit</code> value shows the standard error associated with the fitted value.</li>
 <li>The <code>.resid</code> is the residual value (observed - fitted <code>log(bmi)</code>)</li>
 </ul>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="analysis-of-variance-with-smart.html#cb390-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(model_5a, <span class="at">se_fit =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb390-2"><a href="analysis-of-variance-with-smart.html#cb390-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">6</span><span class="sc">:</span><span class="dv">9</span>) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb390-3"><a href="analysis-of-variance-with-smart.html#cb390-3" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="analysis-of-variance-with-smart.html#cb393-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(model_5a, <span class="at">se_fit =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb393-2"><a href="analysis-of-variance-with-smart.html#cb393-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">6</span><span class="sc">:</span><span class="dv">9</span>) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb393-3"><a href="analysis-of-variance-with-smart.html#cb393-3" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1661,10 +1686,10 @@ Highly_Active
 <div id="a-two-factor-anova-without-interaction" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> A Two-Factor ANOVA (without Interaction)</h2>
 <p>Let’s add <code>race_eth</code> to the predictor set for <code>log(BMI)</code>.</p>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="analysis-of-variance-with-smart.html#cb391-1" aria-hidden="true" tabindex="-1"></a>model_5b <span class="ot">&lt;-</span> smart_cle1_sh <span class="sc">%$%</span> </span>
-<span id="cb391-2"><a href="analysis-of-variance-with-smart.html#cb391-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(<span class="fu">log</span>(bmi) <span class="sc">~</span> activity <span class="sc">+</span> race_eth)</span>
-<span id="cb391-3"><a href="analysis-of-variance-with-smart.html#cb391-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb391-4"><a href="analysis-of-variance-with-smart.html#cb391-4" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model_5b)</span></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="analysis-of-variance-with-smart.html#cb394-1" aria-hidden="true" tabindex="-1"></a>model_5b <span class="ot">&lt;-</span> smart_cle1_sh <span class="sc">%$%</span> </span>
+<span id="cb394-2"><a href="analysis-of-variance-with-smart.html#cb394-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(<span class="fu">log</span>(bmi) <span class="sc">~</span> activity <span class="sc">+</span> race_eth)</span>
+<span id="cb394-3"><a href="analysis-of-variance-with-smart.html#cb394-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb394-4"><a href="analysis-of-variance-with-smart.html#cb394-4" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model_5b)</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: log(bmi)
@@ -1676,9 +1701,9 @@ Residuals 1125 46.783 0.04158
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Notice that the ANOVA model assesses these variables sequentially, so the SS(activity) = 2.058 is accounted for before we consider the SS(race_eth) = 0.990. Thus, in total, the model accounts for 2.058 + 0.990 = 3.048 of the sums of squares in <code>log(bmi)</code> in these data.</p>
 <p>If we flip the order in the model, like this:</p>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="analysis-of-variance-with-smart.html#cb393-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%$%</span> </span>
-<span id="cb393-2"><a href="analysis-of-variance-with-smart.html#cb393-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(<span class="fu">log</span>(bmi) <span class="sc">~</span> race_eth <span class="sc">+</span> activity) <span class="sc">%&gt;%</span> </span>
-<span id="cb393-3"><a href="analysis-of-variance-with-smart.html#cb393-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anova</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="analysis-of-variance-with-smart.html#cb396-1" aria-hidden="true" tabindex="-1"></a>smart_cle1_sh <span class="sc">%$%</span> </span>
+<span id="cb396-2"><a href="analysis-of-variance-with-smart.html#cb396-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(<span class="fu">log</span>(bmi) <span class="sc">~</span> race_eth <span class="sc">+</span> activity) <span class="sc">%&gt;%</span> </span>
+<span id="cb396-3"><a href="analysis-of-variance-with-smart.html#cb396-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anova</span>()</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: log(bmi)
@@ -1694,9 +1719,9 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div id="model-coefficients" class="section level3" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> Model Coefficients</h3>
 <p>The model coefficients are unchanged regardless of the order of the variables in our two-factor ANOVA model.</p>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="analysis-of-variance-with-smart.html#cb395-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model_5b, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb395-2"><a href="analysis-of-variance-with-smart.html#cb395-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(term, estimate, std.error, conf.low, conf.high) <span class="sc">%&gt;%</span></span>
-<span id="cb395-3"><a href="analysis-of-variance-with-smart.html#cb395-3" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="analysis-of-variance-with-smart.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model_5b, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb398-2"><a href="analysis-of-variance-with-smart.html#cb398-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(term, estimate, std.error, conf.low, conf.high) <span class="sc">%&gt;%</span></span>
+<span id="cb398-3"><a href="analysis-of-variance-with-smart.html#cb398-3" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1868,19 +1893,19 @@ race_ethHispanic
 <p>and we can make predictions by filling in appropriate 1s and 0s for the indicator variables in parentheses.</p>
 <p>For example, the predicted <code>log(BMI)</code> for a White Highly Active person is 3.268, as White and Highly Active are the baseline categories in our two factors.</p>
 <p>For all other combinations, we can make predictions as follows:</p>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="analysis-of-variance-with-smart.html#cb397-1" aria-hidden="true" tabindex="-1"></a>new_dat <span class="ot">=</span> <span class="fu">tibble</span>(</span>
-<span id="cb397-2"><a href="analysis-of-variance-with-smart.html#cb397-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">race_eth =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;White non-Hispanic&quot;</span>,</span>
-<span id="cb397-3"><a href="analysis-of-variance-with-smart.html#cb397-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Black non-Hispanic&quot;</span>,</span>
-<span id="cb397-4"><a href="analysis-of-variance-with-smart.html#cb397-4" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Other race non-Hispanic&quot;</span>,</span>
-<span id="cb397-5"><a href="analysis-of-variance-with-smart.html#cb397-5" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Multiracial non-Hispanic&quot;</span>,</span>
-<span id="cb397-6"><a href="analysis-of-variance-with-smart.html#cb397-6" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Hispanic&quot;</span>), <span class="dv">4</span>),</span>
-<span id="cb397-7"><a href="analysis-of-variance-with-smart.html#cb397-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">activity =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Highly_Active&quot;</span>, <span class="dv">5</span>),</span>
-<span id="cb397-8"><a href="analysis-of-variance-with-smart.html#cb397-8" aria-hidden="true" tabindex="-1"></a>               <span class="fu">rep</span>(<span class="st">&quot;Active&quot;</span>, <span class="dv">5</span>),</span>
-<span id="cb397-9"><a href="analysis-of-variance-with-smart.html#cb397-9" aria-hidden="true" tabindex="-1"></a>               <span class="fu">rep</span>(<span class="st">&quot;Insufficiently_Active&quot;</span>, <span class="dv">5</span>),</span>
-<span id="cb397-10"><a href="analysis-of-variance-with-smart.html#cb397-10" aria-hidden="true" tabindex="-1"></a>               <span class="fu">rep</span>(<span class="st">&quot;Inactive&quot;</span>, <span class="dv">5</span>))</span>
-<span id="cb397-11"><a href="analysis-of-variance-with-smart.html#cb397-11" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb397-12"><a href="analysis-of-variance-with-smart.html#cb397-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb397-13"><a href="analysis-of-variance-with-smart.html#cb397-13" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(model_5b, <span class="at">newdata =</span> new_dat)</span></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="analysis-of-variance-with-smart.html#cb400-1" aria-hidden="true" tabindex="-1"></a>new_dat <span class="ot">=</span> <span class="fu">tibble</span>(</span>
+<span id="cb400-2"><a href="analysis-of-variance-with-smart.html#cb400-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">race_eth =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;White non-Hispanic&quot;</span>,</span>
+<span id="cb400-3"><a href="analysis-of-variance-with-smart.html#cb400-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Black non-Hispanic&quot;</span>,</span>
+<span id="cb400-4"><a href="analysis-of-variance-with-smart.html#cb400-4" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Other race non-Hispanic&quot;</span>,</span>
+<span id="cb400-5"><a href="analysis-of-variance-with-smart.html#cb400-5" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Multiracial non-Hispanic&quot;</span>,</span>
+<span id="cb400-6"><a href="analysis-of-variance-with-smart.html#cb400-6" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Hispanic&quot;</span>), <span class="dv">4</span>),</span>
+<span id="cb400-7"><a href="analysis-of-variance-with-smart.html#cb400-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">activity =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Highly_Active&quot;</span>, <span class="dv">5</span>),</span>
+<span id="cb400-8"><a href="analysis-of-variance-with-smart.html#cb400-8" aria-hidden="true" tabindex="-1"></a>               <span class="fu">rep</span>(<span class="st">&quot;Active&quot;</span>, <span class="dv">5</span>),</span>
+<span id="cb400-9"><a href="analysis-of-variance-with-smart.html#cb400-9" aria-hidden="true" tabindex="-1"></a>               <span class="fu">rep</span>(<span class="st">&quot;Insufficiently_Active&quot;</span>, <span class="dv">5</span>),</span>
+<span id="cb400-10"><a href="analysis-of-variance-with-smart.html#cb400-10" aria-hidden="true" tabindex="-1"></a>               <span class="fu">rep</span>(<span class="st">&quot;Inactive&quot;</span>, <span class="dv">5</span>))</span>
+<span id="cb400-11"><a href="analysis-of-variance-with-smart.html#cb400-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb400-12"><a href="analysis-of-variance-with-smart.html#cb400-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb400-13"><a href="analysis-of-variance-with-smart.html#cb400-13" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(model_5b, <span class="at">newdata =</span> new_dat)</span></code></pre></div>
 <pre><code>Warning: &#39;newdata&#39; had 20 rows but variables found have 1133 rows</code></pre>
 <pre><code># A tibble: 20 x 3
    race_eth                 activity              .fitted
@@ -1905,26 +1930,26 @@ race_ethHispanic
 18 Other race non-Hispanic  Inactive                 3.27
 19 Multiracial non-Hispanic Inactive                 3.38
 20 Hispanic                 Inactive                 3.37</code></pre>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="analysis-of-variance-with-smart.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(model_5b, <span class="at">newdata =</span> new_dat) <span class="sc">%&gt;%</span></span>
-<span id="cb400-2"><a href="analysis-of-variance-with-smart.html#cb400-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">race_eth =</span> <span class="fu">fct_relevel</span>(<span class="fu">factor</span>(race_eth),</span>
-<span id="cb400-3"><a href="analysis-of-variance-with-smart.html#cb400-3" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;White non-Hispanic&quot;</span>,</span>
-<span id="cb400-4"><a href="analysis-of-variance-with-smart.html#cb400-4" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Black non-Hispanic&quot;</span>,</span>
-<span id="cb400-5"><a href="analysis-of-variance-with-smart.html#cb400-5" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Other race non-Hispanic&quot;</span>,</span>
-<span id="cb400-6"><a href="analysis-of-variance-with-smart.html#cb400-6" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Multiracial non-Hispanic&quot;</span>,</span>
-<span id="cb400-7"><a href="analysis-of-variance-with-smart.html#cb400-7" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Hispanic&quot;</span>),</span>
-<span id="cb400-8"><a href="analysis-of-variance-with-smart.html#cb400-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">activity =</span> <span class="fu">fct_relevel</span>(<span class="fu">factor</span>(activity),</span>
-<span id="cb400-9"><a href="analysis-of-variance-with-smart.html#cb400-9" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Highly_Active&quot;</span>,</span>
-<span id="cb400-10"><a href="analysis-of-variance-with-smart.html#cb400-10" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Active&quot;</span>,</span>
-<span id="cb400-11"><a href="analysis-of-variance-with-smart.html#cb400-11" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Insufficiently_Active&quot;</span>,</span>
-<span id="cb400-12"><a href="analysis-of-variance-with-smart.html#cb400-12" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Inactive&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb400-13"><a href="analysis-of-variance-with-smart.html#cb400-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> activity, <span class="at">y =</span> .fitted, </span>
-<span id="cb400-14"><a href="analysis-of-variance-with-smart.html#cb400-14" aria-hidden="true" tabindex="-1"></a>                <span class="at">col =</span> race_eth, <span class="at">group =</span> race_eth)) <span class="sc">+</span></span>
-<span id="cb400-15"><a href="analysis-of-variance-with-smart.html#cb400-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
-<span id="cb400-16"><a href="analysis-of-variance-with-smart.html#cb400-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb400-17"><a href="analysis-of-variance-with-smart.html#cb400-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Model 5b predictions for log(BMI)&quot;</span>,</span>
-<span id="cb400-18"><a href="analysis-of-variance-with-smart.html#cb400-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;race_eth and activity, no interaction so lines are parallel&quot;</span>,</span>
-<span id="cb400-19"><a href="analysis-of-variance-with-smart.html#cb400-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Model Predicted log(BMI)&quot;</span>,</span>
-<span id="cb400-20"><a href="analysis-of-variance-with-smart.html#cb400-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="analysis-of-variance-with-smart.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(model_5b, <span class="at">newdata =</span> new_dat) <span class="sc">%&gt;%</span></span>
+<span id="cb403-2"><a href="analysis-of-variance-with-smart.html#cb403-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">race_eth =</span> <span class="fu">fct_relevel</span>(<span class="fu">factor</span>(race_eth),</span>
+<span id="cb403-3"><a href="analysis-of-variance-with-smart.html#cb403-3" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;White non-Hispanic&quot;</span>,</span>
+<span id="cb403-4"><a href="analysis-of-variance-with-smart.html#cb403-4" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Black non-Hispanic&quot;</span>,</span>
+<span id="cb403-5"><a href="analysis-of-variance-with-smart.html#cb403-5" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Other race non-Hispanic&quot;</span>,</span>
+<span id="cb403-6"><a href="analysis-of-variance-with-smart.html#cb403-6" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Multiracial non-Hispanic&quot;</span>,</span>
+<span id="cb403-7"><a href="analysis-of-variance-with-smart.html#cb403-7" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Hispanic&quot;</span>),</span>
+<span id="cb403-8"><a href="analysis-of-variance-with-smart.html#cb403-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">activity =</span> <span class="fu">fct_relevel</span>(<span class="fu">factor</span>(activity),</span>
+<span id="cb403-9"><a href="analysis-of-variance-with-smart.html#cb403-9" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Highly_Active&quot;</span>,</span>
+<span id="cb403-10"><a href="analysis-of-variance-with-smart.html#cb403-10" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Active&quot;</span>,</span>
+<span id="cb403-11"><a href="analysis-of-variance-with-smart.html#cb403-11" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Insufficiently_Active&quot;</span>,</span>
+<span id="cb403-12"><a href="analysis-of-variance-with-smart.html#cb403-12" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Inactive&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb403-13"><a href="analysis-of-variance-with-smart.html#cb403-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> activity, <span class="at">y =</span> .fitted, </span>
+<span id="cb403-14"><a href="analysis-of-variance-with-smart.html#cb403-14" aria-hidden="true" tabindex="-1"></a>                <span class="at">col =</span> race_eth, <span class="at">group =</span> race_eth)) <span class="sc">+</span></span>
+<span id="cb403-15"><a href="analysis-of-variance-with-smart.html#cb403-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb403-16"><a href="analysis-of-variance-with-smart.html#cb403-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb403-17"><a href="analysis-of-variance-with-smart.html#cb403-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Model 5b predictions for log(BMI)&quot;</span>,</span>
+<span id="cb403-18"><a href="analysis-of-variance-with-smart.html#cb403-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;race_eth and activity, no interaction so lines are parallel&quot;</span>,</span>
+<span id="cb403-19"><a href="analysis-of-variance-with-smart.html#cb403-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Model Predicted log(BMI)&quot;</span>,</span>
+<span id="cb403-20"><a href="analysis-of-variance-with-smart.html#cb403-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <pre><code>Warning: &#39;newdata&#39; had 20 rows but variables found have 1133 rows</code></pre>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
 <p>The lines joining the points for each <code>race_eth</code> category are parallel to each other. The groups always hold the same position relative to each other, regardless of their activity levels, and vice versa. There is no interaction in this model allowing the predicted effects of, say, <code>activity</code> on <code>log(BMI)</code> values to differ for the various <code>race_eth</code> groups. To do that, we’d have to fit the two-factor ANOVA model incorporating an interaction term.</p>
@@ -1933,10 +1958,10 @@ race_ethHispanic
 <div id="a-two-factor-anova-with-interaction" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> A Two-Factor ANOVA (with Interaction)</h2>
 <p>Let’s add the interaction of <code>activity</code> and <code>race_eth</code> (symbolized in R by <code>activity * race_eth</code>) to the model for <code>log(BMI)</code>.</p>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="analysis-of-variance-with-smart.html#cb402-1" aria-hidden="true" tabindex="-1"></a>model_5c <span class="ot">&lt;-</span> smart_cle1_sh <span class="sc">%$%</span> </span>
-<span id="cb402-2"><a href="analysis-of-variance-with-smart.html#cb402-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(<span class="fu">log</span>(bmi) <span class="sc">~</span> activity <span class="sc">*</span> race_eth)</span>
-<span id="cb402-3"><a href="analysis-of-variance-with-smart.html#cb402-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb402-4"><a href="analysis-of-variance-with-smart.html#cb402-4" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model_5c)</span></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="analysis-of-variance-with-smart.html#cb405-1" aria-hidden="true" tabindex="-1"></a>model_5c <span class="ot">&lt;-</span> smart_cle1_sh <span class="sc">%$%</span> </span>
+<span id="cb405-2"><a href="analysis-of-variance-with-smart.html#cb405-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(<span class="fu">log</span>(bmi) <span class="sc">~</span> activity <span class="sc">*</span> race_eth)</span>
+<span id="cb405-3"><a href="analysis-of-variance-with-smart.html#cb405-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb405-4"><a href="analysis-of-variance-with-smart.html#cb405-4" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model_5c)</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: log(bmi)
@@ -1951,9 +1976,9 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div id="model-coefficients-1" class="section level3" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Model Coefficients</h3>
 <p>The model coefficients now include additional product terms that incorporate indicator variables for both activity and race_eth. For each of the product terms to take effect, both their activity and race_eth status must yield a 1 in the indicator variables.</p>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="analysis-of-variance-with-smart.html#cb404-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model_5c, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb404-2"><a href="analysis-of-variance-with-smart.html#cb404-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(term, estimate, std.error, conf.low, conf.high) <span class="sc">%&gt;%</span></span>
-<span id="cb404-3"><a href="analysis-of-variance-with-smart.html#cb404-3" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="analysis-of-variance-with-smart.html#cb407-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model_5c, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb407-2"><a href="analysis-of-variance-with-smart.html#cb407-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(term, estimate, std.error, conf.low, conf.high) <span class="sc">%&gt;%</span></span>
+<span id="cb407-3"><a href="analysis-of-variance-with-smart.html#cb407-3" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -2343,38 +2368,38 @@ activityInactive:race_ethHispanic
 <p>For example, the predicted <code>log(BMI)</code> for a White Highly Active person is 3.264, as White and Highly Active are the baseline categories in our two factors.</p>
 <p>But the predicted <code>log(BMI)</code> for a Hispanic Inactive person would be 3.264 + 0.097 + 0.110 - 0.169 = 3.302.</p>
 <p>Again, we’ll plot the predicted <code>log(BMI)</code> predictions for each possible combination.</p>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="analysis-of-variance-with-smart.html#cb406-1" aria-hidden="true" tabindex="-1"></a>new_dat <span class="ot">=</span> <span class="fu">tibble</span>(</span>
-<span id="cb406-2"><a href="analysis-of-variance-with-smart.html#cb406-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">race_eth =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;White non-Hispanic&quot;</span>,</span>
-<span id="cb406-3"><a href="analysis-of-variance-with-smart.html#cb406-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Black non-Hispanic&quot;</span>,</span>
-<span id="cb406-4"><a href="analysis-of-variance-with-smart.html#cb406-4" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Other race non-Hispanic&quot;</span>,</span>
-<span id="cb406-5"><a href="analysis-of-variance-with-smart.html#cb406-5" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Multiracial non-Hispanic&quot;</span>,</span>
-<span id="cb406-6"><a href="analysis-of-variance-with-smart.html#cb406-6" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Hispanic&quot;</span>), <span class="dv">4</span>),</span>
-<span id="cb406-7"><a href="analysis-of-variance-with-smart.html#cb406-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">activity =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Highly_Active&quot;</span>, <span class="dv">5</span>),</span>
-<span id="cb406-8"><a href="analysis-of-variance-with-smart.html#cb406-8" aria-hidden="true" tabindex="-1"></a>               <span class="fu">rep</span>(<span class="st">&quot;Active&quot;</span>, <span class="dv">5</span>),</span>
-<span id="cb406-9"><a href="analysis-of-variance-with-smart.html#cb406-9" aria-hidden="true" tabindex="-1"></a>               <span class="fu">rep</span>(<span class="st">&quot;Insufficiently_Active&quot;</span>, <span class="dv">5</span>),</span>
-<span id="cb406-10"><a href="analysis-of-variance-with-smart.html#cb406-10" aria-hidden="true" tabindex="-1"></a>               <span class="fu">rep</span>(<span class="st">&quot;Inactive&quot;</span>, <span class="dv">5</span>))</span>
-<span id="cb406-11"><a href="analysis-of-variance-with-smart.html#cb406-11" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb406-12"><a href="analysis-of-variance-with-smart.html#cb406-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb406-13"><a href="analysis-of-variance-with-smart.html#cb406-13" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(model_5c, <span class="at">newdata =</span> new_dat) <span class="sc">%&gt;%</span></span>
-<span id="cb406-14"><a href="analysis-of-variance-with-smart.html#cb406-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">race_eth =</span> <span class="fu">fct_relevel</span>(<span class="fu">factor</span>(race_eth),</span>
-<span id="cb406-15"><a href="analysis-of-variance-with-smart.html#cb406-15" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;White non-Hispanic&quot;</span>,</span>
-<span id="cb406-16"><a href="analysis-of-variance-with-smart.html#cb406-16" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Black non-Hispanic&quot;</span>,</span>
-<span id="cb406-17"><a href="analysis-of-variance-with-smart.html#cb406-17" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Other race non-Hispanic&quot;</span>,</span>
-<span id="cb406-18"><a href="analysis-of-variance-with-smart.html#cb406-18" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Multiracial non-Hispanic&quot;</span>,</span>
-<span id="cb406-19"><a href="analysis-of-variance-with-smart.html#cb406-19" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Hispanic&quot;</span>),</span>
-<span id="cb406-20"><a href="analysis-of-variance-with-smart.html#cb406-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">activity =</span> <span class="fu">fct_relevel</span>(<span class="fu">factor</span>(activity),</span>
-<span id="cb406-21"><a href="analysis-of-variance-with-smart.html#cb406-21" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Highly_Active&quot;</span>,</span>
-<span id="cb406-22"><a href="analysis-of-variance-with-smart.html#cb406-22" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Active&quot;</span>,</span>
-<span id="cb406-23"><a href="analysis-of-variance-with-smart.html#cb406-23" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Insufficiently_Active&quot;</span>,</span>
-<span id="cb406-24"><a href="analysis-of-variance-with-smart.html#cb406-24" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Inactive&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb406-25"><a href="analysis-of-variance-with-smart.html#cb406-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> activity, <span class="at">y =</span> .fitted, </span>
-<span id="cb406-26"><a href="analysis-of-variance-with-smart.html#cb406-26" aria-hidden="true" tabindex="-1"></a>                <span class="at">col =</span> race_eth, <span class="at">group =</span> race_eth)) <span class="sc">+</span></span>
-<span id="cb406-27"><a href="analysis-of-variance-with-smart.html#cb406-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
-<span id="cb406-28"><a href="analysis-of-variance-with-smart.html#cb406-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb406-29"><a href="analysis-of-variance-with-smart.html#cb406-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Model 5c predictions for log(BMI)&quot;</span>,</span>
-<span id="cb406-30"><a href="analysis-of-variance-with-smart.html#cb406-30" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;race_eth and activity, with interaction&quot;</span>,</span>
-<span id="cb406-31"><a href="analysis-of-variance-with-smart.html#cb406-31" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Model Predicted log(BMI)&quot;</span>,</span>
-<span id="cb406-32"><a href="analysis-of-variance-with-smart.html#cb406-32" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="analysis-of-variance-with-smart.html#cb409-1" aria-hidden="true" tabindex="-1"></a>new_dat <span class="ot">=</span> <span class="fu">tibble</span>(</span>
+<span id="cb409-2"><a href="analysis-of-variance-with-smart.html#cb409-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">race_eth =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;White non-Hispanic&quot;</span>,</span>
+<span id="cb409-3"><a href="analysis-of-variance-with-smart.html#cb409-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Black non-Hispanic&quot;</span>,</span>
+<span id="cb409-4"><a href="analysis-of-variance-with-smart.html#cb409-4" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Other race non-Hispanic&quot;</span>,</span>
+<span id="cb409-5"><a href="analysis-of-variance-with-smart.html#cb409-5" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Multiracial non-Hispanic&quot;</span>,</span>
+<span id="cb409-6"><a href="analysis-of-variance-with-smart.html#cb409-6" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;Hispanic&quot;</span>), <span class="dv">4</span>),</span>
+<span id="cb409-7"><a href="analysis-of-variance-with-smart.html#cb409-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">activity =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Highly_Active&quot;</span>, <span class="dv">5</span>),</span>
+<span id="cb409-8"><a href="analysis-of-variance-with-smart.html#cb409-8" aria-hidden="true" tabindex="-1"></a>               <span class="fu">rep</span>(<span class="st">&quot;Active&quot;</span>, <span class="dv">5</span>),</span>
+<span id="cb409-9"><a href="analysis-of-variance-with-smart.html#cb409-9" aria-hidden="true" tabindex="-1"></a>               <span class="fu">rep</span>(<span class="st">&quot;Insufficiently_Active&quot;</span>, <span class="dv">5</span>),</span>
+<span id="cb409-10"><a href="analysis-of-variance-with-smart.html#cb409-10" aria-hidden="true" tabindex="-1"></a>               <span class="fu">rep</span>(<span class="st">&quot;Inactive&quot;</span>, <span class="dv">5</span>))</span>
+<span id="cb409-11"><a href="analysis-of-variance-with-smart.html#cb409-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb409-12"><a href="analysis-of-variance-with-smart.html#cb409-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb409-13"><a href="analysis-of-variance-with-smart.html#cb409-13" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(model_5c, <span class="at">newdata =</span> new_dat) <span class="sc">%&gt;%</span></span>
+<span id="cb409-14"><a href="analysis-of-variance-with-smart.html#cb409-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">race_eth =</span> <span class="fu">fct_relevel</span>(<span class="fu">factor</span>(race_eth),</span>
+<span id="cb409-15"><a href="analysis-of-variance-with-smart.html#cb409-15" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;White non-Hispanic&quot;</span>,</span>
+<span id="cb409-16"><a href="analysis-of-variance-with-smart.html#cb409-16" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Black non-Hispanic&quot;</span>,</span>
+<span id="cb409-17"><a href="analysis-of-variance-with-smart.html#cb409-17" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Other race non-Hispanic&quot;</span>,</span>
+<span id="cb409-18"><a href="analysis-of-variance-with-smart.html#cb409-18" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Multiracial non-Hispanic&quot;</span>,</span>
+<span id="cb409-19"><a href="analysis-of-variance-with-smart.html#cb409-19" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Hispanic&quot;</span>),</span>
+<span id="cb409-20"><a href="analysis-of-variance-with-smart.html#cb409-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">activity =</span> <span class="fu">fct_relevel</span>(<span class="fu">factor</span>(activity),</span>
+<span id="cb409-21"><a href="analysis-of-variance-with-smart.html#cb409-21" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Highly_Active&quot;</span>,</span>
+<span id="cb409-22"><a href="analysis-of-variance-with-smart.html#cb409-22" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Active&quot;</span>,</span>
+<span id="cb409-23"><a href="analysis-of-variance-with-smart.html#cb409-23" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Insufficiently_Active&quot;</span>,</span>
+<span id="cb409-24"><a href="analysis-of-variance-with-smart.html#cb409-24" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Inactive&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb409-25"><a href="analysis-of-variance-with-smart.html#cb409-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> activity, <span class="at">y =</span> .fitted, </span>
+<span id="cb409-26"><a href="analysis-of-variance-with-smart.html#cb409-26" aria-hidden="true" tabindex="-1"></a>                <span class="at">col =</span> race_eth, <span class="at">group =</span> race_eth)) <span class="sc">+</span></span>
+<span id="cb409-27"><a href="analysis-of-variance-with-smart.html#cb409-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb409-28"><a href="analysis-of-variance-with-smart.html#cb409-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb409-29"><a href="analysis-of-variance-with-smart.html#cb409-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Model 5c predictions for log(BMI)&quot;</span>,</span>
+<span id="cb409-30"><a href="analysis-of-variance-with-smart.html#cb409-30" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;race_eth and activity, with interaction&quot;</span>,</span>
+<span id="cb409-31"><a href="analysis-of-variance-with-smart.html#cb409-31" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Model Predicted log(BMI)&quot;</span>,</span>
+<span id="cb409-32"><a href="analysis-of-variance-with-smart.html#cb409-32" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <pre><code>Warning: &#39;newdata&#39; had 20 rows but variables found have 1133 rows</code></pre>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-139-1.png" width="672" /></p>
 <p>Note that the lines joining the points for each <code>race_eth</code> category are no longer parallel to each other. The race-ethnicity group relative positions on <code>log(BMI)</code> is now changing depending on the <code>activity</code> status.</p>
@@ -2390,12 +2415,13 @@ activityInactive:race_ethHispanic
 <div id="the-interaction-plot" class="section level4" number="5.3.2.1">
 <h4><span class="header-section-number">5.3.2.1</span> The Interaction Plot</h4>
 <p>A simple interaction plot is just a plot of the unadjusted outcome means, stratified by the two factors. For example, consider this plot for our two-factor ANOVA model. To obtain this plot, we first summarize the means within each group.</p>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="analysis-of-variance-with-smart.html#cb408-1" aria-hidden="true" tabindex="-1"></a>summaries_5 <span class="ot">&lt;-</span> smart_cle1_sh <span class="sc">%&gt;%</span> </span>
-<span id="cb408-2"><a href="analysis-of-variance-with-smart.html#cb408-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(activity, race_eth) <span class="sc">%&gt;%</span></span>
-<span id="cb408-3"><a href="analysis-of-variance-with-smart.html#cb408-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">mean =</span> <span class="fu">mean</span>(<span class="fu">log</span>(bmi)), </span>
-<span id="cb408-4"><a href="analysis-of-variance-with-smart.html#cb408-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(<span class="fu">log</span>(bmi)))</span></code></pre></div>
-<pre><code>`summarise()` has grouped output by &#39;activity&#39;. You can override using the `.groups` argument.</code></pre>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="analysis-of-variance-with-smart.html#cb410-1" aria-hidden="true" tabindex="-1"></a>summaries_5</span></code></pre></div>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="analysis-of-variance-with-smart.html#cb411-1" aria-hidden="true" tabindex="-1"></a>summaries_5 <span class="ot">&lt;-</span> smart_cle1_sh <span class="sc">%&gt;%</span> </span>
+<span id="cb411-2"><a href="analysis-of-variance-with-smart.html#cb411-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(activity, race_eth) <span class="sc">%&gt;%</span></span>
+<span id="cb411-3"><a href="analysis-of-variance-with-smart.html#cb411-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">mean =</span> <span class="fu">mean</span>(<span class="fu">log</span>(bmi)), </span>
+<span id="cb411-4"><a href="analysis-of-variance-with-smart.html#cb411-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(<span class="fu">log</span>(bmi)))</span></code></pre></div>
+<pre><code>`summarise()` has grouped output by &#39;activity&#39;. You can override using the
+`.groups` argument.</code></pre>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="analysis-of-variance-with-smart.html#cb413-1" aria-hidden="true" tabindex="-1"></a>summaries_5</span></code></pre></div>
 <pre><code># A tibble: 20 x 5
 # Groups:   activity [4]
    activity              race_eth                     n  mean      sd
@@ -2420,36 +2446,36 @@ activityInactive:race_ethHispanic
 18 Inactive              Other race non-Hispanic      4  3.32  0.238 
 19 Inactive              Multiracial non-Hispanic     5  3.37  0.129 
 20 Inactive              Hispanic                    14  3.30  0.264 </code></pre>
-<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="analysis-of-variance-with-smart.html#cb412-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(summaries_5, <span class="fu">aes</span>(<span class="at">x =</span> activity, <span class="at">y =</span> mean, </span>
-<span id="cb412-2"><a href="analysis-of-variance-with-smart.html#cb412-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">color =</span> race_eth, </span>
-<span id="cb412-3"><a href="analysis-of-variance-with-smart.html#cb412-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">group =</span> race_eth)) <span class="sc">+</span></span>
-<span id="cb412-4"><a href="analysis-of-variance-with-smart.html#cb412-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb412-5"><a href="analysis-of-variance-with-smart.html#cb412-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb412-6"><a href="analysis-of-variance-with-smart.html#cb412-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Simple Interaction Plot for log(BMI)&quot;</span>,</span>
-<span id="cb412-7"><a href="analysis-of-variance-with-smart.html#cb412-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;SMART CLE means by activity and race_eth&quot;</span>,</span>
-<span id="cb412-8"><a href="analysis-of-variance-with-smart.html#cb412-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Mean of log(BMI)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="analysis-of-variance-with-smart.html#cb415-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(summaries_5, <span class="fu">aes</span>(<span class="at">x =</span> activity, <span class="at">y =</span> mean, </span>
+<span id="cb415-2"><a href="analysis-of-variance-with-smart.html#cb415-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">color =</span> race_eth, </span>
+<span id="cb415-3"><a href="analysis-of-variance-with-smart.html#cb415-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">group =</span> race_eth)) <span class="sc">+</span></span>
+<span id="cb415-4"><a href="analysis-of-variance-with-smart.html#cb415-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb415-5"><a href="analysis-of-variance-with-smart.html#cb415-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb415-6"><a href="analysis-of-variance-with-smart.html#cb415-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Simple Interaction Plot for log(BMI)&quot;</span>,</span>
+<span id="cb415-7"><a href="analysis-of-variance-with-smart.html#cb415-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;SMART CLE means by activity and race_eth&quot;</span>,</span>
+<span id="cb415-8"><a href="analysis-of-variance-with-smart.html#cb415-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Mean of log(BMI)&quot;</span>)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-141-1.png" width="672" /></p>
 <p>The interaction plot suggests that there is a modest interaction here. The White non-Hispanic and Black non-Hispanic groups appear pretty parallel (and they are the two largest groups) and Other race non-Hispanic has a fairly similar pattern, but the other two groups (Hispanic and Multiracial non-Hispanic) bounce around quite a bit based on activity level.</p>
 <p>An alternative would be to include a small “dodge” for each point and include error bars (means <span class="math inline">\(\pm\)</span> standard deviation) for each combination.</p>
-<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="analysis-of-variance-with-smart.html#cb413-1" aria-hidden="true" tabindex="-1"></a>pd <span class="ot">=</span> <span class="fu">position_dodge</span>(<span class="fl">0.2</span>)</span>
-<span id="cb413-2"><a href="analysis-of-variance-with-smart.html#cb413-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(summaries_5, <span class="fu">aes</span>(<span class="at">x =</span> activity, <span class="at">y =</span> mean, </span>
-<span id="cb413-3"><a href="analysis-of-variance-with-smart.html#cb413-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">color =</span> race_eth, </span>
-<span id="cb413-4"><a href="analysis-of-variance-with-smart.html#cb413-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">group =</span> race_eth)) <span class="sc">+</span></span>
-<span id="cb413-5"><a href="analysis-of-variance-with-smart.html#cb413-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean <span class="sc">-</span> sd,</span>
-<span id="cb413-6"><a href="analysis-of-variance-with-smart.html#cb413-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> mean <span class="sc">+</span> sd),</span>
-<span id="cb413-7"><a href="analysis-of-variance-with-smart.html#cb413-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">position =</span> pd) <span class="sc">+</span></span>
-<span id="cb413-8"><a href="analysis-of-variance-with-smart.html#cb413-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">position =</span> pd) <span class="sc">+</span></span>
-<span id="cb413-9"><a href="analysis-of-variance-with-smart.html#cb413-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">position =</span> pd) <span class="sc">+</span></span>
-<span id="cb413-10"><a href="analysis-of-variance-with-smart.html#cb413-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Interaction Plot for log(BMI) with Error Bars&quot;</span>,</span>
-<span id="cb413-11"><a href="analysis-of-variance-with-smart.html#cb413-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;SMART CLE means by activity and race_eth&quot;</span>,</span>
-<span id="cb413-12"><a href="analysis-of-variance-with-smart.html#cb413-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Mean of log(BMI)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="analysis-of-variance-with-smart.html#cb416-1" aria-hidden="true" tabindex="-1"></a>pd <span class="ot">=</span> <span class="fu">position_dodge</span>(<span class="fl">0.2</span>)</span>
+<span id="cb416-2"><a href="analysis-of-variance-with-smart.html#cb416-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(summaries_5, <span class="fu">aes</span>(<span class="at">x =</span> activity, <span class="at">y =</span> mean, </span>
+<span id="cb416-3"><a href="analysis-of-variance-with-smart.html#cb416-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">color =</span> race_eth, </span>
+<span id="cb416-4"><a href="analysis-of-variance-with-smart.html#cb416-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">group =</span> race_eth)) <span class="sc">+</span></span>
+<span id="cb416-5"><a href="analysis-of-variance-with-smart.html#cb416-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean <span class="sc">-</span> sd,</span>
+<span id="cb416-6"><a href="analysis-of-variance-with-smart.html#cb416-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> mean <span class="sc">+</span> sd),</span>
+<span id="cb416-7"><a href="analysis-of-variance-with-smart.html#cb416-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">position =</span> pd) <span class="sc">+</span></span>
+<span id="cb416-8"><a href="analysis-of-variance-with-smart.html#cb416-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">position =</span> pd) <span class="sc">+</span></span>
+<span id="cb416-9"><a href="analysis-of-variance-with-smart.html#cb416-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">position =</span> pd) <span class="sc">+</span></span>
+<span id="cb416-10"><a href="analysis-of-variance-with-smart.html#cb416-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Interaction Plot for log(BMI) with Error Bars&quot;</span>,</span>
+<span id="cb416-11"><a href="analysis-of-variance-with-smart.html#cb416-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;SMART CLE means by activity and race_eth&quot;</span>,</span>
+<span id="cb416-12"><a href="analysis-of-variance-with-smart.html#cb416-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Mean of log(BMI)&quot;</span>)</span></code></pre></div>
 <p><img src="432-notes_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
 <p>Here, we see a warning flag because we have one combination (which turns out to be Insufficiently Active and Hispanic) with only one observation in it, so a standard deviation cannot be calculated. In general, I’ll stick with the simpler means plot most of the time.</p>
 </div>
 <div id="does-the-interaction-account-for-substantial-variation" class="section level4" number="5.3.2.2">
 <h4><span class="header-section-number">5.3.2.2</span> Does the interaction account for substantial variation?</h4>
 <p>In this case, we can look at the fraction of the overall sums of squares accounted for by the interaction.</p>
-<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="analysis-of-variance-with-smart.html#cb414-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model_5c)</span></code></pre></div>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="analysis-of-variance-with-smart.html#cb417-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model_5c)</span></code></pre></div>
 <pre><code>Analysis of Variance Table
 
 Response: log(bmi)
@@ -2482,12 +2508,11 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
           </div>
         </div>
       </div>
-<a href="summarizing-the-smart-cle1-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="summarizing-the-smart_cle1-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="analysis-of-variance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -2506,6 +2531,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -2526,6 +2552,10 @@ gitbook.start({
 "text": null
 },
 "download": ["432-notes.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

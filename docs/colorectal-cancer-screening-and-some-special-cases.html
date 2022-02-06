@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 18 Colorectal Cancer Screening and Some Special Cases | Data Science for Biological, Medical and Health Research: Notes for 432</title>
   <meta name="description" content="Course Notes for PQHS 432 in Spring 2021." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 18 Colorectal Cancer Screening and Some Special Cases | Data Science for Biological, Medical and Health Research: Notes for 432" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="using-tidymodels-approaches-next-steps.html"/>
 <link rel="next" href="modeling-a-count-outcome-in-ohio-smart.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,13 +50,15 @@
 
 
 
-
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -114,6 +117,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 </head>
@@ -230,30 +256,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9.7" data-path="dealing-with-missingness-single-imputation.html"><a href="dealing-with-missingness-single-imputation.html#saving-the-new-tibbles"><i class="fa fa-check"></i><b>3.9.7</b> Saving the new tibbles</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing the <code>smart_cle1</code> data</a>
+<li class="chapter" data-level="4" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html"><i class="fa fa-check"></i><b>4</b> Summarizing the <code>smart_cle1</code> data</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#general-approaches-to-obtaining-numeric-summaries"><i class="fa fa-check"></i><b>4.1</b> General Approaches to Obtaining Numeric Summaries</a>
+<li class="chapter" data-level="4.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#general-approaches-to-obtaining-numeric-summaries"><i class="fa fa-check"></i><b>4.1</b> General Approaches to Obtaining Numeric Summaries</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#summary-for-a-data-frame"><i class="fa fa-check"></i><b>4.1.1</b> <code>summary</code> for a data frame</a></li>
-<li class="chapter" data-level="4.1.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#the-inspect-function-from-the-mosaic-package"><i class="fa fa-check"></i><b>4.1.2</b> The <code>inspect</code> function from the <code>mosaic</code> package</a></li>
-<li class="chapter" data-level="4.1.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#the-describe-function-in-hmisc"><i class="fa fa-check"></i><b>4.1.3</b> The <code>describe</code> function in <code>Hmisc</code></a></li>
+<li class="chapter" data-level="4.1.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#summary-for-a-data-frame"><i class="fa fa-check"></i><b>4.1.1</b> <code>summary</code> for a data frame</a></li>
+<li class="chapter" data-level="4.1.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#the-inspect-function-from-the-mosaic-package"><i class="fa fa-check"></i><b>4.1.2</b> The <code>inspect</code> function from the <code>mosaic</code> package</a></li>
+<li class="chapter" data-level="4.1.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#the-describe-function-in-hmisc"><i class="fa fa-check"></i><b>4.1.3</b> The <code>describe</code> function in <code>Hmisc</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#counting-as-exploratory-data-analysis"><i class="fa fa-check"></i><b>4.2</b> Counting as exploratory data analysis</a>
+<li class="chapter" data-level="4.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#counting-as-exploratory-data-analysis"><i class="fa fa-check"></i><b>4.2</b> Counting as exploratory data analysis</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#did-genhealth-vary-by-smoking-status"><i class="fa fa-check"></i><b>4.2.1</b> Did <code>genhealth</code> vary by smoking status?</a></li>
-<li class="chapter" data-level="4.2.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#whats-the-distribution-of-physhealth"><i class="fa fa-check"></i><b>4.2.2</b> What’s the distribution of <code>physhealth</code>?</a></li>
-<li class="chapter" data-level="4.2.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#whats-the-distribution-of-bmi"><i class="fa fa-check"></i><b>4.2.3</b> What’s the distribution of <code>bmi</code>?</a></li>
-<li class="chapter" data-level="4.2.4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-many-of-the-respondents-have-a-bmi-below-30"><i class="fa fa-check"></i><b>4.2.4</b> How many of the respondents have a BMI below 30?</a></li>
-<li class="chapter" data-level="4.2.5" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-many-of-the-respondents-with-a-bmi-30-are-highly-active"><i class="fa fa-check"></i><b>4.2.5</b> How many of the respondents with a BMI &lt; 30 are highly active?</a></li>
-<li class="chapter" data-level="4.2.6" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#is-obesity-associated-with-smoking-history"><i class="fa fa-check"></i><b>4.2.6</b> Is obesity associated with smoking history?</a></li>
-<li class="chapter" data-level="4.2.7" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#comparing-drinks_wk-summaries-by-obesity-status"><i class="fa fa-check"></i><b>4.2.7</b> Comparing <code>drinks_wk</code> summaries by obesity status</a></li>
+<li class="chapter" data-level="4.2.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#did-genhealth-vary-by-smoking-status"><i class="fa fa-check"></i><b>4.2.1</b> Did <code>genhealth</code> vary by smoking status?</a></li>
+<li class="chapter" data-level="4.2.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#whats-the-distribution-of-physhealth"><i class="fa fa-check"></i><b>4.2.2</b> What’s the distribution of <code>physhealth</code>?</a></li>
+<li class="chapter" data-level="4.2.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#whats-the-distribution-of-bmi"><i class="fa fa-check"></i><b>4.2.3</b> What’s the distribution of <code>bmi</code>?</a></li>
+<li class="chapter" data-level="4.2.4" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#how-many-of-the-respondents-have-a-bmi-below-30"><i class="fa fa-check"></i><b>4.2.4</b> How many of the respondents have a BMI below 30?</a></li>
+<li class="chapter" data-level="4.2.5" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#how-many-of-the-respondents-with-a-bmi-30-are-highly-active"><i class="fa fa-check"></i><b>4.2.5</b> How many of the respondents with a BMI &lt; 30 are highly active?</a></li>
+<li class="chapter" data-level="4.2.6" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#is-obesity-associated-with-smoking-history"><i class="fa fa-check"></i><b>4.2.6</b> Is obesity associated with smoking history?</a></li>
+<li class="chapter" data-level="4.2.7" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#comparing-drinks_wk-summaries-by-obesity-status"><i class="fa fa-check"></i><b>4.2.7</b> Comparing <code>drinks_wk</code> summaries by obesity status</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#can-bmi-predict-physhealth"><i class="fa fa-check"></i><b>4.3</b> Can <code>bmi</code> predict <code>physhealth</code>?</a>
+<li class="chapter" data-level="4.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#can-bmi-predict-physhealth"><i class="fa fa-check"></i><b>4.3</b> Can <code>bmi</code> predict <code>physhealth</code>?</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#fitting-a-simple-regression-model"><i class="fa fa-check"></i><b>4.3.1</b> Fitting a Simple Regression Model</a></li>
-<li class="chapter" data-level="4.3.2" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#model-summary-for-a-simple-one-predictor-regression"><i class="fa fa-check"></i><b>4.3.2</b> Model Summary for a Simple (One-Predictor) Regression</a></li>
-<li class="chapter" data-level="4.3.3" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#using-the-broom-package"><i class="fa fa-check"></i><b>4.3.3</b> Using the <code>broom</code> package</a></li>
-<li class="chapter" data-level="4.3.4" data-path="summarizing-the-smart-cle1-data.html"><a href="summarizing-the-smart-cle1-data.html#how-does-the-model-do-residuals-vs.-fitted-values"><i class="fa fa-check"></i><b>4.3.4</b> How does the model do? (Residuals vs. Fitted Values)</a></li>
+<li class="chapter" data-level="4.3.1" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#fitting-a-simple-regression-model"><i class="fa fa-check"></i><b>4.3.1</b> Fitting a Simple Regression Model</a></li>
+<li class="chapter" data-level="4.3.2" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#model-summary-for-a-simple-one-predictor-regression"><i class="fa fa-check"></i><b>4.3.2</b> Model Summary for a Simple (One-Predictor) Regression</a></li>
+<li class="chapter" data-level="4.3.3" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#using-the-broom-package"><i class="fa fa-check"></i><b>4.3.3</b> Using the <code>broom</code> package</a></li>
+<li class="chapter" data-level="4.3.4" data-path="summarizing-the-smart_cle1-data.html"><a href="summarizing-the-smart_cle1-data.html#how-does-the-model-do-residuals-vs.-fitted-values"><i class="fa fa-check"></i><b>4.3.4</b> How does the model do? (Residuals vs. Fitted Values)</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="analysis-of-variance-with-smart.html"><a href="analysis-of-variance-with-smart.html"><i class="fa fa-check"></i><b>5</b> Analysis of Variance with SMART</a>
@@ -339,7 +365,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#a-new-small-study-predicting-bmi"><i class="fa fa-check"></i><b>8.1</b> A New Small Study: Predicting BMI</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#does-female-predict-bmi-well"><i class="fa fa-check"></i><b>8.1.1</b> Does <code>female</code> predict <code>bmi</code> well?</a></li>
+<li class="chapter" data-level="8.1.1" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#does-smoke100-predict-bmi-well"><i class="fa fa-check"></i><b>8.1.1</b> Does <code>smoke100</code> predict <code>bmi</code> well?</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m1-a-simple-t-test-model"><i class="fa fa-check"></i><b>8.2</b> <code>c8_m1</code>: A simple t-test model</a></li>
 <li class="chapter" data-level="8.3" data-path="analysis-of-covariance-with-the-smart-data.html"><a href="analysis-of-covariance-with-the-smart-data.html#c8_m2-adding-another-predictor-two-way-anova-without-interaction"><i class="fa fa-check"></i><b>8.3</b> <code>c8_m2</code>: Adding another predictor (two-way ANOVA without interaction)</a></li>
@@ -483,7 +509,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12.14" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#logistic-regression-using-lrm"><i class="fa fa-check"></i><b>12.14</b> Logistic Regression using <code>lrm</code></a>
 <ul>
-<li class="chapter" data-level="12.14.1" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#interpreting-nagelkerke-r2"><i class="fa fa-check"></i><b>12.14.1</b> Interpreting Nagelkerke R<sup>2</sup></a></li>
+<li class="chapter" data-level="12.14.1" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#interpreting-nagelkerke-r2"><i class="fa fa-check"></i><b>12.14.1</b> Interpreting Nagelkerke <span class="math inline">\(R^2\)</span></a></li>
 <li class="chapter" data-level="12.14.2" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#interpreting-the-c-statistic-and-plotting-the-roc-curve"><i class="fa fa-check"></i><b>12.14.2</b> Interpreting the C statistic and Plotting the ROC Curve</a></li>
 <li class="chapter" data-level="12.14.3" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#the-c-statistic-and-somers-d"><i class="fa fa-check"></i><b>12.14.3</b> The C statistic and Somers’ D</a></li>
 <li class="chapter" data-level="12.14.4" data-path="logistic-regression-and-the-resect-data.html"><a href="logistic-regression-and-the-resect-data.html#validating-the-logistic-regression-model-summary-statistics"><i class="fa fa-check"></i><b>12.14.4</b> Validating the Logistic Regression Model Summary Statistics</a></li>
@@ -531,7 +557,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.5" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#exploring-model-c11_prost_a"><i class="fa fa-check"></i><b>13.5</b> Exploring Model <code>c11_prost_A</code></a>
 <ul>
 <li class="chapter" data-level="13.5.1" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#summary-for-model-c11_prost_a"><i class="fa fa-check"></i><b>13.5.1</b> <code>summary</code> for Model <code>c11_prost_A</code></a></li>
-<li class="chapter" data-level="13.5.2" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#adjusted-r2"><i class="fa fa-check"></i><b>13.5.2</b> Adjusted R<sup>2</sup></a></li>
+<li class="chapter" data-level="13.5.2" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#adjusted-r2"><i class="fa fa-check"></i><b>13.5.2</b> Adjusted <span class="math inline">\(R^2\)</span></a></li>
 <li class="chapter" data-level="13.5.3" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#coefficient-confidence-intervals"><i class="fa fa-check"></i><b>13.5.3</b> Coefficient Confidence Intervals</a></li>
 <li class="chapter" data-level="13.5.4" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#anova-for-model-c11_prost_a"><i class="fa fa-check"></i><b>13.5.4</b> ANOVA for Model <code>c11_prost_A</code></a></li>
 <li class="chapter" data-level="13.5.5" data-path="a-study-of-prostate-cancer.html"><a href="a-study-of-prostate-cancer.html#residuals-fitted-values-and-standard-errors-with-augment"><i class="fa fa-check"></i><b>13.5.5</b> Residuals, Fitted Values and Standard Errors with <code>augment</code></a></li>
@@ -628,7 +654,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="19.5.1" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#interpreting-the-coefficients"><i class="fa fa-check"></i><b>19.5.1</b> Interpreting the Coefficients</a></li>
 <li class="chapter" data-level="19.5.2" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals"><i class="fa fa-check"></i><b>19.5.2</b> Store fitted values and residuals</a></li>
-<li class="chapter" data-level="19.5.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values"><i class="fa fa-check"></i><b>19.5.3</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.5.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values"><i class="fa fa-check"></i><b>19.5.3</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.5.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions"><i class="fa fa-check"></i><b>19.5.4</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.5.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally"><i class="fa fa-check"></i><b>19.5.5</b> Predictions for Harry and Sally</a></li>
 <li class="chapter" data-level="19.5.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#notes"><i class="fa fa-check"></i><b>19.5.6</b> Notes</a></li>
@@ -637,8 +663,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="19.6.1" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#interpreting-the-coefficients-1"><i class="fa fa-check"></i><b>19.6.1</b> Interpreting the Coefficients</a></li>
 <li class="chapter" data-level="19.6.2" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-1"><i class="fa fa-check"></i><b>19.6.2</b> Store fitted values and residuals</a></li>
-<li class="chapter" data-level="19.6.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-1"><i class="fa fa-check"></i><b>19.6.3</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
-<li class="chapter" data-level="19.6.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#getting-r2-on-the-scale-of-physhealth"><i class="fa fa-check"></i><b>19.6.4</b> Getting R<sup>2</sup> on the scale of <code>physhealth</code></a></li>
+<li class="chapter" data-level="19.6.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-1"><i class="fa fa-check"></i><b>19.6.3</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.6.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#getting-r2-on-the-scale-of-physhealth"><i class="fa fa-check"></i><b>19.6.4</b> Getting <span class="math inline">\(R^2\)</span> on the scale of <code>physhealth</code></a></li>
 <li class="chapter" data-level="19.6.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-1"><i class="fa fa-check"></i><b>19.6.5</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.6.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-1"><i class="fa fa-check"></i><b>19.6.6</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -650,7 +676,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.7.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#correcting-for-overdispersion-with-coeftestcoefci"><i class="fa fa-check"></i><b>19.7.4</b> Correcting for Overdispersion with <code>coeftest</code>/<code>coefci</code></a></li>
 <li class="chapter" data-level="19.7.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-2"><i class="fa fa-check"></i><b>19.7.5</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.7.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-see-the-fit-of-a-count-regression-model"><i class="fa fa-check"></i><b>19.7.6</b> Rootogram: see the fit of a count regression model</a></li>
-<li class="chapter" data-level="19.7.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-2"><i class="fa fa-check"></i><b>19.7.7</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.7.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-2"><i class="fa fa-check"></i><b>19.7.7</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.7.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-2"><i class="fa fa-check"></i><b>19.7.8</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.7.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#using-glm.diag.plots-from-the-boot-package"><i class="fa fa-check"></i><b>19.7.9</b> Using <code>glm.diag.plots</code> from the <code>boot</code> package</a></li>
 <li class="chapter" data-level="19.7.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-2"><i class="fa fa-check"></i><b>19.7.10</b> Predictions for Harry and Sally</a></li>
@@ -665,7 +691,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.9.2" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#interpreting-the-coefficients-3"><i class="fa fa-check"></i><b>19.9.2</b> Interpreting the Coefficients</a></li>
 <li class="chapter" data-level="19.9.3" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#testing-the-predictors-1"><i class="fa fa-check"></i><b>19.9.3</b> Testing the Predictors</a></li>
 <li class="chapter" data-level="19.9.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-3"><i class="fa fa-check"></i><b>19.9.4</b> Store fitted values and residuals</a></li>
-<li class="chapter" data-level="19.9.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-3"><i class="fa fa-check"></i><b>19.9.5</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.9.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-3"><i class="fa fa-check"></i><b>19.9.5</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.9.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-3"><i class="fa fa-check"></i><b>19.9.6</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.9.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-3"><i class="fa fa-check"></i><b>19.9.7</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -689,7 +715,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.11.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-4"><i class="fa fa-check"></i><b>19.11.6</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.11.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-negative-binomial-model"><i class="fa fa-check"></i><b>19.11.7</b> Rootogram for Negative Binomial model</a></li>
 <li class="chapter" data-level="19.11.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#simulating-what-the-negative-binomial-model-predicts"><i class="fa fa-check"></i><b>19.11.8</b> Simulating what the Negative Binomial model predicts</a></li>
-<li class="chapter" data-level="19.11.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-4"><i class="fa fa-check"></i><b>19.11.9</b> Specify the R<sup>2</sup> and log(likelihood) values</a></li>
+<li class="chapter" data-level="19.11.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-loglikelihood-values-4"><i class="fa fa-check"></i><b>19.11.9</b> Specify the <span class="math inline">\(R^2\)</span> and log(likelihood) values</a></li>
 <li class="chapter" data-level="19.11.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-4"><i class="fa fa-check"></i><b>19.11.10</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.11.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-4"><i class="fa fa-check"></i><b>19.11.11</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -704,7 +730,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.13.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-5"><i class="fa fa-check"></i><b>19.13.6</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.13.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#modeled-number-of-zero-counts"><i class="fa fa-check"></i><b>19.13.7</b> Modeled Number of Zero Counts</a></li>
 <li class="chapter" data-level="19.13.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-zip-model"><i class="fa fa-check"></i><b>19.13.8</b> Rootogram for ZIP model</a></li>
-<li class="chapter" data-level="19.13.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values"><i class="fa fa-check"></i><b>19.13.9</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.13.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values"><i class="fa fa-check"></i><b>19.13.9</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.13.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-5"><i class="fa fa-check"></i><b>19.13.10</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.13.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-5"><i class="fa fa-check"></i><b>19.13.11</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -718,7 +744,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.14.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-6"><i class="fa fa-check"></i><b>19.14.6</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.14.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#modeled-number-of-zero-counts-1"><i class="fa fa-check"></i><b>19.14.7</b> Modeled Number of Zero Counts</a></li>
 <li class="chapter" data-level="19.14.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-zero-inflated-negative-binomial-model"><i class="fa fa-check"></i><b>19.14.8</b> Rootogram for Zero-Inflated Negative Binomial model</a></li>
-<li class="chapter" data-level="19.14.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-1"><i class="fa fa-check"></i><b>19.14.9</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.14.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-1"><i class="fa fa-check"></i><b>19.14.9</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.14.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-6"><i class="fa fa-check"></i><b>19.14.10</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.14.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-6"><i class="fa fa-check"></i><b>19.14.11</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -734,7 +760,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.15.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#modeled-number-of-zero-counts-2"><i class="fa fa-check"></i><b>19.15.8</b> Modeled Number of Zero Counts</a></li>
 <li class="chapter" data-level="19.15.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-hurdle-model"><i class="fa fa-check"></i><b>19.15.9</b> Rootogram for Hurdle Model</a></li>
 <li class="chapter" data-level="19.15.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#understanding-the-modeled-counts-in-detail"><i class="fa fa-check"></i><b>19.15.10</b> Understanding the Modeled Counts in Detail</a></li>
-<li class="chapter" data-level="19.15.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-2"><i class="fa fa-check"></i><b>19.15.11</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.15.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-2"><i class="fa fa-check"></i><b>19.15.11</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.15.12" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-7"><i class="fa fa-check"></i><b>19.15.12</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.15.13" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-7"><i class="fa fa-check"></i><b>19.15.13</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -749,7 +775,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.16.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#testing-the-predictors-6"><i class="fa fa-check"></i><b>19.16.7</b> Testing the Predictors</a></li>
 <li class="chapter" data-level="19.16.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-8"><i class="fa fa-check"></i><b>19.16.8</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.16.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#rootogram-for-nb-hurdle-model"><i class="fa fa-check"></i><b>19.16.9</b> Rootogram for NB Hurdle Model</a></li>
-<li class="chapter" data-level="19.16.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-3"><i class="fa fa-check"></i><b>19.16.10</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.16.10" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-3"><i class="fa fa-check"></i><b>19.16.10</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.16.11" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-8"><i class="fa fa-check"></i><b>19.16.11</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.16.12" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-8"><i class="fa fa-check"></i><b>19.16.12</b> Predictions for Harry and Sally</a></li>
 <li class="chapter" data-level="19.16.13" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#note-fitting-a-different-hurdle-model-for-counts-and-przero"><i class="fa fa-check"></i><b>19.16.13</b> Note: Fitting a Different Hurdle Model for Counts and Pr(zero)</a></li>
@@ -763,7 +789,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.17.4" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#store-fitted-values-and-residuals-9"><i class="fa fa-check"></i><b>19.17.4</b> Store fitted values and residuals</a></li>
 <li class="chapter" data-level="19.17.5" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#building-something-like-a-rootogram"><i class="fa fa-check"></i><b>19.17.5</b> Building Something Like a Rootogram</a></li>
 <li class="chapter" data-level="19.17.6" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#tables-of-the-observed-and-fitted-physhealth-from-tobit"><i class="fa fa-check"></i><b>19.17.6</b> Tables of the Observed and Fitted <code>physhealth</code> from Tobit</a></li>
-<li class="chapter" data-level="19.17.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-4"><i class="fa fa-check"></i><b>19.17.7</b> Specify the R<sup>2</sup> and log (likelihood) values</a></li>
+<li class="chapter" data-level="19.17.7" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#specify-the-r2-and-log-likelihood-values-4"><i class="fa fa-check"></i><b>19.17.7</b> Specify the <span class="math inline">\(R^2\)</span> and log (likelihood) values</a></li>
 <li class="chapter" data-level="19.17.8" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#check-model-assumptions-9"><i class="fa fa-check"></i><b>19.17.8</b> Check model assumptions</a></li>
 <li class="chapter" data-level="19.17.9" data-path="modeling-a-count-outcome-in-ohio-smart.html"><a href="modeling-a-count-outcome-in-ohio-smart.html#predictions-for-harry-and-sally-9"><i class="fa fa-check"></i><b>19.17.9</b> Predictions for Harry and Sally</a></li>
 </ul></li>
@@ -945,9 +971,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="24.4.1" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#interpreting-the-results-from-model-b"><i class="fa fa-check"></i><b>24.4.1</b> Interpreting the Results from Model B</a></li>
 <li class="chapter" data-level="24.4.2" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#plotting-the-survival-curve-implied-by-model-b"><i class="fa fa-check"></i><b>24.4.2</b> Plotting the Survival Curve implied by Model B</a></li>
-<li class="chapter" data-level="24.4.3" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#plotting-the-cumulative-hazard-implied-by-model-b"><i class="fa fa-check"></i><b>24.4.3</b> Plotting the Cumulative Hazard implied by Model B</a></li>
-<li class="chapter" data-level="24.4.4" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#testing-the-proportional-hazards-assumption-1"><i class="fa fa-check"></i><b>24.4.4</b> Testing the Proportional Hazards Assumption</a></li>
-<li class="chapter" data-level="24.4.5" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#assessing-collinearity"><i class="fa fa-check"></i><b>24.4.5</b> Assessing Collinearity</a></li>
+<li class="chapter" data-level="24.4.3" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#testing-the-proportional-hazards-assumption-1"><i class="fa fa-check"></i><b>24.4.3</b> Testing the Proportional Hazards Assumption</a></li>
+<li class="chapter" data-level="24.4.4" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#assessing-collinearity"><i class="fa fa-check"></i><b>24.4.4</b> Assessing Collinearity</a></li>
 </ul></li>
 <li class="chapter" data-level="24.5" data-path="cox-regression-models-for-survival-data-example-2.html"><a href="cox-regression-models-for-survival-data-example-2.html#model-b2-a-stepwise-reduction-of-model-b"><i class="fa fa-check"></i><b>24.5</b> Model B2: A Stepwise Reduction of Model B</a>
 <ul>
@@ -987,7 +1012,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="colorectal-cancer-screening-and-some-special-cases" class="section level1" number="18">
 <h1><span class="header-section-number">Chapter 18</span> Colorectal Cancer Screening and Some Special Cases</h1>
-<p>In this Chapter, we discuss two issues as yet unraised regarding regression on a binary outcome.</p>
+<p>In this Chapter, we discuss two issues not yet raised regarding regression on a binary outcome.</p>
 <ol style="list-style-type: decimal">
 <li><p>What do we do if our binary outcome is not available for each subject individually, but instead aggregated?</p></li>
 <li><p>What is probit regression, and how can we use it as an alternative to logistic regression on a binary outcome?</p></li>
@@ -1044,7 +1069,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb960"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb960-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb960-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(colscr)</span></code></pre></div>
+<div class="sourceCode" id="cb967"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb967-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb967-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(colscr)</span></code></pre></div>
 <pre><code>colscr 
 
  9  Variables      26  Observations
@@ -1124,11 +1149,11 @@ Proportion 0.269 0.269 0.231 0.231
 <div id="fitting-a-logistic-regression-model-to-proportion-data" class="section level3" number="18.1.2">
 <h3><span class="header-section-number">18.1.2</span> Fitting a Logistic Regression Model to Proportion Data</h3>
 <p>Here, we have a binary outcome (was the subject screened or not?) but we have aggregated results. We can use the counts of the numbers of subjects at each clinic (in <code>subjects</code>) and the proportion who were screened (in <code>screen_rate</code>) to fit a logistic regression model, as follows:</p>
-<div class="sourceCode" id="cb962"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb962-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb962-1" aria-hidden="true" tabindex="-1"></a>m_screen1 <span class="ot">&lt;-</span>  <span class="fu">glm</span>(screen_rate <span class="sc">~</span> meanage <span class="sc">+</span> female <span class="sc">+</span> </span>
-<span id="cb962-2"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb962-2" aria-hidden="true" tabindex="-1"></a>                    pct_lowins <span class="sc">+</span> system, <span class="at">family =</span> binomial, </span>
-<span id="cb962-3"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb962-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">weights =</span> subjects, <span class="at">data =</span> colscr)</span>
-<span id="cb962-4"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb962-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb962-5"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb962-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_screen1)</span></code></pre></div>
+<div class="sourceCode" id="cb969"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb969-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb969-1" aria-hidden="true" tabindex="-1"></a>m_screen1 <span class="ot">&lt;-</span>  <span class="fu">glm</span>(screen_rate <span class="sc">~</span> meanage <span class="sc">+</span> female <span class="sc">+</span> </span>
+<span id="cb969-2"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb969-2" aria-hidden="true" tabindex="-1"></a>                    pct_lowins <span class="sc">+</span> system, <span class="at">family =</span> binomial, </span>
+<span id="cb969-3"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb969-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">weights =</span> subjects, <span class="at">data =</span> colscr)</span>
+<span id="cb969-4"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb969-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb969-5"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb969-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_screen1)</span></code></pre></div>
 <pre><code>
 Call:
 glm(formula = screen_rate ~ meanage + female + pct_lowins + system, 
@@ -1160,10 +1185,10 @@ Number of Fisher Scoring iterations: 4</code></pre>
 </div>
 <div id="fitting-a-logistic-regression-model-to-counts-of-successes-and-failures" class="section level3" number="18.1.3">
 <h3><span class="header-section-number">18.1.3</span> Fitting a Logistic Regression Model to Counts of Successes and Failures</h3>
-<div class="sourceCode" id="cb964"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb964-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb964-1" aria-hidden="true" tabindex="-1"></a>m_screen2 <span class="ot">&lt;-</span>  <span class="fu">glm</span>(<span class="fu">cbind</span>(screened, notscreened) <span class="sc">~</span> </span>
-<span id="cb964-2"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb964-2" aria-hidden="true" tabindex="-1"></a>                    meanage <span class="sc">+</span> female <span class="sc">+</span> pct_lowins <span class="sc">+</span> system, </span>
-<span id="cb964-3"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb964-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">family =</span> binomial, <span class="at">data =</span> colscr)</span>
-<span id="cb964-4"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb964-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_screen2)</span></code></pre></div>
+<div class="sourceCode" id="cb971"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb971-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb971-1" aria-hidden="true" tabindex="-1"></a>m_screen2 <span class="ot">&lt;-</span>  <span class="fu">glm</span>(<span class="fu">cbind</span>(screened, notscreened) <span class="sc">~</span> </span>
+<span id="cb971-2"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb971-2" aria-hidden="true" tabindex="-1"></a>                    meanage <span class="sc">+</span> female <span class="sc">+</span> pct_lowins <span class="sc">+</span> system, </span>
+<span id="cb971-3"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb971-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">family =</span> binomial, <span class="at">data =</span> colscr)</span>
+<span id="cb971-4"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb971-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_screen2)</span></code></pre></div>
 <pre><code>
 Call:
 glm(formula = cbind(screened, notscreened) ~ meanage + female + 
@@ -1196,15 +1221,15 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <div id="how-does-one-address-this-problem-in-rms" class="section level3" number="18.1.4">
 <h3><span class="header-section-number">18.1.4</span> How does one address this problem in <code>rms</code>?</h3>
 <p>We can use <code>Glm</code>. As an example to mirror <code>m_screen1</code>, we have the following…</p>
-<div class="sourceCode" id="cb966"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb966-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb966-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">datadist</span>(colscr)</span>
-<span id="cb966-2"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb966-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">datadist =</span> <span class="st">&quot;d&quot;</span>)</span>
-<span id="cb966-3"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb966-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb966-4"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb966-4" aria-hidden="true" tabindex="-1"></a>mod_screen_1 <span class="ot">&lt;-</span>  <span class="fu">Glm</span>(screen_rate <span class="sc">~</span> meanage <span class="sc">+</span> female <span class="sc">+</span> </span>
-<span id="cb966-5"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb966-5" aria-hidden="true" tabindex="-1"></a>                         pct_lowins <span class="sc">+</span> system, </span>
-<span id="cb966-6"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb966-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">family =</span> binomial, <span class="at">weights =</span> subjects, </span>
-<span id="cb966-7"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb966-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> colscr, <span class="at">x =</span> T, <span class="at">y =</span> T)</span>
-<span id="cb966-8"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb966-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb966-9"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb966-9" aria-hidden="true" tabindex="-1"></a>mod_screen_1</span></code></pre></div>
+<div class="sourceCode" id="cb973"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb973-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb973-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">datadist</span>(colscr)</span>
+<span id="cb973-2"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb973-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">datadist =</span> <span class="st">&quot;d&quot;</span>)</span>
+<span id="cb973-3"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb973-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb973-4"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb973-4" aria-hidden="true" tabindex="-1"></a>mod_screen_1 <span class="ot">&lt;-</span>  <span class="fu">Glm</span>(screen_rate <span class="sc">~</span> meanage <span class="sc">+</span> female <span class="sc">+</span> </span>
+<span id="cb973-5"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb973-5" aria-hidden="true" tabindex="-1"></a>                         pct_lowins <span class="sc">+</span> system, </span>
+<span id="cb973-6"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb973-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">family =</span> binomial, <span class="at">weights =</span> subjects, </span>
+<span id="cb973-7"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb973-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> colscr, <span class="at">x =</span> T, <span class="at">y =</span> T)</span>
+<span id="cb973-8"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb973-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb973-9"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb973-9" aria-hidden="true" tabindex="-1"></a>mod_screen_1</span></code></pre></div>
 <pre><code>General Linear Model
  
  Glm(formula = screen_rate ~ meanage + female + pct_lowins + system, 
@@ -1276,7 +1301,7 @@ Number of Fisher Scoring iterations: 4</code></pre>
 </tbody>
 </table>
 <p>The goal is to use the other variables (besides subject ID) to predict whether or not a subject is up to date.</p>
-<div class="sourceCode" id="cb968"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb968-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb968-1" aria-hidden="true" tabindex="-1"></a>colscr2 <span class="sc">%&gt;%</span> <span class="fu">describe</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb975"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb975-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-1" aria-hidden="true" tabindex="-1"></a>colscr2 <span class="sc">%&gt;%</span> <span class="fu">describe</span>()</span></code></pre></div>
 <pre><code>. 
 
  8  Variables      172  Observations
@@ -1351,11 +1376,11 @@ up_to_date
 <div id="a-logistic-regression-model" class="section level3" number="18.2.2">
 <h3><span class="header-section-number">18.2.2</span> A logistic regression model</h3>
 <p>Here is a logistic regression model.</p>
-<div class="sourceCode" id="cb970"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb970-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb970-1" aria-hidden="true" tabindex="-1"></a>m_scr2_logistic <span class="ot">&lt;-</span> <span class="fu">glm</span>(up_to_date <span class="sc">~</span> age <span class="sc">+</span> race <span class="sc">+</span> hispanic <span class="sc">+</span> </span>
-<span id="cb970-2"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb970-2" aria-hidden="true" tabindex="-1"></a>                    insurance <span class="sc">+</span> bmi <span class="sc">+</span> sbp, </span>
-<span id="cb970-3"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb970-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">family =</span> binomial, <span class="at">data =</span> colscr2)</span>
-<span id="cb970-4"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb970-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb970-5"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb970-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_scr2_logistic)</span></code></pre></div>
+<div class="sourceCode" id="cb977"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb977-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb977-1" aria-hidden="true" tabindex="-1"></a>m_scr2_logistic <span class="ot">&lt;-</span> <span class="fu">glm</span>(up_to_date <span class="sc">~</span> age <span class="sc">+</span> race <span class="sc">+</span> hispanic <span class="sc">+</span> </span>
+<span id="cb977-2"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb977-2" aria-hidden="true" tabindex="-1"></a>                    insurance <span class="sc">+</span> bmi <span class="sc">+</span> sbp, </span>
+<span id="cb977-3"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb977-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">family =</span> binomial, <span class="at">data =</span> colscr2)</span>
+<span id="cb977-4"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb977-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb977-5"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb977-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_scr2_logistic)</span></code></pre></div>
 <pre><code>
 Call:
 glm(formula = up_to_date ~ age + race + hispanic + insurance + 
@@ -1387,7 +1412,7 @@ Residual deviance: 210.55  on 162  degrees of freedom
 AIC: 230.55
 
 Number of Fisher Scoring iterations: 4</code></pre>
-<div class="sourceCode" id="cb972"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb972-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb972-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(m_scr2_logistic)</span></code></pre></div>
+<div class="sourceCode" id="cb979"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb979-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb979-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(m_scr2_logistic)</span></code></pre></div>
 <pre><code>Waiting for profiling to be done...</code></pre>
 <pre><code>                         2.5 %       97.5 %
 (Intercept)        -2.64274441  8.157738367
@@ -1408,16 +1433,16 @@ sbp                -0.04436143 -0.005282686</code></pre>
 <li>Harry is age 65, White, non-Hispanic, with Medicare insurance, a BMI of 28 and SBP of 135.</li>
 <li>Sally is age 60, Black, Hispanic, with Medicaid insurance, a BMI of 22 and SBP of 148.</li>
 </ul>
-<div class="sourceCode" id="cb975"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb975-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-1" aria-hidden="true" tabindex="-1"></a>newdat_s2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">subject =</span> <span class="fu">c</span>(<span class="st">&quot;Harry&quot;</span>, <span class="st">&quot;Sally&quot;</span>),</span>
-<span id="cb975-2"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">60</span>),</span>
-<span id="cb975-3"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">race =</span> <span class="fu">c</span>(<span class="st">&quot;White&quot;</span>, <span class="st">&quot;Black&quot;</span>),</span>
-<span id="cb975-4"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">hispanic =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
-<span id="cb975-5"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">insurance =</span> <span class="fu">c</span>(<span class="st">&quot;Medicare&quot;</span>, <span class="st">&quot;Medicaid&quot;</span>),</span>
-<span id="cb975-6"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">bmi =</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">22</span>),</span>
-<span id="cb975-7"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">sbp =</span> <span class="fu">c</span>(<span class="dv">135</span>, <span class="dv">148</span>))</span>
-<span id="cb975-8"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb975-9"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-9" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m_scr2_logistic, <span class="at">newdata =</span> newdat_s2, </span>
-<span id="cb975-10"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb975-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb982"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb982-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb982-1" aria-hidden="true" tabindex="-1"></a>newdat_s2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">subject =</span> <span class="fu">c</span>(<span class="st">&quot;Harry&quot;</span>, <span class="st">&quot;Sally&quot;</span>),</span>
+<span id="cb982-2"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb982-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">60</span>),</span>
+<span id="cb982-3"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb982-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">race =</span> <span class="fu">c</span>(<span class="st">&quot;White&quot;</span>, <span class="st">&quot;Black&quot;</span>),</span>
+<span id="cb982-4"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb982-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">hispanic =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb982-5"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb982-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">insurance =</span> <span class="fu">c</span>(<span class="st">&quot;Medicare&quot;</span>, <span class="st">&quot;Medicaid&quot;</span>),</span>
+<span id="cb982-6"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb982-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">bmi =</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">22</span>),</span>
+<span id="cb982-7"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb982-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">sbp =</span> <span class="fu">c</span>(<span class="dv">135</span>, <span class="dv">148</span>))</span>
+<span id="cb982-8"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb982-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb982-9"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb982-9" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m_scr2_logistic, <span class="at">newdata =</span> newdat_s2, </span>
+<span id="cb982-10"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb982-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
 <pre><code>        1         2 
 0.5904364 0.4215335 </code></pre>
 <p>The prediction for Harry is 0.59, and for Sally, 0.42, by this logistic regression model.</p>
@@ -1425,12 +1450,12 @@ sbp                -0.04436143 -0.005282686</code></pre>
 <div id="a-probit-regression-model" class="section level3" number="18.2.4">
 <h3><span class="header-section-number">18.2.4</span> A probit regression model</h3>
 <p>Now, consider a probit regression, fit by changing the default link for the <code>binomial</code> family as follows:</p>
-<div class="sourceCode" id="cb977"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb977-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb977-1" aria-hidden="true" tabindex="-1"></a>m_scr2_probit <span class="ot">&lt;-</span> <span class="fu">glm</span>(up_to_date <span class="sc">~</span> age <span class="sc">+</span> race <span class="sc">+</span> hispanic <span class="sc">+</span> </span>
-<span id="cb977-2"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb977-2" aria-hidden="true" tabindex="-1"></a>                    insurance <span class="sc">+</span> bmi <span class="sc">+</span> sbp, </span>
-<span id="cb977-3"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb977-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;probit&quot;</span>), </span>
-<span id="cb977-4"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb977-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> colscr2)</span>
-<span id="cb977-5"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb977-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb977-6"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb977-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_scr2_probit)</span></code></pre></div>
+<div class="sourceCode" id="cb984"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb984-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb984-1" aria-hidden="true" tabindex="-1"></a>m_scr2_probit <span class="ot">&lt;-</span> <span class="fu">glm</span>(up_to_date <span class="sc">~</span> age <span class="sc">+</span> race <span class="sc">+</span> hispanic <span class="sc">+</span> </span>
+<span id="cb984-2"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb984-2" aria-hidden="true" tabindex="-1"></a>                    insurance <span class="sc">+</span> bmi <span class="sc">+</span> sbp, </span>
+<span id="cb984-3"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb984-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;probit&quot;</span>), </span>
+<span id="cb984-4"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb984-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> colscr2)</span>
+<span id="cb984-5"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb984-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb984-6"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb984-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_scr2_probit)</span></code></pre></div>
 <pre><code>
 Call:
 glm(formula = up_to_date ~ age + race + hispanic + insurance + 
@@ -1462,7 +1487,7 @@ Residual deviance: 210.49  on 162  degrees of freedom
 AIC: 230.49
 
 Number of Fisher Scoring iterations: 4</code></pre>
-<div class="sourceCode" id="cb979"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb979-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb979-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(m_scr2_probit)</span></code></pre></div>
+<div class="sourceCode" id="cb986"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb986-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb986-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(m_scr2_probit)</span></code></pre></div>
 <pre><code>Waiting for profiling to be done...</code></pre>
 <pre><code>                         2.5 %       97.5 %
 (Intercept)        -1.70739455  4.894713408
@@ -1479,7 +1504,7 @@ sbp                -0.02659318 -0.003148488</code></pre>
 <div id="interpreting-the-probit-models-coefficients" class="section level3" number="18.2.5">
 <h3><span class="header-section-number">18.2.5</span> Interpreting the Probit Model’s Coefficients</h3>
 <p>It is possible to use any number of link functions to ensure that predicted values in a generalized linear model fall between 0 and 1. The probit regression model, for instance, uses the inverse of the cumulative distribution function of the Normal model as its link function. Let’s look more closely at the coefficients of the probit model we just fit.</p>
-<div class="sourceCode" id="cb982"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb982-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb982-1" aria-hidden="true" tabindex="-1"></a>m_scr2_probit<span class="sc">$</span>coef</span></code></pre></div>
+<div class="sourceCode" id="cb989"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb989-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb989-1" aria-hidden="true" tabindex="-1"></a>m_scr2_probit<span class="sc">$</span>coef</span></code></pre></div>
 <pre><code>       (Intercept)                age          raceOther          raceWhite 
        1.584603569        0.013461338       -1.238445198       -0.199260184 
           hispanic  insuranceMedicaid  insuranceMedicare insuranceUninsured 
@@ -1495,7 +1520,7 @@ sbp                -0.02659318 -0.003148488</code></pre>
 <div id="what-about-harry-and-sally" class="section level3" number="18.2.6">
 <h3><span class="header-section-number">18.2.6</span> What about Harry and Sally?</h3>
 <p>Do the predictions for Harry and Sally change much with this probit model, as compared to the logistic regression?</p>
-<div class="sourceCode" id="cb984"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb984-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb984-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m_scr2_probit, <span class="at">newdata =</span> newdat_s2, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb991"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb991-1"><a href="colorectal-cancer-screening-and-some-special-cases.html#cb991-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m_scr2_probit, <span class="at">newdata =</span> newdat_s2, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
 <pre><code>        1         2 
 0.5885511 0.4364027 </code></pre>
 
@@ -1512,7 +1537,6 @@ sbp                -0.02659318 -0.003148488</code></pre>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1531,6 +1555,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -1551,6 +1576,10 @@ gitbook.start({
 "text": null
 },
 "download": ["432-notes.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

@@ -1,6 +1,6 @@
 # Colorectal Cancer Screening and Some Special Cases
 
-In this Chapter, we discuss two issues as yet unraised regarding regression on a binary outcome.
+In this Chapter, we discuss two issues not yet raised regarding regression on a binary outcome.
 
 1. What do we do if our binary outcome is not available for each subject individually, but instead aggregated?
 

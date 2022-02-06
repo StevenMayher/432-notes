@@ -273,11 +273,11 @@ The `summary` of a linear model also displays:
 - Our model_A accounts for a mere 3.4% of the variation in `physhealth`.
 - The Adjusted R-squared value "adjusts" for the size of our model in terms of the number of coefficients included in the model.
 - The adjusted R-squared will always be smaller than the Multiple R-squared. 
-- We still hope to find models with relatively large adjusted R^2^ values.
-- In particular, we hope to find models where the adjusted R^2^ isn't substantially less than the Multiple R-squared.
+- We still hope to find models with relatively large adjusted $R^2$ values.
+- In particular, we hope to find models where the adjusted $R^2$ isn't substantially less than the Multiple R-squared.
 - The adjusted R-squared is usually a better estimate of likely performance of our model in new data than is the Multiple R-squared.
 - The adjusted R-squared result is no longer interpretable as a proportion of anything - in fact, it can fall below 0.
-- We can obtain the adjusted R^2^ from the raw R^2^, the number of observations *N* and the number of predictors *p* included in the model, as follows:
+- We can obtain the adjusted $R^2$ from the raw $R^2$, the number of observations *N* and the number of predictors *p* included in the model, as follows:
     
 $$
 R^2_{adj} = 1 - \frac{(1 - R^2)(N - 1)}{N - p - 1},
@@ -315,7 +315,7 @@ tidy(model_A, conf.int = TRUE, conf.level = 0.9) %>%
 
 glance` builds a data frame/tibble containing summary statistics about the model, including
 
-- the (raw) multiple R^2^ and adjusted R^2
+- the (raw) multiple $R^2$ and adjusted R^2
 - `sigma` which is the residual standard error
 - the F `statistic`, `p.value` model `df` and `df.residual` associated with the global ANOVA test, plus
 - several statistics that will be useful in comparing models down the line:
@@ -348,7 +348,7 @@ For more on the `broom` package, you may want to look at [this vignette](https:/
 
 ### How does the model do? (Residuals vs. Fitted Values)
 
-- Remember that the R^2^ value was about 3.4%.
+- Remember that the $R^2$ value was about 3.4%.
 
 ```{r}
 plot(model_A, which = 1)

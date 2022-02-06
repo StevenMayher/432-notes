@@ -699,7 +699,7 @@ head(res_B_aug)
 ggplot(res_B_aug, aes(x = factor(died), y = .fitted, col = factor(died))) +
     geom_boxplot() +
     geom_jitter(width = 0.1) + 
-    guides(col = FALSE)
+    guides(col = "none")
 ```
 
 Certainly it appears as though most of our predicted probabilities (of death) for the subjects who actually survived are quite small, but not all of them. We also have at least 6 big "misses" among the 17 subjects who actually died.
@@ -765,13 +765,13 @@ This output specifies the following:
 
 - `Obs` = The number of observations used to fit the model, with `0` = the number of zeros and `1` = the number of ones in our outcome, `died`. Also specified is the maximum absolute value of the derivative at the point where the maximum likelihood function was estimated. I wouldn't worry about that practically, as all you will care about is whether the iterative function-fitting process converged, and R will warn you in other ways if it doesn't.
 - A likelihood ratio test (drop in deviance test) subtracting the residual deviance from the null deviance obtain the Likelihood Ratio $\chi^2$ statistic, subtracting residual df from null df to obtain degrees of freedom, and comparing the resulting test statistic to a $\chi^2$ distribution with the appropriate degrees of freedom to determine a *p* value.
-- A series of discrimination indexes, including the Nagelkerke R^2^, symbolized R2, and several others we'll discuss shortly.
+- A series of discrimination indexes, including the Nagelkerke $R^2$, symbolized R2, and several others we'll discuss shortly.
 - A series of rank discrimination indexes, including the C statistic (area under the ROC curve) and Somers' D (Dxy), and several others.
 - A table of coefficients, standard errors, Wald Z statistics and *p* values based on those Wald statistics.
 
 The C statistic is estimated to be `r round(res_modC$stats["C"],3)`, with an associated (Nagelkerke) $R^2$ = `r round(res_modC$stats["R2"],3)`, both indicating at best mediocre performance for this model, as it turns out.
 
-### Interpreting Nagelkerke R^2^
+### Interpreting Nagelkerke $R^2$
 
 There are many ways to calculate $R^2$ for logistic regression. 
 
@@ -784,7 +784,7 @@ There are many ways to calculate $R^2$ for logistic regression.
 
 The Nagelkerke approach that is presented as `R2` in the `lrm` output is as good as most of the available approaches, and has the positive feature that it does reach 1 if the fitted model shows as much improvement as possible over the null model (which predicts the mean response for all subjects, and has $R^2$ = 0). The greater the improvement, the higher the Nagelkerke $R^2$.
 
-For model A, our Nagelkerke R^2^ = `r round(res_modC$stats["R2"],3)`, which is pretty poor. It doesn't technically mean that `r round(100*res_modC$stats["R2"],1)`% of any sort of variation has been explained, though.
+For model A, our Nagelkerke $R^2$ = `r round(res_modC$stats["R2"],3)`, which is pretty poor. It doesn't technically mean that `r round(100*res_modC$stats["R2"],1)`% of any sort of variation has been explained, though.
 
 ### Interpreting the C statistic and Plotting the ROC Curve
 
@@ -828,7 +828,7 @@ ggplot(roc.data, aes(x=fpr, ymin=0, ymax=tpr)) +
 - The C statistic is directly related to **Somers' D statistic**, abbreviated $D_{xy}$, by the equation C = 0.5 + (D/2).
     + Somers' D and the ROC area only measure how well predicted values from the model can rank-order the responses. For example, predicted probabilities of 0.01 and 0.99 for a pair of subjects are no better than probabilities of 0.2 and 0.8 using rank measures, if the first subject had a lower response value than the second.
     + Thus, the C statistic (or $D_{xy}$) may not be very sensitive ways to choose between models, even though they provide reasonable summaries of the models individually. 
-    + This is especially true when the models are strong. The Nagelkerke R^2^ may be more sensitive.
+    + This is especially true when the models are strong. The Nagelkerke $R^2$ may be more sensitive.
 - But as it turns out, we sometimes have to look at the ROC shapes, as the summary statistic alone isn't enough.
 
 In our case, Somers D (Dxy) = .541, so the C statistic is 0.771.
@@ -842,7 +842,7 @@ set.seed(432001)
 validate(res_modC, B = 100)
 ```
 
-Recall that our area under the curve (C statistic) = `0.5 + (Dxy/2)`, so that we can also use the first row of statistics to validate the C statistic. Accounting for optimism in this manner, our validation-corrected estimates are Dxy = 0.5408, so C = 0.7704, and, from the second row of statistics, we can read off the validated Nagelkerke R^2^, which is 0.1583.
+Recall that our area under the curve (C statistic) = `0.5 + (Dxy/2)`, so that we can also use the first row of statistics to validate the C statistic. Accounting for optimism in this manner, our validation-corrected estimates are Dxy = 0.5408, so C = 0.7704, and, from the second row of statistics, we can read off the validated Nagelkerke $R^2$, which is 0.1583.
 
 ### Plotting the Summary of the `lrm` approach
 
@@ -945,7 +945,7 @@ res_modD
 ```
 
 - The model likelihood ratio test suggests that at least some of these predictors are helpful.
-- The Nagelkerke R^2^ of 0.46, and the C statistic of 0.88 indicate a meaningful improvement in discrimination over our model with `resection` alone.
+- The Nagelkerke $R^2$ of 0.46, and the C statistic of 0.88 indicate a meaningful improvement in discrimination over our model with `resection` alone.
 - The Wald Z tests see some potential need to prune the model, as none of the elements reaches statistical significance without the others. The product term between `intubated` and `resection`, in particular, doesn't appear to have helped much, once we already had the main effects.
 
 ### ANOVA and Wald Tests for Model D
@@ -1172,7 +1172,7 @@ ggplot(res_p, aes(x = factor(died), y = prediction,
     geom_jitter(width = 0.25) + 
     geom_hline(yintercept = 0.5) +
     facet_wrap( ~ model) + 
-    guides(color = FALSE) +
+    guides(color = "none") +
     labs(title = "Comparing Predictions for our Three Models",
          subtitle = "A graphical view of concordance",
          x = "Actual mortality status (1 = died)",

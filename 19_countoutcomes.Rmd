@@ -196,7 +196,7 @@ With each approach, we will fit the model and specify procedures for doing so in
 2. Interpret the model's coefficient estimates and 95% confidence intervals around those estimates.
 3. Perform a test of whether each variable adds value to the model, when the other one is already included.
 4. Store the fitted values and appropriate residuals for each model.
-5. Summarize the model's apparent R^2^ value, the proportion of variation explained, and the model log likelihood.
+5. Summarize the model's apparent $R^2$ value, the proportion of variation explained, and the model log likelihood.
 6. Perform checks of model assumptions as appropriate.
 7. Describe how predictions would be made for two new subjects.
     - Harry has a BMI that is 10 kg/m^2^ higher than the average across all respondents and has smoked more than 100 cigarettes in his life.
@@ -244,9 +244,9 @@ sm_ols_1 %>% select(physhealth, .fitted, .resid) %>% head()
 
 It turns out that `r sum(sm_ols_1$.fitted < 0)` of the `r nrow(sm_ols_1)` predictions that we make are below 0, and the largest prediction made by this model is `r round(max(sm_ols_1$.fitted),2)` days.
 
-### Specify the R^2^ and log(likelihood) values
+### Specify the $R^2$ and log(likelihood) values
 
-The `glance` function in the `broom` package gives us the raw and adjusted R^2^ values, and the model log(likelihood), among other summaries.
+The `glance` function in the `broom` package gives us the raw and adjusted $R^2$ values, and the model log(likelihood), among other summaries.
 
 ```{r}
 glance(mod_ols1) %>% round(3)
@@ -254,7 +254,7 @@ glance(mod_ols1) %>% round(3)
 
 Here, we have
 
-Model | R^2^ | log(likelihood)
+Model | $R^2$ | log(likelihood)
 ----------: | ------: | --------:
 OLS | 0.036 | -6730.98
 
@@ -354,9 +354,9 @@ sm_ols_log1 %>%
 
 It turns out that `r sum(sm_ols_log1$pred.physhealth < 0)` of the `r nrow(sm_ols_log1)` predictions that we make are below 0, and the largest prediction made by this model is `r round(max(sm_ols_log1$pred.physhealth),2)` days.
 
-### Specify the R^2^ and log(likelihood) values
+### Specify the $R^2$ and log(likelihood) values
 
-The `glance` function in the `broom` package gives us the raw and adjusted R^2^ values, and the model log(likelihood), among other summaries.
+The `glance` function in the `broom` package gives us the raw and adjusted $R^2$ values, and the model log(likelihood), among other summaries.
 
 ```{r}
 glance(mod_ols_log1) %>% round(3)
@@ -364,11 +364,11 @@ glance(mod_ols_log1) %>% round(3)
 
 Here, we have
 
-Model | Scale | R^2^ | log(likelihood)
+Model | Scale | $R^2$ | log(likelihood)
 ----------: | ------: | --------: | ---------:
 OLS on log | log(`physhealth` + 1) | 0.03 | -2893.83
 
-### Getting R^2^ on the scale of `physhealth`
+### Getting $R^2$ on the scale of `physhealth`
 
 We could find the correlation of our model-predicted `physhealth` values, after back-transformation, and our observed `physhealth` values, if we wanted to, and then square that to get a sort of $R^2$ value. But this model is not linear in `physhealth`, of course, so it's not completely comparable to our prior OLS model.
 
@@ -517,9 +517,9 @@ rootogram(mod_poiss1, max = 30)
 
 The red curved line is the theoretical Poisson fit. "Hanging" from each point on the red line is a bar, the height of which represents the difference between expected and observed counts. A bar hanging below 0 indicates underfitting. A bar hanging above 0 indicates overfitting. The counts have been transformed with a square root transformation to prevent smaller counts from getting obscured and overwhelmed by larger counts. We see a great deal of underfitting for counts of 0, and overfitting for most other counts, especially 1-6, with some underfitting again by `physhealth` above 14 days.
 
-### Specify the R^2^ and log(likelihood) values
+### Specify the $R^2$ and log(likelihood) values
 
-We can calculate the R^2^ as the squared correlation of the fitted values and the observed values.
+We can calculate the $R^2$ as the squared correlation of the fitted values and the observed values.
 
 ```{r}
 # The correlation of observed and fitted values
@@ -537,7 +537,7 @@ glance(mod_poiss1) %>% round(3)
 
 Here, we have
 
-Model | Scale | R^2^ | log(likelihood)
+Model | Scale | $R^2$ | log(likelihood)
 ----------: | ------: | --------: | ---------:
 Poisson | log(`physhealth`) | 0.185 | -10189.33
 
@@ -670,9 +670,9 @@ It turns out that `r sum(sm_poiss_od1$.fitted < 0)` of the `r nrow(sm_poiss_od1)
 
 The `rootogram` function we've shown doesn't support overdispersed Poisson models at the moment.
 
-### Specify the R^2^ and log(likelihood) values
+### Specify the $R^2$ and log(likelihood) values
 
-We can calculate the R^2^ as the squared correlation of the fitted values and the observed values.
+We can calculate the $R^2$ as the squared correlation of the fitted values and the observed values.
 
 ```{r}
 # The correlation of observed and fitted values
@@ -690,7 +690,7 @@ glance(mod_poiss_od1) %>% round(3)
 
 Here, we have
 
-Model | Scale | R^2^ | log(likelihood)
+Model | Scale | $R^2$ | log(likelihood)
 ----------: | ------: | --------: | ---------:
 Poisson | log(`physhealth`) | 0.034 | NA
 
@@ -917,9 +917,9 @@ rnbinom(n = nrow(sm_oh_A_young),
 
 Again we see that the simulated data badly underfits the 30 values, and includes some predictions larger than 30.
 
-### Specify the R^2^ and log(likelihood) values
+### Specify the $R^2$ and log(likelihood) values
 
-We can calculate the R^2^ as the squared correlation of the fitted values and the observed values.
+We can calculate the $R^2$ as the squared correlation of the fitted values and the observed values.
 
 ```{r}
 # The correlation of observed and fitted values
@@ -937,7 +937,7 @@ glance(mod_nb1) %>% round(3)
 
 Here, we have
 
-Model | Scale | R^2^ | log(likelihood)
+Model | Scale | $R^2$ | log(likelihood)
 ----------: | ------: | --------: | ---------:
 Negative Binomial | log(`physhealth`) | .034 | -3484.27
 
@@ -1124,9 +1124,9 @@ countreg::rootogram(mod_zip1, max = 30)
 
 The zero frequencies are perfectly matched here, but we can see that counts of 1 and 2 are now substantially underfit, and values between 6 and 13 are overfit.
 
-### Specify the R^2^ and log (likelihood) values
+### Specify the $R^2$ and log (likelihood) values
 
-We can calculate a proxy for R^2^ as the squared correlation of the fitted values and the observed values.
+We can calculate a proxy for $R^2$ as the squared correlation of the fitted values and the observed values.
 
 ```{r}
 # The correlation of observed and fitted values
@@ -1142,7 +1142,7 @@ logLik(mod_zip1)
 
 Here, we have
 
-Model | Scale | R^2^ | log(likelihood)
+Model | Scale | $R^2$ | log(likelihood)
 ----------: | ------: | --------: | ---------:
 Zero-Inflated Poisson | Complex: log(`physhealth`) | .035 | -5679.83
 
@@ -1275,9 +1275,9 @@ countreg::rootogram(mod_zinb1, max = 30)
 
 As in the ZIP model, the zero frequencies are perfectly matched here, but we can see that counts of 1 and 2 are now closer to the data we observe than in the ZIP model. We are still substantially underfitting values of 30.
 
-### Specify the R^2^ and log (likelihood) values
+### Specify the $R^2$ and log (likelihood) values
 
-We can calculate a proxy for R^2^ as the squared correlation of the fitted values and the observed values.
+We can calculate a proxy for $R^2$ as the squared correlation of the fitted values and the observed values.
 
 ```{r}
 # The correlation of observed and fitted values
@@ -1293,7 +1293,7 @@ logLik(mod_zinb1)
 
 Here, we have
 
-Model | Scale | R^2^ | log(likelihood)
+Model | Scale | $R^2$ | log(likelihood)
 ----------: | ------: | --------: | ---------:
 Zero-Inflated Negative Binomial | Complex: log(`physhealth`) | .035 | -3469.27
 
@@ -1489,9 +1489,9 @@ and we can multiply these last two pieces together to verify that they match our
 head(predict(mod_hur1, type = "zero") * predict(mod_hur1, type = "count"),5)
 ```
 
-### Specify the R^2^ and log (likelihood) values
+### Specify the $R^2$ and log (likelihood) values
 
-We can calculate a proxy for R^2^ as the squared correlation of the fitted values and the observed values.
+We can calculate a proxy for $R^2$ as the squared correlation of the fitted values and the observed values.
 
 ```{r}
 # The correlation of observed and fitted values
@@ -1507,7 +1507,7 @@ logLik(mod_hur1)
 
 Here, we have
 
-Model | Scale | R^2^ | log(likelihood)
+Model | Scale | $R^2$ | log(likelihood)
 ----------: | ------: | --------: | ---------:
 Hurdle Model (Poisson) | Complex: log(`physhealth`) | .035 | -5679.83
 
@@ -1646,9 +1646,9 @@ countreg::rootogram(mod_hur_nb1, max = 30)
 
 This improves the situation, but we're still underfitting the 30s.
 
-### Specify the R^2^ and log (likelihood) values
+### Specify the $R^2$ and log (likelihood) values
 
-We can calculate a proxy for R^2^ as the squared correlation of the fitted values and the observed values.
+We can calculate a proxy for $R^2$ as the squared correlation of the fitted values and the observed values.
 
 ```{r}
 # The correlation of observed and fitted values
@@ -1664,7 +1664,7 @@ logLik(mod_hur_nb1)
 
 Here, we have
 
-Model | Scale | R^2^ | log(likelihood)
+Model | Scale | $R^2$ | log(likelihood)
 ----------: | ------: | --------: | ---------:
 Hurdle Model (Neg. Bin.) | Complex: log(`physhealth`) | .035 | -3469.07
 
@@ -1808,9 +1808,9 @@ addmargins(table(round(sm_tob1$physhealth)))
 addmargins(table(round(sm_tob1$fitted)))
 ```
 
-### Specify the R^2^ and log (likelihood) values
+### Specify the $R^2$ and log (likelihood) values
 
-We can calculate a proxy for R^2^ as the squared correlation of the fitted values and the observed values.
+We can calculate a proxy for $R^2$ as the squared correlation of the fitted values and the observed values.
 
 ```{r}
 # The correlation of observed and fitted values
@@ -1826,7 +1826,7 @@ logLik(mod_tob1)
 
 Here, we have
 
-Model | Scale | R^2^ | log(likelihood)
+Model | Scale | $R^2$ | log(likelihood)
 ----------: | ------: | --------: | ---------:
 Tobit | `physhealth` | .008 | -3420.58
 

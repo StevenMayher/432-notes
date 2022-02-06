@@ -8,59 +8,62 @@ smart_cle1_sh <- readRDS(here("data", "smart_cle1_sh.Rds"))
 
 ## A New Small Study: Predicting BMI
 
-We'll begin by investigating the problem of predicting `bmi`, at first with just three regression inputs: `sex`, `smoke100` and `physhealth`, in our `smart_cle1_sh` data set. 
+We'll begin by investigating the problem of predicting `bmi`, at first with just three regression inputs: `smoke100`, `female` and `physhealth`, in our `smart_cle1_sh` data set. 
 
 - The outcome of interest is `bmi`.
 - Inputs to the regression model are:
-    - `female` = 1 if the subject is female, and 0 if they are male
     - `smoke100` = 1 if the subject has smoked 100 cigarettes in their lifetime
+    - `female` = 1 if the subject is female, and 0 if they are male
     - `physhealth` = number of poor physical health days in past 30 (treated as quantitative)
 
-### Does `female` predict `bmi` well?
+### Does `smoke100` predict `bmi` well?
 
 #### Graphical Assessment
 
 ```{r}
-ggplot(smart_cle1_sh, aes(x = female, y = bmi)) +
+ggplot(smart_cle1_sh, aes(x = smoke100, y = bmi)) +
     geom_point()
 ```
 
-Not so helpful. We should probably specify that `female` is a factor, and try another plotting approach.
+Not so helpful. We should probably specify that `smoke100` is a factor, and try another plotting approach.
 
 ```{r}
-ggplot(smart_cle1_sh, aes(x = factor(female), y = bmi)) +
+ggplot(smart_cle1_sh, aes(x = factor(smoke100), y = bmi)) +
     geom_boxplot()
 ```
 
-The median BMI looks a little higher for males. Let's see if a model reflects that.
+The median BMI looks a little higher for those who have smoked 100 cigarettes. Let's see if a model reflects that.
 
 ## `c8_m1`: A simple t-test model
 
 ```{r}
-c8_m1 <- lm(bmi ~ female, data = smart_cle1_sh)
+c8_m1 <- lm(bmi ~ smoke100, data = smart_cle1_sh)
 c8_m1
 summary(c8_m1)
 confint(c8_m1)
+
+tidy(c8_m1, conf.int = TRUE, conf.level = 0.95)
+glance(c8_m1)
 ```
 
-The model suggests, based on these 896 subjects, that 
+The model suggests, based on these 1133 subjects, that 
 
-- our best prediction for males is BMI = 28.36 kg/m^2^, and 
-- our best prediction for females is BMI = 28.36 - 0.85 = 27.51 kg/m^2^.
-- the mean difference between females and males is -0.85 kg/m^2^ in BMI
-- a 95% confidence (uncertainty) interval for that mean female - male difference in BMI ranges from -1.69 to -0.01
-- the model accounts for 0.4% of the variation in BMI, so that knowing the respondent's sex does very little to reduce the size of the prediction errors as compared to an intercept only model that would predict the overall mean (regardless of sex) for all subjects.
-- the model makes some enormous errors, with one subject being predicted to have a BMI 38 points lower than his/her actual BMI.
+- our best prediction for non-smokers is BMI = 27.94 kg/m^2^, and 
+- our best prediction for those who have smoked 100 cigarettes is BMI = 27.94 + 0.87 = 28.81 kg/m^2^.
+- the mean difference between smokers and non-smokers is +0.87 kg/m^2^ in BMI
+- a 95% confidence (uncertainty) interval for that mean smoker - non-smoker difference in BMI ranges from 0.13 to 1.61
+- the model accounts for 0.47% of the variation in BMI, so that knowing the respondent's tobacco status does very little to reduce the size of the prediction errors as compared to an intercept only model that would predict the overall mean BMI for each of our subjects.
+- the model makes some enormous errors, with one subject being predicted to have a BMI 42 points lower than his/her actual BMI.
 
 Note that this simple regression model just gives us the t-test.
 
 ```{r}
-t.test(bmi ~ female, var.equal = TRUE, data = smart_cle1_sh)
+t.test(bmi ~ smoke100, var.equal = TRUE, data = smart_cle1_sh)
 ```
 
 ## `c8_m2`: Adding another predictor (two-way ANOVA without interaction)
 
-When we add in the information about `smoke100` to our original model, we might first picture the data. We could look at separate histograms,
+When we add in the information about `female` (sex) to our original model, we might first picture the data. We could look at separate histograms,
 
 ```{r}
 ggplot(smart_cle1_sh, aes(x = bmi)) +
@@ -92,18 +95,18 @@ c8_m2
 
 This new model predicts only four predicted values:
 
-- `bmi` = 28.035 if the subject is male and has not smoked 100 cigarettes (so `female` = 0 and `smoke100` = 0)
-- `bmi` = 28.035 - 0.144 = 27.891 if the subject is female and has not smoked 100 cigarettes (`female` = 1 and `smoke100` = 0)
-- `bmi` = 28.035 + 0.859 = 28.894 if the subject is male and has smoked 100 cigarettes (so `female` = 0 and `smoke100` = 1), and, finally
-- `bmi` = 28.035 - 0.144 + 0.859 = 28.750 if the subject is female and has smoked 100 cigarettes (so both `female` and `smoke100` = 1).
+- `bmi` = 28.0265 if the subject is male and has not smoked 100 cigarettes (so `female` = 0 and `smoke100` = 0)
+- `bmi` = 28.0265 - 0.1342 = 27.8923 if the subject is female and has not smoked 100 cigarettes (`female` = 1 and `smoke100` = 0)
+- `bmi` = 28.0265 + 0.8555 = 28.8820 if the subject is male and has smoked 100 cigarettes (so `female` = 0 and `smoke100` = 1), and, finally
+- `bmi` = 28.0265 - 0.1342 + 0.8555 = 28.7478 if the subject is female and has smoked 100 cigarettes (so both `female` and `smoke100` = 1).
 
 Another way to put this is that for those who have not smoked 100 cigarettes, the model is:
 
-- `bmi` = 28.035 - 0.144 `female`
+- `bmi` = 28.0265 - 0.1342 `female`
 
 and for those who have smoked 100 cigarettes, the model is:
 
-- `bmi` = 28.894 - 0.144 `female`
+- `bmi` = 28.8820 - 0.1342 `female`
 
 Only the intercept of the `bmi-female` model changes depending on `smoke100`.
 
@@ -114,7 +117,7 @@ confint(c8_m2)
 
 The slopes of both `female` and `smoke100` have confidence intervals that are completely below zero, indicating that both `female` sex and `smoke100` appear to be associated with reductions in `bmi`.
 
-The R^2^ value suggests that just under 3% of the variation in `bmi` is accounted for by this ANOVA model.
+The $R^2$ value suggests that 0.4788% of the variation in `bmi` is accounted for by this ANOVA model.
 
 In fact, this regression (on two binary indicator variables) is simply a two-way ANOVA model without an interaction term.
 
@@ -134,20 +137,20 @@ c8_m3
 
 So, for example, for a male who has smoked 100 cigarettes, this model predicts
 
-- `bmi` = 28.275 - 0.513 (0) + 0.419 (1) + 0.746 (0)(1) = 28.275 + 0.419 = 28.694
+- `bmi` = 28.269 - 0.506 (0) + 0.412 (1) + 0.754 (0)(1) = 28.269 + 0.412 = 28.681
 
 And for a female who has smoked 100 cigarettes, the model predicts
 
-- `bmi` = 28.275 - 0.513 (1) + 0.419 (1) + 0.746 (1)(1) = 28.275 - 0.513 + 0.419 + 0.746 = 28.927
+- `bmi` = 28.269 - 0.506 (1) + 0.412 (1) + 0.754 (1)(1) = 28.269 - 0.506 + 0.412 + 0.754 = 28.929
 
 For those who have not smoked 100 cigarettes, the model is:
 
-- `bmi` = 28.275 - 0.513 `female`
+- `bmi` = 28.269 - 0.506 `female`
 
 But for those who have smoked 100 cigarettes, the model is:
 
-- `bmi` = (28.275 + 0.419) + (-0.513 + 0.746) `female`, or ,,,
-- `bmi` = 28.694 - 0.233 `female`
+- `bmi` = (28.269 + 0.412) + (-0.506 + 0.754) `female`, or ,,,
+- `bmi` = 28.681 - 0.248 `female`
 
 Now, both the slope and the intercept of the `bmi-female` model change depending on `smoke100`.
 
@@ -162,14 +165,14 @@ In fact, this regression (on two binary indicator variables and a product term) 
 anova(c8_m3)
 ```
 
-The interaction term doesn't change very much here. Its uncertainty interval includes zero, and the overall model still accounts for just under 3% of the variation in `bmi`. 
+The interaction term doesn't change very much here. Its uncertainty interval includes zero, and the overall model still accounts for less than 1% of the variation in `bmi`. 
 
 ## `c8_m4`: Using `female` and `physhealth` in a model for `bmi`
 
 ```{r graph_to_set_up_c8_m4}
 ggplot(smart_cle1_sh, aes(x = physhealth, y = bmi, color = factor(female))) +
     geom_point() + 
-    guides(col = FALSE) +
+    guides(col = "none") +
     geom_smooth(method = "lm", se = FALSE) +
     facet_wrap(~ female, labeller = label_both) 
 ```
@@ -196,7 +199,7 @@ glance(c8_m4)
 glance(c8_m1)
 ```
 
-- The R^2^ is much larger for the model with `physhealth`, but still very tiny.
+- The $R^2$ is much larger for the model with `physhealth`, but still very tiny.
 - Smaller AIC and smaller BIC statistics are more desirable. Here, there's little to choose from, so `c8_m4` looks better, too.
 - We might also consider a significance test by looking at an ANOVA model comparison. This is only appropriate because `c8_m1` is nested in `c8_m4`.
     
@@ -266,13 +269,13 @@ summary(c8_m4_c)
 
 What has changed as compared to the original `c8_m4`?
 
-- Our original model was `bmi` = 27.93 - 0.31 `female` + 0.14 `physhealth` - 0.01 `female` x `physhealth`
-- Our new model is `bmi` = 28.58 - 0.37 `female` + 0.14 centered `physhealth` - 0.01 `female` x centered `physhealth`.
+- Our original model was `bmi` = 27.92 - 0.30 `female` + 0.14 `physhealth` - 0.01 `female` x `physhealth`
+- Our new model is `bmi` = 28.57 - 0.36 `female` + 0.14 centered `physhealth` - 0.01 `female` x centered `physhealth`.
 
 So our new model on centered data is:
 
-- 28.58 + 0.14 centered `physhealth_c` for male subjects, and
-- (28.58 - 0.37) + (0.14 - 0.01) centered `physhealth_c`, or 28.21 - 0.13 centered `physhealth_c` for female subjects.
+- 28.57 + 0.14 centered `physhealth_c` for male subjects, and
+- (28.57 - 0.30) + (0.14 - 0.01) centered `physhealth_c`, or 28.27 - 0.13 centered `physhealth_c` for female subjects.
 
 In our new (centered `physhealth_c`) model, 
 
@@ -287,7 +290,7 @@ In our new (centered `physhealth_c`) model,
 ggplot(smart_cle1_sh_c, aes(x = physhealth_c, y = bmi, group = female, col = factor(female))) +
     geom_point(alpha = 0.5, size = 2) +
     geom_smooth(method = "lm", se = FALSE) +
-    guides(color = FALSE) +
+    guides(color = "none") +
     labs(x = "Poor Physical Health Days, centered", y = "Body Mass Index",
          title = "Model `c8_m4` on centered data") +
     facet_wrap(~ female, labeller = label_both)
@@ -319,15 +322,14 @@ summary(c8_m4_z)
 
 What has changed as compared to the original `c8_m4`?
 
-- Our original model was `bmi` = 27.93 - 0.31 `female` + 0.14 `physhealth` - 0.01 `female` x `physhealth`
-- Our model on centered `physhealth` was `bmi` = 28.58 - 0.37 `female` + 0.14 centered `physhealth` - 0.01 `female` x centered `physhealth`.
-
-- Our new model on rescaled `physhealth` is `bmi` = 28.58 - 0.37 `female` + 2.51 rescaled `physhealth_z` - 0.23 `female` x rescaled `physhealth_z`.
+- Our original model was `bmi` = 27.92 - 0.30 `female` + 0.14 `physhealth` - 0.01 `female` x `physhealth`
+- Our model on centered `physhealth` was `bmi` = 28.57 - 0.36 `female` + 0.14 centered `physhealth` - 0.01 `female` x centered `physhealth`.
+- Our new model on rescaled `physhealth` is `bmi` = 28.58 - 0.37 `female` + 2.50 rescaled `physhealth_z` - 0.22 `female` x rescaled `physhealth_z`.
 
 So our rescaled model is:
 
-- 28.58 + 2.51 rescaled `physhealth_z` for male subjects, and
-- (28.58 - 0.37) + (2.51 - 0.23) rescaled `physhealth_z`, or 28.21 + 2.28 rescaled `physhealth_z` for female subjects.
+- 28.58 + 2.50 rescaled `physhealth_z` for male subjects, and
+- (28.58 - 0.37) + (2.50 - 0.22) rescaled `physhealth_z`, or 28.21 + 2.28 rescaled `physhealth_z` for female subjects.
 
 In this new rescaled (`physhealth_z`) model, then,
 
@@ -344,7 +346,7 @@ as before, but now we also have that:
 mosaic::favstats(~ physhealth, data = smart_cle1_sh)
 ```
     
-- the coefficient of the product term (-0.23) corresponds to the change in the coefficient of `physhealth_z` for females as compared to males.
+- the coefficient of the product term (-0.22) corresponds to the change in the coefficient of `physhealth_z` for females as compared to males.
 
 ### Plot of model on rescaled data
 
@@ -362,7 +364,7 @@ There's very little difference here.
 
 ## `c8_m5`: What if we add more variables?
 
-We can boost our R^2^ a bit, to nearly 5%, by adding in two new variables, related to whether or not the subject (in the past 30 days) used the internet, and the average number of alcoholic drinks per week consumed by ths subject.
+We can boost our $R^2$ a bit, to nearly 5%, by adding in two new variables, related to whether or not the subject (in the past 30 days) used the internet, and the average number of alcoholic drinks per week consumed by ths subject.
 
 ```{r fit_c8_m5}
 c8_m5 <- lm(bmi ~ female + smoke100 + physhealth + internet30 + drinks_wk,

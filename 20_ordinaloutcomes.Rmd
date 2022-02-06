@@ -141,7 +141,7 @@ CrossTable(sm1$incomegroup, sm1$genh, chisq = T)
 ggplot(sm1, aes(x = genhealth, fill = genhealth)) + 
     geom_bar() +
     scale_fill_brewer(palette = "Set1") +
-    guides(fill = FALSE)
+    guides(fill = "none")
 ```
 
 or, you might prefer to plot percentages, perhaps like this:
@@ -156,7 +156,7 @@ ggplot(sm1, aes(x = genhealth, fill = genhealth)) +
               color = "white", size = 5) +
     scale_y_continuous(labels = scales::percent) +
     scale_fill_brewer(palette = "Dark2") +
-    guides(fill = FALSE) + 
+    guides(fill = "none") + 
     labs(y = "Percentage")
 ```
 
@@ -188,7 +188,7 @@ To actually see what's going on, we might build a comparison boxplot, or violin 
 ggplot(sm1, aes(x = genhealth, y = veg_day)) +
     geom_violin(aes(fill = genhealth), trim = TRUE) +
     geom_boxplot(width = 0.2) +
-    guides(fill = FALSE, color = FALSE) +
+    guides(fill = "none", color = "none") +
     theme_bw()
 ```
 
@@ -489,7 +489,7 @@ m1_lrm <- lrm(genh ~ veg_day, data = sm1, x = T, y = T)
 m1_lrm
 ```
 
-The model is highly significant (remember the large sample size) but very weak, with a Nagelkerke R^2^ of 0.015, and a C statistic of 0.555.
+The model is highly significant (remember the large sample size) but very weak, with a Nagelkerke $R^2$ of 0.015, and a C statistic of 0.555.
 
 ```{r}
 summary(m1_lrm)
@@ -581,7 +581,7 @@ plot(summary(m2_lrm))
 
 ### Quality of the Model Fit
 
-Model `m2`, as we can see from the `m2_lrm` output, is still weak, with a Nagelkerke R^2^ of 0.10, and a C statistic of 0.63.
+Model `m2`, as we can see from the `m2_lrm` output, is still weak, with a Nagelkerke $R^2$ of 0.10, and a C statistic of 0.63.
 
 ### Validating the Summary Statistics in `m2_lrm`
 
@@ -589,7 +589,7 @@ Model `m2`, as we can see from the `m2_lrm` output, is still weak, with a Nagelk
 set.seed(43203); validate(m2_lrm)
 ```
 
-As in our work with binary logistic regression, we can convert the index-corrected Dxy to an index-corrected C with C = 0.5 + (Dxy/2). Both the R^2^ and C statistics are pretty consistent with what we saw above.
+As in our work with binary logistic regression, we can convert the index-corrected Dxy to an index-corrected C with C = 0.5 + (Dxy/2). Both the $R^2$ and C statistics are pretty consistent with what we saw above.
 
 ### Testing the Proportional Odds Assumption
 
@@ -696,7 +696,7 @@ Here, we're plotting the mean score on the 1-5 `gen_n` scale.
 set.seed(43221); validate(m3_lrm)
 ```
 
-Still not very impressive, but much better than where we started. It's not crazy to suggest that in new data, we might expect a Nagelkerke R^2^ of 0.205 and a C statistic of 0.5 + (0.3886/2) = 0.6943.
+Still not very impressive, but much better than where we started. It's not crazy to suggest that in new data, we might expect a Nagelkerke $R^2$ of 0.205 and a C statistic of 0.5 + (0.3886/2) = 0.6943.
 
 
 ## References for this Chapter
